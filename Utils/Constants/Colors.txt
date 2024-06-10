@@ -1,0 +1,2 @@
+primaryColor = #062fac
+secondaryColor = #4bad12
