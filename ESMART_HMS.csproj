@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\izuag\OneDrive\Desktop\HotelManagementSoftware\publish\</PublishUrl>
+    <PublishUrl>C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -400,10 +400,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
-    <EntityDeploy Include="Models\Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="ESMART_HMSDBDataSet.xsc">
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </None>
@@ -415,6 +411,10 @@
     <None Include="ESMART_HMSDBDataSet.xss">
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </None>
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
@@ -433,6 +433,7 @@
     <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="favicon.ico" />
     <Content Include="MetroFramework.txt" />
     <Content Include="Models\Model.Context.tt">
@@ -445,6 +446,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Utils\Constants\Colors.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">

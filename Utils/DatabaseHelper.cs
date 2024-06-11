@@ -1,79 +1,69 @@
 ﻿using ESMART_HMS.Models;
 using ESMART_HMS.Repositories;
+using MaterialSkin;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ESMART_HMS
 {
     public static class DatabaseHelper
     {
-        //private static string connectionString = @"Data Source=..\..\Files\HotelManagementSystem.db;Version=3;";
+        private static readonly string connectionString = @"data source=localhost;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True";
 
-        //public static void InitializeDatabase()
-        //{
-        //    try
-        //    {
+        public static void InitializeDatabase()
+        {
+            if (!DatabaseExists())
+            {
+                CreateDatabase();
+                CreateTable("User", "[Id][nvarchar](450) NOT NULL, [UserId][nvarchar](450) NOT NULL, [FirstName][nvarchar](max) NOT NULL, [LastName][nvarchar](max) NOT NULL, [FullName][nvarchar](max) NOT NULL, [UserName][nvarchar](256) NOT NULL, [Email][nvarchar](256) NULL,[PasswordHash][nvarchar](max) NOT NULL, [PhoneNumber][nvarchar](max) NULL, [DateCreated][datetime2](7) NOT NULL, [DateModified][datetime2](7) NOT NULL, CONSTRAINT[PK_User] PRIMARY KEY CLUSTERED ( [Id] ASC )");
 
-        //        if (!File.Exists(@"..\..\Files\HotelManagementSystem.db"))
-        //        {
-        //            SQLiteConnection.CreateFile(@"..\..\Files\HotelManagementSystem.db");
-        //            using (var connection = new SQLiteConnection(connectionString))
-        //            {
-        //                connection.Open();
+                CreateTable("RoomType", "[Id] [nvarchar](450) NOT NULL,[RoomTypeId] [nvarchar](450) NOT NULL,[Title] [nvarchar](max) NOT NULL,[Description] [nvarchar](max) NOT NULL,[RateBase] [decimal](10,2) NOT NULL,[DateCreated] [datetime2](7) NOT NULL,[DateModified] [datetime2](7) NOT NULL,CONSTRAINT [PK_RoomType] PRIMARY KEY CLUSTERED([Id] ASC)");
 
-        //                // Create tables for data
-        //                string createApplicationUsersTableQuery = @"
-        //                   CREATE TABLE IF NOT EXISTS Users (
-        //                           Id INTEGER PRIMARY KEY AUTOINCREMENT,
-        //                           UserId TEXT NOT NULL,
-        //                           Username TEXT NOT NULL,
-        //                           PasswordHash TEXT NOT NULL,
-        //                           FirstName TEXT NOT NULL,
-        //                           LastName TEXT NOT NULL,
-        //                           Email TEXT UNIQUE NOT NULL,
-        //                           PhoneNumber TEXT NOT NULL,
-        //                           DateCreated DATETIME DEFAULT CURRENT_TIMESTAMP,
-        //                           DateModified DATETIME DEFAULT CURRENT_TIMESTAMP
-        //                  );";
+                CreateTable("Room", "[Id] [nvarchar](450) NOT NULL,[RoomId] [nvarchar](450) NOT NULL,[RoomName] [nvarchar](max) NOT NULL,[RoomCardNo] [nvarchar](max) NOT NULL,[RoomLockNo] [nvarchar](max) NOT NULL,[RoomTypeId] [nvarchar](450) NOT NULL,[AdultPerRoom] [int] NOT NULL,[ChildrenPerRoom] [int] NOT NULL,[Description] [nvarchar](max) NOT NULL,[Rate] [decimal](10, 2) NOT NULL,[IsAvailable][bit] NOT NULL,[DateCreated] [datetime2](7) NOT NULL,[DateModified] [datetime2](7) NOT NULL, FOREIGN KEY (RoomTypeId) REFERENCES RoomType(Id), CONSTRAINT [PK_Room] PRIMARY KEY CLUSTERED([Id] ASC)");
 
-        //                string createCustomersTableQuery = @"
-        //                   CREATE TABLE IF NOT EXISTS Customers (
-        //                           Id INTEGER PRIMARY KEY AUTOINCREMENT,
-        //                           CustomerId TEXT NOT NULL,
-        //                           Title TEXT NOT NULL,
-        //                           FirstName TEXT NOT NULL,
-        //                           LastName TEXT NOT NULL,
-        //                           Email TEXT UNIQUE NOT NULL,
-        //                           City TEXT NOT NULL,
-        //                           State TEXT NOT NULL,
-        //                           Country TEXT NOT NULL,
-        //                           PhoneNumber TEXT NOT NULL,
-        //                           MembershipStatus TEXT NOT NULL,
-        //                           DateCreated DATETIME DEFAULT CURRENT_TIMESTAMP,
-        //                           DateModified DATETIME DEFAULT CURRENT_TIMESTAMP
-        //                   );";
+                CreateTable("Customer", "[Id] [nvarchar](450) NOT NULL,[CustomerId] [nvarchar](450) NOT NULL,[Title] [nvarchar](max) NOT NULL,[FirstName] [nvarchar](max) NOT NULL,[LastName] [nvarchar](max) NOT NULL,[FullName] [nvarchar](max) NOT NULL,[Email] [nvarchar](256) NOT NULL,[PhoneNumber] [nvarchar](max) NOT NULL,[Street] [nvarchar](max) NOT NULL,[City] [nvarchar](max) NOT NULL,[Company] [nvarchar](max) NOT NULL,[State] [nvarchar](max) NOT NULL,[Country] [nvarchar](max) NOT NULL,[IdentificationDocument] [varbinary] (max) NULL,[IdentitificationDocumentName] [nvarchar](256) NULL,[DateCreated] [datetime2](7) NOT NULL,[DateModified] [datetime2](7) NOT NULL, CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([Id] ASC)");
+            }
+        }
 
+        private static bool DatabaseExists()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT COUNT(*) FROM sys.databases WHERE name = 'ESMART_HMSDB'";
+                int result = (int)command.ExecuteScalar();
+                return result > 0;
+            }
+        }
 
-        //                using (var command = new SQLiteCommand(connection))
-        //                {
-        //                    command.CommandText = createApplicationUsersTableQuery;
-        //                    command.ExecuteNonQuery();
+        private static void CreateDatabase()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "CREATE DATABASE ESMART_HMSDB";
+                command.ExecuteNonQuery();
+            }
+        }
 
-        //                    command.CommandText = createCustomersTableQuery;
-        //                    command.ExecuteNonQuery();
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log error
-        //        File.WriteAllText("error_log.txt", ex.ToString());
-        //    }
-            
-        //}
+        private static void CreateTable(string tableName, string tableDefinition)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = $"USE ESMART_HMSDB; CREATE TABLE [{tableName}] ({tableDefinition})";
+                command.ExecuteNonQuery();
+            }
+        }
 
         public static void AddSampleUser() 
         {
@@ -96,42 +86,8 @@ namespace ESMART_HMS
                 {
                     UserRepository userRepository = new UserRepository(db);
                     userRepository.AddUser(user);
-                }
-                
+                } 
             }
-
-            //using (SQLiteConnection connection = new SQLiteConnection(connectionString)) 
-            //{
-            //    connection.Open();
-
-                
-
-            //    using (SQLiteCommand command = new SQLiteCommand(connection))
-            //    {
-            //        command.CommandText =
-            //            @"
-            //                WITH UserExists AS (
-            //                    SELECT 1 FROM Users WHERE Email = @Email
-            //                )
-            //                INSERT INTO Users (UserId, Username, PasswordHash, FirstName, LastName, Email, PhoneNumber, DateCreated, DateModified)
-            //                SELECT @UserId, @Username, @PasswordHash, @FirstName, @LastName, @Email, @PhoneNumber, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
-            //                WHERE NOT EXISTS (SELECT 1 FROM UserExists);";
-
-            //        command.Parameters.AddWithValue("@UserId", userId);
-            //        command.Parameters.AddWithValue("@Username", username);
-            //        command.Parameters.AddWithValue("@FirstName", firstName);
-            //        command.Parameters.AddWithValue("@LastName", lastName);
-            //        command.Parameters.AddWithValue("@Email", email);
-            //        command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-            //        command.Parameters.AddWithValue("@PasswordHash", password);
-            //        command.Parameters.AddWithValue("@DateCreated", dateCreated);
-            //        command.Parameters.AddWithValue("@DateModified", dateModified);
-
-
-            //        command.ExecuteNonQuery();
-            //        command.Parameters.Clear();
-            //    }
-            //}
         }
     }
 }

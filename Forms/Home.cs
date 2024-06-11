@@ -33,23 +33,23 @@ namespace ESMART_HMS.Forms
 
         private void menuTransition_Tick(object sender, EventArgs e)
         {
-            if (menuExpand == false)
-            {
-                menuContainer.Height += 10;
-                if (menuContainer.Height >= 181)
-                {
-                    menuTransition.Stop();
-                    menuExpand = true;
-                }
-            } else
-            {
-                menuContainer.Height -= 10;
-                if (menuContainer.Height <= 60)
-                {
-                    menuTransition.Stop();
-                    menuExpand = false;
-                }
-            }
+            //if (menuExpand == false)
+            //{
+            //    menuContainer.Height += 10;
+            //    if (menuContainer.Height >= 181)
+            //    {
+            //        menuTransition.Stop();
+            //        menuExpand = true;
+            //    }
+            //} else
+            //{
+            //    menuContainer.Height -= 10;
+            //    if (menuContainer.Height <= 60)
+            //    {
+            //        menuTransition.Stop();
+            //        menuExpand = false;
+            //    }
+            //}
         }
 
         private void manageGuest_Click(object sender, EventArgs e)
@@ -67,9 +67,9 @@ namespace ESMART_HMS.Forms
                     sidebarExpand = false;
                     sidebarTransition.Stop();
 
-                    pnDashboard.Width = sidebar.Width;
-                    pnRoomBooking.Width = sidebar.Width;
-                    menuContainer.Width = sidebar.Width;
+                    //pnDashboard.Width = sidebar.Width;
+                    //pnRoomBooking.Width = sidebar.Width;
+                    //menuContainer.Width = sidebar.Width;
                 }
             } else
             {
@@ -79,9 +79,9 @@ namespace ESMART_HMS.Forms
                     sidebarExpand = true;
                     sidebarTransition.Stop();
 
-                    pnDashboard.Width = sidebar.Width;
-                    pnRoomBooking.Width = sidebar.Width;
-                    menuContainer.Width = sidebar.Width;
+                    //pnDashboard.Width = sidebar.Width;
+                    //pnRoomBooking.Width = sidebar.Width;
+                    //menuContainer.Width = sidebar.Width;
                 }
             }
         }

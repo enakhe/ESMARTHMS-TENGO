@@ -35,17 +35,6 @@
             this.btnHam = new System.Windows.Forms.PictureBox();
             this.menuTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
-            this.menuContainer = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnManageGuest = new System.Windows.Forms.Panel();
-            this.manageGuest = new System.Windows.Forms.Button();
-            this.pnGuest = new System.Windows.Forms.Panel();
-            this.btnGuests = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCompanies = new System.Windows.Forms.Button();
-            this.pnDashboard = new System.Windows.Forms.Panel();
-            this.btnDashboard = new System.Windows.Forms.Button();
-            this.pnRoomBooking = new System.Windows.Forms.Panel();
-            this.btnRoomBooking = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -61,13 +50,6 @@
             this.roomStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHam)).BeginInit();
-            this.menuContainer.SuspendLayout();
-            this.pnManageGuest.SuspendLayout();
-            this.pnGuest.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.pnDashboard.SuspendLayout();
-            this.pnRoomBooking.SuspendLayout();
-            this.sidebar.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,168 +96,6 @@
             this.sidebarTransition.Interval = 10;
             this.sidebarTransition.Tick += new System.EventHandler(this.sidebarTransition_Tick);
             // 
-            // menuContainer
-            // 
-            this.menuContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(33)))), ((int)(((byte)(37)))));
-            this.menuContainer.Controls.Add(this.pnManageGuest);
-            this.menuContainer.Controls.Add(this.pnGuest);
-            this.menuContainer.Controls.Add(this.panel2);
-            this.menuContainer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.menuContainer.Location = new System.Drawing.Point(3, 69);
-            this.menuContainer.Name = "menuContainer";
-            this.menuContainer.Size = new System.Drawing.Size(293, 60);
-            this.menuContainer.TabIndex = 3;
-            // 
-            // pnManageGuest
-            // 
-            this.pnManageGuest.Controls.Add(this.manageGuest);
-            this.pnManageGuest.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnManageGuest.Location = new System.Drawing.Point(0, 0);
-            this.pnManageGuest.Margin = new System.Windows.Forms.Padding(0);
-            this.pnManageGuest.Name = "pnManageGuest";
-            this.pnManageGuest.Size = new System.Drawing.Size(290, 60);
-            this.pnManageGuest.TabIndex = 2;
-            // 
-            // manageGuest
-            // 
-            this.manageGuest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.manageGuest.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.manageGuest.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.manageGuest.FlatAppearance.BorderSize = 0;
-            this.manageGuest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.manageGuest.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manageGuest.ForeColor = System.Drawing.Color.White;
-            this.manageGuest.Image = ((System.Drawing.Image)(resources.GetObject("manageGuest.Image")));
-            this.manageGuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageGuest.Location = new System.Drawing.Point(0, 0);
-            this.manageGuest.Margin = new System.Windows.Forms.Padding(0);
-            this.manageGuest.Name = "manageGuest";
-            this.manageGuest.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.manageGuest.Size = new System.Drawing.Size(290, 60);
-            this.manageGuest.TabIndex = 3;
-            this.manageGuest.Text = "           Manage Guests";
-            this.manageGuest.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageGuest.UseVisualStyleBackColor = false;
-            this.manageGuest.Click += new System.EventHandler(this.manageGuest_Click);
-            // 
-            // pnGuest
-            // 
-            this.pnGuest.Controls.Add(this.btnGuests);
-            this.pnGuest.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnGuest.Location = new System.Drawing.Point(0, 60);
-            this.pnGuest.Margin = new System.Windows.Forms.Padding(0);
-            this.pnGuest.Name = "pnGuest";
-            this.pnGuest.Size = new System.Drawing.Size(290, 60);
-            this.pnGuest.TabIndex = 2;
-            // 
-            // btnGuests
-            // 
-            this.btnGuests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(33)))), ((int)(((byte)(37)))));
-            this.btnGuests.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuests.FlatAppearance.BorderSize = 0;
-            this.btnGuests.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuests.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuests.ForeColor = System.Drawing.Color.White;
-            this.btnGuests.Image = ((System.Drawing.Image)(resources.GetObject("btnGuests.Image")));
-            this.btnGuests.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuests.Location = new System.Drawing.Point(-12, 0);
-            this.btnGuests.Name = "btnGuests";
-            this.btnGuests.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.btnGuests.Size = new System.Drawing.Size(296, 60);
-            this.btnGuests.TabIndex = 7;
-            this.btnGuests.Text = "          Guests";
-            this.btnGuests.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuests.UseVisualStyleBackColor = false;
-            this.btnGuests.Click += new System.EventHandler(this.btnGuests_Click_1);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnCompanies);
-            this.panel2.Location = new System.Drawing.Point(3, 123);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(290, 60);
-            this.panel2.TabIndex = 7;
-            // 
-            // btnCompanies
-            // 
-            this.btnCompanies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(33)))), ((int)(((byte)(37)))));
-            this.btnCompanies.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCompanies.FlatAppearance.BorderSize = 0;
-            this.btnCompanies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCompanies.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompanies.ForeColor = System.Drawing.Color.White;
-            this.btnCompanies.Image = ((System.Drawing.Image)(resources.GetObject("btnCompanies.Image")));
-            this.btnCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCompanies.Location = new System.Drawing.Point(-12, 0);
-            this.btnCompanies.Name = "btnCompanies";
-            this.btnCompanies.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.btnCompanies.Size = new System.Drawing.Size(290, 60);
-            this.btnCompanies.TabIndex = 8;
-            this.btnCompanies.Text = "         Companies";
-            this.btnCompanies.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCompanies.UseVisualStyleBackColor = false;
-            this.btnCompanies.Click += new System.EventHandler(this.btnCompanies_Click);
-            // 
-            // pnDashboard
-            // 
-            this.pnDashboard.Controls.Add(this.btnDashboard);
-            this.pnDashboard.Location = new System.Drawing.Point(3, 3);
-            this.pnDashboard.Name = "pnDashboard";
-            this.pnDashboard.Size = new System.Drawing.Size(290, 60);
-            this.pnDashboard.TabIndex = 2;
-            // 
-            // btnDashboard
-            // 
-            this.btnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.btnDashboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDashboard.ForeColor = System.Drawing.Color.White;
-            this.btnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.Image")));
-            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDashboard.Location = new System.Drawing.Point(0, 0);
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(0);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnDashboard.Size = new System.Drawing.Size(290, 60);
-            this.btnDashboard.TabIndex = 3;
-            this.btnDashboard.Text = "           Dashboard";
-            this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDashboard.UseVisualStyleBackColor = false;
-            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
-            // 
-            // pnRoomBooking
-            // 
-            this.pnRoomBooking.Controls.Add(this.btnRoomBooking);
-            this.pnRoomBooking.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnRoomBooking.Location = new System.Drawing.Point(3, 135);
-            this.pnRoomBooking.Name = "pnRoomBooking";
-            this.pnRoomBooking.Size = new System.Drawing.Size(293, 60);
-            this.pnRoomBooking.TabIndex = 2;
-            // 
-            // btnRoomBooking
-            // 
-            this.btnRoomBooking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.btnRoomBooking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRoomBooking.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRoomBooking.FlatAppearance.BorderSize = 0;
-            this.btnRoomBooking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRoomBooking.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRoomBooking.ForeColor = System.Drawing.Color.White;
-            this.btnRoomBooking.Image = ((System.Drawing.Image)(resources.GetObject("btnRoomBooking.Image")));
-            this.btnRoomBooking.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRoomBooking.Location = new System.Drawing.Point(0, 0);
-            this.btnRoomBooking.Name = "btnRoomBooking";
-            this.btnRoomBooking.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnRoomBooking.Size = new System.Drawing.Size(293, 60);
-            this.btnRoomBooking.TabIndex = 3;
-            this.btnRoomBooking.Text = "           Room Booking";
-            this.btnRoomBooking.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRoomBooking.UseVisualStyleBackColor = false;
-            this.btnRoomBooking.Click += new System.EventHandler(this.btnRoomBooking_Click);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
@@ -287,16 +107,13 @@
             // 
             // sidebar
             // 
-            this.sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(47)))), ((int)(((byte)(172)))));
             this.sidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sidebar.Controls.Add(this.pnDashboard);
-            this.sidebar.Controls.Add(this.menuContainer);
-            this.sidebar.Controls.Add(this.pnRoomBooking);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.sidebar.Location = new System.Drawing.Point(0, 78);
             this.sidebar.Name = "sidebar";
-            this.sidebar.Size = new System.Drawing.Size(51, 635);
+            this.sidebar.Size = new System.Drawing.Size(283, 635);
             this.sidebar.TabIndex = 5;
             // 
             // menuStrip1
@@ -396,6 +213,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1117, 713);
             this.Controls.Add(this.sidebar);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -411,13 +229,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHam)).EndInit();
-            this.menuContainer.ResumeLayout(false);
-            this.pnManageGuest.ResumeLayout(false);
-            this.pnGuest.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.pnDashboard.ResumeLayout(false);
-            this.pnRoomBooking.ResumeLayout(false);
-            this.sidebar.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -432,19 +243,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer menuTransition;
         private System.Windows.Forms.Timer sidebarTransition;
-        private System.Windows.Forms.FlowLayoutPanel menuContainer;
-        private System.Windows.Forms.Panel pnGuest;
-        private System.Windows.Forms.Panel pnManageGuest;
-        private System.Windows.Forms.Button manageGuest;
-        private System.Windows.Forms.Panel pnDashboard;
-        private System.Windows.Forms.Button btnDashboard;
-        private System.Windows.Forms.Panel pnRoomBooking;
-        private System.Windows.Forms.Button btnRoomBooking;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel sidebar;
-        private System.Windows.Forms.Button btnGuests;
-        private System.Windows.Forms.Button btnCompanies;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCustonerToolStripMenuItem;

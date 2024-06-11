@@ -19,7 +19,7 @@ namespace ESMART_HMS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // DatabaseHelper.InitializeDatabase();
+            DatabaseHelper.InitializeDatabase();
             DatabaseHelper.AddSampleUser();
 
             AuthService authService = new AuthService();
