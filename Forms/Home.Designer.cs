@@ -113,7 +113,7 @@
             this.sidebar.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.sidebar.Location = new System.Drawing.Point(0, 78);
             this.sidebar.Name = "sidebar";
-            this.sidebar.Size = new System.Drawing.Size(283, 635);
+            this.sidebar.Size = new System.Drawing.Size(51, 635);
             this.sidebar.TabIndex = 5;
             // 
             // menuStrip1
