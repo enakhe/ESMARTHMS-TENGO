@@ -56,7 +56,7 @@ namespace ESMART_HMS.Presentation.ViewModels
 
         public List<ESMART_HMS.Domain.Entities.Customer> SearchCustomer(string keyword)
         {
-            List<ESMART_HMS.Domain.Entities.Customer> searchedCustomer = _searchCustomerUseCase.Execute(keyword);   
+            List<ESMART_HMS.Domain.Entities.Customer> searchedCustomer = _searchCustomerUseCase.Execute(keyword);
             return searchedCustomer;
         }
     }

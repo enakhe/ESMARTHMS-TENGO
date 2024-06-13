@@ -1,5 +1,4 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Infrastructure.Data;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Windows.Forms;

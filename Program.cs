@@ -1,11 +1,9 @@
-﻿using ESMART_HMS.Application.UseCases.Customer;
+﻿using ESMART_HMS.Application;
+using ESMART_HMS.Domain;
 using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Interfaces;
-using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Infrastructure;
+using ESMART_HMS.Presentation;
 using ESMART_HMS.Presentation.Forms;
-using ESMART_HMS.Presentation.Forms.Customers;
-using ESMART_HMS.Presentation.ViewModels;
-using ESMART_HMS.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -34,27 +32,17 @@ namespace ESMART_HMS
             // Add the DbContext as a singleton
             services.AddSingleton<ESMART_HMSDBEntities>();
 
-            // Repositories
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            // Domain
+            DomainDependencyInjection.AddDomainServices(services);
 
-            // Use Cases
-            services.AddScoped<CreateCustomerUseCase>();
-            services.AddScoped<GetAllCustomersUseCase>();
-            services.AddScoped<UpdateCustomerUseCase>();
-            services.AddScoped<GetCustomerByIdUseCase>();
-            services.AddScoped<DeleteCustomerUseCase>();
+            // Application
+            ApplicationDependencyInjection.AddApplicationServices(services);
 
-            // View Models
-            services.AddScoped<CustomerViewModel>();
+            // Presentation
+            PresentationDependencyInjection.AddPresentationServices(services);
 
-            // Services
-            services.AddScoped<AuthService>();
-
-            // Forms
-            services.AddScoped<LoginForm>();
-            services.AddScoped<AddCustomerForm>();
-            services.AddScoped<ViewCustomerForm>();
+            // Infrastructure
+            InfrastructureDependencyInjection.AddInfrastructureServices(services);
         }
     }
 }
