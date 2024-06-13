@@ -1,5 +1,13 @@
-﻿using ESMART_HMS.Forms;
+﻿using ESMART_HMS.Application.UseCases.Customer;
+using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Forms;
+using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Presentation.Forms;
+using ESMART_HMS.Presentation.Forms.Customers;
+using ESMART_HMS.Presentation.ViewModels;
 using ESMART_HMS.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +24,39 @@ namespace ESMART_HMS
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
 
-            DatabaseHelper.InitializeDatabase();
-            DatabaseHelper.AddSampleUser();
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
+            System.Windows.Forms.Application.Run(loginForm);
+        }
 
-            AuthService authService = new AuthService();
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            // Add the DbContext as a singleton
+            services.AddSingleton<ESMART_HMSDBEntities>();
 
-            Application.Run(new LoginForm(authService));
+            // Repositories
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
-            //Application.Run(new Home());
+            // Use Cases
+            services.AddScoped<CreateCustomerUseCase>();
+            services.AddScoped<GetAllCustomersUseCase>();
+
+            // View Models
+            services.AddScoped<CustomerViewModel>();
+
+            // Services
+            services.AddScoped<AuthService>();
+
+            // Forms
+            services.AddScoped<LoginForm>();
+            services.AddScoped<AddCustomerForm>();
+            services.AddScoped<ViewCustomerForm>();
         }
     }
 }
