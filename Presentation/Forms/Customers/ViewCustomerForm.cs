@@ -1,5 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Presentation.ViewModels;
+using ESMART_HMS.Presentation.Controllers;
 using System;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -10,12 +10,12 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 {
     public partial class ViewCustomerForm : Form
     {
-        private readonly CustomerViewModel _customerViewModel;
+        private readonly CustomerController _customerController;
         private readonly string _Id;
-        public ViewCustomerForm(string Id, CustomerViewModel customerViewModel)
+        public ViewCustomerForm(string Id, CustomerController customerViewModel)
         {
             InitializeComponent();
-            _customerViewModel = customerViewModel;
+            _customerController = customerViewModel;
             _Id = Id;
             LoadCustomerData();
         }
@@ -24,7 +24,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
         {
             try
             {
-                Customer customer = _customerViewModel.GetCustomerById(_Id);
+                Customer customer = _customerController.GetCustomerById(_Id);
                 if (customer == null)
                 {
                     MessageBox.Show("Customer not found", "", MessageBoxButtons.OK,
@@ -73,7 +73,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 
             try
             {
-                Customer customer = _customerViewModel.GetCustomerById(_Id);
+                Customer customer = _customerController.GetCustomerById(_Id);
                 if (customer == null)
                 {
                     MessageBox.Show("Customer not found", "", MessageBoxButtons.OK,

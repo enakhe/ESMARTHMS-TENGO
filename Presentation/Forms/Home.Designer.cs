@@ -39,7 +39,7 @@
             this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addCustonerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllCoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageRoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,28 +122,27 @@
             // 
             this.customerToolStripMenuItem.AutoSize = false;
             this.customerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addCustonerToolStripMenuItem,
+            this.customerMainToolStripMenuItem,
             this.viewAllCoToolStripMenuItem});
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
             this.customerToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
             this.customerToolStripMenuItem.Text = "Manage Guest";
-            this.customerToolStripMenuItem.Click += new System.EventHandler(this.customerToolStripMenuItem_Click);
             // 
-            // addCustonerToolStripMenuItem
+            // customerMainToolStripMenuItem
             // 
-            this.addCustonerToolStripMenuItem.AutoSize = false;
-            this.addCustonerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addCustonerToolStripMenuItem.Image")));
-            this.addCustonerToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.addCustonerToolStripMenuItem.Name = "addCustonerToolStripMenuItem";
-            this.addCustonerToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10, 1, 10, 1);
-            this.addCustonerToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
-            this.addCustonerToolStripMenuItem.Text = "View all Customers";
-            this.addCustonerToolStripMenuItem.Click += new System.EventHandler(this.addCustonerToolStripMenuItem_Click);
+            this.customerMainToolStripMenuItem.AutoSize = false;
+            this.customerMainToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("customerMainToolStripMenuItem.Image")));
+            this.customerMainToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.customerMainToolStripMenuItem.Name = "customerMainToolStripMenuItem";
+            this.customerMainToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10, 1, 10, 1);
+            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
+            this.customerMainToolStripMenuItem.Text = "View all Customers";
+            this.customerMainToolStripMenuItem.Click += new System.EventHandler(this.customerMainToolStripMenuItem_Click_1);
             // 
             // viewAllCoToolStripMenuItem
             // 
             this.viewAllCoToolStripMenuItem.Name = "viewAllCoToolStripMenuItem";
-            this.viewAllCoToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.viewAllCoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.viewAllCoToolStripMenuItem.Text = "View all Companies";
             // 
             // manageRoomToolStripMenuItem
@@ -162,6 +161,7 @@
             this.roomsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10, 1, 10, 1);
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
             this.roomsToolStripMenuItem.Text = "View all Rooms";
+            this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // roomsFacilitiesToolStripMenuItem
             // 
@@ -235,7 +235,7 @@
         private System.Windows.Forms.FlowLayoutPanel sidebar;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addCustonerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerMainToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAllCoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageRoomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomsToolStripMenuItem;

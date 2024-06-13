@@ -1,7 +1,8 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Forms;
-using ESMART_HMS.Presentation.ViewModels;
+using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
@@ -10,12 +11,14 @@ namespace ESMART_HMS.Presentation.Forms
     public partial class LoginForm : Form
     {
         private readonly AuthService _authService;
-        private readonly CustomerViewModel _customerViewModel;
-        public LoginForm(AuthService authService, CustomerViewModel customerViewModel)
+        private readonly CustomerController _customerController;
+        private readonly RoomController _roomController;
+        public LoginForm(AuthService authService, CustomerController customerViewModel, RoomController roomController)
         {
             _authService = authService;
-            _customerViewModel = customerViewModel;
+            _customerController = customerViewModel;
             InitializeComponent();
+            _roomController = roomController;
         }
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
@@ -33,9 +36,15 @@ namespace ESMART_HMS.Presentation.Forms
             if (user != null)
             {
                 this.Cursor = Cursors.WaitCursor;
-                Home dashboard = new Home(_customerViewModel);
+
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                var homeForm = serviceProvider.GetRequiredService<Home>();
+                // Home dashboard = new Home(_customerController);
                 this.Hide();
-                dashboard.Show();
+                homeForm.Show();
             }
         }
 

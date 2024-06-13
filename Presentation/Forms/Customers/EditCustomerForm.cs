@@ -1,5 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Presentation.ViewModels;
+using ESMART_HMS.Presentation.Controllers;
 using System;
 using System.Windows.Forms;
 
@@ -8,13 +8,13 @@ namespace ESMART_HMS.Presentation.Forms.Customers
     public partial class EditCustomer : Form
     {
         private readonly string _Id;
-        private readonly CustomerViewModel _customerViewModel;
+        private readonly CustomerController _customerController;
 
-        public EditCustomer(string Id, CustomerViewModel customerViewModel)
+        public EditCustomer(string Id, CustomerController customerViewModel)
         {
             InitializeComponent();
             _Id = Id;
-            _customerViewModel = customerViewModel;
+            _customerController = customerViewModel;
             LoadCustomerData();
         }
 
@@ -22,7 +22,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
         {
             try
             {
-                Customer customer = _customerViewModel.GetCustomerById(_Id);
+                Customer customer = _customerController.GetCustomerById(_Id);
                 if (customer == null)
                 {
                     MessageBox.Show("Customer not found", "", MessageBoxButtons.OK,
@@ -64,7 +64,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
         {
             try
             {
-                Customer customer = _customerViewModel.GetCustomerById(_Id);
+                Customer customer = _customerController.GetCustomerById(_Id);
                 if (customer == null)
                 {
                     MessageBox.Show("Customer not found", "", MessageBoxButtons.OK,
@@ -92,7 +92,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                         customer.PhoneNumber = txtPhoneNumber.Text.Trim().ToUpper();
                         customer.DateModified = DateTime.Now;
 
-                        _customerViewModel.UpdateCustomer(customer);
+                        _customerController.UpdateCustomer(customer);
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }

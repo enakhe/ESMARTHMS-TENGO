@@ -1,5 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Presentation.ViewModels;
+using ESMART_HMS.Presentation.Controllers;
 using System;
 using System.Windows.Forms;
 
@@ -8,11 +8,11 @@ namespace ESMART_HMS.Presentation.Forms.Customers
     public partial class AddCustomerForm : Form
     {
         Customer customer = new Customer();
-        private readonly CustomerViewModel _customerViewModel;
-        public AddCustomerForm(CustomerViewModel customerViewModel)
+        private readonly CustomerController _customerController;
+        public AddCustomerForm(CustomerController customerController)
         {
             InitializeComponent();
-            _customerViewModel = customerViewModel;
+            _customerController = customerController;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                     customer.DateCreated = DateTime.Now;
                     customer.DateModified = DateTime.Now;
 
-                    _customerViewModel.AddCustomer(customer);
+                    _customerController.AddCustomer(customer);
                     this.DialogResult = DialogResult.OK;
 
 

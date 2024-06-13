@@ -1,5 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Presentation.ViewModels;
+using ESMART_HMS.Presentation.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,12 +8,12 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 {
     public partial class CustomerForm : Form
     {
-        private readonly CustomerViewModel _customerViewModel;
+        private readonly CustomerController _customerController;
 
-        public CustomerForm(CustomerViewModel customerViewModel)
+        public CustomerForm(CustomerController customerViewModel)
         {
             InitializeComponent();
-            _customerViewModel = customerViewModel;
+            _customerController = customerViewModel;
             LoadData();
         }
 
@@ -22,7 +22,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
             dgvCustomers.AutoGenerateColumns = false;
             try
             {
-                var allCustomers = _customerViewModel.LoadCustomers();
+                var allCustomers = _customerController.LoadCustomers();
                 if (allCustomers != null)
                 {
                     dgvCustomers.DataSource = allCustomers;
@@ -44,7 +44,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 
                 if (!string.IsNullOrEmpty(keyword))
                 {
-                    List<Customer> searchedCustomer = _customerViewModel.SearchCustomer(keyword);
+                    List<Customer> searchedCustomer = _customerController.SearchCustomer(keyword);
                     dgvCustomers.DataSource = searchedCustomer;
                 }
                 else
@@ -68,7 +68,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                     var row = dgvCustomers.SelectedRows[0];
                     string id = row.Cells["Id"].Value.ToString();
 
-                    using (ViewCustomerForm viewCustomerForm = new ViewCustomerForm(id, _customerViewModel))
+                    using (ViewCustomerForm viewCustomerForm = new ViewCustomerForm(id, _customerController))
                     {
                         if (viewCustomerForm.ShowDialog() == DialogResult.OK)
                         {
@@ -100,7 +100,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                         foreach (DataGridViewRow row in dgvCustomers.SelectedRows)
                         {
                             string id = row.Cells["Id"].Value.ToString();
-                            _customerViewModel.DeleteCustomer(id);
+                            _customerController.DeleteCustomer(id);
                         }
                         LoadData();
                         MessageBox.Show("Successfully deleted customer information", "Success", MessageBoxButtons.OK,
@@ -121,7 +121,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 
         private void addCustomerBtn_Click(object sender, EventArgs e)
         {
-            AddCustomerForm addCustomerForm = new AddCustomerForm(_customerViewModel);
+            AddCustomerForm addCustomerForm = new AddCustomerForm(_customerController);
             if (addCustomerForm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -135,7 +135,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                 DataGridViewRow row = dgvCustomers.Rows[e.RowIndex];
                 string customerId = row.Cells["Id"].Value.ToString();
 
-                using (EditCustomer editCustomerForm = new EditCustomer(customerId, _customerViewModel))
+                using (EditCustomer editCustomerForm = new EditCustomer(customerId, _customerController))
                 {
                     if (editCustomerForm.ShowDialog() == DialogResult.OK)
                     {

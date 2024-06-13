@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Application.UseCases.Customer;
+using ESMART_HMS.Application.UseCases.Room;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ESMART_HMS.Application
@@ -8,13 +9,17 @@ namespace ESMART_HMS.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
 
-            // Use Cases
+            // Customer Use Cases
             services.AddScoped<CreateCustomerUseCase>();
             services.AddScoped<GetAllCustomersUseCase>();
             services.AddScoped<UpdateCustomerUseCase>();
             services.AddScoped<GetCustomerByIdUseCase>();
             services.AddScoped<DeleteCustomerUseCase>();
             services.AddScoped<SearchCustomerUseCase>();
+
+            // Room Use Cases
+            services.AddScoped<GetAllRoomUseCase>();
+            services.AddScoped<CreateRoomUseCase>();
 
             return services;
         }

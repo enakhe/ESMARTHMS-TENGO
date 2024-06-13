@@ -238,24 +238,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\UseCases\DependencyInjection.cs" />
+    <Compile Include="Application\DependencyInjection.cs" />
     <Compile Include="Application\UseCases\Customer\CreateCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\DeleteCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\GetAllCustomersUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\GetCustomerByIdUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\SearchCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\UpdateCustomerUseCase.cs" />
-    <Compile Include="Domain\Interfaces\DependencyInjection.cs" />
+    <Compile Include="Application\UseCases\Room\CreateRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Room\GetAllRoomUseCase.cs" />
+    <Compile Include="DependencyInjection.cs" />
+    <Compile Include="Domain\DependencyInjection.cs" />
     <Compile Include="Domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />
+    <Compile Include="Domain\Interfaces\IRoomRepository.cs" />
     <Compile Include="Domain\Interfaces\IUserRepository.cs" />
     <Compile Include="ESMART_HMSDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Data\RoomRepository.cs" />
     <Compile Include="Infrastructure\Data\UserRepository.cs" />
     <Compile Include="Infrastructure\DependencyInjection.cs" />
+    <Compile Include="Presentation\Controllers\CustomerController.cs" />
+    <Compile Include="Presentation\Controllers\RoomController.cs" />
     <Compile Include="Presentation\Forms\Customers\AddCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +321,18 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Data\CustomerRepository.cs" />
+    <Compile Include="Presentation\Forms\Rooms\AddRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Rooms\AddRoomForm.Designer.cs">
+      <DependentUpon>AddRoomForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Rooms\RoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Rooms\RoomForm.Designer.cs">
+      <DependentUpon>RoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\ViewModels\CustomerViewModel.cs" />
     <Compile Include="Domain\Utils\DatabaseHelper.cs" />
     <Compile Include="Presentation\Forms\LoginForm.cs">
@@ -324,6 +343,7 @@
     </Compile>
     <Compile Include="Domain\Enum\MembershipStatusEnum.cs" />
     <Compile Include="Presentation\DependencyInjection.cs" />
+    <Compile Include="Presentation\ViewModels\RoomViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Services\AuthService.cs" />
@@ -344,6 +364,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Rooms\AddRoomForm.resx">
+      <DependentUpon>AddRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Rooms\RoomForm.resx">
+      <DependentUpon>RoomForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -388,7 +414,6 @@
   <ItemGroup>
     <Folder Include="Application\Interfaces\" />
     <Folder Include="Infrastructure\Frameworks\" />
-    <Folder Include="Presentation\Controllers\" />
     <Folder Include="Presentation\Mappers\" />
   </ItemGroup>
   <ItemGroup>

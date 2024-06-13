@@ -9,7 +9,7 @@ using System;
 
 namespace ESMART_HMS
 {
-    internal static class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -18,31 +18,13 @@ namespace ESMART_HMS
         static void Main()
         {
             var services = new ServiceCollection();
-            ConfigureServices(services);
+            DependencyInjection.ConfigureServices(services);
             var serviceProvider = services.BuildServiceProvider();
 
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
             var loginForm = serviceProvider.GetRequiredService<LoginForm>();
             System.Windows.Forms.Application.Run(loginForm);
-        }
-
-        private static void ConfigureServices(IServiceCollection services)
-        {
-            // Add the DbContext as a singleton
-            services.AddSingleton<ESMART_HMSDBEntities>();
-
-            // Domain
-            DomainDependencyInjection.AddDomainServices(services);
-
-            // Application
-            ApplicationDependencyInjection.AddApplicationServices(services);
-
-            // Presentation
-            PresentationDependencyInjection.AddPresentationServices(services);
-
-            // Infrastructure
-            InfrastructureDependencyInjection.AddInfrastructureServices(services);
         }
     }
 }

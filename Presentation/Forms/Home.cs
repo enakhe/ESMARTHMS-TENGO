@@ -1,5 +1,6 @@
-﻿using ESMART_HMS.Presentation.Forms.Customers;
-using ESMART_HMS.Presentation.ViewModels;
+﻿using ESMART_HMS.Forms.Rooms;
+using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.Customers;
 using System;
 using System.Windows.Forms;
 
@@ -8,45 +9,29 @@ namespace ESMART_HMS.Forms
     public partial class Home : Form
     {
         CustomerForm customerForm;
-        private readonly CustomerViewModel _customerViewModel;
+        RoomForm roomForm;
 
-        public Home(CustomerViewModel customerViewModel)
+        private readonly CustomerController _customerController;
+        private readonly RoomController _roomController;
+
+        public Home(CustomerController customerViewModel, RoomController roomController)
         {
             InitializeComponent();
-            _customerViewModel = customerViewModel;
+            _customerController = customerViewModel;
+            _roomController = roomController;
         }
 
-        private void btnGuests_Click(object sender, EventArgs e)
-        {
-            if (customerForm == null)
-            {
-                customerForm = new CustomerForm(_customerViewModel);
-                customerForm.FormClosed += Guests_FormClosed;
-                customerForm.MdiParent = this;
-                customerForm.Dock = DockStyle.Fill;
-                customerForm.Show();
-                menuTransition.Start();
-
-            }
-            else
-            {
-                customerForm.Activate();
-                menuTransition.Start();
-
-            }
-        }
-
-        private void Guests_FormClosed(object sender, FormClosedEventArgs e)
+        private void Customer_FormClosed(object sender, FormClosedEventArgs e)
         {
             customerForm = null;
         }
 
-        private void btnGuests_Click_1(object sender, EventArgs e)
+        private void customerMainToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            if (customerForm == null)
+            if(customerForm == null)
             {
-                customerForm = new CustomerForm(_customerViewModel);
-                customerForm.FormClosed += Guest_FormClosed;
+                customerForm = new CustomerForm(_customerController);
+                customerForm.FormClosed += Customer_FormClosed;
                 customerForm.MdiParent = this;
                 customerForm.Dock = DockStyle.Fill;
                 customerForm.Show();
@@ -57,31 +42,25 @@ namespace ESMART_HMS.Forms
             }
         }
 
-        private void Guest_FormClosed(object sender, FormClosedEventArgs e)
+        private void Room_FormClosed(object sender, FormClosedEventArgs e)
         {
             customerForm = null;
         }
 
-
-        private void addCustonerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (customerForm == null)
+            if (roomForm == null)
             {
-                customerForm = new CustomerForm(_customerViewModel);
-                customerForm.FormClosed += Guest_FormClosed;
-                customerForm.MdiParent = this;
-                customerForm.Dock = DockStyle.Fill;
-                customerForm.Show();
+                roomForm = new RoomForm(_roomController);
+                roomForm.FormClosed += Room_FormClosed;
+                roomForm.MdiParent = this;
+                roomForm.Dock = DockStyle.Fill;
+                roomForm.Show();
             }
             else
             {
-                customerForm.Activate();
+                roomForm.Activate();
             }
-        }
-
-        private void customerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
