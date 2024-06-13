@@ -36,15 +36,11 @@ namespace ESMART_HMS.Forms.Rooms
 
         private void addRoomBtn_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            AddRoomForm addRoomForm = new AddRoomForm(_roomController);
-=======
             var services = new ServiceCollection();
             DependencyInjection.ConfigureServices(services);
             var serviceProvider = services.BuildServiceProvider();
 
             AddRoomForm addRoomForm = serviceProvider.GetRequiredService<AddRoomForm>();
->>>>>>> architecture/RoomTypes
             if (addRoomForm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
