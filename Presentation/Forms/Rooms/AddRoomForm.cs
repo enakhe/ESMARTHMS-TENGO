@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.RoomTypes;
 using System;
 using System.Windows.Forms;
 
@@ -9,25 +10,28 @@ namespace ESMART_HMS.Forms.Rooms
     {
         Room room = new Room();
         private readonly RoomController _roomController;
-        public AddRoomForm(RoomController roomController)
+        private readonly RoomTypeController _roomTypeController;
+        public AddRoomForm(RoomController roomController, RoomTypeController roomTypeController)
         {
             InitializeComponent();
             txtRate.KeyPress += new KeyPressEventHandler(txtRate_KeyPress);
             txtRate.TextChanged += new EventHandler(txtRate_TextChanged);
             _roomController = roomController;
+            _roomTypeController = roomTypeController;
         }
 
         public void LoadRoomTypeData()
         {
             try
             {
-                //var allRoomTypes = roomTypeRepository.GetAllRoomTypes();
-                //if (allRoomTypes != null)
-                //{
-                //txtRoomType.DataSource = _db.RoomTypes.ToList<RoomType>();
-                //txtRoomType.Text = allRoomTypes.Count.ToString();
-                //}
+                var allRoomTypes = _roomTypeController.GetAllRoomType();
+                if (allRoomTypes != null)
+                {
+                    txtRoomType.DataSource = allRoomTypes;
+                    txtRoomType.Text = allRoomTypes.Count.ToString();
+                }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,
@@ -125,11 +129,11 @@ namespace ESMART_HMS.Forms.Rooms
 
         private void btnRoomType_Click(object sender, EventArgs e)
         {
-            //AddRoomTypeForm addRoomTypeForm = new AddRoomTypeForm();
-            //if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
-            //{
-            //LoadRoomTypeData();
-            //}
+            AddRoomTypeForm addRoomTypeForm = new AddRoomTypeForm(_roomTypeController);
+            if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadRoomTypeData();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)

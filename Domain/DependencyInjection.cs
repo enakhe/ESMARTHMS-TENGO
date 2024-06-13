@@ -12,6 +12,8 @@ namespace ESMART_HMS.Domain
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
+
             return services;
         }
     }

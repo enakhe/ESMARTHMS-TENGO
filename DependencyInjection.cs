@@ -1,14 +1,9 @@
 ﻿using ESMART_HMS.Application;
-using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Infrastructure;
 using ESMART_HMS.Presentation;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESMART_HMS
 {

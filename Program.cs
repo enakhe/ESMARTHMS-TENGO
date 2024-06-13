@@ -1,9 +1,4 @@
-﻿using ESMART_HMS.Application;
-using ESMART_HMS.Domain;
-using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Infrastructure;
-using ESMART_HMS.Presentation;
-using ESMART_HMS.Presentation.Forms;
+﻿using ESMART_HMS.Presentation.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 

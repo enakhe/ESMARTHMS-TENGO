@@ -28,7 +28,7 @@ namespace ESMART_HMS.Forms
 
         private void customerMainToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            if(customerForm == null)
+            if (customerForm == null)
             {
                 customerForm = new CustomerForm(_customerController);
                 customerForm.FormClosed += Customer_FormClosed;
