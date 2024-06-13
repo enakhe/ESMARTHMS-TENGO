@@ -12,17 +12,19 @@ namespace ESMART_HMS.Presentation.ViewModels
         private readonly UpdateCustomerUseCase _updateCustomerUseCase;
         private readonly GetCustomerByIdUseCase _getCustomerByIdUseCase;
         private readonly DeleteCustomerUseCase _deleteCustomerUseCase;
+        private readonly SearchCustomerUseCase _searchCustomerUseCase;
 
         public ObservableCollection<Customer> Customers { get; set; }
 
-        public CustomerViewModel(GetAllCustomersUseCase getAllCustomersUseCase, CreateCustomerUseCase createCustomerUseCase, UpdateCustomerUseCase updateCustomerUseCase, GetCustomerByIdUseCase getCustomerByIdUseCase, DeleteCustomerUseCase deleteCustomerUseCase)
+        public CustomerViewModel(GetAllCustomersUseCase getAllCustomersUseCase, CreateCustomerUseCase createCustomerUseCase, UpdateCustomerUseCase updateCustomerUseCase, GetCustomerByIdUseCase getCustomerByIdUseCase, DeleteCustomerUseCase deleteCustomerUseCase, SearchCustomerUseCase searchCustomerUseCase)
         {
             _getAllCustomersUseCase = getAllCustomersUseCase;
             _createCustomerUseCase = createCustomerUseCase;
-            LoadCustomers();
             _updateCustomerUseCase = updateCustomerUseCase;
             _getCustomerByIdUseCase = getCustomerByIdUseCase;
             _deleteCustomerUseCase = deleteCustomerUseCase;
+            _searchCustomerUseCase = searchCustomerUseCase;
+            LoadCustomers();
         }
 
         public List<Customer> LoadCustomers()
@@ -50,6 +52,12 @@ namespace ESMART_HMS.Presentation.ViewModels
         public void DeleteCustomer(string Id)
         {
             _deleteCustomerUseCase.Execute(Id);
+        }
+
+        public List<ESMART_HMS.Domain.Entities.Customer> SearchCustomer(string keyword)
+        {
+            List<ESMART_HMS.Domain.Entities.Customer> searchedCustomer = _searchCustomerUseCase.Execute(keyword);   
+            return searchedCustomer;
         }
     }
 }

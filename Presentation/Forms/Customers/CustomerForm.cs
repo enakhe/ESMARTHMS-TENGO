@@ -42,12 +42,10 @@ namespace ESMART_HMS.Presentation.Forms.Customers
             try
             {
                 var keyword = txtSearch.Text;
-                ESMART_HMSDBEntities _db = new ESMART_HMSDBEntities();
-                CustomerRepository customerRepository = new CustomerRepository(_db);
 
                 if (!string.IsNullOrEmpty(keyword))
                 {
-                    List<Customer> searchedCustomer = customerRepository.SearchCustomer(keyword);
+                    List<Customer> searchedCustomer = _customerViewModel.SearchCustomer(keyword);
                     dgvCustomers.DataSource = searchedCustomer;
                 }
                 else
