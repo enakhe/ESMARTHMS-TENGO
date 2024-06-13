@@ -25,10 +25,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
         {
             try
             {
-                ESMART_HMSDBEntities _db = new ESMART_HMSDBEntities();
-                CustomerRepository customerRepository = new CustomerRepository(_db);
-
-                var customer = customerRepository.GetCustomerById(_Id);
+                Customer customer = _customerViewModel.GetCustomerById(_Id);
                 if (customer == null)
                 {
                     MessageBox.Show("Customer not found", "", MessageBoxButtons.OK,
@@ -77,10 +74,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 
             try
             {
-                ESMART_HMSDBEntities _db = new ESMART_HMSDBEntities();
-                CustomerRepository customerRepository = new CustomerRepository(_db);
-
-                var customer = customerRepository.GetCustomerById(_Id);
+                Customer customer = _customerViewModel.GetCustomerById(_Id);
                 if (customer == null)
                 {
                     MessageBox.Show("Customer not found", "", MessageBoxButtons.OK,

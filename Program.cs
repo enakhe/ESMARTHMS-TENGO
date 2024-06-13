@@ -43,6 +43,7 @@ namespace ESMART_HMS
             services.AddScoped<GetAllCustomersUseCase>();
             services.AddScoped<UpdateCustomerUseCase>();
             services.AddScoped<GetCustomerByIdUseCase>();
+            services.AddScoped<DeleteCustomerUseCase>();
 
             // View Models
             services.AddScoped<CustomerViewModel>();

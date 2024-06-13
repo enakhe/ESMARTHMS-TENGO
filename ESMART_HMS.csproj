@@ -239,6 +239,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\UseCases\Customer\CreateCustomerUseCase.cs" />
+    <Compile Include="Application\UseCases\Customer\DeleteCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\GetAllCustomersUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\GetCustomerByIdUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\UpdateCustomerUseCase.cs" />

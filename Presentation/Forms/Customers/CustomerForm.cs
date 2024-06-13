@@ -95,9 +95,6 @@ namespace ESMART_HMS.Presentation.Forms.Customers
         {
             try
             {
-                ESMART_HMSDBEntities _db = new ESMART_HMSDBEntities();
-                CustomerRepository customerRepository = new CustomerRepository(_db);
-
                 if (dgvCustomers.SelectedRows.Count > 0)
                 {
                     var result = MessageBox.Show("Are you sure you want to delete the selected customer?\nIf you delete any customer, its record including all orders tagged to such customer will be deleted as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -106,7 +103,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                         foreach (DataGridViewRow row in dgvCustomers.SelectedRows)
                         {
                             string id = row.Cells["Id"].Value.ToString();
-                            customerRepository.DeleteCustomer(id);
+                            _customerViewModel.DeleteCustomer(id);
                         }
                         LoadData();
                         MessageBox.Show("Successfully deleted customer information", "Success", MessageBoxButtons.OK,
