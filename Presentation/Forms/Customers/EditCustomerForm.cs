@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Windows.Forms;
 
@@ -7,13 +8,14 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 {
     public partial class EditCustomer : Form
     {
-        CustomersForm customersForm = new CustomersForm();
         private readonly string _Id;
+        private readonly CustomerViewModel _customerViewModel;
 
-        public EditCustomer(string Id)
+        public EditCustomer(string Id, CustomerViewModel customerViewModel)
         {
             InitializeComponent();
             _Id = Id;
+            _customerViewModel = customerViewModel;
             LoadCustomerData();
         }
 
@@ -99,8 +101,6 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 
                         customerRepository.EditCustomer(customer);
                         this.DialogResult = DialogResult.OK;
-
-                        customersForm.LoadData();
                         this.Close();
                     }
                 }

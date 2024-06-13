@@ -1,10 +1,9 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Windows.Forms;
 
@@ -12,11 +11,12 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 {
     public partial class ViewCustomerForm : Form
     {
-        CustomersForm customersForm = new CustomersForm();
+        private readonly CustomerViewModel _customerViewModel;
         private readonly string _Id;
-        public ViewCustomerForm(string Id)
+        public ViewCustomerForm(string Id, CustomerViewModel customerViewModel)
         {
             InitializeComponent();
+            _customerViewModel = customerViewModel;
             _Id = Id;
             LoadCustomerData();
         }
@@ -36,7 +36,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                 }
                 else
                 {
-                    txtCustomerId.Text = customer.CustomerId; 
+                    txtCustomerId.Text = customer.CustomerId;
                     txtFullName.Text = customer.FullName;
                     txtRealFullName.Text = $"{customer.Title} {customer.FullName}";
                     txtEmail.Text = customer.Email;

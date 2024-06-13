@@ -1,6 +1,6 @@
 ﻿namespace ESMART_HMS.Presentation.Forms.Customers
 {
-    partial class CustomersForm
+    partial class CustomerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -521,7 +521,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CustomersForm";
             this.Text = "GuestsForm";
-            this.Load += new System.EventHandler(this.CustomerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             this.rightButtonFlowPanel.ResumeLayout(false);

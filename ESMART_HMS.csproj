@@ -240,6 +240,7 @@
   <ItemGroup>
     <Compile Include="Application\UseCases\Customer\CreateCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\GetAllCustomersUseCase.cs" />
+    <Compile Include="Application\UseCases\Customer\UpdateCustomerUseCase.cs" />
     <Compile Include="Domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />
     <Compile Include="Domain\Interfaces\IUserRepository.cs" />
@@ -267,11 +268,11 @@
     <Compile Include="Presentation\Forms\Customers\ViewCustomerForm.Designer.cs">
       <DependentUpon>ViewCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\CustomersForm.cs">
+    <Compile Include="Presentation\Forms\Customers\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\CustomersForm.Designer.cs">
-      <DependentUpon>CustomersForm.cs</DependentUpon>
+    <Compile Include="Presentation\Forms\Customers\CustomerForm.Designer.cs">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\Home.cs">
       <SubType>Form</SubType>
@@ -328,8 +329,8 @@
     <EmbeddedResource Include="Presentation\Forms\Customers\ViewCustomerForm.resx">
       <DependentUpon>ViewCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Customers\CustomersForm.resx">
-      <DependentUpon>CustomersForm.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\Forms\Customers\CustomerForm.resx">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>

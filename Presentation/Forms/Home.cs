@@ -1,30 +1,26 @@
 ﻿using ESMART_HMS.Presentation.Forms.Customers;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Forms
 {
     public partial class Home : Form
     {
-        CustomersForm customerForm;
+        CustomerForm customerForm;
+        private readonly CustomerViewModel _customerViewModel;
 
-        public Home()
+        public Home(CustomerViewModel customerViewModel)
         {
             InitializeComponent();
+            _customerViewModel = customerViewModel;
         }
 
         private void btnGuests_Click(object sender, EventArgs e)
         {
             if (customerForm == null)
             {
-                customerForm = new CustomersForm();
+                customerForm = new CustomerForm(_customerViewModel);
                 customerForm.FormClosed += Guests_FormClosed;
                 customerForm.MdiParent = this;
                 customerForm.Dock = DockStyle.Fill;
@@ -49,7 +45,7 @@ namespace ESMART_HMS.Forms
         {
             if (customerForm == null)
             {
-                customerForm = new CustomersForm();
+                customerForm = new CustomerForm(_customerViewModel);
                 customerForm.FormClosed += Guest_FormClosed;
                 customerForm.MdiParent = this;
                 customerForm.Dock = DockStyle.Fill;
@@ -71,7 +67,7 @@ namespace ESMART_HMS.Forms
         {
             if (customerForm == null)
             {
-                customerForm = new CustomersForm();
+                customerForm = new CustomerForm(_customerViewModel);
                 customerForm.FormClosed += Guest_FormClosed;
                 customerForm.MdiParent = this;
                 customerForm.Dock = DockStyle.Fill;

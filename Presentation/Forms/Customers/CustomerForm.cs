@@ -1,24 +1,21 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Customers
 {
-    public partial class CustomersForm : Form
+    public partial class CustomerForm : Form
     {
-        public CustomersForm()
+        private readonly CustomerViewModel _customerViewModel;
+
+        public CustomerForm(CustomerViewModel customerViewModel)
         {
             InitializeComponent();
+            _customerViewModel = customerViewModel;
             LoadData();
-            dgvCustomers.CellDoubleClick += dgvCustomers_CellDoubleClick;
         }
 
         public void LoadData()
@@ -26,13 +23,10 @@ namespace ESMART_HMS.Presentation.Forms.Customers
             dgvCustomers.AutoGenerateColumns = false;
             try
             {
-                ESMART_HMSDBEntities _db = new ESMART_HMSDBEntities();
-                CustomerRepository customerRepository = new CustomerRepository(_db);
-
-                var allCustomers = customerRepository.GetAllCustomers();
+                var allCustomers = _customerViewModel.LoadCustomers();
                 if (allCustomers != null)
                 {
-                    dgvCustomers.DataSource = _db.Customers.ToList<Customer>();
+                    dgvCustomers.DataSource = allCustomers;
                     txtCustomerCount.Text = allCustomers.Count.ToString();
                 }
             }
@@ -43,11 +37,6 @@ namespace ESMART_HMS.Presentation.Forms.Customers
             }
         }
 
-        private void CustomerForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void dgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -55,7 +44,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                 DataGridViewRow row = dgvCustomers.Rows[e.RowIndex];
                 string customerId = row.Cells["Id"].Value.ToString();
 
-                using (EditCustomer editCustomerForm = new EditCustomer(customerId))
+                using (EditCustomer editCustomerForm = new EditCustomer(customerId, _customerViewModel))
                 {
                     if (editCustomerForm.ShowDialog() == DialogResult.OK)
                     {
@@ -77,7 +66,8 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                 {
                     List<Customer> searchedCustomer = customerRepository.SearchCustomer(keyword);
                     dgvCustomers.DataSource = searchedCustomer;
-                } else
+                }
+                else
                 {
                     LoadData();
                 }
@@ -98,7 +88,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
                     var row = dgvCustomers.SelectedRows[0];
                     string id = row.Cells["Id"].Value.ToString();
 
-                    using (ViewCustomerForm viewCustomerForm = new ViewCustomerForm(id))
+                    using (ViewCustomerForm viewCustomerForm = new ViewCustomerForm(id, _customerViewModel))
                     {
                         if (viewCustomerForm.ShowDialog() == DialogResult.OK)
                         {
@@ -154,7 +144,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 
         private void addCustomerBtn_Click(object sender, EventArgs e)
         {
-            AddCustomerForm addCustomerForm = new AddCustomerForm();
+            AddCustomerForm addCustomerForm = new AddCustomerForm(_customerViewModel);
             if (addCustomerForm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();

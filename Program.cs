@@ -1,7 +1,6 @@
 ﻿using ESMART_HMS.Application.UseCases.Customer;
 using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Interfaces;
-using ESMART_HMS.Forms;
 using ESMART_HMS.Infrastructure.Data;
 using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Customers;
@@ -9,10 +8,6 @@ using ESMART_HMS.Presentation.ViewModels;
 using ESMART_HMS.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ESMART_HMS
 {

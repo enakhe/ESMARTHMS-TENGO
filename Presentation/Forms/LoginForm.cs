@@ -1,14 +1,8 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Forms;
+using ESMART_HMS.Presentation.ViewModels;
 using ESMART_HMS.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms
@@ -16,9 +10,11 @@ namespace ESMART_HMS.Presentation.Forms
     public partial class LoginForm : Form
     {
         private readonly AuthService _authService;
-        public LoginForm(AuthService authService)
+        private readonly CustomerViewModel _customerViewModel;
+        public LoginForm(AuthService authService, CustomerViewModel customerViewModel)
         {
             _authService = authService;
+            _customerViewModel = customerViewModel;
             InitializeComponent();
         }
 
@@ -37,7 +33,7 @@ namespace ESMART_HMS.Presentation.Forms
             if (user != null)
             {
                 this.Cursor = Cursors.WaitCursor;
-                Home dashboard = new Home();
+                Home dashboard = new Home(_customerViewModel);
                 this.Hide();
                 dashboard.Show();
             }
@@ -53,7 +49,8 @@ namespace ESMART_HMS.Presentation.Forms
             if (chkPassword.Checked == false)
             {
                 txtPassword.UseSystemPasswordChar = true;
-            } else
+            }
+            else
             {
                 txtPassword.UseSystemPasswordChar = false;
             }

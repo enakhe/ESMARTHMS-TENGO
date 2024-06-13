@@ -1,13 +1,7 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Infrastructure.Data;
 using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Services
@@ -33,7 +27,8 @@ namespace ESMART_HMS.Services
                         if (foundUser == null)
                         {
                             MessageBox.Show("No user with the username exits. Please check if the username and the password is correct", "User not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        } else
+                        }
+                        else
                         {
                             if (userRepository.VerifyPassword(password, foundUser.PasswordHash))
                             {
@@ -46,8 +41,8 @@ namespace ESMART_HMS.Services
                         }
                     }
                 }
-            } 
-            catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "User not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -1,15 +1,8 @@
-﻿using MaterialSkin;
-using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Interfaces;
+﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Data.SqlClient;
-using System.Data.SQLite;
-using System.IO;
 using System.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ESMART_HMS
 {
@@ -66,7 +59,7 @@ namespace ESMART_HMS
             }
         }
 
-        public static void AddSampleUser() 
+        public static void AddSampleUser()
         {
             User user = new User();
 
@@ -87,7 +80,7 @@ namespace ESMART_HMS
                 {
                     UserRepository userRepository = new UserRepository(db);
                     userRepository.AddUser(user);
-                } 
+                }
             }
         }
     }
