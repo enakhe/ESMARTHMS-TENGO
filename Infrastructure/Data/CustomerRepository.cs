@@ -75,7 +75,7 @@ namespace ESMART_HMS.Infrastructure.Data
             return null;
         }
 
-        public void EditCustomer(Customer customer)
+        public void UpdateCustomer(Customer customer)
         {
             try
             {

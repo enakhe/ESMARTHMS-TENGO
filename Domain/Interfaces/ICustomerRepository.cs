@@ -8,7 +8,7 @@ namespace ESMART_HMS.Domain.Interfaces
         void AddCustomer(Customer customer);
         List<Customer> GetAllCustomers();
         Customer GetCustomerById(string Id);
-        void EditCustomer(Customer customer);
+        void UpdateCustomer(Customer customer);
         void DeleteCustomer(string Id);
         List<Customer> SearchCustomer(string keyword);
     }

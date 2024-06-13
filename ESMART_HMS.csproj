@@ -240,6 +240,7 @@
   <ItemGroup>
     <Compile Include="Application\UseCases\Customer\CreateCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\GetAllCustomersUseCase.cs" />
+    <Compile Include="Application\UseCases\Customer\GetCustomerByIdUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\UpdateCustomerUseCase.cs" />
     <Compile Include="Domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />

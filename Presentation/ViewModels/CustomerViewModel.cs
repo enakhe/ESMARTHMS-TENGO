@@ -9,14 +9,18 @@ namespace ESMART_HMS.Presentation.ViewModels
     {
         private readonly GetAllCustomersUseCase _getAllCustomersUseCase;
         private readonly CreateCustomerUseCase _createCustomerUseCase;
+        private readonly UpdateCustomerUseCase _updateCustomerUseCase;
+        private readonly GetCustomerByIdUseCase _getCustomerByIdUseCase;
 
         public ObservableCollection<Customer> Customers { get; set; }
 
-        public CustomerViewModel(GetAllCustomersUseCase getAllCustomersUseCase, CreateCustomerUseCase createCustomerUseCase)
+        public CustomerViewModel(GetAllCustomersUseCase getAllCustomersUseCase, CreateCustomerUseCase createCustomerUseCase, UpdateCustomerUseCase updateCustomerUseCase, GetCustomerByIdUseCase getCustomerByIdUseCase)
         {
             _getAllCustomersUseCase = getAllCustomersUseCase;
             _createCustomerUseCase = createCustomerUseCase;
             LoadCustomers();
+            _updateCustomerUseCase = updateCustomerUseCase;
+            _getCustomerByIdUseCase = getCustomerByIdUseCase;
         }
 
         public List<Customer> LoadCustomers()
@@ -28,6 +32,17 @@ namespace ESMART_HMS.Presentation.ViewModels
         public void AddCustomer(Customer customer)
         {
             _createCustomerUseCase.Execute(customer);
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            _updateCustomerUseCase.Execute(customer);
+        }
+
+        public Customer GetCustomerById(string Id)
+        {
+            Customer customer = _getCustomerByIdUseCase.Execute(Id);
+            return customer;
         }
     }
 }

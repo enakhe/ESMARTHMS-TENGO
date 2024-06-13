@@ -37,23 +37,6 @@ namespace ESMART_HMS.Presentation.Forms.Customers
             }
         }
 
-        private void dgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvCustomers.Rows[e.RowIndex];
-                string customerId = row.Cells["Id"].Value.ToString();
-
-                using (EditCustomer editCustomerForm = new EditCustomer(customerId, _customerViewModel))
-                {
-                    if (editCustomerForm.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadData();
-                    }
-                }
-            }
-        }
-
         private void txtSearch_KeyUp(object sender, KeyEventArgs e)
         {
             try
@@ -148,6 +131,23 @@ namespace ESMART_HMS.Presentation.Forms.Customers
             if (addCustomerForm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+            }
+        }
+
+        private void dgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvCustomers.Rows[e.RowIndex];
+                string customerId = row.Cells["Id"].Value.ToString();
+
+                using (EditCustomer editCustomerForm = new EditCustomer(customerId, _customerViewModel))
+                {
+                    if (editCustomerForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadData();
+                    }
+                }
             }
         }
     }
