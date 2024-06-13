@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Presentation.Controllers;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
@@ -35,11 +36,15 @@ namespace ESMART_HMS.Forms.Rooms
 
         private void addRoomBtn_Click(object sender, EventArgs e)
         {
-            // AddRoomForm addRoomForm = new AddRoomForm();
-            // if (addRoomForm.ShowDialog() == DialogResult.OK)
-            // {
-            // LoadData();
-            // }
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            AddRoomForm addRoomForm = serviceProvider.GetRequiredService<AddRoomForm>();
+            if (addRoomForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
 
         private void dgvRooms_CellContentClick(object sender, DataGridViewCellEventArgs e)

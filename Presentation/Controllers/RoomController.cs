@@ -10,9 +10,10 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly GetAllRoomUseCase _getAllRoomUseCase;
         private readonly CreateRoomUseCase _createRoomUseCase;
 
-        public RoomController(GetAllRoomUseCase getAllRoomUseCase)
+        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase)
         {
             _getAllRoomUseCase = getAllRoomUseCase;
+            _createRoomUseCase = createRoomUseCase;
         }
 
         public List<RoomViewModel> GetAllRooms()
