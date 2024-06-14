@@ -7,5 +7,6 @@ namespace ESMART_HMS.Domain.Interfaces
     {
         void AddRoom(Room room);
         List<RoomViewModel> GetAllRooms();
+        RoomViewModel GetRoomById(string Id);
     }
 }

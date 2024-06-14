@@ -196,6 +196,7 @@
             this.btnViewDetails.TabIndex = 11;
             this.btnViewDetails.Text = "View Room";
             this.btnViewDetails.UseVisualStyleBackColor = false;
+            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
             // 
             // btnDelete
             // 
@@ -464,7 +465,7 @@
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
-            // RoomsForm
+            // RoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -478,7 +479,7 @@
             this.Controls.Add(this.rightButtonFlowPanel);
             this.Controls.Add(this.dgvRooms);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "RoomsForm";
+            this.Name = "RoomForm";
             this.Text = "RoomsForm";
             this.Load += new System.EventHandler(this.RoomsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).EndInit();

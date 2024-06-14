@@ -9,11 +9,13 @@ namespace ESMART_HMS.Presentation.Controllers
     {
         private readonly GetAllRoomUseCase _getAllRoomUseCase;
         private readonly CreateRoomUseCase _createRoomUseCase;
+        private readonly GetRoomByIdUseCase _getRoomByIdUseCase;
 
-        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase)
+        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase)
         {
             _getAllRoomUseCase = getAllRoomUseCase;
             _createRoomUseCase = createRoomUseCase;
+            _getRoomByIdUseCase = getRoomByIdUseCase;
         }
 
         public List<RoomViewModel> GetAllRooms()
@@ -25,6 +27,11 @@ namespace ESMART_HMS.Presentation.Controllers
         public void CreateRoom(Room room)
         {
             _createRoomUseCase.Execute(room);
+        }
+
+        public RoomViewModel GetRoomById(string Id)
+        {
+            return _getRoomByIdUseCase.Execute(Id);
         }
     }
 }

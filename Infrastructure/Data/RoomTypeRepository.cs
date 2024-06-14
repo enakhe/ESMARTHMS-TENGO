@@ -51,5 +51,20 @@ namespace ESMART_HMS.Infrastructure.Data
             }
             return null;
         }
+
+        public RoomType GetRoomTypeById(string Id)
+        {
+            try
+            {
+                RoomType roomType = _db.RoomTypes.FirstOrDefault(r => r.Id == Id);
+                return roomType;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
     }
 }

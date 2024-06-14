@@ -1,5 +1,7 @@
 ﻿using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.Customers;
 using Microsoft.Extensions.DependencyInjection;
+using ESMART_HMS.Presentation.Forms.Rooms;
 using System;
 using System.Windows.Forms;
 
@@ -57,6 +59,35 @@ namespace ESMART_HMS.Forms.Rooms
             // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Room' table. You can move, or remove it, as needed.
             this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
 
+        }
+
+        private void btnViewDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvRooms.SelectedRows.Count > 0)
+                {
+                    var row = dgvRooms.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+
+                    using (ViewRoomForm viewCustomerForm = new ViewRoomForm(id, _roomController))
+                    {
+                        if (viewCustomerForm.ShowDialog() == DialogResult.OK)
+                        {
+                            LoadData();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a customer to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
     }
 }

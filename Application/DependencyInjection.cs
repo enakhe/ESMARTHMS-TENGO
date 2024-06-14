@@ -21,6 +21,7 @@ namespace ESMART_HMS.Application
             // Room Use Cases
             services.AddScoped<GetAllRoomUseCase>();
             services.AddScoped<CreateRoomUseCase>();
+            services.AddScoped<GetRoomByIdUseCase>();
 
             // RoomType Use Cases
             services.AddScoped<CreateRoomTypeUseCase>();

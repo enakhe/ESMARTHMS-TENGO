@@ -11,10 +11,12 @@ namespace ESMART_HMS.Repositories
     public class RoomRepository : IRoomRepository
     {
         private readonly ESMART_HMSDBEntities _db;
+        private readonly IRoomTypeRepository _roomTypeRepository;
 
-        public RoomRepository(ESMART_HMSDBEntities db)
+        public RoomRepository(ESMART_HMSDBEntities db, IRoomTypeRepository roomTypeRepository)
         {
             _db = db;
+            _roomTypeRepository = roomTypeRepository;
         }
 
         public void AddRoom(Room room)
@@ -62,6 +64,38 @@ namespace ESMART_HMS.Repositories
 
                               };
                 return allRoom.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public RoomViewModel GetRoomById(string Id)
+        {
+            try
+            {
+                Room room = _db.Rooms.FirstOrDefault(r => r.Id == Id);
+                RoomType roomType = _roomTypeRepository.GetRoomTypeById(room.RoomTypeId);
+                RoomViewModel roomViewModel = new RoomViewModel()
+                {
+                    Id = room.Id,
+                    RoomId = room.RoomId,
+                    RoomName = room.RoomName,
+                    RoomCardNo = room.RoomCardNo,
+                    RoomLockNo = room.RoomLockNo,
+                    AdultPerRoom = room.AdultPerRoom,
+                    ChildrenPerRoom = room.ChildrenPerRoom,
+                    Description = room.Description,
+                    Rate = room.Rate,
+                    IsAvailable = room.IsAvailable,
+                    DateCreated = room.DateCreated,
+                    DateModified = room.DateModified,
+                    RoomTypeName = roomType.Title,
+                };
+                return roomViewModel;
             }
             catch (Exception ex)
             {
