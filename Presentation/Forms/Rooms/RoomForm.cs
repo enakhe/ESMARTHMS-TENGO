@@ -10,10 +10,13 @@ namespace ESMART_HMS.Forms.Rooms
     public partial class RoomForm : Form
     {
         private readonly RoomController _roomController;
-        public RoomForm(RoomController roomController)
+        private readonly RoomTypeController _roomTypeController;
+
+        public RoomForm(RoomController roomController, RoomTypeController roomTypeController)
         {
-            _roomController = roomController;
             InitializeComponent();
+            _roomController = roomController;
+            _roomTypeController = roomTypeController;
             LoadData();
         }
 
@@ -87,6 +90,24 @@ namespace ESMART_HMS.Forms.Rooms
             {
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvRooms_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvRooms.Rows[e.RowIndex];
+                string roomId = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+
+                using (EditRoomForm editRoomForm = new EditRoomForm(_roomController, _roomTypeController, roomId))
+                {
+                    if (editRoomForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadData();
+                    }
+                }
+                
             }
         }
     }

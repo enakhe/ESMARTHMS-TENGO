@@ -1,34 +1,74 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Forms.Rooms
+namespace ESMART_HMS.Presentation.Forms.Rooms
 {
-    public partial class AddRoomForm : Form
+    public partial class EditRoomForm : Form
     {
-        Room room = new Room();
+        private string _Id;
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
-        public AddRoomForm(RoomController roomController, RoomTypeController roomTypeController)
+        public EditRoomForm(RoomController roomController, RoomTypeController roomTypeController, string Id)
         {
             InitializeComponent();
-            txtRate.KeyPress += new KeyPressEventHandler(txtRate_KeyPress);
-            txtRate.TextChanged += new EventHandler(txtRate_TextChanged);
             _roomController = roomController;
             _roomTypeController = roomTypeController;
+            _Id = Id;
+        }
+
+        private void EditRoomForm_Load(object sender, EventArgs e)
+        {
+            LoadRoomType();
+            LoadRoomTypeData();
+        }
+
+        public void LoadRoomType()
+        {
+            try
+            {
+                List<RoomType> roomTypes = _roomTypeController.GetAllRoomType();
+                txtRoomType.DataSource = roomTypes;
+                txtRoomType.DisplayMember = "Title";
+                txtRoomType.ValueMember = "Id";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
 
         public void LoadRoomTypeData()
         {
             try
             {
-                var allRoomTypes = _roomTypeController.GetAllRoomType();
-                if (allRoomTypes != null)
+                Room room = _roomController.GetRealRoom(_Id);
+
+                if (room == null)
                 {
-                    txtRoomType.DataSource = allRoomTypes;
-                    txtRoomType.Text = allRoomTypes.Count.ToString();
+                    MessageBox.Show("Room not found", "", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                }
+
+                else
+                {
+                    txtId.Text = room.Id;
+                    txtRoomNo.Text = room.RoomName;
+                    txtLockNo.Text = room.RoomLockNo;
+                    txtCardNo.Text = room.RoomCardNo;
+                    txtAdultPerRoom.Text = room.AdultPerRoom.ToString();
+                    txtChildrenPerRoom.Text = room.ChildrenPerRoom.ToString();
+                    txtRate.Text = room.Rate.ToString();
+                    txtDescription.Text = room.Description;
+                    txtRoomType.SelectedValue = room.RoomTypeId;
+                    txtRoomType.SelectedItem = room.RoomType;
                 }
             }
 
@@ -48,9 +88,22 @@ namespace ESMART_HMS.Forms.Rooms
             }
         }
 
-        private void AddRoomForm_Load(object sender, EventArgs e)
+        private void btnRoomType_Click(object sender, EventArgs e)
         {
-            this.roomTypeTableAdapter.Fill(this.eSMART_HMSDBDataSet.RoomType);
+            AddRoomTypeForm addRoomTypeForm = new AddRoomTypeForm(_roomTypeController);
+            if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadRoomTypeData();
+            }
+        }
+
+        private void txtRoomNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow control keys like backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void txtCardNo_KeyPress(object sender, KeyPressEventArgs e)
@@ -91,20 +144,6 @@ namespace ESMART_HMS.Forms.Rooms
             e.Handled = true;
         }
 
-        private void txtRate_TextChanged(object sender, EventArgs e)
-        {
-            string text = txtRate.Text;
-
-            if (decimal.TryParse(text, out decimal value))
-            {
-                txtRate.Text = value.ToString("F2");
-            }
-            else if (text != string.Empty)
-            {
-                txtRate.Text = string.Empty;
-            }
-        }
-
         private void txtAdultPerRoom_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow control keys like backspace
@@ -123,20 +162,25 @@ namespace ESMART_HMS.Forms.Rooms
             }
         }
 
-        private void btnRoomType_Click(object sender, EventArgs e)
+        private void txtRate_TextChanged(object sender, EventArgs e)
         {
-            AddRoomTypeForm addRoomTypeForm = new AddRoomTypeForm(_roomTypeController);
-            if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
+            string text = txtRate.Text;
+
+            if (decimal.TryParse(text, out decimal value))
             {
-                LoadRoomTypeData();
+                txtRate.Text = value.ToString("F2");
+            }
+            else if (text != string.Empty)
+            {
+                txtRate.Text = string.Empty;
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
             try
             {
+                Room room = _roomController.GetRealRoom(_Id);
                 if (txtRoomNo.Text == "" || txtCardNo.Text == "" || txtLockNo.Text == "" || txtRate.Text == "" || txtAdultPerRoom.Text == "" || txtChildrenPerRoom.Text == "" || txtRoomType.Text == "" || txtDescription.Text == "")
                 {
                     MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
@@ -151,16 +195,15 @@ namespace ESMART_HMS.Forms.Rooms
                     room.Rate = decimal.Parse(txtRate.Text);
                     room.AdultPerRoom = int.Parse(txtAdultPerRoom.Text);
                     room.ChildrenPerRoom = int.Parse(txtChildrenPerRoom.Text);
-                    room.RoomTypeId = txtRoomType.SelectedValue.ToString();
-                    room.RoomType = _roomTypeController.GetRoomTypeById(txtRoomType.SelectedValue.ToString());
+                    room.RoomTypeId = (string)txtRoomType.SelectedValue.ToString();
+                    room.RoomType = _roomTypeController?.GetRoomTypeById(txtRoomType.SelectedValue?.ToString());
                     room.Description = txtDescription.Text.Trim().ToUpper();
                     room.IsAvailable = true;
 
                     room.DateCreated = DateTime.Now;
                     room.DateModified = DateTime.Now;
 
-
-                    _roomController.CreateRoom(room);
+                    _roomController.UpdateRoom(room);
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
@@ -169,20 +212,6 @@ namespace ESMART_HMS.Forms.Rooms
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-            }
-        }
-
-        private void txtRoomType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtRoomNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow control keys like backspace
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
             }
         }
     }

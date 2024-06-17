@@ -75,6 +75,7 @@
             this.txtRoomNo.Name = "txtRoomNo";
             this.txtRoomNo.Size = new System.Drawing.Size(309, 37);
             this.txtRoomNo.TabIndex = 5;
+            this.txtRoomNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRoomNo_KeyPress);
             // 
             // label3
             // 
@@ -82,9 +83,9 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(34, 75);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(247, 30);
+            this.label3.Size = new System.Drawing.Size(105, 30);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Room Name / Room No";
+            this.label3.Text = "Room No";
             // 
             // txtCardNo
             // 

@@ -13,12 +13,14 @@ namespace ESMART_HMS.Forms
 
         private readonly CustomerController _customerController;
         private readonly RoomController _roomController;
+        private readonly RoomTypeController _roomTypeController;
 
-        public Home(CustomerController customerViewModel, RoomController roomController)
+        public Home(CustomerController customerViewModel, RoomController roomController, RoomTypeController roomTypeController)
         {
             InitializeComponent();
             _customerController = customerViewModel;
             _roomController = roomController;
+            _roomTypeController = roomTypeController;
         }
 
         private void Customer_FormClosed(object sender, FormClosedEventArgs e)
@@ -51,7 +53,7 @@ namespace ESMART_HMS.Forms
         {
             if (roomForm == null)
             {
-                roomForm = new RoomForm(_roomController);
+                roomForm = new RoomForm(_roomController, _roomTypeController);
                 roomForm.FormClosed += Room_FormClosed;
                 roomForm.MdiParent = this;
                 roomForm.Dock = DockStyle.Fill;

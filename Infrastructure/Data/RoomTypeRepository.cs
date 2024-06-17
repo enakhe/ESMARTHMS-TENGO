@@ -41,8 +41,7 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                List<RoomType> allRoomType = _db.RoomTypes.ToList<RoomType>();
-                return allRoomType;
+                return _db.RoomTypes.ToList();
             }
             catch (Exception ex)
             {

@@ -42,7 +42,6 @@ namespace ESMART_HMS.Presentation.Forms
                 var serviceProvider = services.BuildServiceProvider();
 
                 var homeForm = serviceProvider.GetRequiredService<Home>();
-                // Home dashboard = new Home(_customerController);
                 this.Hide();
                 homeForm.Show();
             }

@@ -22,10 +22,13 @@ namespace ESMART_HMS.Application
             services.AddScoped<GetAllRoomUseCase>();
             services.AddScoped<CreateRoomUseCase>();
             services.AddScoped<GetRoomByIdUseCase>();
+            services.AddScoped<UpdateRoomUseCase>();
+            services.AddScoped<GetRealRoomUseCase>();
 
             // RoomType Use Cases
             services.AddScoped<CreateRoomTypeUseCase>();
             services.AddScoped<GetAllRoomTypeUseCase>();
+            services.AddScoped<GetRoomTypeByIdUseCase>();
 
             return services;
         }

@@ -104,5 +104,35 @@ namespace ESMART_HMS.Repositories
             }
             return null;
         }
+
+        public void UpdateRoom(Room room)
+        {
+            try
+            {
+                _db.Entry(room).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+                MessageBox.Show("Successfully edited room information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public Room GetRealRoom(string Id)
+        {
+            try
+            {
+                return _db.Rooms.FirstOrDefault(r => r.Id == Id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
     }
 }

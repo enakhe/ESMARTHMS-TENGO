@@ -247,9 +247,12 @@
     <Compile Include="Application\UseCases\Customer\UpdateCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\RoomTypes\CreateRoomTypeUseCase.cs" />
     <Compile Include="Application\UseCases\RoomTypes\GetAllRoomTypeUseCase.cs" />
+    <Compile Include="Application\UseCases\RoomTypes\GetRoomTypeByIdUseCase.cs" />
     <Compile Include="Application\UseCases\Room\CreateRoomUseCase.cs" />
     <Compile Include="Application\UseCases\Room\GetAllRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Room\GetRealRoomUseCase.cs" />
     <Compile Include="Application\UseCases\Room\GetRoomByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\Room\UpdateRoomUseCase.cs" />
     <Compile Include="DependencyInjection.cs" />
     <Compile Include="Domain\DependencyInjection.cs" />
     <Compile Include="Domain\Interfaces\ICustomerRepository.cs" />
@@ -339,6 +342,12 @@
     <Compile Include="Presentation\Forms\Rooms\RoomForm.Designer.cs">
       <DependentUpon>RoomForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Rooms\EditRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Rooms\EditRoomForm.Designer.cs">
+      <DependentUpon>EditRoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Rooms\ViewRoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,6 +394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Rooms\AddRoomForm.resx">
       <DependentUpon>AddRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Rooms\EditRoomForm.resx">
+      <DependentUpon>EditRoomForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Rooms\RoomForm.resx">
       <DependentUpon>RoomForm.cs</DependentUpon>
