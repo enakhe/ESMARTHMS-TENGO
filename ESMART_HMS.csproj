@@ -258,6 +258,9 @@
     <Compile Include="Application\UseCases\Room\UpdateRoomUseCase.cs" />
     <Compile Include="DependencyInjection.cs" />
     <Compile Include="Domain\DependencyInjection.cs" />
+    <Compile Include="Domain\Entities\Reservation.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />
     <Compile Include="Domain\Interfaces\IRoomRepository.cs" />
