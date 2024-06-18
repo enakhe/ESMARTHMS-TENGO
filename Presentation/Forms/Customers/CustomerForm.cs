@@ -94,7 +94,7 @@ namespace ESMART_HMS.Presentation.Forms.Customers
             {
                 if (dgvCustomers.SelectedRows.Count > 0)
                 {
-                    var result = MessageBox.Show("Are you sure you want to delete the selected customer?\nIf you delete any customer, its record including all orders tagged to such customer will be deleted as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    var result = MessageBox.Show("Are you sure you want to delete the selected customer?\nIf you delete any customer, its record including all orders tagged to such customer will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
                         foreach (DataGridViewRow row in dgvCustomers.SelectedRows)

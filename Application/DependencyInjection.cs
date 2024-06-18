@@ -12,11 +12,12 @@ namespace ESMART_HMS.Application
 
             // Customer Use Cases
             services.AddScoped<CreateCustomerUseCase>();
-            services.AddScoped<GetAllCustomersUseCase>();
+            services.AddScoped<GetAllCustomerUseCase>();
             services.AddScoped<UpdateCustomerUseCase>();
             services.AddScoped<GetCustomerByIdUseCase>();
             services.AddScoped<DeleteCustomerUseCase>();
             services.AddScoped<SearchCustomerUseCase>();
+            services.AddScoped<GetDeletedCustomerUseCase>();
 
             // Room Use Cases
             services.AddScoped<GetAllRoomUseCase>();
@@ -24,6 +25,8 @@ namespace ESMART_HMS.Application
             services.AddScoped<GetRoomByIdUseCase>();
             services.AddScoped<UpdateRoomUseCase>();
             services.AddScoped<GetRealRoomUseCase>();
+            services.AddScoped<DeleteRoomUseCase>();
+            services.AddScoped<GetAvailableRoomUseCase>();  
 
             // RoomType Use Cases
             services.AddScoped<CreateRoomTypeUseCase>();

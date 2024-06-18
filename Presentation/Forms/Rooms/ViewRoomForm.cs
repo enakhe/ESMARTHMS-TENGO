@@ -1,5 +1,4 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Presentation.Controllers;
+﻿using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Drawing;
@@ -25,7 +24,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         {
             try
             {
-                RoomViewModel room = _roomController.GetRoomById( _Id );
+                RoomViewModel room = _roomController.GetRoomById(_Id);
                 if (room == null)
                 {
                     MessageBox.Show("Customer not found", "", MessageBoxButtons.OK,

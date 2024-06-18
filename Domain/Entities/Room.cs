@@ -14,6 +14,12 @@ namespace ESMART_HMS.Domain.Entities
     
     public partial class Room
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Room()
+        {
+            this.Reservations = new HashSet<Reservation>();
+        }
+    
         public string Id { get; set; }
         public string RoomId { get; set; }
         public string RoomName { get; set; }
@@ -27,7 +33,10 @@ namespace ESMART_HMS.Domain.Entities
         public bool IsAvailable { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
+        public bool IsTrashed { get; set; }
     
         public virtual RoomType RoomType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }

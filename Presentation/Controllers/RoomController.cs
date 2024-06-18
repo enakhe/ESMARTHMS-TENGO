@@ -12,14 +12,18 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly GetRoomByIdUseCase _getRoomByIdUseCase;
         private readonly UpdateRoomUseCase _updateRoomUseCase;
         private readonly GetRealRoomUseCase _getRealRoomUseCase;
+        private readonly DeleteRoomUseCase _deleteRoomUseCase;
+        private readonly GetAvailableRoomUseCase _getAvailableRoomUseCase;
 
-        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase, UpdateRoomUseCase updateRoomUseCase, GetRealRoomUseCase getRealRoomUseCase)
+        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase, UpdateRoomUseCase updateRoomUseCase, GetRealRoomUseCase getRealRoomUseCase, DeleteRoomUseCase deleteRoomUseCase, GetAvailableRoomUseCase getAvailableRoomUseCase)
         {
             _getAllRoomUseCase = getAllRoomUseCase;
             _createRoomUseCase = createRoomUseCase;
             _getRoomByIdUseCase = getRoomByIdUseCase;
             _updateRoomUseCase = updateRoomUseCase;
             _getRealRoomUseCase = getRealRoomUseCase;
+            _deleteRoomUseCase = deleteRoomUseCase;
+            _getAvailableRoomUseCase = getAvailableRoomUseCase;
         }
 
         public List<RoomViewModel> GetAllRooms()
@@ -46,6 +50,16 @@ namespace ESMART_HMS.Presentation.Controllers
         public Room GetRealRoom(string Id)
         {
             return _getRealRoomUseCase.Execute(Id);
+        }
+
+        public void DeleteRoom(string Id)
+        {
+            _deleteRoomUseCase.Execute(Id);
+        }
+
+        public List<RoomViewModel> GetAvailbleRoom()
+        {
+            return _getAvailableRoomUseCase.Execute();
         }
     }
 }

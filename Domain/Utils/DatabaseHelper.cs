@@ -15,13 +15,91 @@ namespace ESMART_HMS
             if (!DatabaseExists())
             {
                 CreateDatabase();
-                CreateTable("User", "[Id][nvarchar](450) NOT NULL, [UserId][nvarchar](450) NOT NULL, [FirstName][nvarchar](max) NOT NULL, [LastName][nvarchar](max) NOT NULL, [FullName][nvarchar](max) NOT NULL, [UserName][nvarchar](256) NOT NULL, [Email][nvarchar](256) NULL,[PasswordHash][nvarchar](max) NOT NULL, [PhoneNumber][nvarchar](max) NULL, [DateCreated][datetime2](7) NOT NULL, [DateModified][datetime2](7) NOT NULL, CONSTRAINT[PK_User] PRIMARY KEY CLUSTERED ( [Id] ASC )");
 
-                CreateTable("RoomType", "[Id] [nvarchar](450) NOT NULL,[RoomTypeId] [nvarchar](450) NOT NULL,[Title] [nvarchar](max) NOT NULL,[Description] [nvarchar](max) NOT NULL,[RateBase] [decimal](10,2) NOT NULL,[DateCreated] [datetime2](7) NOT NULL,[DateModified] [datetime2](7) NOT NULL,CONSTRAINT [PK_RoomType] PRIMARY KEY CLUSTERED([Id] ASC)");
+                CreateTable("User",
+                    "[Id][nvarchar](450) NOT NULL, " +
+                    "[UserId][nvarchar](450) NOT NULL, " +
+                    "[FirstName][nvarchar](max) NOT NULL, " +
+                    "[LastName][nvarchar](max) NOT NULL, " +
+                    "[FullName][nvarchar](max) NOT NULL, " +
+                    "[UserName][nvarchar](256) NOT NULL, " +
+                    "[Email][nvarchar](256) NULL," +
+                    "[PasswordHash][nvarchar](max) NOT NULL, " +
+                    "[PhoneNumber][nvarchar](max) NULL, " +
+                    "[DateCreated][datetime2](7) NOT NULL, " +
+                    "[DateModified][datetime2](7) NOT NULL, " +
+                    "[IsTrashed][bit] NOT NULL," +
+                    "CONSTRAINT[PK_User] PRIMARY KEY CLUSTERED ( [Id] ASC )");
 
-                CreateTable("Room", "[Id] [nvarchar](450) NOT NULL,[RoomId] [nvarchar](450) NOT NULL,[RoomName] [nvarchar](max) NOT NULL,[RoomCardNo] [nvarchar](max) NOT NULL,[RoomLockNo] [nvarchar](max) NOT NULL,[RoomTypeId] [nvarchar](450) NOT NULL,[AdultPerRoom] [int] NOT NULL,[ChildrenPerRoom] [int] NOT NULL,[Description] [nvarchar](max) NOT NULL,[Rate] [decimal](10, 2) NOT NULL,[IsAvailable][bit] NOT NULL,[DateCreated] [datetime2](7) NOT NULL,[DateModified] [datetime2](7) NOT NULL, FOREIGN KEY (RoomTypeId) REFERENCES RoomType(Id), CONSTRAINT [PK_Room] PRIMARY KEY CLUSTERED([Id] ASC)");
+                CreateTable("RoomType",
+                    "[Id] [nvarchar](450) NOT NULL," +
+                    "[RoomTypeId][nvarchar](450) NOT NULL," +
+                    "[Title][nvarchar](max) NOT NULL," +
+                    "[Description][nvarchar](max) NOT NULL," +
+                    "[RateBase][decimal](10,2) NOT NULL," +
+                    "[DateCreated][datetime2](7) NOT NULL," +
+                    "[DateModified][datetime2](7) NOT NULL," +
+                    "[IsTrashed][bit] NOT NULL," +
+                    "CONSTRAINT [PK_RoomType] PRIMARY KEY CLUSTERED([Id] ASC)");
 
-                CreateTable("Customer", "[Id] [nvarchar](450) NOT NULL,[CustomerId] [nvarchar](450) NOT NULL,[Title] [nvarchar](max) NOT NULL,[FirstName] [nvarchar](max) NOT NULL,[LastName] [nvarchar](max) NOT NULL,[FullName] [nvarchar](max) NOT NULL,[Email] [nvarchar](256) NOT NULL,[PhoneNumber] [nvarchar](max) NOT NULL,[Street] [nvarchar](max) NOT NULL,[City] [nvarchar](max) NOT NULL,[Company] [nvarchar](max) NOT NULL,[State] [nvarchar](max) NOT NULL,[Country] [nvarchar](max) NOT NULL,[IdentificationDocument] [varbinary] (max) NULL,[IdentitificationDocumentName] [nvarchar](256) NULL,[DateCreated] [datetime2](7) NOT NULL,[DateModified] [datetime2](7) NOT NULL, CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([Id] ASC)");
+                CreateTable("Room",
+                    "[Id][nvarchar](450) NOT NULL," +
+                    "[RoomId][nvarchar](450) NOT NULL," +
+                    "[RoomName][nvarchar](max) NOT NULL," +
+                    "[RoomCardNo][nvarchar](max) NOT NULL," +
+                    "[RoomLockNo][nvarchar](max) NOT NULL," +
+                    "[RoomTypeId][nvarchar](450) NOT NULL," +
+                    "[AdultPerRoom][int] NOT NULL," +
+                    "[ChildrenPerRoom][int] NOT NULL," +
+                    "[Description][nvarchar](max) NOT NULL," +
+                    "[Rate][decimal](10, 2) NOT NULL," +
+                    "[IsAvailable][bit] NOT NULL," +
+                    "[DateCreated][datetime2](7) NOT NULL," +
+                    "[DateModified][datetime2](7) NOT NULL, " +
+                    "[IsTrashed][bit] NOT NULL," +
+                    "FOREIGN KEY (RoomTypeId) REFERENCES RoomType(Id), " +
+                    "CONSTRAINT [PK_Room] PRIMARY KEY CLUSTERED([Id] ASC)");
+
+                CreateTable("Customer",
+                    "[Id][nvarchar](450) NOT NULL," +
+                    "[CustomerId][nvarchar](450) NOT NULL," +
+                    "[Title][nvarchar](max) NOT NULL," +
+                    "[FirstName][nvarchar](max) NOT NULL," +
+                    "[LastName][nvarchar](max) NOT NULL," +
+                    "[FullName][nvarchar](max) NOT NULL," +
+                    "[Email][nvarchar](256) NOT NULL," +
+                    "[PhoneNumber][nvarchar](max) NOT NULL," +
+                    "[Street][nvarchar](max) NULL," +
+                    "[City][nvarchar](max) NULL," +
+                    "[Company][nvarchar](max) NOT NULL," +
+                    "[State][nvarchar](max) NULL," +
+                    "[Country][nvarchar](max) NULL," +
+                    "[IdNumber][nvarchar](450) NOT NULL," +
+                    "[IdType][nvarchar](450) NOT NULL," +
+                    "[IdentificationDocumentFront][varbinary] (max) NOT NULL," +
+                    "[IdentificationDocumentBack][varbinary] (max) NOT NULL," +
+                    "[CustomerImage][varbinary] (max) NOT NULL," +
+                    "[DateCreated][datetime2](7) NOT NULL," +
+                    "[DateModified][datetime2](7) NOT NULL," +
+                    "[IsTrashed][bit] NOT NULL," +
+                    "CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+                CreateTable("Reservation",
+                    "[Id][nvarchar](450) NOT NULL," +
+                    "[ReservationId][nvarchar](450) NOT NULL," +
+                    "[CustomerId][nvarchar](450) NOT NULL," +
+                    "[RoomId][nvarchar](450) NOT NULL," +
+                    "[CheckInDate][datetime2](7) NOT NULL," +
+                    "[CheckOutDate][datetime2](7) NOT NULL," +
+                    "[ReservationRefNo][datetime2](7) NOT NULL," +
+                    "[Status][datetime2](7) NOT NULL," +
+                    "[PaymentMethod][datetime2](7) NOT NULL," +
+                    "[DateCreated][datetime2](7) NOT NULL," +
+                    "[DateModified][datetime2](7) NOT NULL," +
+                    "[IsTrashed][bit] NOT NULL," +
+                    "FOREIGN KEY (CustomerId) REFERENCES Customer(Id), " +
+                    "FOREIGN KEY (RoomId) REFERENCES Room(Id), " +
+                    "CONSTRAINT [PK_Reservation] PRIMARY KEY CLUSTERED ([Id] ASC)");
             }
         }
 

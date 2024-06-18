@@ -16,6 +16,9 @@ namespace ESMART_HMS
             DependencyInjection.ConfigureServices(services);
             var serviceProvider = services.BuildServiceProvider();
 
+            DatabaseHelper.InitializeDatabase();
+            DatabaseHelper.AddSampleUser();
+
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
             var loginForm = serviceProvider.GetRequiredService<LoginForm>();

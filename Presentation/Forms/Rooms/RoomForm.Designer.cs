@@ -68,6 +68,9 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtAvailableRooms = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
@@ -77,6 +80,7 @@
             this.totalCountPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.searchPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvRooms
@@ -140,7 +144,6 @@
             this.dgvRooms.RowTemplate.Height = 24;
             this.dgvRooms.Size = new System.Drawing.Size(1784, 307);
             this.dgvRooms.TabIndex = 5;
-            this.dgvRooms.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRooms_CellContentClick);
             this.dgvRooms.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRooms_CellDoubleClick);
             // 
             // idDataGridViewTextBoxColumn
@@ -326,6 +329,7 @@
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Delete Room";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // topFlowPanel
             // 
@@ -339,12 +343,13 @@
             // 
             // totalCountPanel
             // 
+            this.totalCountPanel.Controls.Add(this.panel1);
             this.totalCountPanel.Controls.Add(this.panel3);
             this.totalCountPanel.Controls.Add(this.label1);
             this.totalCountPanel.Location = new System.Drawing.Point(3, 3);
             this.totalCountPanel.Name = "totalCountPanel";
             this.totalCountPanel.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.totalCountPanel.Size = new System.Drawing.Size(367, 216);
+            this.totalCountPanel.Size = new System.Drawing.Size(1504, 216);
             this.totalCountPanel.TabIndex = 14;
             // 
             // panel3
@@ -466,6 +471,38 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.txtAvailableRooms);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Location = new System.Drawing.Point(350, 61);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(322, 143);
+            this.panel1.TabIndex = 14;
+            // 
+            // txtAvailableRooms
+            // 
+            this.txtAvailableRooms.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAvailableRooms.ForeColor = System.Drawing.Color.White;
+            this.txtAvailableRooms.Location = new System.Drawing.Point(23, 42);
+            this.txtAvailableRooms.Name = "txtAvailableRooms";
+            this.txtAvailableRooms.Size = new System.Drawing.Size(274, 101);
+            this.txtAvailableRooms.TabIndex = 1;
+            this.txtAvailableRooms.Text = "0";
+            this.txtAvailableRooms.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(18, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(161, 28);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Available Rooms";
+            // 
             // RoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -495,6 +532,8 @@
             this.panel3.PerformLayout();
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -547,5 +586,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label txtAvailableRooms;
+        private System.Windows.Forms.Label label6;
     }
 }

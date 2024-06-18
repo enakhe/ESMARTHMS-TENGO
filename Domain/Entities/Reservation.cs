@@ -12,19 +12,22 @@ namespace ESMART_HMS.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Reservation
     {
         public string Id { get; set; }
-        public string UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string FullName { get; set; }
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string PhoneNumber { get; set; }
+        public string ReservationId { get; set; }
+        public string CustomerId { get; set; }
+        public string RoomId { get; set; }
+        public System.DateTime CheckInDate { get; set; }
+        public System.DateTime CheckOutDate { get; set; }
+        public System.DateTime ReservationRefNo { get; set; }
+        public System.DateTime Status { get; set; }
+        public System.DateTime PaymentMethod { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
+    
+        public virtual Customer Customer { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

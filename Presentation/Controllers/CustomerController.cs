@@ -7,16 +7,17 @@ namespace ESMART_HMS.Presentation.Controllers
 {
     public class CustomerController
     {
-        private readonly GetAllCustomersUseCase _getAllCustomersUseCase;
+        private readonly GetAllCustomerUseCase _getAllCustomersUseCase;
         private readonly CreateCustomerUseCase _createCustomerUseCase;
         private readonly UpdateCustomerUseCase _updateCustomerUseCase;
         private readonly GetCustomerByIdUseCase _getCustomerByIdUseCase;
         private readonly DeleteCustomerUseCase _deleteCustomerUseCase;
         private readonly SearchCustomerUseCase _searchCustomerUseCase;
+        private readonly GetDeletedCustomerUseCase _getDeletedCustomerUseCase;
 
         public ObservableCollection<Customer> Customers { get; set; }
 
-        public CustomerController(GetAllCustomersUseCase getAllCustomersUseCase, CreateCustomerUseCase createCustomerUseCase, UpdateCustomerUseCase updateCustomerUseCase, GetCustomerByIdUseCase getCustomerByIdUseCase, DeleteCustomerUseCase deleteCustomerUseCase, SearchCustomerUseCase searchCustomerUseCase)
+        public CustomerController(GetAllCustomerUseCase getAllCustomersUseCase, CreateCustomerUseCase createCustomerUseCase, UpdateCustomerUseCase updateCustomerUseCase, GetCustomerByIdUseCase getCustomerByIdUseCase, DeleteCustomerUseCase deleteCustomerUseCase, SearchCustomerUseCase searchCustomerUseCase, GetDeletedCustomerUseCase getDeletedCustomerUseCase)
         {
             _getAllCustomersUseCase = getAllCustomersUseCase;
             _createCustomerUseCase = createCustomerUseCase;
@@ -24,13 +25,14 @@ namespace ESMART_HMS.Presentation.Controllers
             _getCustomerByIdUseCase = getCustomerByIdUseCase;
             _deleteCustomerUseCase = deleteCustomerUseCase;
             _searchCustomerUseCase = searchCustomerUseCase;
+            _getDeletedCustomerUseCase = getDeletedCustomerUseCase;
+
             LoadCustomers();
         }
 
         public List<Customer> LoadCustomers()
         {
-            var allCustomer = _getAllCustomersUseCase.Execute();
-            return allCustomer;
+            return _getAllCustomersUseCase.Execute();
         }
 
         public void AddCustomer(Customer customer)
@@ -56,8 +58,11 @@ namespace ESMART_HMS.Presentation.Controllers
 
         public List<ESMART_HMS.Domain.Entities.Customer> SearchCustomer(string keyword)
         {
-            List<ESMART_HMS.Domain.Entities.Customer> searchedCustomer = _searchCustomerUseCase.Execute(keyword);
-            return searchedCustomer;
+            return _searchCustomerUseCase.Execute(keyword);
+        }
+        public List<ESMART_HMS.Domain.Entities.Customer> GetDeletedCustomer()
+        {
+            return _getDeletedCustomerUseCase.Execute();
         }
     }
 }

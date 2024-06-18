@@ -142,7 +142,7 @@
             // viewAllCoToolStripMenuItem
             // 
             this.viewAllCoToolStripMenuItem.Name = "viewAllCoToolStripMenuItem";
-            this.viewAllCoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.viewAllCoToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.viewAllCoToolStripMenuItem.Text = "View all Companies";
             // 
             // manageRoomToolStripMenuItem
@@ -159,42 +159,43 @@
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             this.roomsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10, 1, 10, 1);
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
             this.roomsToolStripMenuItem.Text = "View all Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // roomsFacilitiesToolStripMenuItem
             // 
             this.roomsFacilitiesToolStripMenuItem.Name = "roomsFacilitiesToolStripMenuItem";
-            this.roomsFacilitiesToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
+            this.roomsFacilitiesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.roomsFacilitiesToolStripMenuItem.Text = "Rooms Facilities";
             // 
             // roomBookingToolStripMenuItem
             // 
+            this.roomBookingToolStripMenuItem.AutoSize = false;
             this.roomBookingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bookingListToolStripMenuItem,
             this.roomCheckoutToolStripMenuItem,
             this.roomStatusToolStripMenuItem});
             this.roomBookingToolStripMenuItem.Name = "roomBookingToolStripMenuItem";
-            this.roomBookingToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
-            this.roomBookingToolStripMenuItem.Text = "Room Booking";
+            this.roomBookingToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.roomBookingToolStripMenuItem.Text = "Room Reservation";
             // 
             // bookingListToolStripMenuItem
             // 
             this.bookingListToolStripMenuItem.Name = "bookingListToolStripMenuItem";
-            this.bookingListToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.bookingListToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.bookingListToolStripMenuItem.Text = "Booking List";
             // 
             // roomCheckoutToolStripMenuItem
             // 
             this.roomCheckoutToolStripMenuItem.Name = "roomCheckoutToolStripMenuItem";
-            this.roomCheckoutToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.roomCheckoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.roomCheckoutToolStripMenuItem.Text = "Room Checkout";
             // 
             // roomStatusToolStripMenuItem
             // 
             this.roomStatusToolStripMenuItem.Name = "roomStatusToolStripMenuItem";
-            this.roomStatusToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.roomStatusToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.roomStatusToolStripMenuItem.Text = "Room Status";
             // 
             // Home

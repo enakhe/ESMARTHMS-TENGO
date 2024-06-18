@@ -24,6 +24,7 @@ namespace ESMART_HMS.Infrastructure.Data
 
                 customer.Id = Guid.NewGuid().ToString();
                 customer.CustomerId = "HMS" + random.Next(1000, 5000);
+                customer.IsTrashed = false;
                 _db.Customers.Add(customer);
                 _db.SaveChanges();
                 MessageBox.Show("Successfully added customer information", "Success", MessageBoxButtons.OK,
@@ -40,7 +41,7 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                List<Customer> allCustomers = _db.Customers.ToList<Customer>();
+                List<Customer> allCustomers = _db.Customers.Where(c => c.IsTrashed != true).ToList<Customer>();
                 return allCustomers;
             }
             catch (Exception ex)
@@ -98,7 +99,8 @@ namespace ESMART_HMS.Infrastructure.Data
                 var customer = _db.Customers.FirstOrDefault(c => c.Id == Id);
                 if (customer != null)
                 {
-                    _db.Customers.Remove(customer);
+                    customer.IsTrashed = true;
+                    _db.Entry(customer).State = System.Data.Entity.EntityState.Modified;
                     _db.SaveChanges();
                 }
                 else
@@ -134,6 +136,20 @@ namespace ESMART_HMS.Infrastructure.Data
                             MessageBoxIcon.Error);
             }
 
+            return null;
+        }
+
+        public List<Customer> GetDeletedCustomer()
+        {
+            try
+            {
+                return _db.Customers.Where(c => c.IsTrashed == true).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
             return null;
         }
     }

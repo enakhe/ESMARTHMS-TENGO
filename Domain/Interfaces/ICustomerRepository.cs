@@ -11,5 +11,6 @@ namespace ESMART_HMS.Domain.Interfaces
         void UpdateCustomer(Customer customer);
         void DeleteCustomer(string Id);
         List<Customer> SearchCustomer(string keyword);
+        List<Customer> GetDeletedCustomer();
     }
 }

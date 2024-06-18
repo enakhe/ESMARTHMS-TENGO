@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ESMART_HMS.Application.UseCases.Customer
 {
-    public class GetAllCustomersUseCase
+    public class GetAllCustomerUseCase
     {
         private readonly ICustomerRepository _customerRepository;
 
-        public GetAllCustomersUseCase(ICustomerRepository customerRepository)
+        public GetAllCustomerUseCase(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }

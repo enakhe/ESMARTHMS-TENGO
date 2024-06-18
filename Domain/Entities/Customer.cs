@@ -14,6 +14,12 @@ namespace ESMART_HMS.Domain.Entities
     
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customer()
+        {
+            this.Reservations = new HashSet<Reservation>();
+        }
+    
         public string Id { get; set; }
         public string CustomerId { get; set; }
         public string Title { get; set; }
@@ -31,5 +37,14 @@ namespace ESMART_HMS.Domain.Entities
         public string IdentitificationDocumentName { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
+        public bool IsTrashed { get; set; }
+        public string IdNumber { get; set; }
+        public string IdType { get; set; }
+        public byte[] IdentificationDocumentFront { get; set; }
+        public byte[] IdentificationDocumentBack { get; set; }
+        public byte[] CustomerImage { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }

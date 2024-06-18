@@ -24,6 +24,7 @@ namespace ESMART_HMS.Infrastructure.Data
             user.Id = Guid.NewGuid().ToString();
             user.UserId = "HMS" + random.Next(1000, 5000);
             user.PasswordHash = HashPassword(user.PasswordHash);
+            user.IsTrashed = false;
             _db.Users.Add(user);
             _db.SaveChanges();
         }

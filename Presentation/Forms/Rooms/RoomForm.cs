@@ -1,7 +1,6 @@
 ﻿using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Forms.Customers;
-using Microsoft.Extensions.DependencyInjection;
 using ESMART_HMS.Presentation.Forms.Rooms;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
@@ -17,7 +16,12 @@ namespace ESMART_HMS.Forms.Rooms
             InitializeComponent();
             _roomController = roomController;
             _roomTypeController = roomTypeController;
+        }
+
+        private void RoomsForm_Load(object sender, EventArgs e)
+        {
             LoadData();
+            this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
         }
 
         public void LoadData()
@@ -30,6 +34,7 @@ namespace ESMART_HMS.Forms.Rooms
                 {
                     dgvRooms.DataSource = allRooms;
                     txtRoomCount.Text = allRooms.Count.ToString();
+                    txtAvailableRooms.Text = _roomController.GetAvailbleRoom().Count.ToString();
                 }
             }
             catch (Exception ex)
@@ -38,6 +43,7 @@ namespace ESMART_HMS.Forms.Rooms
                             MessageBoxIcon.Error);
             }
         }
+
 
         private void addRoomBtn_Click(object sender, EventArgs e)
         {
@@ -50,18 +56,6 @@ namespace ESMART_HMS.Forms.Rooms
             {
                 LoadData();
             }
-        }
-
-        private void dgvRooms_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void RoomsForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Room' table. You can move, or remove it, as needed.
-            this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
-
         }
 
         private void btnViewDetails_Click(object sender, EventArgs e)
@@ -107,7 +101,38 @@ namespace ESMART_HMS.Forms.Rooms
                         LoadData();
                     }
                 }
-                
+
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvRooms.SelectedRows.Count > 0)
+                {
+                    var result = MessageBox.Show("Are you sure you want to delete the selected rooms?\nIf you delete any room, its record including all orders tagged to such room will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgvRooms.SelectedRows)
+                        {
+                            string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+                            _roomController.DeleteRoom(id);
+                        }
+                        LoadData();
+                        MessageBox.Show("Successfully deleted customer information", "Success", MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a customer to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
             }
         }
     }
