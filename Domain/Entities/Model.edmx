@@ -11,7 +11,7 @@
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="CustomerId" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
@@ -22,6 +22,7 @@
           <Property Name="Company" Type="nvarchar(max)" Nullable="false" />
           <Property Name="State" Type="nvarchar(max)" />
           <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdNumber" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="IdType" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="IdentificationDocumentFront" Type="varbinary(max)" Nullable="false" />
@@ -162,7 +163,7 @@
           </Key>
           <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CustomerId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -173,8 +174,6 @@
           <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IdentificationDocument" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IdentitificationDocumentName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
@@ -184,6 +183,7 @@
           <Property Name="IdentificationDocumentBack" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="CustomerImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" FromRole="Customer" ToRole="Reservation" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -320,6 +320,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="ESMART_HMSDBModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="CustomerImage" ColumnName="CustomerImage" />
                 <ScalarProperty Name="IdentificationDocumentBack" ColumnName="IdentificationDocumentBack" />
                 <ScalarProperty Name="IdentificationDocumentFront" ColumnName="IdentificationDocumentFront" />

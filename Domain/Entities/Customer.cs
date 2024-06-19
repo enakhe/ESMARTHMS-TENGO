@@ -33,8 +33,6 @@ namespace ESMART_HMS.Domain.Entities
         public string Company { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
-        public byte[] IdentificationDocument { get; set; }
-        public string IdentitificationDocumentName { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
@@ -43,6 +41,7 @@ namespace ESMART_HMS.Domain.Entities
         public byte[] IdentificationDocumentFront { get; set; }
         public byte[] IdentificationDocumentBack { get; set; }
         public byte[] CustomerImage { get; set; }
+        public string Gender { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }

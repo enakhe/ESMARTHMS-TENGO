@@ -63,7 +63,7 @@ namespace ESMART_HMS
                 CreateTable("Customer",
                     "[Id][nvarchar](450) NOT NULL," +
                     "[CustomerId][nvarchar](450) NOT NULL," +
-                    "[Title][nvarchar](max) NOT NULL," +
+                    "[Title][nvarchar](50) NOT NULL," +
                     "[FirstName][nvarchar](max) NOT NULL," +
                     "[LastName][nvarchar](max) NOT NULL," +
                     "[FullName][nvarchar](max) NOT NULL," +
@@ -74,6 +74,8 @@ namespace ESMART_HMS
                     "[Company][nvarchar](max) NOT NULL," +
                     "[State][nvarchar](max) NULL," +
                     "[Country][nvarchar](max) NULL," +
+                    "[Gender][nvarchar](50) NOT NULL," +
+
                     "[IdNumber][nvarchar](450) NOT NULL," +
                     "[IdType][nvarchar](450) NOT NULL," +
                     "[IdentificationDocumentFront][varbinary] (max) NOT NULL," +
