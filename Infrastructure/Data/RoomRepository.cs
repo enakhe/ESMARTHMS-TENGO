@@ -23,11 +23,6 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                Random random = new Random();
-
-                room.Id = Guid.NewGuid().ToString();
-                room.RoomId = "RM" + random.Next(1000, 5000);
-
                 _db.Rooms.Add(room);
                 _db.SaveChanges();
                 MessageBox.Show("Successfully added room information", "Success", MessageBoxButtons.OK,

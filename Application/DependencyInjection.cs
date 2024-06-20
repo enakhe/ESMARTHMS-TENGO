@@ -1,6 +1,7 @@
 ﻿using ESMART_HMS.Application.UseCases.Customer;
 using ESMART_HMS.Application.UseCases.Room;
 using ESMART_HMS.Application.UseCases.RoomTypes;
+using ESMART_HMS.Application.UseCases.Reservation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ESMART_HMS.Application
@@ -32,6 +33,9 @@ namespace ESMART_HMS.Application
             services.AddScoped<CreateRoomTypeUseCase>();
             services.AddScoped<GetAllRoomTypeUseCase>();
             services.AddScoped<GetRoomTypeByIdUseCase>();
+
+            // Reservation Use Case
+            services.AddScoped<CreateReservationUseCase>();
 
             return services;
         }

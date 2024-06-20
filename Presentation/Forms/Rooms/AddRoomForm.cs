@@ -145,6 +145,10 @@ namespace ESMART_HMS.Forms.Rooms
 
                 else
                 {
+                    Random random = new Random();
+
+                    room.Id = Guid.NewGuid().ToString();
+                    room.RoomId = "RM" + random.Next(1000, 5000);
                     room.RoomName = txtRoomNo.Text.Trim();
                     room.RoomCardNo = txtCardNo.Text.Trim();
                     room.RoomLockNo = txtLockNo.Text.Trim();
