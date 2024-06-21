@@ -20,11 +20,6 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                Random random = new Random();
-
-                customer.Id = Guid.NewGuid().ToString();
-                customer.CustomerId = "HMS" + random.Next(1000, 5000);
-                customer.IsTrashed = false;
                 _db.Customers.Add(customer);
                 _db.SaveChanges();
                 MessageBox.Show("Successfully added customer information", "Success", MessageBoxButtons.OK,

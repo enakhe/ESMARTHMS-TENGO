@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Services;
+﻿using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ESMART_HMS.Infrastructure
@@ -9,6 +10,8 @@ namespace ESMART_HMS.Infrastructure
         {
             // Services
             services.AddScoped<AuthService>();
+
+            services.AddScoped<ReservationRepository>();
 
             return services;
         }

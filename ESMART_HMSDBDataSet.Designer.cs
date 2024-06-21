@@ -32,7 +32,13 @@ namespace ESMART_HMS {
         
         private UserDataTable tableUser;
         
+        private ReservationDataTable tableReservation;
+        
         private global::System.Data.DataRelation relationFK_Room_RoomType;
+        
+        private global::System.Data.DataRelation relationFK__Reservati__Custo__403A8C7D;
+        
+        private global::System.Data.DataRelation relationFK__Reservati__RoomI__412EB0B6;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -73,6 +79,9 @@ namespace ESMART_HMS {
                 }
                 if ((ds.Tables["User"] != null)) {
                     base.Tables.Add(new UserDataTable(ds.Tables["User"]));
+                }
+                if ((ds.Tables["Reservation"] != null)) {
+                    base.Tables.Add(new ReservationDataTable(ds.Tables["Reservation"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -129,6 +138,16 @@ namespace ESMART_HMS {
         public UserDataTable User {
             get {
                 return this.tableUser;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public ReservationDataTable Reservation {
+            get {
+                return this.tableReservation;
             }
         }
         
@@ -211,6 +230,9 @@ namespace ESMART_HMS {
                 if ((ds.Tables["User"] != null)) {
                     base.Tables.Add(new UserDataTable(ds.Tables["User"]));
                 }
+                if ((ds.Tables["Reservation"] != null)) {
+                    base.Tables.Add(new ReservationDataTable(ds.Tables["Reservation"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -268,7 +290,15 @@ namespace ESMART_HMS {
                     this.tableUser.InitVars();
                 }
             }
+            this.tableReservation = ((ReservationDataTable)(base.Tables["Reservation"]));
+            if ((initTable == true)) {
+                if ((this.tableReservation != null)) {
+                    this.tableReservation.InitVars();
+                }
+            }
             this.relationFK_Room_RoomType = this.Relations["FK_Room_RoomType"];
+            this.relationFK__Reservati__Custo__403A8C7D = this.Relations["FK__Reservati__Custo__403A8C7D"];
+            this.relationFK__Reservati__RoomI__412EB0B6 = this.Relations["FK__Reservati__RoomI__412EB0B6"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -287,10 +317,20 @@ namespace ESMART_HMS {
             base.Tables.Add(this.tableRoomType);
             this.tableUser = new UserDataTable();
             base.Tables.Add(this.tableUser);
+            this.tableReservation = new ReservationDataTable();
+            base.Tables.Add(this.tableReservation);
             this.relationFK_Room_RoomType = new global::System.Data.DataRelation("FK_Room_RoomType", new global::System.Data.DataColumn[] {
                         this.tableRoomType.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableRoom.RoomTypeIdColumn}, false);
             this.Relations.Add(this.relationFK_Room_RoomType);
+            this.relationFK__Reservati__Custo__403A8C7D = new global::System.Data.DataRelation("FK__Reservati__Custo__403A8C7D", new global::System.Data.DataColumn[] {
+                        this.tableCustomer.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableReservation.CustomerIdColumn}, false);
+            this.Relations.Add(this.relationFK__Reservati__Custo__403A8C7D);
+            this.relationFK__Reservati__RoomI__412EB0B6 = new global::System.Data.DataRelation("FK__Reservati__RoomI__412EB0B6", new global::System.Data.DataColumn[] {
+                        this.tableRoom.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableReservation.RoomIdColumn}, false);
+            this.Relations.Add(this.relationFK__Reservati__RoomI__412EB0B6);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -314,6 +354,12 @@ namespace ESMART_HMS {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeUser() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeReservation() {
             return false;
         }
         
@@ -384,6 +430,9 @@ namespace ESMART_HMS {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void UserRowChangeEventHandler(object sender, UserRowChangeEvent e);
         
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void ReservationRowChangeEventHandler(object sender, ReservationRowChangeEvent e);
+        
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
@@ -417,13 +466,23 @@ namespace ESMART_HMS {
             
             private global::System.Data.DataColumn columnCountry;
             
-            private global::System.Data.DataColumn columnIdentificationDocument;
-            
-            private global::System.Data.DataColumn columnIdentitificationDocumentName;
-            
             private global::System.Data.DataColumn columnDateCreated;
             
             private global::System.Data.DataColumn columnDateModified;
+            
+            private global::System.Data.DataColumn columnGender;
+            
+            private global::System.Data.DataColumn columnIdNumber;
+            
+            private global::System.Data.DataColumn columnIdType;
+            
+            private global::System.Data.DataColumn columnIdentificationDocumentFront;
+            
+            private global::System.Data.DataColumn columnIdentificationDocumentBack;
+            
+            private global::System.Data.DataColumn columnCustomerImage;
+            
+            private global::System.Data.DataColumn columnIsTrashed;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -564,22 +623,6 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IdentificationDocumentColumn {
-                get {
-                    return this.columnIdentificationDocument;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IdentitificationDocumentNameColumn {
-                get {
-                    return this.columnIdentitificationDocumentName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn DateCreatedColumn {
                 get {
                     return this.columnDateCreated;
@@ -591,6 +634,62 @@ namespace ESMART_HMS {
             public global::System.Data.DataColumn DateModifiedColumn {
                 get {
                     return this.columnDateModified;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GenderColumn {
+                get {
+                    return this.columnGender;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdNumberColumn {
+                get {
+                    return this.columnIdNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdTypeColumn {
+                get {
+                    return this.columnIdType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdentificationDocumentFrontColumn {
+                get {
+                    return this.columnIdentificationDocumentFront;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdentificationDocumentBackColumn {
+                get {
+                    return this.columnIdentificationDocumentBack;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CustomerImageColumn {
+                get {
+                    return this.columnCustomerImage;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsTrashedColumn {
+                get {
+                    return this.columnIsTrashed;
                 }
             }
             
@@ -645,10 +744,15 @@ namespace ESMART_HMS {
                         string Company, 
                         string State, 
                         string Country, 
-                        byte[] IdentificationDocument, 
-                        string IdentitificationDocumentName, 
                         System.DateTime DateCreated, 
-                        System.DateTime DateModified) {
+                        System.DateTime DateModified, 
+                        string Gender, 
+                        string IdNumber, 
+                        string IdType, 
+                        byte[] IdentificationDocumentFront, 
+                        byte[] IdentificationDocumentBack, 
+                        byte[] CustomerImage, 
+                        bool IsTrashed) {
                 CustomerRow rowCustomerRow = ((CustomerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -664,10 +768,15 @@ namespace ESMART_HMS {
                         Company,
                         State,
                         Country,
-                        IdentificationDocument,
-                        IdentitificationDocumentName,
                         DateCreated,
-                        DateModified};
+                        DateModified,
+                        Gender,
+                        IdNumber,
+                        IdType,
+                        IdentificationDocumentFront,
+                        IdentificationDocumentBack,
+                        CustomerImage,
+                        IsTrashed};
                 rowCustomerRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCustomerRow);
                 return rowCustomerRow;
@@ -710,10 +819,15 @@ namespace ESMART_HMS {
                 this.columnCompany = base.Columns["Company"];
                 this.columnState = base.Columns["State"];
                 this.columnCountry = base.Columns["Country"];
-                this.columnIdentificationDocument = base.Columns["IdentificationDocument"];
-                this.columnIdentitificationDocumentName = base.Columns["IdentitificationDocumentName"];
                 this.columnDateCreated = base.Columns["DateCreated"];
                 this.columnDateModified = base.Columns["DateModified"];
+                this.columnGender = base.Columns["Gender"];
+                this.columnIdNumber = base.Columns["IdNumber"];
+                this.columnIdType = base.Columns["IdType"];
+                this.columnIdentificationDocumentFront = base.Columns["IdentificationDocumentFront"];
+                this.columnIdentificationDocumentBack = base.Columns["IdentificationDocumentBack"];
+                this.columnCustomerImage = base.Columns["CustomerImage"];
+                this.columnIsTrashed = base.Columns["IsTrashed"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -745,14 +859,24 @@ namespace ESMART_HMS {
                 base.Columns.Add(this.columnState);
                 this.columnCountry = new global::System.Data.DataColumn("Country", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCountry);
-                this.columnIdentificationDocument = new global::System.Data.DataColumn("IdentificationDocument", typeof(byte[]), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdentificationDocument);
-                this.columnIdentitificationDocumentName = new global::System.Data.DataColumn("IdentitificationDocumentName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdentitificationDocumentName);
                 this.columnDateCreated = new global::System.Data.DataColumn("DateCreated", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateCreated);
                 this.columnDateModified = new global::System.Data.DataColumn("DateModified", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateModified);
+                this.columnGender = new global::System.Data.DataColumn("Gender", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGender);
+                this.columnIdNumber = new global::System.Data.DataColumn("IdNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdNumber);
+                this.columnIdType = new global::System.Data.DataColumn("IdType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdType);
+                this.columnIdentificationDocumentFront = new global::System.Data.DataColumn("IdentificationDocumentFront", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdentificationDocumentFront);
+                this.columnIdentificationDocumentBack = new global::System.Data.DataColumn("IdentificationDocumentBack", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdentificationDocumentBack);
+                this.columnCustomerImage = new global::System.Data.DataColumn("CustomerImage", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerImage);
+                this.columnIsTrashed = new global::System.Data.DataColumn("IsTrashed", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsTrashed);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -772,19 +896,24 @@ namespace ESMART_HMS {
                 this.columnEmail.MaxLength = 256;
                 this.columnPhoneNumber.AllowDBNull = false;
                 this.columnPhoneNumber.MaxLength = 2147483647;
-                this.columnStreet.AllowDBNull = false;
                 this.columnStreet.MaxLength = 2147483647;
-                this.columnCity.AllowDBNull = false;
                 this.columnCity.MaxLength = 2147483647;
                 this.columnCompany.AllowDBNull = false;
                 this.columnCompany.MaxLength = 2147483647;
-                this.columnState.AllowDBNull = false;
                 this.columnState.MaxLength = 2147483647;
-                this.columnCountry.AllowDBNull = false;
                 this.columnCountry.MaxLength = 2147483647;
-                this.columnIdentitificationDocumentName.MaxLength = 256;
                 this.columnDateCreated.AllowDBNull = false;
                 this.columnDateModified.AllowDBNull = false;
+                this.columnGender.AllowDBNull = false;
+                this.columnGender.MaxLength = 50;
+                this.columnIdNumber.AllowDBNull = false;
+                this.columnIdNumber.MaxLength = 450;
+                this.columnIdType.AllowDBNull = false;
+                this.columnIdType.MaxLength = 450;
+                this.columnIdentificationDocumentFront.AllowDBNull = false;
+                this.columnIdentificationDocumentBack.AllowDBNull = false;
+                this.columnCustomerImage.AllowDBNull = false;
+                this.columnIsTrashed.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -922,7 +1051,7 @@ namespace ESMART_HMS {
             
             private global::System.Data.DataColumn columnRoomId;
             
-            private global::System.Data.DataColumn columnRoomName;
+            private global::System.Data.DataColumn columnRoomNo;
             
             private global::System.Data.DataColumn columnRoomCardNo;
             
@@ -995,9 +1124,9 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn RoomNameColumn {
+            public global::System.Data.DataColumn RoomNoColumn {
                 get {
-                    return this.columnRoomName;
+                    return this.columnRoomNo;
                 }
             }
             
@@ -1118,12 +1247,12 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RoomRow AddRoomRow(string Id, string RoomId, string RoomName, string RoomCardNo, string RoomLockNo, RoomTypeRow parentRoomTypeRowByFK_Room_RoomType, int AdultPerRoom, int ChildrenPerRoom, string Description, decimal Rate, bool IsAvailable, System.DateTime DateCreated, System.DateTime DateModified) {
+            public RoomRow AddRoomRow(string Id, string RoomId, string RoomNo, string RoomCardNo, string RoomLockNo, RoomTypeRow parentRoomTypeRowByFK_Room_RoomType, int AdultPerRoom, int ChildrenPerRoom, string Description, decimal Rate, bool IsAvailable, System.DateTime DateCreated, System.DateTime DateModified) {
                 RoomRow rowRoomRow = ((RoomRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         RoomId,
-                        RoomName,
+                        RoomNo,
                         RoomCardNo,
                         RoomLockNo,
                         null,
@@ -1168,7 +1297,7 @@ namespace ESMART_HMS {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnRoomId = base.Columns["RoomId"];
-                this.columnRoomName = base.Columns["RoomName"];
+                this.columnRoomNo = base.Columns["RoomNo"];
                 this.columnRoomCardNo = base.Columns["RoomCardNo"];
                 this.columnRoomLockNo = base.Columns["RoomLockNo"];
                 this.columnRoomTypeId = base.Columns["RoomTypeId"];
@@ -1188,8 +1317,8 @@ namespace ESMART_HMS {
                 base.Columns.Add(this.columnId);
                 this.columnRoomId = new global::System.Data.DataColumn("RoomId", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRoomId);
-                this.columnRoomName = new global::System.Data.DataColumn("RoomName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRoomName);
+                this.columnRoomNo = new global::System.Data.DataColumn("RoomNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoomNo);
                 this.columnRoomCardNo = new global::System.Data.DataColumn("RoomCardNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRoomCardNo);
                 this.columnRoomLockNo = new global::System.Data.DataColumn("RoomLockNo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1217,8 +1346,8 @@ namespace ESMART_HMS {
                 this.columnId.MaxLength = 450;
                 this.columnRoomId.AllowDBNull = false;
                 this.columnRoomId.MaxLength = 450;
-                this.columnRoomName.AllowDBNull = false;
-                this.columnRoomName.MaxLength = 2147483647;
+                this.columnRoomNo.AllowDBNull = false;
+                this.columnRoomNo.MaxLength = 2147483647;
                 this.columnRoomCardNo.AllowDBNull = false;
                 this.columnRoomCardNo.MaxLength = 2147483647;
                 this.columnRoomLockNo.AllowDBNull = false;
@@ -1372,10 +1501,6 @@ namespace ESMART_HMS {
             
             private global::System.Data.DataColumn columnTitle;
             
-            private global::System.Data.DataColumn columnDescription;
-            
-            private global::System.Data.DataColumn columnRateBase;
-            
             private global::System.Data.DataColumn columnDateCreated;
             
             private global::System.Data.DataColumn columnDateModified;
@@ -1439,22 +1564,6 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DescriptionColumn {
-                get {
-                    return this.columnDescription;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn RateBaseColumn {
-                get {
-                    return this.columnRateBase;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn DateCreatedColumn {
                 get {
                     return this.columnDateCreated;
@@ -1506,14 +1615,12 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RoomTypeRow AddRoomTypeRow(string Id, string RoomTypeId, string Title, string Description, decimal RateBase, System.DateTime DateCreated, System.DateTime DateModified) {
+            public RoomTypeRow AddRoomTypeRow(string Id, string RoomTypeId, string Title, System.DateTime DateCreated, System.DateTime DateModified) {
                 RoomTypeRow rowRoomTypeRow = ((RoomTypeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         RoomTypeId,
                         Title,
-                        Description,
-                        RateBase,
                         DateCreated,
                         DateModified};
                 rowRoomTypeRow.ItemArray = columnValuesArray;
@@ -1548,8 +1655,6 @@ namespace ESMART_HMS {
                 this.columnId = base.Columns["Id"];
                 this.columnRoomTypeId = base.Columns["RoomTypeId"];
                 this.columnTitle = base.Columns["Title"];
-                this.columnDescription = base.Columns["Description"];
-                this.columnRateBase = base.Columns["RateBase"];
                 this.columnDateCreated = base.Columns["DateCreated"];
                 this.columnDateModified = base.Columns["DateModified"];
             }
@@ -1563,10 +1668,6 @@ namespace ESMART_HMS {
                 base.Columns.Add(this.columnRoomTypeId);
                 this.columnTitle = new global::System.Data.DataColumn("Title", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTitle);
-                this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescription);
-                this.columnRateBase = new global::System.Data.DataColumn("RateBase", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRateBase);
                 this.columnDateCreated = new global::System.Data.DataColumn("DateCreated", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateCreated);
                 this.columnDateModified = new global::System.Data.DataColumn("DateModified", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1580,9 +1681,6 @@ namespace ESMART_HMS {
                 this.columnRoomTypeId.MaxLength = 450;
                 this.columnTitle.AllowDBNull = false;
                 this.columnTitle.MaxLength = 2147483647;
-                this.columnDescription.AllowDBNull = false;
-                this.columnDescription.MaxLength = 2147483647;
-                this.columnRateBase.AllowDBNull = false;
                 this.columnDateCreated.AllowDBNull = false;
                 this.columnDateModified.AllowDBNull = false;
             }
@@ -2127,6 +2225,654 @@ namespace ESMART_HMS {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class ReservationDataTable : global::System.Data.TypedTableBase<ReservationRow> {
+            
+            private global::System.Data.DataColumn columnId;
+            
+            private global::System.Data.DataColumn columnReservationId;
+            
+            private global::System.Data.DataColumn columnCustomerId;
+            
+            private global::System.Data.DataColumn columnRoomId;
+            
+            private global::System.Data.DataColumn columnCheckInDate;
+            
+            private global::System.Data.DataColumn columnCheckOutDate;
+            
+            private global::System.Data.DataColumn columnReservationRefNo;
+            
+            private global::System.Data.DataColumn columnStatus;
+            
+            private global::System.Data.DataColumn columnPaymentMethod;
+            
+            private global::System.Data.DataColumn columnDateCreated;
+            
+            private global::System.Data.DataColumn columnDateModified;
+            
+            private global::System.Data.DataColumn columnIsTrashed;
+            
+            private global::System.Data.DataColumn columnReservationRefNo1;
+            
+            private global::System.Data.DataColumn columnStatus1;
+            
+            private global::System.Data.DataColumn columnPaymentMethod1;
+            
+            private global::System.Data.DataColumn columnId1;
+            
+            private global::System.Data.DataColumn columnReservationId1;
+            
+            private global::System.Data.DataColumn columnCustomerId1;
+            
+            private global::System.Data.DataColumn columnRoomId1;
+            
+            private global::System.Data.DataColumn columnCheckInDate1;
+            
+            private global::System.Data.DataColumn columnCheckOutDate1;
+            
+            private global::System.Data.DataColumn columnDateCreated1;
+            
+            private global::System.Data.DataColumn columnDateModified1;
+            
+            private global::System.Data.DataColumn columnIsTrashed1;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationDataTable() {
+                this.TableName = "Reservation";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal ReservationDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected ReservationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ReservationIdColumn {
+                get {
+                    return this.columnReservationId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CustomerIdColumn {
+                get {
+                    return this.columnCustomerId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RoomIdColumn {
+                get {
+                    return this.columnRoomId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CheckInDateColumn {
+                get {
+                    return this.columnCheckInDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CheckOutDateColumn {
+                get {
+                    return this.columnCheckOutDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ReservationRefNoColumn {
+                get {
+                    return this.columnReservationRefNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StatusColumn {
+                get {
+                    return this.columnStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PaymentMethodColumn {
+                get {
+                    return this.columnPaymentMethod;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateCreatedColumn {
+                get {
+                    return this.columnDateCreated;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateModifiedColumn {
+                get {
+                    return this.columnDateModified;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsTrashedColumn {
+                get {
+                    return this.columnIsTrashed;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ReservationRefNo1Column {
+                get {
+                    return this.columnReservationRefNo1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Status1Column {
+                get {
+                    return this.columnStatus1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PaymentMethod1Column {
+                get {
+                    return this.columnPaymentMethod1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn Id1Column {
+                get {
+                    return this.columnId1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ReservationId1Column {
+                get {
+                    return this.columnReservationId1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CustomerId1Column {
+                get {
+                    return this.columnCustomerId1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RoomId1Column {
+                get {
+                    return this.columnRoomId1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CheckInDate1Column {
+                get {
+                    return this.columnCheckInDate1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CheckOutDate1Column {
+                get {
+                    return this.columnCheckOutDate1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateCreated1Column {
+                get {
+                    return this.columnDateCreated1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateModified1Column {
+                get {
+                    return this.columnDateModified1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsTrashed1Column {
+                get {
+                    return this.columnIsTrashed1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationRow this[int index] {
+                get {
+                    return ((ReservationRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event ReservationRowChangeEventHandler ReservationRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event ReservationRowChangeEventHandler ReservationRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event ReservationRowChangeEventHandler ReservationRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event ReservationRowChangeEventHandler ReservationRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddReservationRow(ReservationRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationRow AddReservationRow(
+                        string Id, 
+                        string ReservationId, 
+                        CustomerRow parentCustomerRowByFK__Reservati__Custo__403A8C7D, 
+                        RoomRow parentRoomRowByFK__Reservati__RoomI__412EB0B6, 
+                        System.DateTime CheckInDate, 
+                        System.DateTime CheckOutDate, 
+                        System.DateTime ReservationRefNo, 
+                        System.DateTime Status, 
+                        System.DateTime PaymentMethod, 
+                        System.DateTime DateCreated, 
+                        System.DateTime DateModified, 
+                        bool IsTrashed, 
+                        string ReservationRefNo1, 
+                        string Status1, 
+                        string PaymentMethod1, 
+                        string Id1, 
+                        string ReservationId1, 
+                        string CustomerId1, 
+                        string RoomId1, 
+                        System.DateTime CheckInDate1, 
+                        System.DateTime CheckOutDate1, 
+                        System.DateTime DateCreated1, 
+                        System.DateTime DateModified1, 
+                        bool IsTrashed1) {
+                ReservationRow rowReservationRow = ((ReservationRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Id,
+                        ReservationId,
+                        null,
+                        null,
+                        CheckInDate,
+                        CheckOutDate,
+                        ReservationRefNo,
+                        Status,
+                        PaymentMethod,
+                        DateCreated,
+                        DateModified,
+                        IsTrashed,
+                        ReservationRefNo1,
+                        Status1,
+                        PaymentMethod1,
+                        Id1,
+                        ReservationId1,
+                        CustomerId1,
+                        RoomId1,
+                        CheckInDate1,
+                        CheckOutDate1,
+                        DateCreated1,
+                        DateModified1,
+                        IsTrashed1};
+                if ((parentCustomerRowByFK__Reservati__Custo__403A8C7D != null)) {
+                    columnValuesArray[2] = parentCustomerRowByFK__Reservati__Custo__403A8C7D[0];
+                }
+                if ((parentRoomRowByFK__Reservati__RoomI__412EB0B6 != null)) {
+                    columnValuesArray[3] = parentRoomRowByFK__Reservati__RoomI__412EB0B6[0];
+                }
+                rowReservationRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowReservationRow);
+                return rowReservationRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationRow FindByIdId1(string Id, string Id1) {
+                return ((ReservationRow)(this.Rows.Find(new object[] {
+                            Id,
+                            Id1})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                ReservationDataTable cln = ((ReservationDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new ReservationDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnId = base.Columns["Id"];
+                this.columnReservationId = base.Columns["ReservationId"];
+                this.columnCustomerId = base.Columns["CustomerId"];
+                this.columnRoomId = base.Columns["RoomId"];
+                this.columnCheckInDate = base.Columns["CheckInDate"];
+                this.columnCheckOutDate = base.Columns["CheckOutDate"];
+                this.columnReservationRefNo = base.Columns["ReservationRefNo"];
+                this.columnStatus = base.Columns["Status"];
+                this.columnPaymentMethod = base.Columns["PaymentMethod"];
+                this.columnDateCreated = base.Columns["DateCreated"];
+                this.columnDateModified = base.Columns["DateModified"];
+                this.columnIsTrashed = base.Columns["IsTrashed"];
+                this.columnReservationRefNo1 = base.Columns["ReservationRefNo1"];
+                this.columnStatus1 = base.Columns["Status1"];
+                this.columnPaymentMethod1 = base.Columns["PaymentMethod1"];
+                this.columnId1 = base.Columns["Id1"];
+                this.columnReservationId1 = base.Columns["ReservationId1"];
+                this.columnCustomerId1 = base.Columns["CustomerId1"];
+                this.columnRoomId1 = base.Columns["RoomId1"];
+                this.columnCheckInDate1 = base.Columns["CheckInDate1"];
+                this.columnCheckOutDate1 = base.Columns["CheckOutDate1"];
+                this.columnDateCreated1 = base.Columns["DateCreated1"];
+                this.columnDateModified1 = base.Columns["DateModified1"];
+                this.columnIsTrashed1 = base.Columns["IsTrashed1"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
+                this.columnReservationId = new global::System.Data.DataColumn("ReservationId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReservationId);
+                this.columnCustomerId = new global::System.Data.DataColumn("CustomerId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerId);
+                this.columnRoomId = new global::System.Data.DataColumn("RoomId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoomId);
+                this.columnCheckInDate = new global::System.Data.DataColumn("CheckInDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCheckInDate);
+                this.columnCheckOutDate = new global::System.Data.DataColumn("CheckOutDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCheckOutDate);
+                this.columnReservationRefNo = new global::System.Data.DataColumn("ReservationRefNo", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReservationRefNo);
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus);
+                this.columnPaymentMethod = new global::System.Data.DataColumn("PaymentMethod", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPaymentMethod);
+                this.columnDateCreated = new global::System.Data.DataColumn("DateCreated", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateCreated);
+                this.columnDateModified = new global::System.Data.DataColumn("DateModified", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateModified);
+                this.columnIsTrashed = new global::System.Data.DataColumn("IsTrashed", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsTrashed);
+                this.columnReservationRefNo1 = new global::System.Data.DataColumn("ReservationRefNo1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReservationRefNo1);
+                this.columnStatus1 = new global::System.Data.DataColumn("Status1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus1);
+                this.columnPaymentMethod1 = new global::System.Data.DataColumn("PaymentMethod1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPaymentMethod1);
+                this.columnId1 = new global::System.Data.DataColumn("Id1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId1);
+                this.columnReservationId1 = new global::System.Data.DataColumn("ReservationId1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReservationId1);
+                this.columnCustomerId1 = new global::System.Data.DataColumn("CustomerId1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerId1);
+                this.columnRoomId1 = new global::System.Data.DataColumn("RoomId1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoomId1);
+                this.columnCheckInDate1 = new global::System.Data.DataColumn("CheckInDate1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCheckInDate1);
+                this.columnCheckOutDate1 = new global::System.Data.DataColumn("CheckOutDate1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCheckOutDate1);
+                this.columnDateCreated1 = new global::System.Data.DataColumn("DateCreated1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateCreated1);
+                this.columnDateModified1 = new global::System.Data.DataColumn("DateModified1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateModified1);
+                this.columnIsTrashed1 = new global::System.Data.DataColumn("IsTrashed1", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsTrashed1);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnId,
+                                this.columnId1}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnId.MaxLength = 450;
+                this.columnReservationId.AllowDBNull = false;
+                this.columnReservationId.MaxLength = 450;
+                this.columnCustomerId.AllowDBNull = false;
+                this.columnCustomerId.MaxLength = 450;
+                this.columnRoomId.AllowDBNull = false;
+                this.columnRoomId.MaxLength = 450;
+                this.columnCheckInDate.AllowDBNull = false;
+                this.columnCheckOutDate.AllowDBNull = false;
+                this.columnReservationRefNo.AllowDBNull = false;
+                this.columnStatus.AllowDBNull = false;
+                this.columnPaymentMethod.AllowDBNull = false;
+                this.columnDateCreated.AllowDBNull = false;
+                this.columnDateModified.AllowDBNull = false;
+                this.columnIsTrashed.AllowDBNull = false;
+                this.columnReservationRefNo1.AllowDBNull = false;
+                this.columnReservationRefNo1.Caption = "ReservationRefNo";
+                this.columnReservationRefNo1.MaxLength = 450;
+                this.columnStatus1.AllowDBNull = false;
+                this.columnStatus1.Caption = "Status";
+                this.columnStatus1.MaxLength = 450;
+                this.columnPaymentMethod1.AllowDBNull = false;
+                this.columnPaymentMethod1.Caption = "PaymentMethod";
+                this.columnPaymentMethod1.MaxLength = 450;
+                this.columnId1.AllowDBNull = false;
+                this.columnId1.MaxLength = 450;
+                this.columnReservationId1.AllowDBNull = false;
+                this.columnReservationId1.MaxLength = 450;
+                this.columnCustomerId1.AllowDBNull = false;
+                this.columnCustomerId1.MaxLength = 450;
+                this.columnRoomId1.AllowDBNull = false;
+                this.columnRoomId1.MaxLength = 450;
+                this.columnCheckInDate1.AllowDBNull = false;
+                this.columnCheckOutDate1.AllowDBNull = false;
+                this.columnDateCreated1.AllowDBNull = false;
+                this.columnDateModified1.AllowDBNull = false;
+                this.columnIsTrashed1.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationRow NewReservationRow() {
+                return ((ReservationRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new ReservationRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(ReservationRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.ReservationRowChanged != null)) {
+                    this.ReservationRowChanged(this, new ReservationRowChangeEvent(((ReservationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.ReservationRowChanging != null)) {
+                    this.ReservationRowChanging(this, new ReservationRowChangeEvent(((ReservationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.ReservationRowDeleted != null)) {
+                    this.ReservationRowDeleted(this, new ReservationRowChangeEvent(((ReservationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.ReservationRowDeleting != null)) {
+                    this.ReservationRowDeleting(this, new ReservationRowChangeEvent(((ReservationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveReservationRow(ReservationRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ESMART_HMSDBDataSet ds = new ESMART_HMSDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "ReservationDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class CustomerRow : global::System.Data.DataRow {
@@ -2232,7 +2978,12 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Street {
                 get {
-                    return ((string)(this[this.tableCustomer.StreetColumn]));
+                    try {
+                        return ((string)(this[this.tableCustomer.StreetColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Street\' in table \'Customer\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCustomer.StreetColumn] = value;
@@ -2243,7 +2994,12 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string City {
                 get {
-                    return ((string)(this[this.tableCustomer.CityColumn]));
+                    try {
+                        return ((string)(this[this.tableCustomer.CityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'City\' in table \'Customer\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCustomer.CityColumn] = value;
@@ -2265,7 +3021,12 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string State {
                 get {
-                    return ((string)(this[this.tableCustomer.StateColumn]));
+                    try {
+                        return ((string)(this[this.tableCustomer.StateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'State\' in table \'Customer\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCustomer.StateColumn] = value;
@@ -2276,43 +3037,15 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Country {
                 get {
-                    return ((string)(this[this.tableCustomer.CountryColumn]));
+                    try {
+                        return ((string)(this[this.tableCustomer.CountryColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Country\' in table \'Customer\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCustomer.CountryColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public byte[] IdentificationDocument {
-                get {
-                    try {
-                        return ((byte[])(this[this.tableCustomer.IdentificationDocumentColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IdentificationDocument\' in table \'Customer\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomer.IdentificationDocumentColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string IdentitificationDocumentName {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomer.IdentitificationDocumentNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IdentitificationDocumentName\' in table \'Customer\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomer.IdentitificationDocumentNameColumn] = value;
                 }
             }
             
@@ -2340,26 +3073,138 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIdentificationDocumentNull() {
-                return this.IsNull(this.tableCustomer.IdentificationDocumentColumn);
+            public string Gender {
+                get {
+                    return ((string)(this[this.tableCustomer.GenderColumn]));
+                }
+                set {
+                    this[this.tableCustomer.GenderColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIdentificationDocumentNull() {
-                this[this.tableCustomer.IdentificationDocumentColumn] = global::System.Convert.DBNull;
+            public string IdNumber {
+                get {
+                    return ((string)(this[this.tableCustomer.IdNumberColumn]));
+                }
+                set {
+                    this[this.tableCustomer.IdNumberColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIdentitificationDocumentNameNull() {
-                return this.IsNull(this.tableCustomer.IdentitificationDocumentNameColumn);
+            public string IdType {
+                get {
+                    return ((string)(this[this.tableCustomer.IdTypeColumn]));
+                }
+                set {
+                    this[this.tableCustomer.IdTypeColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIdentitificationDocumentNameNull() {
-                this[this.tableCustomer.IdentitificationDocumentNameColumn] = global::System.Convert.DBNull;
+            public byte[] IdentificationDocumentFront {
+                get {
+                    return ((byte[])(this[this.tableCustomer.IdentificationDocumentFrontColumn]));
+                }
+                set {
+                    this[this.tableCustomer.IdentificationDocumentFrontColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public byte[] IdentificationDocumentBack {
+                get {
+                    return ((byte[])(this[this.tableCustomer.IdentificationDocumentBackColumn]));
+                }
+                set {
+                    this[this.tableCustomer.IdentificationDocumentBackColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public byte[] CustomerImage {
+                get {
+                    return ((byte[])(this[this.tableCustomer.CustomerImageColumn]));
+                }
+                set {
+                    this[this.tableCustomer.CustomerImageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTrashed {
+                get {
+                    return ((bool)(this[this.tableCustomer.IsTrashedColumn]));
+                }
+                set {
+                    this[this.tableCustomer.IsTrashedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStreetNull() {
+                return this.IsNull(this.tableCustomer.StreetColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStreetNull() {
+                this[this.tableCustomer.StreetColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCityNull() {
+                return this.IsNull(this.tableCustomer.CityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCityNull() {
+                this[this.tableCustomer.CityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStateNull() {
+                return this.IsNull(this.tableCustomer.StateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStateNull() {
+                this[this.tableCustomer.StateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCountryNull() {
+                return this.IsNull(this.tableCustomer.CountryColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCountryNull() {
+                this[this.tableCustomer.CountryColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationRow[] GetReservationRows() {
+                if ((this.Table.ChildRelations["FK__Reservati__Custo__403A8C7D"] == null)) {
+                    return new ReservationRow[0];
+                }
+                else {
+                    return ((ReservationRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Reservati__Custo__403A8C7D"])));
+                }
             }
         }
         
@@ -2401,12 +3246,12 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string RoomName {
+            public string RoomNo {
                 get {
-                    return ((string)(this[this.tableRoom.RoomNameColumn]));
+                    return ((string)(this[this.tableRoom.RoomNoColumn]));
                 }
                 set {
-                    this[this.tableRoom.RoomNameColumn] = value;
+                    this[this.tableRoom.RoomNoColumn] = value;
                 }
             }
             
@@ -2530,6 +3375,17 @@ namespace ESMART_HMS {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Room_RoomType"]);
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationRow[] GetReservationRows() {
+                if ((this.Table.ChildRelations["FK__Reservati__RoomI__412EB0B6"] == null)) {
+                    return new ReservationRow[0];
+                }
+                else {
+                    return ((ReservationRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Reservati__RoomI__412EB0B6"])));
+                }
+            }
         }
         
         /// <summary>
@@ -2576,28 +3432,6 @@ namespace ESMART_HMS {
                 }
                 set {
                     this[this.tableRoomType.TitleColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Description {
-                get {
-                    return ((string)(this[this.tableRoomType.DescriptionColumn]));
-                }
-                set {
-                    this[this.tableRoomType.DescriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal RateBase {
-                get {
-                    return ((decimal)(this[this.tableRoomType.RateBaseColumn]));
-                }
-                set {
-                    this[this.tableRoomType.RateBaseColumn] = value;
                 }
             }
             
@@ -2806,6 +3640,307 @@ namespace ESMART_HMS {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class ReservationRow : global::System.Data.DataRow {
+            
+            private ReservationDataTable tableReservation;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal ReservationRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableReservation = ((ReservationDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Id {
+                get {
+                    return ((string)(this[this.tableReservation.IdColumn]));
+                }
+                set {
+                    this[this.tableReservation.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ReservationId {
+                get {
+                    return ((string)(this[this.tableReservation.ReservationIdColumn]));
+                }
+                set {
+                    this[this.tableReservation.ReservationIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CustomerId {
+                get {
+                    return ((string)(this[this.tableReservation.CustomerIdColumn]));
+                }
+                set {
+                    this[this.tableReservation.CustomerIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RoomId {
+                get {
+                    return ((string)(this[this.tableReservation.RoomIdColumn]));
+                }
+                set {
+                    this[this.tableReservation.RoomIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime CheckInDate {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.CheckInDateColumn]));
+                }
+                set {
+                    this[this.tableReservation.CheckInDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime CheckOutDate {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.CheckOutDateColumn]));
+                }
+                set {
+                    this[this.tableReservation.CheckOutDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime ReservationRefNo {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.ReservationRefNoColumn]));
+                }
+                set {
+                    this[this.tableReservation.ReservationRefNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime Status {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.StatusColumn]));
+                }
+                set {
+                    this[this.tableReservation.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime PaymentMethod {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.PaymentMethodColumn]));
+                }
+                set {
+                    this[this.tableReservation.PaymentMethodColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateCreated {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.DateCreatedColumn]));
+                }
+                set {
+                    this[this.tableReservation.DateCreatedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateModified {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.DateModifiedColumn]));
+                }
+                set {
+                    this[this.tableReservation.DateModifiedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTrashed {
+                get {
+                    return ((bool)(this[this.tableReservation.IsTrashedColumn]));
+                }
+                set {
+                    this[this.tableReservation.IsTrashedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ReservationRefNo1 {
+                get {
+                    return ((string)(this[this.tableReservation.ReservationRefNo1Column]));
+                }
+                set {
+                    this[this.tableReservation.ReservationRefNo1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Status1 {
+                get {
+                    return ((string)(this[this.tableReservation.Status1Column]));
+                }
+                set {
+                    this[this.tableReservation.Status1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PaymentMethod1 {
+                get {
+                    return ((string)(this[this.tableReservation.PaymentMethod1Column]));
+                }
+                set {
+                    this[this.tableReservation.PaymentMethod1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Id1 {
+                get {
+                    return ((string)(this[this.tableReservation.Id1Column]));
+                }
+                set {
+                    this[this.tableReservation.Id1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ReservationId1 {
+                get {
+                    return ((string)(this[this.tableReservation.ReservationId1Column]));
+                }
+                set {
+                    this[this.tableReservation.ReservationId1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CustomerId1 {
+                get {
+                    return ((string)(this[this.tableReservation.CustomerId1Column]));
+                }
+                set {
+                    this[this.tableReservation.CustomerId1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RoomId1 {
+                get {
+                    return ((string)(this[this.tableReservation.RoomId1Column]));
+                }
+                set {
+                    this[this.tableReservation.RoomId1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime CheckInDate1 {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.CheckInDate1Column]));
+                }
+                set {
+                    this[this.tableReservation.CheckInDate1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime CheckOutDate1 {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.CheckOutDate1Column]));
+                }
+                set {
+                    this[this.tableReservation.CheckOutDate1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateCreated1 {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.DateCreated1Column]));
+                }
+                set {
+                    this[this.tableReservation.DateCreated1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateModified1 {
+                get {
+                    return ((global::System.DateTime)(this[this.tableReservation.DateModified1Column]));
+                }
+                set {
+                    this[this.tableReservation.DateModified1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTrashed1 {
+                get {
+                    return ((bool)(this[this.tableReservation.IsTrashed1Column]));
+                }
+                set {
+                    this[this.tableReservation.IsTrashed1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public CustomerRow CustomerRow {
+                get {
+                    return ((CustomerRow)(this.GetParentRow(this.Table.ParentRelations["FK__Reservati__Custo__403A8C7D"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__Reservati__Custo__403A8C7D"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public RoomRow RoomRow {
+                get {
+                    return ((RoomRow)(this.GetParentRow(this.Table.ParentRelations["FK__Reservati__RoomI__412EB0B6"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__Reservati__RoomI__412EB0B6"]);
+                }
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -2927,6 +4062,40 @@ namespace ESMART_HMS {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public UserRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class ReservationRowChangeEvent : global::System.EventArgs {
+            
+            private ReservationRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationRowChangeEvent(ReservationRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ReservationRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3079,26 +4248,34 @@ namespace ESMART_HMS.ESMART_HMSDBDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Company", "Company");
             tableMapping.ColumnMappings.Add("State", "State");
             tableMapping.ColumnMappings.Add("Country", "Country");
-            tableMapping.ColumnMappings.Add("IdentificationDocument", "IdentificationDocument");
-            tableMapping.ColumnMappings.Add("IdentitificationDocumentName", "IdentitificationDocumentName");
             tableMapping.ColumnMappings.Add("DateCreated", "DateCreated");
             tableMapping.ColumnMappings.Add("DateModified", "DateModified");
+            tableMapping.ColumnMappings.Add("Gender", "Gender");
+            tableMapping.ColumnMappings.Add("IdNumber", "IdNumber");
+            tableMapping.ColumnMappings.Add("IdType", "IdType");
+            tableMapping.ColumnMappings.Add("IdentificationDocumentFront", "IdentificationDocumentFront");
+            tableMapping.ColumnMappings.Add("IdentificationDocumentBack", "IdentificationDocumentBack");
+            tableMapping.ColumnMappings.Add("CustomerImage", "CustomerImage");
+            tableMapping.ColumnMappings.Add("IsTrashed", "IsTrashed");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Customer] WHERE (([Id] = @Original_Id) AND ([CustomerId] = @Original_CustomerId) AND ([Email] = @Original_Email) AND ((@IsNull_IdentitificationDocumentName = 1 AND [IdentitificationDocumentName] IS NULL) OR ([IdentitificationDocumentName] = @Original_IdentitificationDocumentName)) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Customer] WHERE (([Id] = @Original_Id) AND ([CustomerId] = @Original_CustomerId) AND ([Title] = @Original_Title) AND ([Email] = @Original_Email) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([Gender] = @Original_Gender) AND ([IdNumber] = @Original_IdNumber) AND ([IdType] = @Original_IdType) AND ([IsTrashed] = @Original_IsTrashed))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Title", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Title", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IdentitificationDocumentName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentitificationDocumentName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdentitificationDocumentName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentitificationDocumentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Gender", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Customer] ([Id], [CustomerId], [Title], [FirstName], [LastName], [FullName], [Email], [PhoneNumber], [Street], [City], [Company], [State], [Country], [IdentificationDocument], [IdentitificationDocumentName], [DateCreated], [DateModified]) VALUES (@Id, @CustomerId, @Title, @FirstName, @LastName, @FullName, @Email, @PhoneNumber, @Street, @City, @Company, @State, @Country, @IdentificationDocument, @IdentitificationDocumentName, @DateCreated, @DateModified);
-SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber, Street, City, Company, State, Country, IdentificationDocument, IdentitificationDocumentName, DateCreated, DateModified FROM Customer WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Customer] ([Id], [CustomerId], [Title], [FirstName], [LastName], [FullName], [Email], [PhoneNumber], [Street], [City], [Company], [State], [Country], [DateCreated], [DateModified], [Gender], [IdNumber], [IdType], [IdentificationDocumentFront], [IdentificationDocumentBack], [CustomerImage], [IsTrashed]) VALUES (@Id, @CustomerId, @Title, @FirstName, @LastName, @FullName, @Email, @PhoneNumber, @Street, @City, @Company, @State, @Country, @DateCreated, @DateModified, @Gender, @IdNumber, @IdType, @IdentificationDocumentFront, @IdentificationDocumentBack, @CustomerImage, @IsTrashed);
+SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber, Street, City, Company, State, Country, DateCreated, DateModified, Gender, IdNumber, IdType, IdentificationDocumentFront, IdentificationDocumentBack, CustomerImage, IsTrashed FROM Customer WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3113,14 +4290,19 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Company", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Company", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@State", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "State", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Country", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Country", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdentificationDocument", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentificationDocument", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdentitificationDocumentName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentitificationDocumentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Gender", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdentificationDocumentFront", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentificationDocumentFront", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdentificationDocumentBack", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentificationDocumentBack", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerImage", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerImage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Customer] SET [Id] = @Id, [CustomerId] = @CustomerId, [Title] = @Title, [FirstName] = @FirstName, [LastName] = @LastName, [FullName] = @FullName, [Email] = @Email, [PhoneNumber] = @PhoneNumber, [Street] = @Street, [City] = @City, [Company] = @Company, [State] = @State, [Country] = @Country, [IdentificationDocument] = @IdentificationDocument, [IdentitificationDocumentName] = @IdentitificationDocumentName, [DateCreated] = @DateCreated, [DateModified] = @DateModified WHERE (([Id] = @Original_Id) AND ([CustomerId] = @Original_CustomerId) AND ([Email] = @Original_Email) AND ((@IsNull_IdentitificationDocumentName = 1 AND [IdentitificationDocumentName] IS NULL) OR ([IdentitificationDocumentName] = @Original_IdentitificationDocumentName)) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified));
-SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber, Street, City, Company, State, Country, IdentificationDocument, IdentitificationDocumentName, DateCreated, DateModified FROM Customer WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Customer] SET [Id] = @Id, [CustomerId] = @CustomerId, [Title] = @Title, [FirstName] = @FirstName, [LastName] = @LastName, [FullName] = @FullName, [Email] = @Email, [PhoneNumber] = @PhoneNumber, [Street] = @Street, [City] = @City, [Company] = @Company, [State] = @State, [Country] = @Country, [DateCreated] = @DateCreated, [DateModified] = @DateModified, [Gender] = @Gender, [IdNumber] = @IdNumber, [IdType] = @IdType, [IdentificationDocumentFront] = @IdentificationDocumentFront, [IdentificationDocumentBack] = @IdentificationDocumentBack, [CustomerImage] = @CustomerImage, [IsTrashed] = @IsTrashed WHERE (([Id] = @Original_Id) AND ([CustomerId] = @Original_CustomerId) AND ([Title] = @Original_Title) AND ([Email] = @Original_Email) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([Gender] = @Original_Gender) AND ([IdNumber] = @Original_IdNumber) AND ([IdType] = @Original_IdType) AND ([IsTrashed] = @Original_IsTrashed));
+SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber, Street, City, Company, State, Country, DateCreated, DateModified, Gender, IdNumber, IdType, IdentificationDocumentFront, IdentificationDocumentBack, CustomerImage, IsTrashed FROM Customer WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3135,17 +4317,25 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Company", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Company", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@State", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "State", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Country", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Country", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdentificationDocument", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentificationDocument", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdentitificationDocumentName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentitificationDocumentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Gender", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdentificationDocumentFront", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentificationDocumentFront", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdentificationDocumentBack", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentificationDocumentBack", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerImage", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerImage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Title", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Title", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IdentitificationDocumentName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentitificationDocumentName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdentitificationDocumentName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdentitificationDocumentName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Gender", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdNumber", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3161,9 +4351,9 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber, " +
-                "Street, City, Company, State, Country, IdentificationDocument, IdentitificationD" +
-                "ocumentName, DateCreated, DateModified FROM dbo.Customer";
+            this._commandCollection[0].CommandText = @"SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber, Street, City, Company, State, Country, DateCreated, DateModified, Gender, IdNumber, IdType, IdentificationDocumentFront, IdentificationDocumentBack, 
+                  CustomerImage, IsTrashed
+FROM     Customer";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3224,7 +4414,7 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id, string Original_CustomerId, string Original_Email, string Original_IdentitificationDocumentName, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
+        public virtual int Delete(string Original_Id, string Original_CustomerId, string Original_Title, string Original_Email, System.DateTime Original_DateCreated, System.DateTime Original_DateModified, string Original_Gender, string Original_IdNumber, string Original_IdType, bool Original_IsTrashed) {
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
@@ -3237,22 +4427,39 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_CustomerId));
             }
+            if ((Original_Title == null)) {
+                throw new global::System.ArgumentNullException("Original_Title");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Title));
+            }
             if ((Original_Email == null)) {
                 throw new global::System.ArgumentNullException("Original_Email");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Email));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Email));
             }
-            if ((Original_IdentitificationDocumentName == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_DateModified));
+            if ((Original_Gender == null)) {
+                throw new global::System.ArgumentNullException("Original_Gender");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_IdentitificationDocumentName));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Gender));
             }
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_DateCreated));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_DateModified));
+            if ((Original_IdNumber == null)) {
+                throw new global::System.ArgumentNullException("Original_IdNumber");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_IdNumber));
+            }
+            if ((Original_IdType == null)) {
+                throw new global::System.ArgumentNullException("Original_IdType");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_IdType));
+            }
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3287,10 +4494,15 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
                     string Company, 
                     string State, 
                     string Country, 
-                    byte[] IdentificationDocument, 
-                    string IdentitificationDocumentName, 
                     System.DateTime DateCreated, 
-                    System.DateTime DateModified) {
+                    System.DateTime DateModified, 
+                    string Gender, 
+                    string IdNumber, 
+                    string IdType, 
+                    byte[] IdentificationDocumentFront, 
+                    byte[] IdentificationDocumentBack, 
+                    byte[] CustomerImage, 
+                    bool IsTrashed) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -3340,13 +4552,13 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(PhoneNumber));
             }
             if ((Street == null)) {
-                throw new global::System.ArgumentNullException("Street");
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Street));
             }
             if ((City == null)) {
-                throw new global::System.ArgumentNullException("City");
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = ((string)(City));
@@ -3358,31 +4570,56 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
                 this.Adapter.InsertCommand.Parameters[10].Value = ((string)(Company));
             }
             if ((State == null)) {
-                throw new global::System.ArgumentNullException("State");
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[11].Value = ((string)(State));
             }
             if ((Country == null)) {
-                throw new global::System.ArgumentNullException("Country");
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = ((string)(Country));
             }
-            if ((IdentificationDocument == null)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            this.Adapter.InsertCommand.Parameters[13].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.InsertCommand.Parameters[14].Value = ((System.DateTime)(DateModified));
+            if ((Gender == null)) {
+                throw new global::System.ArgumentNullException("Gender");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((byte[])(IdentificationDocument));
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(Gender));
             }
-            if ((IdentitificationDocumentName == null)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            if ((IdNumber == null)) {
+                throw new global::System.ArgumentNullException("IdNumber");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(IdentitificationDocumentName));
+                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(IdNumber));
             }
-            this.Adapter.InsertCommand.Parameters[15].Value = ((System.DateTime)(DateCreated));
-            this.Adapter.InsertCommand.Parameters[16].Value = ((System.DateTime)(DateModified));
+            if ((IdType == null)) {
+                throw new global::System.ArgumentNullException("IdType");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(IdType));
+            }
+            if ((IdentificationDocumentFront == null)) {
+                throw new global::System.ArgumentNullException("IdentificationDocumentFront");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[18].Value = ((byte[])(IdentificationDocumentFront));
+            }
+            if ((IdentificationDocumentBack == null)) {
+                throw new global::System.ArgumentNullException("IdentificationDocumentBack");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[19].Value = ((byte[])(IdentificationDocumentBack));
+            }
+            if ((CustomerImage == null)) {
+                throw new global::System.ArgumentNullException("CustomerImage");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[20].Value = ((byte[])(CustomerImage));
+            }
+            this.Adapter.InsertCommand.Parameters[21].Value = ((bool)(IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3417,16 +4654,25 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
                     string Company, 
                     string State, 
                     string Country, 
-                    byte[] IdentificationDocument, 
-                    string IdentitificationDocumentName, 
                     System.DateTime DateCreated, 
                     System.DateTime DateModified, 
+                    string Gender, 
+                    string IdNumber, 
+                    string IdType, 
+                    byte[] IdentificationDocumentFront, 
+                    byte[] IdentificationDocumentBack, 
+                    byte[] CustomerImage, 
+                    bool IsTrashed, 
                     string Original_Id, 
                     string Original_CustomerId, 
+                    string Original_Title, 
                     string Original_Email, 
-                    string Original_IdentitificationDocumentName, 
                     System.DateTime Original_DateCreated, 
-                    System.DateTime Original_DateModified) {
+                    System.DateTime Original_DateModified, 
+                    string Original_Gender, 
+                    string Original_IdNumber, 
+                    string Original_IdType, 
+                    bool Original_IsTrashed) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -3476,13 +4722,13 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(PhoneNumber));
             }
             if ((Street == null)) {
-                throw new global::System.ArgumentNullException("Street");
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Street));
             }
             if ((City == null)) {
-                throw new global::System.ArgumentNullException("City");
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(City));
@@ -3494,59 +4740,101 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Company));
             }
             if ((State == null)) {
-                throw new global::System.ArgumentNullException("State");
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(State));
             }
             if ((Country == null)) {
-                throw new global::System.ArgumentNullException("Country");
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Country));
             }
-            if ((IdentificationDocument == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(DateModified));
+            if ((Gender == null)) {
+                throw new global::System.ArgumentNullException("Gender");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((byte[])(IdentificationDocument));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Gender));
             }
-            if ((IdentitificationDocumentName == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            if ((IdNumber == null)) {
+                throw new global::System.ArgumentNullException("IdNumber");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(IdentitificationDocumentName));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(IdNumber));
             }
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(DateCreated));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(DateModified));
+            if ((IdType == null)) {
+                throw new global::System.ArgumentNullException("IdType");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(IdType));
+            }
+            if ((IdentificationDocumentFront == null)) {
+                throw new global::System.ArgumentNullException("IdentificationDocumentFront");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((byte[])(IdentificationDocumentFront));
+            }
+            if ((IdentificationDocumentBack == null)) {
+                throw new global::System.ArgumentNullException("IdentificationDocumentBack");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((byte[])(IdentificationDocumentBack));
+            }
+            if ((CustomerImage == null)) {
+                throw new global::System.ArgumentNullException("CustomerImage");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((byte[])(CustomerImage));
+            }
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(IsTrashed));
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Id));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Id));
             }
             if ((Original_CustomerId == null)) {
                 throw new global::System.ArgumentNullException("Original_CustomerId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_CustomerId));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_CustomerId));
+            }
+            if ((Original_Title == null)) {
+                throw new global::System.ArgumentNullException("Original_Title");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_Title));
             }
             if ((Original_Email == null)) {
                 throw new global::System.ArgumentNullException("Original_Email");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_Email));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(Original_Email));
             }
-            if ((Original_IdentitificationDocumentName == null)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((System.DateTime)(Original_DateModified));
+            if ((Original_Gender == null)) {
+                throw new global::System.ArgumentNullException("Original_Gender");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_IdentitificationDocumentName));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_Gender));
             }
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((System.DateTime)(Original_DateCreated));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((System.DateTime)(Original_DateModified));
+            if ((Original_IdNumber == null)) {
+                throw new global::System.ArgumentNullException("Original_IdNumber");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Original_IdNumber));
+            }
+            if ((Original_IdType == null)) {
+                throw new global::System.ArgumentNullException("Original_IdType");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(Original_IdType));
+            }
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((bool)(Original_IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3580,17 +4868,26 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
                     string Company, 
                     string State, 
                     string Country, 
-                    byte[] IdentificationDocument, 
-                    string IdentitificationDocumentName, 
                     System.DateTime DateCreated, 
                     System.DateTime DateModified, 
+                    string Gender, 
+                    string IdNumber, 
+                    string IdType, 
+                    byte[] IdentificationDocumentFront, 
+                    byte[] IdentificationDocumentBack, 
+                    byte[] CustomerImage, 
+                    bool IsTrashed, 
                     string Original_Id, 
                     string Original_CustomerId, 
+                    string Original_Title, 
                     string Original_Email, 
-                    string Original_IdentitificationDocumentName, 
                     System.DateTime Original_DateCreated, 
-                    System.DateTime Original_DateModified) {
-            return this.Update(Original_Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber, Street, City, Company, State, Country, IdentificationDocument, IdentitificationDocumentName, DateCreated, DateModified, Original_Id, Original_CustomerId, Original_Email, Original_IdentitificationDocumentName, Original_DateCreated, Original_DateModified);
+                    System.DateTime Original_DateModified, 
+                    string Original_Gender, 
+                    string Original_IdNumber, 
+                    string Original_IdType, 
+                    bool Original_IsTrashed) {
+            return this.Update(Original_Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber, Street, City, Company, State, Country, DateCreated, DateModified, Gender, IdNumber, IdType, IdentificationDocumentFront, IdentificationDocumentBack, CustomerImage, IsTrashed, Original_Id, Original_CustomerId, Original_Title, Original_Email, Original_DateCreated, Original_DateModified, Original_Gender, Original_IdNumber, Original_IdType, Original_IsTrashed);
         }
     }
     
@@ -3717,7 +5014,7 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
             tableMapping.DataSetTable = "Room";
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("RoomId", "RoomId");
-            tableMapping.ColumnMappings.Add("RoomName", "RoomName");
+            tableMapping.ColumnMappings.Add("RoomNo", "RoomNo");
             tableMapping.ColumnMappings.Add("RoomCardNo", "RoomCardNo");
             tableMapping.ColumnMappings.Add("RoomLockNo", "RoomLockNo");
             tableMapping.ColumnMappings.Add("RoomTypeId", "RoomTypeId");
@@ -3744,12 +5041,12 @@ SELECT Id, CustomerId, Title, FirstName, LastName, FullName, Email, PhoneNumber,
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Room] ([Id], [RoomId], [RoomName], [RoomCardNo], [RoomLockNo], [RoomTypeId], [AdultPerRoom], [ChildrenPerRoom], [Description], [Rate], [IsAvailable], [DateCreated], [DateModified]) VALUES (@Id, @RoomId, @RoomName, @RoomCardNo, @RoomLockNo, @RoomTypeId, @AdultPerRoom, @ChildrenPerRoom, @Description, @Rate, @IsAvailable, @DateCreated, @DateModified);
-SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM Room WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Room] ([Id], [RoomId], [RoomNo], [RoomCardNo], [RoomLockNo], [RoomTypeId], [AdultPerRoom], [ChildrenPerRoom], [Description], [Rate], [IsAvailable], [DateCreated], [DateModified]) VALUES (@Id, @RoomId, @RoomNo, @RoomCardNo, @RoomLockNo, @RoomTypeId, @AdultPerRoom, @ChildrenPerRoom, @Description, @Rate, @IsAvailable, @DateCreated, @DateModified);
+SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM Room WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomCardNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomCardNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomLockNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomLockNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomTypeId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3762,12 +5059,12 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Room] SET [Id] = @Id, [RoomId] = @RoomId, [RoomName] = @RoomName, [RoomCardNo] = @RoomCardNo, [RoomLockNo] = @RoomLockNo, [RoomTypeId] = @RoomTypeId, [AdultPerRoom] = @AdultPerRoom, [ChildrenPerRoom] = @ChildrenPerRoom, [Description] = @Description, [Rate] = @Rate, [IsAvailable] = @IsAvailable, [DateCreated] = @DateCreated, [DateModified] = @DateModified WHERE (([Id] = @Original_Id) AND ([RoomId] = @Original_RoomId) AND ([RoomTypeId] = @Original_RoomTypeId) AND ([AdultPerRoom] = @Original_AdultPerRoom) AND ([ChildrenPerRoom] = @Original_ChildrenPerRoom) AND ([Rate] = @Original_Rate) AND ([IsAvailable] = @Original_IsAvailable) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified));
-SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM Room WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Room] SET [Id] = @Id, [RoomId] = @RoomId, [RoomNo] = @RoomNo, [RoomCardNo] = @RoomCardNo, [RoomLockNo] = @RoomLockNo, [RoomTypeId] = @RoomTypeId, [AdultPerRoom] = @AdultPerRoom, [ChildrenPerRoom] = @ChildrenPerRoom, [Description] = @Description, [Rate] = @Rate, [IsAvailable] = @IsAvailable, [DateCreated] = @DateCreated, [DateModified] = @DateModified WHERE (([Id] = @Original_Id) AND ([RoomId] = @Original_RoomId) AND ([RoomTypeId] = @Original_RoomTypeId) AND ([AdultPerRoom] = @Original_AdultPerRoom) AND ([ChildrenPerRoom] = @Original_ChildrenPerRoom) AND ([Rate] = @Original_Rate) AND ([IsAvailable] = @Original_IsAvailable) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified));
+SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM Room WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomCardNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomCardNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomLockNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomLockNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomTypeId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3802,9 +5099,9 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Ch" +
-                "ildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM db" +
-                "o.Room";
+            this._commandCollection[0].CommandText = "SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chil" +
+                "drenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM dbo." +
+                "Room";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3910,7 +5207,7 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Id, string RoomId, string RoomName, string RoomCardNo, string RoomLockNo, string RoomTypeId, int AdultPerRoom, int ChildrenPerRoom, string Description, decimal Rate, bool IsAvailable, System.DateTime DateCreated, System.DateTime DateModified) {
+        public virtual int Insert(string Id, string RoomId, string RoomNo, string RoomCardNo, string RoomLockNo, string RoomTypeId, int AdultPerRoom, int ChildrenPerRoom, string Description, decimal Rate, bool IsAvailable, System.DateTime DateCreated, System.DateTime DateModified) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -3923,11 +5220,11 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(RoomId));
             }
-            if ((RoomName == null)) {
-                throw new global::System.ArgumentNullException("RoomName");
+            if ((RoomNo == null)) {
+                throw new global::System.ArgumentNullException("RoomNo");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(RoomName));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(RoomNo));
             }
             if ((RoomCardNo == null)) {
                 throw new global::System.ArgumentNullException("RoomCardNo");
@@ -3982,7 +5279,7 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
         public virtual int Update(
                     string Id, 
                     string RoomId, 
-                    string RoomName, 
+                    string RoomNo, 
                     string RoomCardNo, 
                     string RoomLockNo, 
                     string RoomTypeId, 
@@ -4014,11 +5311,11 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(RoomId));
             }
-            if ((RoomName == null)) {
-                throw new global::System.ArgumentNullException("RoomName");
+            if ((RoomNo == null)) {
+                throw new global::System.ArgumentNullException("RoomNo");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(RoomName));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(RoomNo));
             }
             if ((RoomCardNo == null)) {
                 throw new global::System.ArgumentNullException("RoomCardNo");
@@ -4096,7 +5393,7 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
                     string RoomId, 
-                    string RoomName, 
+                    string RoomNo, 
                     string RoomCardNo, 
                     string RoomLockNo, 
                     string RoomTypeId, 
@@ -4116,7 +5413,7 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
                     bool Original_IsAvailable, 
                     System.DateTime Original_DateCreated, 
                     System.DateTime Original_DateModified) {
-            return this.Update(Original_Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified, Original_Id, Original_RoomId, Original_RoomTypeId, Original_AdultPerRoom, Original_ChildrenPerRoom, Original_Rate, Original_IsAvailable, Original_DateCreated, Original_DateModified);
+            return this.Update(Original_Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified, Original_Id, Original_RoomId, Original_RoomTypeId, Original_AdultPerRoom, Original_ChildrenPerRoom, Original_Rate, Original_IsAvailable, Original_DateCreated, Original_DateModified);
         }
     }
     
@@ -4244,49 +5541,31 @@ SELECT Id, RoomId, RoomName, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, C
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("RoomTypeId", "RoomTypeId");
             tableMapping.ColumnMappings.Add("Title", "Title");
-            tableMapping.ColumnMappings.Add("Description", "Description");
-            tableMapping.ColumnMappings.Add("RateBase", "RateBase");
             tableMapping.ColumnMappings.Add("DateCreated", "DateCreated");
             tableMapping.ColumnMappings.Add("DateModified", "DateModified");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[RoomType] WHERE (([Id] = @Original_Id) AND ([RoomTypeId] = @Or" +
-                "iginal_RoomTypeId) AND ([RateBase] = @Original_RateBase) AND ([DateCreated] = @O" +
-                "riginal_DateCreated) AND ([DateModified] = @Original_DateModified))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [RoomType] WHERE (([Id] = @Original_Id) AND ([RoomTypeId] = @Original" +
+                "_RoomTypeId) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @" +
+                "Original_DateModified))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomTypeId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomTypeId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RateBase", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "RateBase", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RoomType] ([Id], [RoomTypeId], [Title], [Description], [RateBase], [DateCreated], [DateModified]) VALUES (@Id, @RoomTypeId, @Title, @Description, @RateBase, @DateCreated, @DateModified);
-SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified FROM RoomType WHERE (Id = @Id)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomTypeId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Title", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Title", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RateBase", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "RateBase", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RoomType] SET [Id] = @Id, [RoomTypeId] = @RoomTypeId, [Title] = @Title, [Description] = @Description, [RateBase] = @RateBase, [DateCreated] = @DateCreated, [DateModified] = @DateModified WHERE (([Id] = @Original_Id) AND ([RoomTypeId] = @Original_RoomTypeId) AND ([RateBase] = @Original_RateBase) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified));
-SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified FROM RoomType WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [RoomType] SET [Id] = @Id, [RoomTypeId] = @RoomTypeId, [Title] = @Title, [DateCreated] = @DateCreated, [DateModified] = @DateModified WHERE (([Id] = @Original_Id) AND ([RoomTypeId] = @Original_RoomTypeId) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified));
+SELECT Id, RoomTypeId, Title, DateCreated, DateModified FROM RoomType WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomTypeId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Title", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Title", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RateBase", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "RateBase", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomTypeId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomTypeId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RateBase", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "RateBase", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -4304,8 +5583,7 @@ SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified F
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified FR" +
-                "OM dbo.RoomType";
+            this._commandCollection[0].CommandText = "SELECT Id, RoomTypeId, Title, DateCreated, DateModified\r\nFROM     RoomType";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4366,7 +5644,7 @@ SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id, string Original_RoomTypeId, decimal Original_RateBase, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
+        public virtual int Delete(string Original_Id, string Original_RoomTypeId, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
@@ -4379,9 +5657,8 @@ SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified F
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_RoomTypeId));
             }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((decimal)(Original_RateBase));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_DateCreated));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_DateModified));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_DateModified));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4401,56 +5678,8 @@ SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified F
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Id, string RoomTypeId, string Title, string Description, decimal RateBase, System.DateTime DateCreated, System.DateTime DateModified) {
-            if ((Id == null)) {
-                throw new global::System.ArgumentNullException("Id");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Id));
-            }
-            if ((RoomTypeId == null)) {
-                throw new global::System.ArgumentNullException("RoomTypeId");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(RoomTypeId));
-            }
-            if ((Title == null)) {
-                throw new global::System.ArgumentNullException("Title");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Title));
-            }
-            if ((Description == null)) {
-                throw new global::System.ArgumentNullException("Description");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Description));
-            }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(RateBase));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(DateCreated));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(DateModified));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Id, string RoomTypeId, string Title, string Description, decimal RateBase, System.DateTime DateCreated, System.DateTime DateModified, string Original_Id, string Original_RoomTypeId, decimal Original_RateBase, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
+        public virtual int Update(string Id, string RoomTypeId, string Title, System.DateTime DateCreated, System.DateTime DateModified, string Original_Id, string Original_RoomTypeId, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -4469,30 +5698,22 @@ SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified F
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Title));
             }
-            if ((Description == null)) {
-                throw new global::System.ArgumentNullException("Description");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Description));
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(RateBase));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(DateCreated));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(DateModified));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(DateModified));
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Id));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Id));
             }
             if ((Original_RoomTypeId == null)) {
                 throw new global::System.ArgumentNullException("Original_RoomTypeId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_RoomTypeId));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_RoomTypeId));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(Original_RateBase));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_DateCreated));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_DateModified));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(Original_DateModified));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4513,8 +5734,8 @@ SELECT Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string RoomTypeId, string Title, string Description, decimal RateBase, System.DateTime DateCreated, System.DateTime DateModified, string Original_Id, string Original_RoomTypeId, decimal Original_RateBase, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
-            return this.Update(Original_Id, RoomTypeId, Title, Description, RateBase, DateCreated, DateModified, Original_Id, Original_RoomTypeId, Original_RateBase, Original_DateCreated, Original_DateModified);
+        public virtual int Update(string RoomTypeId, string Title, System.DateTime DateCreated, System.DateTime DateModified, string Original_Id, string Original_RoomTypeId, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
+            return this.Update(Original_Id, RoomTypeId, Title, DateCreated, DateModified, Original_Id, Original_RoomTypeId, Original_DateCreated, Original_DateModified);
         }
     }
     
@@ -5048,6 +6269,980 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class ReservationTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public ReservationTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Reservation";
+            tableMapping.ColumnMappings.Add("Id", "Id");
+            tableMapping.ColumnMappings.Add("ReservationId", "ReservationId");
+            tableMapping.ColumnMappings.Add("CustomerId", "CustomerId");
+            tableMapping.ColumnMappings.Add("RoomId", "RoomId");
+            tableMapping.ColumnMappings.Add("CheckInDate", "CheckInDate");
+            tableMapping.ColumnMappings.Add("CheckOutDate", "CheckOutDate");
+            tableMapping.ColumnMappings.Add("DateCreated", "DateCreated");
+            tableMapping.ColumnMappings.Add("DateModified", "DateModified");
+            tableMapping.ColumnMappings.Add("IsTrashed", "IsTrashed");
+            tableMapping.ColumnMappings.Add("ReservationRefNo", "ReservationRefNo1");
+            tableMapping.ColumnMappings.Add("Status", "Status1");
+            tableMapping.ColumnMappings.Add("PaymentMethod", "PaymentMethod1");
+            tableMapping.ColumnMappings.Add("Id1", "Id1");
+            tableMapping.ColumnMappings.Add("ReservationId1", "ReservationId1");
+            tableMapping.ColumnMappings.Add("CustomerId1", "CustomerId1");
+            tableMapping.ColumnMappings.Add("RoomId1", "RoomId1");
+            tableMapping.ColumnMappings.Add("CheckInDate1", "CheckInDate1");
+            tableMapping.ColumnMappings.Add("CheckOutDate1", "CheckOutDate1");
+            tableMapping.ColumnMappings.Add("ReservationRefNo1", "ReservationRefNo1");
+            tableMapping.ColumnMappings.Add("Status1", "Status1");
+            tableMapping.ColumnMappings.Add("PaymentMethod1", "PaymentMethod1");
+            tableMapping.ColumnMappings.Add("DateCreated1", "DateCreated1");
+            tableMapping.ColumnMappings.Add("DateModified1", "DateModified1");
+            tableMapping.ColumnMappings.Add("IsTrashed1", "IsTrashed1");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Reservation] WHERE (([Id] = @p2) AND ([ReservationId] = @p4) AND ([CustomerId] = @p6) AND ([RoomId] = @p8) AND ([CheckInDate] = @p10) AND ([CheckOutDate] = @p12) AND ([ReservationRefNo] = @p14) AND ([Status] = @p16) AND ([PaymentMethod] = @p18) AND ([DateCreated] = @p20) AND ([DateModified] = @p22) AND ([IsTrashed] = @p24) AND ([Id] = @Original_Id) AND ([ReservationId] = @Original_ReservationId) AND ([CustomerId] = @Original_CustomerId) AND ([RoomId] = @Original_RoomId) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate) AND ([ReservationRefNo] = @Original_ReservationRefNo) AND ([Status] = @Original_Status) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([IsTrashed] = @Original_IsTrashed))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p2", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p4", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p6", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p8", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p10", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p12", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p14", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationRefNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p16", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p18", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p20", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p22", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p24", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ReservationId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckInDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckOutDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ReservationRefNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationRefNo1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PaymentMethod", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Reservation] ([Id], [ReservationId], [CustomerId], [RoomId], [CheckInDate], [CheckOutDate], [ReservationRefNo], [Status], [PaymentMethod], [DateCreated], [DateModified], [IsTrashed], [Id], [ReservationId], [CustomerId], [RoomId], [CheckInDate], [CheckOutDate], [ReservationRefNo], [Status], [PaymentMethod], [DateCreated], [DateModified], [IsTrashed]) VALUES (@p1, @p3, @p5, @p7, @p9, @p11, @p13, @p15, @p17, @p19, @p21, @p23, @Id, @ReservationId, @CustomerId, @RoomId, @CheckInDate, @CheckOutDate, @ReservationRefNo, @Status, @PaymentMethod, @DateCreated, @DateModified, @IsTrashed);
+SELECT Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, ReservationRefNo, Status, PaymentMethod, DateCreated, DateModified, IsTrashed, Id AS Expr1, ReservationId AS Expr2, CustomerId AS Expr3, RoomId AS Expr4, CheckInDate AS Expr5, CheckOutDate AS Expr6, ReservationRefNo AS Expr7, Status AS Expr8, PaymentMethod AS Expr9, DateCreated AS Expr10, DateModified AS Expr11, IsTrashed AS Expr12 FROM Reservation WHERE (Id = @Id1) AND (Id = @Id2)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p3", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p5", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p7", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p9", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p11", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p13", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationRefNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p15", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p17", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p19", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p21", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p23", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReservationId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckInDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckOutDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReservationRefNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationRefNo1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PaymentMethod", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id1", global::System.Data.SqlDbType.NVarChar, 450, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id2", global::System.Data.SqlDbType.NVarChar, 450, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [Reservation] SET [Id] = @p1, [ReservationId] = @p3, [CustomerId] = @p5, [" +
+                "RoomId] = @p7, [CheckInDate] = @p9, [CheckOutDate] = @p11, [ReservationRefNo] = " +
+                "@p13, [Status] = @p15, [PaymentMethod] = @p17, [DateCreated] = @p19, [DateModifi" +
+                "ed] = @p21, [IsTrashed] = @p23, [Id] = @Id, [ReservationId] = @ReservationId, [C" +
+                "ustomerId] = @CustomerId, [RoomId] = @RoomId, [CheckInDate] = @CheckInDate, [Che" +
+                "ckOutDate] = @CheckOutDate, [ReservationRefNo] = @ReservationRefNo, [Status] = @" +
+                "Status, [PaymentMethod] = @PaymentMethod, [DateCreated] = @DateCreated, [DateMod" +
+                "ified] = @DateModified, [IsTrashed] = @IsTrashed WHERE (([Id] = @p2) AND ([Reser" +
+                "vationId] = @p4) AND ([CustomerId] = @p6) AND ([RoomId] = @p8) AND ([CheckInDate" +
+                "] = @p10) AND ([CheckOutDate] = @p12) AND ([ReservationRefNo] = @p14) AND ([Stat" +
+                "us] = @p16) AND ([PaymentMethod] = @p18) AND ([DateCreated] = @p20) AND ([DateMo" +
+                "dified] = @p22) AND ([IsTrashed] = @p24) AND ([Id] = @Original_Id) AND ([Reserva" +
+                "tionId] = @Original_ReservationId) AND ([CustomerId] = @Original_CustomerId) AND" +
+                " ([RoomId] = @Original_RoomId) AND ([CheckInDate] = @Original_CheckInDate) AND (" +
+                "[CheckOutDate] = @Original_CheckOutDate) AND ([ReservationRefNo] = @Original_Res" +
+                "ervationRefNo) AND ([Status] = @Original_Status) AND ([PaymentMethod] = @Origina" +
+                "l_PaymentMethod) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified]" +
+                " = @Original_DateModified) AND ([IsTrashed] = @Original_IsTrashed));\r\nSELECT Id," +
+                " ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, ReservationRefNo," +
+                " Status, PaymentMethod, DateCreated, DateModified, IsTrashed, Id AS Expr1, Reser" +
+                "vationId AS Expr2, CustomerId AS Expr3, RoomId AS Expr4, CheckInDate AS Expr5, C" +
+                "heckOutDate AS Expr6, ReservationRefNo AS Expr7, Status AS Expr8, PaymentMethod " +
+                "AS Expr9, DateCreated AS Expr10, DateModified AS Expr11, IsTrashed AS Expr12 FRO" +
+                "M Reservation WHERE (Id = @Id1) AND (Id = @Id2)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p3", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p5", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p7", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p9", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p11", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p13", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationRefNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p15", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p17", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p19", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p21", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p23", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReservationId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckInDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CheckOutDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReservationRefNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationRefNo1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PaymentMethod", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p2", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p4", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p6", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p8", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p10", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p12", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p14", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationRefNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p16", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p18", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p20", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p22", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p24", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ReservationId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckInDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckInDate1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CheckOutDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CheckOutDate1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ReservationRefNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationRefNo1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PaymentMethod", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id1", global::System.Data.SqlDbType.NVarChar, 450, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id2", global::System.Data.SqlDbType.NVarChar, 450, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::ESMART_HMS.Properties.Settings.Default.ESMART_HMSDBConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, ReservationRefNo, Status, PaymentMethod, DateCreated, DateModified, IsTrashed, Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, 
+                  ReservationRefNo, Status, PaymentMethod, DateCreated, DateModified, IsTrashed
+FROM     Reservation";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ESMART_HMSDBDataSet.ReservationDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ESMART_HMSDBDataSet.ReservationDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ESMART_HMSDBDataSet.ReservationDataTable dataTable = new ESMART_HMSDBDataSet.ReservationDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ESMART_HMSDBDataSet.ReservationDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ESMART_HMSDBDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Reservation");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(
+                    string p2, 
+                    string p4, 
+                    string p6, 
+                    string p8, 
+                    System.DateTime p10, 
+                    System.DateTime p12, 
+                    string p14, 
+                    string p16, 
+                    string p18, 
+                    System.DateTime p20, 
+                    System.DateTime p22, 
+                    bool p24, 
+                    string Original_Id, 
+                    string Original_ReservationId, 
+                    string Original_CustomerId, 
+                    string Original_RoomId, 
+                    System.DateTime Original_CheckInDate, 
+                    System.DateTime Original_CheckOutDate, 
+                    string Original_ReservationRefNo, 
+                    string Original_Status, 
+                    string Original_PaymentMethod, 
+                    System.DateTime Original_DateCreated, 
+                    System.DateTime Original_DateModified, 
+                    bool Original_IsTrashed) {
+            if ((p2 == null)) {
+                throw new global::System.ArgumentNullException("p2");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(p2));
+            }
+            if ((p4 == null)) {
+                throw new global::System.ArgumentNullException("p4");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(p4));
+            }
+            if ((p6 == null)) {
+                throw new global::System.ArgumentNullException("p6");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(p6));
+            }
+            if ((p8 == null)) {
+                throw new global::System.ArgumentNullException("p8");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(p8));
+            }
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(p10));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(p12));
+            if ((p14 == null)) {
+                throw new global::System.ArgumentNullException("p14");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(p14));
+            }
+            if ((p16 == null)) {
+                throw new global::System.ArgumentNullException("p16");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(p16));
+            }
+            if ((p18 == null)) {
+                throw new global::System.ArgumentNullException("p18");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(p18));
+            }
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((System.DateTime)(p20));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((System.DateTime)(p22));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(p24));
+            if ((Original_Id == null)) {
+                throw new global::System.ArgumentNullException("Original_Id");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Id));
+            }
+            if ((Original_ReservationId == null)) {
+                throw new global::System.ArgumentNullException("Original_ReservationId");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_ReservationId));
+            }
+            if ((Original_CustomerId == null)) {
+                throw new global::System.ArgumentNullException("Original_CustomerId");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_CustomerId));
+            }
+            if ((Original_RoomId == null)) {
+                throw new global::System.ArgumentNullException("Original_RoomId");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_RoomId));
+            }
+            this.Adapter.DeleteCommand.Parameters[16].Value = ((System.DateTime)(Original_CheckInDate));
+            this.Adapter.DeleteCommand.Parameters[17].Value = ((System.DateTime)(Original_CheckOutDate));
+            if ((Original_ReservationRefNo == null)) {
+                throw new global::System.ArgumentNullException("Original_ReservationRefNo");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_ReservationRefNo));
+            }
+            if ((Original_Status == null)) {
+                throw new global::System.ArgumentNullException("Original_Status");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((string)(Original_Status));
+            }
+            if ((Original_PaymentMethod == null)) {
+                throw new global::System.ArgumentNullException("Original_PaymentMethod");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((string)(Original_PaymentMethod));
+            }
+            this.Adapter.DeleteCommand.Parameters[21].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.DeleteCommand.Parameters[22].Value = ((System.DateTime)(Original_DateModified));
+            this.Adapter.DeleteCommand.Parameters[23].Value = ((bool)(Original_IsTrashed));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(
+                    string p1, 
+                    string p3, 
+                    string p5, 
+                    string p7, 
+                    System.DateTime p9, 
+                    System.DateTime p11, 
+                    string p13, 
+                    string p15, 
+                    string p17, 
+                    System.DateTime p19, 
+                    System.DateTime p21, 
+                    bool p23, 
+                    string Id, 
+                    string ReservationId, 
+                    string CustomerId, 
+                    string RoomId, 
+                    System.DateTime CheckInDate, 
+                    System.DateTime CheckOutDate, 
+                    string ReservationRefNo, 
+                    string Status, 
+                    string PaymentMethod, 
+                    System.DateTime DateCreated, 
+                    System.DateTime DateModified, 
+                    bool IsTrashed, 
+                    string Id1, 
+                    string Id2) {
+            if ((p1 == null)) {
+                throw new global::System.ArgumentNullException("p1");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
+            }
+            if ((p3 == null)) {
+                throw new global::System.ArgumentNullException("p3");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p3));
+            }
+            if ((p5 == null)) {
+                throw new global::System.ArgumentNullException("p5");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(p5));
+            }
+            if ((p7 == null)) {
+                throw new global::System.ArgumentNullException("p7");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(p7));
+            }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(p9));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(p11));
+            if ((p13 == null)) {
+                throw new global::System.ArgumentNullException("p13");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(p13));
+            }
+            if ((p15 == null)) {
+                throw new global::System.ArgumentNullException("p15");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(p15));
+            }
+            if ((p17 == null)) {
+                throw new global::System.ArgumentNullException("p17");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(p17));
+            }
+            this.Adapter.InsertCommand.Parameters[9].Value = ((System.DateTime)(p19));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((System.DateTime)(p21));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(p23));
+            if ((Id == null)) {
+                throw new global::System.ArgumentNullException("Id");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(Id));
+            }
+            if ((ReservationId == null)) {
+                throw new global::System.ArgumentNullException("ReservationId");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(ReservationId));
+            }
+            if ((CustomerId == null)) {
+                throw new global::System.ArgumentNullException("CustomerId");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(CustomerId));
+            }
+            if ((RoomId == null)) {
+                throw new global::System.ArgumentNullException("RoomId");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(RoomId));
+            }
+            this.Adapter.InsertCommand.Parameters[16].Value = ((System.DateTime)(CheckInDate));
+            this.Adapter.InsertCommand.Parameters[17].Value = ((System.DateTime)(CheckOutDate));
+            if ((ReservationRefNo == null)) {
+                throw new global::System.ArgumentNullException("ReservationRefNo");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(ReservationRefNo));
+            }
+            if ((Status == null)) {
+                throw new global::System.ArgumentNullException("Status");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(Status));
+            }
+            if ((PaymentMethod == null)) {
+                throw new global::System.ArgumentNullException("PaymentMethod");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(PaymentMethod));
+            }
+            this.Adapter.InsertCommand.Parameters[21].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.InsertCommand.Parameters[22].Value = ((System.DateTime)(DateModified));
+            this.Adapter.InsertCommand.Parameters[23].Value = ((bool)(IsTrashed));
+            if ((Id1 == null)) {
+                throw new global::System.ArgumentNullException("Id1");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[24].Value = ((string)(Id1));
+            }
+            if ((Id2 == null)) {
+                throw new global::System.ArgumentNullException("Id2");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[25].Value = ((string)(Id2));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string p1, 
+                    string p3, 
+                    string p5, 
+                    string p7, 
+                    System.DateTime p9, 
+                    System.DateTime p11, 
+                    string p13, 
+                    string p15, 
+                    string p17, 
+                    System.DateTime p19, 
+                    System.DateTime p21, 
+                    bool p23, 
+                    string Id, 
+                    string ReservationId, 
+                    string CustomerId, 
+                    string RoomId, 
+                    System.DateTime CheckInDate, 
+                    System.DateTime CheckOutDate, 
+                    string ReservationRefNo, 
+                    string Status, 
+                    string PaymentMethod, 
+                    System.DateTime DateCreated, 
+                    System.DateTime DateModified, 
+                    bool IsTrashed, 
+                    string p2, 
+                    string p4, 
+                    string p6, 
+                    string p8, 
+                    System.DateTime p10, 
+                    System.DateTime p12, 
+                    string p14, 
+                    string p16, 
+                    string p18, 
+                    System.DateTime p20, 
+                    System.DateTime p22, 
+                    bool p24, 
+                    string Original_Id, 
+                    string Original_ReservationId, 
+                    string Original_CustomerId, 
+                    string Original_RoomId, 
+                    System.DateTime Original_CheckInDate, 
+                    System.DateTime Original_CheckOutDate, 
+                    string Original_ReservationRefNo, 
+                    string Original_Status, 
+                    string Original_PaymentMethod, 
+                    System.DateTime Original_DateCreated, 
+                    System.DateTime Original_DateModified, 
+                    bool Original_IsTrashed, 
+                    string Id1, 
+                    string Id2) {
+            if ((p1 == null)) {
+                throw new global::System.ArgumentNullException("p1");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(p1));
+            }
+            if ((p3 == null)) {
+                throw new global::System.ArgumentNullException("p3");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(p3));
+            }
+            if ((p5 == null)) {
+                throw new global::System.ArgumentNullException("p5");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(p5));
+            }
+            if ((p7 == null)) {
+                throw new global::System.ArgumentNullException("p7");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(p7));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(p9));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(p11));
+            if ((p13 == null)) {
+                throw new global::System.ArgumentNullException("p13");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(p13));
+            }
+            if ((p15 == null)) {
+                throw new global::System.ArgumentNullException("p15");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(p15));
+            }
+            if ((p17 == null)) {
+                throw new global::System.ArgumentNullException("p17");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(p17));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(p19));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(p21));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(p23));
+            if ((Id == null)) {
+                throw new global::System.ArgumentNullException("Id");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Id));
+            }
+            if ((ReservationId == null)) {
+                throw new global::System.ArgumentNullException("ReservationId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(ReservationId));
+            }
+            if ((CustomerId == null)) {
+                throw new global::System.ArgumentNullException("CustomerId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(CustomerId));
+            }
+            if ((RoomId == null)) {
+                throw new global::System.ArgumentNullException("RoomId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(RoomId));
+            }
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(CheckInDate));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((System.DateTime)(CheckOutDate));
+            if ((ReservationRefNo == null)) {
+                throw new global::System.ArgumentNullException("ReservationRefNo");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(ReservationRefNo));
+            }
+            if ((Status == null)) {
+                throw new global::System.ArgumentNullException("Status");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Status));
+            }
+            if ((PaymentMethod == null)) {
+                throw new global::System.ArgumentNullException("PaymentMethod");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(PaymentMethod));
+            }
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((System.DateTime)(DateModified));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(IsTrashed));
+            if ((p2 == null)) {
+                throw new global::System.ArgumentNullException("p2");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(p2));
+            }
+            if ((p4 == null)) {
+                throw new global::System.ArgumentNullException("p4");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(p4));
+            }
+            if ((p6 == null)) {
+                throw new global::System.ArgumentNullException("p6");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(p6));
+            }
+            if ((p8 == null)) {
+                throw new global::System.ArgumentNullException("p8");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(p8));
+            }
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((System.DateTime)(p10));
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((System.DateTime)(p12));
+            if ((p14 == null)) {
+                throw new global::System.ArgumentNullException("p14");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(p14));
+            }
+            if ((p16 == null)) {
+                throw new global::System.ArgumentNullException("p16");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(p16));
+            }
+            if ((p18 == null)) {
+                throw new global::System.ArgumentNullException("p18");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((string)(p18));
+            }
+            this.Adapter.UpdateCommand.Parameters[33].Value = ((System.DateTime)(p20));
+            this.Adapter.UpdateCommand.Parameters[34].Value = ((System.DateTime)(p22));
+            this.Adapter.UpdateCommand.Parameters[35].Value = ((bool)(p24));
+            if ((Original_Id == null)) {
+                throw new global::System.ArgumentNullException("Original_Id");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((string)(Original_Id));
+            }
+            if ((Original_ReservationId == null)) {
+                throw new global::System.ArgumentNullException("Original_ReservationId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((string)(Original_ReservationId));
+            }
+            if ((Original_CustomerId == null)) {
+                throw new global::System.ArgumentNullException("Original_CustomerId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((string)(Original_CustomerId));
+            }
+            if ((Original_RoomId == null)) {
+                throw new global::System.ArgumentNullException("Original_RoomId");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((string)(Original_RoomId));
+            }
+            this.Adapter.UpdateCommand.Parameters[40].Value = ((System.DateTime)(Original_CheckInDate));
+            this.Adapter.UpdateCommand.Parameters[41].Value = ((System.DateTime)(Original_CheckOutDate));
+            if ((Original_ReservationRefNo == null)) {
+                throw new global::System.ArgumentNullException("Original_ReservationRefNo");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((string)(Original_ReservationRefNo));
+            }
+            if ((Original_Status == null)) {
+                throw new global::System.ArgumentNullException("Original_Status");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((string)(Original_Status));
+            }
+            if ((Original_PaymentMethod == null)) {
+                throw new global::System.ArgumentNullException("Original_PaymentMethod");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((string)(Original_PaymentMethod));
+            }
+            this.Adapter.UpdateCommand.Parameters[45].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.UpdateCommand.Parameters[46].Value = ((System.DateTime)(Original_DateModified));
+            this.Adapter.UpdateCommand.Parameters[47].Value = ((bool)(Original_IsTrashed));
+            if ((Id1 == null)) {
+                throw new global::System.ArgumentNullException("Id1");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((string)(Id1));
+            }
+            if ((Id2 == null)) {
+                throw new global::System.ArgumentNullException("Id2");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((string)(Id2));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string p3, 
+                    string p5, 
+                    string p7, 
+                    System.DateTime p9, 
+                    System.DateTime p11, 
+                    string p13, 
+                    string p15, 
+                    string p17, 
+                    System.DateTime p19, 
+                    System.DateTime p21, 
+                    bool p23, 
+                    string ReservationId, 
+                    string CustomerId, 
+                    string RoomId, 
+                    System.DateTime CheckInDate, 
+                    System.DateTime CheckOutDate, 
+                    string ReservationRefNo, 
+                    string Status, 
+                    string PaymentMethod, 
+                    System.DateTime DateCreated, 
+                    System.DateTime DateModified, 
+                    bool IsTrashed, 
+                    string p2, 
+                    string p4, 
+                    string p6, 
+                    string p8, 
+                    System.DateTime p10, 
+                    System.DateTime p12, 
+                    string p14, 
+                    string p16, 
+                    string p18, 
+                    System.DateTime p20, 
+                    System.DateTime p22, 
+                    bool p24, 
+                    string Original_Id, 
+                    string Original_ReservationId, 
+                    string Original_CustomerId, 
+                    string Original_RoomId, 
+                    System.DateTime Original_CheckInDate, 
+                    System.DateTime Original_CheckOutDate, 
+                    string Original_ReservationRefNo, 
+                    string Original_Status, 
+                    string Original_PaymentMethod, 
+                    System.DateTime Original_DateCreated, 
+                    System.DateTime Original_DateModified, 
+                    bool Original_IsTrashed) {
+            return this.Update(p2, p3, p5, p7, p9, p11, p13, p15, p17, p19, p21, p23, Original_Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, ReservationRefNo, Status, PaymentMethod, DateCreated, DateModified, IsTrashed, p2, p4, p6, p8, p10, p12, p14, p16, p18, p20, p22, p24, Original_Id, Original_ReservationId, Original_CustomerId, Original_RoomId, Original_CheckInDate, Original_CheckOutDate, Original_ReservationRefNo, Original_Status, Original_PaymentMethod, Original_DateCreated, Original_DateModified, Original_IsTrashed, p2, p2);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5066,6 +7261,8 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
         private RoomTypeTableAdapter _roomTypeTableAdapter;
         
         private UserTableAdapter _userTableAdapter;
+        
+        private ReservationTableAdapter _reservationTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -5140,6 +7337,20 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public ReservationTableAdapter ReservationTableAdapter {
+            get {
+                return this._reservationTableAdapter;
+            }
+            set {
+                this._reservationTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -5173,6 +7384,10 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
                             && (this._userTableAdapter.Connection != null))) {
                     return this._userTableAdapter.Connection;
                 }
+                if (((this._reservationTableAdapter != null) 
+                            && (this._reservationTableAdapter.Connection != null))) {
+                    return this._reservationTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -5196,6 +7411,9 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
                     count = (count + 1);
                 }
                 if ((this._userTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._reservationTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -5245,6 +7463,15 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._reservationTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Reservation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._reservationTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -5287,6 +7514,14 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._reservationTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Reservation.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._reservationTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -5297,6 +7532,14 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(ESMART_HMSDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._reservationTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Reservation.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._reservationTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._userTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -5388,6 +7631,11 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._reservationTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._reservationTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -5454,6 +7702,15 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
                     if (this._userTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._userTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._userTableAdapter.Adapter);
+                    }
+                }
+                if ((this._reservationTableAdapter != null)) {
+                    revertConnections.Add(this._reservationTableAdapter, this._reservationTableAdapter.Connection);
+                    this._reservationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._reservationTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._reservationTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._reservationTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._reservationTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -5529,6 +7786,10 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
                 if ((this._userTableAdapter != null)) {
                     this._userTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._userTableAdapter]));
                     this._userTableAdapter.Transaction = null;
+                }
+                if ((this._reservationTableAdapter != null)) {
+                    this._reservationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._reservationTableAdapter]));
+                    this._reservationTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

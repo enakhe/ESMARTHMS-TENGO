@@ -4,7 +4,7 @@
     {
         public string Id { get; set; }
         public string RoomId { get; set; }
-        public string RoomName { get; set; }
+        public string RoomNo { get; set; }
         public string RoomCardNo { get; set; }
         public string RoomLockNo { get; set; }
         public string RoomTypeName { get; set; }

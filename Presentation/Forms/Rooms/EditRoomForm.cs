@@ -57,7 +57,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 else
                 {
                     txtId.Text = room.Id;
-                    txtRoomNo.Text = room.RoomName;
+                    txtRoomNo.Text = room.RoomNo;
                     txtLockNo.Text = room.RoomLockNo;
                     txtCardNo.Text = room.RoomCardNo;
                     txtAdultPerRoom.Text = room.AdultPerRoom.ToString();
@@ -186,7 +186,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
                 else
                 {
-                    room.RoomName = txtRoomNo.Text.Trim();
+                    room.RoomNo = txtRoomNo.Text.Trim();
                     room.RoomCardNo = txtCardNo.Text.Trim();
                     room.RoomLockNo = txtLockNo.Text.Trim();
                     room.Rate = decimal.Parse(txtRate.Text);

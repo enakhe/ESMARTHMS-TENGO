@@ -4,7 +4,7 @@ using ESMART_HMS.Presentation.Forms.RoomTypes;
 using System;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Forms.Rooms
+namespace ESMART_HMS.Presentation.Forms.Rooms
 {
     public partial class AddRoomForm : Form
     {
@@ -50,7 +50,9 @@ namespace ESMART_HMS.Forms.Rooms
 
         private void AddRoomForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.RoomType' table. You can move, or remove it, as needed.
             this.roomTypeTableAdapter.Fill(this.eSMART_HMSDBDataSet.RoomType);
+
         }
 
         private void txtCardNo_KeyPress(object sender, KeyPressEventArgs e)
@@ -149,7 +151,7 @@ namespace ESMART_HMS.Forms.Rooms
 
                     room.Id = Guid.NewGuid().ToString();
                     room.RoomId = "RM" + random.Next(1000, 5000);
-                    room.RoomName = txtRoomNo.Text.Trim();
+                    room.RoomNo = txtRoomNo.Text.Trim();
                     room.RoomCardNo = txtCardNo.Text.Trim();
                     room.RoomLockNo = txtLockNo.Text.Trim();
                     room.Rate = decimal.Parse(txtRate.Text);

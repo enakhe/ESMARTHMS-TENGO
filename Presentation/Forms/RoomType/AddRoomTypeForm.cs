@@ -28,7 +28,7 @@ namespace ESMART_HMS.Presentation.Forms.RoomTypes
         {
             try
             {
-                if (txtTitle.Text == "" || txtRateBase.Text == "" || txtDescription.Text == "")
+                if (txtTitle.Text == "")
                 {
                     MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -37,8 +37,6 @@ namespace ESMART_HMS.Presentation.Forms.RoomTypes
                 else
                 {
                     roomType.Title = txtTitle.Text.Trim().ToUpper();
-                    roomType.RateBase = decimal.Parse(txtRateBase.Text);
-                    roomType.Description = txtDescription.Text.Trim().ToUpper();
                     roomType.DateCreated = DateTime.Now;
                     roomType.DateModified = DateTime.Now;
 

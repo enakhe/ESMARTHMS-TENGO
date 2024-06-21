@@ -22,7 +22,6 @@ namespace ESMART_HMS.Domain.Entities
     
         public string Id { get; set; }
         public string RoomId { get; set; }
-        public string RoomName { get; set; }
         public string RoomCardNo { get; set; }
         public string RoomLockNo { get; set; }
         public string RoomTypeId { get; set; }
@@ -34,6 +33,7 @@ namespace ESMART_HMS.Domain.Entities
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
+        public string RoomNo { get; set; }
     
         public virtual RoomType RoomType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

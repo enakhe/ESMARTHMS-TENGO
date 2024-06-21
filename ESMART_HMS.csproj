@@ -261,9 +261,11 @@
     <Compile Include="Application\UseCases\Customer\GetDeletedCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\SearchCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\UpdateCustomerUseCase.cs" />
-    <Compile Include="Application\UseCases\RoomTypes\CreateRoomTypeUseCase.cs" />
-    <Compile Include="Application\UseCases\RoomTypes\GetAllRoomTypeUseCase.cs" />
-    <Compile Include="Application\UseCases\RoomTypes\GetRoomTypeByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\Reservation\CreateReservationUseCase.cs" />
+    <Compile Include="Application\UseCases\Reservation\GetAllReservationUseCase.cs" />
+    <Compile Include="Application\UseCases\RoomType\CreateRoomTypeUseCase.cs" />
+    <Compile Include="Application\UseCases\RoomType\GetAllRoomTypeUseCase.cs" />
+    <Compile Include="Application\UseCases\RoomType\GetRoomTypeByIdUseCase.cs" />
     <Compile Include="Application\UseCases\Room\CreateRoomUseCase.cs" />
     <Compile Include="Application\UseCases\Room\DeleteRoomUseCase.cs" />
     <Compile Include="Application\UseCases\Room\GetAllRoomUseCase.cs" />
@@ -278,43 +280,47 @@
     </Compile>
     <Compile Include="Domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />
+    <Compile Include="Domain\Interfaces\IReservationRepository.cs" />
     <Compile Include="Domain\Interfaces\IRoomRepository.cs" />
     <Compile Include="Domain\Interfaces\IRoomTypeRepository.cs" />
     <Compile Include="Domain\Interfaces\IUserRepository.cs" />
+    <Compile Include="Domain\Utils\FormHelper.cs" />
     <Compile Include="ESMART_HMSDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Data\ReservationRepository.cs" />
     <Compile Include="Infrastructure\Data\RoomRepository.cs" />
     <Compile Include="Infrastructure\Data\RoomTypeRepository.cs" />
     <Compile Include="Infrastructure\Data\UserRepository.cs" />
     <Compile Include="Infrastructure\DependencyInjection.cs" />
     <Compile Include="Presentation\Controllers\CustomerController.cs" />
+    <Compile Include="Presentation\Controllers\ReservationController.cs" />
     <Compile Include="Presentation\Controllers\RoomController.cs" />
     <Compile Include="Presentation\Controllers\RoomTypeController.cs" />
-    <Compile Include="Presentation\Forms\Customers\AddCustomerForm.cs">
+    <Compile Include="Presentation\Forms\Customer\AddCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\AddCustomerForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Customer\AddCustomerForm.Designer.cs">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\EditCustomerForm.cs">
+    <Compile Include="Presentation\Forms\Customer\EditCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\EditCustomerForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Customer\EditCustomerForm.Designer.cs">
       <DependentUpon>EditCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\ViewCustomerForm.cs">
+    <Compile Include="Presentation\Forms\Customer\ViewCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\ViewCustomerForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Customer\ViewCustomerForm.Designer.cs">
       <DependentUpon>ViewCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\CustomerForm.cs">
+    <Compile Include="Presentation\Forms\Customer\CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Customers\CustomerForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Customer\CustomerForm.Designer.cs">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\Home.cs">
@@ -351,6 +357,18 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Data\CustomerRepository.cs" />
+    <Compile Include="Presentation\Forms\Reservation\AddReservationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Reservation\AddReservationForm.Designer.cs">
+      <DependentUpon>AddReservationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Reservation\ReservationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Reservation\ReservationForm.Designer.cs">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Rooms\AddRoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,10 +393,10 @@
     <Compile Include="Presentation\Forms\Rooms\ViewRoomForm.Designer.cs">
       <DependentUpon>ViewRoomForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\RoomTypes\AddRoomTypeForm.cs">
+    <Compile Include="Presentation\Forms\RoomType\AddRoomTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\RoomTypes\AddRoomTypeForm.Designer.cs">
+    <Compile Include="Presentation\Forms\RoomType\AddRoomTypeForm.Designer.cs">
       <DependentUpon>AddRoomTypeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\ViewModels\CustomerViewModel.cs" />
@@ -391,20 +409,21 @@
     </Compile>
     <Compile Include="Domain\Enum\MembershipStatusEnum.cs" />
     <Compile Include="Presentation\DependencyInjection.cs" />
+    <Compile Include="Presentation\ViewModels\ReservationViewModel.cs" />
     <Compile Include="Presentation\ViewModels\RoomViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\Services\AuthService.cs" />
-    <EmbeddedResource Include="Presentation\Forms\Customers\AddCustomerForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Customer\AddCustomerForm.resx">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Customers\EditCustomerForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Customer\EditCustomerForm.resx">
       <DependentUpon>EditCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Customers\ViewCustomerForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Customer\ViewCustomerForm.resx">
       <DependentUpon>ViewCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Customers\CustomerForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Customer\CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Home.resx">
@@ -412,6 +431,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Reservation\AddReservationForm.resx">
+      <DependentUpon>AddReservationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Reservation\ReservationForm.resx">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Rooms\AddRoomForm.resx">
       <DependentUpon>AddRoomForm.cs</DependentUpon>
@@ -425,7 +450,7 @@
     <EmbeddedResource Include="Presentation\Forms\Rooms\ViewRoomForm.resx">
       <DependentUpon>ViewRoomForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\RoomTypes\AddRoomTypeForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\RoomType\AddRoomTypeForm.resx">
       <DependentUpon>AddRoomTypeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

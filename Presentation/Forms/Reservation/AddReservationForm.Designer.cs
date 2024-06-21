@@ -1,0 +1,323 @@
+﻿namespace ESMART_HMS.Presentation.Forms.Reservation
+{
+    partial class AddReservationForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddReservationForm));
+            this.btnCustomer = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCustomer = new System.Windows.Forms.ComboBox();
+            this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
+            this.customerTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.CustomerTableAdapter();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnRoom = new System.Windows.Forms.Button();
+            this.txtRoom = new System.Windows.Forms.ComboBox();
+            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
+            this.txtCheckIn = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtCheckOut = new System.Windows.Forms.DateTimePicker();
+            this.txtPaymentMethod = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtStatus = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // btnCustomer
+            // 
+            this.btnCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomer.Location = new System.Drawing.Point(472, 75);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Size = new System.Drawing.Size(185, 30);
+            this.btnCustomer.TabIndex = 14;
+            this.btnCustomer.Text = "Add Customer";
+            this.btnCustomer.UseVisualStyleBackColor = true;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(34, 75);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 30);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Customer";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(32, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(233, 38);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Add Reservation";
+            // 
+            // txtCustomer
+            // 
+            this.txtCustomer.DataSource = this.customerBindingSource;
+            this.txtCustomer.DisplayMember = "FullName";
+            this.txtCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtCustomer.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustomer.FormattingEnabled = true;
+            this.txtCustomer.Location = new System.Drawing.Point(39, 112);
+            this.txtCustomer.Name = "txtCustomer";
+            this.txtCustomer.Size = new System.Drawing.Size(618, 38);
+            this.txtCustomer.TabIndex = 16;
+            this.txtCustomer.ValueMember = "Id";
+            // 
+            // customerBindingSource
+            // 
+            this.customerBindingSource.DataMember = "Customer";
+            this.customerBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // eSMART_HMSDBDataSet
+            // 
+            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
+            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // customerTableAdapter
+            // 
+            this.customerTableAdapter.ClearBeforeFill = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(34, 180);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 30);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Room";
+            // 
+            // btnRoom
+            // 
+            this.btnRoom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRoom.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRoom.Location = new System.Drawing.Point(472, 180);
+            this.btnRoom.Name = "btnRoom";
+            this.btnRoom.Size = new System.Drawing.Size(185, 30);
+            this.btnRoom.TabIndex = 14;
+            this.btnRoom.Text = "Add Room";
+            this.btnRoom.UseVisualStyleBackColor = true;
+            this.btnRoom.Click += new System.EventHandler(this.btnRoom_Click);
+            // 
+            // txtRoom
+            // 
+            this.txtRoom.DataSource = this.roomBindingSource;
+            this.txtRoom.DisplayMember = "RoomNo";
+            this.txtRoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtRoom.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRoom.FormattingEnabled = true;
+            this.txtRoom.Location = new System.Drawing.Point(39, 217);
+            this.txtRoom.Name = "txtRoom";
+            this.txtRoom.Size = new System.Drawing.Size(618, 38);
+            this.txtRoom.TabIndex = 16;
+            this.txtRoom.ValueMember = "Id";
+            // 
+            // roomBindingSource
+            // 
+            this.roomBindingSource.DataMember = "Room";
+            this.roomBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // roomTableAdapter
+            // 
+            this.roomTableAdapter.ClearBeforeFill = true;
+            // 
+            // txtCheckIn
+            // 
+            this.txtCheckIn.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCheckIn.Location = new System.Drawing.Point(39, 318);
+            this.txtCheckIn.Name = "txtCheckIn";
+            this.txtCheckIn.Size = new System.Drawing.Size(618, 37);
+            this.txtCheckIn.TabIndex = 17;
+            this.txtCheckIn.Value = new System.DateTime(2024, 6, 20, 16, 16, 49, 0);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(34, 285);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 30);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Check In";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(34, 396);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(208, 30);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Expected Check Out";
+            // 
+            // txtCheckOut
+            // 
+            this.txtCheckOut.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCheckOut.Location = new System.Drawing.Point(39, 429);
+            this.txtCheckOut.Name = "txtCheckOut";
+            this.txtCheckOut.Size = new System.Drawing.Size(618, 37);
+            this.txtCheckOut.TabIndex = 17;
+            this.txtCheckOut.Value = new System.DateTime(2024, 6, 20, 16, 16, 49, 0);
+            // 
+            // txtPaymentMethod
+            // 
+            this.txtPaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtPaymentMethod.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPaymentMethod.FormattingEnabled = true;
+            this.txtPaymentMethod.Items.AddRange(new object[] {
+            "Unpaid",
+            "Mark As Paid (From Deposit)",
+            "Mark As Paid (Cash By Hand)"});
+            this.txtPaymentMethod.Location = new System.Drawing.Point(39, 539);
+            this.txtPaymentMethod.Name = "txtPaymentMethod";
+            this.txtPaymentMethod.Size = new System.Drawing.Size(618, 38);
+            this.txtPaymentMethod.TabIndex = 18;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(34, 506);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(179, 30);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Payment Method";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(250, 719);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(210, 50);
+            this.btnSave.TabIndex = 19;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(34, 618);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(70, 30);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Status";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.FormattingEnabled = true;
+            this.txtStatus.Items.AddRange(new object[] {
+            "Clocked In",
+            "Not Clocked In"});
+            this.txtStatus.Location = new System.Drawing.Point(39, 651);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(618, 38);
+            this.txtStatus.TabIndex = 18;
+            // 
+            // AddReservationForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(698, 792);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.txtPaymentMethod);
+            this.Controls.Add(this.txtCheckOut);
+            this.Controls.Add(this.txtCheckIn);
+            this.Controls.Add(this.txtRoom);
+            this.Controls.Add(this.txtCustomer);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnRoom);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnCustomer);
+            this.Controls.Add(this.label8);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "AddReservationForm";
+            this.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Add Reservation";
+            this.Load += new System.EventHandler(this.AddReservationForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button btnCustomer;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox txtCustomer;
+        private ESMART_HMSDBDataSet eSMART_HMSDBDataSet;
+        private System.Windows.Forms.BindingSource customerBindingSource;
+        private ESMART_HMSDBDataSetTableAdapters.CustomerTableAdapter customerTableAdapter;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnRoom;
+        private System.Windows.Forms.ComboBox txtRoom;
+        private System.Windows.Forms.BindingSource roomBindingSource;
+        private ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter roomTableAdapter;
+        private System.Windows.Forms.DateTimePicker txtCheckIn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker txtCheckOut;
+        private System.Windows.Forms.ComboBox txtPaymentMethod;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox txtStatus;
+    }
+}

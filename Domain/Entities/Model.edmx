@@ -42,9 +42,10 @@
           <Property Name="RoomId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="CheckInDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CheckOutDate" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="ReservationRefNo" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="Status" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="PaymentMethod" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ReservationRefNo" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
@@ -55,7 +56,7 @@
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="RoomId" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="RoomName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RoomNo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="RoomCardNo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="RoomLockNo" Type="nvarchar(max)" Nullable="false" />
           <Property Name="RoomTypeId" Type="nvarchar" MaxLength="450" Nullable="false" />
@@ -75,8 +76,6 @@
           <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="RoomTypeId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="RateBase" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
@@ -182,8 +181,8 @@
           <Property Name="IdentificationDocumentFront" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="IdentificationDocumentBack" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="CustomerImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" FromRole="Customer" ToRole="Reservation" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" FromRole="Customer" ToRole="Reservation" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -191,7 +190,6 @@
           </Key>
           <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoomId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RoomName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoomCardNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoomLockNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoomTypeId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
@@ -204,6 +202,7 @@
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="RoomType" Relationship="Self.FK_Room_RoomType" FromRole="Room" ToRole="RoomType" />
           <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="RoomNo" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__RoomI__412EB0B6" FromRole="Room" ToRole="Reservation" />
         </EntityType>
         <EntityType Name="RoomType">
@@ -213,8 +212,6 @@
           <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RoomTypeId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RateBase" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_RoomType" FromRole="RoomType" ToRole="Room" />
@@ -278,14 +275,15 @@
           <Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="ReservationRefNo" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Status" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="PaymentMethod" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ReservationRefNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentMethod" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" FromRole="Reservation" ToRole="Customer" />
           <NavigationProperty Name="Room" Relationship="ESMART_HMSDBModel.FK__Reservati__RoomI__412EB0B6" FromRole="Reservation" ToRole="Room" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <Association Name="FK__Reservati__Custo__403A8C7D">
           <End Type="ESMART_HMSDBModel.Customer" Role="Customer" Multiplicity="1" />
@@ -348,10 +346,10 @@
           <EntitySetMapping Name="Rooms">
             <EntityTypeMapping TypeName="ESMART_HMSDBModel.Room">
               <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
                 <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RoomId" ColumnName="RoomId" />
-                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
                 <ScalarProperty Name="RoomCardNo" ColumnName="RoomCardNo" />
                 <ScalarProperty Name="RoomLockNo" ColumnName="RoomLockNo" />
                 <ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
@@ -372,8 +370,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="RateBase" ColumnName="RateBase" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
               </MappingFragment>
@@ -400,6 +396,7 @@
           <EntitySetMapping Name="Reservations">
             <EntityTypeMapping TypeName="ESMART_HMSDBModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />

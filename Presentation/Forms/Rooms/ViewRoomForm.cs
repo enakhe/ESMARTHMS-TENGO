@@ -33,7 +33,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 else
                 {
                     txtRoomId.Text = room.RoomId;
-                    txtRoomNo.Text = room.RoomName;
+                    txtRoomNo.Text = room.RoomNo;
                     txtRoomCard.Text = room.RoomCardNo;
                     txtRoomType.Text = room.RoomTypeName;
                     txtAdult.Text = room.AdultPerRoom.ToString();
@@ -93,7 +93,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 else
                 {
                     string roomId = roomViewModel.RoomId;
-                    string roomNo = roomViewModel.RoomName;
+                    string roomNo = roomViewModel.RoomNo;
                     string roomType = roomViewModel.RoomTypeName;
                     string adultPerRoom = roomViewModel.AdultPerRoom.ToString();
                     string childrenPerRoom = roomViewModel.ChildrenPerRoom.ToString();

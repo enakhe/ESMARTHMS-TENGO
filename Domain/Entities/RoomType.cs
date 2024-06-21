@@ -23,8 +23,6 @@ namespace ESMART_HMS.Domain.Entities
         public string Id { get; set; }
         public string RoomTypeId { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-        public decimal RateBase { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }

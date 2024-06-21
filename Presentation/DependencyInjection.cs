@@ -1,8 +1,7 @@
-﻿using ESMART_HMS.Forms;
-using ESMART_HMS.Forms.Rooms;
-using ESMART_HMS.Presentation.Controllers;
+﻿using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Customers;
+using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +16,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<CustomerController>();
             services.AddScoped<RoomController>();
             services.AddScoped<RoomTypeController>();
+            services.AddScoped<ReservationController>();
 
             // Forms
             services.AddScoped<LoginForm>();
@@ -33,6 +33,9 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<EditRoomForm>();
 
             services.AddScoped<AddRoomTypeForm>();
+
+            services.AddScoped<ReservationForm>();
+            services.AddScoped<AddReservationForm>();
 
             return services;
         }

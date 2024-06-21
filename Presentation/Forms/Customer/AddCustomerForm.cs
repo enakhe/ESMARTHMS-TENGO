@@ -89,6 +89,12 @@ namespace ESMART_HMS.Presentation.Forms.Customers
 
                 else
                 {
+                    Random random = new Random();
+
+                    customer.Id = Guid.NewGuid().ToString();
+                    customer.CustomerId = "HMS" + random.Next(1000, 5000);
+                    customer.IsTrashed = false;
+
                     customer.Title = txtTitle.Text.Trim().ToUpper();
                     customer.FirstName = txtFirstName.Text.Trim().ToUpper();
                     customer.LastName = txtLastName.Text.Trim().ToUpper();

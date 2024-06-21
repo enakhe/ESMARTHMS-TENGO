@@ -1,4 +1,4 @@
-﻿namespace ESMART_HMS.Forms.Rooms
+﻿namespace ESMART_HMS.Presentation.Forms.Rooms
 {
     partial class RoomForm
     {
@@ -51,11 +51,11 @@
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rightButtonFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.addRoomBtn = new System.Windows.Forms.Button();
-            this.btnViewDetails = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.topFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.totalCountPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtAvailableRooms = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtRoomCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -68,9 +68,9 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtAvailableRooms = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnViewDetails = new System.Windows.Forms.Button();
+            this.addRoomBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
@@ -78,9 +78,9 @@
             this.rightButtonFlowPanel.SuspendLayout();
             this.topFlowPanel.SuspendLayout();
             this.totalCountPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.searchPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvRooms
@@ -165,8 +165,8 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "RoomName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "RoomName";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "RoomNo";
+            this.dataGridViewTextBoxColumn2.HeaderText = "RoomNo";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -288,49 +288,6 @@
             this.rightButtonFlowPanel.Size = new System.Drawing.Size(277, 477);
             this.rightButtonFlowPanel.TabIndex = 13;
             // 
-            // addRoomBtn
-            // 
-            this.addRoomBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addRoomBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.addRoomBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addRoomBtn.Location = new System.Drawing.Point(23, 3);
-            this.addRoomBtn.Name = "addRoomBtn";
-            this.addRoomBtn.Size = new System.Drawing.Size(229, 50);
-            this.addRoomBtn.TabIndex = 9;
-            this.addRoomBtn.Text = "Add Room";
-            this.addRoomBtn.UseVisualStyleBackColor = true;
-            this.addRoomBtn.Click += new System.EventHandler(this.addRoomBtn_Click);
-            // 
-            // btnViewDetails
-            // 
-            this.btnViewDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.btnViewDetails.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnViewDetails.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnViewDetails.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewDetails.ForeColor = System.Drawing.Color.White;
-            this.btnViewDetails.Location = new System.Drawing.Point(23, 59);
-            this.btnViewDetails.Name = "btnViewDetails";
-            this.btnViewDetails.Size = new System.Drawing.Size(229, 50);
-            this.btnViewDetails.TabIndex = 11;
-            this.btnViewDetails.Text = "View Room";
-            this.btnViewDetails.UseVisualStyleBackColor = false;
-            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(23, 115);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(229, 50);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete Room";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // topFlowPanel
             // 
             this.topFlowPanel.BackColor = System.Drawing.Color.White;
@@ -351,6 +308,38 @@
             this.totalCountPanel.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.totalCountPanel.Size = new System.Drawing.Size(1504, 216);
             this.totalCountPanel.TabIndex = 14;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.txtAvailableRooms);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Location = new System.Drawing.Point(350, 61);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(322, 143);
+            this.panel1.TabIndex = 14;
+            // 
+            // txtAvailableRooms
+            // 
+            this.txtAvailableRooms.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAvailableRooms.ForeColor = System.Drawing.Color.White;
+            this.txtAvailableRooms.Location = new System.Drawing.Point(23, 42);
+            this.txtAvailableRooms.Name = "txtAvailableRooms";
+            this.txtAvailableRooms.Size = new System.Drawing.Size(274, 101);
+            this.txtAvailableRooms.TabIndex = 1;
+            this.txtAvailableRooms.Text = "0";
+            this.txtAvailableRooms.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(18, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(161, 28);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Available Rooms";
             // 
             // panel3
             // 
@@ -471,37 +460,48 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
-            // panel1
+            // btnDelete
             // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Controls.Add(this.txtAvailableRooms);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(350, 61);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(322, 143);
-            this.panel1.TabIndex = 14;
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(23, 115);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(229, 50);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Delete Room";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // txtAvailableRooms
+            // btnViewDetails
             // 
-            this.txtAvailableRooms.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAvailableRooms.ForeColor = System.Drawing.Color.White;
-            this.txtAvailableRooms.Location = new System.Drawing.Point(23, 42);
-            this.txtAvailableRooms.Name = "txtAvailableRooms";
-            this.txtAvailableRooms.Size = new System.Drawing.Size(274, 101);
-            this.txtAvailableRooms.TabIndex = 1;
-            this.txtAvailableRooms.Text = "0";
-            this.txtAvailableRooms.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnViewDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.btnViewDetails.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnViewDetails.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnViewDetails.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewDetails.ForeColor = System.Drawing.Color.White;
+            this.btnViewDetails.Location = new System.Drawing.Point(23, 59);
+            this.btnViewDetails.Name = "btnViewDetails";
+            this.btnViewDetails.Size = new System.Drawing.Size(229, 50);
+            this.btnViewDetails.TabIndex = 11;
+            this.btnViewDetails.Text = "View Room";
+            this.btnViewDetails.UseVisualStyleBackColor = false;
+            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
             // 
-            // label6
+            // addRoomBtn
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(18, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(161, 28);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Available Rooms";
+            this.addRoomBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addRoomBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.addRoomBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addRoomBtn.Location = new System.Drawing.Point(23, 3);
+            this.addRoomBtn.Name = "addRoomBtn";
+            this.addRoomBtn.Size = new System.Drawing.Size(229, 50);
+            this.addRoomBtn.TabIndex = 9;
+            this.addRoomBtn.Text = "Add Room";
+            this.addRoomBtn.UseVisualStyleBackColor = true;
+            this.addRoomBtn.Click += new System.EventHandler(this.addRoomBtn_Click);
             // 
             // RoomForm
             // 
@@ -528,12 +528,12 @@
             this.topFlowPanel.ResumeLayout(false);
             this.totalCountPanel.ResumeLayout(false);
             this.totalCountPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -543,9 +543,6 @@
         private System.Windows.Forms.DataGridView dgvRooms;
         private System.Windows.Forms.BindingSource roomBindingSource;
         private System.Windows.Forms.FlowLayoutPanel rightButtonFlowPanel;
-        private System.Windows.Forms.Button addRoomBtn;
-        private System.Windows.Forms.Button btnViewDetails;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.FlowLayoutPanel topFlowPanel;
         private System.Windows.Forms.Panel totalCountPanel;
         private System.Windows.Forms.Panel panel3;
@@ -589,5 +586,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label txtAvailableRooms;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button addRoomBtn;
+        private System.Windows.Forms.Button btnViewDetails;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

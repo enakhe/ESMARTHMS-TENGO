@@ -45,7 +45,7 @@ namespace ESMART_HMS.Repositories
                               {
                                   Id = room.Id,
                                   RoomId = room.RoomId,
-                                  RoomName = room.RoomName,
+                                  RoomNo = room.RoomNo,
                                   RoomCardNo = room.RoomCardNo,
                                   RoomLockNo = room.RoomLockNo,
                                   AdultPerRoom = room.AdultPerRoom,
@@ -77,7 +77,7 @@ namespace ESMART_HMS.Repositories
                 {
                     Id = room.Id,
                     RoomId = room.RoomId,
-                    RoomName = room.RoomName,
+                    RoomNo = room.RoomNo,
                     RoomCardNo = room.RoomCardNo,
                     RoomLockNo = room.RoomLockNo,
                     AdultPerRoom = room.AdultPerRoom,
@@ -163,7 +163,7 @@ namespace ESMART_HMS.Repositories
                               {
                                   Id = room.Id,
                                   RoomId = room.RoomId,
-                                  RoomName = room.RoomName,
+                                  RoomNo = room.RoomNo,
                                   RoomCardNo = room.RoomCardNo,
                                   RoomLockNo = room.RoomLockNo,
                                   AdultPerRoom = room.AdultPerRoom,

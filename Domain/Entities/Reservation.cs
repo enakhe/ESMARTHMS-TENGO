@@ -20,12 +20,13 @@ namespace ESMART_HMS.Domain.Entities
         public string RoomId { get; set; }
         public System.DateTime CheckInDate { get; set; }
         public System.DateTime CheckOutDate { get; set; }
-        public System.DateTime ReservationRefNo { get; set; }
-        public System.DateTime Status { get; set; }
-        public System.DateTime PaymentMethod { get; set; }
+        public string ReservationRefNo { get; set; }
+        public string Status { get; set; }
+        public string PaymentMethod { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
+        public decimal Amount { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Room Room { get; set; }

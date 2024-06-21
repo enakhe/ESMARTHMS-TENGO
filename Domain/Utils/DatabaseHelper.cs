@@ -35,8 +35,6 @@ namespace ESMART_HMS
                     "[Id] [nvarchar](450) NOT NULL," +
                     "[RoomTypeId][nvarchar](450) NOT NULL," +
                     "[Title][nvarchar](max) NOT NULL," +
-                    "[Description][nvarchar](max) NOT NULL," +
-                    "[RateBase][decimal](10,2) NOT NULL," +
                     "[DateCreated][datetime2](7) NOT NULL," +
                     "[DateModified][datetime2](7) NOT NULL," +
                     "[IsTrashed][bit] NOT NULL," +
@@ -45,7 +43,7 @@ namespace ESMART_HMS
                 CreateTable("Room",
                     "[Id][nvarchar](450) NOT NULL," +
                     "[RoomId][nvarchar](450) NOT NULL," +
-                    "[RoomName][nvarchar](max) NOT NULL," +
+                    "[RoomNo][nvarchar](max) NOT NULL," +
                     "[RoomCardNo][nvarchar](max) NOT NULL," +
                     "[RoomLockNo][nvarchar](max) NOT NULL," +
                     "[RoomTypeId][nvarchar](450) NOT NULL," +
@@ -93,9 +91,10 @@ namespace ESMART_HMS
                     "[RoomId][nvarchar](450) NOT NULL," +
                     "[CheckInDate][datetime2](7) NOT NULL," +
                     "[CheckOutDate][datetime2](7) NOT NULL," +
-                    "[ReservationRefNo][datetime2](7) NOT NULL," +
-                    "[Status][datetime2](7) NOT NULL," +
-                    "[PaymentMethod][datetime2](7) NOT NULL," +
+                    "[ReservationRefNo][nvarchar](450) NOT NULL," +
+                    "[Status][nvarchar](450) NOT NULL," +
+                    "[PaymentMethod][nvarchar](450) NOT NULL," +
+                    "[Amount][decimal](10, 2) NOT NULL," +
                     "[DateCreated][datetime2](7) NOT NULL," +
                     "[DateModified][datetime2](7) NOT NULL," +
                     "[IsTrashed][bit] NOT NULL," +

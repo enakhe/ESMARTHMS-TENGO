@@ -36,6 +36,7 @@ namespace ESMART_HMS.Application
 
             // Reservation Use Case
             services.AddScoped<CreateReservationUseCase>();
+            services.AddScoped<GetAllReservationUseCase>(); 
 
             return services;
         }

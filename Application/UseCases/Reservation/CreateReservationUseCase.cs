@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace ESMART_HMS.Application.UseCases.Reservation
 {
-    public class AddReservationUseCase
+    public class CreateReservationUseCase
     {
         private readonly IReservationRepository _reservationRepository;
 
-        public AddReservationUseCase(IReservationRepository reservationRepository)
+        public CreateReservationUseCase(IReservationRepository reservationRepository)
         {
             _reservationRepository = reservationRepository;
         }
 
         public void Execute(ESMART_HMS.Domain.Entities.Reservation reservation)
-        {
+        { 
             _reservationRepository.AddReservation(reservation);
         }
     }

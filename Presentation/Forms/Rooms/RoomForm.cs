@@ -1,10 +1,9 @@
 ﻿using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Forms.Rooms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Forms.Rooms
+namespace ESMART_HMS.Presentation.Forms.Rooms
 {
     public partial class RoomForm : Form
     {
