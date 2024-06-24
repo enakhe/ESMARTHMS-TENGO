@@ -278,6 +278,10 @@
     <Compile Include="Domain\Entities\Reservation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Entities\Room.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Enum\RoomStatusEnum.cs" />
     <Compile Include="Domain\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />
     <Compile Include="Domain\Interfaces\IReservationRepository.cs" />
@@ -346,9 +350,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\Entities\Room.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\RoomType.cs">
       <DependentUpon>Model.tt</DependentUpon>

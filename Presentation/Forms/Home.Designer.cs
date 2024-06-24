@@ -159,14 +159,14 @@
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             this.roomsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10, 1, 10, 1);
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
             this.roomsToolStripMenuItem.Text = "View all Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // roomsFacilitiesToolStripMenuItem
             // 
             this.roomsFacilitiesToolStripMenuItem.Name = "roomsFacilitiesToolStripMenuItem";
-            this.roomsFacilitiesToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
+            this.roomsFacilitiesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.roomsFacilitiesToolStripMenuItem.Text = "Rooms Facilities";
             // 
             // roomReservationToolStripMenuItem
@@ -184,7 +184,7 @@
             // 
             this.reservationListToolStripMenuItem.Name = "reservationListToolStripMenuItem";
             this.reservationListToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.reservationListToolStripMenuItem.Text = "Booking List";
+            this.reservationListToolStripMenuItem.Text = "Reservation List";
             this.reservationListToolStripMenuItem.Click += new System.EventHandler(this.reservationListToolStripMenuItem_Click);
             // 
             // roomCheckoutToolStripMenuItem

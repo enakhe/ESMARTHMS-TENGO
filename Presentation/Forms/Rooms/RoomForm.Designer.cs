@@ -33,24 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvRooms = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoomTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adultPerRoomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.childrenPerRoomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roomBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rightButtonFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.addRoomBtn = new System.Windows.Forms.Button();
+            this.btnViewDetails = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.topFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.totalCountPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -68,9 +57,23 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnViewDetails = new System.Windows.Forms.Button();
-            this.addRoomBtn = new System.Windows.Forms.Button();
+            this.fKReservatiRoomI412EB0B6BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reservationTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.ReservationTableAdapter();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoomTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adultPerRoomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.childrenPerRoomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
@@ -81,6 +84,7 @@
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.searchPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fKReservatiRoomI412EB0B6BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvRooms
@@ -115,6 +119,7 @@
             this.descriptionDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewCheckBoxColumn1,
+            this.Status,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
             this.dgvRooms.DataSource = this.roomBindingSource1;
@@ -146,120 +151,6 @@
             this.dgvRooms.TabIndex = 5;
             this.dgvRooms.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRooms_CellDoubleClick);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "RoomId";
-            this.dataGridViewTextBoxColumn1.HeaderText = "RoomId";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "RoomNo";
-            this.dataGridViewTextBoxColumn2.HeaderText = "RoomNo";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "RoomCardNo";
-            this.dataGridViewTextBoxColumn3.HeaderText = "RoomCardNo";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "RoomLockNo";
-            this.dataGridViewTextBoxColumn4.HeaderText = "RoomLockNo";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "RoomTypeId";
-            this.dataGridViewTextBoxColumn5.HeaderText = "RoomTypeId";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // RoomTypeName
-            // 
-            this.RoomTypeName.DataPropertyName = "RoomTypeName";
-            this.RoomTypeName.HeaderText = "RoomTypeName";
-            this.RoomTypeName.MinimumWidth = 6;
-            this.RoomTypeName.Name = "RoomTypeName";
-            this.RoomTypeName.ReadOnly = true;
-            // 
-            // adultPerRoomDataGridViewTextBoxColumn
-            // 
-            this.adultPerRoomDataGridViewTextBoxColumn.DataPropertyName = "AdultPerRoom";
-            this.adultPerRoomDataGridViewTextBoxColumn.HeaderText = "AdultPerRoom";
-            this.adultPerRoomDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.adultPerRoomDataGridViewTextBoxColumn.Name = "adultPerRoomDataGridViewTextBoxColumn";
-            this.adultPerRoomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // childrenPerRoomDataGridViewTextBoxColumn
-            // 
-            this.childrenPerRoomDataGridViewTextBoxColumn.DataPropertyName = "ChildrenPerRoom";
-            this.childrenPerRoomDataGridViewTextBoxColumn.HeaderText = "ChildrenPerRoom";
-            this.childrenPerRoomDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.childrenPerRoomDataGridViewTextBoxColumn.Name = "childrenPerRoomDataGridViewTextBoxColumn";
-            this.childrenPerRoomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Rate";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Rate";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "IsAvailable";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "IsAvailable";
-            this.dataGridViewCheckBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "DateCreated";
-            this.dataGridViewTextBoxColumn7.HeaderText = "DateCreated";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "DateModified";
-            this.dataGridViewTextBoxColumn8.HeaderText = "DateModified";
-            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
             // roomBindingSource1
             // 
             this.roomBindingSource1.DataMember = "Room";
@@ -287,6 +178,49 @@
             this.rightButtonFlowPanel.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.rightButtonFlowPanel.Size = new System.Drawing.Size(277, 477);
             this.rightButtonFlowPanel.TabIndex = 13;
+            // 
+            // addRoomBtn
+            // 
+            this.addRoomBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addRoomBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.addRoomBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addRoomBtn.Location = new System.Drawing.Point(23, 3);
+            this.addRoomBtn.Name = "addRoomBtn";
+            this.addRoomBtn.Size = new System.Drawing.Size(229, 50);
+            this.addRoomBtn.TabIndex = 9;
+            this.addRoomBtn.Text = "Add Room";
+            this.addRoomBtn.UseVisualStyleBackColor = true;
+            this.addRoomBtn.Click += new System.EventHandler(this.addRoomBtn_Click);
+            // 
+            // btnViewDetails
+            // 
+            this.btnViewDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
+            this.btnViewDetails.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnViewDetails.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnViewDetails.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewDetails.ForeColor = System.Drawing.Color.White;
+            this.btnViewDetails.Location = new System.Drawing.Point(23, 59);
+            this.btnViewDetails.Name = "btnViewDetails";
+            this.btnViewDetails.Size = new System.Drawing.Size(229, 50);
+            this.btnViewDetails.TabIndex = 11;
+            this.btnViewDetails.Text = "View Room";
+            this.btnViewDetails.UseVisualStyleBackColor = false;
+            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(23, 115);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(229, 50);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Delete Room";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // topFlowPanel
             // 
@@ -460,48 +394,139 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
-            // btnDelete
+            // fKReservatiRoomI412EB0B6BindingSource
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(23, 115);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(229, 50);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete Room";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.fKReservatiRoomI412EB0B6BindingSource.DataMember = "FK__Reservati__RoomI__412EB0B6";
+            this.fKReservatiRoomI412EB0B6BindingSource.DataSource = this.roomBindingSource1;
             // 
-            // btnViewDetails
+            // reservationTableAdapter
             // 
-            this.btnViewDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.btnViewDetails.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnViewDetails.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnViewDetails.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewDetails.ForeColor = System.Drawing.Color.White;
-            this.btnViewDetails.Location = new System.Drawing.Point(23, 59);
-            this.btnViewDetails.Name = "btnViewDetails";
-            this.btnViewDetails.Size = new System.Drawing.Size(229, 50);
-            this.btnViewDetails.TabIndex = 11;
-            this.btnViewDetails.Text = "View Room";
-            this.btnViewDetails.UseVisualStyleBackColor = false;
-            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
+            this.reservationTableAdapter.ClearBeforeFill = true;
             // 
-            // addRoomBtn
+            // idDataGridViewTextBoxColumn
             // 
-            this.addRoomBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addRoomBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.addRoomBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addRoomBtn.Location = new System.Drawing.Point(23, 3);
-            this.addRoomBtn.Name = "addRoomBtn";
-            this.addRoomBtn.Size = new System.Drawing.Size(229, 50);
-            this.addRoomBtn.TabIndex = 9;
-            this.addRoomBtn.Text = "Add Room";
-            this.addRoomBtn.UseVisualStyleBackColor = true;
-            this.addRoomBtn.Click += new System.EventHandler(this.addRoomBtn_Click);
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "RoomId";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Room Id";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "RoomNo";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Room No";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "RoomCardNo";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Room Card No";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "RoomLockNo";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Room Lock No";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "RoomTypeId";
+            this.dataGridViewTextBoxColumn5.HeaderText = "RoomTypeId";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // RoomTypeName
+            // 
+            this.RoomTypeName.DataPropertyName = "RoomTypeName";
+            this.RoomTypeName.HeaderText = "Room Type";
+            this.RoomTypeName.MinimumWidth = 6;
+            this.RoomTypeName.Name = "RoomTypeName";
+            this.RoomTypeName.ReadOnly = true;
+            // 
+            // adultPerRoomDataGridViewTextBoxColumn
+            // 
+            this.adultPerRoomDataGridViewTextBoxColumn.DataPropertyName = "AdultPerRoom";
+            this.adultPerRoomDataGridViewTextBoxColumn.HeaderText = "Adult Per Room";
+            this.adultPerRoomDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.adultPerRoomDataGridViewTextBoxColumn.Name = "adultPerRoomDataGridViewTextBoxColumn";
+            this.adultPerRoomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // childrenPerRoomDataGridViewTextBoxColumn
+            // 
+            this.childrenPerRoomDataGridViewTextBoxColumn.DataPropertyName = "ChildrenPerRoom";
+            this.childrenPerRoomDataGridViewTextBoxColumn.HeaderText = "Children Per Room";
+            this.childrenPerRoomDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.childrenPerRoomDataGridViewTextBoxColumn.Name = "childrenPerRoomDataGridViewTextBoxColumn";
+            this.childrenPerRoomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.descriptionDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Rate";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Rate";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "IsAvailable";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "IsAvailable";
+            this.dataGridViewCheckBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Visible = false;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "DateCreated";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Date Created";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "DateModified";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Date Modified";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
             // RoomForm
             // 
@@ -534,6 +559,7 @@
             this.panel3.PerformLayout();
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fKReservatiRoomI412EB0B6BindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -569,6 +595,14 @@
         private ESMART_HMSDBDataSet eSMART_HMSDBDataSet;
         private System.Windows.Forms.BindingSource roomBindingSource1;
         private ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter roomTableAdapter;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label txtAvailableRooms;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button addRoomBtn;
+        private System.Windows.Forms.Button btnViewDetails;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.BindingSource fKReservatiRoomI412EB0B6BindingSource;
+        private ESMART_HMSDBDataSetTableAdapters.ReservationTableAdapter reservationTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -581,13 +615,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label txtAvailableRooms;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button addRoomBtn;
-        private System.Windows.Forms.Button btnViewDetails;
-        private System.Windows.Forms.Button btnDelete;
     }
 }

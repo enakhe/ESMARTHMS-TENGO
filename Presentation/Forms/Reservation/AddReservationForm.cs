@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Customers;
@@ -15,13 +16,11 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private readonly CustomerController _customerController;
         private readonly RoomController _roomController;
         private readonly ReservationController _reservationController;
-        private readonly FormHelper _formHelper;
-        public AddReservationForm(CustomerController customerController, RoomController roomController, ReservationController reservationController, FormHelper formHelper)
+        public AddReservationForm(CustomerController customerController, RoomController roomController, ReservationController reservationController)
         {
             _customerController = customerController;
             _reservationController = reservationController;
             _roomController = roomController;
-            _formHelper = formHelper;
             InitializeComponent();
         }
 
@@ -76,6 +75,36 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             }
         }
 
+        private void txtRoom_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtCheckOut.Text, txtCheckIn.Text, txtRoom.SelectedValue.ToString());
+            if (isNull == false)
+            {
+                Room room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
+                txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
+            }
+        }
+
+        private void txtCheckIn_ValueChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtCheckOut.Text, txtCheckIn.Text, txtRoom.SelectedValue.ToString());
+            if (isNull == false)
+            {
+                Room room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
+                txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
+            }
+        }
+
+        private void txtCheckOut_ValueChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtCheckOut.Text, txtCheckIn.Text, txtRoom.SelectedValue.ToString());
+            if (isNull == false)
+            {
+                Room room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
+                txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -94,16 +123,18 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                 reservation.CheckOutDate = txtCheckOut.Value;
 
                 reservation.PaymentMethod = txtPaymentMethod.Text;
-                reservation.ReservationRefNo = "REF" + random.Next(10000, 50000);
-                reservation.Status = txtStatus.Text;
-
-                reservation.Amount = _formHelper.GetPriceByRateAndTime(reservation.CheckInDate, reservation.CheckOutDate, reservation.Room.Rate);
+                reservation.Amount = FormHelper.GetPriceByRateAndTime(reservation.CheckInDate, reservation.CheckOutDate, reservation.Room.Rate);
 
                 reservation.IsTrashed = false;
                 reservation.DateCreated = DateTime.Now;
                 reservation.DateModified = DateTime.Now;
 
+                Room room = _roomController.GetRealRoom(reservation.RoomId);
+                room.Status = RoomStatusEnum.Reserved.ToString();
+                room.DateModified = DateTime.Now;
+
                 _reservationController.AddReservation(reservation);
+                _roomController.UpdateRoom(room);
                 this.DialogResult = DialogResult.OK;
 
                 this.Close();

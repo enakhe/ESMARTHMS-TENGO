@@ -10,7 +10,7 @@
     <Shape ID="DesignTable:Room" ZOrder="1" X="376" Y="70" Height="365" Width="208" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="306" />
     <Shape ID="DesignTable:RoomType" ZOrder="7" X="654" Y="70" Height="204" Width="243" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
     <Shape ID="DesignTable:User" ZOrder="6" X="967" Y="70" Height="342" Width="197" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="283" />
-    <Shape ID="DesignTable:Reservation" ZOrder="4" X="692" Y="386" Height="365" Width="251" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="306" />
+    <Shape ID="DesignTable:Reservation" ZOrder="2" X="692" Y="386" Height="319" Width="251" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="260" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_Room_RoomType" ZOrder="5" LineWidth="11">
@@ -25,6 +25,18 @@
         </Point>
       </RoutePoints>
     </Connector>
+    <Connector ID="DesignRelation:FK__Reservati__RoomI__412EB0B6" ZOrder="4" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>584</X>
+          <Y>402</Y>
+        </Point>
+        <Point>
+          <X>692</X>
+          <Y>402</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
     <Connector ID="DesignRelation:FK__Reservati__Custo__403A8C7D" ZOrder="3" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -34,18 +46,6 @@
         <Point>
           <X>692</X>
           <Y>410</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
-    <Connector ID="DesignRelation:FK__Reservati__RoomI__412EB0B6" ZOrder="2" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>584</X>
-          <Y>402</Y>
-        </Point>
-        <Point>
-          <X>692</X>
-          <Y>402</Y>
         </Point>
       </RoutePoints>
     </Connector>

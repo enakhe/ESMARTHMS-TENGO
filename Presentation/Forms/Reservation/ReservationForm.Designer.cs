@@ -30,8 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReservationForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvReservation = new System.Windows.Forms.DataGridView();
@@ -114,28 +115,29 @@
             this.dateCreatedDataGridViewTextBoxColumn,
             this.dateModifiedDataGridViewTextBoxColumn});
             this.dgvReservation.DataSource = this.reservationBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReservation.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvReservation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvReservation.Location = new System.Drawing.Point(0, 0);
-            this.dgvReservation.Name = "dgvReservation";
-            this.dgvReservation.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvReservation.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReservation.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvReservation.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvReservation.GridColor = System.Drawing.Color.Black;
+            this.dgvReservation.Location = new System.Drawing.Point(0, 0);
+            this.dgvReservation.Name = "dgvReservation";
+            this.dgvReservation.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvReservation.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvReservation.RowHeadersWidth = 51;
             this.dgvReservation.RowTemplate.Height = 24;
             this.dgvReservation.Size = new System.Drawing.Size(1784, 307);
@@ -189,7 +191,7 @@
             this.btnViewDetails.Name = "btnViewDetails";
             this.btnViewDetails.Size = new System.Drawing.Size(229, 50);
             this.btnViewDetails.TabIndex = 12;
-            this.btnViewDetails.Text = "View Reservation";
+            this.btnViewDetails.Text = "View Details";
             this.btnViewDetails.UseVisualStyleBackColor = false;
             // 
             // btnDelete
@@ -202,7 +204,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(229, 50);
             this.btnDelete.TabIndex = 11;
-            this.btnDelete.Text = "Delete Room";
+            this.btnDelete.Text = "Delete Reservation";
             this.btnDelete.UseVisualStyleBackColor = false;
             // 
             // flowLayoutPanel2
@@ -251,9 +253,9 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(18, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 28);
+            this.label2.Size = new System.Drawing.Size(176, 28);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Total Rooms";
+            this.label2.Text = "Total Reservations";
             // 
             // label1
             // 
@@ -262,9 +264,9 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(23, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 54);
+            this.label1.Size = new System.Drawing.Size(246, 54);
             this.label1.TabIndex = 15;
-            this.label1.Text = "Room";
+            this.label1.Text = "Reservation";
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -278,7 +280,7 @@
             // reservationIdDataGridViewTextBoxColumn
             // 
             this.reservationIdDataGridViewTextBoxColumn.DataPropertyName = "ReservationId";
-            this.reservationIdDataGridViewTextBoxColumn.HeaderText = "ReservationId";
+            this.reservationIdDataGridViewTextBoxColumn.HeaderText = "Reservation Id";
             this.reservationIdDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.reservationIdDataGridViewTextBoxColumn.Name = "reservationIdDataGridViewTextBoxColumn";
             this.reservationIdDataGridViewTextBoxColumn.ReadOnly = true;
@@ -359,6 +361,8 @@
             // Amount
             // 
             this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle2;
             this.Amount.HeaderText = "Amount";
             this.Amount.MinimumWidth = 6;
             this.Amount.Name = "Amount";

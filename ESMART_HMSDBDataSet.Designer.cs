@@ -36,9 +36,9 @@ namespace ESMART_HMS {
         
         private global::System.Data.DataRelation relationFK_Room_RoomType;
         
-        private global::System.Data.DataRelation relationFK__Reservati__Custo__403A8C7D;
-        
         private global::System.Data.DataRelation relationFK__Reservati__RoomI__412EB0B6;
+        
+        private global::System.Data.DataRelation relationFK__Reservati__Custo__403A8C7D;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -297,8 +297,8 @@ namespace ESMART_HMS {
                 }
             }
             this.relationFK_Room_RoomType = this.Relations["FK_Room_RoomType"];
-            this.relationFK__Reservati__Custo__403A8C7D = this.Relations["FK__Reservati__Custo__403A8C7D"];
             this.relationFK__Reservati__RoomI__412EB0B6 = this.Relations["FK__Reservati__RoomI__412EB0B6"];
+            this.relationFK__Reservati__Custo__403A8C7D = this.Relations["FK__Reservati__Custo__403A8C7D"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -323,14 +323,14 @@ namespace ESMART_HMS {
                         this.tableRoomType.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableRoom.RoomTypeIdColumn}, false);
             this.Relations.Add(this.relationFK_Room_RoomType);
-            this.relationFK__Reservati__Custo__403A8C7D = new global::System.Data.DataRelation("FK__Reservati__Custo__403A8C7D", new global::System.Data.DataColumn[] {
-                        this.tableCustomer.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableReservation.CustomerIdColumn}, false);
-            this.Relations.Add(this.relationFK__Reservati__Custo__403A8C7D);
             this.relationFK__Reservati__RoomI__412EB0B6 = new global::System.Data.DataRelation("FK__Reservati__RoomI__412EB0B6", new global::System.Data.DataColumn[] {
                         this.tableRoom.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableReservation.RoomIdColumn}, false);
             this.Relations.Add(this.relationFK__Reservati__RoomI__412EB0B6);
+            this.relationFK__Reservati__Custo__403A8C7D = new global::System.Data.DataRelation("FK__Reservati__Custo__403A8C7D", new global::System.Data.DataColumn[] {
+                        this.tableCustomer.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableReservation.CustomerIdColumn}, false);
+            this.Relations.Add(this.relationFK__Reservati__Custo__403A8C7D);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1067,11 +1067,13 @@ namespace ESMART_HMS {
             
             private global::System.Data.DataColumn columnRate;
             
-            private global::System.Data.DataColumn columnIsAvailable;
-            
             private global::System.Data.DataColumn columnDateCreated;
             
             private global::System.Data.DataColumn columnDateModified;
+            
+            private global::System.Data.DataColumn columnStatus;
+            
+            private global::System.Data.DataColumn columnIsTrashed;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -1188,14 +1190,6 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IsAvailableColumn {
-                get {
-                    return this.columnIsAvailable;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn DateCreatedColumn {
                 get {
                     return this.columnDateCreated;
@@ -1207,6 +1201,22 @@ namespace ESMART_HMS {
             public global::System.Data.DataColumn DateModifiedColumn {
                 get {
                     return this.columnDateModified;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StatusColumn {
+                get {
+                    return this.columnStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsTrashedColumn {
+                get {
+                    return this.columnIsTrashed;
                 }
             }
             
@@ -1247,7 +1257,7 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RoomRow AddRoomRow(string Id, string RoomId, string RoomNo, string RoomCardNo, string RoomLockNo, RoomTypeRow parentRoomTypeRowByFK_Room_RoomType, int AdultPerRoom, int ChildrenPerRoom, string Description, decimal Rate, bool IsAvailable, System.DateTime DateCreated, System.DateTime DateModified) {
+            public RoomRow AddRoomRow(string Id, string RoomId, string RoomNo, string RoomCardNo, string RoomLockNo, RoomTypeRow parentRoomTypeRowByFK_Room_RoomType, int AdultPerRoom, int ChildrenPerRoom, string Description, decimal Rate, System.DateTime DateCreated, System.DateTime DateModified, string Status, bool IsTrashed) {
                 RoomRow rowRoomRow = ((RoomRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -1260,9 +1270,10 @@ namespace ESMART_HMS {
                         ChildrenPerRoom,
                         Description,
                         Rate,
-                        IsAvailable,
                         DateCreated,
-                        DateModified};
+                        DateModified,
+                        Status,
+                        IsTrashed};
                 if ((parentRoomTypeRowByFK_Room_RoomType != null)) {
                     columnValuesArray[5] = parentRoomTypeRowByFK_Room_RoomType[0];
                 }
@@ -1305,9 +1316,10 @@ namespace ESMART_HMS {
                 this.columnChildrenPerRoom = base.Columns["ChildrenPerRoom"];
                 this.columnDescription = base.Columns["Description"];
                 this.columnRate = base.Columns["Rate"];
-                this.columnIsAvailable = base.Columns["IsAvailable"];
                 this.columnDateCreated = base.Columns["DateCreated"];
                 this.columnDateModified = base.Columns["DateModified"];
+                this.columnStatus = base.Columns["Status"];
+                this.columnIsTrashed = base.Columns["IsTrashed"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1333,12 +1345,14 @@ namespace ESMART_HMS {
                 base.Columns.Add(this.columnDescription);
                 this.columnRate = new global::System.Data.DataColumn("Rate", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRate);
-                this.columnIsAvailable = new global::System.Data.DataColumn("IsAvailable", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsAvailable);
                 this.columnDateCreated = new global::System.Data.DataColumn("DateCreated", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateCreated);
                 this.columnDateModified = new global::System.Data.DataColumn("DateModified", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateModified);
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus);
+                this.columnIsTrashed = new global::System.Data.DataColumn("IsTrashed", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsTrashed);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -1356,12 +1370,13 @@ namespace ESMART_HMS {
                 this.columnRoomTypeId.MaxLength = 450;
                 this.columnAdultPerRoom.AllowDBNull = false;
                 this.columnChildrenPerRoom.AllowDBNull = false;
-                this.columnDescription.AllowDBNull = false;
                 this.columnDescription.MaxLength = 2147483647;
                 this.columnRate.AllowDBNull = false;
-                this.columnIsAvailable.AllowDBNull = false;
                 this.columnDateCreated.AllowDBNull = false;
                 this.columnDateModified.AllowDBNull = false;
+                this.columnStatus.AllowDBNull = false;
+                this.columnStatus.MaxLength = 450;
+                this.columnIsTrashed.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2243,10 +2258,6 @@ namespace ESMART_HMS {
             
             private global::System.Data.DataColumn columnCheckOutDate;
             
-            private global::System.Data.DataColumn columnReservationRefNo;
-            
-            private global::System.Data.DataColumn columnStatus;
-            
             private global::System.Data.DataColumn columnPaymentMethod;
             
             private global::System.Data.DataColumn columnDateCreated;
@@ -2254,30 +2265,6 @@ namespace ESMART_HMS {
             private global::System.Data.DataColumn columnDateModified;
             
             private global::System.Data.DataColumn columnIsTrashed;
-            
-            private global::System.Data.DataColumn columnReservationRefNo1;
-            
-            private global::System.Data.DataColumn columnStatus1;
-            
-            private global::System.Data.DataColumn columnPaymentMethod1;
-            
-            private global::System.Data.DataColumn columnId1;
-            
-            private global::System.Data.DataColumn columnReservationId1;
-            
-            private global::System.Data.DataColumn columnCustomerId1;
-            
-            private global::System.Data.DataColumn columnRoomId1;
-            
-            private global::System.Data.DataColumn columnCheckInDate1;
-            
-            private global::System.Data.DataColumn columnCheckOutDate1;
-            
-            private global::System.Data.DataColumn columnDateCreated1;
-            
-            private global::System.Data.DataColumn columnDateModified1;
-            
-            private global::System.Data.DataColumn columnIsTrashed1;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -2362,22 +2349,6 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ReservationRefNoColumn {
-                get {
-                    return this.columnReservationRefNo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn StatusColumn {
-                get {
-                    return this.columnStatus;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn PaymentMethodColumn {
                 get {
                     return this.columnPaymentMethod;
@@ -2405,102 +2376,6 @@ namespace ESMART_HMS {
             public global::System.Data.DataColumn IsTrashedColumn {
                 get {
                     return this.columnIsTrashed;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ReservationRefNo1Column {
-                get {
-                    return this.columnReservationRefNo1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Status1Column {
-                get {
-                    return this.columnStatus1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn PaymentMethod1Column {
-                get {
-                    return this.columnPaymentMethod1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Id1Column {
-                get {
-                    return this.columnId1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ReservationId1Column {
-                get {
-                    return this.columnReservationId1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CustomerId1Column {
-                get {
-                    return this.columnCustomerId1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn RoomId1Column {
-                get {
-                    return this.columnRoomId1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CheckInDate1Column {
-                get {
-                    return this.columnCheckInDate1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CheckOutDate1Column {
-                get {
-                    return this.columnCheckOutDate1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DateCreated1Column {
-                get {
-                    return this.columnDateCreated1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DateModified1Column {
-                get {
-                    return this.columnDateModified1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IsTrashed1Column {
-                get {
-                    return this.columnIsTrashed1;
                 }
             }
             
@@ -2541,31 +2416,7 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ReservationRow AddReservationRow(
-                        string Id, 
-                        string ReservationId, 
-                        CustomerRow parentCustomerRowByFK__Reservati__Custo__403A8C7D, 
-                        RoomRow parentRoomRowByFK__Reservati__RoomI__412EB0B6, 
-                        System.DateTime CheckInDate, 
-                        System.DateTime CheckOutDate, 
-                        System.DateTime ReservationRefNo, 
-                        System.DateTime Status, 
-                        System.DateTime PaymentMethod, 
-                        System.DateTime DateCreated, 
-                        System.DateTime DateModified, 
-                        bool IsTrashed, 
-                        string ReservationRefNo1, 
-                        string Status1, 
-                        string PaymentMethod1, 
-                        string Id1, 
-                        string ReservationId1, 
-                        string CustomerId1, 
-                        string RoomId1, 
-                        System.DateTime CheckInDate1, 
-                        System.DateTime CheckOutDate1, 
-                        System.DateTime DateCreated1, 
-                        System.DateTime DateModified1, 
-                        bool IsTrashed1) {
+            public ReservationRow AddReservationRow(string Id, string ReservationId, CustomerRow parentCustomerRowByFK__Reservati__Custo__403A8C7D, RoomRow parentRoomRowByFK__Reservati__RoomI__412EB0B6, System.DateTime CheckInDate, System.DateTime CheckOutDate, System.DateTime PaymentMethod, System.DateTime DateCreated, System.DateTime DateModified, bool IsTrashed) {
                 ReservationRow rowReservationRow = ((ReservationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -2574,24 +2425,10 @@ namespace ESMART_HMS {
                         null,
                         CheckInDate,
                         CheckOutDate,
-                        ReservationRefNo,
-                        Status,
                         PaymentMethod,
                         DateCreated,
                         DateModified,
-                        IsTrashed,
-                        ReservationRefNo1,
-                        Status1,
-                        PaymentMethod1,
-                        Id1,
-                        ReservationId1,
-                        CustomerId1,
-                        RoomId1,
-                        CheckInDate1,
-                        CheckOutDate1,
-                        DateCreated1,
-                        DateModified1,
-                        IsTrashed1};
+                        IsTrashed};
                 if ((parentCustomerRowByFK__Reservati__Custo__403A8C7D != null)) {
                     columnValuesArray[2] = parentCustomerRowByFK__Reservati__Custo__403A8C7D[0];
                 }
@@ -2605,10 +2442,9 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ReservationRow FindByIdId1(string Id, string Id1) {
+            public ReservationRow FindById(string Id) {
                 return ((ReservationRow)(this.Rows.Find(new object[] {
-                            Id,
-                            Id1})));
+                            Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2634,24 +2470,10 @@ namespace ESMART_HMS {
                 this.columnRoomId = base.Columns["RoomId"];
                 this.columnCheckInDate = base.Columns["CheckInDate"];
                 this.columnCheckOutDate = base.Columns["CheckOutDate"];
-                this.columnReservationRefNo = base.Columns["ReservationRefNo"];
-                this.columnStatus = base.Columns["Status"];
                 this.columnPaymentMethod = base.Columns["PaymentMethod"];
                 this.columnDateCreated = base.Columns["DateCreated"];
                 this.columnDateModified = base.Columns["DateModified"];
                 this.columnIsTrashed = base.Columns["IsTrashed"];
-                this.columnReservationRefNo1 = base.Columns["ReservationRefNo1"];
-                this.columnStatus1 = base.Columns["Status1"];
-                this.columnPaymentMethod1 = base.Columns["PaymentMethod1"];
-                this.columnId1 = base.Columns["Id1"];
-                this.columnReservationId1 = base.Columns["ReservationId1"];
-                this.columnCustomerId1 = base.Columns["CustomerId1"];
-                this.columnRoomId1 = base.Columns["RoomId1"];
-                this.columnCheckInDate1 = base.Columns["CheckInDate1"];
-                this.columnCheckOutDate1 = base.Columns["CheckOutDate1"];
-                this.columnDateCreated1 = base.Columns["DateCreated1"];
-                this.columnDateModified1 = base.Columns["DateModified1"];
-                this.columnIsTrashed1 = base.Columns["IsTrashed1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2669,10 +2491,6 @@ namespace ESMART_HMS {
                 base.Columns.Add(this.columnCheckInDate);
                 this.columnCheckOutDate = new global::System.Data.DataColumn("CheckOutDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCheckOutDate);
-                this.columnReservationRefNo = new global::System.Data.DataColumn("ReservationRefNo", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnReservationRefNo);
-                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus);
                 this.columnPaymentMethod = new global::System.Data.DataColumn("PaymentMethod", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPaymentMethod);
                 this.columnDateCreated = new global::System.Data.DataColumn("DateCreated", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -2681,34 +2499,10 @@ namespace ESMART_HMS {
                 base.Columns.Add(this.columnDateModified);
                 this.columnIsTrashed = new global::System.Data.DataColumn("IsTrashed", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsTrashed);
-                this.columnReservationRefNo1 = new global::System.Data.DataColumn("ReservationRefNo1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnReservationRefNo1);
-                this.columnStatus1 = new global::System.Data.DataColumn("Status1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus1);
-                this.columnPaymentMethod1 = new global::System.Data.DataColumn("PaymentMethod1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPaymentMethod1);
-                this.columnId1 = new global::System.Data.DataColumn("Id1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId1);
-                this.columnReservationId1 = new global::System.Data.DataColumn("ReservationId1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnReservationId1);
-                this.columnCustomerId1 = new global::System.Data.DataColumn("CustomerId1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerId1);
-                this.columnRoomId1 = new global::System.Data.DataColumn("RoomId1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRoomId1);
-                this.columnCheckInDate1 = new global::System.Data.DataColumn("CheckInDate1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCheckInDate1);
-                this.columnCheckOutDate1 = new global::System.Data.DataColumn("CheckOutDate1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCheckOutDate1);
-                this.columnDateCreated1 = new global::System.Data.DataColumn("DateCreated1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDateCreated1);
-                this.columnDateModified1 = new global::System.Data.DataColumn("DateModified1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDateModified1);
-                this.columnIsTrashed1 = new global::System.Data.DataColumn("IsTrashed1", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsTrashed1);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId,
-                                this.columnId1}, true));
+                                this.columnId}, true));
                 this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
                 this.columnId.MaxLength = 450;
                 this.columnReservationId.AllowDBNull = false;
                 this.columnReservationId.MaxLength = 450;
@@ -2718,34 +2512,10 @@ namespace ESMART_HMS {
                 this.columnRoomId.MaxLength = 450;
                 this.columnCheckInDate.AllowDBNull = false;
                 this.columnCheckOutDate.AllowDBNull = false;
-                this.columnReservationRefNo.AllowDBNull = false;
-                this.columnStatus.AllowDBNull = false;
                 this.columnPaymentMethod.AllowDBNull = false;
                 this.columnDateCreated.AllowDBNull = false;
                 this.columnDateModified.AllowDBNull = false;
                 this.columnIsTrashed.AllowDBNull = false;
-                this.columnReservationRefNo1.AllowDBNull = false;
-                this.columnReservationRefNo1.Caption = "ReservationRefNo";
-                this.columnReservationRefNo1.MaxLength = 450;
-                this.columnStatus1.AllowDBNull = false;
-                this.columnStatus1.Caption = "Status";
-                this.columnStatus1.MaxLength = 450;
-                this.columnPaymentMethod1.AllowDBNull = false;
-                this.columnPaymentMethod1.Caption = "PaymentMethod";
-                this.columnPaymentMethod1.MaxLength = 450;
-                this.columnId1.AllowDBNull = false;
-                this.columnId1.MaxLength = 450;
-                this.columnReservationId1.AllowDBNull = false;
-                this.columnReservationId1.MaxLength = 450;
-                this.columnCustomerId1.AllowDBNull = false;
-                this.columnCustomerId1.MaxLength = 450;
-                this.columnRoomId1.AllowDBNull = false;
-                this.columnRoomId1.MaxLength = 450;
-                this.columnCheckInDate1.AllowDBNull = false;
-                this.columnCheckOutDate1.AllowDBNull = false;
-                this.columnDateCreated1.AllowDBNull = false;
-                this.columnDateModified1.AllowDBNull = false;
-                this.columnIsTrashed1.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3314,7 +3084,12 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Description {
                 get {
-                    return ((string)(this[this.tableRoom.DescriptionColumn]));
+                    try {
+                        return ((string)(this[this.tableRoom.DescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Description\' in table \'Room\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableRoom.DescriptionColumn] = value;
@@ -3329,17 +3104,6 @@ namespace ESMART_HMS {
                 }
                 set {
                     this[this.tableRoom.RateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAvailable {
-                get {
-                    return ((bool)(this[this.tableRoom.IsAvailableColumn]));
-                }
-                set {
-                    this[this.tableRoom.IsAvailableColumn] = value;
                 }
             }
             
@@ -3367,6 +3131,28 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Status {
+                get {
+                    return ((string)(this[this.tableRoom.StatusColumn]));
+                }
+                set {
+                    this[this.tableRoom.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTrashed {
+                get {
+                    return ((bool)(this[this.tableRoom.IsTrashedColumn]));
+                }
+                set {
+                    this[this.tableRoom.IsTrashedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RoomTypeRow RoomTypeRow {
                 get {
                     return ((RoomTypeRow)(this.GetParentRow(this.Table.ParentRelations["FK_Room_RoomType"])));
@@ -3374,6 +3160,18 @@ namespace ESMART_HMS {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Room_RoomType"]);
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDescriptionNull() {
+                return this.IsNull(this.tableRoom.DescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDescriptionNull() {
+                this[this.tableRoom.DescriptionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3721,28 +3519,6 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime ReservationRefNo {
-                get {
-                    return ((global::System.DateTime)(this[this.tableReservation.ReservationRefNoColumn]));
-                }
-                set {
-                    this[this.tableReservation.ReservationRefNoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime Status {
-                get {
-                    return ((global::System.DateTime)(this[this.tableReservation.StatusColumn]));
-                }
-                set {
-                    this[this.tableReservation.StatusColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime PaymentMethod {
                 get {
                     return ((global::System.DateTime)(this[this.tableReservation.PaymentMethodColumn]));
@@ -3787,133 +3563,12 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ReservationRefNo1 {
+            public RoomRow RoomRow {
                 get {
-                    return ((string)(this[this.tableReservation.ReservationRefNo1Column]));
+                    return ((RoomRow)(this.GetParentRow(this.Table.ParentRelations["FK__Reservati__RoomI__412EB0B6"])));
                 }
                 set {
-                    this[this.tableReservation.ReservationRefNo1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Status1 {
-                get {
-                    return ((string)(this[this.tableReservation.Status1Column]));
-                }
-                set {
-                    this[this.tableReservation.Status1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string PaymentMethod1 {
-                get {
-                    return ((string)(this[this.tableReservation.PaymentMethod1Column]));
-                }
-                set {
-                    this[this.tableReservation.PaymentMethod1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Id1 {
-                get {
-                    return ((string)(this[this.tableReservation.Id1Column]));
-                }
-                set {
-                    this[this.tableReservation.Id1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ReservationId1 {
-                get {
-                    return ((string)(this[this.tableReservation.ReservationId1Column]));
-                }
-                set {
-                    this[this.tableReservation.ReservationId1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string CustomerId1 {
-                get {
-                    return ((string)(this[this.tableReservation.CustomerId1Column]));
-                }
-                set {
-                    this[this.tableReservation.CustomerId1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string RoomId1 {
-                get {
-                    return ((string)(this[this.tableReservation.RoomId1Column]));
-                }
-                set {
-                    this[this.tableReservation.RoomId1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime CheckInDate1 {
-                get {
-                    return ((global::System.DateTime)(this[this.tableReservation.CheckInDate1Column]));
-                }
-                set {
-                    this[this.tableReservation.CheckInDate1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime CheckOutDate1 {
-                get {
-                    return ((global::System.DateTime)(this[this.tableReservation.CheckOutDate1Column]));
-                }
-                set {
-                    this[this.tableReservation.CheckOutDate1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime DateCreated1 {
-                get {
-                    return ((global::System.DateTime)(this[this.tableReservation.DateCreated1Column]));
-                }
-                set {
-                    this[this.tableReservation.DateCreated1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime DateModified1 {
-                get {
-                    return ((global::System.DateTime)(this[this.tableReservation.DateModified1Column]));
-                }
-                set {
-                    this[this.tableReservation.DateModified1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsTrashed1 {
-                get {
-                    return ((bool)(this[this.tableReservation.IsTrashed1Column]));
-                }
-                set {
-                    this[this.tableReservation.IsTrashed1Column] = value;
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__Reservati__RoomI__412EB0B6"]);
                 }
             }
             
@@ -3925,17 +3580,6 @@ namespace ESMART_HMS {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK__Reservati__Custo__403A8C7D"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RoomRow RoomRow {
-                get {
-                    return ((RoomRow)(this.GetParentRow(this.Table.ParentRelations["FK__Reservati__RoomI__412EB0B6"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__Reservati__RoomI__412EB0B6"]);
                 }
             }
         }
@@ -5022,13 +4666,14 @@ FROM     Customer";
             tableMapping.ColumnMappings.Add("ChildrenPerRoom", "ChildrenPerRoom");
             tableMapping.ColumnMappings.Add("Description", "Description");
             tableMapping.ColumnMappings.Add("Rate", "Rate");
-            tableMapping.ColumnMappings.Add("IsAvailable", "IsAvailable");
             tableMapping.ColumnMappings.Add("DateCreated", "DateCreated");
             tableMapping.ColumnMappings.Add("DateModified", "DateModified");
+            tableMapping.ColumnMappings.Add("Status", "Status");
+            tableMapping.ColumnMappings.Add("IsTrashed", "IsTrashed");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Room] WHERE (([Id] = @Original_Id) AND ([RoomId] = @Original_RoomId) AND ([RoomTypeId] = @Original_RoomTypeId) AND ([AdultPerRoom] = @Original_AdultPerRoom) AND ([ChildrenPerRoom] = @Original_ChildrenPerRoom) AND ([Rate] = @Original_Rate) AND ([IsAvailable] = @Original_IsAvailable) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Room] WHERE (([Id] = @Original_Id) AND ([RoomId] = @Original_RoomId) AND ([RoomTypeId] = @Original_RoomTypeId) AND ([AdultPerRoom] = @Original_AdultPerRoom) AND ([ChildrenPerRoom] = @Original_ChildrenPerRoom) AND ([Rate] = @Original_Rate) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([Status] = @Original_Status) AND ([IsTrashed] = @Original_IsTrashed))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -5036,13 +4681,14 @@ FROM     Customer";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AdultPerRoom", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdultPerRoom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ChildrenPerRoom", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChildrenPerRoom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Rate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsAvailable", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsAvailable", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Room] ([Id], [RoomId], [RoomNo], [RoomCardNo], [RoomLockNo], [RoomTypeId], [AdultPerRoom], [ChildrenPerRoom], [Description], [Rate], [IsAvailable], [DateCreated], [DateModified]) VALUES (@Id, @RoomId, @RoomNo, @RoomCardNo, @RoomLockNo, @RoomTypeId, @AdultPerRoom, @ChildrenPerRoom, @Description, @Rate, @IsAvailable, @DateCreated, @DateModified);
-SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM Room WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Room] ([Id], [RoomId], [RoomNo], [RoomCardNo], [RoomLockNo], [RoomTypeId], [AdultPerRoom], [ChildrenPerRoom], [Description], [Rate], [DateCreated], [DateModified], [Status], [IsTrashed]) VALUES (@Id, @RoomId, @RoomNo, @RoomCardNo, @RoomLockNo, @RoomTypeId, @AdultPerRoom, @ChildrenPerRoom, @Description, @Rate, @DateCreated, @DateModified, @Status, @IsTrashed);
+SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, DateCreated, DateModified, Status, IsTrashed FROM Room WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5054,13 +4700,14 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ChildrenPerRoom", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChildrenPerRoom", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Rate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsAvailable", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsAvailable", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Room] SET [Id] = @Id, [RoomId] = @RoomId, [RoomNo] = @RoomNo, [RoomCardNo] = @RoomCardNo, [RoomLockNo] = @RoomLockNo, [RoomTypeId] = @RoomTypeId, [AdultPerRoom] = @AdultPerRoom, [ChildrenPerRoom] = @ChildrenPerRoom, [Description] = @Description, [Rate] = @Rate, [IsAvailable] = @IsAvailable, [DateCreated] = @DateCreated, [DateModified] = @DateModified WHERE (([Id] = @Original_Id) AND ([RoomId] = @Original_RoomId) AND ([RoomTypeId] = @Original_RoomTypeId) AND ([AdultPerRoom] = @Original_AdultPerRoom) AND ([ChildrenPerRoom] = @Original_ChildrenPerRoom) AND ([Rate] = @Original_Rate) AND ([IsAvailable] = @Original_IsAvailable) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified));
-SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM Room WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Room] SET [Id] = @Id, [RoomId] = @RoomId, [RoomNo] = @RoomNo, [RoomCardNo] = @RoomCardNo, [RoomLockNo] = @RoomLockNo, [RoomTypeId] = @RoomTypeId, [AdultPerRoom] = @AdultPerRoom, [ChildrenPerRoom] = @ChildrenPerRoom, [Description] = @Description, [Rate] = @Rate, [DateCreated] = @DateCreated, [DateModified] = @DateModified, [Status] = @Status, [IsTrashed] = @IsTrashed WHERE (([Id] = @Original_Id) AND ([RoomId] = @Original_RoomId) AND ([RoomTypeId] = @Original_RoomTypeId) AND ([AdultPerRoom] = @Original_AdultPerRoom) AND ([ChildrenPerRoom] = @Original_ChildrenPerRoom) AND ([Rate] = @Original_Rate) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([Status] = @Original_Status) AND ([IsTrashed] = @Original_IsTrashed));
+SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, DateCreated, DateModified, Status, IsTrashed FROM Room WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5072,18 +4719,20 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ChildrenPerRoom", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChildrenPerRoom", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Rate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsAvailable", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsAvailable", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomTypeId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomTypeId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AdultPerRoom", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdultPerRoom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ChildrenPerRoom", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChildrenPerRoom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Rate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsAvailable", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsAvailable", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5100,8 +4749,8 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chil" +
-                "drenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified FROM dbo." +
-                "Room";
+                "drenPerRoom, Description, Rate, DateCreated, DateModified, Status, IsTrashed\r\nFR" +
+                "OM     Room";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5162,7 +4811,7 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id, string Original_RoomId, string Original_RoomTypeId, int Original_AdultPerRoom, int Original_ChildrenPerRoom, decimal Original_Rate, bool Original_IsAvailable, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
+        public virtual int Delete(string Original_Id, string Original_RoomId, string Original_RoomTypeId, int Original_AdultPerRoom, int Original_ChildrenPerRoom, decimal Original_Rate, System.DateTime Original_DateCreated, System.DateTime Original_DateModified, string Original_Status, bool Original_IsTrashed) {
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
@@ -5184,9 +4833,15 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
             this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_AdultPerRoom));
             this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_ChildrenPerRoom));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_Rate));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_IsAvailable));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_DateCreated));
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_DateModified));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_DateModified));
+            if ((Original_Status == null)) {
+                throw new global::System.ArgumentNullException("Original_Status");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_Status));
+            }
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5207,7 +4862,7 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Id, string RoomId, string RoomNo, string RoomCardNo, string RoomLockNo, string RoomTypeId, int AdultPerRoom, int ChildrenPerRoom, string Description, decimal Rate, bool IsAvailable, System.DateTime DateCreated, System.DateTime DateModified) {
+        public virtual int Insert(string Id, string RoomId, string RoomNo, string RoomCardNo, string RoomLockNo, string RoomTypeId, int AdultPerRoom, int ChildrenPerRoom, string Description, decimal Rate, System.DateTime DateCreated, System.DateTime DateModified, string Status, bool IsTrashed) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -5247,15 +4902,21 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
             this.Adapter.InsertCommand.Parameters[6].Value = ((int)(AdultPerRoom));
             this.Adapter.InsertCommand.Parameters[7].Value = ((int)(ChildrenPerRoom));
             if ((Description == null)) {
-                throw new global::System.ArgumentNullException("Description");
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Description));
             }
             this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(Rate));
-            this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(IsAvailable));
-            this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(DateCreated));
-            this.Adapter.InsertCommand.Parameters[12].Value = ((System.DateTime)(DateModified));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(DateModified));
+            if ((Status == null)) {
+                throw new global::System.ArgumentNullException("Status");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(Status));
+            }
+            this.Adapter.InsertCommand.Parameters[13].Value = ((bool)(IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5287,18 +4948,20 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
                     int ChildrenPerRoom, 
                     string Description, 
                     decimal Rate, 
-                    bool IsAvailable, 
                     System.DateTime DateCreated, 
                     System.DateTime DateModified, 
+                    string Status, 
+                    bool IsTrashed, 
                     string Original_Id, 
                     string Original_RoomId, 
                     string Original_RoomTypeId, 
                     int Original_AdultPerRoom, 
                     int Original_ChildrenPerRoom, 
                     decimal Original_Rate, 
-                    bool Original_IsAvailable, 
                     System.DateTime Original_DateCreated, 
-                    System.DateTime Original_DateModified) {
+                    System.DateTime Original_DateModified, 
+                    string Original_Status, 
+                    bool Original_IsTrashed) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -5338,39 +5001,51 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(AdultPerRoom));
             this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ChildrenPerRoom));
             if ((Description == null)) {
-                throw new global::System.ArgumentNullException("Description");
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Description));
             }
             this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(Rate));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(IsAvailable));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(DateCreated));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(DateModified));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(DateModified));
+            if ((Status == null)) {
+                throw new global::System.ArgumentNullException("Status");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Status));
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(IsTrashed));
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_Id));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Id));
             }
             if ((Original_RoomId == null)) {
                 throw new global::System.ArgumentNullException("Original_RoomId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_RoomId));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_RoomId));
             }
             if ((Original_RoomTypeId == null)) {
                 throw new global::System.ArgumentNullException("Original_RoomTypeId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_RoomTypeId));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_RoomTypeId));
             }
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_AdultPerRoom));
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_ChildrenPerRoom));
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((decimal)(Original_Rate));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((bool)(Original_IsAvailable));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_AdultPerRoom));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_ChildrenPerRoom));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((decimal)(Original_Rate));
             this.Adapter.UpdateCommand.Parameters[20].Value = ((System.DateTime)(Original_DateCreated));
             this.Adapter.UpdateCommand.Parameters[21].Value = ((System.DateTime)(Original_DateModified));
+            if ((Original_Status == null)) {
+                throw new global::System.ArgumentNullException("Original_Status");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Status));
+            }
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5401,19 +5076,21 @@ SELECT Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, Chi
                     int ChildrenPerRoom, 
                     string Description, 
                     decimal Rate, 
-                    bool IsAvailable, 
                     System.DateTime DateCreated, 
                     System.DateTime DateModified, 
+                    string Status, 
+                    bool IsTrashed, 
                     string Original_Id, 
                     string Original_RoomId, 
                     string Original_RoomTypeId, 
                     int Original_AdultPerRoom, 
                     int Original_ChildrenPerRoom, 
                     decimal Original_Rate, 
-                    bool Original_IsAvailable, 
                     System.DateTime Original_DateCreated, 
-                    System.DateTime Original_DateModified) {
-            return this.Update(Original_Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, IsAvailable, DateCreated, DateModified, Original_Id, Original_RoomId, Original_RoomTypeId, Original_AdultPerRoom, Original_ChildrenPerRoom, Original_Rate, Original_IsAvailable, Original_DateCreated, Original_DateModified);
+                    System.DateTime Original_DateModified, 
+                    string Original_Status, 
+                    bool Original_IsTrashed) {
+            return this.Update(Original_Id, RoomId, RoomNo, RoomCardNo, RoomLockNo, RoomTypeId, AdultPerRoom, ChildrenPerRoom, Description, Rate, DateCreated, DateModified, Status, IsTrashed, Original_Id, Original_RoomId, Original_RoomTypeId, Original_AdultPerRoom, Original_ChildrenPerRoom, Original_Rate, Original_DateCreated, Original_DateModified, Original_Status, Original_IsTrashed);
         }
     }
     
@@ -6398,21 +6075,9 @@ SELECT Id, UserId, FirstName, LastName, FullName, UserName, Email, PasswordHash,
             tableMapping.ColumnMappings.Add("DateCreated", "DateCreated");
             tableMapping.ColumnMappings.Add("DateModified", "DateModified");
             tableMapping.ColumnMappings.Add("IsTrashed", "IsTrashed");
-            tableMapping.ColumnMappings.Add("ReservationRefNo", "ReservationRefNo1");
-            tableMapping.ColumnMappings.Add("Status", "Status1");
-            tableMapping.ColumnMappings.Add("PaymentMethod", "PaymentMethod1");
-            tableMapping.ColumnMappings.Add("Id1", "Id1");
-            tableMapping.ColumnMappings.Add("ReservationId1", "ReservationId1");
-            tableMapping.ColumnMappings.Add("CustomerId1", "CustomerId1");
-            tableMapping.ColumnMappings.Add("RoomId1", "RoomId1");
-            tableMapping.ColumnMappings.Add("CheckInDate1", "CheckInDate1");
-            tableMapping.ColumnMappings.Add("CheckOutDate1", "CheckOutDate1");
             tableMapping.ColumnMappings.Add("ReservationRefNo1", "ReservationRefNo1");
             tableMapping.ColumnMappings.Add("Status1", "Status1");
             tableMapping.ColumnMappings.Add("PaymentMethod1", "PaymentMethod1");
-            tableMapping.ColumnMappings.Add("DateCreated1", "DateCreated1");
-            tableMapping.ColumnMappings.Add("DateModified1", "DateModified1");
-            tableMapping.ColumnMappings.Add("IsTrashed1", "IsTrashed1");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -6565,9 +6230,7 @@ SELECT Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, Reserva
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, ReservationRefNo, Status, PaymentMethod, DateCreated, DateModified, IsTrashed, Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, 
-                  ReservationRefNo, Status, PaymentMethod, DateCreated, DateModified, IsTrashed
-FROM     Reservation";
+            this._commandCollection[0].CommandText = @"SELECT Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, DateCreated, DateModified, IsTrashed, Id AS Expr1, ReservationId AS Expr2, CustomerId AS Expr3, RoomId AS Expr4, CheckInDate AS Expr5, CheckOutDate AS Expr6, ReservationRefNo AS Expr7, Status AS Expr8, PaymentMethod AS Expr9, DateCreated AS Expr10, DateModified AS Expr11, IsTrashed AS Expr12, Amount FROM Reservation";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -7203,6 +6866,7 @@ FROM     Reservation";
                     System.DateTime p19, 
                     System.DateTime p21, 
                     bool p23, 
+                    string Id, 
                     string ReservationId, 
                     string CustomerId, 
                     string RoomId, 
@@ -7238,7 +6902,7 @@ FROM     Reservation";
                     System.DateTime Original_DateCreated, 
                     System.DateTime Original_DateModified, 
                     bool Original_IsTrashed) {
-            return this.Update(p2, p3, p5, p7, p9, p11, p13, p15, p17, p19, p21, p23, Original_Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, ReservationRefNo, Status, PaymentMethod, DateCreated, DateModified, IsTrashed, p2, p4, p6, p8, p10, p12, p14, p16, p18, p20, p22, p24, Original_Id, Original_ReservationId, Original_CustomerId, Original_RoomId, Original_CheckInDate, Original_CheckOutDate, Original_ReservationRefNo, Original_Status, Original_PaymentMethod, Original_DateCreated, Original_DateModified, Original_IsTrashed, p2, p2);
+            return this.Update(p2, p3, p5, p7, p9, p11, p13, p15, p17, p19, p21, p23, Id, ReservationId, CustomerId, RoomId, CheckInDate, CheckOutDate, ReservationRefNo, Status, PaymentMethod, DateCreated, DateModified, IsTrashed, p2, p4, p6, p8, p10, p12, p14, p16, p18, p20, p22, p24, Original_Id, Original_ReservationId, Original_CustomerId, Original_RoomId, Original_CheckInDate, Original_CheckOutDate, Original_ReservationRefNo, Original_Status, Original_PaymentMethod, Original_DateCreated, Original_DateModified, Original_IsTrashed, p2, p2);
         }
     }
     

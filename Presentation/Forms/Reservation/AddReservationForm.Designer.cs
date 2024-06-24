@@ -49,8 +49,8 @@
             this.txtPaymentMethod = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.ComboBox();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
@@ -149,6 +149,7 @@
             this.txtRoom.Size = new System.Drawing.Size(618, 38);
             this.txtRoom.TabIndex = 16;
             this.txtRoom.ValueMember = "Id";
+            this.txtRoom.TextChanged += new System.EventHandler(this.txtRoom_TextChanged);
             // 
             // roomBindingSource
             // 
@@ -167,6 +168,7 @@
             this.txtCheckIn.Size = new System.Drawing.Size(618, 37);
             this.txtCheckIn.TabIndex = 17;
             this.txtCheckIn.Value = new System.DateTime(2024, 6, 20, 16, 16, 49, 0);
+            this.txtCheckIn.ValueChanged += new System.EventHandler(this.txtCheckIn_ValueChanged);
             // 
             // label3
             // 
@@ -196,6 +198,7 @@
             this.txtCheckOut.Size = new System.Drawing.Size(618, 37);
             this.txtCheckOut.TabIndex = 17;
             this.txtCheckOut.Value = new System.DateTime(2024, 6, 20, 16, 16, 49, 0);
+            this.txtCheckOut.ValueChanged += new System.EventHandler(this.txtCheckOut_ValueChanged);
             // 
             // txtPaymentMethod
             // 
@@ -204,18 +207,18 @@
             this.txtPaymentMethod.FormattingEnabled = true;
             this.txtPaymentMethod.Items.AddRange(new object[] {
             "Unpaid",
-            "Mark As Paid (From Deposit)",
-            "Mark As Paid (Cash By Hand)"});
-            this.txtPaymentMethod.Location = new System.Drawing.Point(39, 539);
+            "Paid (From Deposit)",
+            "Paid (Cash By Hand)"});
+            this.txtPaymentMethod.Location = new System.Drawing.Point(356, 538);
             this.txtPaymentMethod.Name = "txtPaymentMethod";
-            this.txtPaymentMethod.Size = new System.Drawing.Size(618, 38);
+            this.txtPaymentMethod.Size = new System.Drawing.Size(301, 38);
             this.txtPaymentMethod.TabIndex = 18;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(34, 506);
+            this.label5.Location = new System.Drawing.Point(351, 505);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 30);
             this.label5.TabIndex = 13;
@@ -225,7 +228,7 @@
             // 
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(250, 719);
+            this.btnSave.Location = new System.Drawing.Point(244, 602);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(210, 50);
@@ -234,43 +237,39 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // label6
+            // txtAmount
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(34, 618);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 30);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Status";
+            this.txtAmount.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmount.Location = new System.Drawing.Point(39, 539);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.ReadOnly = true;
+            this.txtAmount.Size = new System.Drawing.Size(297, 37);
+            this.txtAmount.TabIndex = 20;
             // 
-            // txtStatus
+            // label7
             // 
-            this.txtStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.FormattingEnabled = true;
-            this.txtStatus.Items.AddRange(new object[] {
-            "Clocked In",
-            "Not Clocked In"});
-            this.txtStatus.Location = new System.Drawing.Point(39, 651);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(618, 38);
-            this.txtStatus.TabIndex = 18;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(34, 506);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(90, 30);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Amount";
             // 
             // AddReservationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(698, 792);
+            this.ClientSize = new System.Drawing.Size(698, 675);
+            this.Controls.Add(this.txtAmount);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.txtPaymentMethod);
             this.Controls.Add(this.txtCheckOut);
             this.Controls.Add(this.txtCheckIn);
             this.Controls.Add(this.txtRoom);
             this.Controls.Add(this.txtCustomer);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnRoom);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -317,7 +316,7 @@
         private System.Windows.Forms.ComboBox txtPaymentMethod;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox txtStatus;
+        private System.Windows.Forms.TextBox txtAmount;
+        private System.Windows.Forms.Label label7;
     }
 }

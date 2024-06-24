@@ -29,11 +29,11 @@ namespace ESMART_HMS.Domain.Entities
         public int ChildrenPerRoom { get; set; }
         public string Description { get; set; }
         public decimal Rate { get; set; }
-        public bool IsAvailable { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
         public string RoomNo { get; set; }
+        public string Status { get; set; }
     
         public virtual RoomType RoomType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

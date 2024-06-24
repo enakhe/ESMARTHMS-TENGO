@@ -49,9 +49,9 @@ namespace ESMART_HMS
                     "[RoomTypeId][nvarchar](450) NOT NULL," +
                     "[AdultPerRoom][int] NOT NULL," +
                     "[ChildrenPerRoom][int] NOT NULL," +
-                    "[Description][nvarchar](max) NOT NULL," +
+                    "[Description][nvarchar](max) NULL," +
                     "[Rate][decimal](10, 2) NOT NULL," +
-                    "[IsAvailable][bit] NOT NULL," +
+                    "[Status][nvarchar](450) NOT NULL," +
                     "[DateCreated][datetime2](7) NOT NULL," +
                     "[DateModified][datetime2](7) NOT NULL, " +
                     "[IsTrashed][bit] NOT NULL," +
@@ -69,16 +69,16 @@ namespace ESMART_HMS
                     "[PhoneNumber][nvarchar](max) NOT NULL," +
                     "[Street][nvarchar](max) NULL," +
                     "[City][nvarchar](max) NULL," +
-                    "[Company][nvarchar](max) NOT NULL," +
+                    "[Company][nvarchar](max) NULL," +
                     "[State][nvarchar](max) NULL," +
                     "[Country][nvarchar](max) NULL," +
                     "[Gender][nvarchar](50) NOT NULL," +
 
-                    "[IdNumber][nvarchar](450) NOT NULL," +
-                    "[IdType][nvarchar](450) NOT NULL," +
-                    "[IdentificationDocumentFront][varbinary] (max) NOT NULL," +
-                    "[IdentificationDocumentBack][varbinary] (max) NOT NULL," +
-                    "[CustomerImage][varbinary] (max) NOT NULL," +
+                    "[IdNumber][nvarchar](450) NULL," +
+                    "[IdType][nvarchar](450) NULL," +
+                    "[IdentificationDocumentFront][varbinary] (max) NULL," +
+                    "[IdentificationDocumentBack][varbinary] (max) NULL," +
+                    "[CustomerImage][varbinary] (max) NULL," +
                     "[DateCreated][datetime2](7) NOT NULL," +
                     "[DateModified][datetime2](7) NOT NULL," +
                     "[IsTrashed][bit] NOT NULL," +
@@ -91,8 +91,6 @@ namespace ESMART_HMS
                     "[RoomId][nvarchar](450) NOT NULL," +
                     "[CheckInDate][datetime2](7) NOT NULL," +
                     "[CheckOutDate][datetime2](7) NOT NULL," +
-                    "[ReservationRefNo][nvarchar](450) NOT NULL," +
-                    "[Status][nvarchar](450) NOT NULL," +
                     "[PaymentMethod][nvarchar](450) NOT NULL," +
                     "[Amount][decimal](10, 2) NOT NULL," +
                     "[DateCreated][datetime2](7) NOT NULL," +

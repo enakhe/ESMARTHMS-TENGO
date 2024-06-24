@@ -11,7 +11,8 @@
         public int AdultPerRoom { get; set; }
         public int ChildrenPerRoom { get; set; }
         public string Description { get; set; }
-        public decimal Rate { get; set; }
+        public string Rate { get; set; }
+        public string Status { get; set; }
         public bool IsAvailable { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }

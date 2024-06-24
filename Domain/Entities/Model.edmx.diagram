@@ -6,10 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4512c298fcac4365a536e9a4c84210e2" Name="Diagram1" ZoomLevel="98">
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Customer" Width="2.125" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ESMART_HMSDBModel.Room" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Room" PointX="3" PointY="0.75" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.RoomType" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.User" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="ESMART_HMSDBModel.FK_Room_RoomType" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="ESMART_HMSDBModel.FK_Room_RoomType" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Reservation" Width="1.5" PointX="8.625" PointY="1.625" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__RoomI__412EB0B6" />

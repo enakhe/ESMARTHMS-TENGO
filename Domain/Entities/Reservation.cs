@@ -20,8 +20,6 @@ namespace ESMART_HMS.Domain.Entities
         public string RoomId { get; set; }
         public System.DateTime CheckInDate { get; set; }
         public System.DateTime CheckOutDate { get; set; }
-        public string ReservationRefNo { get; set; }
-        public string Status { get; set; }
         public string PaymentMethod { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }

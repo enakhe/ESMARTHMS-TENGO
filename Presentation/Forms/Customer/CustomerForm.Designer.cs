@@ -67,8 +67,6 @@
             this.companyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.identificationDocumentDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.identitificationDocumentNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).BeginInit();
@@ -334,8 +332,6 @@
             this.companyDataGridViewTextBoxColumn,
             this.stateDataGridViewTextBoxColumn,
             this.countryDataGridViewTextBoxColumn,
-            this.identificationDocumentDataGridViewImageColumn,
-            this.identitificationDocumentNameDataGridViewTextBoxColumn,
             this.dateCreatedDataGridViewTextBoxColumn,
             this.dateModifiedDataGridViewTextBoxColumn});
             this.dgvCustomers.DataSource = this.customerBindingSource2;
@@ -379,7 +375,7 @@
             // customerIdDataGridViewTextBoxColumn
             // 
             this.customerIdDataGridViewTextBoxColumn.DataPropertyName = "CustomerId";
-            this.customerIdDataGridViewTextBoxColumn.HeaderText = "CustomerId";
+            this.customerIdDataGridViewTextBoxColumn.HeaderText = "Customer Id";
             this.customerIdDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.customerIdDataGridViewTextBoxColumn.Name = "customerIdDataGridViewTextBoxColumn";
             this.customerIdDataGridViewTextBoxColumn.ReadOnly = true;
@@ -395,23 +391,25 @@
             // firstNameDataGridViewTextBoxColumn
             // 
             this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "First Name";
             this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
             this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.firstNameDataGridViewTextBoxColumn.Visible = false;
             // 
             // lastNameDataGridViewTextBoxColumn
             // 
             this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Last Name";
             this.lastNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
             this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lastNameDataGridViewTextBoxColumn.Visible = false;
             // 
             // fullNameDataGridViewTextBoxColumn
             // 
             this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Full Name";
             this.fullNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
@@ -427,7 +425,7 @@
             // phoneNumberDataGridViewTextBoxColumn
             // 
             this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
-            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "Phone Number";
             this.phoneNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
             this.phoneNumberDataGridViewTextBoxColumn.ReadOnly = true;
@@ -472,28 +470,10 @@
             this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
             this.countryDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // identificationDocumentDataGridViewImageColumn
-            // 
-            this.identificationDocumentDataGridViewImageColumn.DataPropertyName = "IdentificationDocument";
-            this.identificationDocumentDataGridViewImageColumn.HeaderText = "IdentificationDocument";
-            this.identificationDocumentDataGridViewImageColumn.MinimumWidth = 6;
-            this.identificationDocumentDataGridViewImageColumn.Name = "identificationDocumentDataGridViewImageColumn";
-            this.identificationDocumentDataGridViewImageColumn.ReadOnly = true;
-            this.identificationDocumentDataGridViewImageColumn.Visible = false;
-            // 
-            // identitificationDocumentNameDataGridViewTextBoxColumn
-            // 
-            this.identitificationDocumentNameDataGridViewTextBoxColumn.DataPropertyName = "IdentitificationDocumentName";
-            this.identitificationDocumentNameDataGridViewTextBoxColumn.HeaderText = "IdentitificationDocumentName";
-            this.identitificationDocumentNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.identitificationDocumentNameDataGridViewTextBoxColumn.Name = "identitificationDocumentNameDataGridViewTextBoxColumn";
-            this.identitificationDocumentNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.identitificationDocumentNameDataGridViewTextBoxColumn.Visible = false;
-            // 
             // dateCreatedDataGridViewTextBoxColumn
             // 
             this.dateCreatedDataGridViewTextBoxColumn.DataPropertyName = "DateCreated";
-            this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "DateCreated";
+            this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "Date Created";
             this.dateCreatedDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dateCreatedDataGridViewTextBoxColumn.Name = "dateCreatedDataGridViewTextBoxColumn";
             this.dateCreatedDataGridViewTextBoxColumn.ReadOnly = true;
@@ -501,7 +481,7 @@
             // dateModifiedDataGridViewTextBoxColumn
             // 
             this.dateModifiedDataGridViewTextBoxColumn.DataPropertyName = "DateModified";
-            this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "DateModified";
+            this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "Date Modified";
             this.dateModifiedDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
             this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
@@ -561,6 +541,8 @@
         private System.Windows.Forms.BindingSource customerBindingSource2;
         private ESMART_HMSDBDataSetTableAdapters.CustomerTableAdapter customerTableAdapter;
         private System.Windows.Forms.DataGridView dgvCustomers;
+        private System.Windows.Forms.DataGridViewImageColumn identificationDocumentDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn identitificationDocumentNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
@@ -574,8 +556,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn companyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn countryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn identificationDocumentDataGridViewImageColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn identitificationDocumentNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
     }

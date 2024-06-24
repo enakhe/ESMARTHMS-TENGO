@@ -39,7 +39,7 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                var allRoom = from room in _db.Rooms.Where(r => r.IsTrashed == false)
+                var allRoom = from room in _db.Rooms.Where(r => r.IsTrashed == false).OrderBy(r => r.RoomNo)
                               join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
                               select new RoomViewModel
                               {
@@ -51,8 +51,8 @@ namespace ESMART_HMS.Repositories
                                   AdultPerRoom = room.AdultPerRoom,
                                   ChildrenPerRoom = room.ChildrenPerRoom,
                                   Description = room.Description,
-                                  Rate = room.Rate,
-                                  IsAvailable = room.IsAvailable,
+                                  Rate = room.Rate.ToString(),
+                                  Status = room.Status,
                                   DateCreated = room.DateCreated,
                                   DateModified = room.DateModified,
                                   RoomTypeName = roomType.Title,
@@ -83,8 +83,8 @@ namespace ESMART_HMS.Repositories
                     AdultPerRoom = room.AdultPerRoom,
                     ChildrenPerRoom = room.ChildrenPerRoom,
                     Description = room.Description,
-                    Rate = room.Rate,
-                    IsAvailable = room.IsAvailable,
+                    Rate = room.Rate.ToString(),
+                    Status = room.Status,
                     DateCreated = room.DateCreated,
                     DateModified = room.DateModified,
                     RoomTypeName = roomType.Title,
@@ -157,7 +157,7 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                var availableRoom = from room in _db.Rooms.Where(r => r.IsAvailable == true && r.IsTrashed == false)
+                var availableRoom = from room in _db.Rooms.Where(r => r.IsTrashed == false)
                               join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
                               select new RoomViewModel
                               {
@@ -169,8 +169,8 @@ namespace ESMART_HMS.Repositories
                                   AdultPerRoom = room.AdultPerRoom,
                                   ChildrenPerRoom = room.ChildrenPerRoom,
                                   Description = room.Description,
-                                  Rate = room.Rate,
-                                  IsAvailable = room.IsAvailable,
+                                  Rate = room.Rate.ToString(),
+                                  Status = room.Status,
                                   DateCreated = room.DateCreated,
                                   DateModified = room.DateModified,
                                   RoomTypeName = roomType.Title,

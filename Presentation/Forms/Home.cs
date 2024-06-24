@@ -66,6 +66,7 @@ namespace ESMART_HMS.Presentation.Forms
             else
             {
                 roomForm.Activate();
+                roomForm.LoadData();
             }
         }
 

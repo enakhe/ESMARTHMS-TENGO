@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using System;
@@ -178,7 +179,8 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             try
             {
                 Room room = _roomController.GetRealRoom(_Id);
-                if (txtRoomNo.Text == "" || txtCardNo.Text == "" || txtLockNo.Text == "" || txtRate.Text == "" || txtAdultPerRoom.Text == "" || txtChildrenPerRoom.Text == "" || txtRoomType.Text == "" || txtDescription.Text == "")
+                bool anyNull = FormHelper.AreAnyNullOrEmpty(txtRoomNo.Text, txtCardNo.Text, txtLockNo.Text, txtRate.Text, txtAdultPerRoom.Text, txtChildrenPerRoom.Text, txtRoomType.Text);
+                if (anyNull == true)
                 {
                     MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -195,9 +197,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     room.RoomTypeId = (string)txtRoomType.SelectedValue.ToString();
                     room.RoomType = _roomTypeController?.GetRoomTypeById(txtRoomType.SelectedValue?.ToString());
                     room.Description = txtDescription.Text.Trim().ToUpper();
-                    room.IsAvailable = true;
 
-                    room.DateCreated = DateTime.Now;
                     room.DateModified = DateTime.Now;
 
                     _roomController.UpdateRoom(room);

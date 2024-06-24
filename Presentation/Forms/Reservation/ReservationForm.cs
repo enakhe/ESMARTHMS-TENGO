@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Presentation.Controllers;
+﻿using ESMART_HMS.Domain.Utils;
+using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -25,8 +26,6 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private void ReservationForm_Load(object sender, EventArgs e)
         {
             LoadData();
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Reservation' table. You can move, or remove it, as needed.
-            //this.reservationTableAdapter.Fill(this.eSMART_HMSDBDataSet.Reservation);
         }
 
         private void LoadData()
@@ -36,6 +35,12 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                 var allReservations = _reservationController.GetAllReservation();
                 if (allReservations != null)
                 {
+                    foreach (var reservation in allReservations)
+                    {
+                        FormHelper.TryConvertStringToDecimal(reservation.Amount, out decimal amount);
+                        reservation.Amount = FormHelper.FormatNumberWithCommas(amount);
+                    }
+
                     dgvReservation.DataSource = allReservations;
                     txtReservationCount.Text = allReservations.Count.ToString();
                 }
@@ -56,7 +61,9 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             AddReservationForm addReservationForm = serviceProvider.GetRequiredService<AddReservationForm>();
             if (addReservationForm.ShowDialog() == DialogResult.OK)
             {
+                RoomForm roomForm = serviceProvider.GetRequiredService<RoomForm>();
                 LoadData();
+                roomForm.LoadData();
             }
         }
     }

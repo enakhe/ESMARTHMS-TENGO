@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Presentation.Controllers;
+﻿using ESMART_HMS.Domain.Utils;
+using ESMART_HMS.Presentation.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -19,6 +20,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
         private void RoomsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Reservation' table. You can move, or remove it, as needed.
             LoadData();
             this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
         }
@@ -31,7 +33,14 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 var allRooms = _roomController.GetAllRooms();
                 if (allRooms != null)
                 {
+                    foreach (var room in allRooms)
+                    {
+                        FormHelper.TryConvertStringToDecimal(room.Rate.ToString(), out decimal rate);
+                        room.Rate = FormHelper.FormatNumberWithCommas(rate);
+                    }
+
                     dgvRooms.DataSource = allRooms;
+                    dgvRooms.CellFormatting += DataGridViewRooms_CellFormatting;
                     txtRoomCount.Text = allRooms.Count.ToString();
                     txtAvailableRooms.Text = _roomController.GetAvailbleRoom().Count.ToString();
                 }
@@ -43,6 +52,33 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             }
         }
 
+        private void DataGridViewRooms_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvRooms.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var cell = dgvRooms.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null && cell.Value.ToString() == "Vacant")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Green;
+                    cell.Style.ForeColor = System.Drawing.Color.White;
+                } 
+                else if (cell.Value != null && cell.Value.ToString() == "Reserved")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Yellow;
+                    cell.Style.ForeColor = System.Drawing.Color.Black;
+                }
+                else if (cell.Value != null && cell.Value.ToString() == "CheckIn")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Blue;
+                    cell.Style.ForeColor = System.Drawing.Color.Black;
+                }
+                else
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Red;
+                    cell.Style.ForeColor = System.Drawing.Color.Black;
+                }
+            }
+        }
 
         private void addRoomBtn_Click(object sender, EventArgs e)
         {
