@@ -1,11 +1,7 @@
 ﻿using ESMART_HMS.Application.UseCases.Reservation;
 using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESMART_HMS.Presentation.Controllers
 {
@@ -13,11 +9,13 @@ namespace ESMART_HMS.Presentation.Controllers
     {
         private readonly CreateReservationUseCase _addReservationUseCase;
         private readonly GetAllReservationUseCase _allReservationUseCase;
+        private readonly GetReservationByIdUseCase _getReservationByIdUseCase;
 
-        public ReservationController(CreateReservationUseCase addReservationUseCase, GetAllReservationUseCase allReservationUseCase)
+        public ReservationController(CreateReservationUseCase addReservationUseCase, GetAllReservationUseCase allReservationUseCase, GetReservationByIdUseCase getReservationByIdUseCase)
         {
             _addReservationUseCase = addReservationUseCase;
             _allReservationUseCase = allReservationUseCase;
+            _getReservationByIdUseCase = getReservationByIdUseCase;
         }
 
         public void AddReservation(Reservation reservation)
@@ -28,6 +26,11 @@ namespace ESMART_HMS.Presentation.Controllers
         public IList<ReservationViewModel> GetAllReservation()
         {
             return _allReservationUseCase.Execute();
+        }
+
+        public Reservation GetReservationById(string Id)
+        {
+            return _getReservationByIdUseCase.Execute(Id);
         }
     }
 }

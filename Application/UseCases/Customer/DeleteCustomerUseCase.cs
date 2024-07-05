@@ -1,19 +1,19 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
 
-namespace ESMART_HMS.Application.UseCases.Customer
+namespace ESMART_HMS.Application.UseCases.Guest
 {
-    public class DeleteCustomerUseCase
+    public class DeleteGuestUseCase
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IGuestRepository _customerRepository;
 
-        public DeleteCustomerUseCase(ICustomerRepository customerRepository)
+        public DeleteGuestUseCase(IGuestRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
         public void Execute(string Id)
         {
-            _customerRepository.DeleteCustomer(Id);
+            _customerRepository.DeleteGuest(Id);
         }
     }
 }

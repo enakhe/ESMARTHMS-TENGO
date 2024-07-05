@@ -1,15 +1,9 @@
 ﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.Booking;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Reservation
@@ -17,10 +11,14 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
     public partial class ReservationForm : Form
     {
         private readonly ReservationController _reservationController;
-        public ReservationForm(ReservationController reservationController)
+        private readonly GuestController _guestController;
+        private readonly RoomController _roomController;
+        public ReservationForm(ReservationController reservationController, GuestController guestController, RoomController roomController)
         {
             _reservationController = reservationController;
             InitializeComponent();
+            _guestController = guestController;
+            _roomController = roomController;
         }
 
         private void ReservationForm_Load(object sender, EventArgs e)
@@ -64,6 +62,35 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                 RoomForm roomForm = serviceProvider.GetRequiredService<RoomForm>();
                 LoadData();
                 roomForm.LoadData();
+            }
+        }
+
+        private void btnBookRoom_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvReservation.SelectedRows.Count > 0)
+                {
+                    var row = dgvReservation.SelectedRows[0];
+                    string reservationId = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+                    string roomId = row.Cells["roomIdDataGridViewTextBoxColumn"].Value.ToString();
+                    string guestId = row.Cells["GuestId"].Value.ToString();
+
+                    AddBookingForm addBookingForm = new AddBookingForm(reservationId, guestId, roomId, _guestController, _roomController, _reservationController);
+                    if (addBookingForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadData();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a customer to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
             }
         }
     }

@@ -1,20 +1,20 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
 using System.Collections.Generic;
 
-namespace ESMART_HMS.Application.UseCases.Customer
+namespace ESMART_HMS.Application.UseCases.Guest
 {
-    public class GetDeletedCustomerUseCase
+    public class GetDeletedGuestUseCase
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IGuestRepository _customerRepository;
 
-        public GetDeletedCustomerUseCase(ICustomerRepository customerRepository)
+        public GetDeletedGuestUseCase(IGuestRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
-        public List<ESMART_HMS.Domain.Entities.Customer> Execute()
+        public List<ESMART_HMS.Domain.Entities.Guest> Execute()
         {
-            return _customerRepository.GetDeletedCustomer();
+            return _customerRepository.GetDeletedGuest();
         }
     }
 }

@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Services
+namespace ESMART_HMS.Infrastructure.Services
 {
     public class AuthService
     {

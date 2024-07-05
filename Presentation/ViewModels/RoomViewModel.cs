@@ -13,7 +13,6 @@
         public string Description { get; set; }
         public string Rate { get; set; }
         public string Status { get; set; }
-        public bool IsAvailable { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
     }

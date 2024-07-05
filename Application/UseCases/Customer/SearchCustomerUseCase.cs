@@ -1,21 +1,21 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
 using System.Collections.Generic;
 
-namespace ESMART_HMS.Application.UseCases.Customer
+namespace ESMART_HMS.Application.UseCases.Guest
 {
-    public class SearchCustomerUseCase
+    public class SearchGuestUseCase
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IGuestRepository _customerRepository;
 
-        public SearchCustomerUseCase(ICustomerRepository customerRepository)
+        public SearchGuestUseCase(IGuestRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
-        public List<ESMART_HMS.Domain.Entities.Customer> Execute(string keyword)
+        public List<ESMART_HMS.Domain.Entities.Guest> Execute(string keyword)
         {
-            List<ESMART_HMS.Domain.Entities.Customer> allCustomer = _customerRepository.SearchCustomer(keyword);
-            return allCustomer;
+            List<ESMART_HMS.Domain.Entities.Guest> allGuest = _customerRepository.SearchGuest(keyword);
+            return allGuest;
         }
     }
 }

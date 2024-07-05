@@ -1,7 +1,8 @@
-﻿using ESMART_HMS.Application.UseCases.Customer;
+﻿using ESMART_HMS.Application.UseCases.Booking;
+using ESMART_HMS.Application.UseCases.Guest;
+using ESMART_HMS.Application.UseCases.Reservation;
 using ESMART_HMS.Application.UseCases.Room;
 using ESMART_HMS.Application.UseCases.RoomTypes;
-using ESMART_HMS.Application.UseCases.Reservation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ESMART_HMS.Application
@@ -11,14 +12,14 @@ namespace ESMART_HMS.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
 
-            // Customer Use Cases
-            services.AddScoped<CreateCustomerUseCase>();
-            services.AddScoped<GetAllCustomerUseCase>();
-            services.AddScoped<UpdateCustomerUseCase>();
-            services.AddScoped<GetCustomerByIdUseCase>();
-            services.AddScoped<DeleteCustomerUseCase>();
-            services.AddScoped<SearchCustomerUseCase>();
-            services.AddScoped<GetDeletedCustomerUseCase>();
+            // Guest Use Cases
+            services.AddScoped<CreateGuestUseCase>();
+            services.AddScoped<GetAllGuestUseCase>();
+            services.AddScoped<UpdateGuestUseCase>();
+            services.AddScoped<GetGuestByIdUseCase>();
+            services.AddScoped<DeleteGuestUseCase>();
+            services.AddScoped<SearchGuestUseCase>();
+            services.AddScoped<GetDeletedGuestUseCase>();
 
             // Room Use Cases
             services.AddScoped<GetAllRoomUseCase>();
@@ -27,7 +28,7 @@ namespace ESMART_HMS.Application
             services.AddScoped<UpdateRoomUseCase>();
             services.AddScoped<GetRealRoomUseCase>();
             services.AddScoped<DeleteRoomUseCase>();
-            services.AddScoped<GetAvailableRoomUseCase>();  
+            services.AddScoped<GetVacantRoomUseCase>();
 
             // RoomType Use Cases
             services.AddScoped<CreateRoomTypeUseCase>();
@@ -36,7 +37,11 @@ namespace ESMART_HMS.Application
 
             // Reservation Use Case
             services.AddScoped<CreateReservationUseCase>();
-            services.AddScoped<GetAllReservationUseCase>(); 
+            services.AddScoped<GetAllReservationUseCase>();
+            services.AddScoped<GetReservationByIdUseCase>();
+
+            // Booking Use Case
+            services.AddScoped<CreateBookingUseCase>();
 
             return services;
         }

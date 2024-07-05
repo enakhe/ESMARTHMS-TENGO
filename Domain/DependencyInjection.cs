@@ -13,11 +13,12 @@ namespace ESMART_HMS.Domain
 
             services.AddScoped<FormHelper>();
 
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IGuestRepository, GuestRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
+            services.AddScoped<IBookingRepository, BookingRepository>();
 
             return services;
         }

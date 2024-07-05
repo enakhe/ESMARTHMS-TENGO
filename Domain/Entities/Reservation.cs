@@ -14,9 +14,15 @@ namespace ESMART_HMS.Domain.Entities
     
     public partial class Reservation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Reservation()
+        {
+            this.Bookings = new HashSet<Booking>();
+        }
+    
         public string Id { get; set; }
         public string ReservationId { get; set; }
-        public string CustomerId { get; set; }
+        public string GuestId { get; set; }
         public string RoomId { get; set; }
         public System.DateTime CheckInDate { get; set; }
         public System.DateTime CheckOutDate { get; set; }
@@ -25,8 +31,11 @@ namespace ESMART_HMS.Domain.Entities
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
         public decimal Amount { get; set; }
+        public string Status { get; set; }
     
-        public virtual Customer Customer { get; set; }
+        public virtual Guest Guest { get; set; }
         public virtual Room Room { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

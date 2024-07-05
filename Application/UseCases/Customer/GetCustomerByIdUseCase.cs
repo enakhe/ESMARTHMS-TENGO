@@ -1,19 +1,19 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
 
-namespace ESMART_HMS.Application.UseCases.Customer
+namespace ESMART_HMS.Application.UseCases.Guest
 {
-    public class GetCustomerByIdUseCase
+    public class GetGuestByIdUseCase
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IGuestRepository _customerRepository;
 
-        public GetCustomerByIdUseCase(ICustomerRepository customerRepository)
+        public GetGuestByIdUseCase(IGuestRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
-        public ESMART_HMS.Domain.Entities.Customer Execute(string Id)
+        public ESMART_HMS.Domain.Entities.Guest Execute(string Id)
         {
-            ESMART_HMS.Domain.Entities.Customer customer = _customerRepository.GetCustomerById(Id);
+            ESMART_HMS.Domain.Entities.Guest customer = _customerRepository.GetGuestById(Id);
             return customer;
         }
     }

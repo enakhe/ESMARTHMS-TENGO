@@ -1,68 +1,68 @@
-﻿using ESMART_HMS.Application.UseCases.Customer;
+﻿using ESMART_HMS.Application.UseCases.Guest;
 using ESMART_HMS.Domain.Entities;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace ESMART_HMS.Presentation.Controllers
 {
-    public class CustomerController
+    public class GuestController
     {
-        private readonly GetAllCustomerUseCase _getAllCustomersUseCase;
-        private readonly CreateCustomerUseCase _createCustomerUseCase;
-        private readonly UpdateCustomerUseCase _updateCustomerUseCase;
-        private readonly GetCustomerByIdUseCase _getCustomerByIdUseCase;
-        private readonly DeleteCustomerUseCase _deleteCustomerUseCase;
-        private readonly SearchCustomerUseCase _searchCustomerUseCase;
-        private readonly GetDeletedCustomerUseCase _getDeletedCustomerUseCase;
+        private readonly GetAllGuestUseCase _getAllGuestsUseCase;
+        private readonly CreateGuestUseCase _createGuestUseCase;
+        private readonly UpdateGuestUseCase _updateGuestUseCase;
+        private readonly GetGuestByIdUseCase _getGuestByIdUseCase;
+        private readonly DeleteGuestUseCase _deleteGuestUseCase;
+        private readonly SearchGuestUseCase _searchGuestUseCase;
+        private readonly GetDeletedGuestUseCase _getDeletedGuestUseCase;
 
-        public ObservableCollection<Customer> Customers { get; set; }
+        public ObservableCollection<Guest> Guests { get; set; }
 
-        public CustomerController(GetAllCustomerUseCase getAllCustomersUseCase, CreateCustomerUseCase createCustomerUseCase, UpdateCustomerUseCase updateCustomerUseCase, GetCustomerByIdUseCase getCustomerByIdUseCase, DeleteCustomerUseCase deleteCustomerUseCase, SearchCustomerUseCase searchCustomerUseCase, GetDeletedCustomerUseCase getDeletedCustomerUseCase)
+        public GuestController(GetAllGuestUseCase getAllGuestsUseCase, CreateGuestUseCase createGuestUseCase, UpdateGuestUseCase updateGuestUseCase, GetGuestByIdUseCase getGuestByIdUseCase, DeleteGuestUseCase deleteGuestUseCase, SearchGuestUseCase searchGuestUseCase, GetDeletedGuestUseCase getDeletedGuestUseCase)
         {
-            _getAllCustomersUseCase = getAllCustomersUseCase;
-            _createCustomerUseCase = createCustomerUseCase;
-            _updateCustomerUseCase = updateCustomerUseCase;
-            _getCustomerByIdUseCase = getCustomerByIdUseCase;
-            _deleteCustomerUseCase = deleteCustomerUseCase;
-            _searchCustomerUseCase = searchCustomerUseCase;
-            _getDeletedCustomerUseCase = getDeletedCustomerUseCase;
+            _getAllGuestsUseCase = getAllGuestsUseCase;
+            _createGuestUseCase = createGuestUseCase;
+            _updateGuestUseCase = updateGuestUseCase;
+            _getGuestByIdUseCase = getGuestByIdUseCase;
+            _deleteGuestUseCase = deleteGuestUseCase;
+            _searchGuestUseCase = searchGuestUseCase;
+            _getDeletedGuestUseCase = getDeletedGuestUseCase;
 
-            LoadCustomers();
+            LoadGuests();
         }
 
-        public List<Customer> LoadCustomers()
+        public List<Guest> LoadGuests()
         {
-            return _getAllCustomersUseCase.Execute();
+            return _getAllGuestsUseCase.Execute();
         }
 
-        public void AddCustomer(Customer customer)
+        public void AddGuest(Guest customer)
         {
-            _createCustomerUseCase.Execute(customer);
+            _createGuestUseCase.Execute(customer);
         }
 
-        public void UpdateCustomer(Customer customer)
+        public void UpdateGuest(Guest customer)
         {
-            _updateCustomerUseCase.Execute(customer);
+            _updateGuestUseCase.Execute(customer);
         }
 
-        public Customer GetCustomerById(string Id)
+        public Guest GetGuestById(string Id)
         {
-            Customer customer = _getCustomerByIdUseCase.Execute(Id);
+            Guest customer = _getGuestByIdUseCase.Execute(Id);
             return customer;
         }
 
-        public void DeleteCustomer(string Id)
+        public void DeleteGuest(string Id)
         {
-            _deleteCustomerUseCase.Execute(Id);
+            _deleteGuestUseCase.Execute(Id);
         }
 
-        public List<ESMART_HMS.Domain.Entities.Customer> SearchCustomer(string keyword)
+        public List<ESMART_HMS.Domain.Entities.Guest> SearchGuest(string keyword)
         {
-            return _searchCustomerUseCase.Execute(keyword);
+            return _searchGuestUseCase.Execute(keyword);
         }
-        public List<ESMART_HMS.Domain.Entities.Customer> GetDeletedCustomer()
+        public List<ESMART_HMS.Domain.Entities.Guest> GetDeletedGuest()
         {
-            return _getDeletedCustomerUseCase.Execute();
+            return _getDeletedGuestUseCase.Execute();
         }
     }
 }

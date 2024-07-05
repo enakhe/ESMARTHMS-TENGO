@@ -1,6 +1,7 @@
 ﻿using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms;
-using ESMART_HMS.Presentation.Forms.Customers;
+using ESMART_HMS.Presentation.Forms.Booking;
+using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
@@ -13,7 +14,7 @@ namespace ESMART_HMS.Presentation
         public static IServiceCollection AddPresentationServices(this IServiceCollection services)
         {
             // View Models
-            services.AddScoped<CustomerController>();
+            services.AddScoped<GuestController>();
             services.AddScoped<RoomController>();
             services.AddScoped<RoomTypeController>();
             services.AddScoped<ReservationController>();
@@ -22,10 +23,10 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<LoginForm>();
             services.AddScoped<Home>();
 
-            services.AddScoped<CustomerForm>();
-            services.AddScoped<AddCustomerForm>();
-            services.AddScoped<ViewCustomerForm>();
-            services.AddScoped<EditCustomer>();
+            services.AddScoped<GuestForm>();
+            services.AddScoped<AddGuestForm>();
+            services.AddScoped<ViewGuestForm>();
+            services.AddScoped<EditGuest>();
 
             services.AddScoped<RoomForm>();
             services.AddScoped<AddRoomForm>();
@@ -36,6 +37,9 @@ namespace ESMART_HMS.Presentation
 
             services.AddScoped<ReservationForm>();
             services.AddScoped<AddReservationForm>();
+
+            services.AddScoped<BookingForm>();
+            services.AddScoped<AddBookingForm>();
 
             return services;
         }

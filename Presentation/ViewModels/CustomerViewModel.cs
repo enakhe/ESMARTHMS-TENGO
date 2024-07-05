@@ -1,6 +1,6 @@
 ﻿namespace ESMART_HMS.Presentation.ViewModels
 {
-    public class CustomerViewModel
+    public class GuestViewModel
     {
 
     }

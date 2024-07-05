@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddReservationForm));
-            this.btnCustomer = new System.Windows.Forms.Button();
+            this.btnGuest = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtCustomer = new System.Windows.Forms.ComboBox();
+            this.txtGuest = new System.Windows.Forms.ComboBox();
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
-            this.customerTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.CustomerTableAdapter();
+            this.customerTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter();
             this.label2 = new System.Windows.Forms.Label();
             this.btnRoom = new System.Windows.Forms.Button();
             this.txtRoom = new System.Windows.Forms.ComboBox();
@@ -56,17 +56,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnCustomer
+            // btnGuest
             // 
-            this.btnCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomer.Location = new System.Drawing.Point(472, 75);
-            this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(185, 30);
-            this.btnCustomer.TabIndex = 14;
-            this.btnCustomer.Text = "Add Customer";
-            this.btnCustomer.UseVisualStyleBackColor = true;
-            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+            this.btnGuest.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuest.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuest.Location = new System.Drawing.Point(472, 75);
+            this.btnGuest.Name = "btnGuest";
+            this.btnGuest.Size = new System.Drawing.Size(185, 30);
+            this.btnGuest.TabIndex = 14;
+            this.btnGuest.Text = "Add Guest";
+            this.btnGuest.UseVisualStyleBackColor = true;
+            this.btnGuest.Click += new System.EventHandler(this.btnGuest_Click);
             // 
             // label8
             // 
@@ -74,9 +74,9 @@
             this.label8.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(34, 75);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 30);
+            this.label8.Size = new System.Drawing.Size(68, 30);
             this.label8.TabIndex = 13;
-            this.label8.Text = "Customer";
+            this.label8.Text = "Guest";
             // 
             // label1
             // 
@@ -88,22 +88,22 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Add Reservation";
             // 
-            // txtCustomer
+            // txtGuest
             // 
-            this.txtCustomer.DataSource = this.customerBindingSource;
-            this.txtCustomer.DisplayMember = "FullName";
-            this.txtCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txtCustomer.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomer.FormattingEnabled = true;
-            this.txtCustomer.Location = new System.Drawing.Point(39, 112);
-            this.txtCustomer.Name = "txtCustomer";
-            this.txtCustomer.Size = new System.Drawing.Size(618, 38);
-            this.txtCustomer.TabIndex = 16;
-            this.txtCustomer.ValueMember = "Id";
+            this.txtGuest.DataSource = this.customerBindingSource;
+            this.txtGuest.DisplayMember = "FullName";
+            this.txtGuest.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtGuest.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGuest.FormattingEnabled = true;
+            this.txtGuest.Location = new System.Drawing.Point(39, 112);
+            this.txtGuest.Name = "txtGuest";
+            this.txtGuest.Size = new System.Drawing.Size(618, 38);
+            this.txtGuest.TabIndex = 16;
+            this.txtGuest.ValueMember = "Id";
             // 
             // customerBindingSource
             // 
-            this.customerBindingSource.DataMember = "Customer";
+            this.customerBindingSource.DataMember = "Guest";
             this.customerBindingSource.DataSource = this.eSMART_HMSDBDataSet;
             // 
             // eSMART_HMSDBDataSet
@@ -206,7 +206,6 @@
             this.txtPaymentMethod.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaymentMethod.FormattingEnabled = true;
             this.txtPaymentMethod.Items.AddRange(new object[] {
-            "Unpaid",
             "Paid (From Deposit)",
             "Paid (Cash By Hand)"});
             this.txtPaymentMethod.Location = new System.Drawing.Point(356, 538);
@@ -268,7 +267,7 @@
             this.Controls.Add(this.txtCheckOut);
             this.Controls.Add(this.txtCheckIn);
             this.Controls.Add(this.txtRoom);
-            this.Controls.Add(this.txtCustomer);
+            this.Controls.Add(this.txtGuest);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnRoom);
             this.Controls.Add(this.label5);
@@ -276,7 +275,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnCustomer);
+            this.Controls.Add(this.btnGuest);
             this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -297,13 +296,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnCustomer;
+        private System.Windows.Forms.Button btnGuest;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox txtCustomer;
+        private System.Windows.Forms.ComboBox txtGuest;
         private ESMART_HMSDBDataSet eSMART_HMSDBDataSet;
         private System.Windows.Forms.BindingSource customerBindingSource;
-        private ESMART_HMSDBDataSetTableAdapters.CustomerTableAdapter customerTableAdapter;
+        private ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter customerTableAdapter;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnRoom;
         private System.Windows.Forms.ComboBox txtRoom;

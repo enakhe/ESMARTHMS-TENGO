@@ -18,6 +18,7 @@ namespace ESMART_HMS.Domain.Entities
         public Room()
         {
             this.Reservations = new HashSet<Reservation>();
+            this.Bookings = new HashSet<Booking>();
         }
     
         public string Id { get; set; }
@@ -38,5 +39,7 @@ namespace ESMART_HMS.Domain.Entities
         public virtual RoomType RoomType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Bookings { get; set; }
     }
 }

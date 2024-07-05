@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Presentation.Forms;
+﻿using ESMART_HMS.Infrastructure.Services;
+using ESMART_HMS.Presentation.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -16,8 +17,8 @@ namespace ESMART_HMS
             DependencyInjection.ConfigureServices(services);
             var serviceProvider = services.BuildServiceProvider();
 
-            DatabaseHelper.InitializeDatabase();
-            DatabaseHelper.AddSampleUser();
+            DatabaseService.InitializeDatabase();
+            DatabaseService.AddSampleUser();
 
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);

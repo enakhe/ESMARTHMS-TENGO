@@ -1,19 +1,19 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
 
-namespace ESMART_HMS.Application.UseCases.Customer
+namespace ESMART_HMS.Application.UseCases.Guest
 {
-    public class UpdateCustomerUseCase
+    public class UpdateGuestUseCase
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IGuestRepository _customerRepository;
 
-        public UpdateCustomerUseCase(ICustomerRepository customerRepository)
+        public UpdateGuestUseCase(IGuestRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
-        public void Execute(ESMART_HMS.Domain.Entities.Customer customer)
+        public void Execute(ESMART_HMS.Domain.Entities.Guest customer)
         {
-            _customerRepository.UpdateCustomer(customer);
+            _customerRepository.UpdateGuest(customer);
         }
     }
 }

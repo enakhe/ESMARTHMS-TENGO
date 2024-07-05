@@ -5,12 +5,34 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ESMART_HMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Customer">
+        <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="CustomerId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="BookingId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="GuestId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="RoomId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ReservationId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CheckInDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CheckOutDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NoOfPerson" Type="int" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="VAT" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IsTrashed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="GuestId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
@@ -27,7 +49,7 @@
           <Property Name="IdType" Type="nvarchar" MaxLength="450" />
           <Property Name="IdentificationDocumentFront" Type="varbinary(max)" />
           <Property Name="IdentificationDocumentBack" Type="varbinary(max)" />
-          <Property Name="CustomerImage" Type="varbinary(max)" />
+          <Property Name="GuestImage" Type="varbinary(max)" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
@@ -38,12 +60,13 @@
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="ReservationId" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="CustomerId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="GuestId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="RoomId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="CheckInDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CheckOutDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="PaymentMethod" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
@@ -95,15 +118,51 @@
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Reservati__Custo__403A8C7D">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+        <Association Name="FK__Booking__GuestId__440B1D61">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__Reserva__45F365D3">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__RoomId__44FF419A">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Guest__403A8C7D">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
           <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="Guest">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Reservation">
-              <PropertyRef Name="CustomerId" />
+              <PropertyRef Name="GuestId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -132,13 +191,26 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ESMART_HMSDBModelStoreContainer">
-          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Reservati__Custo__403A8C7D" Association="Self.FK__Reservati__Custo__403A8C7D">
-            <End Role="Customer" EntitySet="Customer" />
+          <AssociationSet Name="FK__Booking__GuestId__440B1D61" Association="Self.FK__Booking__GuestId__440B1D61">
+            <End Role="Guest" EntitySet="Guest" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__Reserva__45F365D3" Association="Self.FK__Booking__Reserva__45F365D3">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__RoomId__44FF419A" Association="Self.FK__Booking__RoomId__44FF419A">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Guest__403A8C7D" Association="Self.FK__Reservati__Guest__403A8C7D">
+            <End Role="Guest" EntitySet="Guest" />
             <End Role="Reservation" EntitySet="Reservation" />
           </AssociationSet>
           <AssociationSet Name="FK__Reservati__RoomI__412EB0B6" Association="Self.FK__Reservati__RoomI__412EB0B6">
@@ -154,12 +226,12 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ESMART_HMSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Customer">
+        <EntityType Name="Guest">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CustomerId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GuestId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -178,9 +250,10 @@
           <Property Name="IdType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="IdentificationDocumentFront" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IdentificationDocumentBack" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CustomerImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="GuestImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" FromRole="Customer" ToRole="Reservation" />
+          <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" FromRole="Guest" ToRole="Reservation" />
+          <NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__GuestId__440B1D61" FromRole="Guest" ToRole="Booking" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -202,6 +275,7 @@
           <Property Name="RoomNo" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__RoomI__412EB0B6" FromRole="Room" ToRole="Reservation" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__RoomId__44FF419A" FromRole="Room" ToRole="Booking" />
         </EntityType>
         <EntityType Name="RoomType">
           <Key>
@@ -245,7 +319,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ESMART_HMSDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Guests" EntityType="Self.Guest" />
           <EntitySet Name="Rooms" EntityType="Self.Room" />
           <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -255,12 +329,25 @@
           </AssociationSet>
           <EntitySet Name="Reservations" EntityType="ESMART_HMSDBModel.Reservation" />
           <AssociationSet Name="FK__Reservati__Custo__403A8C7D" Association="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D">
-            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Guest" EntitySet="Guests" />
             <End Role="Reservation" EntitySet="Reservations" />
           </AssociationSet>
           <AssociationSet Name="FK__Reservati__RoomI__412EB0B6" Association="ESMART_HMSDBModel.FK__Reservati__RoomI__412EB0B6">
             <End EntitySet="Rooms" Role="Room" />
             <End EntitySet="Reservations" Role="Reservation" />
+          </AssociationSet>
+          <EntitySet Name="Bookings" EntityType="ESMART_HMSDBModel.Booking" />
+          <AssociationSet Name="FK__Booking__GuestId__440B1D61" Association="ESMART_HMSDBModel.FK__Booking__GuestId__440B1D61">
+            <End Role="Guest" EntitySet="Guests" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__Reserva__45F365D3" Association="ESMART_HMSDBModel.FK__Booking__Reserva__45F365D3">
+            <End Role="Reservation" EntitySet="Reservations" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__RoomId__44FF419A" Association="ESMART_HMSDBModel.FK__Booking__RoomId__44FF419A">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Booking" EntitySet="Bookings" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Reservation">
@@ -269,7 +356,7 @@
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="ReservationId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
@@ -277,19 +364,21 @@
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" FromRole="Reservation" ToRole="Customer" />
+          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Reservati__Custo__403A8C7D" FromRole="Reservation" ToRole="Guest" />
           <NavigationProperty Name="Room" Relationship="ESMART_HMSDBModel.FK__Reservati__RoomI__412EB0B6" FromRole="Reservation" ToRole="Room" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__Reserva__45F365D3" FromRole="Reservation" ToRole="Booking" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Reservati__Custo__403A8C7D">
-          <End Type="ESMART_HMSDBModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
           <End Type="ESMART_HMSDBModel.Reservation" Role="Reservation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="Guest">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Reservation">
-              <PropertyRef Name="CustomerId" />
+              <PropertyRef Name="GuestId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -305,24 +394,85 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="BookingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ReservationId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PaymentMethod" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="NoOfPerson" Type="Int32" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="VAT" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Booking__GuestId__440B1D61" FromRole="Booking" ToRole="Guest" />
+          <NavigationProperty Name="Reservation" Relationship="ESMART_HMSDBModel.FK__Booking__Reserva__45F365D3" FromRole="Booking" ToRole="Reservation" />
+          <NavigationProperty Name="Room" Relationship="ESMART_HMSDBModel.FK__Booking__RoomId__44FF419A" FromRole="Booking" ToRole="Room" />
+        </EntityType>
+        <Association Name="FK__Booking__GuestId__440B1D61">
+          <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__Reserva__45F365D3">
+          <End Type="ESMART_HMSDBModel.Reservation" Role="Reservation" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="ReservationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__RoomId__44FF419A">
+          <End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ESMART_HMSDBModelStoreContainer" CdmEntityContainer="ESMART_HMSDBEntities">
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
+          <EntitySetMapping Name="Guests">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Guest">
+              <MappingFragment StoreEntitySet="Guest">
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="CustomerImage" ColumnName="CustomerImage" />
+                <ScalarProperty Name="GuestImage" ColumnName="GuestImage" />
                 <ScalarProperty Name="IdentificationDocumentBack" ColumnName="IdentificationDocumentBack" />
                 <ScalarProperty Name="IdentificationDocumentFront" ColumnName="IdentificationDocumentFront" />
                 <ScalarProperty Name="IdType" ColumnName="IdType" />
                 <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
                 <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -392,6 +542,7 @@
           <EntitySetMapping Name="Reservations">
             <EntityTypeMapping TypeName="ESMART_HMSDBModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
@@ -400,8 +551,31 @@
                 <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
                 <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
                 <ScalarProperty Name="RoomId" ColumnName="RoomId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
                 <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bookings">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

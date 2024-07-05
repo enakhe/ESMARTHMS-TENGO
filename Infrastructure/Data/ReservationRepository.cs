@@ -5,8 +5,6 @@ using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Infrastructure.Data
@@ -31,7 +29,7 @@ namespace ESMART_HMS.Infrastructure.Data
                 MessageBox.Show("Successfully added reservation information", "Success", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -47,10 +45,10 @@ namespace ESMART_HMS.Infrastructure.Data
                                      {
                                          Id = reservation.Id,
                                          ReservationId = reservation.ReservationId,
-                                         CustomerId = reservation.CustomerId,
+                                         GuestId = reservation.GuestId,
                                          RoomId = reservation.RoomId,
-                                         Customer = reservation.Customer.FullName,
-                                         CustomerPhoneNo = reservation.Customer.PhoneNumber,
+                                         Guest = reservation.Guest.FullName,
+                                         GuestPhoneNo = reservation.Guest.PhoneNumber,
                                          Room = reservation.Room.RoomNo,
                                          PaymentMethod = reservation.PaymentMethod,
                                          Amount = reservation.Amount.ToString(),
@@ -59,7 +57,21 @@ namespace ESMART_HMS.Infrastructure.Data
                                          DateCreated = reservation.DateCreated,
                                          DateModified = reservation.DateModified,
                                      };
-                return allReservation.ToList();
+                return allReservation.OrderBy(r => r.DateCreated).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public Reservation GetReservationById(string Id)
+        {
+            try
+            {
+                return _db.Reservations.FirstOrDefault(r => r.Id == Id);
             }
             catch (Exception ex)
             {

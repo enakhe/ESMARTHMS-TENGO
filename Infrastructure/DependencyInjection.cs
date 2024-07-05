@@ -1,5 +1,5 @@
 ﻿using ESMART_HMS.Infrastructure.Data;
-using ESMART_HMS.Services;
+using ESMART_HMS.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ESMART_HMS.Infrastructure

@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
@@ -57,7 +58,7 @@ namespace ESMART_HMS.Repositories
                                   DateModified = room.DateModified,
                                   RoomTypeName = roomType.Title,
                               };
-                return allRoom.ToList();
+                return allRoom.OrderBy(r => r.RoomNo).ToList();
             }
             catch (Exception ex)
             {
@@ -153,29 +154,29 @@ namespace ESMART_HMS.Repositories
             }
         }
 
-        public List<RoomViewModel> GetAvailableRoom()
+        public List<RoomViewModel> GetVacantRoom()
         {
             try
             {
-                var availableRoom = from room in _db.Rooms.Where(r => r.IsTrashed == false)
-                              join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
-                              select new RoomViewModel
-                              {
-                                  Id = room.Id,
-                                  RoomId = room.RoomId,
-                                  RoomNo = room.RoomNo,
-                                  RoomCardNo = room.RoomCardNo,
-                                  RoomLockNo = room.RoomLockNo,
-                                  AdultPerRoom = room.AdultPerRoom,
-                                  ChildrenPerRoom = room.ChildrenPerRoom,
-                                  Description = room.Description,
-                                  Rate = room.Rate.ToString(),
-                                  Status = room.Status,
-                                  DateCreated = room.DateCreated,
-                                  DateModified = room.DateModified,
-                                  RoomTypeName = roomType.Title,
-                              };
-                return availableRoom.ToList();
+                var vacantRoom = from room in _db.Rooms.Where(r => r.Status == RoomStatusEnum.Vacant.ToString() && r.IsTrashed == false)
+                                 join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
+                                 select new RoomViewModel
+                                 {
+                                     Id = room.Id,
+                                     RoomId = room.RoomId,
+                                     RoomNo = room.RoomNo,
+                                     RoomCardNo = room.RoomCardNo,
+                                     RoomLockNo = room.RoomLockNo,
+                                     AdultPerRoom = room.AdultPerRoom,
+                                     ChildrenPerRoom = room.ChildrenPerRoom,
+                                     Description = room.Description,
+                                     Rate = room.Rate.ToString(),
+                                     Status = room.Status,
+                                     DateCreated = room.DateCreated,
+                                     DateModified = room.DateModified,
+                                     RoomTypeName = roomType.Title,
+                                 };
+                return vacantRoom.ToList();
             }
             catch (Exception ex)
             {
