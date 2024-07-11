@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.ViewModels;
@@ -40,7 +41,7 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                var allReservation = from reservation in _db.Reservations.Where(r => r.IsTrashed == false)
+                var allReservation = from reservation in _db.Reservations.Where(r => r.IsTrashed == false && r.Status != RoomStatusEnum.CheckedIn.ToString())
                                      select new ReservationViewModel
                                      {
                                          Id = reservation.Id,
@@ -79,6 +80,22 @@ namespace ESMART_HMS.Infrastructure.Data
                                             MessageBoxIcon.Error);
             }
             return null;
+        }
+
+        public void UpdateReservation(Reservation reservation)
+        {
+            try
+            {
+                _db.Entry(reservation).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+                MessageBox.Show("Successfully edited reservation information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
     }
 }

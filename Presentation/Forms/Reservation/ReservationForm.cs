@@ -13,12 +13,16 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private readonly ReservationController _reservationController;
         private readonly GuestController _guestController;
         private readonly RoomController _roomController;
-        public ReservationForm(ReservationController reservationController, GuestController guestController, RoomController roomController)
+        private readonly ConfigurationController _configurationController;
+        private readonly BookingController _bookingController;
+        public ReservationForm(ReservationController reservationController, GuestController guestController, RoomController roomController, ConfigurationController configurationController, BookingController bookingController)
         {
             _reservationController = reservationController;
             InitializeComponent();
             _guestController = guestController;
             _roomController = roomController;
+            _configurationController = configurationController;
+            _bookingController = bookingController;
         }
 
         private void ReservationForm_Load(object sender, EventArgs e)
@@ -76,7 +80,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     string roomId = row.Cells["roomIdDataGridViewTextBoxColumn"].Value.ToString();
                     string guestId = row.Cells["GuestId"].Value.ToString();
 
-                    AddBookingForm addBookingForm = new AddBookingForm(reservationId, guestId, roomId, _guestController, _roomController, _reservationController);
+                    AddBookingForm addBookingForm = new AddBookingForm(reservationId, guestId, roomId, _guestController, _roomController, _reservationController, _configurationController, _bookingController);
                     if (addBookingForm.ShowDialog() == DialogResult.OK)
                     {
                         LoadData();

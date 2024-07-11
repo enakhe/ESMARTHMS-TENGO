@@ -2,6 +2,7 @@
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
+using ESMART_HMS.Presentation.Forms.Tools.Option;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ namespace ESMART_HMS.Presentation.Forms
         GuestForm customerForm;
         RoomForm roomForm;
         ReservationForm reservationForm;
+        OptionsFrom optionsFrom;
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
@@ -93,6 +95,24 @@ namespace ESMART_HMS.Presentation.Forms
             else
             {
                 reservationForm.Activate();
+            }
+        }
+
+        private void Option_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            optionsFrom = null;
+        }
+
+        private void optionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (optionsFrom == null)
+            {
+                optionsFrom = new OptionsFrom();
+                optionsFrom.ShowDialog();
+            }
+            else
+            {
+                optionsFrom.Activate();
             }
         }
     }

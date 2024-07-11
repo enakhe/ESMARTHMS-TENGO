@@ -17,6 +17,7 @@
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__GuestId__440B1D61" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__Reserva__45F365D3" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__RoomId__44FF419A" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Configuration" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

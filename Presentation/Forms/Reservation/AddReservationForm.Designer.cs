@@ -206,8 +206,9 @@
             this.txtPaymentMethod.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaymentMethod.FormattingEnabled = true;
             this.txtPaymentMethod.Items.AddRange(new object[] {
-            "Paid (From Deposit)",
-            "Paid (Cash By Hand)"});
+            "POS",
+            "BANK TRANSFER",
+            "CASH"});
             this.txtPaymentMethod.Location = new System.Drawing.Point(356, 538);
             this.txtPaymentMethod.Name = "txtPaymentMethod";
             this.txtPaymentMethod.Size = new System.Drawing.Size(301, 38);
@@ -244,6 +245,7 @@
             this.txtAmount.ReadOnly = true;
             this.txtAmount.Size = new System.Drawing.Size(297, 37);
             this.txtAmount.TabIndex = 20;
+            this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
             // 
             // label7
             // 

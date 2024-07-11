@@ -192,5 +192,14 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                             MessageBoxIcon.Error);
             }
         }
+
+        private void txtAmount_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtAmount.Text);
+            if (isNull == false)
+            {
+                txtAmount.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtAmount.Text));
+            }
+        }
     }
 }

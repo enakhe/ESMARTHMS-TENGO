@@ -31,5 +31,6 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<Configuration> Configurations { get; set; }
     }
 }

@@ -161,7 +161,7 @@
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.roomsToolStripMenuItem.Text = "View all Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
@@ -184,7 +184,7 @@
             // reservationListToolStripMenuItem
             // 
             this.reservationListToolStripMenuItem.Name = "reservationListToolStripMenuItem";
-            this.reservationListToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.reservationListToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.reservationListToolStripMenuItem.Text = "Reservation List";
             this.reservationListToolStripMenuItem.Click += new System.EventHandler(this.reservationListToolStripMenuItem_Click);
             // 
@@ -205,13 +205,13 @@
             this.roomBookingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bookingListToolStripMenuItem});
             this.roomBookingToolStripMenuItem.Name = "roomBookingToolStripMenuItem";
-            this.roomBookingToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
+            this.roomBookingToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
             this.roomBookingToolStripMenuItem.Text = "Room Booking";
             // 
             // bookingListToolStripMenuItem
             // 
             this.bookingListToolStripMenuItem.Name = "bookingListToolStripMenuItem";
-            this.bookingListToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.bookingListToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
             this.bookingListToolStripMenuItem.Text = "Booking List";
             // 
             // toolsToolStripMenuItem
@@ -228,6 +228,7 @@
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
             this.optionToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.optionToolStripMenuItem.Text = "Options";
+            this.optionToolStripMenuItem.Click += new System.EventHandler(this.optionToolStripMenuItem_Click);
             // 
             // Home
             // 

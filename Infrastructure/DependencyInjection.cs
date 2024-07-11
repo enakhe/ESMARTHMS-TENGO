@@ -13,6 +13,8 @@ namespace ESMART_HMS.Infrastructure
 
             services.AddScoped<ReservationRepository>();
 
+            services.AddScoped<ConfigurationRepository>();
+
             return services;
         }
     }

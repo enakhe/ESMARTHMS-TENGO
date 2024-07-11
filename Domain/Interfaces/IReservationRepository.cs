@@ -8,5 +8,6 @@ namespace ESMART_HMS.Domain.Interfaces
     {
         void AddReservation(Reservation reservation);
         List<ReservationViewModel> GetReservationViewModel();
+        void UpdateReservation(Reservation reservation);
     }
 }

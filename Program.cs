@@ -18,7 +18,7 @@ namespace ESMART_HMS
             var serviceProvider = services.BuildServiceProvider();
 
             DatabaseService.InitializeDatabase();
-            DatabaseService.AddSampleUser();
+            DatabaseService.SeedData();
 
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);

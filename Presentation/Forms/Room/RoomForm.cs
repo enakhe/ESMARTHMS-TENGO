@@ -70,10 +70,10 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     cell.Style.BackColor = System.Drawing.Color.Yellow;
                     cell.Style.ForeColor = System.Drawing.Color.Black;
                 }
-                else if (cell.Value != null && cell.Value.ToString() == "CheckIn")
+                else if (cell.Value != null && cell.Value.ToString() == "CheckedIn")
                 {
                     cell.Style.BackColor = System.Drawing.Color.Blue;
-                    cell.Style.ForeColor = System.Drawing.Color.Black;
+                    cell.Style.ForeColor = System.Drawing.Color.White;
                 }
                 else
                 {

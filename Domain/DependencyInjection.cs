@@ -19,6 +19,7 @@ namespace ESMART_HMS.Domain
             services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
+            services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
 
             return services;
         }

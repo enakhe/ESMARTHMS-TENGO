@@ -42,23 +42,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.txtPaymentMethod = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtVAT = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDuration = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.duration = new System.Windows.Forms.Label();
-            this.textDiscount = new System.Windows.Forms.TextBox();
-            this.txtVAT = new System.Windows.Forms.Label();
+            this.txtDiscount = new System.Windows.Forms.TextBox();
+            this.labelVAT = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtNoOfPerson = new System.Windows.Forms.TextBox();
-            this.txtTotalAmount = new System.Windows.Forms.Label();
+            this.labelTotalAmount = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -196,19 +196,19 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtTotalAmount);
             this.panel1.Controls.Add(this.txtPaymentMethod);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.txtVAT);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtDuration);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtAmount);
             this.panel1.Controls.Add(this.duration);
-            this.panel1.Controls.Add(this.textDiscount);
-            this.panel1.Controls.Add(this.txtVAT);
+            this.panel1.Controls.Add(this.txtDiscount);
+            this.panel1.Controls.Add(this.labelVAT);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.txtNoOfPerson);
-            this.panel1.Controls.Add(this.txtTotalAmount);
+            this.panel1.Controls.Add(this.labelTotalAmount);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(699, 3);
@@ -216,13 +216,25 @@
             this.panel1.Size = new System.Drawing.Size(700, 506);
             this.panel1.TabIndex = 0;
             // 
-            // textBox1
+            // button1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(42, 446);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(613, 37);
-            this.textBox1.TabIndex = 59;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(580, 300);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 30);
+            this.button1.TabIndex = 60;
+            this.button1.Text = "Options";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtTotalAmount
+            // 
+            this.txtTotalAmount.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalAmount.Location = new System.Drawing.Point(42, 446);
+            this.txtTotalAmount.Name = "txtTotalAmount";
+            this.txtTotalAmount.Size = new System.Drawing.Size(613, 37);
+            this.txtTotalAmount.TabIndex = 59;
+            this.txtTotalAmount.TextChanged += new System.EventHandler(this.txtTotalAmount_TextChanged);
             // 
             // txtPaymentMethod
             // 
@@ -230,20 +242,21 @@
             this.txtPaymentMethod.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaymentMethod.FormattingEnabled = true;
             this.txtPaymentMethod.Items.AddRange(new object[] {
-            "Paid (From Deposit)",
-            "Paid (Cash By Hand)"});
+            "POS",
+            "BANK TRANSFER",
+            "CASH"});
             this.txtPaymentMethod.Location = new System.Drawing.Point(360, 127);
             this.txtPaymentMethod.Name = "txtPaymentMethod";
             this.txtPaymentMethod.Size = new System.Drawing.Size(301, 38);
             this.txtPaymentMethod.TabIndex = 52;
             // 
-            // textBox2
+            // txtVAT
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(358, 335);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(301, 37);
-            this.textBox2.TabIndex = 58;
+            this.txtVAT.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVAT.Location = new System.Drawing.Point(358, 335);
+            this.txtVAT.Name = "txtVAT";
+            this.txtVAT.Size = new System.Drawing.Size(301, 37);
+            this.txtVAT.TabIndex = 58;
             // 
             // label5
             // 
@@ -280,6 +293,7 @@
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(297, 37);
             this.txtAmount.TabIndex = 56;
+            this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
             // 
             // duration
             // 
@@ -291,23 +305,23 @@
             this.duration.TabIndex = 41;
             this.duration.Text = "Duration";
             // 
-            // textDiscount
+            // txtDiscount
             // 
-            this.textDiscount.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textDiscount.Location = new System.Drawing.Point(42, 335);
-            this.textDiscount.Name = "textDiscount";
-            this.textDiscount.Size = new System.Drawing.Size(296, 37);
-            this.textDiscount.TabIndex = 54;
+            this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiscount.Location = new System.Drawing.Point(42, 335);
+            this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Size = new System.Drawing.Size(296, 37);
+            this.txtDiscount.TabIndex = 54;
             // 
-            // txtVAT
+            // labelVAT
             // 
-            this.txtVAT.AutoSize = true;
-            this.txtVAT.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVAT.Location = new System.Drawing.Point(354, 300);
-            this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Size = new System.Drawing.Size(50, 30);
-            this.txtVAT.TabIndex = 42;
-            this.txtVAT.Text = "VAT";
+            this.labelVAT.AutoSize = true;
+            this.labelVAT.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVAT.Location = new System.Drawing.Point(354, 300);
+            this.labelVAT.Name = "labelVAT";
+            this.labelVAT.Size = new System.Drawing.Size(50, 30);
+            this.labelVAT.TabIndex = 42;
+            this.labelVAT.Text = "VAT";
             // 
             // label10
             // 
@@ -328,15 +342,15 @@
             this.txtNoOfPerson.TabIndex = 53;
             this.txtNoOfPerson.TextChanged += new System.EventHandler(this.txtNoOfPerson_TextChanged);
             // 
-            // txtTotalAmount
+            // labelTotalAmount
             // 
-            this.txtTotalAmount.AutoSize = true;
-            this.txtTotalAmount.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalAmount.Location = new System.Drawing.Point(37, 411);
-            this.txtTotalAmount.Name = "txtTotalAmount";
-            this.txtTotalAmount.Size = new System.Drawing.Size(142, 30);
-            this.txtTotalAmount.TabIndex = 43;
-            this.txtTotalAmount.Text = "Total Amount";
+            this.labelTotalAmount.AutoSize = true;
+            this.labelTotalAmount.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalAmount.Location = new System.Drawing.Point(37, 411);
+            this.labelTotalAmount.Name = "labelTotalAmount";
+            this.labelTotalAmount.Size = new System.Drawing.Size(142, 30);
+            this.labelTotalAmount.TabIndex = 43;
+            this.labelTotalAmount.Text = "Total Amount";
             // 
             // label11
             // 
@@ -368,17 +382,7 @@
             this.btnSave.TabIndex = 20;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(580, 300);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 30);
-            this.button1.TabIndex = 60;
-            this.button1.Text = "Options";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // AddBookingForm
             // 
@@ -422,19 +426,19 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTotalAmount;
         private System.Windows.Forms.ComboBox txtPaymentMethod;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtVAT;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDuration;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.Label duration;
-        private System.Windows.Forms.TextBox textDiscount;
-        private System.Windows.Forms.Label txtVAT;
+        private System.Windows.Forms.TextBox txtDiscount;
+        private System.Windows.Forms.Label labelVAT;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtNoOfPerson;
-        private System.Windows.Forms.Label txtTotalAmount;
+        private System.Windows.Forms.Label labelTotalAmount;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnSave;

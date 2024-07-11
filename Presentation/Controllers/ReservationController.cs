@@ -10,12 +10,14 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly CreateReservationUseCase _addReservationUseCase;
         private readonly GetAllReservationUseCase _allReservationUseCase;
         private readonly GetReservationByIdUseCase _getReservationByIdUseCase;
+        private readonly UpdateReservationUseCase _updateReservationUseCase;
 
-        public ReservationController(CreateReservationUseCase addReservationUseCase, GetAllReservationUseCase allReservationUseCase, GetReservationByIdUseCase getReservationByIdUseCase)
+        public ReservationController(CreateReservationUseCase addReservationUseCase, GetAllReservationUseCase allReservationUseCase, GetReservationByIdUseCase getReservationByIdUseCase, UpdateReservationUseCase updateReservationUseCase)
         {
             _addReservationUseCase = addReservationUseCase;
             _allReservationUseCase = allReservationUseCase;
             _getReservationByIdUseCase = getReservationByIdUseCase;
+            _updateReservationUseCase = updateReservationUseCase;
         }
 
         public void AddReservation(Reservation reservation)
@@ -31,6 +33,11 @@ namespace ESMART_HMS.Presentation.Controllers
         public Reservation GetReservationById(string Id)
         {
             return _getReservationByIdUseCase.Execute(Id);
+        }
+
+        public void UpdateReservation(Reservation reservation)
+        {
+            _updateReservationUseCase.Execute(reservation);
         }
     }
 }

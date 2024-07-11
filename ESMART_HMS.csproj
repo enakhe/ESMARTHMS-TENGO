@@ -255,6 +255,8 @@
   <ItemGroup>
     <Compile Include="Application\DependencyInjection.cs" />
     <Compile Include="Application\UseCases\Booking\CreateBookingUseCase.cs" />
+    <Compile Include="Application\UseCases\Configuration\GetConfigurationValueUseCase.cs" />
+    <Compile Include="Application\UseCases\Configuration\SetConfigurationValueUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\CreateCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\DeleteCustomerUseCase.cs" />
     <Compile Include="Application\UseCases\Customer\GetAllCustomerUseCase.cs" />
@@ -265,6 +267,7 @@
     <Compile Include="Application\UseCases\Reservation\CreateReservationUseCase.cs" />
     <Compile Include="Application\UseCases\Reservation\GetAllReservationUseCase.cs" />
     <Compile Include="Application\UseCases\Reservation\GetReservationByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\Reservation\UpdateReservationUseCase.cs" />
     <Compile Include="Application\UseCases\RoomType\CreateRoomTypeUseCase.cs" />
     <Compile Include="Application\UseCases\RoomType\GetAllRoomTypeUseCase.cs" />
     <Compile Include="Application\UseCases\RoomType\GetRoomTypeByIdUseCase.cs" />
@@ -280,6 +283,9 @@
     <Compile Include="Domain\Entities\Booking.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Entities\Configuration.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Entities\Guest.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -291,6 +297,7 @@
     </Compile>
     <Compile Include="Domain\Enum\RoomStatusEnum.cs" />
     <Compile Include="Domain\Interfaces\IBookingRepository.cs" />
+    <Compile Include="Domain\Interfaces\IConfigurationRepository.cs" />
     <Compile Include="Domain\Interfaces\IGuestRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />
     <Compile Include="Domain\Interfaces\IReservationRepository.cs" />
@@ -304,11 +311,14 @@
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Data\BookingRepository.cs" />
+    <Compile Include="Infrastructure\Data\ConfigurationRepository.cs" />
     <Compile Include="Infrastructure\Data\ReservationRepository.cs" />
     <Compile Include="Infrastructure\Data\RoomRepository.cs" />
     <Compile Include="Infrastructure\Data\RoomTypeRepository.cs" />
     <Compile Include="Infrastructure\Data\UserRepository.cs" />
     <Compile Include="Infrastructure\DependencyInjection.cs" />
+    <Compile Include="Presentation\Controllers\BookingController.cs" />
+    <Compile Include="Presentation\Controllers\ConfigurationController.cs" />
     <Compile Include="Presentation\Controllers\CustomerController.cs" />
     <Compile Include="Presentation\Controllers\ReservationController.cs" />
     <Compile Include="Presentation\Controllers\RoomController.cs" />

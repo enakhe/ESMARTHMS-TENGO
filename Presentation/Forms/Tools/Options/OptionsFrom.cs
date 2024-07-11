@@ -1,4 +1,6 @@
-﻿using ESMART_HMS.Presentation.Forms.Tools.Option.Financial;
+﻿using ESMART_HMS.Presentation.Forms.Rooms;
+using ESMART_HMS.Presentation.Forms.Tools.Option.Financial;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
@@ -21,8 +23,6 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Option
             // Get the selected node
             TreeNode selectedNode = treeView.SelectedNode;
 
-            FinancialForm financialForm = new FinancialForm();
-
             // Update the right panel based on the selected node
             UpdateRightPanel(selectedNode.Text);
         }
@@ -32,13 +32,16 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Option
             // Clear the right panel
             panel1.Controls.Clear();
 
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
             Form formToLoad = null;
 
             // Create and load the appropriate form based on the selected item
             switch (selectedNode)
             {
                 case "General":
-                    formToLoad = new FinancialForm();
+                    formToLoad = serviceProvider.GetRequiredService<FinancialForm>();
                     break;
             }
 
@@ -49,6 +52,17 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Option
                 panel1.Controls.Add(formToLoad);
                 formToLoad.Show();
             }
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

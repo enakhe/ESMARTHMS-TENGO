@@ -123,6 +123,11 @@ namespace ESMART_HMS.Infrastructure.Services
                     "FOREIGN KEY (RoomId) REFERENCES Room(Id), " +
                     "FOREIGN KEY (ReservationId) REFERENCES Reservation(Id), " +
                     "CONSTRAINT [PK_Booking] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+                CreateTable("Configuration",
+                    "[Key][nvarchar](450) NOT NULL," +
+                    "[Value][nvarchar](450) NOT NULL," +
+                    "CONSTRAINT [PK_Configuration] PRIMARY KEY CLUSTERED ([Key] ASC)");
             }
         }
 
@@ -160,10 +165,16 @@ namespace ESMART_HMS.Infrastructure.Services
             }
         }
 
-        public static void AddSampleUser()
+        public static void SeedData()
+        {
+            SeedUser();
+            SeedVAT();
+            SeedDiscount();
+        }
+
+        public static void SeedUser()
         {
             User user = new User();
-
             user.UserName = "SuperAdmin";
             user.FirstName = "";
             user.LastName = "";
@@ -181,6 +192,38 @@ namespace ESMART_HMS.Infrastructure.Services
                 {
                     UserRepository userRepository = new UserRepository(db);
                     userRepository.AddUser(user);
+                }
+            }
+        }
+
+        public static void SeedVAT()
+        {
+            Configuration vatConfiguration = new Configuration();
+            vatConfiguration.Key = "VAT";
+            vatConfiguration.Value = "0.00";
+            using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
+            {
+                var foundVatConf = db.Configurations.FirstOrDefault(fv => fv.Key == "VAT");
+                if (foundVatConf == null)
+                {
+                    ConfigurationRepository configurationRepository = new ConfigurationRepository(db);
+                    configurationRepository.AddConfiguration(vatConfiguration);
+                }
+            }
+        }
+
+        public static void SeedDiscount()
+        {
+            Configuration vatConfiguration = new Configuration();
+            vatConfiguration.Key = "Discount";
+            vatConfiguration.Value = "0.00";
+            using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
+            {
+                var foundVatConf = db.Configurations.FirstOrDefault(fv => fv.Key == "Discount");
+                if (foundVatConf == null)
+                {
+                    ConfigurationRepository configurationRepository = new ConfigurationRepository(db);
+                    configurationRepository.AddConfiguration(vatConfiguration);
                 }
             }
         }

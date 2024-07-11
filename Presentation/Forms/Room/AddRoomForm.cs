@@ -16,8 +16,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         public AddRoomForm(RoomController roomController, RoomTypeController roomTypeController)
         {
             InitializeComponent();
-            txtRate.KeyPress += new KeyPressEventHandler(txtRate_KeyPress);
-            txtRate.TextChanged += new EventHandler(txtRate_TextChanged);
             _roomController = roomController;
             _roomTypeController = roomTypeController;
         }
@@ -70,40 +68,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
-            }
-        }
-
-        private void txtRate_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-            if (e.KeyChar == '.' && !txtRate.Text.Contains("."))
-            {
-                return;
-            }
-
-            e.Handled = true;
-        }
-
-        private void txtRate_TextChanged(object sender, EventArgs e)
-        {
-            string text = txtRate.Text;
-
-            if (decimal.TryParse(text, out decimal value))
-            {
-                txtRate.Text = value.ToString("F2");
-            }
-            else if (text != string.Empty)
-            {
-                txtRate.Text = string.Empty;
             }
         }
 
@@ -185,6 +149,15 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtRate_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtRate.Text);
+            if (isNull == false)
+            {
+                txtRate.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtRate.Text));
             }
         }
     }
