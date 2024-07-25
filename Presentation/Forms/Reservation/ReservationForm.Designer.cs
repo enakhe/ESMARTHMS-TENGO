@@ -63,6 +63,9 @@
             this.checkOutDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paymentMethodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
@@ -113,6 +116,9 @@
             this.checkOutDateDataGridViewTextBoxColumn,
             this.paymentMethodDataGridViewTextBoxColumn,
             this.Amount,
+            this.AmountPaid,
+            this.Balance,
+            this.CreatedBy,
             this.dateCreatedDataGridViewTextBoxColumn,
             this.dateModifiedDataGridViewTextBoxColumn});
             this.dgvReservation.DataSource = this.reservationBindingSource;
@@ -323,7 +329,7 @@
             // reservationIdDataGridViewTextBoxColumn
             // 
             this.reservationIdDataGridViewTextBoxColumn.DataPropertyName = "ReservationId";
-            this.reservationIdDataGridViewTextBoxColumn.HeaderText = "Reservation Id";
+            this.reservationIdDataGridViewTextBoxColumn.HeaderText = "Id";
             this.reservationIdDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.reservationIdDataGridViewTextBoxColumn.Name = "reservationIdDataGridViewTextBoxColumn";
             this.reservationIdDataGridViewTextBoxColumn.ReadOnly = true;
@@ -395,10 +401,34 @@
             this.Amount.Name = "Amount";
             this.Amount.ReadOnly = true;
             // 
+            // AmountPaid
+            // 
+            this.AmountPaid.DataPropertyName = "AmountPaid";
+            this.AmountPaid.HeaderText = "Paid";
+            this.AmountPaid.MinimumWidth = 6;
+            this.AmountPaid.Name = "AmountPaid";
+            this.AmountPaid.ReadOnly = true;
+            // 
+            // Balance
+            // 
+            this.Balance.DataPropertyName = "Balance";
+            this.Balance.HeaderText = "Balance";
+            this.Balance.MinimumWidth = 6;
+            this.Balance.Name = "Balance";
+            this.Balance.ReadOnly = true;
+            // 
+            // CreatedBy
+            // 
+            this.CreatedBy.DataPropertyName = "CreatedBy";
+            this.CreatedBy.HeaderText = "Reserved By";
+            this.CreatedBy.MinimumWidth = 6;
+            this.CreatedBy.Name = "CreatedBy";
+            this.CreatedBy.ReadOnly = true;
+            // 
             // dateCreatedDataGridViewTextBoxColumn
             // 
             this.dateCreatedDataGridViewTextBoxColumn.DataPropertyName = "DateCreated";
-            this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "Date Created";
+            this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "Date Reserved";
             this.dateCreatedDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dateCreatedDataGridViewTextBoxColumn.Name = "dateCreatedDataGridViewTextBoxColumn";
             this.dateCreatedDataGridViewTextBoxColumn.ReadOnly = true;
@@ -476,6 +506,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn checkOutDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn paymentMethodDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountPaid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Balance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
     }

@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Infrastructure.Data;
 using System;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace ESMART_HMS.Infrastructure.Services
     public class AuthService
     {
 
-        public User Login(string username, string password)
+        public ApplicationUser Login(string username, string password)
         {
             try
             {
-                if (username == null || username == "" || password == null || password == "")
+                bool isNull = FormHelper.AreAnyNullOrEmpty(username, password);
+                if (isNull == true)
                 {
                     MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -23,7 +25,7 @@ namespace ESMART_HMS.Infrastructure.Services
                     using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
                     {
                         UserRepository userRepository = new UserRepository(db);
-                        var foundUser = db.Users.FirstOrDefault(u => u.UserName == username);
+                        var foundUser = db.ApplicationUsers.FirstOrDefault(u => u.UserName == username);
                         if (foundUser == null)
                         {
                             MessageBox.Show("No user with the username exits. Please check if the username and the password is correct", "User not found", MessageBoxButtons.OK, MessageBoxIcon.Error);

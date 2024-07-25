@@ -4,10 +4,11 @@ using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Rooms;
+using ESMART_HMS.Presentation.Middleware;
+using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Reservation
@@ -18,29 +19,34 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private readonly GuestController _guestController;
         private readonly RoomController _roomController;
         private readonly ReservationController _reservationController;
-        public AddReservationForm(GuestController guestController, RoomController roomController, ReservationController reservationController)
+        private readonly ApplicationUserController _applicationUserController;
+        public AddReservationForm(GuestController guestController, RoomController roomController, ReservationController reservationController, ApplicationUserController applicationUserController)
         {
             _guestController = guestController;
             _reservationController = reservationController;
             _roomController = roomController;
+            _applicationUserController = applicationUserController;
             InitializeComponent();
-            LoadRoomData();
-            LoadGuestData();
+            ApplyAuthorization();
         }
 
         private void AddReservationForm_Load(object sender, EventArgs e)
         {
-            LoadRoomData();
-            LoadGuestData();
-            this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
             this.customerTableAdapter.Fill(this.eSMART_HMSDBDataSet.Guest);
+            LoadRoomData();
+        }
+
+        private void ApplyAuthorization()
+        {
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.Protect(user, btnRoom, "SuperAdmin");
         }
 
         public void LoadRoomData()
         {
             try
             {
-                var allRoom = _roomController.GetAllRooms().Where(r => r.Status == RoomStatusEnum.Vacant.ToString()).ToList();
+                var allRoom = _roomController.GetAvailbleRoom();
                 if (allRoom != null)
                 {
                     if (allRoom.Count > 0)
@@ -67,7 +73,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         {
             try
             {
-                var allGuest = _guestController.LoadGuests().ToList();
+                var allGuest = _guestController.LoadGuests();
                 if (allGuest != null)
                 {
                     if (allGuest.Count > 0)
@@ -114,6 +120,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             {
                 LoadRoomData();
             }
+
         }
 
         private void txtRoom_TextChanged(object sender, EventArgs e)
@@ -153,38 +160,57 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         {
             try
             {
-                Random random = new Random();
+                bool isNull = FormHelper.AreAnyNullOrEmpty(txtGuest.Text, txtRoom.Text, txtCheckIn.Text, txtCheckOut.Text, txtPaymentMethod.Text, txtAmount.Text, txtAmountPaid.Text, textBox2.Text);
+                if (isNull == false)
+                {
+                    Random random = new Random();
 
-                reservation.Id = Guid.NewGuid().ToString();
-                reservation.ReservationId = "RES" + random.Next(1000, 5000);
-                reservation.GuestId = txtGuest.SelectedValue.ToString();
-                reservation.Guest = _guestController.GetGuestById(reservation.GuestId);
+                    reservation.Id = Guid.NewGuid().ToString();
+                    reservation.ReservationId = "RES" + random.Next(1000, 5000);
+                    reservation.GuestId = txtGuest.SelectedValue.ToString();
+                    reservation.Guest = _guestController.GetGuestById(reservation.GuestId);
 
-                reservation.RoomId = txtRoom.SelectedValue.ToString();
-                reservation.Room = _roomController.GetRealRoom(reservation.RoomId);
+                    reservation.RoomId = txtRoom.SelectedValue.ToString();
+                    reservation.Room = _roomController.GetRealRoom(reservation.RoomId);
 
-                reservation.CheckInDate = txtCheckIn.Value;
-                reservation.CheckOutDate = txtCheckOut.Value;
+                    reservation.CheckInDate = txtCheckIn.Value;
+                    reservation.CheckOutDate = txtCheckOut.Value;
 
-                reservation.PaymentMethod = txtPaymentMethod.Text;
-                reservation.Amount = FormHelper.GetPriceByRateAndTime(reservation.CheckInDate, reservation.CheckOutDate, reservation.Room.Rate);
+                    reservation.PaymentMethod = txtPaymentMethod.Text;
+                    reservation.Amount = FormHelper.GetPriceByRateAndTime(reservation.CheckInDate, reservation.CheckOutDate, reservation.Room.Rate);
+                    reservation.AmountPaid = decimal.Parse(txtAmountPaid.Text);
 
-                reservation.IsTrashed = false;
-                reservation.DateCreated = DateTime.Now;
-                reservation.DateModified = DateTime.Now;
+                    reservation.IsTrashed = false;
+                    reservation.DateCreated = DateTime.Now;
+                    reservation.DateModified = DateTime.Now;
 
-                reservation.Status = RoomStatusEnum.Reserved.ToString();
+                    if (reservation.Amount > reservation.AmountPaid)
+                    {
+                        reservation.Status = "Balance";
+                    } 
+                    else
+                    {
+                        reservation.Status = "Unpaid"; 
+                    }
 
-                Room room = _roomController.GetRealRoom(reservation.RoomId);
-                room.Status = RoomStatusEnum.Reserved.ToString();
-                room.DateModified = DateTime.Now;
+                    reservation.CreatedBy = AuthSession.CurrentUser.Id;
+                    reservation.ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
 
-                _reservationController.AddReservation(reservation);
-                _roomController.UpdateRoom(room);
-                this.DialogResult = DialogResult.OK;
+                    Room room = _roomController.GetRealRoom(reservation.RoomId);
+                    room.Status = RoomStatusEnum.Reserved.ToString();
+                    room.DateModified = DateTime.Now;
 
-                this.Close();
+                    _reservationController.AddReservation(reservation);
+                    _roomController.UpdateRoom(room);
+                    this.DialogResult = DialogResult.OK;
 
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -199,6 +225,41 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             if (isNull == false)
             {
                 txtAmount.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtAmount.Text));
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(textBox2.Text);
+            if (isNull == false)
+            {
+                int numberOfDays = int.Parse(textBox2.Text);
+                txtCheckOut.Value = txtCheckIn.Value.AddDays(numberOfDays);
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtAmountPaid.Text);
+            if (!isNull)
+            {
+                txtAmountPaid.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtAmountPaid.Text));
             }
         }
     }

@@ -54,6 +54,7 @@ namespace ESMART_HMS.Repositories
                                   Description = room.Description,
                                   Rate = room.Rate.ToString(),
                                   Status = room.Status,
+                                  CreatedBy = room.ApplicationUser.FullName,
                                   DateCreated = room.DateCreated,
                                   DateModified = room.DateModified,
                                   RoomTypeName = roomType.Title,
@@ -158,7 +159,7 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                var vacantRoom = from room in _db.Rooms.Where(r => r.Status == RoomStatusEnum.Vacant.ToString() && r.IsTrashed == false)
+                var vacantRoom = from room in _db.Rooms.Where(r => r.Status == RoomStatusEnum.Vacant.ToString() && r.IsTrashed == false).OrderBy(r => r.RoomNo)
                                  join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
                                  select new RoomViewModel
                                  {
@@ -183,6 +184,105 @@ namespace ESMART_HMS.Repositories
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+            return null;
+        }
+
+        public List<RoomViewModel> SearchRoom(string keyword)
+        {
+            try
+            {
+                var searchRooms = from room in _db.Rooms.Where(r => r.RoomId.Contains(keyword) || r.RoomNo.Contains(keyword) || r.RoomType.Title.Contains(keyword)).OrderBy(r => r.RoomNo)
+                                  join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
+                                  select new RoomViewModel
+                                  {
+                                      Id = room.Id,
+                                      RoomId = room.RoomId,
+                                      RoomNo = room.RoomNo,
+                                      RoomCardNo = room.RoomCardNo,
+                                      RoomLockNo = room.RoomLockNo,
+                                      AdultPerRoom = room.AdultPerRoom,
+                                      ChildrenPerRoom = room.ChildrenPerRoom,
+                                      Description = room.Description,
+                                      Rate = room.Rate.ToString(),
+                                      Status = room.Status,
+                                      DateCreated = room.DateCreated,
+                                      DateModified = room.DateModified,
+                                      RoomTypeName = roomType.Title,
+                                  };
+                return searchRooms.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
+        public List<RoomViewModel> FilterByStatus(string keyword)
+        {
+            try
+            {
+                var searchRooms = from room in _db.Rooms.Where(r => r.Status.ToUpper() == keyword).OrderBy(r => r.RoomNo)
+                                  join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
+                                  select new RoomViewModel
+                                  {
+                                      Id = room.Id,
+                                      RoomId = room.RoomId,
+                                      RoomNo = room.RoomNo,
+                                      RoomCardNo = room.RoomCardNo,
+                                      RoomLockNo = room.RoomLockNo,
+                                      AdultPerRoom = room.AdultPerRoom,
+                                      ChildrenPerRoom = room.ChildrenPerRoom,
+                                      Description = room.Description,
+                                      Rate = room.Rate.ToString(),
+                                      Status = room.Status,
+                                      DateCreated = room.DateCreated,
+                                      DateModified = room.DateModified,
+                                      RoomTypeName = roomType.Title,
+                                  };
+                return searchRooms.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
+        public List<RoomViewModel> FilterByType(string keyword)
+        {
+            try
+            {
+                var searchRooms = from room in _db.Rooms.Where(r => r.Status == keyword).OrderBy(r => r.RoomNo)
+                                  join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
+                                  select new RoomViewModel
+                                  {
+                                      Id = room.Id,
+                                      RoomId = room.RoomId,
+                                      RoomNo = room.RoomNo,
+                                      RoomCardNo = room.RoomCardNo,
+                                      RoomLockNo = room.RoomLockNo,
+                                      AdultPerRoom = room.AdultPerRoom,
+                                      ChildrenPerRoom = room.ChildrenPerRoom,
+                                      Description = room.Description,
+                                      Rate = room.Rate.ToString(),
+                                      Status = room.Status,
+                                      DateCreated = room.DateCreated,
+                                      DateModified = room.DateModified,
+                                      RoomTypeName = roomType.Title,
+                                  };
+                return searchRooms.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+
             return null;
         }
     }

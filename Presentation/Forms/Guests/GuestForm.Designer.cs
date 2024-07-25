@@ -33,8 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.customerBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.addGuestBtn = new System.Windows.Forms.Button();
             this.btnViewDetails = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -51,8 +49,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.customerTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter();
             this.dgvGuests = new System.Windows.Forms.DataGridView();
+            this.customerBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
+            this.customerTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,16 +66,17 @@
             this.companyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             this.rightButtonFlowPanel.SuspendLayout();
             this.totalCountPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.topFlowPanel.SuspendLayout();
             this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGuests)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -89,16 +90,6 @@
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel1.Size = new System.Drawing.Size(0, 695);
             this.panel1.TabIndex = 3;
-            // 
-            // customerBindingSource2
-            // 
-            this.customerBindingSource2.DataMember = "Guest";
-            this.customerBindingSource2.DataSource = this.eSMART_HMSDBDataSet;
-            // 
-            // eSMART_HMSDBDataSet
-            // 
-            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
-            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // addGuestBtn
             // 
@@ -284,10 +275,6 @@
             this.label3.Text = "Search:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // customerTableAdapter
-            // 
-            this.customerTableAdapter.ClearBeforeFill = true;
-            // 
             // dgvGuests
             // 
             this.dgvGuests.AllowUserToAddRows = false;
@@ -321,6 +308,7 @@
             this.companyDataGridViewTextBoxColumn,
             this.stateDataGridViewTextBoxColumn,
             this.countryDataGridViewTextBoxColumn,
+            this.CreatedBy,
             this.dateCreatedDataGridViewTextBoxColumn,
             this.dateModifiedDataGridViewTextBoxColumn});
             this.dgvGuests.DataSource = this.customerBindingSource2;
@@ -352,6 +340,20 @@
             this.dgvGuests.TabIndex = 4;
             this.dgvGuests.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGuests_CellDoubleClick);
             // 
+            // customerBindingSource2
+            // 
+            this.customerBindingSource2.DataMember = "Guest";
+            this.customerBindingSource2.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // eSMART_HMSDBDataSet
+            // 
+            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
+            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // customerTableAdapter
+            // 
+            this.customerTableAdapter.ClearBeforeFill = true;
+            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -376,6 +378,7 @@
             this.titleDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
             this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.titleDataGridViewTextBoxColumn.Visible = false;
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
@@ -426,6 +429,7 @@
             this.streetDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.streetDataGridViewTextBoxColumn.Name = "streetDataGridViewTextBoxColumn";
             this.streetDataGridViewTextBoxColumn.ReadOnly = true;
+            this.streetDataGridViewTextBoxColumn.Visible = false;
             // 
             // cityDataGridViewTextBoxColumn
             // 
@@ -442,6 +446,7 @@
             this.companyDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.companyDataGridViewTextBoxColumn.Name = "companyDataGridViewTextBoxColumn";
             this.companyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.companyDataGridViewTextBoxColumn.Visible = false;
             // 
             // stateDataGridViewTextBoxColumn
             // 
@@ -458,6 +463,15 @@
             this.countryDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
             this.countryDataGridViewTextBoxColumn.ReadOnly = true;
+            this.countryDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // CreatedBy
+            // 
+            this.CreatedBy.DataPropertyName = "CreatedBy";
+            this.CreatedBy.HeaderText = "Created By";
+            this.CreatedBy.MinimumWidth = 6;
+            this.CreatedBy.Name = "CreatedBy";
+            this.CreatedBy.ReadOnly = true;
             // 
             // dateCreatedDataGridViewTextBoxColumn
             // 
@@ -490,8 +504,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GuestForm";
             this.Text = "GuestsForm";
-            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             this.rightButtonFlowPanel.ResumeLayout(false);
             this.totalCountPanel.ResumeLayout(false);
             this.totalCountPanel.PerformLayout();
@@ -501,6 +513,8 @@
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGuests)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,6 +557,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn companyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn countryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
     }

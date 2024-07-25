@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("General");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Financial", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Users");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Roles");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Accounts", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("VAT & Discount");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Financial", new System.Windows.Forms.TreeNode[] {
+            treeNode4});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsFrom));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnApply = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -58,7 +59,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(998, 517);
             this.splitContainer1.SplitterDistance = 332;
@@ -71,11 +71,18 @@
             this.treeView.Location = new System.Drawing.Point(12, 12);
             this.treeView.Name = "treeView";
             treeNode1.Name = "Node1";
-            treeNode1.Text = "General";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Financial";
+            treeNode1.Text = "Users";
+            treeNode2.Name = "Node2";
+            treeNode2.Text = "Roles";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Accounts";
+            treeNode4.Name = "Node1";
+            treeNode4.Text = "VAT & Discount";
+            treeNode5.Name = "Node0";
+            treeNode5.Text = "Financial";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode3,
+            treeNode5});
             this.treeView.Size = new System.Drawing.Size(305, 493);
             this.treeView.TabIndex = 2;
             // 
@@ -83,38 +90,8 @@
             // 
             this.panel1.Location = new System.Drawing.Point(3, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(656, 442);
+            this.panel1.Size = new System.Drawing.Size(656, 493);
             this.panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Controls.Add(this.btnApply);
-            this.panel2.Location = new System.Drawing.Point(3, 455);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(656, 50);
-            this.panel2.TabIndex = 1;
-            // 
-            // btnApply
-            // 
-            this.btnApply.Location = new System.Drawing.Point(421, 8);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(114, 35);
-            this.btnApply.TabIndex = 0;
-            this.btnApply.Text = "Apply Changes";
-            this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(540, 8);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(108, 35);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // OptionsFrom
             // 
@@ -135,7 +112,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -145,8 +121,5 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.Button btnCancel;
     }
 }

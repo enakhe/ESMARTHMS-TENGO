@@ -12,19 +12,17 @@ namespace ESMART_HMS.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class ApplicationUserRole
     {
         public string Id { get; set; }
+        public string UserRoleId { get; set; }
         public string UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string FullName { get; set; }
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string PhoneNumber { get; set; }
+        public string RoleId { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
+    
+        public virtual Role Role { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

@@ -17,12 +17,13 @@ namespace ESMART_HMS.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Room()
         {
-            this.Reservations = new HashSet<Reservation>();
             this.Bookings = new HashSet<Booking>();
+            this.Reservations = new HashSet<Reservation>();
         }
     
         public string Id { get; set; }
         public string RoomId { get; set; }
+        public string RoomNo { get; set; }
         public string RoomCardNo { get; set; }
         public string RoomLockNo { get; set; }
         public string RoomTypeId { get; set; }
@@ -30,16 +31,17 @@ namespace ESMART_HMS.Domain.Entities
         public int ChildrenPerRoom { get; set; }
         public string Description { get; set; }
         public decimal Rate { get; set; }
+        public string Status { get; set; }
+        public string CreatedBy { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
-        public string RoomNo { get; set; }
-        public string Status { get; set; }
     
-        public virtual RoomType RoomType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual RoomType RoomType { get; set; }
     }
 }

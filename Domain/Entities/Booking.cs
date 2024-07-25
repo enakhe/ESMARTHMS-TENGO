@@ -14,6 +14,13 @@ namespace ESMART_HMS.Domain.Entities
     
     public partial class Booking
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Booking()
+        {
+            this.Invoices = new HashSet<Invoice>();
+            this.Transactions = new HashSet<Transaction>();
+        }
+    
         public string Id { get; set; }
         public string BookingId { get; set; }
         public string GuestId { get; set; }
@@ -28,12 +35,17 @@ namespace ESMART_HMS.Domain.Entities
         public decimal Discount { get; set; }
         public decimal VAT { get; set; }
         public decimal TotalAmount { get; set; }
+        public string CreatedBy { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public bool IsTrashed { get; set; }
     
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Guest Guest { get; set; }
-        public virtual Reservation Reservation { get; set; }
         public virtual Room Room { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Invoice> Invoices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

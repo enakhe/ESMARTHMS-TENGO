@@ -10,10 +10,13 @@ namespace ESMART_HMS.Infrastructure
         {
             // Services
             services.AddScoped<AuthService>();
-
             services.AddScoped<ReservationRepository>();
-
             services.AddScoped<ConfigurationRepository>();
+            services.AddScoped<BookingRepository>();
+            services.AddScoped<TransactionRepository>();
+            services.AddScoped<UserRepository>();
+            services.AddScoped<UserRoleRepository>();
+            services.AddScoped<BarItemRepository>();
 
             return services;
         }

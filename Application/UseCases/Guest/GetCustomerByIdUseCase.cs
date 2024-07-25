@@ -13,8 +13,7 @@ namespace ESMART_HMS.Application.UseCases.Guest
 
         public ESMART_HMS.Domain.Entities.Guest Execute(string Id)
         {
-            ESMART_HMS.Domain.Entities.Guest customer = _customerRepository.GetGuestById(Id);
-            return customer;
+            return _customerRepository.GetGuestById(Id);
         }
     }
 }

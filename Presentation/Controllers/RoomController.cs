@@ -14,8 +14,11 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly GetRealRoomUseCase _getRealRoomUseCase;
         private readonly DeleteRoomUseCase _deleteRoomUseCase;
         private readonly GetVacantRoomUseCase _getVacantRoomUseCase;
+        private readonly SearchRoomUseCase _searchRoomUseCase;
+        private readonly FilterByStatusUseCase _filterByStatusUseCase;
+        private readonly FilterByTypeUseCase _filterByTypeUseCase;
 
-        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase, UpdateRoomUseCase updateRoomUseCase, GetRealRoomUseCase getRealRoomUseCase, DeleteRoomUseCase deleteRoomUseCase, GetVacantRoomUseCase getVacantRoomUseCase)
+        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase, UpdateRoomUseCase updateRoomUseCase, GetRealRoomUseCase getRealRoomUseCase, DeleteRoomUseCase deleteRoomUseCase, GetVacantRoomUseCase getVacantRoomUseCase, SearchRoomUseCase searchRoomUseCase, FilterByStatusUseCase filterByStatusUseCase, FilterByTypeUseCase filterByTypeUseCase)
         {
             _getAllRoomUseCase = getAllRoomUseCase;
             _createRoomUseCase = createRoomUseCase;
@@ -24,6 +27,9 @@ namespace ESMART_HMS.Presentation.Controllers
             _getRealRoomUseCase = getRealRoomUseCase;
             _deleteRoomUseCase = deleteRoomUseCase;
             _getVacantRoomUseCase = getVacantRoomUseCase;
+            _searchRoomUseCase = searchRoomUseCase;
+            _filterByStatusUseCase = filterByStatusUseCase;
+            _filterByTypeUseCase = filterByTypeUseCase;
         }
 
         public List<RoomViewModel> GetAllRooms()
@@ -60,6 +66,21 @@ namespace ESMART_HMS.Presentation.Controllers
         public List<RoomViewModel> GetAvailbleRoom()
         {
             return _getVacantRoomUseCase.Execute();
+        }
+
+        public List<RoomViewModel> SearchRoom(string keyword)
+        {
+            return _searchRoomUseCase.Execute(keyword);
+        }
+
+        public List<RoomViewModel> FilterByStatus(string keyword)
+        {
+            return _filterByStatusUseCase.Execute(keyword);
+        }
+
+        public List<RoomViewModel> FilterByType(string keyword)
+        {
+            return _filterByTypeUseCase.Execute(keyword);
         }
     }
 }

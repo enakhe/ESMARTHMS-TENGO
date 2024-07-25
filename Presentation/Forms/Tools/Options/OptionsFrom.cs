@@ -1,5 +1,5 @@
-﻿using ESMART_HMS.Presentation.Forms.Rooms;
-using ESMART_HMS.Presentation.Forms.Tools.Option.Financial;
+﻿using ESMART_HMS.Presentation.Forms.Tools.Option.Financial;
+using ESMART_HMS.Presentation.Forms.Tools.Options.Accounts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -40,8 +40,11 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Option
             // Create and load the appropriate form based on the selected item
             switch (selectedNode)
             {
-                case "General":
+                case "VAT & Discount":
                     formToLoad = serviceProvider.GetRequiredService<FinancialForm>();
+                    break;
+                case "Users":
+                    formToLoad = serviceProvider.GetRequiredService<UserForm>();
                     break;
             }
 

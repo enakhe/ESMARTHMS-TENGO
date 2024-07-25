@@ -6,11 +6,14 @@ namespace ESMART_HMS.Domain.Interfaces
     public interface IRoomRepository
     {
         void AddRoom(Room room);
-        List<RoomViewModel> GetAllRooms();
-        RoomViewModel GetRoomById(string Id);
         void UpdateRoom(Room room);
-        Room GetRealRoom(string Id);
         void DeleteRoom(string Id);
+        RoomViewModel GetRoomById(string Id);
+        Room GetRealRoom(string Id);
+        List<RoomViewModel> GetAllRooms();
         List<RoomViewModel> GetVacantRoom();
+        List<RoomViewModel> SearchRoom(string keyword);
+        List<RoomViewModel> FilterByType(string keyword);
+        List<RoomViewModel> FilterByStatus(string keyword);
     }
 }

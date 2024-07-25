@@ -13,6 +13,7 @@
         public string Description { get; set; }
         public string Rate { get; set; }
         public string Status { get; set; }
+        public string CreatedBy { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
     }

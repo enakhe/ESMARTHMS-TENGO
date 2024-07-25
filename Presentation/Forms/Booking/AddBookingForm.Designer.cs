@@ -59,6 +59,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnGuest = new System.Windows.Forms.Button();
+            this.btnRoom = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -87,6 +89,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnRoom);
+            this.panel2.Controls.Add(this.btnGuest);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.txtCheckOut);
             this.panel2.Controls.Add(this.txtCheckIn);
@@ -384,6 +388,26 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnGuest
+            // 
+            this.btnGuest.Location = new System.Drawing.Point(559, 97);
+            this.btnGuest.Name = "btnGuest";
+            this.btnGuest.Size = new System.Drawing.Size(99, 23);
+            this.btnGuest.TabIndex = 56;
+            this.btnGuest.Text = "Add Guest";
+            this.btnGuest.UseVisualStyleBackColor = true;
+            this.btnGuest.Click += new System.EventHandler(this.btnGuest_Click);
+            // 
+            // btnRoom
+            // 
+            this.btnRoom.Location = new System.Drawing.Point(559, 203);
+            this.btnRoom.Name = "btnRoom";
+            this.btnRoom.Size = new System.Drawing.Size(99, 23);
+            this.btnRoom.TabIndex = 56;
+            this.btnRoom.Text = "Add Room";
+            this.btnRoom.UseVisualStyleBackColor = true;
+            this.btnRoom.Click += new System.EventHandler(this.btnRoom_Click);
+            // 
             // AddBookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -443,5 +467,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRoom;
+        private System.Windows.Forms.Button btnGuest;
     }
 }

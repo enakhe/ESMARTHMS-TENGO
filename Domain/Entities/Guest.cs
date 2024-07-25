@@ -17,8 +17,10 @@ namespace ESMART_HMS.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Guest()
         {
-            this.Reservations = new HashSet<Reservation>();
             this.Bookings = new HashSet<Booking>();
+            this.Invoices = new HashSet<Invoice>();
+            this.Reservations = new HashSet<Reservation>();
+            this.Transactions = new HashSet<Transaction>();
         }
     
         public string Id { get; set; }
@@ -34,19 +36,25 @@ namespace ESMART_HMS.Domain.Entities
         public string Company { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
-        public System.DateTime DateCreated { get; set; }
-        public System.DateTime DateModified { get; set; }
-        public bool IsTrashed { get; set; }
+        public string Gender { get; set; }
         public string IdNumber { get; set; }
         public string IdType { get; set; }
         public byte[] IdentificationDocumentFront { get; set; }
         public byte[] IdentificationDocumentBack { get; set; }
         public byte[] GuestImage { get; set; }
-        public string Gender { get; set; }
+        public string CreatedBy { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public System.DateTime DateModified { get; set; }
+        public bool IsTrashed { get; set; }
     
+        public virtual ApplicationUser ApplicationUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Booking> Bookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Invoice> Invoices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

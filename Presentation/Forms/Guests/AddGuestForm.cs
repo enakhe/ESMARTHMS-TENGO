@@ -1,6 +1,7 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Sessions;
 using System;
 using System.Drawing;
 using System.IO;
@@ -10,12 +11,14 @@ namespace ESMART_HMS.Presentation.Forms.Guests
 {
     public partial class AddGuestForm : Form
     {
-        Guest customer = new Guest();
-        private readonly GuestController _customerController;
-        public AddGuestForm(GuestController customerController)
+        Guest guest = new Guest();
+        private readonly GuestController _guestController;
+        private readonly ApplicationUserController _applicationUserController;
+        public AddGuestForm(GuestController guestController, ApplicationUserController applicationUserController)
         {
             InitializeComponent();
-            _customerController = customerController;
+            _guestController = guestController;
+            _applicationUserController = applicationUserController;
         }
 
         private void btnCaptureFront_Click(object sender, EventArgs e)
@@ -25,8 +28,8 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    customer.IdentificationDocumentFront = File.ReadAllBytes(openFileDialog.FileName);
-                    pictureBoxFront.Image = Image.FromStream(new MemoryStream(customer.IdentificationDocumentFront));
+                    guest.IdentificationDocumentFront = File.ReadAllBytes(openFileDialog.FileName);
+                    pictureBoxFront.Image = Image.FromStream(new MemoryStream(guest.IdentificationDocumentFront));
                 }
             }
         }
@@ -38,8 +41,8 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    customer.IdentificationDocumentBack = File.ReadAllBytes(openFileDialog.FileName);
-                    pictureBoxBack.Image = Image.FromStream(new MemoryStream(customer.IdentificationDocumentFront));
+                    guest.IdentificationDocumentBack = File.ReadAllBytes(openFileDialog.FileName);
+                    pictureBoxBack.Image = Image.FromStream(new MemoryStream(guest.IdentificationDocumentFront));
                 }
             }
         }
@@ -51,8 +54,8 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    customer.GuestImage = File.ReadAllBytes(openFileDialog.FileName);
-                    pictureBoxGuest.Image = Image.FromStream(new MemoryStream(customer.GuestImage));
+                    guest.GuestImage = File.ReadAllBytes(openFileDialog.FileName);
+                    pictureBoxGuest.Image = Image.FromStream(new MemoryStream(guest.GuestImage));
                 }
             }
         }
@@ -73,28 +76,30 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 {
                     Random random = new Random();
 
-                    customer.Id = Guid.NewGuid().ToString();
-                    customer.GuestId = "HMS" + random.Next(1000, 5000);
-                    customer.IsTrashed = false;
+                    guest.Id = Guid.NewGuid().ToString();
+                    guest.GuestId = "HMS" + random.Next(1000, 5000);
+                    guest.IsTrashed = false;
 
-                    customer.Title = txtTitle.Text.Trim().ToUpper();
-                    customer.FirstName = txtFirstName.Text.Trim().ToUpper();
-                    customer.LastName = txtLastName.Text.Trim().ToUpper();
-                    customer.FullName = (txtFirstName.Text + " " + txtLastName.Text).ToUpper();
-                    customer.Email = txtEmail.Text.Trim().ToUpper();
-                    customer.Street = txtStreet.Text.Trim().ToUpper();
-                    customer.City = txtCity.Text.Trim().ToUpper();
-                    customer.State = txtState.Text.Trim().ToUpper();
-                    customer.Country = txtCountry.Text.Trim().ToUpper();
-                    customer.Company = txtCompany.Text.Trim().ToUpper();
-                    customer.PhoneNumber = txtPhoneNumber.Text.Trim().ToUpper();
-                    customer.IdType = txtIdType.Text.Trim();
-                    customer.IdNumber = txtIdNumber.Text.Trim();
-                    customer.Gender = txtGender.Text.Trim();
-                    customer.DateCreated = DateTime.Now;
-                    customer.DateModified = DateTime.Now;
+                    guest.Title = txtTitle.Text.Trim().ToUpper();
+                    guest.FirstName = txtFirstName.Text.Trim().ToUpper();
+                    guest.LastName = txtLastName.Text.Trim().ToUpper();
+                    guest.FullName = (txtFirstName.Text + " " + txtLastName.Text).ToUpper();
+                    guest.Email = txtEmail.Text.Trim().ToUpper();
+                    guest.Street = txtStreet.Text.Trim().ToUpper();
+                    guest.City = txtCity.Text.Trim().ToUpper();
+                    guest.State = txtState.Text.Trim().ToUpper();
+                    guest.Country = txtCountry.Text.Trim().ToUpper();
+                    guest.Company = txtCompany.Text.Trim().ToUpper();
+                    guest.PhoneNumber = txtPhoneNumber.Text.Trim().ToUpper();
+                    guest.IdType = txtIdType.Text.Trim();
+                    guest.IdNumber = txtIdNumber.Text.Trim();
+                    guest.Gender = txtGender.Text.Trim();
+                    guest.DateCreated = DateTime.Now;
+                    guest.DateModified = DateTime.Now;
+                    guest.CreatedBy = AuthSession.CurrentUser.Id;
+                    guest.ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
 
-                    _customerController.AddGuest(customer);
+                    _guestController.AddGuest(guest);
                     this.DialogResult = DialogResult.OK;
 
                     this.Close();

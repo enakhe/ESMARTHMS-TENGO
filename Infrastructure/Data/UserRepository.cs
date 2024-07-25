@@ -1,7 +1,9 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Interfaces;
 using System;
+using System.Linq;
 using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace ESMART_HMS.Infrastructure.Data
 {
@@ -18,15 +20,23 @@ namespace ESMART_HMS.Infrastructure.Data
             _db = db;
         }
 
-        public void AddUser(User user)
+        public void AddUser(ApplicationUser user)
         {
-            Random random = new Random();
-            user.Id = Guid.NewGuid().ToString();
-            user.UserId = "HMS" + random.Next(1000, 5000);
-            user.PasswordHash = HashPassword(user.PasswordHash);
-            user.IsTrashed = false;
-            _db.Users.Add(user);
-            _db.SaveChanges();
+            try
+            {
+                Random random = new Random();
+                user.Id = Guid.NewGuid().ToString();
+                user.UserId = "HMS" + random.Next(1000, 5000);
+                user.PasswordHash = HashPassword(user.PasswordHash);
+                user.IsTrashed = false;
+                _db.ApplicationUsers.Add(user);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
 
         public string HashPassword(string password)
@@ -65,6 +75,20 @@ namespace ESMART_HMS.Infrastructure.Data
                 }
             }
             return true;
+        }
+
+        public ApplicationUser GetUserById(string id)
+        {
+            try
+            {
+                return _db.ApplicationUsers.FirstOrDefault(u => u.Id == id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
         }
     }
 }

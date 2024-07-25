@@ -1,5 +1,9 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.Rooms;
+using ESMART_HMS.Presentation.Middleware;
+using ESMART_HMS.Presentation.Sessions;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,12 +13,21 @@ namespace ESMART_HMS.Presentation.Forms.Guests
     public partial class GuestForm : Form
     {
         private readonly GuestController _customerController;
+        private readonly ApplicationUserController _applicationUserController;
 
-        public GuestForm(GuestController customerViewModel)
+        public GuestForm(GuestController customerViewModel, ApplicationUserController applicationUserController)
         {
-            InitializeComponent();
             _customerController = customerViewModel;
+            _applicationUserController = applicationUserController;
+            InitializeComponent();
             LoadData();
+            ApplyAuthorization();
+        }
+
+        private void ApplyAuthorization()
+        {
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.Protect(user, btnDelete, "SuperAdmin");
         }
 
         public void LoadData()
@@ -121,7 +134,11 @@ namespace ESMART_HMS.Presentation.Forms.Guests
 
         private void addGuestBtn_Click(object sender, EventArgs e)
         {
-            AddGuestForm addGuestForm = new AddGuestForm(_customerController);
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            AddGuestForm addGuestForm = serviceProvider.GetRequiredService<AddGuestForm>();
             if (addGuestForm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();

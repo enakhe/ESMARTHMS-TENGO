@@ -1,6 +1,7 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Infrastructure.Services;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -30,19 +31,19 @@ namespace ESMART_HMS.Presentation.Forms
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            User user = _authService.Login(username, password);
+            ApplicationUser user = _authService.Login(username, password);
 
             if (user != null)
             {
                 this.Cursor = Cursors.WaitCursor;
-
+                AuthSession.CurrentUser = user;
                 var services = new ServiceCollection();
                 DependencyInjection.ConfigureServices(services);
                 var serviceProvider = services.BuildServiceProvider();
 
                 var homeForm = serviceProvider.GetRequiredService<Home>();
                 this.Hide();
-                homeForm.Show();
+                homeForm.ShowDialog();
             }
         }
 

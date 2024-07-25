@@ -20,6 +20,10 @@ namespace ESMART_HMS.Domain
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IConfigurationRepository, ConfigurationRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+            services.AddScoped<IBarItemRepository, BarItemRepository>();
 
             return services;
         }

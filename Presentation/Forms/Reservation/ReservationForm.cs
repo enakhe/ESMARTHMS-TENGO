@@ -1,7 +1,10 @@
-﻿using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Booking;
 using ESMART_HMS.Presentation.Forms.Rooms;
+using ESMART_HMS.Presentation.Middleware;
+using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -15,14 +18,25 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private readonly RoomController _roomController;
         private readonly ConfigurationController _configurationController;
         private readonly BookingController _bookingController;
-        public ReservationForm(ReservationController reservationController, GuestController guestController, RoomController roomController, ConfigurationController configurationController, BookingController bookingController)
+        private readonly TransactionController _transactionController;
+        private readonly ApplicationUserController _applicationUserController;
+        public ReservationForm(ReservationController reservationController, GuestController guestController, RoomController roomController, ConfigurationController configurationController, BookingController bookingController, TransactionController transactionController, ApplicationUserController applicationUserController)
         {
             _reservationController = reservationController;
-            InitializeComponent();
             _guestController = guestController;
             _roomController = roomController;
             _configurationController = configurationController;
             _bookingController = bookingController;
+            _transactionController = transactionController;
+            _applicationUserController = applicationUserController;
+            InitializeComponent();
+            ApplyAuthorization();
+        }
+
+        private void ApplyAuthorization()
+        {
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.Protect(user, btnDelete, "SuperAdmin");
         }
 
         private void ReservationForm_Load(object sender, EventArgs e)
@@ -40,7 +54,12 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     foreach (var reservation in allReservations)
                     {
                         FormHelper.TryConvertStringToDecimal(reservation.Amount, out decimal amount);
+                        FormHelper.TryConvertStringToDecimal(reservation.AmountPaid, out decimal amountPaid);
+                        FormHelper.TryConvertStringToDecimal(reservation.Balance, out decimal balance);
+
                         reservation.Amount = FormHelper.FormatNumberWithCommas(amount);
+                        reservation.AmountPaid = FormHelper.FormatNumberWithCommas(amountPaid);
+                        reservation.Balance = FormHelper.FormatNumberWithCommas(balance);
                     }
 
                     dgvReservation.DataSource = allReservations;
@@ -80,7 +99,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     string roomId = row.Cells["roomIdDataGridViewTextBoxColumn"].Value.ToString();
                     string guestId = row.Cells["GuestId"].Value.ToString();
 
-                    AddBookingForm addBookingForm = new AddBookingForm(reservationId, guestId, roomId, _guestController, _roomController, _reservationController, _configurationController, _bookingController);
+                    AddBookingForm addBookingForm = new AddBookingForm(reservationId, guestId, roomId, _guestController, _roomController, _reservationController, _configurationController, _bookingController, _transactionController, _applicationUserController);
                     if (addBookingForm.ShowDialog() == DialogResult.OK)
                     {
                         LoadData();

@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Application.UseCases.Guest;
 using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -30,7 +31,7 @@ namespace ESMART_HMS.Presentation.Controllers
             LoadGuests();
         }
 
-        public List<Guest> LoadGuests()
+        public List<GuestViewModel> LoadGuests()
         {
             return _getAllGuestsUseCase.Execute();
         }
@@ -47,8 +48,7 @@ namespace ESMART_HMS.Presentation.Controllers
 
         public Guest GetGuestById(string Id)
         {
-            Guest customer = _getGuestByIdUseCase.Execute(Id);
-            return customer;
+            return _getGuestByIdUseCase.Execute(Id);
         }
 
         public void DeleteGuest(string Id)

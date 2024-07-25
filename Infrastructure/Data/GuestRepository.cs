@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,12 +33,24 @@ namespace ESMART_HMS.Infrastructure.Data
             }
         }
 
-        public List<Guest> GetAllGuests()
+        public List<GuestViewModel> GetAllGuests()
         {
             try
             {
-                List<Guest> allGuests = _db.Guests.Where(c => c.IsTrashed != true).OrderBy(g => g.FullName).ToList<Guest>();
-                return allGuests;
+                var allGuest = from guest in _db.Guests.Where(g => g.IsTrashed == false).OrderBy(g => g.FullName)
+                              select new GuestViewModel
+                              {
+                                  GuestId = guest.GuestId,
+                                  FullName = guest.Title + " " + guest.FullName,
+                                  Email = guest.Email,
+                                  PhoneNumber = guest.PhoneNumber,
+                                  City = guest.City,
+                                  State = guest.State,
+                                  CreatedBy = guest.ApplicationUser.FullName,
+                                  DateCreated = guest.DateCreated,
+                                  DateModified = guest.DateModified,
+                              };
+                return allGuest.ToList();
             }
             catch (Exception ex)
             {
@@ -51,17 +64,7 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                var Guest = _db.Guests.FirstOrDefault(c => c.Id == Id);
-                if (Guest == null)
-                {
-                    MessageBox.Show("Guest not found", "Not Found", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                }
-                else
-                {
-                    return Guest;
-                }
-
+                return _db.Guests.FirstOrDefault(c => c.Id == Id);
             }
             catch (Exception ex)
             {

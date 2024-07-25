@@ -25,12 +25,20 @@ namespace ESMART_HMS.Domain.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Guest> Guests { get; set; }
-        public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<RoomType> RoomTypes { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Reservation> Reservations { get; set; }
-        public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<Configuration> Configurations { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<RolePermission> RolePermissions { get; set; }
+        public virtual DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }
+        public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<Guest> Guests { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<BarItem> BarItems { get; set; }
+        public virtual DbSet<IngredientItem> IngredientItems { get; set; }
     }
 }

@@ -123,11 +123,11 @@
   <metadata name="Status.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="CreatedBy.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="roomBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>729, 17</value>
-  </metadata>
-  <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>503, 17</value>
   </metadata>
   <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>503, 17</value>
@@ -135,6 +135,19 @@
   <metadata name="roomBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>311, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="bntPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        pQAAAKUBcMTeVQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEjSURBVEhL1dYx
+        qgIxEAbgARtBBMELiIV4BEtv8CwttbH2KJZWNsLrXq/wDmBpb2dp6QFc/3+ZSNxJ1EgsDHyL+ZOZILi7
+        SlEUBkYX+om6wV4mEJkCP7xjavqZQGSpm+eJWLM0/UygB1TzZ1jDWpOb4OsOwOjAAjbqCFxx81exhrVu
+        zp7sLVvg4iewt1y8IDf2Di6k+IUJzOCkmc8EqX6gDk3418xngtyCYU7BMKdgmFMwxE14f0c+U633yKES
+        lLSIv4417CK4Vn9wAHvLCNzj4UaLGvAH+wiuNSIHsOfIfb0atNQKygN0rQfDiJ63jxfWuj61MncbvI23
+        pylGG86cR3CtrXt5SX9cYwxgHDHw9qUdAKHX4iMvH/DZl34ZZvvbUsgVrBkdwOs8Vw8AAAAASUVORK5C
+        YII=
+</value>
+  </data>
   <metadata name="roomTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>929, 17</value>
   </metadata>

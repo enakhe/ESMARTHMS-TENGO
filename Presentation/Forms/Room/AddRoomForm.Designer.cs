@@ -142,6 +142,7 @@
             this.txtRate.Size = new System.Drawing.Size(301, 37);
             this.txtRate.TabIndex = 7;
             this.txtRate.TextChanged += new System.EventHandler(this.txtRate_TextChanged);
+            this.txtRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRate_KeyPress);
             // 
             // btnSave
             // 

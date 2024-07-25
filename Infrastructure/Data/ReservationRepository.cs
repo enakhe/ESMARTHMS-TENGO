@@ -53,8 +53,11 @@ namespace ESMART_HMS.Infrastructure.Data
                                          Room = reservation.Room.RoomNo,
                                          PaymentMethod = reservation.PaymentMethod,
                                          Amount = reservation.Amount.ToString(),
+                                         AmountPaid = reservation.AmountPaid.ToString(),
+                                         Balance = (reservation.Amount - reservation.AmountPaid).ToString(),
                                          CheckInDate = reservation.CheckInDate,
                                          CheckOutDate = reservation.CheckOutDate,
+                                         CreatedBy = reservation.ApplicationUser.FullName,
                                          DateCreated = reservation.DateCreated,
                                          DateModified = reservation.DateModified,
                                      };

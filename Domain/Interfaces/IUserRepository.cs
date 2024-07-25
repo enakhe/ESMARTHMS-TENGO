@@ -4,8 +4,9 @@ namespace ESMART_HMS.Domain.Interfaces
 {
     public interface IUserRepository
     {
-        void AddUser(User user);
+        void AddUser(ApplicationUser user);
         string HashPassword(string password);
         bool VerifyPassword(string enteredPassword, string storedHash);
+        ApplicationUser GetUserById(string id);
     }
 }

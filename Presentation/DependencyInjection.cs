@@ -5,7 +5,10 @@ using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
+using ESMART_HMS.Presentation.Forms.Store.BarStore;
 using ESMART_HMS.Presentation.Forms.Tools.Option.Financial;
+using ESMART_HMS.Presentation.Forms.Tools.Options.Accounts;
+using ESMART_HMS.Presentation.Forms.Transaction;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ESMART_HMS.Presentation
@@ -21,6 +24,10 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<ReservationController>();
             services.AddScoped<ConfigurationController>();
             services.AddScoped<BookingController>();
+            services.AddScoped<TransactionController>();
+            services.AddScoped<ApplicationUserController>();
+            services.AddScoped<UserRoleController>();
+            services.AddScoped<BarItemController>();
 
             // Forms
             services.AddScoped<LoginForm>();
@@ -45,6 +52,14 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<AddBookingForm>();
 
             services.AddScoped<FinancialForm>();
+            services.AddScoped<UserForm>();
+
+            // Transaction Forms
+            services.AddScoped<TransactionForm>();
+
+            // Bar Store Forms
+            services.AddScoped<BarStoreForm>();
+            services.AddScoped<AddBarItemForm>();
 
             return services;
         }

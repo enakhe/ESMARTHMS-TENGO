@@ -1,10 +1,7 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Infrastructure.Data
@@ -24,8 +21,6 @@ namespace ESMART_HMS.Infrastructure.Data
             {
                 _db.Configurations.Add(configuration);
                 _db.SaveChanges();
-                MessageBox.Show($"Successfully added {configuration.Key} information", "Success", MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -46,11 +41,12 @@ namespace ESMART_HMS.Infrastructure.Data
                     _db.SaveChanges();
                     MessageBox.Show($"Successfully updated {configuration.Key} information", "Success", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
-                } else
+                }
+                else
                 {
                     MessageBox.Show($"Unable to load resource", "Not Found", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                }  
+                }
             }
             catch (Exception ex)
             {

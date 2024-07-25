@@ -1,6 +1,5 @@
 ﻿using ESMART_HMS.Infrastructure.Services;
 using ESMART_HMS.Presentation.Forms;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ESMART_HMS
@@ -13,17 +12,14 @@ namespace ESMART_HMS
         [STAThread]
         static void Main()
         {
-            var services = new ServiceCollection();
-            DependencyInjection.ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
+
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
             DatabaseService.InitializeDatabase();
             DatabaseService.SeedData();
 
-            System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
-            System.Windows.Forms.Application.Run(loginForm);
+            System.Windows.Forms.Application.Run(new SplashScreenForm());
         }
     }
 }

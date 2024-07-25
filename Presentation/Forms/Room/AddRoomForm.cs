@@ -3,6 +3,7 @@ using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
+using ESMART_HMS.Presentation.Sessions;
 using System;
 using System.Windows.Forms;
 
@@ -13,11 +14,13 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         Room room = new Room();
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
-        public AddRoomForm(RoomController roomController, RoomTypeController roomTypeController)
+        private readonly ApplicationUserController _userController;
+        public AddRoomForm(RoomController roomController, RoomTypeController roomTypeController, ApplicationUserController userController)
         {
             InitializeComponent();
             _roomController = roomController;
             _roomTypeController = roomTypeController;
+            _userController = userController;
         }
 
         public void LoadRoomTypeData()
@@ -130,6 +133,8 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     room.DateCreated = DateTime.Now;
                     room.DateModified = DateTime.Now;
 
+                    room.CreatedBy = AuthSession.CurrentUser.Id;
+                    room.ApplicationUser = _userController.GetApplicationUserById(AuthSession.CurrentUser.Id);
 
                     _roomController.CreateRoom(room);
                     this.DialogResult = DialogResult.OK;
@@ -158,6 +163,14 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             if (isNull == false)
             {
                 txtRate.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtRate.Text));
+            }
+        }
+
+        private void txtRate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }
