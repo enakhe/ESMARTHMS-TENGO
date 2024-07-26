@@ -28,7 +28,6 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<RoomType> RoomTypes { get; set; }
         public virtual DbSet<Configuration> Configurations { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<RolePermission> RolePermissions { get; set; }
@@ -40,5 +39,6 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<BarItem> BarItems { get; set; }
         public virtual DbSet<IngredientItem> IngredientItems { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace ESMART_HMS.Presentation.ViewModels
         public string TransactionId { get; set; }
         public string Guest { get; set; }
         public string GuestPhoneNo { get; set; }
-        public string BookingId { get; set; }
+        public string ServiceId { get; set; }
         public DateTime Date { get; set; }
         public string Amount { get; set; }
         public string Description { get; set; }

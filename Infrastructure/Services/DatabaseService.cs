@@ -177,14 +177,14 @@ namespace ESMART_HMS.Infrastructure.Services
                     "[Id][nvarchar](450) NOT NULL," +
                     "[TransactionId][nvarchar](450) NOT NULL," +
                     "[GuestId][nvarchar](450) NOT NULL," +
-                    "[BookingId][nvarchar](450) NOT NULL," +
+                    "[ServiceId][nvarchar](450) NOT NULL," +
                     "[Date][datetime2](7) NOT NULL," +
                     "[Amount][decimal](10, 2) NOT NULL," +
+                    "[Status][nvarchar](450) NULL," +
                     "[Description][nvarchar](max) NULL," +
                     "[Type][nvarchar](50) NULL," +
                     "[IsTrashed][bit] NOT NULL," +
                     "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
-                    "FOREIGN KEY (BookingId) REFERENCES Booking(Id), " +
                     "CONSTRAINT [PK_Transaction] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
                 CreateTable("Invoice",

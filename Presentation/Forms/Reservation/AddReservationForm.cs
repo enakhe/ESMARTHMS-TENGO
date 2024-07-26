@@ -20,12 +20,14 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private readonly RoomController _roomController;
         private readonly ReservationController _reservationController;
         private readonly ApplicationUserController _applicationUserController;
-        public AddReservationForm(GuestController guestController, RoomController roomController, ReservationController reservationController, ApplicationUserController applicationUserController)
+        private readonly TransactionController _transactionController;
+        public AddReservationForm(GuestController guestController, RoomController roomController, ReservationController reservationController, ApplicationUserController applicationUserController, TransactionController transactionController)
         {
             _guestController = guestController;
             _reservationController = reservationController;
             _roomController = roomController;
             _applicationUserController = applicationUserController;
+            _transactionController = transactionController;
             InitializeComponent();
             ApplyAuthorization();
         }
@@ -202,6 +204,57 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
 
                     _reservationController.AddReservation(reservation);
                     _roomController.UpdateRoom(room);
+
+                    if (reservation.Amount == reservation.AmountPaid)
+                    {
+                        Domain.Entities.Transaction transaction = new Domain.Entities.Transaction()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            TransactionId = "TR" + random.Next(1000, 5000),
+                            GuestId = reservation.GuestId,
+                            Guest = reservation.Guest,
+                            ServiceId = reservation.ReservationId,
+                            Date = DateTime.Now,
+                            Amount = reservation.AmountPaid,
+                            Type = "Room Service",
+                            Description = "Reservation",
+                            Status = "Paid"
+                        };
+                        _transactionController.AddTransaction(transaction);
+                    }
+                    else if (reservation.Amount > reservation.AmountPaid)
+                    {
+                        Domain.Entities.Transaction paidTransaction = new Domain.Entities.Transaction()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            TransactionId = "TR" + random.Next(1000, 5000),
+                            GuestId = reservation.GuestId,
+                            Guest = reservation.Guest,
+                            ServiceId = reservation.ReservationId,
+                            Date = DateTime.Now,
+                            Amount = reservation.AmountPaid,
+                            Type = "Room Service",
+                            Description = "Reservation",
+                            Status = "Paid"
+                        };
+                        _transactionController.AddTransaction(paidTransaction);
+
+                        Domain.Entities.Transaction unPaidTransaction = new Domain.Entities.Transaction()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            TransactionId = "TR" + random.Next(1000, 5000),
+                            GuestId = reservation.GuestId,
+                            Guest = reservation.Guest,
+                            ServiceId = reservation.ReservationId,
+                            Date = DateTime.Now,
+                            Amount = reservation.Amount - reservation.AmountPaid,
+                            Type = "Room Service",
+                            Description = "Reservation",
+                            Status = "Un Paid"
+                        };
+                        _transactionController.AddTransaction(unPaidTransaction);
+                    }
+
                     this.DialogResult = DialogResult.OK;
 
                     this.Close();

@@ -42,6 +42,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<AddRoomForm>();
             services.AddScoped<ViewRoomForm>();
             services.AddScoped<EditRoomForm>();
+            services.AddScoped<RoomGridViewForm>();
 
             services.AddScoped<AddRoomTypeForm>();
 

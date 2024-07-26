@@ -473,6 +473,12 @@
     <Compile Include="Presentation\Forms\Room\EditRoomForm.Designer.cs">
       <DependentUpon>EditRoomForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Room\RoomGridViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Room\RoomGridViewForm.Designer.cs">
+      <DependentUpon>RoomGridViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Room\ViewRoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -588,6 +594,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Room\RoomForm.resx">
       <DependentUpon>RoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Room\RoomGridViewForm.resx">
+      <DependentUpon>RoomGridViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Room\ViewRoomForm.resx">
       <DependentUpon>ViewRoomForm.cs</DependentUpon>

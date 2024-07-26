@@ -274,8 +274,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                     Booking = booking,
                     Date = DateTime.Now,
                     Amount = booking.TotalAmount,
-                    Description = "Room Service",
-                    Type = "Service"
+                    Type = "Room Service"
                 };
 
                 _transactionController.AddTransaction(transaction);

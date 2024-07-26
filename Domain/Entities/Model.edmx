@@ -227,9 +227,10 @@
           <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="TransactionId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="GuestId" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="BookingId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ServiceId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="450" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
@@ -258,7 +259,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BarItem__Created__5EBF139D">
+        <Association Name="FK__BarItem__Created__5DCAEF64">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="BarItem" Type="Self.BarItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -318,7 +319,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingredien__Creat__619B8048">
+        <Association Name="FK__Ingredien__Creat__60A75C0F">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="IngredientItem" Type="Self.IngredientItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -330,7 +331,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Booking__5BE2A6F2">
+        <Association Name="FK__Invoice__Booking__5AEE82B9">
           <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -342,7 +343,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__GuestId__5AEE82B9">
+        <Association Name="FK__Invoice__GuestId__59FA5E80">
           <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -438,18 +439,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Booki__5812160E">
-          <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
-          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Booking">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="BookingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Transacti__Guest__571DF1D5">
           <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
@@ -486,7 +475,7 @@
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
           </AssociationSet>
-          <AssociationSet Name="FK__BarItem__Created__5EBF139D" Association="Self.FK__BarItem__Created__5EBF139D">
+          <AssociationSet Name="FK__BarItem__Created__5DCAEF64" Association="Self.FK__BarItem__Created__5DCAEF64">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="BarItem" EntitySet="BarItem" />
           </AssociationSet>
@@ -506,15 +495,15 @@
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="Guest" EntitySet="Guest" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingredien__Creat__619B8048" Association="Self.FK__Ingredien__Creat__619B8048">
+          <AssociationSet Name="FK__Ingredien__Creat__60A75C0F" Association="Self.FK__Ingredien__Creat__60A75C0F">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="IngredientItem" EntitySet="IngredientItem" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Booking__5BE2A6F2" Association="Self.FK__Invoice__Booking__5BE2A6F2">
+          <AssociationSet Name="FK__Invoice__Booking__5AEE82B9" Association="Self.FK__Invoice__Booking__5AEE82B9">
             <End Role="Booking" EntitySet="Booking" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__GuestId__5AEE82B9" Association="Self.FK__Invoice__GuestId__5AEE82B9">
+          <AssociationSet Name="FK__Invoice__GuestId__59FA5E80" Association="Self.FK__Invoice__GuestId__59FA5E80">
             <End Role="Guest" EntitySet="Guest" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
@@ -546,10 +535,6 @@
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="Room" EntitySet="Room" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Booki__5812160E" Association="Self.FK__Transacti__Booki__5812160E">
-            <End Role="Booking" EntitySet="Booking" />
-            <End Role="Transaction" EntitySet="Transaction" />
-          </AssociationSet>
           <AssociationSet Name="FK__Transacti__Guest__571DF1D5" Association="Self.FK__Transacti__Guest__571DF1D5">
             <End Role="Guest" EntitySet="Guest" />
             <End Role="Transaction" EntitySet="Transaction" />
@@ -575,7 +560,6 @@
           <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
           <EntitySet Name="Configurations" EntityType="ESMART_HMSDBModel.Configuration" />
           <EntitySet Name="Invoices" EntityType="ESMART_HMSDBModel.Invoice" />
-          <EntitySet Name="Transactions" EntityType="ESMART_HMSDBModel.Transaction" />
           <EntitySet Name="Permissions" EntityType="ESMART_HMSDBModel.Permission" />
           <EntitySet Name="Roles" EntityType="ESMART_HMSDBModel.Role" />
           <EntitySet Name="RolePermissions" EntityType="ESMART_HMSDBModel.RolePermission" />
@@ -629,10 +613,6 @@
             <End Role="Booking" EntitySet="Bookings" />
             <End Role="Invoice" EntitySet="Invoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Booki__5812160E" Association="ESMART_HMSDBModel.FK__Transacti__Booki__5812160E">
-            <End Role="Booking" EntitySet="Bookings" />
-            <End Role="Transaction" EntitySet="Transactions" />
-          </AssociationSet>
           <AssociationSet Name="FK__Invoice__GuestId__5AEE82B9" Association="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9">
             <End Role="Guest" EntitySet="Guests" />
             <End Role="Invoice" EntitySet="Invoices" />
@@ -640,10 +620,6 @@
           <AssociationSet Name="FK__Reservati__Guest__4D94879B" Association="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B">
             <End Role="Guest" EntitySet="Guests" />
             <End Role="Reservation" EntitySet="Reservations" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Guest__571DF1D5" Association="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5">
-            <End Role="Guest" EntitySet="Guests" />
-            <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
           <AssociationSet Name="FK__Reservati__RoomI__4E88ABD4" Association="ESMART_HMSDBModel.FK__Reservati__RoomI__4E88ABD4">
             <End Role="Room" EntitySet="Rooms" />
@@ -662,6 +638,11 @@
           <AssociationSet Name="FK__Ingredien__Creat__619B8048" Association="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048">
             <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
             <End Role="IngredientItem" EntitySet="IngredientItems" />
+          </AssociationSet>
+          <EntitySet Name="Transactions" EntityType="ESMART_HMSDBModel.Transaction" />
+          <AssociationSet Name="FK__Transacti__Guest__571DF1D5" Association="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5">
+            <End Role="Guest" EntitySet="Guests" />
+            <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Configuration">
@@ -686,22 +667,6 @@
           <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Booking" Relationship="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2" FromRole="Invoice" ToRole="Booking" />
           <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9" FromRole="Invoice" ToRole="Guest" />
-        </EntityType>
-        <EntityType Name="Transaction">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="TransactionId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BookingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Booking" Relationship="ESMART_HMSDBModel.FK__Transacti__Booki__5812160E" FromRole="Transaction" ToRole="Booking" />
-          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" FromRole="Transaction" ToRole="Guest" />
         </EntityType>
         <EntityType Name="Permission">
           <Key>
@@ -854,7 +819,6 @@
           <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8" FromRole="Booking" ToRole="Guest" />
           <NavigationProperty Name="Room" Relationship="ESMART_HMSDBModel.FK__Booking__RoomId__534D60F1" FromRole="Booking" ToRole="Room" />
           <NavigationProperty Name="Invoices" Relationship="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2" FromRole="Booking" ToRole="Invoice" />
-          <NavigationProperty Name="Transactions" Relationship="ESMART_HMSDBModel.FK__Transacti__Booki__5812160E" FromRole="Booking" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="Guest">
           <Key>
@@ -1019,18 +983,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Booki__5812160E">
-          <End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Transaction" Role="Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Booking">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="BookingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Invoice__GuestId__5AEE82B9">
           <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
           <End Type="ESMART_HMSDBModel.Invoice" Role="Invoice" Multiplicity="*" />
@@ -1051,18 +1003,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Reservation">
-              <PropertyRef Name="GuestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Transacti__Guest__571DF1D5">
-          <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Transaction" Role="Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Guest">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Transaction">
               <PropertyRef Name="GuestId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1147,6 +1087,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Status" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" FromRole="Transaction" ToRole="Guest" />
+        </EntityType>
+        <Association Name="FK__Transacti__Guest__571DF1D5">
+          <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1184,21 +1152,6 @@
                 <ScalarProperty Name="BookingId" ColumnName="BookingId" />
                 <ScalarProperty Name="GuestId" ColumnName="GuestId" />
                 <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Transactions">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Transaction">
-              <MappingFragment StoreEntitySet="Transaction">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
-                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
-                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1393,6 +1346,22 @@
                 <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IngredientItemId" ColumnName="IngredientItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

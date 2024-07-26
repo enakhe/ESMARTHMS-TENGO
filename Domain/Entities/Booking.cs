@@ -18,7 +18,6 @@ namespace ESMART_HMS.Domain.Entities
         public Booking()
         {
             this.Invoices = new HashSet<Invoice>();
-            this.Transactions = new HashSet<Transaction>();
         }
     
         public string Id { get; set; }
@@ -45,7 +44,5 @@ namespace ESMART_HMS.Domain.Entities
         public virtual Room Room { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

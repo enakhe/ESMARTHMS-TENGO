@@ -17,14 +17,14 @@ namespace ESMART_HMS.Domain.Entities
         public string Id { get; set; }
         public string TransactionId { get; set; }
         public string GuestId { get; set; }
-        public string BookingId { get; set; }
+        public string ServiceId { get; set; }
         public System.DateTime Date { get; set; }
         public decimal Amount { get; set; }
+        public string Status { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
         public bool IsTrashed { get; set; }
     
-        public virtual Booking Booking { get; set; }
         public virtual Guest Guest { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace ESMART_HMS.Infrastructure.Data
                                           TransactionId = transaction.TransactionId,
                                           Guest = transaction.Guest.FullName,
                                           GuestPhoneNo = transaction.Guest.PhoneNumber,
-                                          BookingId = transaction.Booking.BookingId,
+                                          ServiceId = transaction.ServiceId,
                                           Date = transaction.Date,
                                           Amount = transaction.Amount.ToString(),
                                           Description = transaction.Description,
