@@ -6,17 +6,25 @@ using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.Store.BarStore;
 using ESMART_HMS.Presentation.Forms.Tools.Option;
+using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Transaction;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using ESMART_HMS.Presentation.ViewModels;
+using System.Web.Security;
+using System.Windows.Controls;
 
 namespace ESMART_HMS.Presentation.Forms
 {
     public partial class Home : Form
     {
+        DashboardForm indexForm;
         GuestForm customerForm;
         RoomForm roomForm;
         ReservationForm reservationForm;
@@ -31,20 +39,58 @@ namespace ESMART_HMS.Presentation.Forms
         private readonly ReservationController _reservationController;
         private readonly ApplicationUserController _applicationUserController;
 
+        private Color vacantColor = Color.LightGreen;
+        private Color reservedColor = Color.LightYellow;
+        private Color bookedColor = Color.LightBlue;
+
         public Home(GuestController customerViewModel, RoomController roomController, RoomTypeController roomTypeController, ReservationController reservationController, ApplicationUserController userController)
         {
-            InitializeComponent();
             _customerController = customerViewModel;
             _roomController = roomController;
             _roomTypeController = roomTypeController;
             _reservationController = reservationController;
             _applicationUserController = userController;
+            InitializeComponent();
+            this.IsMdiContainer = true;
+            this.BackColor = Color.White;
+            this.Load += new EventHandler(MainForm_Load);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            MdiClient client = this.Controls.OfType<MdiClient>().FirstOrDefault();
+            if (client != null)
+            {
+                client.BackColor = Color.White;
+            }
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            if (indexForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                indexForm = serviceProvider.GetRequiredService<DashboardForm>();
+                indexForm.FormClosed += Dashboard_FormClosed;
+                indexForm.MdiParent = this;
+                indexForm.Dock = DockStyle.Fill;
+                indexForm.Show();
+            }
+        }
+
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            indexForm = null;
         }
 
         private void Guest_FormClosed(object sender, FormClosedEventArgs e)
         {
             customerForm = null;
         }
+
         private void customerMainToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (customerForm == null)
@@ -218,6 +264,19 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 barStoreForm.Activate();
             }
+        }
+
+        private void homeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            indexForm = serviceProvider.GetRequiredService<DashboardForm>();
+            indexForm.FormClosed += Dashboard_FormClosed;
+            indexForm.MdiParent = this;
+            indexForm.Dock = DockStyle.Fill;
+            indexForm.Show();
         }
     }
 }

@@ -149,7 +149,7 @@
   <data name="optionToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        5QAAAOUBj+WbPAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALASURBVFhHvZfL
+        4wAAAOMBD+bfpwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALASURBVFhHvZfL
         y41RFIc/YYARphihFKHkEhExNCRGJgakDF1TzEwNGODLda7cKSaKwkCuA5e/gIiiEJ7n9C3tb9v7nPd8
         ndevnjpn7bXXet9339Ye6lOL4TH8hN8Z2h7BImhF4+At5Ilz3oC+A9c8iCSX4GiGtmjXd+DaDJFgiYZM
         2qJd3zFrBRyCLTBFA5oAt8DgX2ES5NL2DfS5CfZRxjCWMZdr6Kat8AviTT7DdXiV2IahprMQfi/BvsYI
@@ -164,6 +164,15 @@
         aubktJpJ0RbtrVzNml5OX0Mrl1Pl1fsh1K7nti2Ehhoa+gObsFTSsfDTKQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>487, 17</value>
+  </metadata>
+  <metadata name="roomBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>713, 17</value>
+  </metadata>
+  <metadata name="roomTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>905, 17</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAMAEBAAAAEAIABoBAAANgAAACAgAAABACAAKBEAAJ4EAAAwMAAAAQAgAGgmAADGFQAAKAAAABAA

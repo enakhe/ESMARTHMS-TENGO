@@ -5,18 +5,15 @@
 #define MyAppVersion "1.0"
 #define MyAppPublisher "EnakheOrg, Inc."
 #define MyAppURL "https://www.example.com/"
-#define MyAppExeName "setup.exe"
+#define MyAppExeName "ESMART HMS.exe"
 #define MyAppAssocName MyAppName + " File"
 #define MyAppAssocExt ".myp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
-; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{E3FB4145-BAB8-4450-8BCD-19F828A3050C}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
@@ -25,15 +22,13 @@ DefaultDirName={autopf}\{#MyAppName}
 ChangesAssociations=yes
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-
-; Uncomment the following line to run in non administrative install mode (install for current user only.)
-;PrivilegesRequired=lowest
 OutputDir=C:\Users\izuag\OneDrive\Desktop\ESMART_HMS
 OutputBaseFilename=ESMART SETUP
 SetupIconFile=C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\Files\favicon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+PrivilegesRequired=admin
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -42,11 +37,9 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\publish\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\publish\Application Files\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\publish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\Prerequisite\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\Prerequisite\SQLServer.exe"; DestDir: "{tmp}"; Flags: ignoreversion
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
@@ -60,86 +53,29 @@ Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
+Filename: "{tmp}\SQLServer.exe"; Parameters: "/QS /ACTION=Install /IACCEPTSQLSERVERLICENSETERMS"; StatusMsg: "Installing SQL Server..."; Flags: postinstall runhidden runascurrentuser
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Code]
-const
-  SQLServerDownloadURL = 'https://go.microsoft.com/fwlink/?linkid=866658';
-  SQLServerInstaller = '{tmp}\SQLServer.exe';
-  SQLCMDPath = '{pf64}\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\sqlcmd.exe';
-
-function IsSQLServerInstalled(): Boolean;
+function IsSQLServerInstanceExists(): Boolean;
 begin
-  // Check if SQL Server is installed by querying the registry
-  Result := RegKeyExists(HKLM, 'SOFTWARE\Microsoft\Microsoft SQL Server') or RegKeyExists(HKLM, 'SOFTWARE\Microsoft\Microsoft SQL Server Local DB\Installed Versions');
-end;
-
-procedure DownloadAndInstallSQLServer();
-var
-  ResultCode: Integer;
-begin
-  // Use PowerShell to download the SQL Server installer
-  if not Exec('powershell', '-Command "Invoke-WebRequest -Uri ' + SQLServerDownloadURL + ' -OutFile ' + ExpandConstant(SQLServerInstaller) + '"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
-  begin
-    MsgBox('Failed to download SQL Server installer.', mbError, MB_OK);
-    Exit;
-  end;
-
-  // Ensure the file is completely downloaded
-  Sleep(5000); // Wait for 5 seconds
-
-  // Install SQL Server using the downloaded installer
-  if not Exec(ExpandConstant(SQLServerInstaller), '/Q /ACTION=Install /FEATURES=SQLEngine /INSTANCENAME=MSSQLSERVER /SQLSVCACCOUNT="NT AUTHORITY\NETWORK SERVICE" /SQLSYSADMINACCOUNTS="BUILTIN\ADMINISTRATORS" /AGTSVCSTARTUPTYPE=Automatic /IACCEPTSQLSERVERLICENSETERMS', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
-  begin
-    MsgBox('Failed to install SQL Server.', mbError, MB_OK);
-    Exit;
-  end;
-
-  // Ensure SQL Server is completely installed
-  Sleep(5000); // Wait for 5 seconds
-end;
-
-procedure LogMessage(const Msg: String);
-begin
-  SaveStringToFile(ExpandConstant('{tmp}\install.log'), Msg + #13#10, True);
-end;
-
-procedure RunSQLScript();
-var
-  ResultCode: Integer;
-begin
-  // Run SQL script to set up the database
-  if Exec(ExpandConstant('{pf64}\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\sqlcmd.exe'),
-    '-S .\SQLEXPRESS -i "' + ExpandConstant('{app}\ALL.sql') + '"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
-  begin
-    if ResultCode = 0 then
-    begin
-      MsgBox('Database setup completed successfully!', mbInformation, MB_OK);
-    end
-    else
-    begin
-      MsgBox('Database setup failed with error code: ' + IntToStr(ResultCode), mbError, MB_OK);
-    end;
-  end
-  else
-  begin
-    MsgBox('Failed to execute sqlcmd.', mbError, MB_OK);
-  end;
+  // Check if any SQL Server instance is installed by querying the registry
+  Result := RegKeyExists(HKLM, 'SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL');
 end;
 
 procedure InitializeWizard();
 begin
-  if not IsSQLServerInstalled() then
-  begin
-    DownloadAndInstallSQLServer();
-  end;
+  // Initialization code for the wizard
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
-  // Run SQL script after installation is complete
+  // Check if SQL Server instance exists before running the installer
   if CurStep = ssPostInstall then
   begin
-    RunSQLScript();
+    if not IsSQLServerInstanceExists() then
+    begin
+      // SQL Server installation will be handled by the [Run] section
+    end;
   end;
 end;

@@ -86,17 +86,17 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 var cell = dgvRooms.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (cell.Value != null && cell.Value.ToString() == "Vacant")
                 {
-                    cell.Style.BackColor = System.Drawing.Color.Green;
+                    cell.Style.BackColor = System.Drawing.Color.LightGreen;
                     cell.Style.ForeColor = System.Drawing.Color.White;
                 }
                 else if (cell.Value != null && cell.Value.ToString() == "Reserved")
                 {
-                    cell.Style.BackColor = System.Drawing.Color.Yellow;
+                    cell.Style.BackColor = System.Drawing.Color.LightYellow;
                     cell.Style.ForeColor = System.Drawing.Color.Black;
                 }
                 else if (cell.Value != null && cell.Value.ToString() == "CheckedIn")
                 {
-                    cell.Style.BackColor = System.Drawing.Color.Blue;
+                    cell.Style.BackColor = System.Drawing.Color.LightBlue;
                     cell.Style.ForeColor = System.Drawing.Color.White;
                 }
                 else

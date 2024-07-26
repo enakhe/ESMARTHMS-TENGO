@@ -8,7 +8,7 @@
     <ProjectGuid>{3A7114A1-052F-44B6-924F-A11BE68FFC8B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ESMART_HMS</RootNamespace>
-    <AssemblyName>ESMART_HMS</AssemblyName>
+    <AssemblyName>ESMART HMS</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -437,6 +437,12 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Data\GuestRepository.cs" />
+    <Compile Include="Presentation\Forms\DashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\DashboardForm.Designer.cs">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Reservation\AddReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -561,6 +567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\DashboardForm.resx">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

@@ -61,6 +61,9 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<BarStoreForm>();
             services.AddScoped<AddBarItemForm>();
 
+            // Home Form
+            services.AddScoped<DashboardForm>();
+
             return services;
         }
     }
