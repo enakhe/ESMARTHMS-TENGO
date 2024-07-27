@@ -35,47 +35,48 @@
             this.menuTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.homeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllCoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageRoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roomsFacilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roomBookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bookingListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addEditReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookedReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageBookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addEditBookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storeForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addEditItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foodIngredientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restaurantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.laundryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.swimmingPoolServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.laundryServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gymToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spaServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sportFacilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.transactionListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.swimmingPoolServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transactionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.manageReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageBookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.addEditReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bookedReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addEditBookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reservationListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roomCheckoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roomStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roomReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hardwareSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usersSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importsExportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreDataFromBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taxFileMaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultAccountSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearDataFiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataFileStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.archiveDataFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
@@ -111,29 +112,16 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 618);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
-            // sidebar
-            // 
-            this.sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(47)))), ((int)(((byte)(172)))));
-            this.sidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidebar.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.sidebar.Location = new System.Drawing.Point(0, 99);
-            this.sidebar.Name = "sidebar";
-            this.sidebar.Size = new System.Drawing.Size(125, 618);
-            this.sidebar.TabIndex = 5;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
             this.customerToolStripMenuItem,
-            this.manageRoomToolStripMenuItem,
-            this.roomReservationToolStripMenuItem,
-            this.roomBookingToolStripMenuItem,
             this.manageStoreToolStripMenuItem,
+            this.restaurantToolStripMenuItem,
+            this.laundryToolStripMenuItem,
             this.newOrderToolStripMenuItem,
-            this.transactionsToolStripMenuItem,
             this.manageReportsToolStripMenuItem,
             this.accountsToolStripMenuItem,
             this.toolsToolStripMenuItem});
@@ -164,6 +152,7 @@
             this.customerMainToolStripMenuItem,
             this.viewAllCoToolStripMenuItem,
             this.toolStripSeparator1,
+            this.roomsToolStripMenuItem,
             this.manageReservationToolStripMenuItem,
             this.manageBookingsToolStripMenuItem});
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
@@ -174,52 +163,70 @@
             // 
             this.customerMainToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.customerMainToolStripMenuItem.Name = "customerMainToolStripMenuItem";
-            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.customerMainToolStripMenuItem.Text = "Manage Guests";
+            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.customerMainToolStripMenuItem.Text = "Guests";
             this.customerMainToolStripMenuItem.Click += new System.EventHandler(this.customerMainToolStripMenuItem_Click_1);
             // 
             // viewAllCoToolStripMenuItem
             // 
             this.viewAllCoToolStripMenuItem.Name = "viewAllCoToolStripMenuItem";
-            this.viewAllCoToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.viewAllCoToolStripMenuItem.Text = "Manage Companies";
+            this.viewAllCoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.viewAllCoToolStripMenuItem.Text = "Companies";
             // 
-            // manageRoomToolStripMenuItem
+            // toolStripSeparator1
             // 
-            this.manageRoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.roomsToolStripMenuItem,
-            this.roomsFacilitiesToolStripMenuItem});
-            this.manageRoomToolStripMenuItem.Name = "manageRoomToolStripMenuItem";
-            this.manageRoomToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
-            this.manageRoomToolStripMenuItem.Text = "Manage Room";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
             // 
             // roomsToolStripMenuItem
             // 
+            this.roomsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.roomViewToolStripMenuItem});
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.roomsToolStripMenuItem.Text = "View all Rooms";
-            this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.roomsToolStripMenuItem.Text = "Rooms";
             // 
-            // roomsFacilitiesToolStripMenuItem
+            // roomViewToolStripMenuItem
             // 
-            this.roomsFacilitiesToolStripMenuItem.Name = "roomsFacilitiesToolStripMenuItem";
-            this.roomsFacilitiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.roomsFacilitiesToolStripMenuItem.Text = "Rooms Facilities";
+            this.roomViewToolStripMenuItem.Name = "roomViewToolStripMenuItem";
+            this.roomViewToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.roomViewToolStripMenuItem.Text = "Room View";
             // 
-            // roomBookingToolStripMenuItem
+            // manageReservationToolStripMenuItem
             // 
-            this.roomBookingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bookingListToolStripMenuItem});
-            this.roomBookingToolStripMenuItem.Name = "roomBookingToolStripMenuItem";
-            this.roomBookingToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
-            this.roomBookingToolStripMenuItem.Text = "Manage Booking";
+            this.manageReservationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addEditReservationToolStripMenuItem,
+            this.bookedReservationToolStripMenuItem});
+            this.manageReservationToolStripMenuItem.Name = "manageReservationToolStripMenuItem";
+            this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.manageReservationToolStripMenuItem.Text = "Reservations";
             // 
-            // bookingListToolStripMenuItem
+            // addEditReservationToolStripMenuItem
             // 
-            this.bookingListToolStripMenuItem.Name = "bookingListToolStripMenuItem";
-            this.bookingListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bookingListToolStripMenuItem.Text = "Booking List";
-            this.bookingListToolStripMenuItem.Click += new System.EventHandler(this.bookingListToolStripMenuItem_Click);
+            this.addEditReservationToolStripMenuItem.Name = "addEditReservationToolStripMenuItem";
+            this.addEditReservationToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.addEditReservationToolStripMenuItem.Text = "Add / Edit Reservation";
+            this.addEditReservationToolStripMenuItem.Click += new System.EventHandler(this.addEditReservationToolStripMenuItem_Click);
+            // 
+            // bookedReservationToolStripMenuItem
+            // 
+            this.bookedReservationToolStripMenuItem.Name = "bookedReservationToolStripMenuItem";
+            this.bookedReservationToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.bookedReservationToolStripMenuItem.Text = "Booked Reservation";
+            // 
+            // manageBookingsToolStripMenuItem
+            // 
+            this.manageBookingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addEditBookingsToolStripMenuItem});
+            this.manageBookingsToolStripMenuItem.Name = "manageBookingsToolStripMenuItem";
+            this.manageBookingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.manageBookingsToolStripMenuItem.Text = "Bookings";
+            // 
+            // addEditBookingsToolStripMenuItem
+            // 
+            this.addEditBookingsToolStripMenuItem.Name = "addEditBookingsToolStripMenuItem";
+            this.addEditBookingsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.addEditBookingsToolStripMenuItem.Text = "Add / Edit Booking";
             // 
             // manageStoreToolStripMenuItem
             // 
@@ -227,15 +234,23 @@
             this.storeForToolStripMenuItem,
             this.foodIngredientToolStripMenuItem});
             this.manageStoreToolStripMenuItem.Name = "manageStoreToolStripMenuItem";
-            this.manageStoreToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.manageStoreToolStripMenuItem.Text = " Manage Store";
+            this.manageStoreToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
+            this.manageStoreToolStripMenuItem.Text = "Bar";
             // 
             // storeForToolStripMenuItem
             // 
+            this.storeForToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addEditItemsToolStripMenuItem});
             this.storeForToolStripMenuItem.Name = "storeForToolStripMenuItem";
             this.storeForToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.storeForToolStripMenuItem.Text = "Store For Bars";
+            this.storeForToolStripMenuItem.Text = "Store";
             this.storeForToolStripMenuItem.Click += new System.EventHandler(this.storeForToolStripMenuItem_Click);
+            // 
+            // addEditItemsToolStripMenuItem
+            // 
+            this.addEditItemsToolStripMenuItem.Name = "addEditItemsToolStripMenuItem";
+            this.addEditItemsToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.addEditItemsToolStripMenuItem.Text = "Add / Edit Items";
             // 
             // foodIngredientToolStripMenuItem
             // 
@@ -243,28 +258,34 @@
             this.foodIngredientToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.foodIngredientToolStripMenuItem.Text = "Food Ingredient";
             // 
+            // restaurantToolStripMenuItem
+            // 
+            this.restaurantToolStripMenuItem.Name = "restaurantToolStripMenuItem";
+            this.restaurantToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.restaurantToolStripMenuItem.Text = "Restaurant";
+            // 
+            // laundryToolStripMenuItem
+            // 
+            this.laundryToolStripMenuItem.Name = "laundryToolStripMenuItem";
+            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.laundryToolStripMenuItem.Text = "Laundry";
+            // 
             // newOrderToolStripMenuItem
             // 
             this.newOrderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.swimmingPoolServiceToolStripMenuItem,
-            this.laundryServiceToolStripMenuItem,
+            this.gymToolStripMenuItem,
             this.spaServiceToolStripMenuItem,
-            this.sportFacilitiesToolStripMenuItem});
+            this.sportFacilitiesToolStripMenuItem,
+            this.swimmingPoolServiceToolStripMenuItem});
             this.newOrderToolStripMenuItem.Name = "newOrderToolStripMenuItem";
-            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.newOrderToolStripMenuItem.Text = "New Order";
+            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.newOrderToolStripMenuItem.Text = "Other Services";
             // 
-            // swimmingPoolServiceToolStripMenuItem
+            // gymToolStripMenuItem
             // 
-            this.swimmingPoolServiceToolStripMenuItem.Name = "swimmingPoolServiceToolStripMenuItem";
-            this.swimmingPoolServiceToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.swimmingPoolServiceToolStripMenuItem.Text = "Swimming Pool Service";
-            // 
-            // laundryServiceToolStripMenuItem
-            // 
-            this.laundryServiceToolStripMenuItem.Name = "laundryServiceToolStripMenuItem";
-            this.laundryServiceToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.laundryServiceToolStripMenuItem.Text = "Laundry Service";
+            this.gymToolStripMenuItem.Name = "gymToolStripMenuItem";
+            this.gymToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.gymToolStripMenuItem.Text = "Gym";
             // 
             // spaServiceToolStripMenuItem
             // 
@@ -278,63 +299,48 @@
             this.sportFacilitiesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.sportFacilitiesToolStripMenuItem.Text = "Sport Facilities";
             // 
-            // transactionsToolStripMenuItem
+            // swimmingPoolServiceToolStripMenuItem
             // 
-            this.transactionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.transactionListToolStripMenuItem});
-            this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
-            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(130, 20);
-            this.transactionsToolStripMenuItem.Text = "Manage Transactions";
-            // 
-            // transactionListToolStripMenuItem
-            // 
-            this.transactionListToolStripMenuItem.Name = "transactionListToolStripMenuItem";
-            this.transactionListToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.transactionListToolStripMenuItem.Text = "Transaction List";
-            this.transactionListToolStripMenuItem.Click += new System.EventHandler(this.transactionListToolStripMenuItem_Click);
+            this.swimmingPoolServiceToolStripMenuItem.Name = "swimmingPoolServiceToolStripMenuItem";
+            this.swimmingPoolServiceToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.swimmingPoolServiceToolStripMenuItem.Text = "Swimming Pool Service";
             // 
             // manageReportsToolStripMenuItem
             // 
             this.manageReportsToolStripMenuItem.Name = "manageReportsToolStripMenuItem";
-            this.manageReportsToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
-            this.manageReportsToolStripMenuItem.Text = "Manage Reports";
+            this.manageReportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.manageReportsToolStripMenuItem.Text = "Reports";
             // 
             // accountsToolStripMenuItem
             // 
             this.accountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usersToolStripMenuItem,
-            this.rolesToolStripMenuItem});
+            this.transactionsToolStripMenuItem1});
             this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
-            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
-            this.accountsToolStripMenuItem.Text = "Manage Accounts";
+            this.accountsToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.accountsToolStripMenuItem.Text = "Account";
             // 
-            // usersToolStripMenuItem
+            // transactionsToolStripMenuItem1
             // 
-            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
-            this.usersToolStripMenuItem.Text = "Users";
-            // 
-            // rolesToolStripMenuItem
-            // 
-            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
-            this.rolesToolStripMenuItem.Text = "Roles";
+            this.transactionsToolStripMenuItem1.Name = "transactionsToolStripMenuItem1";
+            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
+            this.transactionsToolStripMenuItem1.Text = "Transactions";
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionToolStripMenuItem});
+            this.systemSetupToolStripMenuItem,
+            this.hardwareSetupToolStripMenuItem,
+            this.usersSettingToolStripMenuItem,
+            this.importsExportsToolStripMenuItem,
+            this.restoreDataFromBackupToolStripMenuItem,
+            this.taxFileMaintenanceToolStripMenuItem,
+            this.defaultAccountSetupToolStripMenuItem,
+            this.clearDataFiToolStripMenuItem,
+            this.dataFileStatisticsToolStripMenuItem,
+            this.archiveDataFilesToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.toolsToolStripMenuItem.Text = "Settings ";
-            // 
-            // optionToolStripMenuItem
-            // 
-            this.optionToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("optionToolStripMenuItem.Image")));
-            this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
-            this.optionToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.optionToolStripMenuItem.Text = "Options";
-            this.optionToolStripMenuItem.Click += new System.EventHandler(this.optionToolStripMenuItem_Click);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.toolsToolStripMenuItem.Text = "Maintenance";
             // 
             // eSMART_HMSDBDataSet
             // 
@@ -350,73 +356,65 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
-            // manageReservationToolStripMenuItem
+            // systemSetupToolStripMenuItem
             // 
-            this.manageReservationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addEditReservationToolStripMenuItem,
-            this.bookedReservationToolStripMenuItem});
-            this.manageReservationToolStripMenuItem.Name = "manageReservationToolStripMenuItem";
-            this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.systemSetupToolStripMenuItem.Name = "systemSetupToolStripMenuItem";
+            this.systemSetupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.systemSetupToolStripMenuItem.Text = "System Setup";
             // 
-            // manageBookingsToolStripMenuItem
+            // hardwareSetupToolStripMenuItem
             // 
-            this.manageBookingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addEditBookingsToolStripMenuItem});
-            this.manageBookingsToolStripMenuItem.Name = "manageBookingsToolStripMenuItem";
-            this.manageBookingsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.manageBookingsToolStripMenuItem.Text = "Manage Bookings";
+            this.hardwareSetupToolStripMenuItem.Name = "hardwareSetupToolStripMenuItem";
+            this.hardwareSetupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.hardwareSetupToolStripMenuItem.Text = "Hardware Setup";
             // 
-            // toolStripSeparator1
+            // usersSettingToolStripMenuItem
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
+            this.usersSettingToolStripMenuItem.Name = "usersSettingToolStripMenuItem";
+            this.usersSettingToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.usersSettingToolStripMenuItem.Text = "Users Setting";
             // 
-            // addEditReservationToolStripMenuItem
+            // importsExportsToolStripMenuItem
             // 
-            this.addEditReservationToolStripMenuItem.Name = "addEditReservationToolStripMenuItem";
-            this.addEditReservationToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.addEditReservationToolStripMenuItem.Text = "Add / Edit Reservation";
-            this.addEditReservationToolStripMenuItem.Click += new System.EventHandler(this.addEditReservationToolStripMenuItem_Click);
+            this.importsExportsToolStripMenuItem.Name = "importsExportsToolStripMenuItem";
+            this.importsExportsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.importsExportsToolStripMenuItem.Text = "Imports / Exports";
             // 
-            // bookedReservationToolStripMenuItem
+            // restoreDataFromBackupToolStripMenuItem
             // 
-            this.bookedReservationToolStripMenuItem.Name = "bookedReservationToolStripMenuItem";
-            this.bookedReservationToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.bookedReservationToolStripMenuItem.Text = "Booked Reservation";
+            this.restoreDataFromBackupToolStripMenuItem.Name = "restoreDataFromBackupToolStripMenuItem";
+            this.restoreDataFromBackupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.restoreDataFromBackupToolStripMenuItem.Text = "Restore Data From Backup";
             // 
-            // addEditBookingsToolStripMenuItem
+            // taxFileMaintenanceToolStripMenuItem
             // 
-            this.addEditBookingsToolStripMenuItem.Name = "addEditBookingsToolStripMenuItem";
-            this.addEditBookingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addEditBookingsToolStripMenuItem.Text = "Add / Edit Bookings";
+            this.taxFileMaintenanceToolStripMenuItem.Name = "taxFileMaintenanceToolStripMenuItem";
+            this.taxFileMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.taxFileMaintenanceToolStripMenuItem.Text = "Tax File Maintenance";
             // 
-            // reservationListToolStripMenuItem
+            // defaultAccountSetupToolStripMenuItem
             // 
-            this.reservationListToolStripMenuItem.Name = "reservationListToolStripMenuItem";
-            this.reservationListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.reservationListToolStripMenuItem.Text = "Reservation List";
+            this.defaultAccountSetupToolStripMenuItem.Name = "defaultAccountSetupToolStripMenuItem";
+            this.defaultAccountSetupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.defaultAccountSetupToolStripMenuItem.Text = "Default Account Setup";
             // 
-            // roomCheckoutToolStripMenuItem
+            // clearDataFiToolStripMenuItem
             // 
-            this.roomCheckoutToolStripMenuItem.Name = "roomCheckoutToolStripMenuItem";
-            this.roomCheckoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.roomCheckoutToolStripMenuItem.Text = "Booked Reservation";
+            this.clearDataFiToolStripMenuItem.Name = "clearDataFiToolStripMenuItem";
+            this.clearDataFiToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.clearDataFiToolStripMenuItem.Text = "Clear Data Files";
             // 
-            // roomStatusToolStripMenuItem
+            // dataFileStatisticsToolStripMenuItem
             // 
-            this.roomStatusToolStripMenuItem.Name = "roomStatusToolStripMenuItem";
-            this.roomStatusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.roomStatusToolStripMenuItem.Text = "Room Status";
+            this.dataFileStatisticsToolStripMenuItem.Name = "dataFileStatisticsToolStripMenuItem";
+            this.dataFileStatisticsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.dataFileStatisticsToolStripMenuItem.Text = "Data File Statistics";
             // 
-            // roomReservationToolStripMenuItem
+            // archiveDataFilesToolStripMenuItem
             // 
-            this.roomReservationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reservationListToolStripMenuItem,
-            this.roomCheckoutToolStripMenuItem,
-            this.roomStatusToolStripMenuItem});
-            this.roomReservationToolStripMenuItem.Name = "roomReservationToolStripMenuItem";
-            this.roomReservationToolStripMenuItem.Size = new System.Drawing.Size(133, 20);
-            this.roomReservationToolStripMenuItem.Text = "Manange Reservation";
+            this.archiveDataFilesToolStripMenuItem.Name = "archiveDataFilesToolStripMenuItem";
+            this.archiveDataFilesToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.archiveDataFilesToolStripMenuItem.Text = "Archive Data Files";
             // 
             // Home
             // 
@@ -424,7 +422,6 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1924, 717);
-            this.Controls.Add(this.sidebar);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -454,29 +451,17 @@
         private System.Windows.Forms.Timer menuTransition;
         private System.Windows.Forms.Timer sidebarTransition;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel sidebar;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customerMainToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAllCoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manageRoomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem roomsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem roomsFacilitiesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem roomBookingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bookingListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem transactionListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageStoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem storeForToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foodIngredientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem swimmingPoolServiceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem laundryServiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spaServiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sportFacilitiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageReportsToolStripMenuItem;
@@ -491,9 +476,22 @@
         private System.Windows.Forms.ToolStripMenuItem addEditReservationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bookedReservationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addEditBookingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem roomReservationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reservationListToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem roomCheckoutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem roomStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roomsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roomViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addEditItemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restaurantToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem laundryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gymToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem systemSetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hardwareSetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usersSettingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importsExportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restoreDataFromBackupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem taxFileMaintenanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultAccountSetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearDataFiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dataFileStatisticsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem archiveDataFilesToolStripMenuItem;
     }
 }
