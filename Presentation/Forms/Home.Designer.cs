@@ -357,8 +357,6 @@
             this.bookedReservationToolStripMenuItem});
             this.manageReservationToolStripMenuItem.Name = "manageReservationToolStripMenuItem";
             this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.manageReservationToolStripMenuItem.Text = "Manage Reservations";
-            this.manageReservationToolStripMenuItem.Click += new System.EventHandler(this.manageReservationToolStripMenuItem_Click);
             // 
             // manageBookingsToolStripMenuItem
             // 
