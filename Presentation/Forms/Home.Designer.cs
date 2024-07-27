@@ -361,6 +361,7 @@
             this.systemSetupToolStripMenuItem.Name = "systemSetupToolStripMenuItem";
             this.systemSetupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.systemSetupToolStripMenuItem.Text = "System Setup";
+            this.systemSetupToolStripMenuItem.Click += new System.EventHandler(this.systemSetupToolStripMenuItem_Click);
             // 
             // hardwareSetupToolStripMenuItem
             // 

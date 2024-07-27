@@ -2,6 +2,7 @@
 using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Booking;
 using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
@@ -64,6 +65,10 @@ namespace ESMART_HMS.Presentation
 
             // Home Form
             services.AddScoped<DashboardForm>();
+
+
+            // Maintenance / System Setup
+            services.AddScoped<SystemSetupFrom>();
 
             return services;
         }

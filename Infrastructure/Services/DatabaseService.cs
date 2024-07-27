@@ -15,225 +15,9 @@ namespace ESMART_HMS.Infrastructure.Services
             if (!DatabaseExists())
             {
                 CreateDatabase();
-
-                CreateTable("ApplicationUser",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[UserId][nvarchar](450) NOT NULL," +
-                    "[FirstName][nvarchar](max) NOT NULL," +
-                    "[LastName][nvarchar](max) NOT NULL," +
-                    "[FullName][nvarchar](max) NOT NULL," +
-                    "[UserName][nvarchar](256) NOT NULL," +
-                    "[Email][nvarchar](256) NULL," +
-                    "[PasswordHash][nvarchar](max) NOT NULL," +
-                    "[PhoneNumber][nvarchar](max) NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "CONSTRAINT[PK_ApplicationUser] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("Role",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[RoleId][nvarchar](450) NOT NULL," +
-                    "[Title][nvarchar](450) NOT NULL," +
-                    "[Description][nvarchar](max) NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("ApplicationUserRole",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[UserRoleId][nvarchar](450) NOT NULL," +
-                    "[UserId][nvarchar](450) NOT NULL," +
-                    "[RoleId][nvarchar](450) NOT NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "FOREIGN KEY (UserId) REFERENCES ApplicationUser(Id)," +
-                    "FOREIGN KEY (RoleId) REFERENCES Role(Id)," +
-                    "CONSTRAINT [PK_ApplicationUserRole] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("Permission",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[PermissionId][nvarchar](450) NOT NULL," +
-                    "[Title][nvarchar](450) NOT NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "CONSTRAINT [PK_Permission] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("RolePermission",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[RoleId][nvarchar](450) NOT NULL," +
-                    "[PermissionId][nvarchar](450) NOT NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "FOREIGN KEY (RoleId) REFERENCES Role(Id)," +
-                    "FOREIGN KEY (PermissionId) REFERENCES Permission(Id)," +
-                    "CONSTRAINT [PK_RolePermission] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("RoomType",
-                    "[Id] [nvarchar](450) NOT NULL," +
-                    "[RoomTypeId][nvarchar](450) NOT NULL," +
-                    "[Title][nvarchar](max) NOT NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "CONSTRAINT [PK_RoomType] PRIMARY KEY CLUSTERED([Id] ASC)");
-
-                CreateTable("Room",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[RoomId][nvarchar](450) NOT NULL," +
-                    "[RoomNo][nvarchar](max) NOT NULL," +
-                    "[RoomCardNo][nvarchar](max) NOT NULL,"+
-                    "[RoomLockNo][nvarchar](max) NOT NULL,"+
-                    "[RoomTypeId][nvarchar](450) NOT NULL,"+
-                    "[AdultPerRoom][int] NOT NULL," +
-                    "[ChildrenPerRoom][int] NOT NULL,"+
-                    "[Description][nvarchar](max) NULL,"+
-                    "[Rate][decimal](10, 2) NOT NULL,"+
-                    "[Status][nvarchar](450) NOT NULL,"+
-                    "[CreatedBy][nvarchar](450) NOT NULL,"+
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "FOREIGN KEY (RoomTypeId) REFERENCES RoomType(Id)," +
-                    "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id)," +
-                    "CONSTRAINT [PK_Room] PRIMARY KEY CLUSTERED([Id] ASC)");
-
-                CreateTable("Guest",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[GuestId][nvarchar](450) NOT NULL," +
-                    "[Title][nvarchar](50) NOT NULL," +
-                    "[FirstName][nvarchar](max) NOT NULL,"+
-                    "[LastName][nvarchar](max) NOT NULL,"+
-                    "[FullName][nvarchar](max) NOT NULL,"+
-                    "[Email][nvarchar](256) NOT NULL," +
-                    "[PhoneNumber][nvarchar](max) NOT NULL,"+
-                    "[Street][nvarchar](max) NULL,"+
-                    "[City][nvarchar](max) NULL," +
-                    "[Company][nvarchar](max) NULL,"+
-                    "[State][nvarchar](max) NULL,"+
-                    "[Country][nvarchar](max) NULL,"+
-                    "[Gender][nvarchar](50) NOT NULL,"+
-                    "[IdNumber][nvarchar](450) NULL,"+
-                    "[IdType][nvarchar](450) NULL,"+
-                    "[IdentificationDocumentFront][varbinary] (max) NULL,"+
-                    "[IdentificationDocumentBack][varbinary] (max) NULL,"+
-                    "[GuestImage][varbinary] (max) NULL,"+
-                    "[CreatedBy][nvarchar](450) NOT NULL,"+
-                    "[DateCreated][datetime2](7) NOT NULL,"+
-                    "[DateModified][datetime2](7) NOT NULL,"+
-                    "[IsTrashed][bit] NOT NULL,"+
-                    "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
-                    "CONSTRAINT [PK_Guest] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("Reservation",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[ReservationId][nvarchar](450) NOT NULL," +
-                    "[GuestId][nvarchar](450) NOT NULL," +
-                    "[RoomId][nvarchar](450) NOT NULL," +
-                    "[CheckInDate][datetime2](7) NOT NULL," +
-                    "[CheckOutDate][datetime2](7) NOT NULL," +
-                    "[PaymentMethod][nvarchar](450) NOT NULL," +
-                    "[Amount][decimal](10, 2) NOT NULL," +
-                    "[AmountPaid][decimal](10, 2) NOT NULL," +
-                    "[Status][nvarchar](450) NOT NULL," +
-                    "[CreatedBy][nvarchar](450) NOT NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
-                    "FOREIGN KEY (RoomId) REFERENCES Room(Id), " +
-                    "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
-                    "CONSTRAINT [PK_Reservation] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("Booking",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[BookingId][nvarchar](450) NOT NULL," +
-                    "[GuestId][nvarchar](450) NOT NULL," +
-                    "[RoomId][nvarchar](450) NOT NULL," +
-                    "[ReservationId][nvarchar](450) NULL," +
-                    "[CheckInDate][datetime2](7) NOT NULL," +
-                    "[CheckOutDate][datetime2](7) NOT NULL," +
-                    "[PaymentMethod][nvarchar](450) NOT NULL," +
-                    "[Amount][decimal](10, 2) NOT NULL," +
-                    "[NoOfPerson][int] NOT NULL," +
-                    "[Duration][int] NOT NULL," +
-                    "[Discount][decimal](10, 2) NOT NULL," +
-                    "[VAT][decimal](10, 2) NOT NULL," +
-                    "[TotalAmount][decimal](10, 2) NOT NULL," +
-                    "[CreatedBy][nvarchar](450) NOT NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
-                    "FOREIGN KEY (RoomId) REFERENCES Room(Id), " +
-                    "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
-                    "CONSTRAINT [PK_Booking] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("Transaction",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[TransactionId][nvarchar](450) NOT NULL," +
-                    "[GuestId][nvarchar](450) NOT NULL," +
-                    "[ServiceId][nvarchar](450) NOT NULL," +
-                    "[Date][datetime2](7) NOT NULL," +
-                    "[Amount][decimal](10, 2) NOT NULL," +
-                    "[Status][nvarchar](450) NULL," +
-                    "[Description][nvarchar](max) NULL," +
-                    "[Type][nvarchar](50) NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
-                    "CONSTRAINT [PK_Transaction] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("Invoice",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[InvoiceId][nvarchar](450) NOT NULL," +
-                    "[GuestId][nvarchar](450) NOT NULL," +
-                    "[BookingId][nvarchar](450) NOT NULL," +
-                    "[Date][datetime2](7) NOT NULL," +
-                    "[TotalAmount][decimal](10, 2) NOT NULL," +
-                    "[VATAmount][decimal](10, 2) NULL," +
-                    "[Status][nvarchar](50) NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
-                    "FOREIGN KEY (BookingId) REFERENCES Booking(Id), " +
-                    "CONSTRAINT [PK_Invoices] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("BarItem",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[BarItemId][nvarchar](450) NOT NULL," +
-                    "[Barcode][nvarchar](max) NOT NULL," +
-                    "[ItemName][nvarchar](max) NOT NULL," +
-                    "[CostPrice][decimal](10, 2) NOT NULL," +
-                    "[SellingPrice][decimal](10, 2) NULL," +
-                    "[Quantity][int] NOT NULL," +
-                    "[Type][nvarchar](450) NOT NULL," +
-                    "[Measurement][nvarchar](450) NOT NULL," +
-                    "[CreatedBy][nvarchar](450) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
-                    "CONSTRAINT [PK_BarItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("IngredientItem",
-                    "[Id][nvarchar](450) NOT NULL," +
-                    "[IngredientItemId][nvarchar](450) NOT NULL," +
-                    "[Name][nvarchar](450) NOT NULL," +
-                    "[IsTrashed][bit] NOT NULL," +
-                    "[CreatedBy][nvarchar](450) NOT NULL," +
-                    "[DateCreated][datetime2](7) NOT NULL," +
-                    "[DateModified][datetime2](7) NOT NULL," +
-                    "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
-                    "CONSTRAINT [PK_IngredientItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
-                CreateTable("Configuration",
-                    "[Key][nvarchar](450) NOT NULL," +
-                    "[Value][nvarchar](450) NOT NULL," +
-                    "CONSTRAINT [PK_Configuration] PRIMARY KEY CLUSTERED ([Key] ASC)");
             }
+
+            EnsureTablesExist();
         }
 
         private static bool DatabaseExists()
@@ -259,13 +43,239 @@ namespace ESMART_HMS.Infrastructure.Services
             }
         }
 
-        private static void CreateTable(string tableName, string tableDefinition)
+        private static void EnsureTablesExist()
+        {
+            CreateTableIfNotExists("ApplicationUser",
+                    "[Id][nvarchar](450) NOT NULL," +
+                    "[UserId][nvarchar](450) NOT NULL," +
+                    "[FirstName][nvarchar](max) NOT NULL," +
+                    "[LastName][nvarchar](max) NOT NULL," +
+                    "[FullName][nvarchar](max) NOT NULL," +
+                    "[UserName][nvarchar](256) NOT NULL," +
+                    "[Email][nvarchar](256) NULL," +
+                    "[PasswordHash][nvarchar](max) NOT NULL," +
+                    "[PhoneNumber][nvarchar](max) NULL," +
+                    "[DateCreated][datetime2](7) NOT NULL," +
+                    "[DateModified][datetime2](7) NOT NULL," +
+                    "[IsTrashed][bit] NOT NULL," +
+                    "CONSTRAINT[PK_ApplicationUser] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("Role",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[RoleId][nvarchar](450) NOT NULL," +
+                "[Title][nvarchar](450) NOT NULL," +
+                "[Description][nvarchar](max) NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("ApplicationUserRole",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[UserRoleId][nvarchar](450) NOT NULL," +
+                "[UserId][nvarchar](450) NOT NULL," +
+                "[RoleId][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (UserId) REFERENCES ApplicationUser(Id)," +
+                "FOREIGN KEY (RoleId) REFERENCES Role(Id)," +
+                "CONSTRAINT [PK_ApplicationUserRole] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("Permission",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[PermissionId][nvarchar](450) NOT NULL," +
+                "[Title][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "CONSTRAINT [PK_Permission] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("RolePermission",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[RoleId][nvarchar](450) NOT NULL," +
+                "[PermissionId][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (RoleId) REFERENCES Role(Id)," +
+                "FOREIGN KEY (PermissionId) REFERENCES Permission(Id)," +
+                "CONSTRAINT [PK_RolePermission] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("RoomType",
+                "[Id] [nvarchar](450) NOT NULL," +
+                "[RoomTypeId][nvarchar](450) NOT NULL," +
+                "[Title][nvarchar](max) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "CONSTRAINT [PK_RoomType] PRIMARY KEY CLUSTERED([Id] ASC)");
+
+            CreateTableIfNotExists("Room",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[RoomId][nvarchar](450) NOT NULL," +
+                "[RoomNo][nvarchar](max) NOT NULL," +
+                "[RoomCardNo][nvarchar](max) NOT NULL," +
+                "[RoomLockNo][nvarchar](max) NOT NULL," +
+                "[RoomTypeId][nvarchar](450) NOT NULL," +
+                "[AdultPerRoom][int] NOT NULL," +
+                "[ChildrenPerRoom][int] NOT NULL," +
+                "[Description][nvarchar](max) NULL," +
+                "[Rate][decimal](10, 2) NOT NULL," +
+                "[Status][nvarchar](450) NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (RoomTypeId) REFERENCES RoomType(Id)," +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id)," +
+                "CONSTRAINT [PK_Room] PRIMARY KEY CLUSTERED([Id] ASC)");
+
+            CreateTableIfNotExists("Guest",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[GuestId][nvarchar](450) NOT NULL," +
+                "[Title][nvarchar](50) NOT NULL," +
+                "[FirstName][nvarchar](max) NOT NULL," +
+                "[LastName][nvarchar](max) NOT NULL," +
+                "[FullName][nvarchar](max) NOT NULL," +
+                "[Email][nvarchar](256) NOT NULL," +
+                "[PhoneNumber][nvarchar](max) NOT NULL," +
+                "[Street][nvarchar](max) NULL," +
+                "[City][nvarchar](max) NULL," +
+                "[Company][nvarchar](max) NULL," +
+                "[State][nvarchar](max) NULL," +
+                "[Country][nvarchar](max) NULL," +
+                "[Gender][nvarchar](50) NOT NULL," +
+                "[IdNumber][nvarchar](450) NULL," +
+                "[IdType][nvarchar](450) NULL," +
+                "[IdentificationDocumentFront][varbinary] (max) NULL," +
+                "[IdentificationDocumentBack][varbinary] (max) NULL," +
+                "[GuestImage][varbinary] (max) NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_Guest] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("Reservation",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[ReservationId][nvarchar](450) NOT NULL," +
+                "[GuestId][nvarchar](450) NOT NULL," +
+                "[RoomId][nvarchar](450) NOT NULL," +
+                "[CheckInDate][datetime2](7) NOT NULL," +
+                "[CheckOutDate][datetime2](7) NOT NULL," +
+                "[PaymentMethod][nvarchar](450) NOT NULL," +
+                "[Amount][decimal](10, 2) NOT NULL," +
+                "[AmountPaid][decimal](10, 2) NOT NULL," +
+                "[Status][nvarchar](450) NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
+                "FOREIGN KEY (RoomId) REFERENCES Room(Id), " +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_Reservation] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("Booking",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[BookingId][nvarchar](450) NOT NULL," +
+                "[GuestId][nvarchar](450) NOT NULL," +
+                "[RoomId][nvarchar](450) NOT NULL," +
+                "[ReservationId][nvarchar](450) NULL," +
+                "[CheckInDate][datetime2](7) NOT NULL," +
+                "[CheckOutDate][datetime2](7) NOT NULL," +
+                "[PaymentMethod][nvarchar](450) NOT NULL," +
+                "[Amount][decimal](10, 2) NOT NULL," +
+                "[NoOfPerson][int] NOT NULL," +
+                "[Duration][int] NOT NULL," +
+                "[Discount][decimal](10, 2) NOT NULL," +
+                "[VAT][decimal](10, 2) NOT NULL," +
+                "[TotalAmount][decimal](10, 2) NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
+                "FOREIGN KEY (RoomId) REFERENCES Room(Id), " +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_Booking] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("Transaction",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[TransactionId][nvarchar](450) NOT NULL," +
+                "[GuestId][nvarchar](450) NOT NULL," +
+                "[ServiceId][nvarchar](450) NOT NULL," +
+                "[Date][datetime2](7) NOT NULL," +
+                "[Amount][decimal](10, 2) NOT NULL," +
+                "[Status][nvarchar](450) NULL," +
+                "[Description][nvarchar](max) NULL," +
+                "[Type][nvarchar](50) NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
+                "CONSTRAINT [PK_Transaction] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("Invoice",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[InvoiceId][nvarchar](450) NOT NULL," +
+                "[GuestId][nvarchar](450) NOT NULL," +
+                "[BookingId][nvarchar](450) NOT NULL," +
+                "[Date][datetime2](7) NOT NULL," +
+                "[TotalAmount][decimal](10, 2) NOT NULL," +
+                "[VATAmount][decimal](10, 2) NULL," +
+                "[Status][nvarchar](50) NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (GuestId) REFERENCES Guest(Id), " +
+                "FOREIGN KEY (BookingId) REFERENCES Booking(Id), " +
+                "CONSTRAINT [PK_Invoices] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("BarItem",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[BarItemId][nvarchar](450) NOT NULL," +
+                "[Barcode][nvarchar](max) NOT NULL," +
+                "[ItemName][nvarchar](max) NOT NULL," +
+                "[CostPrice][decimal](10, 2) NOT NULL," +
+                "[SellingPrice][decimal](10, 2) NULL," +
+                "[Quantity][int] NOT NULL," +
+                "[Type][nvarchar](450) NOT NULL," +
+                "[Measurement][nvarchar](450) NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_BarItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("IngredientItem",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[IngredientItemId][nvarchar](450) NOT NULL," +
+                "[Name][nvarchar](450) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_IngredientItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("Configuration",
+                "[Key][nvarchar](450) NOT NULL," +
+                "[Value][nvarchar](450) NOT NULL," +
+                "CONSTRAINT [PK_Configuration] PRIMARY KEY CLUSTERED ([Key] ASC)");
+        }
+
+        private static void CreateTableIfNotExists(string tableName, string tableDefinition)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = $"USE ESMART_HMSDB; CREATE TABLE [{tableName}] ({tableDefinition})";
+                command.CommandText = $@"
+                    USE ESMART_HMSDB;
+                    IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = '{tableName}')
+                    BEGIN
+                        CREATE TABLE [{tableName}] ({tableDefinition})
+                    END";
                 command.ExecuteNonQuery();
             }
         }

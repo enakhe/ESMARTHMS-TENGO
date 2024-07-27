@@ -12,6 +12,7 @@ using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,10 @@ namespace ESMART_HMS.Presentation.Forms
         BookingForm bookingForm;
         OptionsFrom optionsFrom;
         TransactionForm transactionForm;
-        BarStoreForm barStoreForm; 
+        BarStoreForm barStoreForm;
+
+        // Maintenance
+        SystemSetupFrom systemSetupFrom;
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
@@ -136,31 +140,6 @@ namespace ESMART_HMS.Presentation.Forms
                 roomForm.LoadData();
             }
         }
-
-        //private void Reservation_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-        //    customerForm = null;
-        //}
-
-        //private void reservationListToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    if (reservationForm == null)
-        //    {
-        //        var services = new ServiceCollection();
-        //        DependencyInjection.ConfigureServices(services);
-        //        var serviceProvider = services.BuildServiceProvider();
-
-        //        reservationForm = serviceProvider.GetRequiredService<ReservationForm>();
-        //        reservationForm.FormClosed += Reservation_FormClosed;
-        //        reservationForm.MdiParent = this;
-        //        reservationForm.Dock = DockStyle.Fill;
-        //        reservationForm.Show();
-        //    }
-        //    else
-        //    {
-        //        reservationForm.Activate();
-        //    }
-        //}
 
         private void Option_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -298,6 +277,29 @@ namespace ESMART_HMS.Presentation.Forms
                 reservationForm.MdiParent = this;
                 reservationForm.Dock = DockStyle.Fill;
                 reservationForm.Show();
+            }
+            else
+            {
+                reservationForm.Activate();
+            }
+        }
+
+        private void SystemSetup_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            systemSetupFrom = null;
+        }
+
+        private void systemSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (systemSetupFrom == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                systemSetupFrom = serviceProvider.GetRequiredService<SystemSetupFrom>();
+                systemSetupFrom.FormClosed += SystemSetup_FormClosed;
+                systemSetupFrom.ShowDialog();
             }
             else
             {
