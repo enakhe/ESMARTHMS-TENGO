@@ -19,7 +19,6 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
         private void TransactionForm_Load(object sender, System.EventArgs e)
         {
             LoadData();
-            this.transactionTableAdapter.Fill(this.eSMART_HMSDBDataSet.Transaction);
 
         }
 
@@ -33,6 +32,25 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
                     transaction.Amount = FormHelper.FormatNumberWithCommas(decimal.Parse(transaction.Amount));
                 }   
                 dgvTransaction.DataSource = allTransaction;
+                dgvTransaction.CellFormatting += DataGridViewRooms_CellFormatting;
+            }
+        }
+
+        private void DataGridViewRooms_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvTransaction.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var cell = dgvTransaction.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null && cell.Value.ToString() == "Paid")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Green;
+                    cell.Style.ForeColor = System.Drawing.Color.White;
+                }
+                else
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Red;
+                    cell.Style.ForeColor = System.Drawing.Color.White;
+                }
             }
         }
     }

@@ -137,30 +137,30 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void Reservation_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            customerForm = null;
-        }
+        //private void Reservation_FormClosed(object sender, FormClosedEventArgs e)
+        //{
+        //    customerForm = null;
+        //}
 
-        private void reservationListToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (reservationForm == null)
-            {
-                var services = new ServiceCollection();
-                DependencyInjection.ConfigureServices(services);
-                var serviceProvider = services.BuildServiceProvider();
+        //private void reservationListToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (reservationForm == null)
+        //    {
+        //        var services = new ServiceCollection();
+        //        DependencyInjection.ConfigureServices(services);
+        //        var serviceProvider = services.BuildServiceProvider();
 
-                reservationForm = serviceProvider.GetRequiredService<ReservationForm>();
-                reservationForm.FormClosed += Reservation_FormClosed;
-                reservationForm.MdiParent = this;
-                reservationForm.Dock = DockStyle.Fill;
-                reservationForm.Show();
-            }
-            else
-            {
-                reservationForm.Activate();
-            }
-        }
+        //        reservationForm = serviceProvider.GetRequiredService<ReservationForm>();
+        //        reservationForm.FormClosed += Reservation_FormClosed;
+        //        reservationForm.MdiParent = this;
+        //        reservationForm.Dock = DockStyle.Fill;
+        //        reservationForm.Show();
+        //    }
+        //    else
+        //    {
+        //        reservationForm.Activate();
+        //    }
+        //}
 
         private void Option_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -277,6 +277,32 @@ namespace ESMART_HMS.Presentation.Forms
             indexForm.MdiParent = this;
             indexForm.Dock = DockStyle.Fill;
             indexForm.Show();
+        }
+
+
+        private void Reservation_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            reservationForm = null;
+        }
+
+        private void addEditReservationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (reservationForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                reservationForm = serviceProvider.GetRequiredService<ReservationForm>();
+                reservationForm.FormClosed += Reservation_FormClosed;
+                reservationForm.MdiParent = this;
+                reservationForm.Dock = DockStyle.Fill;
+                reservationForm.Show();
+            }
+            else
+            {
+                reservationForm.Activate();
+            }
         }
     }
 }

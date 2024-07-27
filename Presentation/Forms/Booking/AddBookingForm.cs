@@ -270,8 +270,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                     TransactionId = "TR" + random.Next(1000, 5000),
                     GuestId = booking.GuestId,
                     Guest = booking.Guest,
-                    BookingId = booking.BookingId,
-                    Booking = booking,
+                    ServiceId = booking.BookingId,
                     Date = DateTime.Now,
                     Amount = booking.TotalAmount,
                     Type = "Room Service"

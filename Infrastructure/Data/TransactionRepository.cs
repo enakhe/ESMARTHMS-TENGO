@@ -42,6 +42,7 @@ namespace ESMART_HMS.Infrastructure.Data
                                           GuestPhoneNo = transaction.Guest.PhoneNumber,
                                           ServiceId = transaction.ServiceId,
                                           Date = transaction.Date,
+                                          Status = transaction.Status,
                                           Amount = transaction.Amount.ToString(),
                                           Description = transaction.Description,
                                           Type = transaction.Type,
