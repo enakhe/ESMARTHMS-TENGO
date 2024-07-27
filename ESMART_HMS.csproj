@@ -391,6 +391,12 @@
     <Compile Include="Presentation\Forms\Booking\BookingForm.Designer.cs">
       <DependentUpon>BookingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\DashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\DashboardForm.Designer.cs">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Guests\AddGuestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -437,12 +443,6 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Data\GuestRepository.cs" />
-    <Compile Include="Presentation\Forms\DashboardForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\DashboardForm.Designer.cs">
-      <DependentUpon>DashboardForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Forms\Reservation\AddReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -559,6 +559,9 @@
     <EmbeddedResource Include="Presentation\Forms\Booking\BookingForm.resx">
       <DependentUpon>BookingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\DashboardForm.resx">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Guests\AddGuestForm.resx">
       <DependentUpon>AddGuestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -573,9 +576,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\DashboardForm.resx">
-      <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
