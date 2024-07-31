@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Booking;
 using ESMART_HMS.Presentation.Forms.Guests;
@@ -29,6 +30,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<ApplicationUserController>();
             services.AddScoped<UserRoleController>();
             services.AddScoped<BarItemController>();
+            services.AddScoped<SystemSetupController>();
 
             // Forms
             services.AddScoped<LoginForm>();

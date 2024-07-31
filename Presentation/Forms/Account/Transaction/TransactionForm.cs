@@ -1,5 +1,4 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
@@ -30,7 +29,7 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
                 foreach (var transaction in allTransaction)
                 {
                     transaction.Amount = FormHelper.FormatNumberWithCommas(decimal.Parse(transaction.Amount));
-                }   
+                }
                 dgvTransaction.DataSource = allTransaction;
                 dgvTransaction.CellFormatting += DataGridViewRooms_CellFormatting;
             }

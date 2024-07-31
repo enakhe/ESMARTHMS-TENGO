@@ -64,9 +64,6 @@
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
-            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
             this.systemSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hardwareSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +74,9 @@
             this.clearDataFiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataFileStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archiveDataFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
+            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
@@ -85,10 +85,11 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1924, 75);
             this.panel1.TabIndex = 0;
@@ -107,13 +108,15 @@
             // 
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 99);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 100);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 618);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 617);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
@@ -127,7 +130,7 @@
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 25);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -141,8 +144,9 @@
             // 
             // homeToolStripMenuItem1
             // 
+            this.homeToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("homeToolStripMenuItem1.Image")));
             this.homeToolStripMenuItem1.Name = "homeToolStripMenuItem1";
-            this.homeToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.homeToolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
             this.homeToolStripMenuItem1.Text = "Home";
             this.homeToolStripMenuItem1.Click += new System.EventHandler(this.homeToolStripMenuItem1_Click);
             // 
@@ -161,29 +165,35 @@
             // 
             // customerMainToolStripMenuItem
             // 
+            this.customerMainToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("customerMainToolStripMenuItem.Image")));
             this.customerMainToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.customerMainToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.customerMainToolStripMenuItem.Name = "customerMainToolStripMenuItem";
-            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.customerMainToolStripMenuItem.Text = "Guests";
             this.customerMainToolStripMenuItem.Click += new System.EventHandler(this.customerMainToolStripMenuItem_Click_1);
             // 
             // viewAllCoToolStripMenuItem
             // 
+            this.viewAllCoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("viewAllCoToolStripMenuItem.Image")));
+            this.viewAllCoToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.viewAllCoToolStripMenuItem.Name = "viewAllCoToolStripMenuItem";
-            this.viewAllCoToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.viewAllCoToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.viewAllCoToolStripMenuItem.Text = "Companies";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(176, 6);
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.roomViewToolStripMenuItem});
+            this.roomsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("roomsToolStripMenuItem.Image")));
+            this.roomsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.roomsToolStripMenuItem.Text = "Rooms";
             // 
             // roomViewToolStripMenuItem
@@ -197,9 +207,11 @@
             this.manageReservationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEditReservationToolStripMenuItem,
             this.bookedReservationToolStripMenuItem});
+            this.manageReservationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("manageReservationToolStripMenuItem.Image")));
+            this.manageReservationToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.manageReservationToolStripMenuItem.Name = "manageReservationToolStripMenuItem";
-            this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.manageReservationToolStripMenuItem.Text = "Reservations";
+            this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.manageReservationToolStripMenuItem.Text = "Room Reservations";
             // 
             // addEditReservationToolStripMenuItem
             // 
@@ -218,9 +230,11 @@
             // 
             this.manageBookingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEditBookingsToolStripMenuItem});
+            this.manageBookingsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("manageBookingsToolStripMenuItem.Image")));
+            this.manageBookingsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.manageBookingsToolStripMenuItem.Name = "manageBookingsToolStripMenuItem";
-            this.manageBookingsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.manageBookingsToolStripMenuItem.Text = "Bookings";
+            this.manageBookingsToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.manageBookingsToolStripMenuItem.Text = "Room Bookings";
             // 
             // addEditBookingsToolStripMenuItem
             // 
@@ -342,6 +356,87 @@
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.toolsToolStripMenuItem.Text = "Maintenance";
             // 
+            // systemSetupToolStripMenuItem
+            // 
+            this.systemSetupToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("systemSetupToolStripMenuItem.Image")));
+            this.systemSetupToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.systemSetupToolStripMenuItem.Name = "systemSetupToolStripMenuItem";
+            this.systemSetupToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.systemSetupToolStripMenuItem.Text = "System Setup";
+            this.systemSetupToolStripMenuItem.Click += new System.EventHandler(this.systemSetupToolStripMenuItem_Click);
+            // 
+            // hardwareSetupToolStripMenuItem
+            // 
+            this.hardwareSetupToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("hardwareSetupToolStripMenuItem.Image")));
+            this.hardwareSetupToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.hardwareSetupToolStripMenuItem.Name = "hardwareSetupToolStripMenuItem";
+            this.hardwareSetupToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.hardwareSetupToolStripMenuItem.Text = "Hardware Setup";
+            // 
+            // usersSettingToolStripMenuItem
+            // 
+            this.usersSettingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("usersSettingToolStripMenuItem.Image")));
+            this.usersSettingToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.usersSettingToolStripMenuItem.Name = "usersSettingToolStripMenuItem";
+            this.usersSettingToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.usersSettingToolStripMenuItem.Text = "Users Setting";
+            // 
+            // importsExportsToolStripMenuItem
+            // 
+            this.importsExportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importsExportsToolStripMenuItem.Image")));
+            this.importsExportsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.importsExportsToolStripMenuItem.Name = "importsExportsToolStripMenuItem";
+            this.importsExportsToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.importsExportsToolStripMenuItem.Text = "Imports / Exports";
+            // 
+            // restoreDataFromBackupToolStripMenuItem
+            // 
+            this.restoreDataFromBackupToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("restoreDataFromBackupToolStripMenuItem.Image")));
+            this.restoreDataFromBackupToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.restoreDataFromBackupToolStripMenuItem.Name = "restoreDataFromBackupToolStripMenuItem";
+            this.restoreDataFromBackupToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.restoreDataFromBackupToolStripMenuItem.Text = "Restore Data From Backup";
+            // 
+            // taxFileMaintenanceToolStripMenuItem
+            // 
+            this.taxFileMaintenanceToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("taxFileMaintenanceToolStripMenuItem.Image")));
+            this.taxFileMaintenanceToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.taxFileMaintenanceToolStripMenuItem.Name = "taxFileMaintenanceToolStripMenuItem";
+            this.taxFileMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.taxFileMaintenanceToolStripMenuItem.Text = "Tax File Maintenance";
+            // 
+            // defaultAccountSetupToolStripMenuItem
+            // 
+            this.defaultAccountSetupToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("defaultAccountSetupToolStripMenuItem.Image")));
+            this.defaultAccountSetupToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.defaultAccountSetupToolStripMenuItem.Name = "defaultAccountSetupToolStripMenuItem";
+            this.defaultAccountSetupToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.defaultAccountSetupToolStripMenuItem.Text = "Default Account Setup";
+            // 
+            // clearDataFiToolStripMenuItem
+            // 
+            this.clearDataFiToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearDataFiToolStripMenuItem.Image")));
+            this.clearDataFiToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.clearDataFiToolStripMenuItem.Name = "clearDataFiToolStripMenuItem";
+            this.clearDataFiToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.clearDataFiToolStripMenuItem.Text = "Clear Data Files";
+            // 
+            // dataFileStatisticsToolStripMenuItem
+            // 
+            this.dataFileStatisticsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dataFileStatisticsToolStripMenuItem.Image")));
+            this.dataFileStatisticsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.dataFileStatisticsToolStripMenuItem.Name = "dataFileStatisticsToolStripMenuItem";
+            this.dataFileStatisticsToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.dataFileStatisticsToolStripMenuItem.Text = "Data File Statistics";
+            // 
+            // archiveDataFilesToolStripMenuItem
+            // 
+            this.archiveDataFilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("archiveDataFilesToolStripMenuItem.Image")));
+            this.archiveDataFilesToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.archiveDataFilesToolStripMenuItem.Name = "archiveDataFilesToolStripMenuItem";
+            this.archiveDataFilesToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.archiveDataFilesToolStripMenuItem.Text = "Archive Data Files";
+            // 
             // eSMART_HMSDBDataSet
             // 
             this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
@@ -356,72 +451,11 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
-            // systemSetupToolStripMenuItem
-            // 
-            this.systemSetupToolStripMenuItem.Name = "systemSetupToolStripMenuItem";
-            this.systemSetupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.systemSetupToolStripMenuItem.Text = "System Setup";
-            this.systemSetupToolStripMenuItem.Click += new System.EventHandler(this.systemSetupToolStripMenuItem_Click);
-            // 
-            // hardwareSetupToolStripMenuItem
-            // 
-            this.hardwareSetupToolStripMenuItem.Name = "hardwareSetupToolStripMenuItem";
-            this.hardwareSetupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.hardwareSetupToolStripMenuItem.Text = "Hardware Setup";
-            // 
-            // usersSettingToolStripMenuItem
-            // 
-            this.usersSettingToolStripMenuItem.Name = "usersSettingToolStripMenuItem";
-            this.usersSettingToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.usersSettingToolStripMenuItem.Text = "Users Setting";
-            // 
-            // importsExportsToolStripMenuItem
-            // 
-            this.importsExportsToolStripMenuItem.Name = "importsExportsToolStripMenuItem";
-            this.importsExportsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.importsExportsToolStripMenuItem.Text = "Imports / Exports";
-            // 
-            // restoreDataFromBackupToolStripMenuItem
-            // 
-            this.restoreDataFromBackupToolStripMenuItem.Name = "restoreDataFromBackupToolStripMenuItem";
-            this.restoreDataFromBackupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.restoreDataFromBackupToolStripMenuItem.Text = "Restore Data From Backup";
-            // 
-            // taxFileMaintenanceToolStripMenuItem
-            // 
-            this.taxFileMaintenanceToolStripMenuItem.Name = "taxFileMaintenanceToolStripMenuItem";
-            this.taxFileMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.taxFileMaintenanceToolStripMenuItem.Text = "Tax File Maintenance";
-            // 
-            // defaultAccountSetupToolStripMenuItem
-            // 
-            this.defaultAccountSetupToolStripMenuItem.Name = "defaultAccountSetupToolStripMenuItem";
-            this.defaultAccountSetupToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.defaultAccountSetupToolStripMenuItem.Text = "Default Account Setup";
-            // 
-            // clearDataFiToolStripMenuItem
-            // 
-            this.clearDataFiToolStripMenuItem.Name = "clearDataFiToolStripMenuItem";
-            this.clearDataFiToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.clearDataFiToolStripMenuItem.Text = "Clear Data Files";
-            // 
-            // dataFileStatisticsToolStripMenuItem
-            // 
-            this.dataFileStatisticsToolStripMenuItem.Name = "dataFileStatisticsToolStripMenuItem";
-            this.dataFileStatisticsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.dataFileStatisticsToolStripMenuItem.Text = "Data File Statistics";
-            // 
-            // archiveDataFilesToolStripMenuItem
-            // 
-            this.archiveDataFilesToolStripMenuItem.Name = "archiveDataFilesToolStripMenuItem";
-            this.archiveDataFilesToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.archiveDataFilesToolStripMenuItem.Text = "Archive Data Files";
-            // 
             // Home
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(212)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(1924, 717);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);

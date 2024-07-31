@@ -40,5 +40,6 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<BarItem> BarItems { get; set; }
         public virtual DbSet<IngredientItem> IngredientItems { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<CompanyInformation> CompanyInformations { get; set; }
     }
 }

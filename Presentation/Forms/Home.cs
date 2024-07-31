@@ -2,24 +2,19 @@
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Booking;
 using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.Store.BarStore;
 using ESMART_HMS.Presentation.Forms.Tools.Option;
-using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Transaction;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
 using System.Drawing;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using ESMART_HMS.Presentation.ViewModels;
-using System.Web.Security;
-using System.Windows.Controls;
 
 namespace ESMART_HMS.Presentation.Forms
 {

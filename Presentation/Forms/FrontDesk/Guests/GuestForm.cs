@@ -1,33 +1,56 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
+using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Windows.Forms;
+using System.Drawing.Printing;
+using System.Drawing;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Domain.Utils;
 
 namespace ESMART_HMS.Presentation.Forms.Guests
 {
     public partial class GuestForm : Form
     {
         private readonly GuestController _customerController;
+        private PrintDocument printDocument1 = new PrintDocument();
+        private string documentTitle = "Guest List";
         private readonly ApplicationUserController _applicationUserController;
+        private readonly SystemSetupController _systemSetupController;
 
-        public GuestForm(GuestController customerViewModel, ApplicationUserController applicationUserController)
+        public GuestForm(GuestController customerViewModel, ApplicationUserController applicationUserController, SystemSetupController systemSetupController)
         {
             _customerController = customerViewModel;
             _applicationUserController = applicationUserController;
+            _systemSetupController = systemSetupController; 
             InitializeComponent();
             LoadData();
             ApplyAuthorization();
+            ResizeDataGridView();
+            this.Resize += new EventHandler(Form1_Resize);
+            printDocument1.DefaultPageSettings.Landscape = true;
         }
 
         private void ApplyAuthorization()
         {
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.Protect(user, btnDelete, "SuperAdmin");
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            ResizeDataGridView();
+        }
+
+        private void ResizeDataGridView()
+        {
+            tablePanel.Height = (int)(this.ClientSize.Height * 0.25);
         }
 
         public void LoadData()
@@ -49,30 +72,21 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             }
         }
 
-        private void txtSearch_KeyUp(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                var keyword = txtSearch.Text;
 
-                if (!string.IsNullOrEmpty(keyword))
-                {
-                    List<Guest> searchedGuest = _customerController.SearchGuest(keyword);
-                    dgvGuests.DataSource = searchedGuest;
-                }
-                else
-                {
-                    LoadData();
-                }
-            }
-            catch (Exception ex)
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            AddGuestForm addGuestForm = serviceProvider.GetRequiredService<AddGuestForm>();
+            if (addGuestForm.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                LoadData();
             }
         }
 
-        private void btnViewDetails_Click(object sender, EventArgs e)
+        private void btnView_Click(object sender, EventArgs e)
         {
             try
             {
@@ -132,20 +146,30 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             }
         }
 
-        private void addGuestBtn_Click(object sender, EventArgs e)
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            var services = new ServiceCollection();
-            DependencyInjection.ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
-
-            AddGuestForm addGuestForm = serviceProvider.GetRequiredService<AddGuestForm>();
-            if (addGuestForm.ShowDialog() == DialogResult.OK)
+            try
             {
-                LoadData();
+                var keyword = txtSearch.Text;
+
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    List<GuestViewModel> searchedGuest = _customerController.SearchGuest(keyword);
+                    dgvGuests.DataSource = searchedGuest;
+                }
+                else
+                {
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
             }
         }
 
-        private void dgvGuests_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvGuests_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -160,6 +184,12 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string companyName = _systemSetupController.GetCompanyInfo().Name;
+            PrintHelper.PrintDataGridView(dgvGuests, documentTitle, companyName);
         }
     }
 }

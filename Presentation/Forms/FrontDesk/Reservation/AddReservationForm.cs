@@ -36,6 +36,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         {
             this.customerTableAdapter.Fill(this.eSMART_HMSDBDataSet.Guest);
             LoadRoomData();
+            txtCheckIn.Value = DateTime.Now;
+            txtCheckOut.Value = DateTime.Now.AddDays(1);
         }
 
         private void ApplyAuthorization()
@@ -189,10 +191,10 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     if (reservation.Amount > reservation.AmountPaid)
                     {
                         reservation.Status = "Balance";
-                    } 
+                    }
                     else
                     {
-                        reservation.Status = "Unpaid"; 
+                        reservation.Status = "Unpaid";
                     }
 
                     reservation.CreatedBy = AuthSession.CurrentUser.Id;

@@ -83,7 +83,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                         customer.FirstName = txtFirstName.Text.Trim().ToUpper();
                         customer.LastName = txtLastName.Text.Trim().ToUpper();
                         customer.FullName = (txtFirstName.Text + " " + txtLastName.Text).ToUpper();
-                        customer.Email = txtEmail.Text.Trim().ToUpper();
+                        customer.Email = txtEmail.Text.Trim();
                         customer.Street = txtStreet.Text.Trim().ToUpper();
                         customer.City = txtCity.Text.Trim().ToUpper();
                         customer.State = txtState.Text.Trim().ToUpper();

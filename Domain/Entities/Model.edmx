@@ -75,6 +75,24 @@
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="CompanyInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CompanyId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="450" />
+          <Property Name="AddressLine1" Type="nvarchar(max)" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="450" />
+          <Property Name="Email" Type="nvarchar" MaxLength="450" />
+          <Property Name="WebsiteURL" Type="nvarchar" MaxLength="450" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="450" />
+          <Property Name="NoOfEmployees" Type="nvarchar" MaxLength="450" />
+          <Property Name="Logo" Type="varbinary(max)" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="Configuration">
           <Key>
             <PropertyRef Name="Key" />
@@ -456,6 +474,7 @@
           <EntitySet Name="ApplicationUserRole" EntityType="Self.ApplicationUserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BarItem" EntityType="Self.BarItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyInformation" EntityType="Self.CompanyInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IngredientItem" EntityType="Self.IngredientItem" Schema="dbo" store:Type="Tables" />
@@ -644,6 +663,7 @@
             <End Role="Guest" EntitySet="Guests" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
+          <EntitySet Name="CompanyInformations" EntityType="ESMART_HMSDBModel.CompanyInformation" />
           </EntityContainer>
         <EntityType Name="Configuration">
           <Key>
@@ -1115,6 +1135,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CompanyInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="WebsiteURL" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="TaxNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="NoOfEmployees" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1362,6 +1400,25 @@
                 <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
                 <ScalarProperty Name="GuestId" ColumnName="GuestId" />
                 <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyInformations">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.CompanyInformation">
+              <MappingFragment StoreEntitySet="CompanyInformation">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="NoOfEmployees" ColumnName="NoOfEmployees" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="WebsiteURL" ColumnName="WebsiteURL" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

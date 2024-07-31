@@ -4,6 +4,7 @@ namespace ESMART_HMS.Presentation.ViewModels
 {
     public class GuestViewModel
     {
+        public string Id { get; set; }
         public string GuestId { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }

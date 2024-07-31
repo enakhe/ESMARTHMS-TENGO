@@ -18,6 +18,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             _customerController = customerViewModel;
             _Id = Id;
             LoadGuestData();
+            CenterLabel();
         }
 
         private void LoadGuestData()
@@ -33,8 +34,8 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 else
                 {
                     txtGuestId.Text = customer.GuestId;
-                    txtFullName.Text = customer.FullName;
-                    txtRealFullName.Text = $"{customer.Title} {customer.FullName}";
+                    //txtFullName.Text = customer.FullName;
+                    txtFullName.Text = $"{customer.Title} {customer.FullName}";
                     txtEmail.Text = customer.Email;
                     txtAddress.Text = $"{customer.Street}, {customer.City}, {customer.State}, {customer.Country}";
                     txtCompany.Text = customer.Company;
@@ -56,7 +57,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
         private void btnPrint_Click(object sender, EventArgs e)
         {
             PrintDocument printDocument = new PrintDocument();
-            printDocument.DocumentName = txtRealFullName.Text;
+            printDocument.DocumentName = txtGuestId.Text;
             printDocument.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
 
             PrintDialog printDialog = new PrintDialog();
@@ -122,6 +123,24 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             {
                 this.Close();
             }
+        }
+
+        private void CenterLabel()
+        {
+            txtGuestId.AutoSize = true;
+            txtGuestId.TextAlign = ContentAlignment.MiddleCenter;
+
+            int x = (namePanel.Width - label1.Width) / 2;
+            int y = (namePanel.Height - label1.Height) / 2;
+
+            txtGuestId.Location = new Point(x, y);
+
+            namePanel.Resize += (s, e) =>
+            {
+                x = (namePanel.Width - txtGuestId.Width) / 2;
+                y = (namePanel.Height - txtGuestId.Height) / 2;
+                txtGuestId.Location = new Point(x, y);
+            };
         }
     }
 }

@@ -29,35 +29,46 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.addGuestBtn = new System.Windows.Forms.Button();
-            this.btnViewDetails = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.rightButtonFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.totalCountPanel = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.txtGuestCount = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.topFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.leftFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.searchPanel = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dgvGuests = new System.Windows.Forms.DataGridView();
             this.customerBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.customerTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.roundedPanel1 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
+            this.splitContainer11 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer12 = new System.Windows.Forms.SplitContainer();
+            this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.txtGuestCount = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.tablePanel = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.dgvGuests = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,276 +80,56 @@
             this.CreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rightButtonFlowPanel.SuspendLayout();
-            this.totalCountPanel.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.topFlowPanel.SuspendLayout();
-            this.searchPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvGuests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.roundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).BeginInit();
+            this.splitContainer11.Panel1.SuspendLayout();
+            this.splitContainer11.Panel2.SuspendLayout();
+            this.splitContainer11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).BeginInit();
+            this.splitContainer12.Panel1.SuspendLayout();
+            this.splitContainer12.Panel2.SuspendLayout();
+            this.splitContainer12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.tablePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGuests)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(96)))), ((int)(((byte)(130)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1784, 0);
+            this.panel1.Location = new System.Drawing.Point(1556, 0);
             this.panel1.Name = "panel1";
-            this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panel1.Size = new System.Drawing.Size(0, 695);
+            this.panel1.Size = new System.Drawing.Size(0, 763);
             this.panel1.TabIndex = 3;
-            // 
-            // addGuestBtn
-            // 
-            this.addGuestBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addGuestBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.addGuestBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addGuestBtn.Location = new System.Drawing.Point(23, 3);
-            this.addGuestBtn.Name = "addGuestBtn";
-            this.addGuestBtn.Size = new System.Drawing.Size(229, 50);
-            this.addGuestBtn.TabIndex = 9;
-            this.addGuestBtn.Text = "Add Guest";
-            this.addGuestBtn.UseVisualStyleBackColor = true;
-            this.addGuestBtn.Click += new System.EventHandler(this.addGuestBtn_Click);
-            // 
-            // btnViewDetails
-            // 
-            this.btnViewDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(24)))), ((int)(((byte)(29)))));
-            this.btnViewDetails.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnViewDetails.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnViewDetails.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewDetails.ForeColor = System.Drawing.Color.White;
-            this.btnViewDetails.Location = new System.Drawing.Point(23, 59);
-            this.btnViewDetails.Name = "btnViewDetails";
-            this.btnViewDetails.Size = new System.Drawing.Size(229, 50);
-            this.btnViewDetails.TabIndex = 11;
-            this.btnViewDetails.Text = "View Details";
-            this.btnViewDetails.UseVisualStyleBackColor = false;
-            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(23, 115);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(229, 50);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete Guest";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // rightButtonFlowPanel
-            // 
-            this.rightButtonFlowPanel.BackColor = System.Drawing.Color.White;
-            this.rightButtonFlowPanel.Controls.Add(this.addGuestBtn);
-            this.rightButtonFlowPanel.Controls.Add(this.btnViewDetails);
-            this.rightButtonFlowPanel.Controls.Add(this.btnDelete);
-            this.rightButtonFlowPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightButtonFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.rightButtonFlowPanel.Location = new System.Drawing.Point(1507, 0);
-            this.rightButtonFlowPanel.Name = "rightButtonFlowPanel";
-            this.rightButtonFlowPanel.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.rightButtonFlowPanel.Size = new System.Drawing.Size(277, 230);
-            this.rightButtonFlowPanel.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(26, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 54);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Guest";
-            // 
-            // totalCountPanel
-            // 
-            this.totalCountPanel.Controls.Add(this.panel3);
-            this.totalCountPanel.Controls.Add(this.label1);
-            this.totalCountPanel.Location = new System.Drawing.Point(3, 3);
-            this.totalCountPanel.Name = "totalCountPanel";
-            this.totalCountPanel.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.totalCountPanel.Size = new System.Drawing.Size(364, 216);
-            this.totalCountPanel.TabIndex = 14;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Controls.Add(this.txtGuestCount);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(22, 61);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(319, 143);
-            this.panel3.TabIndex = 14;
-            // 
-            // txtGuestCount
-            // 
-            this.txtGuestCount.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGuestCount.ForeColor = System.Drawing.Color.White;
-            this.txtGuestCount.Location = new System.Drawing.Point(23, 42);
-            this.txtGuestCount.Name = "txtGuestCount";
-            this.txtGuestCount.Size = new System.Drawing.Size(293, 101);
-            this.txtGuestCount.TabIndex = 1;
-            this.txtGuestCount.Text = "0";
-            this.txtGuestCount.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(18, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 28);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Total Guests";
             // 
             // topFlowPanel
             // 
             this.topFlowPanel.BackColor = System.Drawing.Color.White;
-            this.topFlowPanel.Controls.Add(this.totalCountPanel);
-            this.topFlowPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topFlowPanel.Location = new System.Drawing.Point(0, 0);
+            this.topFlowPanel.Location = new System.Drawing.Point(1549, 473);
+            this.topFlowPanel.Margin = new System.Windows.Forms.Padding(2);
             this.topFlowPanel.Name = "topFlowPanel";
-            this.topFlowPanel.Size = new System.Drawing.Size(1507, 220);
+            this.topFlowPanel.Padding = new System.Windows.Forms.Padding(30, 30, 0, 0);
+            this.topFlowPanel.Size = new System.Drawing.Size(596, 198);
             this.topFlowPanel.TabIndex = 15;
-            // 
-            // leftFlowPanel
-            // 
-            this.leftFlowPanel.BackColor = System.Drawing.Color.White;
-            this.leftFlowPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.leftFlowPanel.Location = new System.Drawing.Point(0, 220);
-            this.leftFlowPanel.Name = "leftFlowPanel";
-            this.leftFlowPanel.Size = new System.Drawing.Size(367, 10);
-            this.leftFlowPanel.TabIndex = 16;
-            // 
-            // searchPanel
-            // 
-            this.searchPanel.BackColor = System.Drawing.Color.Black;
-            this.searchPanel.Controls.Add(this.textBox1);
-            this.searchPanel.Controls.Add(this.label4);
-            this.searchPanel.Controls.Add(this.txtSearch);
-            this.searchPanel.Controls.Add(this.label3);
-            this.searchPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.searchPanel.Location = new System.Drawing.Point(367, 135);
-            this.searchPanel.Name = "searchPanel";
-            this.searchPanel.Size = new System.Drawing.Size(1140, 95);
-            this.searchPanel.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(791, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(270, 34);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyUp);
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(610, 20);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(251, 53);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Filter:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(184, 31);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(270, 34);
-            this.txtSearch.TabIndex = 1;
-            this.txtSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyUp);
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(3, 20);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(251, 53);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Search:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dgvGuests
-            // 
-            this.dgvGuests.AllowUserToAddRows = false;
-            this.dgvGuests.AllowUserToDeleteRows = false;
-            this.dgvGuests.AllowUserToOrderColumns = true;
-            this.dgvGuests.AutoGenerateColumns = false;
-            this.dgvGuests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvGuests.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvGuests.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGuests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvGuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.customerIdDataGridViewTextBoxColumn,
-            this.titleDataGridViewTextBoxColumn,
-            this.firstNameDataGridViewTextBoxColumn,
-            this.lastNameDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
-            this.phoneNumberDataGridViewTextBoxColumn,
-            this.streetDataGridViewTextBoxColumn,
-            this.cityDataGridViewTextBoxColumn,
-            this.companyDataGridViewTextBoxColumn,
-            this.stateDataGridViewTextBoxColumn,
-            this.countryDataGridViewTextBoxColumn,
-            this.CreatedBy,
-            this.dateCreatedDataGridViewTextBoxColumn,
-            this.dateModifiedDataGridViewTextBoxColumn});
-            this.dgvGuests.DataSource = this.customerBindingSource2;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvGuests.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvGuests.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvGuests.Location = new System.Drawing.Point(0, 230);
-            this.dgvGuests.Name = "dgvGuests";
-            this.dgvGuests.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGuests.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvGuests.RowHeadersWidth = 51;
-            this.dgvGuests.RowTemplate.Height = 24;
-            this.dgvGuests.Size = new System.Drawing.Size(1784, 465);
-            this.dgvGuests.TabIndex = 4;
-            this.dgvGuests.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGuests_CellDoubleClick);
             // 
             // customerBindingSource2
             // 
@@ -353,6 +144,349 @@
             // customerTableAdapter
             // 
             this.customerTableAdapter.ClearBeforeFill = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.flowLayoutPanel2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tablePanel);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(30);
+            this.splitContainer1.Size = new System.Drawing.Size(1556, 763);
+            this.splitContainer1.SplitterDistance = 224;
+            this.splitContainer1.TabIndex = 16;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.roundedPanel1);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(30, 20, 20, 20);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1556, 224);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
+            // roundedPanel1
+            // 
+            this.roundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(36)))), ((int)(((byte)(63)))));
+            this.roundedPanel1.BorderColor = System.Drawing.Color.Gray;
+            this.roundedPanel1.BorderRadius = 15;
+            this.roundedPanel1.BorderThickness = 2;
+            this.roundedPanel1.Controls.Add(this.splitContainer11);
+            this.roundedPanel1.Controls.Add(this.button4);
+            this.roundedPanel1.Location = new System.Drawing.Point(33, 23);
+            this.roundedPanel1.Name = "roundedPanel1";
+            this.roundedPanel1.Size = new System.Drawing.Size(300, 150);
+            this.roundedPanel1.TabIndex = 2;
+            // 
+            // splitContainer11
+            // 
+            this.splitContainer11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer11.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer11.Name = "splitContainer11";
+            // 
+            // splitContainer11.Panel1
+            // 
+            this.splitContainer11.Panel1.Controls.Add(this.splitContainer12);
+            // 
+            // splitContainer11.Panel2
+            // 
+            this.splitContainer11.Panel2.Controls.Add(this.txtGuestCount);
+            this.splitContainer11.Size = new System.Drawing.Size(300, 113);
+            this.splitContainer11.SplitterDistance = 187;
+            this.splitContainer11.TabIndex = 4;
+            // 
+            // splitContainer12
+            // 
+            this.splitContainer12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer12.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer12.Name = "splitContainer12";
+            this.splitContainer12.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer12.Panel1
+            // 
+            this.splitContainer12.Panel1.Controls.Add(this.label10);
+            // 
+            // splitContainer12.Panel2
+            // 
+            this.splitContainer12.Panel2.Controls.Add(this.pictureBox6);
+            this.splitContainer12.Size = new System.Drawing.Size(187, 113);
+            this.splitContainer12.SplitterDistance = 30;
+            this.splitContainer12.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(0, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(85, 31);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Guests";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(187, 79);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox6.TabIndex = 1;
+            this.pictureBox6.TabStop = false;
+            // 
+            // txtGuestCount
+            // 
+            this.txtGuestCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtGuestCount.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGuestCount.ForeColor = System.Drawing.Color.White;
+            this.txtGuestCount.Location = new System.Drawing.Point(0, 0);
+            this.txtGuestCount.Name = "txtGuestCount";
+            this.txtGuestCount.Size = new System.Drawing.Size(109, 113);
+            this.txtGuestCount.TabIndex = 2;
+            this.txtGuestCount.Text = "0";
+            this.txtGuestCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Black;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(0, 113);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(300, 37);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Click to view rooms";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // tablePanel
+            // 
+            this.tablePanel.BackColor = System.Drawing.SystemColors.Control;
+            this.tablePanel.BorderColor = System.Drawing.Color.Gray;
+            this.tablePanel.BorderRadius = 15;
+            this.tablePanel.BorderThickness = 3;
+            this.tablePanel.Controls.Add(this.splitContainer2);
+            this.tablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablePanel.Location = new System.Drawing.Point(30, 30);
+            this.tablePanel.Name = "tablePanel";
+            this.tablePanel.Padding = new System.Windows.Forms.Padding(20);
+            this.tablePanel.Size = new System.Drawing.Size(1496, 475);
+            this.tablePanel.TabIndex = 0;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(20, 20);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.dgvGuests);
+            this.splitContainer2.Size = new System.Drawing.Size(1456, 435);
+            this.splitContainer2.SplitterDistance = 57;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer3.Panel1.Controls.Add(this.flowLayoutPanel3);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.splitContainer3.Size = new System.Drawing.Size(1456, 57);
+            this.splitContainer3.SplitterDistance = 674;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanel3.Controls.Add(this.label1);
+            this.flowLayoutPanel3.Controls.Add(this.txtSearch);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(20, 15, 5, 20);
+            this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(674, 57);
+            this.flowLayoutPanel3.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(23, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Search:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(97, 18);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(210, 30);
+            this.txtSearch.TabIndex = 1;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel1.Controls.Add(this.btnView);
+            this.flowLayoutPanel1.Controls.Add(this.btnAdd);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(20, 5, 5, 20);
+            this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(778, 57);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(607, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(143, 46);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(458, 8);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(143, 46);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "Delete Guest";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnView
+            // 
+            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnView.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnView.ForeColor = System.Drawing.Color.White;
+            this.btnView.Location = new System.Drawing.Point(309, 8);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(143, 46);
+            this.btnView.TabIndex = 0;
+            this.btnView.Text = "View Profile";
+            this.btnView.UseVisualStyleBackColor = false;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(121)))), ((int)(((byte)(247)))));
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(160, 8);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(143, 46);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Add Guest";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // dgvGuests
+            // 
+            this.dgvGuests.AllowUserToAddRows = false;
+            this.dgvGuests.AllowUserToDeleteRows = false;
+            this.dgvGuests.AllowUserToOrderColumns = true;
+            this.dgvGuests.AutoGenerateColumns = false;
+            this.dgvGuests.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvGuests.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvGuests.BackgroundColor = System.Drawing.Color.White;
+            this.dgvGuests.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGuests.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvGuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.customerIdDataGridViewTextBoxColumn,
+            this.fullNameDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.phoneNumberDataGridViewTextBoxColumn,
+            this.streetDataGridViewTextBoxColumn,
+            this.cityDataGridViewTextBoxColumn,
+            this.companyDataGridViewTextBoxColumn,
+            this.stateDataGridViewTextBoxColumn,
+            this.countryDataGridViewTextBoxColumn,
+            this.CreatedBy,
+            this.dateCreatedDataGridViewTextBoxColumn,
+            this.dateModifiedDataGridViewTextBoxColumn});
+            this.dgvGuests.DataSource = this.customerBindingSource2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvGuests.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvGuests.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvGuests.Location = new System.Drawing.Point(0, 0);
+            this.dgvGuests.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvGuests.Name = "dgvGuests";
+            this.dgvGuests.ReadOnly = true;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGuests.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.dgvGuests.RowHeadersWidth = 51;
+            this.dgvGuests.RowTemplate.Height = 24;
+            this.dgvGuests.Size = new System.Drawing.Size(1456, 374);
+            this.dgvGuests.TabIndex = 7;
+            this.dgvGuests.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGuests_CellContentDoubleClick);
             // 
             // Id
             // 
@@ -371,36 +505,11 @@
             this.customerIdDataGridViewTextBoxColumn.Name = "customerIdDataGridViewTextBoxColumn";
             this.customerIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            this.titleDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "First Name";
-            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.firstNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Last Name";
-            this.lastNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.lastNameDataGridViewTextBoxColumn.Visible = false;
-            // 
             // fullNameDataGridViewTextBoxColumn
             // 
             this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.fullNameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.fullNameDataGridViewTextBoxColumn.HeaderText = "Full Name";
             this.fullNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
@@ -409,6 +518,8 @@
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.emailDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
@@ -417,6 +528,8 @@
             // phoneNumberDataGridViewTextBoxColumn
             // 
             this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.phoneNumberDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "Phone Number";
             this.phoneNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
@@ -434,6 +547,8 @@
             // cityDataGridViewTextBoxColumn
             // 
             this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.cityDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.cityDataGridViewTextBoxColumn.HeaderText = "City";
             this.cityDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
@@ -451,6 +566,8 @@
             // stateDataGridViewTextBoxColumn
             // 
             this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.stateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.stateDataGridViewTextBoxColumn.HeaderText = "State";
             this.stateDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
@@ -468,6 +585,8 @@
             // CreatedBy
             // 
             this.CreatedBy.DataPropertyName = "CreatedBy";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.CreatedBy.DefaultCellStyle = dataGridViewCellStyle7;
             this.CreatedBy.HeaderText = "Created By";
             this.CreatedBy.MinimumWidth = 6;
             this.CreatedBy.Name = "CreatedBy";
@@ -476,6 +595,8 @@
             // dateCreatedDataGridViewTextBoxColumn
             // 
             this.dateCreatedDataGridViewTextBoxColumn.DataPropertyName = "DateCreated";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dateCreatedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "Date Created";
             this.dateCreatedDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dateCreatedDataGridViewTextBoxColumn.Name = "dateCreatedDataGridViewTextBoxColumn";
@@ -484,6 +605,8 @@
             // dateModifiedDataGridViewTextBoxColumn
             // 
             this.dateModifiedDataGridViewTextBoxColumn.DataPropertyName = "DateModified";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dateModifiedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "Date Modified";
             this.dateModifiedDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
@@ -491,30 +614,48 @@
             // 
             // GuestForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1784, 695);
-            this.Controls.Add(this.searchPanel);
-            this.Controls.Add(this.leftFlowPanel);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1556, 763);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.topFlowPanel);
-            this.Controls.Add(this.rightButtonFlowPanel);
-            this.Controls.Add(this.dgvGuests);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GuestForm";
             this.Text = "GuestsForm";
-            this.rightButtonFlowPanel.ResumeLayout(false);
-            this.totalCountPanel.ResumeLayout(false);
-            this.totalCountPanel.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.topFlowPanel.ResumeLayout(false);
-            this.searchPanel.ResumeLayout(false);
-            this.searchPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvGuests)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.roundedPanel1.ResumeLayout(false);
+            this.splitContainer11.Panel1.ResumeLayout(false);
+            this.splitContainer11.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).EndInit();
+            this.splitContainer11.ResumeLayout(false);
+            this.splitContainer12.Panel1.ResumeLayout(false);
+            this.splitContainer12.Panel1.PerformLayout();
+            this.splitContainer12.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).EndInit();
+            this.splitContainer12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.tablePanel.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGuests)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -522,33 +663,34 @@
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button addGuestBtn;
-        private System.Windows.Forms.Button btnViewDetails;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.FlowLayoutPanel rightButtonFlowPanel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel totalCountPanel;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label txtGuestCount;
         private System.Windows.Forms.FlowLayoutPanel topFlowPanel;
-        private System.Windows.Forms.FlowLayoutPanel leftFlowPanel;
-        private System.Windows.Forms.Panel searchPanel;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
         private ESMART_HMSDBDataSet eSMART_HMSDBDataSet;
         private System.Windows.Forms.BindingSource customerBindingSource2;
         private ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter customerTableAdapter;
-        private System.Windows.Forms.DataGridView dgvGuests;
         private System.Windows.Forms.DataGridViewImageColumn identificationDocumentDataGridViewImageColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn identitificationDocumentNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private FormClasses.RoundedPanel roundedPanel1;
+        private System.Windows.Forms.SplitContainer splitContainer11;
+        private System.Windows.Forms.SplitContainer splitContainer12;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label txtGuestCount;
+        private System.Windows.Forms.Button button4;
+        private FormClasses.RoundedPanel tablePanel;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.DataGridView dgvGuests;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
@@ -560,5 +702,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button1;
     }
 }

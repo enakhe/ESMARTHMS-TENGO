@@ -258,6 +258,22 @@ namespace ESMART_HMS.Infrastructure.Services
                 "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
                 "CONSTRAINT [PK_IngredientItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
+            CreateTableIfNotExists("CompanyInformation",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[CompanyId][nvarchar](450) NOT NULL," +
+                "[Name][nvarchar](450) NULL," +
+                "[AddressLine1][nvarchar](max) NULL," +
+                "[AddressLine2][nvarchar](max) NULL," +
+                "[PhoneNumber][nvarchar](450) NULL," +
+                "[Email][nvarchar](450) NULL," +
+                "[WebsiteURL][nvarchar](450) NULL," +
+                "[TaxNumber][nvarchar](450) NULL," +
+                "[NoOfEmployees][nvarchar](450) NULL," +
+                "[Logo][varbinary](max) NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "CONSTRAINT [PK_CompanyInformation] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
             CreateTableIfNotExists("Configuration",
                 "[Key][nvarchar](450) NOT NULL," +
                 "[Value][nvarchar](450) NOT NULL," +
@@ -317,7 +333,7 @@ namespace ESMART_HMS.Infrastructure.Services
         {
             Random random = new Random();
 
-            Role role = new Role() 
+            Role role = new Role()
             {
                 Id = Guid.NewGuid().ToString(),
                 RoleId = "ROL" + random.Next(1000, 5000),

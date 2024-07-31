@@ -38,6 +38,7 @@
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Transaction" Width="1.5" PointX="8.625" PointY="19" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.CompanyInformation" Width="1.5" PointX="0.75" PointY="4.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

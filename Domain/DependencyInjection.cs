@@ -1,6 +1,8 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Domain.Interfaces.Maintenance;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Infrastructure.Data.Maintenance;
 using ESMART_HMS.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,7 +26,7 @@ namespace ESMART_HMS.Domain
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             services.AddScoped<IBarItemRepository, BarItemRepository>();
-
+            services.AddScoped<ISystemSetupRepository, SystemSetupRepository>();
             return services;
         }
     }

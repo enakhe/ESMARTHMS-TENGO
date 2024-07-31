@@ -1,8 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Infrastructure.Data;
-using ESMART_HMS.Presentation.Sessions;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Middleware

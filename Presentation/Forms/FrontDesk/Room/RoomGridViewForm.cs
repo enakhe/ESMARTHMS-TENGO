@@ -1,14 +1,6 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Rooms
@@ -37,7 +29,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Size = new System.Drawing.Size(1600, 828);
             this.flowLayoutPanel.TabIndex = 0;
- 
+
             this.statusIndicatorPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.statusIndicatorPanel.Location = new System.Drawing.Point(0, 400);
             this.statusIndicatorPanel.Name = "statusIndicatorPanel";

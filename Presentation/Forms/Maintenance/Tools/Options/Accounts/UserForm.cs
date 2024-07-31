@@ -2,15 +2,7 @@
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.Animation;
 
 namespace ESMART_HMS.Presentation.Forms.Tools.Options.Accounts
 {
@@ -35,7 +27,7 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Options.Accounts
             bool isNull = FormHelper.AreAnyNullOrEmpty(txtFirstName.Text, txtLastName.Text);
             if (isNull == false)
             {
-                ApplicationUser user = new ApplicationUser() 
+                ApplicationUser user = new ApplicationUser()
                 {
                     FirstName = txtFirstName.Text.ToUpper(),
                     LastName = txtLastName.Text.ToUpper(),

@@ -1,15 +1,7 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Sessions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Store.BarStore
@@ -44,7 +36,7 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
             else
             {
                 Random random = new Random();
-                Domain.Entities.BarItem barItem = new Domain.Entities.BarItem() 
+                Domain.Entities.BarItem barItem = new Domain.Entities.BarItem()
                 {
                     Id = Guid.NewGuid().ToString(),
                     BarItemId = "BITM" + random.Next(1000, 4000),
@@ -73,7 +65,7 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
             bool isNull = FormHelper.AreAnyNullOrEmpty(txtCostPrice.Text);
             if (!isNull)
             {
-               txtCostPrice.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtCostPrice.Text));
+                txtCostPrice.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtCostPrice.Text));
             }
         }
 

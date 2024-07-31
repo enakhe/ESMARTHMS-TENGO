@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Infrastructure.Services;
 using ESMART_HMS.Presentation.Forms;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ESMART_HMS

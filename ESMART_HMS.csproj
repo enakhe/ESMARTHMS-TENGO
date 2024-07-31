@@ -254,41 +254,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\DependencyInjection.cs" />
-    <Compile Include="Application\UseCases\ApplicationUserRole\CreateUserRoleUseCase.cs" />
-    <Compile Include="Application\UseCases\ApplicationUser\CreateApplicationUserUseCase.cs" />
-    <Compile Include="Application\UseCases\ApplicationUser\GetApplicationUserByIdUseCase.cs" />
-    <Compile Include="Application\UseCases\Booking\CreateBookingUseCase.cs" />
-    <Compile Include="Application\UseCases\Booking\GetAllBookingsUseCase.cs" />
-    <Compile Include="Application\UseCases\Configuration\GetConfigurationValueUseCase.cs" />
-    <Compile Include="Application\UseCases\Configuration\SetConfigurationValueUseCase.cs" />
-    <Compile Include="Application\UseCases\Guest\CreateCustomerUseCase.cs" />
-    <Compile Include="Application\UseCases\Guest\DeleteCustomerUseCase.cs" />
-    <Compile Include="Application\UseCases\Guest\GetAllGuestUseCase.cs" />
-    <Compile Include="Application\UseCases\Guest\GetCustomerByIdUseCase.cs" />
-    <Compile Include="Application\UseCases\Guest\GetDeletedCustomerUseCase.cs" />
-    <Compile Include="Application\UseCases\Guest\SearchCustomerUseCase.cs" />
-    <Compile Include="Application\UseCases\Guest\UpdateCustomerUseCase.cs" />
-    <Compile Include="Application\UseCases\Reservation\CreateReservationUseCase.cs" />
-    <Compile Include="Application\UseCases\Reservation\GetAllReservationUseCase.cs" />
-    <Compile Include="Application\UseCases\Reservation\GetReservationByIdUseCase.cs" />
-    <Compile Include="Application\UseCases\Reservation\UpdateReservationUseCase.cs" />
-    <Compile Include="Application\UseCases\RoomType\CreateRoomTypeUseCase.cs" />
-    <Compile Include="Application\UseCases\RoomType\GetAllRoomTypeUseCase.cs" />
-    <Compile Include="Application\UseCases\RoomType\GetRoomTypeByIdUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\CreateRoomUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\DeleteRoomUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\FilterByStatusUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\FilterByTypeUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\GetAllRoomUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\GetVacantRoomUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\GetRealRoomUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\GetRoomByIdUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\SearchRoomUseCase.cs" />
-    <Compile Include="Application\UseCases\Room\UpdateRoomUseCase.cs" />
-    <Compile Include="Application\UseCases\Store\BarItem\CreateBarItemUseCase.cs" />
-    <Compile Include="Application\UseCases\Store\BarItem\GetAllBarItemUseCase.cs" />
-    <Compile Include="Application\UseCases\Transaction\CreateTransactionUseCase.cs" />
-    <Compile Include="Application\UseCases\Transaction\GetAllTransactionsUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\ApplicationUserRole\CreateUserRoleUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\ApplicationUser\CreateApplicationUserUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\ApplicationUser\GetApplicationUserByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\CreateBookingUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\GetAllBookingsUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Configuration\GetConfigurationValueUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Configuration\SetConfigurationValueUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Guest\CreateCustomerUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Guest\DeleteCustomerUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Guest\GetAllGuestUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Guest\GetCustomerByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Guest\GetDeletedCustomerUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Guest\SearchCustomerUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Guest\UpdateCustomerUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\SystemSetup\GetCompanyInfoUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\SystemSetup\SetupCompanyUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Reservation\CreateReservationUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Reservation\GetAllReservationUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Reservation\GetReservationByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Reservation\UpdateReservationUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\RoomType\CreateRoomTypeUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\RoomType\GetAllRoomTypeUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\RoomType\GetRoomTypeByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\CreateRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\DeleteRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\FilterByStatusUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\FilterByTypeUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\GetAllRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\GetVacantRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\GetRealRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\GetRoomByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\SearchRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\UpdateRoomUseCase.cs" />
+    <Compile Include="Application\UseCases\Bar\Store\BarItem\CreateBarItemUseCase.cs" />
+    <Compile Include="Application\UseCases\Bar\Store\BarItem\GetAllBarItemUseCase.cs" />
+    <Compile Include="Application\UseCases\Account\Transaction\CreateTransactionUseCase.cs" />
+    <Compile Include="Application\UseCases\Account\Transaction\GetAllTransactionsUseCase.cs" />
     <Compile Include="DependencyInjection.cs" />
     <Compile Include="Domain\DependencyInjection.cs" />
     <Compile Include="Domain\Entities\ApplicationUser.cs">
@@ -301,6 +303,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\Booking.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Entities\CompanyInformation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\Configuration.cs">
@@ -337,19 +342,21 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Enum\RoomStatusEnum.cs" />
-    <Compile Include="Domain\Interfaces\IBarItemRepository.cs" />
-    <Compile Include="Domain\Interfaces\IBookingRepository.cs" />
-    <Compile Include="Domain\Interfaces\IConfigurationRepository.cs" />
-    <Compile Include="Domain\Interfaces\IGuestRepository.cs" />
+    <Compile Include="Domain\Interfaces\Bar\IBarItemRepository.cs" />
+    <Compile Include="Domain\Interfaces\FrontDesk\IBookingRepository.cs" />
+    <Compile Include="Domain\Interfaces\Maintenance\IConfigurationRepository.cs" />
+    <Compile Include="Domain\Interfaces\FrontDesk\IGuestRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />
-    <Compile Include="Domain\Interfaces\IReservationRepository.cs" />
-    <Compile Include="Domain\Interfaces\IRoomRepository.cs" />
-    <Compile Include="Domain\Interfaces\IRoomTypeRepository.cs" />
-    <Compile Include="Domain\Interfaces\ITransactionRepository.cs" />
-    <Compile Include="Domain\Interfaces\IUserRepository.cs" />
-    <Compile Include="Domain\Interfaces\IRoleRepository.cs" />
-    <Compile Include="Domain\Interfaces\IUserRoleRepository.cs" />
+    <Compile Include="Domain\Interfaces\FrontDesk\IReservationRepository.cs" />
+    <Compile Include="Domain\Interfaces\Maintenance\IRoomRepository.cs" />
+    <Compile Include="Domain\Interfaces\Maintenance\IRoomTypeRepository.cs" />
+    <Compile Include="Domain\Interfaces\Account\ITransactionRepository.cs" />
+    <Compile Include="Domain\Interfaces\Maintenance\IUserRepository.cs" />
+    <Compile Include="Domain\Interfaces\Maintenance\IRoleRepository.cs" />
+    <Compile Include="Domain\Interfaces\Maintenance\IUserRoleRepository.cs" />
+    <Compile Include="Domain\Interfaces\Maintenance\ISystemSetupRepository.cs" />
     <Compile Include="Domain\Utils\FormHelper.cs" />
+    <Compile Include="Domain\Utils\PrintHelper.cs" />
     <Compile Include="ESMART_HMSDBDataSet.cs">
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </Compile>
@@ -358,27 +365,38 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Data\BarItemRepository.cs" />
-    <Compile Include="Infrastructure\Data\BookingRepository.cs" />
-    <Compile Include="Infrastructure\Data\ConfigurationRepository.cs" />
-    <Compile Include="Infrastructure\Data\ReservationRepository.cs" />
-    <Compile Include="Infrastructure\Data\RoomRepository.cs" />
-    <Compile Include="Infrastructure\Data\RoomTypeRepository.cs" />
-    <Compile Include="Infrastructure\Data\TransactionRepository.cs" />
-    <Compile Include="Infrastructure\Data\UserRepository.cs" />
-    <Compile Include="Infrastructure\Data\RoleRepository.cs" />
-    <Compile Include="Infrastructure\Data\UserRoleRepository.cs" />
+    <Compile Include="Infrastructure\Data\Bar\BarItemRepository.cs" />
+    <Compile Include="Infrastructure\Data\FrontDesk\BookingRepository.cs" />
+    <Compile Include="Infrastructure\Data\Maintenance\ConfigurationRepository.cs" />
+    <Compile Include="Infrastructure\Data\Maintenance\SystemSetupRepository.cs" />
+    <Compile Include="Infrastructure\Data\FrontDesk\ReservationRepository.cs" />
+    <Compile Include="Infrastructure\Data\Maintenance\RoomRepository.cs" />
+    <Compile Include="Infrastructure\Data\Maintenance\RoomTypeRepository.cs" />
+    <Compile Include="Infrastructure\Data\Account\TransactionRepository.cs" />
+    <Compile Include="Infrastructure\Data\Maintenance\UserRepository.cs" />
+    <Compile Include="Infrastructure\Data\Maintenance\RoleRepository.cs" />
+    <Compile Include="Infrastructure\Data\Maintenance\UserRoleRepository.cs" />
     <Compile Include="Infrastructure\DependencyInjection.cs" />
-    <Compile Include="Presentation\Controllers\ApplicationUserController.cs" />
-    <Compile Include="Presentation\Controllers\BarItemController.cs" />
-    <Compile Include="Presentation\Controllers\BookingController.cs" />
-    <Compile Include="Presentation\Controllers\ConfigurationController.cs" />
-    <Compile Include="Presentation\Controllers\GuestController.cs" />
-    <Compile Include="Presentation\Controllers\ReservationController.cs" />
-    <Compile Include="Presentation\Controllers\RoomController.cs" />
-    <Compile Include="Presentation\Controllers\RoomTypeController.cs" />
-    <Compile Include="Presentation\Controllers\TransactionController.cs" />
-    <Compile Include="Presentation\Controllers\UserRoleController.cs" />
+    <Compile Include="Presentation\Controllers\Maintenance\ApplicationUserController.cs" />
+    <Compile Include="Presentation\Controllers\Bar\BarItemController.cs" />
+    <Compile Include="Presentation\Controllers\FrontDesk\BookingController.cs" />
+    <Compile Include="Presentation\Controllers\Maintenance\ConfigurationController.cs" />
+    <Compile Include="Presentation\Controllers\FrontDesk\GuestController.cs" />
+    <Compile Include="Presentation\Controllers\Maintenance\SystemSetupController.cs" />
+    <Compile Include="Presentation\Controllers\FrontDesk\ReservationController.cs" />
+    <Compile Include="Presentation\Controllers\Maintenance\RoomController.cs" />
+    <Compile Include="Presentation\Controllers\Maintenance\RoomTypeController.cs" />
+    <Compile Include="Presentation\Controllers\Account\TransactionController.cs" />
+    <Compile Include="Presentation\Controllers\Maintenance\UserRoleController.cs" />
+    <Compile Include="Presentation\Forms\FormClasses\BorderPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FormClasses\RoundedButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FormClasses\RoundedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Booking\AddBookingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -442,7 +460,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Data\GuestRepository.cs" />
+    <Compile Include="Infrastructure\Data\FrontDesk\GuestRepository.cs" />
     <Compile Include="Presentation\Forms\FrontDesk\Reservation\AddReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
