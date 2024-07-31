@@ -152,7 +152,7 @@ namespace ESMART_HMS.Domain.Utils
 
             for (int i = 0; i < dataGridView.Columns.Count; i++)
             {
-                if (dataGridView.Columns[i].Name != "Id")
+                if (dataGridView.Columns[i].Name != "Id" || dataGridView.Columns[i].Name != "idDataGridViewTextBoxColumn")
                 {
                     columnWidths[i] = (int)Math.Floor((double)tableWidth / (dataGridView.Columns.Count - 1));
                     totalWidth += columnWidths[i];
@@ -165,7 +165,7 @@ namespace ESMART_HMS.Domain.Utils
                 int diff = tableWidth - totalWidth;
                 for (int i = 0; i < columnWidths.Length; i++)
                 {
-                    if (dataGridView.Columns[i].Name != "Id")
+                    if (dataGridView.Columns[i].Name != "Id" || dataGridView.Columns[i].Name != "idDataGridViewTextBoxColumn")
                     {
                         columnWidths[i] += diff / (dataGridView.Columns.Count - 1);
                     }
@@ -176,7 +176,7 @@ namespace ESMART_HMS.Domain.Utils
             int currentX = leftMargin;
             for (int i = 0; i < dataGridView.Columns.Count; i++)
             {
-                if (dataGridView.Columns[i].Name != "Id")
+                if (dataGridView.Columns[i].Name != "Id" || dataGridView.Columns[i].Name != "idDataGridViewTextBoxColumn")
                 {
                     e.Graphics.FillRectangle(Brushes.LightBlue, new Rectangle(currentX, topMargin, columnWidths[i], cellHeight));
                     e.Graphics.DrawRectangle(Pens.Black, new Rectangle(currentX, topMargin, columnWidths[i], cellHeight));
@@ -193,7 +193,7 @@ namespace ESMART_HMS.Domain.Utils
                 currentX = leftMargin;
                 for (int col = 0; col < dataGridView.Columns.Count; col++)
                 {
-                    if (dataGridView.Columns[col].Name != "Id")
+                    if (dataGridView.Columns[col].Name != "Id" || dataGridView.Columns[col].Name != "idDataGridViewTextBoxColumn")
                     {
                         e.Graphics.DrawRectangle(Pens.Black, new Rectangle(currentX, topMargin, columnWidths[col], cellHeight));
                         e.Graphics.DrawString(dataGridView.Rows[row].Cells[col].Value?.ToString() ?? "", cellFont, Brushes.Black, new RectangleF(currentX, topMargin, columnWidths[col], cellHeight), new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });

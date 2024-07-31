@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.FormClasses;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -59,19 +60,21 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
             foreach (var room in rooms)
             {
-                var panel = CreateRoomPanel(room.RoomTypeName, room.Rate, room.RoomNo, room.Status);
+                var panel = CreateRoomPanel(room.RoomType, room.Rate, room.RoomNo, room.Status);
                 flowLayoutPanel.Controls.Add(panel);
             }
         }
 
         private Panel CreateRoomPanel(string roomType, string roomPrice, string roomName, string roomStatus)
         {
-            var panel = new Panel
+            var panel = new RoundedPanel
             {
-                Size = new Size(367, 178),
+                Size = new Size(300, 150),
                 BackColor = GetColorByStatus(roomStatus),
                 BorderStyle = BorderStyle.FixedSingle,
-                Margin = new Padding(15)
+                Margin = new Padding(15),
+                BorderThickness = 0,
+                BorderColor = Color.White
             };
 
             var roomNameLabel = new Label
@@ -80,7 +83,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 AutoSize = true,
                 Location = new Point(10, 10),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 20)
+                Font = new Font("Segoe UI", 15)
             };
 
             var roomTypeLabel = new Label
@@ -89,7 +92,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 AutoSize = true,
                 Location = new Point(10, 50),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 20)
+                Font = new Font("Segoe UI", 15)
             };
 
             var roomPriceLabel = new Label
@@ -98,7 +101,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 AutoSize = true,
                 Location = new Point(10, 90),
                 ForeColor = Color.White,
-                Font = new Font("Segoe UI", 20)
+                Font = new Font("Segoe UI", 15)
             };
 
             panel.Controls.Add(roomNameLabel);

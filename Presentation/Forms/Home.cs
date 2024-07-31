@@ -112,28 +112,7 @@ namespace ESMART_HMS.Presentation.Forms
 
         private void Room_FormClosed(object sender, FormClosedEventArgs e)
         {
-            customerForm = null;
-        }
-
-        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (roomForm == null)
-            {
-                var services = new ServiceCollection();
-                DependencyInjection.ConfigureServices(services);
-                var serviceProvider = services.BuildServiceProvider();
-
-                roomForm = serviceProvider.GetRequiredService<RoomForm>();
-                roomForm.FormClosed += Room_FormClosed;
-                roomForm.MdiParent = this;
-                roomForm.Dock = DockStyle.Fill;
-                roomForm.Show();
-            }
-            else
-            {
-                roomForm.Activate();
-                roomForm.LoadData();
-            }
+            roomForm = null;
         }
 
         private void Option_FormClosed(object sender, FormClosedEventArgs e)
@@ -299,6 +278,27 @@ namespace ESMART_HMS.Presentation.Forms
             else
             {
                 reservationForm.Activate();
+            }
+        }
+
+        private void viewRoomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (roomForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                roomForm = serviceProvider.GetRequiredService<RoomForm>();
+                roomForm.FormClosed += Room_FormClosed;
+                roomForm.MdiParent = this;
+                roomForm.Dock = DockStyle.Fill;
+                roomForm.Show();
+            }
+            else
+            {
+                roomForm.Activate();
+                roomForm.LoadData();
             }
         }
     }

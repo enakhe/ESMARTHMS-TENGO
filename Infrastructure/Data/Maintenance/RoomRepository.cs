@@ -24,10 +24,19 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                _db.Rooms.Add(room);
-                _db.SaveChanges();
-                MessageBox.Show("Successfully added room information", "Success", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                Room foundRoom = _db.Rooms.FirstOrDefault(r => r.RoomNo == room.RoomNo);
+                if (foundRoom == null)
+                {
+                    MessageBox.Show($"Room with the number {room.RoomNo} already exists", "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    _db.Rooms.Add(room);
+                    _db.SaveChanges();
+                    MessageBox.Show("Successfully added room information", "Success", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -57,7 +66,8 @@ namespace ESMART_HMS.Repositories
                                   CreatedBy = room.ApplicationUser.FullName,
                                   DateCreated = room.DateCreated,
                                   DateModified = room.DateModified,
-                                  RoomTypeName = roomType.Title,
+                                  RoomType = roomType.Title,
+                                  Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                               };
                 return allRoom.OrderBy(r => r.RoomNo).ToList();
             }
@@ -89,7 +99,8 @@ namespace ESMART_HMS.Repositories
                     Status = room.Status,
                     DateCreated = room.DateCreated,
                     DateModified = room.DateModified,
-                    RoomTypeName = roomType.Title,
+                    RoomType = roomType.Title,
+                    Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                 };
                 return roomViewModel;
             }
@@ -175,7 +186,8 @@ namespace ESMART_HMS.Repositories
                                      Status = room.Status,
                                      DateCreated = room.DateCreated,
                                      DateModified = room.DateModified,
-                                     RoomTypeName = roomType.Title,
+                                     RoomType = roomType.Title,
+                                     Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                                  };
                 return vacantRoom.ToList();
             }
@@ -207,7 +219,8 @@ namespace ESMART_HMS.Repositories
                                       Status = room.Status,
                                       DateCreated = room.DateCreated,
                                       DateModified = room.DateModified,
-                                      RoomTypeName = roomType.Title,
+                                      RoomType = roomType.Title,
+                                      Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                                   };
                 return searchRooms.ToList();
             }
@@ -240,7 +253,8 @@ namespace ESMART_HMS.Repositories
                                       Status = room.Status,
                                       DateCreated = room.DateCreated,
                                       DateModified = room.DateModified,
-                                      RoomTypeName = roomType.Title,
+                                      RoomType = roomType.Title,
+                                      Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                                   };
                 return searchRooms.ToList();
             }
@@ -273,7 +287,8 @@ namespace ESMART_HMS.Repositories
                                       Status = room.Status,
                                       DateCreated = room.DateCreated,
                                       DateModified = room.DateModified,
-                                      RoomTypeName = roomType.Title,
+                                      RoomType = roomType.Title,
+                                      Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                                   };
                 return searchRooms.ToList();
             }
