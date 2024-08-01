@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
 
 namespace ESMART_HMS.Application.UseCases.RoomTypes
@@ -13,7 +14,7 @@ namespace ESMART_HMS.Application.UseCases.RoomTypes
             _roomTypeRepository = roomTypeRepository;
         }
 
-        public List<RoomType> Execute()
+        public List<RoomTypeViewModel> Execute()
         {
             return _roomTypeRepository.GetAllRoomTypes();
         }

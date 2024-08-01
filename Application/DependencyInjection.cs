@@ -2,6 +2,7 @@
 using ESMART_HMS.Application.UseCases.Booking;
 using ESMART_HMS.Application.UseCases.Configuration;
 using ESMART_HMS.Application.UseCases.Guest;
+using ESMART_HMS.Application.UseCases.Maintenance.Room;
 using ESMART_HMS.Application.UseCases.Maintenance.SystemSetup;
 using ESMART_HMS.Application.UseCases.Reservation;
 using ESMART_HMS.Application.UseCases.Room;
@@ -37,6 +38,7 @@ namespace ESMART_HMS.Application
             services.AddScoped<SearchRoomUseCase>();
             services.AddScoped<FilterByStatusUseCase>();
             services.AddScoped<FilterByTypeUseCase>();
+            services.AddScoped<GetRoomByRoomNoUseCase>();
 
             // RoomType Use Cases
             services.AddScoped<CreateRoomTypeUseCase>();

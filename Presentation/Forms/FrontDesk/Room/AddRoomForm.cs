@@ -4,7 +4,10 @@ using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using ESMART_HMS.Presentation.Sessions;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Rooms
@@ -136,9 +139,18 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     room.CreatedBy = AuthSession.CurrentUser.Id;
                     room.ApplicationUser = _userController.GetApplicationUserById(AuthSession.CurrentUser.Id);
 
-                    _roomController.CreateRoom(room);
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    var foundRoom = _roomController.GetRoomByRoomNo(txtRoomNo.Text);
+                    if (foundRoom != null)
+                    {
+                        MessageBox.Show($"Room with the number {room.RoomNo} already exists", "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        _roomController.CreateRoom(room);
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }  
                 }
             }
             catch (Exception ex)

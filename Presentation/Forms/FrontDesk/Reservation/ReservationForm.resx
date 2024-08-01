@@ -117,7 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="reservationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>243, 17</value>
+  </metadata>
+  <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="reservationTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>472, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAARiSURBVHhe7Zpd
+        yBRVGMdfvyhNgyyLiqww+0AMQqkbhbCCuutGo0IIwgqs6PNCoZvqIvLOMOiiKxNCKFIw6AMquojKikRM
+        kYIsiYqKIqLvt9//PX8HZ2fnzOw7s7szb/ODH+ye8zznPOfRd3d2dic6OjrGwuTk5Cn4PO7C+R7+f8CB
+        z8X38AQf4QWentlw0KvwS526h+N4jcNmJhzwVvxNp83hd7zD4TMHDjUHn9IJS/IcznV6u+Egp+NenWpA
+        XsMzvEw74QCX4mc6zTQ5iiu8XLug8JvwJ52iIr/gzV62+VDsLNyK/2AR39oitNYWnOVtmgkFLsAXMcb7
+        uAEXOk15i/AW/ABjaO0FTmsWFLYUP1aVOfyND2Luv6Lm8BHH5qE9ljqlGVDQWiz6r3yPwxMYuw7X+WkC
+        Y5uVEEF7rXX4eKGQu/EPVRVhj8NTMP6h9NMUjO9TYgTteZfDRw+bz8NnVUkJVjstBeOfSD9NwfjVSiyB
+        apjntNHAhkvwbe1egmNOy8BcrAF6PfgKy6Baljh1uLDRlfiFdi3J607NwFxuAwRzb2qBkqhZq5w6HNhg
+        Pf6q3QZgr9MzMKePxFrvRg+lUC4OgtZa7/T6YNHZ+CT+i4Oy38tkYG4Vfo1629vo4QTGYm+reajGJ3C2
+        l6kGC+kiZQ9OFx3uLC+XgbnzUH/D2zw0Bc/1OhO7HijiFVzk5aYHC1yCB7VaRbZ6ydKQ81hIrYRqX+Yl
+        B4PEG/AHrVIDP+NyL10IsZehPgTVgc5wvZcuBwm341/KrpHDeJG3yIWYi/GIEmpEZ7nNWxRD8I6ptPr5
+        Du/EOd4qgbG5uAm/x2Gww1sVo+CQMzTUiBfwcatb48M6+Aka1YBxMLQG6H33GO4fsdpzkOuS2hugzZ/B
+        8502crQ3qtYyjai9Afc5fOxQy/2hpCi1NuAdhzYGano3lJZLrQ0Y342IHKhJN2Zi1NqAwa6sRgA16co1
+        Rq0NuNahjUE1hdJy6Rrg0GIUHHJy6dsAxvUl6AOo+/e7+/g0LnZ4BubOxG2O7VVrau3MZbRgvBENuDdM
+        R3nJ4RmYezmERNns8BSMN6IBO8N0lOMOz6C5EBJlp8NTMN6IBuhDTRHfODyD5kJIlF0OT8F414AwnUvX
+        AIcWo+CQk0F3Vt7CvvfZGNe3vvopTMwtDs+guZ7Yfm5weArGl6G+TvsT+1G5AZ/iFQ5pLNR4OR5SwT1U
+        aoDu3es9eiHqfVr36z9vmKpJ1xmq8Wz8EU+mUgMe8vir4Wmj2edaHw1PEyo1QN/gXBgetgL9WGN1eJhQ
+        qQHLcU142ApUq2o+ma4BPl4xCg45CV0DsGtAeNgKugZg7Q3QpaZ+xd0GVWu9DfBUa1DNofSEgRqwPeQk
+        aLEV+EZLVK29Ddju4xVDcO89di3W9teATT5eMQTPxwNTaYG2N0CfZE/18cpBwmn4MOomxznYtgaoZtWu
+        M1T/hbkXbQtrXHZ9sOhKrPt3Q8NANa502R0dHTEmJv4D8pwluyTEwlcAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="GuestId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="roomIdDataGridViewTextBoxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ReservationId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="customerDataGridViewTextBoxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -141,16 +182,6 @@
   <metadata name="CreatedBy.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="reservationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>243, 17</value>
-  </metadata>
-  <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="reservationTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>472, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAMAEBAAAAEAIABoBAAANgAAACAgAAABACAAKBEAAJ4EAAAwMAAAAQAgAGgmAADGFQAAKAAAABAA

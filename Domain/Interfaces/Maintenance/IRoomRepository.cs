@@ -10,6 +10,7 @@ namespace ESMART_HMS.Domain.Interfaces
         void DeleteRoom(string Id);
         RoomViewModel GetRoomById(string Id);
         Room GetRealRoom(string Id);
+        Room FindByRoomNo(string roomNumber);
         List<RoomViewModel> GetAllRooms();
         List<RoomViewModel> GetVacantRoom();
         List<RoomViewModel> SearchRoom(string keyword);

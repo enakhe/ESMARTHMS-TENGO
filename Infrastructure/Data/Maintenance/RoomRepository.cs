@@ -24,19 +24,10 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                Room foundRoom = _db.Rooms.FirstOrDefault(r => r.RoomNo == room.RoomNo);
-                if (foundRoom == null)
-                {
-                    MessageBox.Show($"Room with the number {room.RoomNo} already exists", "Exception Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    _db.Rooms.Add(room);
-                    _db.SaveChanges();
-                    MessageBox.Show("Successfully added room information", "Success", MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-                }
+                _db.Rooms.Add(room);
+                _db.SaveChanges();
+                MessageBox.Show("Successfully added room information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -298,6 +289,20 @@ namespace ESMART_HMS.Repositories
                             MessageBoxIcon.Error);
             }
 
+            return null;
+        }
+
+        public Room FindByRoomNo(string roomNumber)
+        {
+            try
+            {
+                return _db.Rooms.FirstOrDefault(r => r.RoomNo == roomNumber);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
             return null;
         }
     }

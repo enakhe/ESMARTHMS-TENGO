@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Application.UseCases.Room;
+﻿using ESMART_HMS.Application.UseCases.Maintenance.Room;
+using ESMART_HMS.Application.UseCases.Room;
 using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
@@ -17,8 +18,9 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly SearchRoomUseCase _searchRoomUseCase;
         private readonly FilterByStatusUseCase _filterByStatusUseCase;
         private readonly FilterByTypeUseCase _filterByTypeUseCase;
+        private readonly GetRoomByRoomNoUseCase _getRoomByRoomNoUseCase;
 
-        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase, UpdateRoomUseCase updateRoomUseCase, GetRealRoomUseCase getRealRoomUseCase, DeleteRoomUseCase deleteRoomUseCase, GetVacantRoomUseCase getVacantRoomUseCase, SearchRoomUseCase searchRoomUseCase, FilterByStatusUseCase filterByStatusUseCase, FilterByTypeUseCase filterByTypeUseCase)
+        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase, UpdateRoomUseCase updateRoomUseCase, GetRealRoomUseCase getRealRoomUseCase, DeleteRoomUseCase deleteRoomUseCase, GetVacantRoomUseCase getVacantRoomUseCase, SearchRoomUseCase searchRoomUseCase, FilterByStatusUseCase filterByStatusUseCase, FilterByTypeUseCase filterByTypeUseCase, GetRoomByRoomNoUseCase getRoomByRoomNoUseCase)
         {
             _getAllRoomUseCase = getAllRoomUseCase;
             _createRoomUseCase = createRoomUseCase;
@@ -30,6 +32,7 @@ namespace ESMART_HMS.Presentation.Controllers
             _searchRoomUseCase = searchRoomUseCase;
             _filterByStatusUseCase = filterByStatusUseCase;
             _filterByTypeUseCase = filterByTypeUseCase;
+            _getRoomByRoomNoUseCase = getRoomByRoomNoUseCase;
         }
 
         public List<RoomViewModel> GetAllRooms()
@@ -81,6 +84,11 @@ namespace ESMART_HMS.Presentation.Controllers
         public List<RoomViewModel> FilterByType(string keyword)
         {
             return _filterByTypeUseCase.Execute(keyword);
+        }
+
+        public Room GetRoomByRoomNo(string roomNo)
+        {
+            return _getRoomByRoomNoUseCase.Execute(roomNo);
         }
     }
 }

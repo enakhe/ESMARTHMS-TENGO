@@ -38,7 +38,6 @@
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.customerTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnRoom = new System.Windows.Forms.Button();
             this.txtRoom = new System.Windows.Forms.ComboBox();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
@@ -65,7 +64,7 @@
             this.btnGuest.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuest.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuest.Location = new System.Drawing.Point(354, 61);
-            this.btnGuest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuest.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuest.Name = "btnGuest";
             this.btnGuest.Size = new System.Drawing.Size(139, 24);
             this.btnGuest.TabIndex = 14;
@@ -103,7 +102,7 @@
             this.txtGuest.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGuest.FormattingEnabled = true;
             this.txtGuest.Location = new System.Drawing.Point(29, 91);
-            this.txtGuest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtGuest.Margin = new System.Windows.Forms.Padding(2);
             this.txtGuest.Name = "txtGuest";
             this.txtGuest.Size = new System.Drawing.Size(464, 33);
             this.txtGuest.TabIndex = 16;
@@ -134,19 +133,6 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "Room";
             // 
-            // btnRoom
-            // 
-            this.btnRoom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRoom.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRoom.Location = new System.Drawing.Point(354, 146);
-            this.btnRoom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnRoom.Name = "btnRoom";
-            this.btnRoom.Size = new System.Drawing.Size(139, 24);
-            this.btnRoom.TabIndex = 14;
-            this.btnRoom.Text = "Add Room";
-            this.btnRoom.UseVisualStyleBackColor = true;
-            this.btnRoom.Click += new System.EventHandler(this.btnRoom_Click);
-            // 
             // txtRoom
             // 
             this.txtRoom.DataSource = this.roomBindingSource;
@@ -155,7 +141,7 @@
             this.txtRoom.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRoom.FormattingEnabled = true;
             this.txtRoom.Location = new System.Drawing.Point(29, 176);
-            this.txtRoom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRoom.Margin = new System.Windows.Forms.Padding(2);
             this.txtRoom.Name = "txtRoom";
             this.txtRoom.Size = new System.Drawing.Size(464, 33);
             this.txtRoom.TabIndex = 16;
@@ -175,7 +161,7 @@
             // 
             this.txtCheckIn.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCheckIn.Location = new System.Drawing.Point(29, 258);
-            this.txtCheckIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCheckIn.Margin = new System.Windows.Forms.Padding(2);
             this.txtCheckIn.Name = "txtCheckIn";
             this.txtCheckIn.Size = new System.Drawing.Size(464, 31);
             this.txtCheckIn.TabIndex = 17;
@@ -209,7 +195,7 @@
             this.txtCheckOut.Enabled = false;
             this.txtCheckOut.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCheckOut.Location = new System.Drawing.Point(29, 362);
-            this.txtCheckOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCheckOut.Margin = new System.Windows.Forms.Padding(2);
             this.txtCheckOut.Name = "txtCheckOut";
             this.txtCheckOut.Size = new System.Drawing.Size(464, 31);
             this.txtCheckOut.TabIndex = 17;
@@ -226,7 +212,7 @@
             "BANK TRANSFER",
             "CASH"});
             this.txtPaymentMethod.Location = new System.Drawing.Point(29, 554);
-            this.txtPaymentMethod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPaymentMethod.Margin = new System.Windows.Forms.Padding(2);
             this.txtPaymentMethod.Name = "txtPaymentMethod";
             this.txtPaymentMethod.Size = new System.Drawing.Size(464, 33);
             this.txtPaymentMethod.TabIndex = 18;
@@ -264,7 +250,7 @@
             this.txtAmount.Enabled = false;
             this.txtAmount.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmount.Location = new System.Drawing.Point(270, 454);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(2);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(224, 31);
             this.txtAmount.TabIndex = 20;
@@ -296,7 +282,7 @@
             // 
             this.txtAmountPaid.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmountPaid.Location = new System.Drawing.Point(29, 454);
-            this.txtAmountPaid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAmountPaid.Margin = new System.Windows.Forms.Padding(2);
             this.txtAmountPaid.Name = "txtAmountPaid";
             this.txtAmountPaid.Size = new System.Drawing.Size(224, 31);
             this.txtAmountPaid.TabIndex = 20;
@@ -318,7 +304,7 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(402, 306);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(92, 26);
             this.textBox2.TabIndex = 20;
@@ -330,7 +316,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(524, 666);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.txtAmountPaid);
@@ -344,7 +330,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtGuest);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnRoom);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
@@ -354,7 +339,7 @@
             this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddReservationForm";
@@ -380,7 +365,6 @@
         private System.Windows.Forms.BindingSource customerBindingSource;
         private ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter customerTableAdapter;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnRoom;
         private System.Windows.Forms.ComboBox txtRoom;
         private System.Windows.Forms.BindingSource roomBindingSource;
         private ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter roomTableAdapter;

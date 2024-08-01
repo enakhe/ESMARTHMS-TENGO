@@ -2,6 +2,7 @@
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -31,7 +32,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         {
             try
             {
-                List<RoomType> roomTypes = _roomTypeController.GetAllRoomType();
+                List<RoomTypeViewModel> roomTypes = _roomTypeController.GetAllRoomType();
                 txtRoomType.DataSource = roomTypes;
                 txtRoomType.DisplayMember = "Title";
                 txtRoomType.ValueMember = "Id";
@@ -63,7 +64,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     txtCardNo.Text = room.RoomCardNo;
                     txtAdultPerRoom.Text = room.AdultPerRoom.ToString();
                     txtChildrenPerRoom.Text = room.ChildrenPerRoom.ToString();
-                    txtRate.Text = room.Rate.ToString();
+                    txtRate.Text = FormHelper.FormatNumberWithCommas(room.Rate);
                     txtDescription.Text = room.Description;
                     txtRoomType.SelectedValue = room.RoomTypeId;
                     txtRoomType.SelectedItem = room.RoomType;
@@ -124,22 +125,10 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
         private void txtRate_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsControl(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                return;
+                e.Handled = true;
             }
-
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-            if (e.KeyChar == '.' && !txtRate.Text.Contains("."))
-            {
-                return;
-            }
-
-            e.Handled = true;
         }
 
         private void txtAdultPerRoom_KeyPress(object sender, KeyPressEventArgs e)
@@ -162,15 +151,10 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
         private void txtRate_TextChanged(object sender, EventArgs e)
         {
-            string text = txtRate.Text;
-
-            if (decimal.TryParse(text, out decimal value))
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtRate.Text);
+            if (isNull == false)
             {
-                txtRate.Text = value.ToString("F2");
-            }
-            else if (text != string.Empty)
-            {
-                txtRate.Text = string.Empty;
+                txtRate.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtRate.Text));
             }
         }
 

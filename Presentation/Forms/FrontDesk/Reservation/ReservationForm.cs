@@ -73,7 +73,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             }
         }
 
-        private void addReservationBtn_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             var services = new ServiceCollection();
             DependencyInjection.ConfigureServices(services);
@@ -88,7 +88,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             }
         }
 
-        private void btnBookRoom_Click(object sender, EventArgs e)
+        private void btnBook_Click(object sender, EventArgs e)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                 }
                 else
                 {
-                    MessageBox.Show("Please select a customer to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Please select a reservation to book.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

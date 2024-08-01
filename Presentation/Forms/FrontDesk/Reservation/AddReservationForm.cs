@@ -43,7 +43,6 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private void ApplyAuthorization()
         {
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
-            AuthorizationMiddleware.Protect(user, btnRoom, "SuperAdmin");
         }
 
         public void LoadRoomData()
@@ -146,7 +145,10 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             if (isNull == false)
             {
                 Room room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
-                txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
+                if (room != null)
+                {
+                    txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
+                }
             }
         }
 
@@ -156,7 +158,10 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             if (isNull == false)
             {
                 Room room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
-                txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
+                if (room != null)
+                {
+                    txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
+                }
             }
         }
 
@@ -207,55 +212,20 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     _reservationController.AddReservation(reservation);
                     _roomController.UpdateRoom(room);
 
-                    if (reservation.Amount == reservation.AmountPaid)
+                    Domain.Entities.Transaction transaction = new Domain.Entities.Transaction()
                     {
-                        Domain.Entities.Transaction transaction = new Domain.Entities.Transaction()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            TransactionId = "TR" + random.Next(1000, 5000),
-                            GuestId = reservation.GuestId,
-                            Guest = reservation.Guest,
-                            ServiceId = reservation.ReservationId,
-                            Date = DateTime.Now,
-                            Amount = reservation.AmountPaid,
-                            Type = "Room Service",
-                            Description = "Reservation",
-                            Status = "Paid"
-                        };
-                        _transactionController.AddTransaction(transaction);
-                    }
-                    else if (reservation.Amount > reservation.AmountPaid)
-                    {
-                        Domain.Entities.Transaction paidTransaction = new Domain.Entities.Transaction()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            TransactionId = "TR" + random.Next(1000, 5000),
-                            GuestId = reservation.GuestId,
-                            Guest = reservation.Guest,
-                            ServiceId = reservation.ReservationId,
-                            Date = DateTime.Now,
-                            Amount = reservation.AmountPaid,
-                            Type = "Room Service",
-                            Description = "Reservation",
-                            Status = "Paid"
-                        };
-                        _transactionController.AddTransaction(paidTransaction);
-
-                        Domain.Entities.Transaction unPaidTransaction = new Domain.Entities.Transaction()
-                        {
-                            Id = Guid.NewGuid().ToString(),
-                            TransactionId = "TR" + random.Next(1000, 5000),
-                            GuestId = reservation.GuestId,
-                            Guest = reservation.Guest,
-                            ServiceId = reservation.ReservationId,
-                            Date = DateTime.Now,
-                            Amount = reservation.Amount - reservation.AmountPaid,
-                            Type = "Room Service",
-                            Description = "Reservation",
-                            Status = "Un Paid"
-                        };
-                        _transactionController.AddTransaction(unPaidTransaction);
-                    }
+                        Id = Guid.NewGuid().ToString(),
+                        TransactionId = "TR" + random.Next(1000, 5000),
+                        GuestId = reservation.GuestId,
+                        Guest = reservation.Guest,
+                        ServiceId = reservation.ReservationId,
+                        Date = DateTime.Now,
+                        Amount = reservation.AmountPaid,
+                        Type = "Room Service",
+                        Description = "Reservation",
+                        Status = "Paid"
+                    };
+                    _transactionController.AddTransaction(transaction);
 
                     this.DialogResult = DialogResult.OK;
 

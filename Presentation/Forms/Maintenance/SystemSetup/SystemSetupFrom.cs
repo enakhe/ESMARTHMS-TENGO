@@ -1,7 +1,15 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
+using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.Reservation;
+using ESMART_HMS.Presentation.Forms.Rooms;
+using ESMART_HMS.Presentation.Forms.RoomTypes;
+using ESMART_HMS.Presentation.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -12,14 +20,19 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
     public partial class SystemSetupFrom : Form
     {
         private readonly SystemSetupController _sytemSetupController;
+        private readonly RoomController _roomController;
+        private readonly RoomTypeController _roomTypeController;
         byte[] companyLogo;
 
-        public SystemSetupFrom(SystemSetupController sytemSetupController)
+        public SystemSetupFrom(SystemSetupController sytemSetupController, RoomController roomController, RoomTypeController roomTypeController)
         {
             _sytemSetupController = sytemSetupController;
+            _roomController = roomController;
+            _roomTypeController = roomTypeController;
             InitializeComponent();
             tabControl1.Appearance = TabAppearance.Normal;
             InitializeCompanyTab(company);
+            InitializeRoomTab(room);
         }
 
         private void InitializeCompanyTab(TabPage tabPage)
@@ -52,6 +65,61 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
             }
         }
 
+        private void InitializeRoomTab(TabPage tabPage)
+        {
+            if (tabPage != null)
+            {
+                if (tabPage.Text == "Room")
+                {
+                    List<RoomViewModel> allRooms = _roomController.GetAllRooms();
+                    if (allRooms.Count > 0)
+                    {
+                        foreach (var room in allRooms)
+                        {
+                            FormHelper.TryConvertStringToDecimal(room.Rate.ToString(), out decimal rate);
+                            room.Rate = FormHelper.FormatNumberWithCommas(rate);
+                        }
+                        dgvRooms.DataSource = allRooms;
+                        dgvRooms.CellFormatting += DataGridViewRooms_CellFormatting;
+                    }
+
+                    List<RoomTypeViewModel> allRoomType = _roomTypeController.GetAllRoomType();
+                    if (allRoomType.Count > 0)
+                    {
+                        dgvRoomType.DataSource = allRoomType;
+                    }
+                }
+            }
+        }
+
+        private void DataGridViewRooms_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvRooms.Columns[e.ColumnIndex].Name == "statusDataGridViewTextBoxColumn")
+            {
+                var cell = dgvRooms.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null && cell.Value.ToString() == "Vacant")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Green;
+                    cell.Style.ForeColor = System.Drawing.Color.White;
+                }
+                else if (cell.Value != null && cell.Value.ToString() == "Reserved")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Yellow;
+                    cell.Style.ForeColor = System.Drawing.Color.Black;
+                }
+                else if (cell.Value != null && cell.Value.ToString() == "CheckedIn")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Blue;
+                    cell.Style.ForeColor = System.Drawing.Color.White;
+                }
+                else
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Red;
+                    cell.Style.ForeColor = System.Drawing.Color.Black;
+                }
+            }
+        }
+
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabControl tabControl = sender as TabControl;
@@ -73,6 +141,10 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
             else if (tabPage.Text == "Bank Account")
             {
                 backColor = ColorTranslator.FromHtml("#80AF81");
+            }
+            else if (tabPage.Text == "Room")
+            {
+                backColor = ColorTranslator.FromHtml("#98b4d0");
             }
             else
             {
@@ -151,6 +223,66 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
                 };
 
                 _sytemSetupController.SetupCompanyInfo(companyInformation);
+            }
+        }
+
+        private void SystemSetupFrom_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.RoomType' table. You can move, or remove it, as needed.
+            this.roomTypeTableAdapter.Fill(this.eSMART_HMSDBDataSet.RoomType);
+            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Room' table. You can move, or remove it, as needed.
+            this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            AddRoomForm addRoomForm = serviceProvider.GetRequiredService<AddRoomForm>();
+            if (addRoomForm.ShowDialog() == DialogResult.OK)
+            {
+                RoomForm roomForm = serviceProvider.GetRequiredService<RoomForm>();
+                InitializeRoomTab(room);
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvRooms.SelectedRows.Count > 0)
+                {
+                    var row = dgvRooms.SelectedRows[0];
+                    string id = row.Cells["Id"].Value.ToString();
+
+                    using (EditRoomForm editRoomForm = new EditRoomForm(_roomController, _roomTypeController, id))
+                    {
+                        if (editRoomForm.ShowDialog() == DialogResult.OK)
+                        {
+                            InitializeRoomTab(room);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a room to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAddType_Click(object sender, EventArgs e)
+        {
+            AddRoomTypeForm addRoomTypeForm = new AddRoomTypeForm(_roomTypeController);
+            if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                InitializeRoomTab(room);
             }
         }
     }

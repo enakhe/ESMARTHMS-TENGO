@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Application.UseCases.RoomTypes;
 using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
 
 namespace ESMART_HMS.Presentation.Controllers
@@ -22,7 +23,7 @@ namespace ESMART_HMS.Presentation.Controllers
             _createRoomTypeUseCase.Execute(roomType);
         }
 
-        public List<RoomType> GetAllRoomType()
+        public List<RoomTypeViewModel> GetAllRoomType()
         {
             return _getAllRoomTypeUseCase.Execute();
         }

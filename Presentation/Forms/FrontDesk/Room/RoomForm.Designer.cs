@@ -74,7 +74,6 @@
             this.splitContainer11 = new System.Windows.Forms.SplitContainer();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.txtBooked = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.roundedPanel1 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -140,7 +139,6 @@
             this.roundedPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).BeginInit();
             this.splitContainer10.Panel1.SuspendLayout();
-            this.splitContainer10.Panel2.SuspendLayout();
             this.splitContainer10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).BeginInit();
             this.splitContainer11.Panel1.SuspendLayout();
@@ -542,10 +540,6 @@
             // splitContainer10.Panel1
             // 
             this.splitContainer10.Panel1.Controls.Add(this.splitContainer11);
-            // 
-            // splitContainer10.Panel2
-            // 
-            this.splitContainer10.Panel2.Controls.Add(this.txtBooked);
             this.splitContainer10.Size = new System.Drawing.Size(300, 113);
             this.splitContainer10.SplitterDistance = 187;
             this.splitContainer10.TabIndex = 4;
@@ -590,18 +584,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox4.TabIndex = 1;
             this.pictureBox4.TabStop = false;
-            // 
-            // txtBooked
-            // 
-            this.txtBooked.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBooked.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBooked.ForeColor = System.Drawing.Color.White;
-            this.txtBooked.Location = new System.Drawing.Point(0, 0);
-            this.txtBooked.Name = "txtBooked";
-            this.txtBooked.Size = new System.Drawing.Size(109, 113);
-            this.txtBooked.TabIndex = 2;
-            this.txtBooked.Text = "0";
-            this.txtBooked.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button3
             // 
@@ -976,7 +958,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.roundedPanel5.ResumeLayout(false);
             this.splitContainer10.Panel1.ResumeLayout(false);
-            this.splitContainer10.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).EndInit();
             this.splitContainer10.ResumeLayout(false);
             this.splitContainer11.Panel1.ResumeLayout(false);
@@ -1017,14 +998,6 @@
         private FormClasses.RoundedPanel roundedPanel1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView dgvRooms;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private FormClasses.RoundedPanel roundedPanel2;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label txtRoomCount;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.SplitContainer splitContainer5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button btnPrint;
@@ -1032,27 +1005,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearch;
-        private FormClasses.RoundedPanel roundedPanel3;
-        private System.Windows.Forms.SplitContainer splitContainer6;
-        private System.Windows.Forms.SplitContainer splitContainer7;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label txtVacant;
-        private System.Windows.Forms.Button button6;
-        private FormClasses.RoundedPanel roundedPanel4;
-        private System.Windows.Forms.SplitContainer splitContainer8;
-        private System.Windows.Forms.SplitContainer splitContainer9;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label txtReserved;
-        private System.Windows.Forms.Button button2;
-        private FormClasses.RoundedPanel roundedPanel5;
-        private System.Windows.Forms.SplitContainer splitContainer10;
-        private System.Windows.Forms.SplitContainer splitContainer11;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label txtBooked;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btnGrid;
@@ -1065,5 +1017,33 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn createdByDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private FormClasses.RoundedPanel roundedPanel4;
+        private System.Windows.Forms.SplitContainer splitContainer8;
+        private System.Windows.Forms.SplitContainer splitContainer9;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label txtReserved;
+        private System.Windows.Forms.Button button2;
+        private FormClasses.RoundedPanel roundedPanel2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label txtRoomCount;
+        private System.Windows.Forms.Button button5;
+        private FormClasses.RoundedPanel roundedPanel3;
+        private System.Windows.Forms.SplitContainer splitContainer6;
+        private System.Windows.Forms.SplitContainer splitContainer7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label txtVacant;
+        private System.Windows.Forms.Button button6;
+        private FormClasses.RoundedPanel roundedPanel5;
+        private System.Windows.Forms.SplitContainer splitContainer10;
+        private System.Windows.Forms.SplitContainer splitContainer11;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button button3;
     }
 }
