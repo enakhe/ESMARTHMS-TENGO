@@ -43,6 +43,7 @@
             this.viewAllCoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewRoomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addEditReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +78,6 @@
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.viewRoomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
@@ -198,10 +198,17 @@
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.roomsToolStripMenuItem.Text = "Rooms";
             // 
+            // viewRoomsToolStripMenuItem
+            // 
+            this.viewRoomsToolStripMenuItem.Name = "viewRoomsToolStripMenuItem";
+            this.viewRoomsToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.viewRoomsToolStripMenuItem.Text = "View Rooms";
+            this.viewRoomsToolStripMenuItem.Click += new System.EventHandler(this.viewRoomsToolStripMenuItem_Click);
+            // 
             // roomViewToolStripMenuItem
             // 
             this.roomViewToolStripMenuItem.Name = "roomViewToolStripMenuItem";
-            this.roomViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roomViewToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.roomViewToolStripMenuItem.Text = "Room View";
             // 
             // manageReservationToolStripMenuItem
@@ -338,8 +345,9 @@
             // transactionsToolStripMenuItem1
             // 
             this.transactionsToolStripMenuItem1.Name = "transactionsToolStripMenuItem1";
-            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.transactionsToolStripMenuItem1.Text = "Transactions";
+            this.transactionsToolStripMenuItem1.Click += new System.EventHandler(this.transactionsToolStripMenuItem1_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -452,13 +460,6 @@
             // roomTableAdapter
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
-            // 
-            // viewRoomsToolStripMenuItem
-            // 
-            this.viewRoomsToolStripMenuItem.Name = "viewRoomsToolStripMenuItem";
-            this.viewRoomsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.viewRoomsToolStripMenuItem.Text = "View Rooms";
-            this.viewRoomsToolStripMenuItem.Click += new System.EventHandler(this.viewRoomsToolStripMenuItem_Click);
             // 
             // Home
             // 

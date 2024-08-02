@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Application.UseCases.ApplicationUser;
+﻿using ESMART_HMS.Application.UseCases.Account.Transaction;
+using ESMART_HMS.Application.UseCases.ApplicationUser;
 using ESMART_HMS.Application.UseCases.Booking;
 using ESMART_HMS.Application.UseCases.Configuration;
 using ESMART_HMS.Application.UseCases.Guest;
@@ -62,6 +63,8 @@ namespace ESMART_HMS.Application
             // Transaction Use Case
             services.AddScoped<CreateTransactionUseCase>();
             services.AddScoped<GetAllTransactionsUseCase>();
+            services.AddScoped<GetByServiceIdAndStatusUseCase>();
+            services.AddScoped<UpdateTransactionUseCase>();
 
             // ApplicationUser Use Case
             services.AddScoped<GetApplicationUserByIdUseCase>();

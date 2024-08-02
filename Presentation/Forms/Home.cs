@@ -174,26 +174,6 @@ namespace ESMART_HMS.Presentation.Forms
             transactionForm = null;
         }
 
-        private void transactionListToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (transactionForm == null)
-            {
-                var services = new ServiceCollection();
-                DependencyInjection.ConfigureServices(services);
-                var serviceProvider = services.BuildServiceProvider();
-
-                transactionForm = serviceProvider.GetRequiredService<TransactionForm>();
-                transactionForm.FormClosed += Transaction_FormClosed;
-                transactionForm.MdiParent = this;
-                transactionForm.Dock = DockStyle.Fill;
-                transactionForm.Show();
-            }
-            else
-            {
-                transactionForm.Activate();
-            }
-        }
-
         private void BarStore_FormClosed(object sender, FormClosedEventArgs e)
         {
             barStoreForm = null;
@@ -299,6 +279,26 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 roomForm.Activate();
                 roomForm.LoadData();
+            }
+        }
+
+        private void transactionsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (transactionForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                transactionForm = serviceProvider.GetRequiredService<TransactionForm>();
+                transactionForm.FormClosed += Transaction_FormClosed;
+                transactionForm.MdiParent = this;
+                transactionForm.Dock = DockStyle.Fill;
+                transactionForm.Show();
+            }
+            else
+            {
+                transactionForm.Activate();
             }
         }
     }

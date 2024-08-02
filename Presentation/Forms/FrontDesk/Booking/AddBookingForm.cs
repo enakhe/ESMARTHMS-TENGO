@@ -66,7 +66,6 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 txtDiscount.Enabled = false;
                 txtTotalAmount.Enabled = false;
                 btnGuest.Enabled = false;
-                btnRoom.Enabled = false;
             }
             else
             {
@@ -75,7 +74,6 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 txtCheckIn.Enabled = true;
                 txtPaymentMethod.Enabled = true;
                 btnGuest.Enabled = true;
-                btnRoom.Enabled = true;
             }
         }
 
@@ -104,7 +102,6 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             {
                 List<Room> roomList = new List<Room>() { room };
                 txtRoom.DataSource = roomList;
-                txtAmount.Text = FormHelper.FormatNumberWithCommas(room.Rate);
             }
             else
             {
@@ -129,6 +126,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             ESMART_HMS.Domain.Entities.Reservation reservation = _reservationController.GetReservationById(_reservationId);
             if (reservation != null)
             {
+                txtAmount.Text = FormHelper.FormatNumberWithCommas((reservation.Amount - reservation.AmountPaid));
                 txtCheckIn.Value = reservation.CheckInDate;
                 txtCheckOut.Value = reservation.CheckOutDate;
                 txtPaymentMethod.Text = reservation.PaymentMethod;
@@ -183,22 +181,12 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             bool isNull = FormHelper.AreAnyNullOrEmpty(txtCheckOut.Text, txtCheckIn.Text, txtRoom.SelectedValue.ToString());
             if (isNull == false)
             {
-                Room room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
-                txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
+                Room room = _roomController.GetRealRoom(_roomId);
+                txtAmount.Text = (FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate)).ToString();
 
                 TimeSpan difference = txtCheckOut.Value - txtCheckIn.Value;
                 txtDuration.Text = difference.Days.ToString();
                 LoadTotalAmount();
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OptionsFrom optionsFrom = new OptionsFrom();
-            if (optionsFrom.ShowDialog() == DialogResult.OK)
-            {
-                this.AddBookingForm_Load(sender, e);
-                LoadMetric();
             }
         }
 
@@ -262,6 +250,16 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                     Domain.Entities.Reservation reservation = _reservationController.GetReservationById(_reservationId);
                     reservation.Status = RoomStatusEnum.CheckedIn.ToString();
                     _reservationController.UpdateReservation(reservation);
+
+                    Domain.Entities.Transaction foundTransaction = _transactionController.GetByServiceIdAndStatus(reservation.ReservationId, "Un Paid");
+                    if (foundTransaction != null)
+                    {
+                        foundTransaction.Status = "Paid";
+                        _transactionController.UpdateTransaction(foundTransaction);
+
+                        reservation.Status = "Paid";
+                        _reservationController.UpdateReservation(reservation);
+                    }
                 }
 
                 ESMART_HMS.Domain.Entities.Transaction transaction = new ESMART_HMS.Domain.Entities.Transaction()
@@ -273,7 +271,8 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                     ServiceId = booking.BookingId,
                     Date = DateTime.Now,
                     Amount = booking.TotalAmount,
-                    Type = "Room Service"
+                    Type = "Room Service",
+                    Status = "Paid"
                 };
 
                 _transactionController.AddTransaction(transaction);
@@ -298,19 +297,6 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             if (addGuestForm.ShowDialog() == DialogResult.OK)
             {
                 LoadGuest();
-            }
-        }
-
-        private void btnRoom_Click(object sender, EventArgs e)
-        {
-            var services = new ServiceCollection();
-            DependencyInjection.ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
-
-            AddRoomForm addRoomForm = serviceProvider.GetRequiredService<AddRoomForm>();
-            if (addRoomForm.ShowDialog() == DialogResult.OK)
-            {
-                LoadRoom();
             }
         }
     }

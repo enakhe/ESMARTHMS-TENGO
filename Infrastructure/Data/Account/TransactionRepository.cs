@@ -57,5 +57,33 @@ namespace ESMART_HMS.Infrastructure.Data
 
             return null;
         }
+
+        public void UpdateTransaction(Transaction transaction)
+        {
+            try
+            {
+                _db.Entry(transaction).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public Transaction GetByServiceIdAndStatus(string serviceId, string status)
+        {
+            try
+            {
+                return _db.Transactions.FirstOrDefault(t => t.ServiceId == serviceId && t.Status == status);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
     }
 }
