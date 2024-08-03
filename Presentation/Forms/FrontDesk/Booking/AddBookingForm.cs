@@ -73,6 +73,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 txtRoom.Enabled = true;
                 txtCheckIn.Enabled = true;
                 txtPaymentMethod.Enabled = true;
+                txtBookingAmount.Enabled = true;
                 btnGuest.Enabled = true;
             }
         }
@@ -182,7 +183,14 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             if (isNull == false)
             {
                 Room room = _roomController.GetRealRoom(_roomId);
-                txtAmount.Text = (FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate)).ToString();
+                Domain.Entities.Reservation reservation = _reservationController.GetReservationById(_reservationId);
+                txtBookingAmount.Text = (FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate)).ToString();
+
+                if (txtCheckOut.Value > reservation.CheckOutDate)
+                {
+                    decimal newPrice = FormHelper.GetPriceByRateAndTime(reservation.CheckOutDate, DateTime.Parse(txtCheckOut.Text), room.Rate);
+                    txtAmount.Text = (newPrice + decimal.Parse(txtAmount.Text)).ToString();
+                }
 
                 TimeSpan difference = txtCheckOut.Value - txtCheckIn.Value;
                 txtDuration.Text = difference.Days.ToString();
@@ -227,7 +235,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 booking.CheckInDate = txtCheckIn.Value;
                 booking.CheckOutDate = txtCheckOut.Value;
                 booking.PaymentMethod = txtPaymentMethod.Text;
-                booking.Amount = decimal.Parse(txtAmount.Text);
+                booking.Amount = decimal.Parse(txtBookingAmount.Text);
                 booking.NoOfPerson = int.Parse(txtNoOfPerson.Text);
                 booking.Duration = int.Parse(txtDuration.Text);
                 booking.Discount = decimal.Parse(txtDiscount.Text);
@@ -255,6 +263,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                     if (foundTransaction != null)
                     {
                         foundTransaction.Status = "Paid";
+                        foundTransaction.Amount = decimal.Parse(txtTotalAmount.Text);
                         _transactionController.UpdateTransaction(foundTransaction);
 
                         reservation.Status = "Paid";
@@ -297,6 +306,15 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             if (addGuestForm.ShowDialog() == DialogResult.OK)
             {
                 LoadGuest();
+            }
+        }
+
+        private void txtBookingAmount_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtBookingAmount.Text);
+            if (isNull == false)
+            {
+                txtBookingAmount.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtBookingAmount.Text));
             }
         }
     }

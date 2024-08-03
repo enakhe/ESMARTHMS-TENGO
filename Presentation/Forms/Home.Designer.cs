@@ -250,6 +250,7 @@
             this.addEditBookingsToolStripMenuItem.Name = "addEditBookingsToolStripMenuItem";
             this.addEditBookingsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.addEditBookingsToolStripMenuItem.Text = "Add / Edit Booking";
+            this.addEditBookingsToolStripMenuItem.Click += new System.EventHandler(this.addEditBookingsToolStripMenuItem_Click);
             // 
             // manageStoreToolStripMenuItem
             // 
@@ -345,7 +346,7 @@
             // transactionsToolStripMenuItem1
             // 
             this.transactionsToolStripMenuItem1.Name = "transactionsToolStripMenuItem1";
-            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.transactionsToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
             this.transactionsToolStripMenuItem1.Text = "Transactions";
             this.transactionsToolStripMenuItem1.Click += new System.EventHandler(this.transactionsToolStripMenuItem1_Click);
             // 

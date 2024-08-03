@@ -454,12 +454,10 @@
             this.txtIdType.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdType.FormattingEnabled = true;
             this.txtIdType.Items.AddRange(new object[] {
-            "Passport",
-            "DriverLicense",
-            "NationalID",
-            "VoterID",
-            "SocialSecurityCard",
-            "BirthCertificate"});
+            "International Passport",
+            "Driver License",
+            "National ID",
+            "Voter ID"});
             this.txtIdType.Location = new System.Drawing.Point(33, 77);
             this.txtIdType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 32);
             this.txtIdType.Name = "txtIdType";

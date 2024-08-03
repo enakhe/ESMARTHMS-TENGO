@@ -149,26 +149,6 @@ namespace ESMART_HMS.Presentation.Forms
             bookingForm = null;
         }
 
-        private void bookingListToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (bookingForm == null)
-            {
-                var services = new ServiceCollection();
-                DependencyInjection.ConfigureServices(services);
-                var serviceProvider = services.BuildServiceProvider();
-
-                bookingForm = serviceProvider.GetRequiredService<BookingForm>();
-                bookingForm.FormClosed += Booking_FormClosed;
-                bookingForm.MdiParent = this;
-                bookingForm.Dock = DockStyle.Fill;
-                bookingForm.Show();
-            }
-            else
-            {
-                bookingForm.Activate();
-            }
-        }
-
         private void Transaction_FormClosed(object sender, FormClosedEventArgs e)
         {
             transactionForm = null;
@@ -299,6 +279,26 @@ namespace ESMART_HMS.Presentation.Forms
             else
             {
                 transactionForm.Activate();
+            }
+        }
+
+        private void addEditBookingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bookingForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                bookingForm = serviceProvider.GetRequiredService<BookingForm>();
+                bookingForm.FormClosed += Booking_FormClosed;
+                bookingForm.MdiParent = this;
+                bookingForm.Dock = DockStyle.Fill;
+                bookingForm.Show();
+            }
+            else
+            {
+                bookingForm.Activate();
             }
         }
     }
