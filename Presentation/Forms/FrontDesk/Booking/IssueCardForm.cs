@@ -59,6 +59,9 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
         {
             switch (iret)
             {
+                case 1:
+                    MessageBox.Show("Card reader/writer found", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
                 case -1:
                     MessageBox.Show("Sorry invalid card", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;

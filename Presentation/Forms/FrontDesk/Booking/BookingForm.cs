@@ -2,6 +2,8 @@
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
+using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
@@ -73,7 +75,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                     {
                         if (issueCardForm.ShowDialog() == DialogResult.OK)
                         {
-                            
+
                         }
                     }
                 }
@@ -100,7 +102,31 @@ namespace ESMART_HMS.Presentation.Forms.Booking
 
         private void btnBook_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (dgvBooking.SelectedRows.Count > 0)
+                {
+                    var row = dgvBooking.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
+                    using (IssueCardForm issueCardForm = new IssueCardForm(_bookingController, id))
+                    {
+                        if (issueCardForm.ShowDialog() == DialogResult.OK)
+                        {
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a customer to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
     }
 }
