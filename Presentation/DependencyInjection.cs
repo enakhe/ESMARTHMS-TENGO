@@ -2,6 +2,7 @@
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Booking;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
 using ESMART_HMS.Presentation.Forms.Reservation;
@@ -54,6 +55,7 @@ namespace ESMART_HMS.Presentation
 
             services.AddScoped<BookingForm>();
             services.AddScoped<AddBookingForm>();
+            services.AddScoped<IssueCardForm>();
 
             services.AddScoped<FinancialForm>();
             services.AddScoped<UserForm>();

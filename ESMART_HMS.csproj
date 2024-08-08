@@ -34,7 +34,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -380,6 +380,7 @@
     <Compile Include="Infrastructure\Data\Maintenance\RoleRepository.cs" />
     <Compile Include="Infrastructure\Data\Maintenance\UserRoleRepository.cs" />
     <Compile Include="Infrastructure\DependencyInjection.cs" />
+    <Compile Include="Infrastructure\Frameworks\TengoLock\Language.cs" />
     <Compile Include="Presentation\Controllers\Maintenance\ApplicationUserController.cs" />
     <Compile Include="Presentation\Controllers\Bar\BarItemController.cs" />
     <Compile Include="Presentation\Controllers\FrontDesk\BookingController.cs" />
@@ -417,6 +418,12 @@
     </Compile>
     <Compile Include="Presentation\Forms\Dashboard\DashboardForm.Designer.cs">
       <DependentUpon>DashboardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Booking\IssueCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Booking\IssueCardForm.Designer.cs">
+      <DependentUpon>IssueCardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Guests\AddGuestForm.cs">
       <SubType>Form</SubType>
@@ -590,6 +597,9 @@
     <EmbeddedResource Include="Presentation\Forms\Dashboard\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FrontDesk\Booking\IssueCardForm.resx">
+      <DependentUpon>IssueCardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Guests\AddGuestForm.resx">
       <DependentUpon>AddGuestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -698,7 +708,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Interfaces\" />
-    <Folder Include="Infrastructure\Frameworks\" />
     <Folder Include="Presentation\Mappers\" />
   </ItemGroup>
   <ItemGroup>

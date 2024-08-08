@@ -1,9 +1,13 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
+using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -34,7 +38,6 @@ namespace ESMART_HMS.Presentation.Forms.Booking
         private void ApplyAuthorization()
         {
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
-            AuthorizationMiddleware.Protect(user, btnDelete, "SuperAdmin");
         }
 
         private void BookingForm_Load(object sender, System.EventArgs e)
@@ -57,13 +60,47 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             }
         }
 
-        private void btnAdd_Click(object sender, System.EventArgs e)
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                if (dgvBooking.SelectedRows.Count > 0)
+                {
+                    var row = dgvBooking.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+
+                    using (IssueCardForm issueCardForm = new IssueCardForm(_bookingController, id))
+                    {
+                        if (issueCardForm.ShowDialog() == DialogResult.OK)
+                        {
+                            
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a booking to issue card", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             AddBookingForm addBookingForm = new AddBookingForm("0", "0", "0", _guestController, _roomController, _reservationController, _configurationController, _bookingController, _transactionController, _applicationUserController);
             if (addBookingForm.ShowDialog() == DialogResult.OK)
             {
                 LoadBookingsData();
             }
+        }
+
+        private void btnBook_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

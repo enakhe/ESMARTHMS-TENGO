@@ -1,6 +1,7 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
+using ESMART_HMS.Infrastructure.Frameworks.TengoLock;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Rooms;
@@ -10,6 +11,8 @@ using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Booking
@@ -50,6 +53,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             LoadReservation();
             LoadMetric();
             LoadTotalAmount();
+            txtCheckIn.Value = DateTime.Now;
         }
 
         private void DisableInput()
@@ -75,6 +79,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 txtPaymentMethod.Enabled = true;
                 txtBookingAmount.Enabled = true;
                 btnGuest.Enabled = true;
+                txtBookingAmount.Enabled = false;
             }
         }
 
@@ -184,12 +189,25 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             {
                 Room room = _roomController.GetRealRoom(_roomId);
                 Domain.Entities.Reservation reservation = _reservationController.GetReservationById(_reservationId);
-                txtBookingAmount.Text = (FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate)).ToString();
 
-                if (txtCheckOut.Value > reservation.CheckOutDate)
+                if (room != null)
                 {
-                    decimal newPrice = FormHelper.GetPriceByRateAndTime(reservation.CheckOutDate, DateTime.Parse(txtCheckOut.Text), room.Rate);
-                    txtAmount.Text = (newPrice + decimal.Parse(txtAmount.Text)).ToString();
+                    txtBookingAmount.Text = (FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate)).ToString();
+                }
+
+                if (reservation != null)
+                {
+                    if (txtCheckOut.Value > reservation.CheckOutDate)
+                    {
+                        decimal newPrice = FormHelper.GetPriceByRateAndTime(reservation.CheckOutDate, DateTime.Parse(txtCheckOut.Text), room.Rate);
+                        txtAmount.Text = (newPrice + decimal.Parse(txtAmount.Text)).ToString();
+                    } 
+                } 
+                else
+                {
+                    Room bookingRoom = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
+                    txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), bookingRoom.Rate).ToString();
+                    txtBookingAmount.Text = txtAmount.Text;
                 }
 
                 TimeSpan difference = txtCheckOut.Value - txtCheckIn.Value;
@@ -315,6 +333,16 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             if (isNull == false)
             {
                 txtBookingAmount.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtBookingAmount.Text));
+            }
+        }
+
+        private void noOfDays_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(noOfDays.Text);
+            if (isNull == false)
+            {
+                int numberOfDays = int.Parse(noOfDays.Text);
+                txtCheckOut.Value = txtCheckIn.Value.AddDays(numberOfDays);
             }
         }
     }
