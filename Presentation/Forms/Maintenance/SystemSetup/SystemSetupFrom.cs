@@ -2,6 +2,8 @@
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
@@ -22,9 +24,10 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
         private readonly SystemSetupController _sytemSetupController;
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
+        private readonly BookingController _bookingController;
         byte[] companyLogo;
 
-        public SystemSetupFrom(SystemSetupController sytemSetupController, RoomController roomController, RoomTypeController roomTypeController)
+        public SystemSetupFrom(SystemSetupController sytemSetupController, RoomController roomController, RoomTypeController roomTypeController, BookingController bookingController)
         {
             _sytemSetupController = sytemSetupController;
             _roomController = roomController;
@@ -33,6 +36,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
             tabControl1.Appearance = TabAppearance.Normal;
             InitializeCompanyTab(company);
             InitializeRoomTab(room);
+            _bookingController = bookingController;
         }
 
         private void InitializeCompanyTab(TabPage tabPage)
@@ -44,20 +48,23 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
                     CompanyInformation companyInfo = _sytemSetupController.GetCompanyInfo();
                     if (company != null)
                     {
-                        txtId.Text = companyInfo.Id;
-                        txtName.Text = companyInfo?.Name;
-                        txtAddressOne.Text = companyInfo?.AddressLine1;
-                        txtAddressTwo.Text = companyInfo?.AddressLine2;
-                        txtPhoneNumber.Text = companyInfo?.PhoneNumber;
-                        txtEmail.Text = companyInfo?.Email;
-                        txtWebsite.Text = companyInfo?.WebsiteURL;
-                        txtTaxNumber.Text = companyInfo?.TaxNumber;
-                        txtNoOfEmployees.Text = companyInfo?.NoOfEmployees;
                         if (companyInfo != null)
                         {
-                            if (companyInfo.Logo != null)
+                            txtId.Text = companyInfo.Id;
+                            txtName.Text = companyInfo?.Name;
+                            txtAddressOne.Text = companyInfo?.AddressLine1;
+                            txtAddressTwo.Text = companyInfo?.AddressLine2;
+                            txtPhoneNumber.Text = companyInfo?.PhoneNumber;
+                            txtEmail.Text = companyInfo?.Email;
+                            txtWebsite.Text = companyInfo?.WebsiteURL;
+                            txtTaxNumber.Text = companyInfo?.TaxNumber;
+                            txtNoOfEmployees.Text = companyInfo?.NoOfEmployees;
+                            if (companyInfo != null)
                             {
-                                companyLogoBox.Image = Image.FromStream(new MemoryStream(companyInfo?.Logo));
+                                if (companyInfo.Logo != null)
+                                {
+                                    companyLogoBox.Image = Image.FromStream(new MemoryStream(companyInfo?.Logo));
+                                }
                             }
                         }
                     }
@@ -283,6 +290,35 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
             if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
             {
                 InitializeRoomTab(room);
+            }
+        }
+
+        private void btnIssueCard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvRooms.SelectedRows.Count > 0)
+                {
+                    var row = dgvRooms.SelectedRows[0];
+                    string id = row.Cells["Id"].Value.ToString();
+
+                    using (IsssueRoomSettingCardForm issueCardForm = new IsssueRoomSettingCardForm(id, _roomController))
+                    {
+                        if (issueCardForm.ShowDialog() == DialogResult.OK)
+                        {
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a room to issue card.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
             }
         }
     }

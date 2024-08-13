@@ -119,7 +119,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 }
                 else
                 {
-                    MessageBox.Show("Please select a customer to view.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Please select a booking to isue card.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

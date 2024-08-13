@@ -7,7 +7,9 @@ namespace ESMART_HMS.Domain.Interfaces
     public interface IRoomTypeRepository
     {
         void AddRoomType(RoomType roomType);
-        List<RoomTypeViewModel> GetAllRoomTypes();
+        void UpdateRoomType(RoomType roomType);
+        void DeleteRoomType(string id);
         RoomType GetRoomTypeById(string Id);
+        List<RoomTypeViewModel> GetAllRoomTypes();
     }
 }

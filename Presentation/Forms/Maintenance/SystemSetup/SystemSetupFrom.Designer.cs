@@ -38,7 +38,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SystemSetupFrom));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
+            this.roomTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
+            this.roomTypeTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter();
+            this.room = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.bankAccount = new System.Windows.Forms.TabPage();
+            this.general = new System.Windows.Forms.TabPage();
             this.company = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,10 +77,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.companyLogoBox = new System.Windows.Forms.PictureBox();
             this.btnUpload = new System.Windows.Forms.Button();
-            this.general = new System.Windows.Forms.TabPage();
-            this.bankAccount = new System.Windows.Forms.TabPage();
-            this.room = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.roundedPanel1 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -91,8 +97,6 @@
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isTrashedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
@@ -106,22 +110,26 @@
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roomTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roundedPanel2 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer8 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.btnIssueCard = new System.Windows.Forms.Button();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.btnAddType = new System.Windows.Forms.Button();
             this.btnEditType = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.roomTypeTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).BeginInit();
+            this.room.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.company.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -131,11 +139,7 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyLogoBox)).BeginInit();
-            this.room.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.roundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -152,8 +156,6 @@
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
@@ -165,7 +167,6 @@
             this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoomType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).BeginInit();
             this.roundedPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
             this.splitContainer8.Panel1.SuspendLayout();
@@ -175,23 +176,77 @@
             this.flowLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // roomBindingSource
             // 
-            this.tabControl1.Controls.Add(this.company);
-            this.tabControl1.Controls.Add(this.general);
-            this.tabControl1.Controls.Add(this.bankAccount);
-            this.tabControl1.Controls.Add(this.room);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(10, 10);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.Padding = new System.Drawing.Point(20, 10);
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(962, 528);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            this.roomBindingSource.DataMember = "Room";
+            this.roomBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // eSMART_HMSDBDataSet
+            // 
+            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
+            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // roomTypeBindingSource
+            // 
+            this.roomTypeBindingSource.DataMember = "RoomType";
+            this.roomTypeBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // roomTableAdapter
+            // 
+            this.roomTableAdapter.ClearBeforeFill = true;
+            // 
+            // roomTypeTableAdapter
+            // 
+            this.roomTypeTableAdapter.ClearBeforeFill = true;
+            // 
+            // room
+            // 
+            this.room.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.room.Controls.Add(this.splitContainer2);
+            this.room.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.room.Location = new System.Drawing.Point(4, 46);
+            this.room.Name = "room";
+            this.room.Size = new System.Drawing.Size(954, 478);
+            this.room.TabIndex = 3;
+            this.room.Text = "Room";
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.roundedPanel1);
+            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(10);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.roundedPanel2);
+            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer2.Size = new System.Drawing.Size(954, 478);
+            this.splitContainer2.SplitterDistance = 816;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // bankAccount
+            // 
+            this.bankAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
+            this.bankAccount.Location = new System.Drawing.Point(4, 46);
+            this.bankAccount.Name = "bankAccount";
+            this.bankAccount.Size = new System.Drawing.Size(954, 478);
+            this.bankAccount.TabIndex = 2;
+            this.bankAccount.Text = "Bank Account";
+            // 
+            // general
+            // 
+            this.general.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(90)))), ((int)(((byte)(111)))));
+            this.general.Location = new System.Drawing.Point(4, 46);
+            this.general.Name = "general";
+            this.general.Padding = new System.Windows.Forms.Padding(3);
+            this.general.Size = new System.Drawing.Size(954, 478);
+            this.general.TabIndex = 1;
+            this.general.Text = "General";
             // 
             // company
             // 
@@ -499,54 +554,23 @@
             this.btnUpload.UseVisualStyleBackColor = true;
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
-            // general
+            // tabControl1
             // 
-            this.general.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(90)))), ((int)(((byte)(111)))));
-            this.general.Location = new System.Drawing.Point(4, 46);
-            this.general.Name = "general";
-            this.general.Padding = new System.Windows.Forms.Padding(3);
-            this.general.Size = new System.Drawing.Size(954, 478);
-            this.general.TabIndex = 1;
-            this.general.Text = "General";
-            // 
-            // bankAccount
-            // 
-            this.bankAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
-            this.bankAccount.Location = new System.Drawing.Point(4, 46);
-            this.bankAccount.Name = "bankAccount";
-            this.bankAccount.Size = new System.Drawing.Size(954, 478);
-            this.bankAccount.TabIndex = 2;
-            this.bankAccount.Text = "Bank Account";
-            // 
-            // room
-            // 
-            this.room.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.room.Controls.Add(this.splitContainer2);
-            this.room.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.room.Location = new System.Drawing.Point(4, 46);
-            this.room.Name = "room";
-            this.room.Size = new System.Drawing.Size(954, 478);
-            this.room.TabIndex = 3;
-            this.room.Text = "Room";
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.roundedPanel1);
-            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(10);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.roundedPanel2);
-            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer2.Size = new System.Drawing.Size(954, 478);
-            this.splitContainer2.SplitterDistance = 816;
-            this.splitContainer2.TabIndex = 0;
+            this.tabControl1.Controls.Add(this.company);
+            this.tabControl1.Controls.Add(this.general);
+            this.tabControl1.Controls.Add(this.bankAccount);
+            this.tabControl1.Controls.Add(this.room);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(10, 10);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(20, 10);
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(962, 528);
+            this.tabControl1.TabIndex = 0;
+            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             // 
             // roundedPanel1
             // 
@@ -788,16 +812,6 @@
             this.isTrashedDataGridViewCheckBoxColumn.ReadOnly = true;
             this.isTrashedDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // roomBindingSource
-            // 
-            this.roomBindingSource.DataMember = "Room";
-            this.roomBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
-            // eSMART_HMSDBDataSet
-            // 
-            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
-            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // splitContainer6
             // 
             this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -950,11 +964,6 @@
             this.dateModifiedDataGridViewTextBoxColumn1.Name = "dateModifiedDataGridViewTextBoxColumn1";
             this.dateModifiedDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // roomTypeBindingSource
-            // 
-            this.roomTypeBindingSource.DataMember = "RoomType";
-            this.roomTypeBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
             // roundedPanel2
             // 
             this.roundedPanel2.BackColor = System.Drawing.SystemColors.Control;
@@ -991,6 +1000,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
             this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Controls.Add(this.btnIssueCard);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -1033,6 +1043,18 @@
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // btnIssueCard
+            // 
+            this.btnIssueCard.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnIssueCard.ForeColor = System.Drawing.Color.White;
+            this.btnIssueCard.Location = new System.Drawing.Point(3, 132);
+            this.btnIssueCard.Name = "btnIssueCard";
+            this.btnIssueCard.Size = new System.Drawing.Size(108, 37);
+            this.btnIssueCard.TabIndex = 0;
+            this.btnIssueCard.Text = "Issue Card";
+            this.btnIssueCard.UseVisualStyleBackColor = false;
+            this.btnIssueCard.Click += new System.EventHandler(this.btnIssueCard_Click);
+            // 
             // flowLayoutPanel6
             // 
             this.flowLayoutPanel6.Controls.Add(this.splitter1);
@@ -1045,6 +1067,14 @@
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
             this.flowLayoutPanel6.Size = new System.Drawing.Size(114, 196);
             this.flowLayoutPanel6.TabIndex = 1;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(3, 3);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(108, 3);
+            this.splitter1.TabIndex = 1;
+            this.splitter1.TabStop = false;
             // 
             // btnAddType
             // 
@@ -1080,22 +1110,6 @@
             this.button6.Text = "Delete";
             this.button6.UseVisualStyleBackColor = false;
             // 
-            // roomTableAdapter
-            // 
-            this.roomTableAdapter.ClearBeforeFill = true;
-            // 
-            // roomTypeTableAdapter
-            // 
-            this.roomTypeTableAdapter.ClearBeforeFill = true;
-            // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(3, 3);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(108, 3);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
-            // 
             // SystemSetupFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1111,7 +1125,14 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "System Setup";
             this.Load += new System.EventHandler(this.SystemSetupFrom_Load);
-            this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).EndInit();
+            this.room.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.company.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -1125,11 +1146,7 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.companyLogoBox)).EndInit();
-            this.room.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.roundedPanel1.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -1148,8 +1165,6 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             this.splitContainer6.Panel1.ResumeLayout(false);
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
@@ -1163,7 +1178,6 @@
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoomType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).EndInit();
             this.roundedPanel2.ResumeLayout(false);
             this.splitContainer8.Panel1.ResumeLayout(false);
             this.splitContainer8.Panel2.ResumeLayout(false);
@@ -1176,49 +1190,23 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage company;
-        private System.Windows.Forms.TabPage general;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtPhoneNumber;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtAddressTwo;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtAddressOne;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtWebsite;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtTaxNumber;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtNoOfEmployees;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.TabPage bankAccount;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnUpload;
-        private System.Windows.Forms.PictureBox companyLogoBox;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TabPage room;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private FormClasses.RoundedPanel roundedPanel1;
-        private FormClasses.RoundedPanel roundedPanel2;
         private ESMART_HMSDBDataSet eSMART_HMSDBDataSet;
         private System.Windows.Forms.BindingSource roomBindingSource;
         private ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter roomTableAdapter;
+        private System.Windows.Forms.BindingSource roomTypeBindingSource;
+        private ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter roomTypeTableAdapter;
+        private System.Windows.Forms.TabPage room;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private FormClasses.RoundedPanel roundedPanel1;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.SplitContainer splitContainer5;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dgvRooms;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomIdDataGridViewTextBoxColumn;
@@ -1229,12 +1217,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isTrashedDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.SplitContainer splitContainer5;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.SplitContainer splitContainer7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
@@ -1243,22 +1225,54 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DataGridView dgvRoomType;
-        private System.Windows.Forms.BindingSource roomTypeBindingSource;
-        private ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter roomTypeTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomTypeIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn1;
+        private FormClasses.RoundedPanel roundedPanel2;
         private System.Windows.Forms.SplitContainer splitContainer8;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnIssueCard;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel6;
+        private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Button btnAddType;
         private System.Windows.Forms.Button btnEditType;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.TabPage bankAccount;
+        private System.Windows.Forms.TabPage general;
+        private System.Windows.Forms.TabPage company;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtWebsite;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtPhoneNumber;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtAddressTwo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtAddressOne;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox txtTaxNumber;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtNoOfEmployees;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox companyLogoBox;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.TabControl tabControl1;
     }
 }

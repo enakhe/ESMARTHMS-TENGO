@@ -21,9 +21,9 @@ namespace ESMART_HMS.Domain.Entities
             this.Bookings = new HashSet<Booking>();
             this.Guests = new HashSet<Guest>();
             this.Reservations = new HashSet<Reservation>();
-            this.Rooms = new HashSet<Room>();
             this.BarItems = new HashSet<BarItem>();
             this.IngredientItems = new HashSet<IngredientItem>();
+            this.Rooms = new HashSet<Room>();
         }
     
         public string Id { get; set; }
@@ -48,10 +48,10 @@ namespace ESMART_HMS.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Rooms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BarItem> BarItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IngredientItem> IngredientItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

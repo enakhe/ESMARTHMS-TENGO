@@ -60,8 +60,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 {
                     txtId.Text = room.Id;
                     txtRoomNo.Text = room.RoomNo;
-                    txtLockNo.Text = room.RoomLockNo;
-                    txtCardNo.Text = room.RoomCardNo;
                     txtAdultPerRoom.Text = room.AdultPerRoom.ToString();
                     txtChildrenPerRoom.Text = room.ChildrenPerRoom.ToString();
                     txtRate.Text = FormHelper.FormatNumberWithCommas(room.Rate);
@@ -173,8 +171,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 else
                 {
                     room.RoomNo = txtRoomNo.Text.Trim();
-                    room.RoomCardNo = txtCardNo.Text.Trim();
-                    room.RoomLockNo = txtLockNo.Text.Trim();
                     room.Rate = decimal.Parse(txtRate.Text);
                     room.AdultPerRoom = int.Parse(txtAdultPerRoom.Text);
                     room.ChildrenPerRoom = int.Parse(txtChildrenPerRoom.Text);

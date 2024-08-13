@@ -67,6 +67,7 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hardwareSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importsExportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreDataFromBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -355,6 +356,7 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.systemSetupToolStripMenuItem,
             this.hardwareSetupToolStripMenuItem,
+            this.roomSettingToolStripMenuItem,
             this.usersSettingToolStripMenuItem,
             this.importsExportsToolStripMenuItem,
             this.restoreDataFromBackupToolStripMenuItem,
@@ -383,6 +385,14 @@
             this.hardwareSetupToolStripMenuItem.Name = "hardwareSetupToolStripMenuItem";
             this.hardwareSetupToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.hardwareSetupToolStripMenuItem.Text = "Hardware Setup";
+            // 
+            // roomSettingToolStripMenuItem
+            // 
+            this.roomSettingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("roomSettingToolStripMenuItem.Image")));
+            this.roomSettingToolStripMenuItem.Name = "roomSettingToolStripMenuItem";
+            this.roomSettingToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.roomSettingToolStripMenuItem.Text = "Room Setting";
+            this.roomSettingToolStripMenuItem.Click += new System.EventHandler(this.roomSettingToolStripMenuItem_Click);
             // 
             // usersSettingToolStripMenuItem
             // 
@@ -540,5 +550,6 @@
         private System.Windows.Forms.ToolStripMenuItem dataFileStatisticsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem archiveDataFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewRoomsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roomSettingToolStripMenuItem;
     }
 }

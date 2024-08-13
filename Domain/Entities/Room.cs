@@ -24,9 +24,10 @@ namespace ESMART_HMS.Domain.Entities
         public string Id { get; set; }
         public string RoomId { get; set; }
         public string RoomNo { get; set; }
-        public string RoomCardNo { get; set; }
-        public string RoomLockNo { get; set; }
         public string RoomTypeId { get; set; }
+        public string BuildingId { get; set; }
+        public string FloorId { get; set; }
+        public string AreaId { get; set; }
         public int AdultPerRoom { get; set; }
         public int ChildrenPerRoom { get; set; }
         public string Description { get; set; }
@@ -38,8 +39,11 @@ namespace ESMART_HMS.Domain.Entities
         public bool IsTrashed { get; set; }
     
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual Area Area { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual Building Building { get; set; }
+        public virtual Floor Floor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
         public virtual RoomType RoomType { get; set; }

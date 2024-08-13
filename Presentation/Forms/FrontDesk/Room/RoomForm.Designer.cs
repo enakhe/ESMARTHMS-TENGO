@@ -49,33 +49,33 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.roundedPanel2 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
+            this.roundedPanel3 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
+            this.roundedPanel4 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
+            this.roundedPanel5 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
+            this.roundedPanel1 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.txtRoomCount = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.roundedPanel3 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtVacant = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.roundedPanel4 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer8 = new System.Windows.Forms.SplitContainer();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtReserved = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.roundedPanel5 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
             this.splitContainer11 = new System.Windows.Forms.SplitContainer();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.roundedPanel1 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
@@ -106,7 +106,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.roundedPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -116,7 +115,6 @@
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.roundedPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
@@ -126,7 +124,6 @@
             this.splitContainer7.Panel2.SuspendLayout();
             this.splitContainer7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.roundedPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
             this.splitContainer8.Panel1.SuspendLayout();
             this.splitContainer8.Panel2.SuspendLayout();
@@ -136,7 +133,6 @@
             this.splitContainer9.Panel2.SuspendLayout();
             this.splitContainer9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.roundedPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).BeginInit();
             this.splitContainer10.Panel1.SuspendLayout();
             this.splitContainer10.SuspendLayout();
@@ -145,7 +141,6 @@
             this.splitContainer11.Panel2.SuspendLayout();
             this.splitContainer11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.roundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -224,12 +219,56 @@
             this.roundedPanel2.BorderColor = System.Drawing.Color.Gray;
             this.roundedPanel2.BorderRadius = 15;
             this.roundedPanel2.BorderThickness = 2;
-            this.roundedPanel2.Controls.Add(this.splitContainer3);
-            this.roundedPanel2.Controls.Add(this.button5);
             this.roundedPanel2.Location = new System.Drawing.Point(33, 23);
             this.roundedPanel2.Name = "roundedPanel2";
             this.roundedPanel2.Size = new System.Drawing.Size(300, 150);
             this.roundedPanel2.TabIndex = 6;
+            // 
+            // roundedPanel3
+            // 
+            this.roundedPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
+            this.roundedPanel3.BorderColor = System.Drawing.Color.Gray;
+            this.roundedPanel3.BorderRadius = 15;
+            this.roundedPanel3.BorderThickness = 2;
+            this.roundedPanel3.Location = new System.Drawing.Point(339, 23);
+            this.roundedPanel3.Name = "roundedPanel3";
+            this.roundedPanel3.Size = new System.Drawing.Size(300, 150);
+            this.roundedPanel3.TabIndex = 7;
+            // 
+            // roundedPanel4
+            // 
+            this.roundedPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(207)))), ((int)(((byte)(5)))));
+            this.roundedPanel4.BorderColor = System.Drawing.Color.Gray;
+            this.roundedPanel4.BorderRadius = 15;
+            this.roundedPanel4.BorderThickness = 2;
+            this.roundedPanel4.Location = new System.Drawing.Point(645, 23);
+            this.roundedPanel4.Name = "roundedPanel4";
+            this.roundedPanel4.Size = new System.Drawing.Size(300, 150);
+            this.roundedPanel4.TabIndex = 8;
+            // 
+            // roundedPanel5
+            // 
+            this.roundedPanel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.roundedPanel5.BorderColor = System.Drawing.Color.Gray;
+            this.roundedPanel5.BorderRadius = 15;
+            this.roundedPanel5.BorderThickness = 2;
+            this.roundedPanel5.Location = new System.Drawing.Point(951, 23);
+            this.roundedPanel5.Name = "roundedPanel5";
+            this.roundedPanel5.Size = new System.Drawing.Size(300, 150);
+            this.roundedPanel5.TabIndex = 9;
+            // 
+            // roundedPanel1
+            // 
+            this.roundedPanel1.BackColor = System.Drawing.SystemColors.Control;
+            this.roundedPanel1.BorderColor = System.Drawing.Color.Gray;
+            this.roundedPanel1.BorderRadius = 15;
+            this.roundedPanel1.BorderThickness = 3;
+            this.roundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roundedPanel1.Location = new System.Drawing.Point(30, 30);
+            this.roundedPanel1.Name = "roundedPanel1";
+            this.roundedPanel1.Padding = new System.Windows.Forms.Padding(20);
+            this.roundedPanel1.Size = new System.Drawing.Size(1496, 475);
+            this.roundedPanel1.TabIndex = 0;
             // 
             // splitContainer3
             // 
@@ -318,19 +357,6 @@
             this.button5.Text = "Click to view rooms";
             this.button5.UseVisualStyleBackColor = false;
             // 
-            // roundedPanel3
-            // 
-            this.roundedPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
-            this.roundedPanel3.BorderColor = System.Drawing.Color.Gray;
-            this.roundedPanel3.BorderRadius = 15;
-            this.roundedPanel3.BorderThickness = 2;
-            this.roundedPanel3.Controls.Add(this.splitContainer6);
-            this.roundedPanel3.Controls.Add(this.button6);
-            this.roundedPanel3.Location = new System.Drawing.Point(339, 23);
-            this.roundedPanel3.Name = "roundedPanel3";
-            this.roundedPanel3.Size = new System.Drawing.Size(300, 150);
-            this.roundedPanel3.TabIndex = 7;
-            // 
             // splitContainer6
             // 
             this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -417,19 +443,6 @@
             this.button6.TabIndex = 3;
             this.button6.Text = "Click to view rooms";
             this.button6.UseVisualStyleBackColor = false;
-            // 
-            // roundedPanel4
-            // 
-            this.roundedPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(207)))), ((int)(((byte)(5)))));
-            this.roundedPanel4.BorderColor = System.Drawing.Color.Gray;
-            this.roundedPanel4.BorderRadius = 15;
-            this.roundedPanel4.BorderThickness = 2;
-            this.roundedPanel4.Controls.Add(this.splitContainer8);
-            this.roundedPanel4.Controls.Add(this.button2);
-            this.roundedPanel4.Location = new System.Drawing.Point(645, 23);
-            this.roundedPanel4.Name = "roundedPanel4";
-            this.roundedPanel4.Size = new System.Drawing.Size(300, 150);
-            this.roundedPanel4.TabIndex = 8;
             // 
             // splitContainer8
             // 
@@ -518,19 +531,6 @@
             this.button2.Text = "Click to view rooms";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // roundedPanel5
-            // 
-            this.roundedPanel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
-            this.roundedPanel5.BorderColor = System.Drawing.Color.Gray;
-            this.roundedPanel5.BorderRadius = 15;
-            this.roundedPanel5.BorderThickness = 2;
-            this.roundedPanel5.Controls.Add(this.splitContainer10);
-            this.roundedPanel5.Controls.Add(this.button3);
-            this.roundedPanel5.Location = new System.Drawing.Point(951, 23);
-            this.roundedPanel5.Name = "roundedPanel5";
-            this.roundedPanel5.Size = new System.Drawing.Size(300, 150);
-            this.roundedPanel5.TabIndex = 9;
-            // 
             // splitContainer10
             // 
             this.splitContainer10.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -601,20 +601,6 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Click to view rooms";
             this.button3.UseVisualStyleBackColor = false;
-            // 
-            // roundedPanel1
-            // 
-            this.roundedPanel1.BackColor = System.Drawing.SystemColors.Control;
-            this.roundedPanel1.BorderColor = System.Drawing.Color.Gray;
-            this.roundedPanel1.BorderRadius = 15;
-            this.roundedPanel1.BorderThickness = 3;
-            this.roundedPanel1.Controls.Add(this.splitContainer2);
-            this.roundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundedPanel1.Location = new System.Drawing.Point(30, 30);
-            this.roundedPanel1.Name = "roundedPanel1";
-            this.roundedPanel1.Padding = new System.Windows.Forms.Padding(20);
-            this.roundedPanel1.Size = new System.Drawing.Size(1496, 475);
-            this.roundedPanel1.TabIndex = 0;
             // 
             // splitContainer2
             // 
@@ -923,7 +909,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.roundedPanel2.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
@@ -934,7 +919,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.roundedPanel3.ResumeLayout(false);
             this.splitContainer6.Panel1.ResumeLayout(false);
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
@@ -945,7 +929,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
             this.splitContainer7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.roundedPanel4.ResumeLayout(false);
             this.splitContainer8.Panel1.ResumeLayout(false);
             this.splitContainer8.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
@@ -956,7 +939,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).EndInit();
             this.splitContainer9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.roundedPanel5.ResumeLayout(false);
             this.splitContainer10.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).EndInit();
             this.splitContainer10.ResumeLayout(false);
@@ -966,7 +948,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).EndInit();
             this.splitContainer11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.roundedPanel1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();

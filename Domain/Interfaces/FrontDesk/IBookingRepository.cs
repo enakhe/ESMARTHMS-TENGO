@@ -8,5 +8,6 @@ namespace ESMART_HMS.Domain.Interfaces
     {
         void AddBooking(Booking booking);
         List<BookingViewModel> GetAllBookings();
+        List<IssueCardViewModel> IssueCard(string id);
     }
 }

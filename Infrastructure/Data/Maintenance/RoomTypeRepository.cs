@@ -76,5 +76,45 @@ namespace ESMART_HMS.Infrastructure.Data
             }
             return null;
         }
+
+        public void UpdateRoomType(RoomType roomType)
+        {
+            try
+            {
+                _db.Entry(roomType).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+                MessageBox.Show("Successfully edited room type information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public void DeleteRoomType(string id)
+        {
+            try
+            {
+                RoomType roomType = _db.RoomTypes.FirstOrDefault(rt => rt.Id == id);
+                if (roomType != null)
+                {
+                    roomType.IsTrashed = true;
+                    _db.Entry(roomType).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Room Type not found", "Not Found", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
     }
 }

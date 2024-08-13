@@ -2,6 +2,7 @@
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Booking;
 using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
@@ -31,6 +32,7 @@ namespace ESMART_HMS.Presentation.Forms
 
         // Maintenance
         SystemSetupFrom systemSetupFrom;
+        RoomSettingForm roomSettingForm;
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
@@ -299,6 +301,29 @@ namespace ESMART_HMS.Presentation.Forms
             else
             {
                 bookingForm.Activate();
+            }
+        }
+
+        private void RoomSetting_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            roomSettingForm = null;
+        }
+
+        private void roomSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (roomSettingForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                roomSettingForm = serviceProvider.GetRequiredService<RoomSettingForm>();
+                roomSettingForm.FormClosed += RoomSetting_FormClosed;
+                roomSettingForm.ShowDialog();
+            }
+            else
+            {
+                reservationForm.Activate();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Infrastructure.Frameworks.TengoLock;
+﻿using ESMART_HMS.Domain.Utils;
+using ESMART_HMS.Infrastructure.Frameworks.TengoLock;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
@@ -11,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Threading;
 
 namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
 {
@@ -18,11 +20,13 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
     {
         private readonly BookingController _bookingController;
         private readonly string _id;
+        private DispatcherTimer dispatcherTimer;
         public IssueCardForm(BookingController bookingController, string id)
         {
             _bookingController = bookingController;
             _id = id;
             InitializeComponent();
+            InitializeTimer();
         }
         int st = 0;
 
@@ -72,19 +76,19 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
                     MessageBox.Show(Language.g_LoadString_Ex("IDS_STRING_ERROR_INVALIDCARD"), Language.g_LoadString_Ex("IDS_STRING_MSG"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case -4:
-                    MessageBox.Show(Language.g_LoadString_Ex("IDS_STRING_ERROR_CARDTYPE"), Language.g_LoadString_Ex("IDS_STRING_MSG"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Card type error", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case -5:
-                    MessageBox.Show(Language.g_LoadString_Ex("IDS_STRING_ERROR_READCARD"), Language.g_LoadString_Ex("IDS_STRING_MSG"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Read/write error", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case -8:
-                    MessageBox.Show(Language.g_LoadString_Ex("IDS_STRING_ERROR_INPUT"), Language.g_LoadString_Ex("IDS_STRING_MSG"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Invalid Parameter", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 case -29:
-                    MessageBox.Show(Language.g_LoadString_Ex("IDS_STRING_ERROR_REG"), Language.g_LoadString_Ex("IDS_STRING_MSG"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Unregistered decoder", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 default:
-                    MessageBox.Show(Language.g_LoadString_Ex("IDS_STRING_ERROR"), Language.g_LoadString_Ex("IDS_STRING_MSG"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Sorry an error occured", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
             }
         }
@@ -109,68 +113,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
         #endregion
 
         #region Buttons 
-
-        private void IDD102_1011_Click(object sender, EventArgs e)
-        {
-            this.txtInTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        }
-
-        private void IDD102_1003_Click(object sender, EventArgs e)
-        {
-            //Issue card
-            StringBuilder card_snr = new StringBuilder(100);
-            string roomno = txtRoomNo.Text;
-            string intime = txtInTime.Text;
-            String outtime = txtOutTime.Text;
-            short iflags = 0;
-
-            if (IDD102_1018.Checked == true)
-                iflags += 1;
-            if (IDD102_1016.Checked == false)
-                iflags += 8;
-            if (IDD102_1017.Checked == true)
-                iflags += 128;
-
-            //st = TP_MakeGuestCardEx(card_snr, roomno, intime, outtime, iflags);  //this is a old function
-            if (PreparedIssue(card_snr) == false)
-                return;
-            st = LS_MakeGuestCard_EX1(card_snr, roomno, "001", "008.009", intime, outtime, iflags); //please use new
-            CheckErr(st);
-
-        }
-
-        private void IDD102_1005_Click(object sender, EventArgs e)
-        {
-            //Cancel card
-            StringBuilder card_snr = new StringBuilder();
-            st = TP_CancelCard(card_snr);
-            CheckErr(st);
-        }
         #endregion
-
-        private void IDD102_1002_Click(object sender, EventArgs e)
-        {
-            //Set SDK
-            Int16 locktype = 0;
-            if (IDD102_1001.Checked)
-            {
-                locktype = 5;
-            }
-            if (IDD102_1000.Checked)
-            {
-                locktype = 4;
-            }
-
-            st = TP_Configuration(locktype);
-            if (st == 1)
-            {
-                this.IDD102_1011.Enabled = true;
-                this.IDD102_1003.Enabled = true;
-                this.IDD102_1005.Enabled = true;
-                this.btnReadCard.Enabled = true;
-            }
-            CheckErr(st);
-        }
 
         private void IssueCardForm_Load(object sender, EventArgs e)
         {
@@ -181,69 +124,150 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
             }
             else
             {
+                // LoadCardDetails();
+                dispatcherTimer.Start();
                 BookingViewModel booking = _bookingController.GetAllBookings().FirstOrDefault(b => b.Id == _id);
                 if (booking != null)
                 {
-                    txtRoomNo.Text = "001.002.00028";
+                    txtRoom.Text = "1.1." + booking.Room;
+                    txtGuest.Text = booking.Guest;
                     txtInTime.Text = booking.CheckInDate.ToString();
                     txtOutTime.Text = booking.CheckOutDate.ToString();
+
+                    List<IssueCardViewModel> issueCard = _bookingController.IssueCard(booking.Id);
+                    if (issueCard != null)
+                    {
+                        foreach (var bookings in issueCard)
+                        {
+                            FormHelper.TryConvertStringToDecimal(booking.TotalAmount, out decimal amount);
+
+                            bookings.Amount = FormHelper.FormatNumberWithCommas(amount);
+                        }
+                        dgvIssueCard.DataSource = issueCard;
+                    }
                 }
             }
         }
 
+        // Initialize the timer
+        private void InitializeTimer()
+        {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(1); // Set interval to 1 second
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+        }
+
         public int CheckEncoder()
         {
-            Int16 locktype = 0;
-            if (IDD102_1001.Checked)
-            {
-                locktype = 5;
-            }
-            if (IDD102_1000.Checked)
-            {
-                locktype = 4;
-            }
-
+            Int16 locktype = 5;
             st = TP_Configuration(locktype);
-            if (st == 1)
-            {
-                this.IDD102_1011.Enabled = true;
-                this.IDD102_1003.Enabled = true;
-                this.IDD102_1005.Enabled = true;
-                this.btnReadCard.Enabled = true;
-            }
             CheckErr(st);
             return st;
         }
 
-        private void btnReadCard_Click(object sender, EventArgs e)
+        private void LoadCardDetails()
         {
+
             //Read card
             StringBuilder card_snr = new StringBuilder(100);
-            StringBuilder roomno = new StringBuilder(100);
+            StringBuilder lockno = new StringBuilder(100);
             StringBuilder intime = new StringBuilder(100);
             StringBuilder outtime = new StringBuilder(100);
-            string strMsg = "";
-            int iflags = 0;
-            st = TP_ReadGuestCardEx(card_snr, roomno, intime, outtime, ref iflags);
-            if (st == 1)
-            {
-                strMsg = "CARD NO" + card_snr.ToString() + "\n";
-                strMsg += "LOCKNO" + roomno.ToString() + "\n";
-                strMsg += "IN TIME" + intime.ToString() + "\n";
-                strMsg += "OUTTIME" + outtime.ToString() + "\n";
-                strMsg += "FLAGS" + "0x" + iflags.ToString("X1") + "\n";//¿¨Æ¬±êÖ¾
-                if ((iflags & 1) != 0)
-                    strMsg += "OPEN_BLOCK" + "\n";
-                if ((iflags & 8) == 0)
-                    strMsg += "RELACE_OLDCARD" + "\n";
-                if ((iflags & 128) != 0)
-                    strMsg += "CHECKIN_TIME" + "\n";
 
-                MessageBox.Show(strMsg, "STRING_MSG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            var card = LS_ReadRom(card_snr);
+
+            if (card == 1)
+            {
+                int iflags = 0;
+                st = TP_ReadGuestCardEx(card_snr, lockno, intime, outtime, ref iflags);
+                if (st == 1)
+                {
+                    string[] parts = lockno.ToString().Split('.');
+                    string roomNo = parts[parts.Length - 1];
+
+                    txtCardNo.Text = card_snr.ToString();
+                    txtLockNo.Text = lockno.ToString();
+                    txtRoomNo.Text = roomNo;
+                    txtClockIn.Text = intime.ToString();
+                    txtClockOut.Text = outtime.ToString();
+
+                    if (lockno.ToString() == "")
+                    {
+                        txtEmpty.Text = "Empty card";
+                        txtEmpty.ForeColor = Color.Red;
+
+                        txtClockIn.Text = "";
+                        txtClockOut.Text = "";
+                    } 
+                    else
+                    {
+                        txtEmpty.Text = "";
+                        txtEmpty.ForeColor = Color.Transparent;
+                    }
+                    txtError.Text = "Card found";
+                    txtError.ForeColor = Color.Green;
+                }
+                else
+                {
+                    CheckErr(st);
+                }
+            }    
             else
             {
-                CheckErr(st);
+                txtCardNo.Text = "";
+                txtLockNo.Text = "";
+                txtRoomNo.Text = "";
+                txtClockIn.Text = "";
+                txtClockOut.Text = "";
+
+                txtError.Text = "No card found";
+                txtError.ForeColor = Color.Red;
+
+                txtEmpty.Text = "";
+                txtEmpty.ForeColor = Color.Transparent;
+            }
+            
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            LoadCardDetails();
+        }
+
+        private void btnRecycle_Click(object sender, EventArgs e)
+        {
+            StringBuilder card_snr = new StringBuilder();
+            st = TP_CancelCard(card_snr);
+            if (st == 1)
+            {
+                MessageBox.Show("Successfully recycled card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCardDetails();
+            }
+        }
+
+        private void IssueCardForm_Enter(object sender, EventArgs e)
+        {
+            LoadCardDetails();
+        }
+
+        private void btnIssueCard_Click(object sender, EventArgs e)
+        {
+            //Issue card
+            StringBuilder card_snr = new StringBuilder(100);
+
+            string roomno = txtRoom.Text;
+            string intime = txtInTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            String outtime = txtOutTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            short iflags = 136;
+
+            if (PreparedIssue(card_snr) == false)
+                return;
+            st = LS_MakeGuestCard_EX1(card_snr, roomno, "001", "008.009", intime, outtime, iflags);
+
+            if (st == 1)
+            {
+                MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCardDetails();
             }
         }
     }

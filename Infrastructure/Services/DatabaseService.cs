@@ -111,13 +111,43 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[IsTrashed][bit] NOT NULL," +
                 "CONSTRAINT [PK_RoomType] PRIMARY KEY CLUSTERED([Id] ASC)");
 
+            CreateTableIfNotExists("Building",
+                "[Id] [nvarchar](450) NOT NULL," +
+                "[BuildingName][nvarchar](450) NOT NULL," +
+                "[BuildingNo][nvarchar](max) NOT NULL," +
+                "[Remark][nvarchar](max) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "CONSTRAINT [PK_Building] PRIMARY KEY CLUSTERED([Id] ASC)");
+
+            CreateTableIfNotExists("Floor",
+                "[Id] [nvarchar](450) NOT NULL," +
+                "[FloorNo][nvarchar](450) NOT NULL," +
+                "[Remark][nvarchar](max) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "CONSTRAINT [PK_Floor] PRIMARY KEY CLUSTERED([Id] ASC)");
+
+            CreateTableIfNotExists("Area",
+                "[Id] [nvarchar](450) NOT NULL," +
+                "[AreaName][nvarchar](450) NOT NULL," +
+                "[AreaNo][nvarchar](max) NOT NULL," +
+                "[Remark][nvarchar](max) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "CONSTRAINT [PK_Area] PRIMARY KEY CLUSTERED([Id] ASC)");
+
             CreateTableIfNotExists("Room",
                 "[Id][nvarchar](450) NOT NULL," +
                 "[RoomId][nvarchar](450) NOT NULL," +
                 "[RoomNo][nvarchar](max) NOT NULL," +
-                "[RoomCardNo][nvarchar](max) NOT NULL," +
-                "[RoomLockNo][nvarchar](max) NOT NULL," +
                 "[RoomTypeId][nvarchar](450) NOT NULL," +
+                "[BuildingId][nvarchar](450) NOT NULL," +
+                "[FloorId][nvarchar](450) NOT NULL," +
+                "[AreaId][nvarchar](450) NOT NULL," +
                 "[AdultPerRoom][int] NOT NULL," +
                 "[ChildrenPerRoom][int] NOT NULL," +
                 "[Description][nvarchar](max) NULL," +
@@ -128,6 +158,9 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[DateModified][datetime2](7) NOT NULL," +
                 "[IsTrashed][bit] NOT NULL," +
                 "FOREIGN KEY (RoomTypeId) REFERENCES RoomType(Id)," +
+                "FOREIGN KEY (BuildingId) REFERENCES Building(Id)," +
+                "FOREIGN KEY (FloorId) REFERENCES Floor(Id)," +
+                "FOREIGN KEY (AreaId) REFERENCES Area(Id)," +
                 "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id)," +
                 "CONSTRAINT [PK_Room] PRIMARY KEY CLUSTERED([Id] ASC)");
 
@@ -273,6 +306,17 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[DateCreated][datetime2](7) NOT NULL," +
                 "[DateModified][datetime2](7) NOT NULL," +
                 "CONSTRAINT [PK_CompanyInformation] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("BankAccount",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[BankAccNo][nvarchar](450) NOT NULL," +
+                "[BankName][nvarchar](450) NULL," +
+                "[BankAccName][nvarchar](450) NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "CONSTRAINT [PK_BankAccount] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
             CreateTableIfNotExists("Configuration",
                 "[Key][nvarchar](450) NOT NULL," +

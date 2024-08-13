@@ -109,7 +109,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
             try
             {
-                bool isNull = FormHelper.AreAnyNullOrEmpty(txtRoomNo.Text, txtCardNo.Text, txtLockNo.Text, txtRate.Text, txtAdultPerRoom.Text, txtChildrenPerRoom.Text, txtRoomType.Text);
+                bool isNull = FormHelper.AreAnyNullOrEmpty(txtRoomNo.Text, txtRate.Text, txtAdultPerRoom.Text, txtChildrenPerRoom.Text, txtRoomType.Text);
                 if (isNull == true)
                 {
                     MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
@@ -123,8 +123,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     room.Id = Guid.NewGuid().ToString();
                     room.RoomId = "RM" + random.Next(1000, 5000);
                     room.RoomNo = txtRoomNo.Text.Trim();
-                    room.RoomCardNo = txtCardNo.Text.Trim();
-                    room.RoomLockNo = txtLockNo.Text.Trim();
                     room.Rate = decimal.Parse(txtRate.Text);
                     room.AdultPerRoom = int.Parse(txtAdultPerRoom.Text);
                     room.ChildrenPerRoom = int.Parse(txtChildrenPerRoom.Text);

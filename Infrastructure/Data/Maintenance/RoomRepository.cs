@@ -47,8 +47,6 @@ namespace ESMART_HMS.Repositories
                                   Id = room.Id,
                                   RoomId = room.RoomId,
                                   RoomNo = room.RoomNo,
-                                  RoomCardNo = room.RoomCardNo,
-                                  RoomLockNo = room.RoomLockNo,
                                   AdultPerRoom = room.AdultPerRoom,
                                   ChildrenPerRoom = room.ChildrenPerRoom,
                                   Description = room.Description,
@@ -81,8 +79,6 @@ namespace ESMART_HMS.Repositories
                     Id = room.Id,
                     RoomId = room.RoomId,
                     RoomNo = room.RoomNo,
-                    RoomCardNo = room.RoomCardNo,
-                    RoomLockNo = room.RoomLockNo,
                     AdultPerRoom = room.AdultPerRoom,
                     ChildrenPerRoom = room.ChildrenPerRoom,
                     Description = room.Description,
@@ -168,8 +164,6 @@ namespace ESMART_HMS.Repositories
                                      Id = room.Id,
                                      RoomId = room.RoomId,
                                      RoomNo = room.RoomNo,
-                                     RoomCardNo = room.RoomCardNo,
-                                     RoomLockNo = room.RoomLockNo,
                                      AdultPerRoom = room.AdultPerRoom,
                                      ChildrenPerRoom = room.ChildrenPerRoom,
                                      Description = room.Description,
@@ -201,8 +195,6 @@ namespace ESMART_HMS.Repositories
                                       Id = room.Id,
                                       RoomId = room.RoomId,
                                       RoomNo = room.RoomNo,
-                                      RoomCardNo = room.RoomCardNo,
-                                      RoomLockNo = room.RoomLockNo,
                                       AdultPerRoom = room.AdultPerRoom,
                                       ChildrenPerRoom = room.ChildrenPerRoom,
                                       Description = room.Description,
@@ -235,8 +227,6 @@ namespace ESMART_HMS.Repositories
                                       Id = room.Id,
                                       RoomId = room.RoomId,
                                       RoomNo = room.RoomNo,
-                                      RoomCardNo = room.RoomCardNo,
-                                      RoomLockNo = room.RoomLockNo,
                                       AdultPerRoom = room.AdultPerRoom,
                                       ChildrenPerRoom = room.ChildrenPerRoom,
                                       Description = room.Description,
@@ -269,8 +259,6 @@ namespace ESMART_HMS.Repositories
                                       Id = room.Id,
                                       RoomId = room.RoomId,
                                       RoomNo = room.RoomNo,
-                                      RoomCardNo = room.RoomCardNo,
-                                      RoomLockNo = room.RoomLockNo,
                                       AdultPerRoom = room.AdultPerRoom,
                                       ChildrenPerRoom = room.ChildrenPerRoom,
                                       Description = room.Description,
@@ -304,6 +292,90 @@ namespace ESMART_HMS.Repositories
                             MessageBoxIcon.Error);
             }
             return null;
+        }
+
+        public void AddArea(Area area)
+        {
+            try
+            {
+                _db.Areas.Add(area);
+                _db.SaveChanges();
+                MessageBox.Show("Successfully added room information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public List<Area> GetAllArea()
+        {
+            try
+            {
+                return _db.Areas.Where(a => a.IsTrashed != true).OrderBy(a => a.AreaNo).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public void UpdateArea(Area area)
+        {
+            try
+            {
+                _db.Entry(area).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+                MessageBox.Show("Successfully edited area information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public Area GetAresById(string id)
+        {
+            try
+            {
+                return _db.Areas.FirstOrDefault(a => a.Id == id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public void DeleteArea(string id)
+        {
+            try
+            {
+                Area area = _db.Areas.FirstOrDefault(a => a.Id == id);
+                if (area != null)
+                {
+                    area.IsTrashed = true;
+                    _db.Entry(area).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("area not found", "Not Found", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
     }
 }

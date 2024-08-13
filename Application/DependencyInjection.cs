@@ -2,8 +2,11 @@
 using ESMART_HMS.Application.UseCases.ApplicationUser;
 using ESMART_HMS.Application.UseCases.Booking;
 using ESMART_HMS.Application.UseCases.Configuration;
+using ESMART_HMS.Application.UseCases.FrontDesk.Booking;
 using ESMART_HMS.Application.UseCases.Guest;
 using ESMART_HMS.Application.UseCases.Maintenance.Room;
+using ESMART_HMS.Application.UseCases.Maintenance.Room.Area;
+using ESMART_HMS.Application.UseCases.Maintenance.Room.RoomType;
 using ESMART_HMS.Application.UseCases.Maintenance.SystemSetup;
 using ESMART_HMS.Application.UseCases.Reservation;
 using ESMART_HMS.Application.UseCases.Room;
@@ -40,11 +43,18 @@ namespace ESMART_HMS.Application
             services.AddScoped<FilterByStatusUseCase>();
             services.AddScoped<FilterByTypeUseCase>();
             services.AddScoped<GetRoomByRoomNoUseCase>();
+            services.AddScoped<CreateAreaUseCase>();
+            services.AddScoped<GetAllAreaUseCase>();
+            services.AddScoped<UpdateAreaUseCase>();
+            services.AddScoped<GetAreaByIdUseCase>();
+            services.AddScoped<DeleteAreaUseCase>();
 
             // RoomType Use Cases
             services.AddScoped<CreateRoomTypeUseCase>();
             services.AddScoped<GetAllRoomTypeUseCase>();
             services.AddScoped<GetRoomTypeByIdUseCase>();
+            services.AddScoped<UpdateRoomTypeUseCase>();
+            services.AddScoped<DeleteRoomTypeUseCase>();
 
             // Reservation Use Case
             services.AddScoped<CreateReservationUseCase>();
@@ -55,6 +65,7 @@ namespace ESMART_HMS.Application
             // Booking Use Case
             services.AddScoped<CreateBookingUseCase>();
             services.AddScoped<GetAllBookingsUseCase>();
+            services.AddScoped<IssueCardUseCase>();
 
             // Configuration Use Case
             services.AddScoped<SetConfigurationValueUseCase>();

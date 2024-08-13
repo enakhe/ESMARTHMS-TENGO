@@ -42,7 +42,7 @@ namespace ESMART_HMS.Infrastructure.Data
                                  {
                                      Id = booking.Id,
                                      BookingId = booking.BookingId,
-                                     Guest = booking.Guest.FullName,
+                                     Guest = booking.Guest.Title + " " + booking.Guest.FullName,
                                      GuestPhoneNo = booking.Guest.PhoneNumber,
                                      Room = booking.Room.RoomNo,
                                      CheckInDate = booking.CheckInDate,
@@ -55,6 +55,27 @@ namespace ESMART_HMS.Infrastructure.Data
                                      DateModified = booking.DateModified,
                                  };
                 return allBooking.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public List<IssueCardViewModel> IssueCard(string id)
+        {
+            try
+            {
+                var issueCard = from booking in _db.Bookings.Where(b => b.Id == id)
+                                select new IssueCardViewModel
+                                {
+                                    Room = booking.Room.RoomNo,
+                                    RoomType = booking.Room.RoomType.Title,
+                                    Amount = booking.TotalAmount.ToString(),
+                                };
+                return issueCard.ToList();
             }
             catch (Exception ex)
             {
