@@ -1,18 +1,15 @@
 ﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using System.Windows.Forms;
 using System.Drawing.Printing;
-using System.Drawing;
-using ESMART_HMS.Presentation.Controllers.Maintenance;
-using ESMART_HMS.Domain.Utils;
+using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Guests
 {
@@ -28,7 +25,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
         {
             _customerController = customerViewModel;
             _applicationUserController = applicationUserController;
-            _systemSetupController = systemSetupController; 
+            _systemSetupController = systemSetupController;
             InitializeComponent();
             LoadData();
             ApplyAuthorization();

@@ -1,5 +1,4 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
@@ -44,14 +43,14 @@ namespace ESMART_HMS.Infrastructure.Data
             try
             {
                 var allRoomType = from roomType in _db.RoomTypes.Where(rt => rt.IsTrashed == false)
-                                     select new RoomTypeViewModel
-                                     {
-                                         Id = roomType.Id,
-                                         RoomTypeId = roomType.RoomTypeId,
-                                         Title = roomType.Title,
-                                         DateCreated = roomType.DateCreated,
-                                         DateModified = roomType.DateModified,
-                                     };
+                                  select new RoomTypeViewModel
+                                  {
+                                      Id = roomType.Id,
+                                      RoomTypeId = roomType.RoomTypeId,
+                                      Title = roomType.Title,
+                                      DateCreated = roomType.DateCreated,
+                                      DateModified = roomType.DateModified,
+                                  };
                 return allRoomType.OrderBy(r => r.Title).ToList();
             }
             catch (Exception ex)

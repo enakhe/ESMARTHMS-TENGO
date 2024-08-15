@@ -377,5 +377,89 @@ namespace ESMART_HMS.Repositories
                             MessageBoxIcon.Error);
             }
         }
+
+        public void AddFloor(Floor floor)
+        {
+            try
+            {
+                _db.Floors.Add(floor);
+                _db.SaveChanges();
+                MessageBox.Show("Successfully added floor information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public List<Floor> GetAllFloors()
+        {
+            try
+            {
+                return _db.Floors.Where(f => f.IsTrashed != true).OrderBy(f => f.FloorNo).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public void UpdateFloor(Floor floor)
+        {
+            try
+            {
+                _db.Entry(floor).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+                MessageBox.Show("Successfully edited floor information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public Floor GetFloorById(string id)
+        {
+            try
+            {
+                return _db.Floors.FirstOrDefault(f => f.Id == id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public void DeleteFloor(string id)
+        {
+            try
+            {
+                Floor floor = _db.Floors.FirstOrDefault(f => f.Id == id);
+                if (floor != null)
+                {
+                    floor.IsTrashed = true;
+                    _db.Entry(floor).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Floor not found", "Not Found", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
     }
 }

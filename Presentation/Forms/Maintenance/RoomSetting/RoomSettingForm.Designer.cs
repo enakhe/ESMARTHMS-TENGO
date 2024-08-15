@@ -127,18 +127,12 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel11 = new System.Windows.Forms.FlowLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.floorNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remarkDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateCreatedDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateModifiedDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isTrashedDataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvFloor = new System.Windows.Forms.DataGridView();
             this.floorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel12 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.addFloorBtn = new System.Windows.Forms.Button();
+            this.btnEditFloor = new System.Windows.Forms.Button();
+            this.btnDeleteBtn = new System.Windows.Forms.Button();
             this.buildingtab = new System.Windows.Forms.TabPage();
             this.splitContainer13 = new System.Windows.Forms.SplitContainer();
             this.roundedPanel5 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
@@ -168,6 +162,12 @@
             this.areaTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.AreaTableAdapter();
             this.floorTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.FloorTableAdapter();
             this.buildingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.BuildingTableAdapter();
+            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.floorNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remarkDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateCreatedDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateModifiedDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isTrashedDataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl1.SuspendLayout();
             this.room.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -243,7 +243,7 @@
             this.splitContainer12.SuspendLayout();
             this.flowLayoutPanel10.SuspendLayout();
             this.flowLayoutPanel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFloor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.floorBindingSource)).BeginInit();
             this.flowLayoutPanel12.SuspendLayout();
             this.buildingtab.SuspendLayout();
@@ -1244,7 +1244,7 @@
             // 
             // splitContainer11.Panel2
             // 
-            this.splitContainer11.Panel2.Controls.Add(this.dataGridView2);
+            this.splitContainer11.Panel2.Controls.Add(this.dgvFloor);
             this.splitContainer11.Size = new System.Drawing.Size(785, 448);
             this.splitContainer11.SplitterDistance = 47;
             this.splitContainer11.TabIndex = 0;
@@ -1323,15 +1323,15 @@
             this.label6.Text = "Manage Floors";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dataGridView2
+            // dgvFloor
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvFloor.AllowUserToAddRows = false;
+            this.dgvFloor.AllowUserToDeleteRows = false;
+            this.dgvFloor.AutoGenerateColumns = false;
+            this.dgvFloor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvFloor.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvFloor.BackgroundColor = System.Drawing.Color.White;
+            this.dgvFloor.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1339,67 +1339,23 @@
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvFloor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvFloor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFloor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn3,
             this.floorNoDataGridViewTextBoxColumn,
             this.remarkDataGridViewTextBoxColumn1,
             this.dateCreatedDataGridViewTextBoxColumn3,
             this.dateModifiedDataGridViewTextBoxColumn3,
             this.isTrashedDataGridViewCheckBoxColumn2});
-            this.dataGridView2.DataSource = this.floorBindingSource;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.GridColor = System.Drawing.Color.Gray;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(785, 397);
-            this.dataGridView2.TabIndex = 2;
-            // 
-            // idDataGridViewTextBoxColumn3
-            // 
-            this.idDataGridViewTextBoxColumn3.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn3.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
-            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // floorNoDataGridViewTextBoxColumn
-            // 
-            this.floorNoDataGridViewTextBoxColumn.DataPropertyName = "FloorNo";
-            this.floorNoDataGridViewTextBoxColumn.HeaderText = "No";
-            this.floorNoDataGridViewTextBoxColumn.Name = "floorNoDataGridViewTextBoxColumn";
-            this.floorNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // remarkDataGridViewTextBoxColumn1
-            // 
-            this.remarkDataGridViewTextBoxColumn1.DataPropertyName = "Remark";
-            this.remarkDataGridViewTextBoxColumn1.HeaderText = "Remark";
-            this.remarkDataGridViewTextBoxColumn1.Name = "remarkDataGridViewTextBoxColumn1";
-            this.remarkDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dateCreatedDataGridViewTextBoxColumn3
-            // 
-            this.dateCreatedDataGridViewTextBoxColumn3.DataPropertyName = "DateCreated";
-            this.dateCreatedDataGridViewTextBoxColumn3.HeaderText = "Date Created";
-            this.dateCreatedDataGridViewTextBoxColumn3.Name = "dateCreatedDataGridViewTextBoxColumn3";
-            this.dateCreatedDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dateModifiedDataGridViewTextBoxColumn3
-            // 
-            this.dateModifiedDataGridViewTextBoxColumn3.DataPropertyName = "DateModified";
-            this.dateModifiedDataGridViewTextBoxColumn3.HeaderText = "Date Modified";
-            this.dateModifiedDataGridViewTextBoxColumn3.Name = "dateModifiedDataGridViewTextBoxColumn3";
-            this.dateModifiedDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // isTrashedDataGridViewCheckBoxColumn2
-            // 
-            this.isTrashedDataGridViewCheckBoxColumn2.DataPropertyName = "IsTrashed";
-            this.isTrashedDataGridViewCheckBoxColumn2.HeaderText = "IsTrashed";
-            this.isTrashedDataGridViewCheckBoxColumn2.Name = "isTrashedDataGridViewCheckBoxColumn2";
-            this.isTrashedDataGridViewCheckBoxColumn2.ReadOnly = true;
-            this.isTrashedDataGridViewCheckBoxColumn2.Visible = false;
+            this.dgvFloor.DataSource = this.floorBindingSource;
+            this.dgvFloor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvFloor.GridColor = System.Drawing.Color.Gray;
+            this.dgvFloor.Location = new System.Drawing.Point(0, 0);
+            this.dgvFloor.Name = "dgvFloor";
+            this.dgvFloor.ReadOnly = true;
+            this.dgvFloor.Size = new System.Drawing.Size(785, 397);
+            this.dgvFloor.TabIndex = 2;
             // 
             // floorBindingSource
             // 
@@ -1409,9 +1365,9 @@
             // flowLayoutPanel12
             // 
             this.flowLayoutPanel12.BackColor = System.Drawing.SystemColors.Control;
-            this.flowLayoutPanel12.Controls.Add(this.button5);
-            this.flowLayoutPanel12.Controls.Add(this.button6);
-            this.flowLayoutPanel12.Controls.Add(this.button7);
+            this.flowLayoutPanel12.Controls.Add(this.addFloorBtn);
+            this.flowLayoutPanel12.Controls.Add(this.btnEditFloor);
+            this.flowLayoutPanel12.Controls.Add(this.btnDeleteBtn);
             this.flowLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel12.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel12.Location = new System.Drawing.Point(10, 10);
@@ -1419,38 +1375,41 @@
             this.flowLayoutPanel12.Size = new System.Drawing.Size(115, 458);
             this.flowLayoutPanel12.TabIndex = 3;
             // 
-            // button5
+            // addFloorBtn
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(121)))), ((int)(((byte)(247)))));
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(3, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(108, 37);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "New";
-            this.button5.UseVisualStyleBackColor = false;
+            this.addFloorBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(121)))), ((int)(((byte)(247)))));
+            this.addFloorBtn.ForeColor = System.Drawing.Color.White;
+            this.addFloorBtn.Location = new System.Drawing.Point(3, 3);
+            this.addFloorBtn.Name = "addFloorBtn";
+            this.addFloorBtn.Size = new System.Drawing.Size(108, 37);
+            this.addFloorBtn.TabIndex = 0;
+            this.addFloorBtn.Text = "New";
+            this.addFloorBtn.UseVisualStyleBackColor = false;
+            this.addFloorBtn.Click += new System.EventHandler(this.addFloorBtn_Click);
             // 
-            // button6
+            // btnEditFloor
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(3, 46);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(108, 37);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "Edit";
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnEditFloor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnEditFloor.ForeColor = System.Drawing.Color.White;
+            this.btnEditFloor.Location = new System.Drawing.Point(3, 46);
+            this.btnEditFloor.Name = "btnEditFloor";
+            this.btnEditFloor.Size = new System.Drawing.Size(108, 37);
+            this.btnEditFloor.TabIndex = 0;
+            this.btnEditFloor.Text = "Edit";
+            this.btnEditFloor.UseVisualStyleBackColor = false;
+            this.btnEditFloor.Click += new System.EventHandler(this.btnEditFloor_Click);
             // 
-            // button7
+            // btnDeleteBtn
             // 
-            this.button7.BackColor = System.Drawing.Color.Red;
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(3, 89);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(108, 37);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "Delete";
-            this.button7.UseVisualStyleBackColor = false;
+            this.btnDeleteBtn.BackColor = System.Drawing.Color.Red;
+            this.btnDeleteBtn.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteBtn.Location = new System.Drawing.Point(3, 89);
+            this.btnDeleteBtn.Name = "btnDeleteBtn";
+            this.btnDeleteBtn.Size = new System.Drawing.Size(108, 37);
+            this.btnDeleteBtn.TabIndex = 0;
+            this.btnDeleteBtn.Text = "Delete";
+            this.btnDeleteBtn.UseVisualStyleBackColor = false;
+            this.btnDeleteBtn.Click += new System.EventHandler(this.btnDeleteBtn_Click);
             // 
             // buildingtab
             // 
@@ -1750,6 +1709,50 @@
             // 
             this.buildingTableAdapter.ClearBeforeFill = true;
             // 
+            // idDataGridViewTextBoxColumn3
+            // 
+            this.idDataGridViewTextBoxColumn3.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn3.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
+            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // floorNoDataGridViewTextBoxColumn
+            // 
+            this.floorNoDataGridViewTextBoxColumn.DataPropertyName = "FloorNo";
+            this.floorNoDataGridViewTextBoxColumn.HeaderText = "No";
+            this.floorNoDataGridViewTextBoxColumn.Name = "floorNoDataGridViewTextBoxColumn";
+            this.floorNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // remarkDataGridViewTextBoxColumn1
+            // 
+            this.remarkDataGridViewTextBoxColumn1.DataPropertyName = "Remark";
+            this.remarkDataGridViewTextBoxColumn1.HeaderText = "Remark";
+            this.remarkDataGridViewTextBoxColumn1.Name = "remarkDataGridViewTextBoxColumn1";
+            this.remarkDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dateCreatedDataGridViewTextBoxColumn3
+            // 
+            this.dateCreatedDataGridViewTextBoxColumn3.DataPropertyName = "DateCreated";
+            this.dateCreatedDataGridViewTextBoxColumn3.HeaderText = "Date Created";
+            this.dateCreatedDataGridViewTextBoxColumn3.Name = "dateCreatedDataGridViewTextBoxColumn3";
+            this.dateCreatedDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dateModifiedDataGridViewTextBoxColumn3
+            // 
+            this.dateModifiedDataGridViewTextBoxColumn3.DataPropertyName = "DateModified";
+            this.dateModifiedDataGridViewTextBoxColumn3.HeaderText = "Date Modified";
+            this.dateModifiedDataGridViewTextBoxColumn3.Name = "dateModifiedDataGridViewTextBoxColumn3";
+            this.dateModifiedDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // isTrashedDataGridViewCheckBoxColumn2
+            // 
+            this.isTrashedDataGridViewCheckBoxColumn2.DataPropertyName = "IsTrashed";
+            this.isTrashedDataGridViewCheckBoxColumn2.HeaderText = "IsTrashed";
+            this.isTrashedDataGridViewCheckBoxColumn2.Name = "isTrashedDataGridViewCheckBoxColumn2";
+            this.isTrashedDataGridViewCheckBoxColumn2.ReadOnly = true;
+            this.isTrashedDataGridViewCheckBoxColumn2.Visible = false;
+            // 
             // RoomSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1848,7 +1851,7 @@
             this.flowLayoutPanel10.PerformLayout();
             this.flowLayoutPanel11.ResumeLayout(false);
             this.flowLayoutPanel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFloor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.floorBindingSource)).EndInit();
             this.flowLayoutPanel12.ResumeLayout(false);
             this.buildingtab.ResumeLayout(false);
@@ -1969,11 +1972,11 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel11;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvFloor;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel12;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button addFloorBtn;
+        private System.Windows.Forms.Button btnEditFloor;
+        private System.Windows.Forms.Button btnDeleteBtn;
         private System.Windows.Forms.BindingSource floorBindingSource;
         private ESMART_HMSDBDataSetTableAdapters.FloorTableAdapter floorTableAdapter;
         private System.Windows.Forms.TabPage buildingtab;

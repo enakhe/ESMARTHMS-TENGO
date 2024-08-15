@@ -3,6 +3,7 @@ using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Area;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
 using ESMART_HMS.Presentation.Forms.FrontDesk.RoomType;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
@@ -10,13 +11,7 @@ using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
@@ -34,19 +29,12 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
             InitializeRoomTab(room);
             InitializeRoomTypeTab(roomTypeTab);
             InitializeAreaTab(area);
+            InitializeFloorTab(floor);
         }
 
         private void RoomSettingForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Building' table. You can move, or remove it, as needed.
-            this.buildingTableAdapter.Fill(this.eSMART_HMSDBDataSet.Building);
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Floor' table. You can move, or remove it, as needed.
-            this.floorTableAdapter.Fill(this.eSMART_HMSDBDataSet.Floor);
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Area' table. You can move, or remove it, as needed.
-            this.areaTableAdapter.Fill(this.eSMART_HMSDBDataSet.Area);
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.RoomType' table. You can move, or remove it, as needed.
-            //this.roomTypeTableAdapter.Fill(this.eSMART_HMSDBDataSet.RoomType);
-            this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
+           
 
         }
 
@@ -84,7 +72,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                     }
                 }
             }
-            
+
         }
 
         private void InitializeAreaTab(TabPage tabPage)
@@ -97,6 +85,21 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                     if (allArea.Count > 0)
                     {
                         dgvArea.DataSource = allArea;
+                    }
+                }
+            }
+        }
+
+        private void InitializeFloorTab(TabPage tabPage)
+        {
+            if (tabPage != null)
+            {
+                if (tabPage.Text == "Floor")
+                {
+                    List<Floor> allFloor = _roomController.GetAllFloors();
+                    if (allFloor.Count > 0)
+                    {
+                        dgvFloor.DataSource = allFloor;
                     }
                 }
             }
@@ -226,7 +229,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
             }
             else if (tabPage.Text == "Floor")
             {
-                backColor = ColorTranslator.FromHtml("#98b4d0");
+                backColor = ColorTranslator.FromHtml("");
             }
             else if (tabPage.Text == "Area")
             {
@@ -384,6 +387,79 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 else
                 {
                     MessageBox.Show("Please select a room type to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void addFloorBtn_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            AddFloorForm addFloorForm = serviceProvider.GetRequiredService<AddFloorForm>();
+            if (addFloorForm.ShowDialog() == DialogResult.OK)
+            {
+                InitializeFloorTab(floor);
+            }
+        }
+
+        private void btnEditFloor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvFloor.SelectedRows.Count > 0)
+                {
+                    var row = dgvFloor.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn3"].Value.ToString();
+
+                    using (EditFloorForm editFloorForm = new EditFloorForm(_roomController, id))
+                    {
+                        if (editFloorForm.ShowDialog() == DialogResult.OK)
+                        {
+                            InitializeFloorTab(floor);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a floor to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDeleteBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvFloor.SelectedRows.Count > 0)
+                {
+                    var result = MessageBox.Show("Are you sure you want to add the selected floor to the recycle?\nIts record including all entries tagged to such floor will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgvFloor.SelectedRows)
+                        {
+                            string id = row.Cells["idDataGridViewTextBoxColumn3"].Value.ToString();
+                            _roomController.DeleteFloor(id);
+                        }
+                        InitializeFloorTab(floor);
+                        MessageBox.Show("Successfully added floor information to recycle", "Success", MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a floor to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

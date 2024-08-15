@@ -4,10 +4,7 @@ using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using ESMART_HMS.Presentation.Sessions;
-using ESMART_HMS.Presentation.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Rooms
@@ -148,7 +145,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                         _roomController.CreateRoom(room);
                         this.DialogResult = DialogResult.OK;
                         this.Close();
-                    }  
+                    }
                 }
             }
             catch (Exception ex)

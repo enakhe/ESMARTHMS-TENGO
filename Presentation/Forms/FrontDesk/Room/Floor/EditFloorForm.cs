@@ -3,16 +3,16 @@ using ESMART_HMS.Presentation.Controllers;
 using System;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Presentation.Forms.FrontDesk.RoomType
+namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor
 {
-    public partial class EditRoomTypeForm : Form
+    public partial class EditFloorForm : Form
     {
-        private readonly RoomTypeController _roomTypeController;
-        private readonly string _id;
-        public EditRoomTypeForm(RoomTypeController roomTypeController, string id)
+        private readonly RoomController _roomController;
+        private string _id;
+        public EditFloorForm(RoomController roomController, string id)
         {
-            _roomTypeController = roomTypeController;
             _id = id;
+            _roomController = roomController;
             InitializeComponent();
             LoadData();
         }
@@ -21,10 +21,11 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.RoomType
         {
             try
             {
-                Domain.Entities.RoomType roomType = _roomTypeController.GetRoomTypeById(_id);
-                if (roomType != null)
+                Domain.Entities.Floor floor = _roomController.GetFloorById(_id);
+                if (floor != null)
                 {
-                    txtTitle.Text = roomType.Title;
+                    txtFloorNumber.Text = floor.FloorNo;
+                    txtRemark.Text = floor.Remark;
                 }
             }
             catch (Exception ex)
@@ -34,11 +35,11 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.RoomType
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                bool isNull = FormHelper.AreAnyNullOrEmpty(txtTitle.Text);
+                bool isNull = FormHelper.AreAnyNullOrEmpty(txtFloorNumber.Text);
                 if (isNull)
                 {
                     MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
@@ -46,13 +47,14 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.RoomType
                 }
                 else
                 {
-                    Domain.Entities.RoomType roomType = _roomTypeController.GetRoomTypeById(_id);
-                    if (roomType != null)
+                    Domain.Entities.Floor floor = _roomController.GetFloorById(_id);
+                    if (floor != null)
                     {
-                        roomType.Title = txtTitle.Text;
-                        roomType.DateModified = DateTime.Now;
+                        floor.FloorNo = txtFloorNumber.Text;
+                        floor.Remark = txtRemark.Text;
+                        floor.DateModified = DateTime.Now;
 
-                        _roomTypeController.UpdateRoomType(roomType);
+                        _roomController.UpdateFloor(floor);
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }

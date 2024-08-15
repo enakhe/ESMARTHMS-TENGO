@@ -4,6 +4,7 @@ using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
@@ -50,6 +51,9 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<EditRoomForm>();
             services.AddScoped<RoomGridViewForm>();
             services.AddScoped<AddAreaForm>();
+
+            services.AddScoped<AddFloorForm>();
+            services.AddScoped<EditFloorForm>();
 
             services.AddScoped<AddRoomTypeForm>();
 

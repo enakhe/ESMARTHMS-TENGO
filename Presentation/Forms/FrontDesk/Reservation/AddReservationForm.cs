@@ -4,7 +4,6 @@ using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Rooms;
-using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;

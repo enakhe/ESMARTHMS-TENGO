@@ -1,6 +1,7 @@
 ﻿using ESMART_HMS.Application.UseCases.Maintenance.Room;
-using ESMART_HMS.Application.UseCases.Room;
 using ESMART_HMS.Application.UseCases.Maintenance.Room.Area;
+using ESMART_HMS.Application.UseCases.Maintenance.Room.Floor;
+using ESMART_HMS.Application.UseCases.Room;
 using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
@@ -27,7 +28,13 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly GetAreaByIdUseCase _getAreaByIdUseCase;
         private readonly DeleteAreaUseCase _deleteAreaUseCase;
 
-        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase, UpdateRoomUseCase updateRoomUseCase, GetRealRoomUseCase getRealRoomUseCase, DeleteRoomUseCase deleteRoomUseCase, GetVacantRoomUseCase getVacantRoomUseCase, SearchRoomUseCase searchRoomUseCase, FilterByStatusUseCase filterByStatusUseCase, FilterByTypeUseCase filterByTypeUseCase, GetRoomByRoomNoUseCase getRoomByRoomNoUseCase, CreateAreaUseCase createAreaUseCase, GetAllAreaUseCase getAllAreaUseCase, UpdateAreaUseCase updateAreaUseCase, GetAreaByIdUseCase getAreaByIdUseCase, DeleteAreaUseCase deleteAreaUseCase)
+        private readonly CreateFloorUseCase _createFloorUseCase;
+        private readonly GetAllFloorUseCase _getAllFloorUseCase;
+        private readonly UpdateFloorUseCase _updateFloorUseCase;
+        private readonly GetFloorByIdUseCase _getFloorByIdUseCase;
+        private readonly DeleteFloorUseCase _deleteFloorUseCase;
+
+        public RoomController(GetAllRoomUseCase getAllRoomUseCase, CreateRoomUseCase createRoomUseCase, GetRoomByIdUseCase getRoomByIdUseCase, UpdateRoomUseCase updateRoomUseCase, GetRealRoomUseCase getRealRoomUseCase, DeleteRoomUseCase deleteRoomUseCase, GetVacantRoomUseCase getVacantRoomUseCase, SearchRoomUseCase searchRoomUseCase, FilterByStatusUseCase filterByStatusUseCase, FilterByTypeUseCase filterByTypeUseCase, GetRoomByRoomNoUseCase getRoomByRoomNoUseCase, CreateAreaUseCase createAreaUseCase, GetAllAreaUseCase getAllAreaUseCase, UpdateAreaUseCase updateAreaUseCase, GetAreaByIdUseCase getAreaByIdUseCase, DeleteAreaUseCase deleteAreaUseCase, CreateFloorUseCase createFloorUseCase, GetAllFloorUseCase getAllFloorUseCase, UpdateFloorUseCase updateFloorUseCase, GetFloorByIdUseCase getFloorByIdUseCase, DeleteFloorUseCase deleteFloorUseCase)
         {
             _getAllRoomUseCase = getAllRoomUseCase;
             _createRoomUseCase = createRoomUseCase;
@@ -45,6 +52,11 @@ namespace ESMART_HMS.Presentation.Controllers
             _updateAreaUseCase = updateAreaUseCase;
             _getAreaByIdUseCase = getAreaByIdUseCase;
             _deleteAreaUseCase = deleteAreaUseCase;
+            _createFloorUseCase = createFloorUseCase;
+            _getAllFloorUseCase = getAllFloorUseCase;
+            _updateFloorUseCase = updateFloorUseCase;
+            _getFloorByIdUseCase = getFloorByIdUseCase;
+            _deleteFloorUseCase = deleteFloorUseCase;
         }
 
         public List<RoomViewModel> GetAllRooms()
@@ -126,6 +138,31 @@ namespace ESMART_HMS.Presentation.Controllers
         public void DeleteArea(string id)
         {
             _deleteAreaUseCase.Execute(id);
+        }
+
+        public void AddFloor(Floor floor)
+        {
+            _createFloorUseCase.Execute(floor);
+        }
+
+        public List<Floor> GetAllFloors()
+        {
+            return _getAllFloorUseCase.Execute();
+        }
+
+        public void UpdateFloor(Floor floor)
+        {
+            _updateFloorUseCase.Execute(floor);
+        }
+
+        public Floor GetFloorById(string id)
+        {
+            return _getFloorByIdUseCase.Execute(id);
+        }
+
+        public void DeleteFloor(string id)
+        {
+            _deleteFloorUseCase.Execute(id);
         }
     }
 }

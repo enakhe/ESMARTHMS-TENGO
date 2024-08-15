@@ -126,19 +126,19 @@ namespace ESMART_HMS.Infrastructure.Data
                 }
 
                 var searchGuest = from guest in _db.Guests.Where(c => c.FullName.Contains(keyword) || c.Email.Contains(keyword) || c.PhoneNumber.Contains(keyword) || c.Street.Contains(keyword) || c.City.Contains(keyword) || c.State.Contains(keyword) || c.Country.Contains(keyword) || c.GuestId.Contains(keyword) || c.Company.Contains(keyword)).OrderBy(g => g.FullName)
-                                          select new GuestViewModel
-                                          {
-                                              Id = guest.Id,
-                                              GuestId = guest.GuestId,
-                                              FullName = guest.Title + " " + guest.FullName,
-                                              Email = guest.Email,
-                                              PhoneNumber = guest.PhoneNumber,
-                                              City = guest.City,
-                                              State = guest.State,
-                                              CreatedBy = guest.ApplicationUser.FullName,
-                                              DateCreated = guest.DateCreated,
-                                              DateModified = guest.DateModified,
-                                          };
+                                  select new GuestViewModel
+                                  {
+                                      Id = guest.Id,
+                                      GuestId = guest.GuestId,
+                                      FullName = guest.Title + " " + guest.FullName,
+                                      Email = guest.Email,
+                                      PhoneNumber = guest.PhoneNumber,
+                                      City = guest.City,
+                                      State = guest.State,
+                                      CreatedBy = guest.ApplicationUser.FullName,
+                                      DateCreated = guest.DateCreated,
+                                      DateModified = guest.DateModified,
+                                  };
 
                 return searchGuest.ToList();
             }

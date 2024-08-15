@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Printing;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Domain.Utils
@@ -142,7 +138,7 @@ namespace ESMART_HMS.Domain.Utils
 
             // Draw Document Title
             e.Graphics.DrawString(companyName, companyFont, Brushes.Black, new PointF(leftMargin, 0));
-            e.Graphics.DrawString(documentTitle, headerFont2, Brushes.Black, new PointF(leftMargin + (tableWidth / 2) - 100, topMargin ));
+            e.Graphics.DrawString(documentTitle, headerFont2, Brushes.Black, new PointF(leftMargin + (tableWidth / 2) - 100, topMargin));
 
             topMargin += headerHeight;
 

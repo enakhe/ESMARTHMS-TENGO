@@ -3,12 +3,12 @@ using ESMART_HMS.Presentation.Controllers;
 using System;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
+namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor
 {
-    public partial class AddAreaForm : Form
+    public partial class AddFloorForm : Form
     {
         private readonly RoomController _roomController;
-        public AddAreaForm(RoomController roomController)
+        public AddFloorForm(RoomController roomController)
         {
             _roomController = roomController;
             InitializeComponent();
@@ -16,7 +16,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool isNull = FormHelper.AreAnyNullOrEmpty(txtAreaName.Text, txtAreaNumber.Text);
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtFloorNumber.Text);
             if (isNull)
             {
                 MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
@@ -24,16 +24,15 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             }
             else
             {
-                Domain.Entities.Area area = new Domain.Entities.Area()
+                Domain.Entities.Floor floor = new Domain.Entities.Floor()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    AreaName = txtAreaName.Text,
-                    AreaNo = txtAreaNumber.Text,
+                    FloorNo = txtFloorNumber.Text,
                     Remark = txtRemark.Text,
                     DateCreated = DateTime.Now,
                     DateModified = DateTime.Now,
                 };
-                _roomController.AddArea(area);
+                _roomController.AddFloor(floor);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

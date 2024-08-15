@@ -1,18 +1,13 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
-using ESMART_HMS.Infrastructure.Frameworks.TengoLock;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Guests;
-using ESMART_HMS.Presentation.Forms.Rooms;
-using ESMART_HMS.Presentation.Forms.Tools.Option;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Booking
@@ -201,8 +196,8 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                     {
                         decimal newPrice = FormHelper.GetPriceByRateAndTime(reservation.CheckOutDate, DateTime.Parse(txtCheckOut.Text), room.Rate);
                         txtAmount.Text = (newPrice + decimal.Parse(txtAmount.Text)).ToString();
-                    } 
-                } 
+                    }
+                }
                 else
                 {
                     Room bookingRoom = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());

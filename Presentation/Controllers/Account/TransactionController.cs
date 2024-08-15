@@ -31,7 +31,7 @@ namespace ESMART_HMS.Presentation.Controllers
             return _getAllTransactionsUseCase.Execute();
         }
 
-        public Transaction GetByServiceIdAndStatus(string serviceId, string status) 
+        public Transaction GetByServiceIdAndStatus(string serviceId, string status)
         {
             return _getByServiceIdAndStatus.Execute(serviceId, status);
         }

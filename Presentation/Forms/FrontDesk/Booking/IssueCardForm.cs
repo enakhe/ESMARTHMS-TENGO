@@ -4,13 +4,10 @@ using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
@@ -198,7 +195,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
 
                         txtClockIn.Text = "";
                         txtClockOut.Text = "";
-                    } 
+                    }
                     else
                     {
                         txtEmpty.Text = "";
@@ -211,7 +208,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
                 {
                     CheckErr(st);
                 }
-            }    
+            }
             else
             {
                 txtCardNo.Text = "";
@@ -226,7 +223,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
                 txtEmpty.Text = "";
                 txtEmpty.ForeColor = Color.Transparent;
             }
-            
+
         }
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)

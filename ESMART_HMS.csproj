@@ -277,6 +277,11 @@
     <Compile Include="Application\UseCases\Maintenance\Room\Area\GetAllAreaUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\Area\GetAreaByIdUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\Area\UpdateAreaUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\Floor\CreateFloorUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\Floor\DeleteFloorUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\Floor\GetAllFloorUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\Floor\GetFloorByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\Floor\UpdateFloorUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\GetRoomByRoomNoUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\RoomType\UpdateRoomTypeUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\SystemSetup\GetCompanyInfoUseCase.cs" />
@@ -487,6 +492,18 @@
     <Compile Include="Presentation\Forms\FrontDesk\Room\Area\EditAreaForm.Designer.cs">
       <DependentUpon>EditAreaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Room\Floor\AddFloorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Room\Floor\AddFloorForm.Designer.cs">
+      <DependentUpon>AddFloorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Room\Floor\EditFloorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Room\Floor\EditFloorForm.Designer.cs">
+      <DependentUpon>EditFloorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Room\IsssueRoomSettingCardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -672,6 +689,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\Area\EditAreaForm.resx">
       <DependentUpon>EditAreaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\Floor\AddFloorForm.resx">
+      <DependentUpon>AddFloorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\Floor\EditFloorForm.resx">
+      <DependentUpon>EditFloorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\IsssueRoomSettingCardForm.resx">
       <DependentUpon>IsssueRoomSettingCardForm.cs</DependentUpon>

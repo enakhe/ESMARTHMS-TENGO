@@ -7,15 +7,24 @@ namespace ESMART_HMS.Domain.Interfaces
     {
         void AddRoom(Room room);
         void AddArea(Area area);
+        void AddFloor(Floor floor);
+
         void UpdateRoom(Room room);
         void UpdateArea(Area area);
+        void UpdateFloor(Floor floor);
+
         void DeleteRoom(string Id);
         void DeleteArea(string id);
+        void DeleteFloor(string id);
+
         RoomViewModel GetRoomById(string Id);
         Room GetRealRoom(string Id);
         Room FindByRoomNo(string roomNumber);
         Area GetAresById(string id);
+        Floor GetFloorById(string id);
+
         List<Area> GetAllArea();
+        List<Floor> GetAllFloors();
         List<RoomViewModel> GetAllRooms();
         List<RoomViewModel> GetVacantRoom();
         List<RoomViewModel> SearchRoom(string keyword);

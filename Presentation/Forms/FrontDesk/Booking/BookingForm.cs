@@ -2,13 +2,8 @@
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
-using ESMART_HMS.Presentation.Forms.Guests;
-using ESMART_HMS.Presentation.Forms.Reservation;
-using ESMART_HMS.Presentation.Forms.Rooms;
-using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;

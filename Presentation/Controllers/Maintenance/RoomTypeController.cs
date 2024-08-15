@@ -44,7 +44,7 @@ namespace ESMART_HMS.Presentation.Controllers
             _updateRoomTypeUseCase.Execute(roomType);
         }
 
-        public void DeleteRoomType(string id) 
+        public void DeleteRoomType(string id)
         {
             _deleteRoomTypeUseCase.Execute(id);
         }

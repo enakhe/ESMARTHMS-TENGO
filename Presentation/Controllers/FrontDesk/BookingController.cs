@@ -29,7 +29,7 @@ namespace ESMART_HMS.Presentation.Controllers
             return _getAllBookingsUseCase.Execute();
         }
 
-        public List<IssueCardViewModel> IssueCard(string id) 
+        public List<IssueCardViewModel> IssueCard(string id)
         {
             return _issueCardUseCase.Execute(id);
         }
