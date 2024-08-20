@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.mainFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.statusIndicatorPanel = new System.Windows.Forms.Panel();
             this.roundedPanel1 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
             this.splitContainer11 = new System.Windows.Forms.SplitContainer();
             this.splitContainer12 = new System.Windows.Forms.SplitContainer();
@@ -133,6 +135,22 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1832, 168);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // mainFlowLayoutPanel
+            // 
+            this.mainFlowLayoutPanel.Location = new System.Drawing.Point(12, 241);
+            this.mainFlowLayoutPanel.Name = "mainFlowLayoutPanel";
+            this.mainFlowLayoutPanel.Size = new System.Drawing.Size(200, 100);
+            this.mainFlowLayoutPanel.TabIndex = 1;
+            this.mainFlowLayoutPanel.Visible = false;
+            // 
+            // statusIndicatorPanel
+            // 
+            this.statusIndicatorPanel.Location = new System.Drawing.Point(12, 174);
+            this.statusIndicatorPanel.Name = "statusIndicatorPanel";
+            this.statusIndicatorPanel.Size = new System.Drawing.Size(200, 50);
+            this.statusIndicatorPanel.TabIndex = 2;
+            this.statusIndicatorPanel.Visible = false;
             // 
             // roundedPanel1
             // 
@@ -643,6 +661,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1832, 831);
+            this.Controls.Add(this.statusIndicatorPanel);
+            this.Controls.Add(this.mainFlowLayoutPanel);
             this.Controls.Add(this.flowLayoutPanel1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -748,5 +768,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.FlowLayoutPanel mainFlowLayoutPanel;
+        private System.Windows.Forms.Panel statusIndicatorPanel;
     }
 }

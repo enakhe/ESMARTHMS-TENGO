@@ -16,6 +16,7 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
 
 namespace ESMART_HMS.Presentation.Forms
 {
@@ -33,6 +34,7 @@ namespace ESMART_HMS.Presentation.Forms
         // Maintenance
         SystemSetupFrom systemSetupFrom;
         RoomSettingForm roomSettingForm;
+        CardMaintenanceForm cardMaintenanceForm;
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
@@ -320,6 +322,29 @@ namespace ESMART_HMS.Presentation.Forms
                 roomSettingForm = serviceProvider.GetRequiredService<RoomSettingForm>();
                 roomSettingForm.FormClosed += RoomSetting_FormClosed;
                 roomSettingForm.ShowDialog();
+            }
+            else
+            {
+                reservationForm.Activate();
+            }
+        }
+
+        private void CardMaintenance_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            cardMaintenanceForm = null;
+        }
+
+        private void cardMaintenanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (cardMaintenanceForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                cardMaintenanceForm = serviceProvider.GetRequiredService<CardMaintenanceForm>();
+                cardMaintenanceForm.FormClosed += CardMaintenance_FormClosed;
+                cardMaintenanceForm.ShowDialog();
             }
             else
             {

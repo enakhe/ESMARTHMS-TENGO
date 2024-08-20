@@ -8,6 +8,8 @@
         public string RoomCardNo { get; set; }
         public string RoomLockNo { get; set; }
         public string RoomType { get; set; }
+        public string Floor { get; set; }
+        public string Area { get; set; }
         public string Capacity { get; set; }
         public int AdultPerRoom { get; set; }
         public int ChildrenPerRoom { get; set; }

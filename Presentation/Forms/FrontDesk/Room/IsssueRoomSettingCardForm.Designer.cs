@@ -35,6 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtLockNo = new System.Windows.Forms.Label();
             this.txtRoomNo = new System.Windows.Forms.Label();
+            this.txtCardNo = new System.Windows.Forms.Label();
             this.txtEmpty = new System.Windows.Forms.Label();
             this.txtError = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -42,7 +43,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRecycle = new System.Windows.Forms.Button();
             this.btnIssue = new System.Windows.Forms.Button();
-            this.txtCardNo = new System.Windows.Forms.Label();
+            this.btnOpenPort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -75,6 +76,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnOpenPort);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtLockNo);
@@ -130,6 +132,15 @@
             this.txtRoomNo.Size = new System.Drawing.Size(0, 20);
             this.txtRoomNo.TabIndex = 3;
             // 
+            // txtCardNo
+            // 
+            this.txtCardNo.AutoSize = true;
+            this.txtCardNo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCardNo.Location = new System.Drawing.Point(87, 110);
+            this.txtCardNo.Name = "txtCardNo";
+            this.txtCardNo.Size = new System.Drawing.Size(0, 20);
+            this.txtCardNo.TabIndex = 3;
+            // 
             // txtEmpty
             // 
             this.txtEmpty.AutoSize = true;
@@ -184,6 +195,7 @@
             // btnRecycle
             // 
             this.btnRecycle.BackColor = System.Drawing.Color.Red;
+            this.btnRecycle.Enabled = false;
             this.btnRecycle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecycle.ForeColor = System.Drawing.Color.White;
             this.btnRecycle.Location = new System.Drawing.Point(13, 13);
@@ -197,6 +209,7 @@
             // btnIssue
             // 
             this.btnIssue.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnIssue.Enabled = false;
             this.btnIssue.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIssue.ForeColor = System.Drawing.Color.White;
             this.btnIssue.Location = new System.Drawing.Point(170, 13);
@@ -207,14 +220,17 @@
             this.btnIssue.UseVisualStyleBackColor = false;
             this.btnIssue.Click += new System.EventHandler(this.btnIssue_Click);
             // 
-            // txtCardNo
+            // btnOpenPort
             // 
-            this.txtCardNo.AutoSize = true;
-            this.txtCardNo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardNo.Location = new System.Drawing.Point(87, 110);
-            this.txtCardNo.Name = "txtCardNo";
-            this.txtCardNo.Size = new System.Drawing.Size(0, 20);
-            this.txtCardNo.TabIndex = 3;
+            this.btnOpenPort.BackColor = System.Drawing.Color.White;
+            this.btnOpenPort.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenPort.Location = new System.Drawing.Point(15, 310);
+            this.btnOpenPort.Name = "btnOpenPort";
+            this.btnOpenPort.Size = new System.Drawing.Size(101, 39);
+            this.btnOpenPort.TabIndex = 4;
+            this.btnOpenPort.Text = "Open Port";
+            this.btnOpenPort.UseVisualStyleBackColor = false;
+            this.btnOpenPort.Click += new System.EventHandler(this.btnOpenPort_Click);
             // 
             // IsssueRoomSettingCardForm
             // 
@@ -257,5 +273,6 @@
         private System.Windows.Forms.Button btnRecycle;
         private System.Windows.Forms.Button btnIssue;
         private System.Windows.Forms.Label txtCardNo;
+        private System.Windows.Forms.Button btnOpenPort;
     }
 }

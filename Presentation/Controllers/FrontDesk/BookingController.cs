@@ -11,12 +11,14 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly CreateBookingUseCase _createBookingUseCase;
         private readonly GetAllBookingsUseCase _getAllBookingsUseCase;
         private readonly IssueCardUseCase _issueCardUseCase;
+        private readonly GetBookingByIdUseCase _getBookingByIdUseCase;
 
-        public BookingController(CreateBookingUseCase createBookingUseCase, GetAllBookingsUseCase getAllBookingsUseCase, IssueCardUseCase issueCardUseCase)
+        public BookingController(CreateBookingUseCase createBookingUseCase, GetAllBookingsUseCase getAllBookingsUseCase, IssueCardUseCase issueCardUseCase, GetBookingByIdUseCase getBookingByIdUseCase)
         {
             _createBookingUseCase = createBookingUseCase;
             _getAllBookingsUseCase = getAllBookingsUseCase;
             _issueCardUseCase = issueCardUseCase;
+            _getBookingByIdUseCase = getBookingByIdUseCase;
         }
 
         public void AddBooking(Booking booking)
@@ -33,6 +35,12 @@ namespace ESMART_HMS.Presentation.Controllers
         {
             return _issueCardUseCase.Execute(id);
         }
+
+        public Booking GetBookingById(string id)
+        {
+            return _getBookingByIdUseCase.Execute(id);
+        }
+
 
     }
 }

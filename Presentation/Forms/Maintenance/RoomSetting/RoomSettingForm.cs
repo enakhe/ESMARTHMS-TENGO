@@ -1,8 +1,10 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.Booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Area;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
 using ESMART_HMS.Presentation.Forms.FrontDesk.RoomType;
 using ESMART_HMS.Presentation.Forms.Rooms;
@@ -30,6 +32,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
             InitializeRoomTypeTab(roomTypeTab);
             InitializeAreaTab(area);
             InitializeFloorTab(floor);
+            InitializeBuildingTab(buildingtab);
         }
 
         private void RoomSettingForm_Load(object sender, EventArgs e)
@@ -45,7 +48,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 if (tabPage.Text == "Room")
                 {
                     List<RoomViewModel> allRooms = _roomController.GetAllRooms();
-                    if (allRooms.Count > 0)
+                    if (allRooms != null)
                     {
                         foreach (var room in allRooms)
                         {
@@ -66,7 +69,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 if (tabPage.Text == "Room Type")
                 {
                     List<RoomTypeViewModel> allRoomType = _roomTypeController.GetAllRoomType();
-                    if (allRoomType.Count > 0)
+                    if (allRoomType != null)
                     {
                         dgvRoomType.DataSource = allRoomType;
                     }
@@ -82,7 +85,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 if (tabPage.Text == "Area")
                 {
                     List<Area> allArea = _roomController.GetAllAreas();
-                    if (allArea.Count > 0)
+                    if (allArea != null)
                     {
                         dgvArea.DataSource = allArea;
                     }
@@ -97,9 +100,24 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 if (tabPage.Text == "Floor")
                 {
                     List<Floor> allFloor = _roomController.GetAllFloors();
-                    if (allFloor.Count > 0)
+                    if (allFloor != null)
                     {
                         dgvFloor.DataSource = allFloor;
+                    }
+                }
+            }
+        }
+
+        private void InitializeBuildingTab(TabPage tabPage)
+        {
+            if (tabPage != null)
+            {
+                if (tabPage.Text == "Building")
+                {
+                    List<Building> allBuildings = _roomController.GetAllBuildings();
+                    if (allBuildings != null)
+                    {
+                        dgvBuilding.DataSource = allBuildings;
                     }
                 }
             }
@@ -460,6 +478,79 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 else
                 {
                     MessageBox.Show("Please select a floor to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void addbuildingBtn_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            AddBuildingForm addBuildingForm = serviceProvider.GetRequiredService<AddBuildingForm>();
+            if (addBuildingForm.ShowDialog() == DialogResult.OK)
+            {
+                InitializeBuildingTab(buildingtab);
+            }
+        }
+
+        private void editBuildingBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvBuilding.SelectedRows.Count > 0)
+                {
+                    var row = dgvBuilding.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn4"].Value.ToString();
+
+                    using (EditBuildingForm editBuildingForm = new EditBuildingForm(_roomController, id))
+                    {
+                        if (editBuildingForm.ShowDialog() == DialogResult.OK)
+                        {
+                            InitializeBuildingTab(buildingtab);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a floor to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void deleteBuildingBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvBuilding.SelectedRows.Count > 0)
+                {
+                    var result = MessageBox.Show("Are you sure you want to add the selected building to the recycle?\nIts record including all entries tagged to such building will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgvBuilding.SelectedRows)
+                        {
+                            string id = row.Cells["idDataGridViewTextBoxColumn4"].Value.ToString();
+                            _roomController.DeleteBuilding(id);
+                        }
+                        InitializeBuildingTab(buildingtab);
+                        MessageBox.Show("Successfully added building information to recycle", "Success", MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a builing to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

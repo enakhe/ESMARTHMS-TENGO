@@ -125,9 +125,11 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[Id] [nvarchar](450) NOT NULL," +
                 "[FloorNo][nvarchar](450) NOT NULL," +
                 "[Remark][nvarchar](max) NOT NULL," +
+                "[BuildingId][nvarchar](450) NOT NULL," +
                 "[DateCreated][datetime2](7) NOT NULL," +
                 "[DateModified][datetime2](7) NOT NULL," +
                 "[IsTrashed][bit] NOT NULL," +
+                "FOREIGN KEY (BuildingId) REFERENCES Building(Id)," +
                 "CONSTRAINT [PK_Floor] PRIMARY KEY CLUSTERED([Id] ASC)");
 
             CreateTableIfNotExists("Area",

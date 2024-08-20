@@ -37,8 +37,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion restartreplace
+Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs restartreplace
 Source: "C:\Users\izuag\OneDrive\Desktop\ESMART_HMS\Prerequisite\SQLServer.exe"; DestDir: "{tmp}"; Flags: ignoreversion
 
 [Registry]

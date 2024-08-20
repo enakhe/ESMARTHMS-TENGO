@@ -46,6 +46,7 @@
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__FloorId__4E88ABD4" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__RoomTypeId__4CA06362" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

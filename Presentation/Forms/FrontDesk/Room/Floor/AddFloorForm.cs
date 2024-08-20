@@ -29,6 +29,8 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor
                     Id = Guid.NewGuid().ToString(),
                     FloorNo = txtFloorNumber.Text,
                     Remark = txtRemark.Text,
+                    BuildingId = txtBuilding.SelectedValue.ToString(),
+                    Building = _roomController.GetBuildingById(txtBuilding.SelectedValue.ToString()),
                     DateCreated = DateTime.Now,
                     DateModified = DateTime.Now,
                 };
@@ -36,6 +38,12 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+        }
+
+        private void AddFloorForm_Load(object sender, EventArgs e)
+        {
+            this.buildingTableAdapter.Fill(this.eSMART_HMSDBDataSet.Building);
+
         }
     }
 }

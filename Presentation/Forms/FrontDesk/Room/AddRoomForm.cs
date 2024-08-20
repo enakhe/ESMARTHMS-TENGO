@@ -2,6 +2,9 @@
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using ESMART_HMS.Presentation.Sessions;
 using System;
@@ -17,21 +20,40 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         private readonly ApplicationUserController _userController;
         public AddRoomForm(RoomController roomController, RoomTypeController roomTypeController, ApplicationUserController userController)
         {
-            InitializeComponent();
             _roomController = roomController;
             _roomTypeController = roomTypeController;
             _userController = userController;
+            InitializeComponent();
+            LoadData();
         }
 
-        public void LoadRoomTypeData()
+        public void LoadData()
         {
             try
             {
                 var allRoomTypes = _roomTypeController.GetAllRoomType();
+                var allBuilding = _roomController.GetAllBuildings();
+                var allFloors = _roomController.GetAllFloors();
+                var allAreas = _roomController.GetAllAreas();
                 if (allRoomTypes != null)
                 {
                     txtRoomType.DataSource = allRoomTypes;
                     txtRoomType.Text = allRoomTypes.Count.ToString();
+                }
+
+                if (allBuilding != null)
+                {
+                    txtBuilding.DataSource = allBuilding;
+                }
+
+                if (allFloors != null)
+                {
+                    txtFloor.DataSource = allFloors;
+                }
+
+                if (allAreas != null)
+                {
+                    txtArea.DataSource = allAreas;
                 }
             }
 
@@ -53,6 +75,12 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
         private void AddRoomForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Floor' table. You can move, or remove it, as needed.
+            this.floorTableAdapter.Fill(this.eSMART_HMSDBDataSet.Floor);
+            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Area' table. You can move, or remove it, as needed.
+            this.areaTableAdapter.Fill(this.eSMART_HMSDBDataSet.Area);
+            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Building' table. You can move, or remove it, as needed.
+            this.buildingTableAdapter.Fill(this.eSMART_HMSDBDataSet.Building);
             this.roomTypeTableAdapter.Fill(this.eSMART_HMSDBDataSet.RoomType);
         }
 
@@ -92,21 +120,12 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             }
         }
 
-        private void btnRoomType_Click(object sender, EventArgs e)
-        {
-            AddRoomTypeForm addRoomTypeForm = new AddRoomTypeForm(_roomTypeController);
-            if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
-            {
-                LoadRoomTypeData();
-            }
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
 
             try
             {
-                bool isNull = FormHelper.AreAnyNullOrEmpty(txtRoomNo.Text, txtRate.Text, txtAdultPerRoom.Text, txtChildrenPerRoom.Text, txtRoomType.Text);
+                bool isNull = FormHelper.AreAnyNullOrEmpty(txtRoomNo.Text, txtRate.Text, txtAdultPerRoom.Text, txtChildrenPerRoom.Text, txtRoomType.Text, txtBuilding.Text, txtFloor.Text, txtArea.Text);
                 if (isNull == true)
                 {
                     MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
@@ -123,8 +142,19 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     room.Rate = decimal.Parse(txtRate.Text);
                     room.AdultPerRoom = int.Parse(txtAdultPerRoom.Text);
                     room.ChildrenPerRoom = int.Parse(txtChildrenPerRoom.Text);
+
                     room.RoomTypeId = txtRoomType.SelectedValue.ToString();
                     room.RoomType = _roomTypeController.GetRoomTypeById(txtRoomType.SelectedValue.ToString());
+
+                    room.BuildingId = txtBuilding.SelectedValue.ToString();
+                    room.Building = _roomController.GetBuildingById(txtBuilding.SelectedValue.ToString());
+
+                    room.FloorId = txtFloor.SelectedValue.ToString();
+                    room.Floor = _roomController.GetFloorById(txtFloor.SelectedValue.ToString());
+
+                    room.AreaId = txtArea.SelectedValue.ToString();
+                    room.Area = _roomController.GetAreaById(txtArea.SelectedValue.ToString());
+
                     room.Description = txtDescription.Text.Trim().ToUpper();
                     room.Status = RoomStatusEnum.Vacant.ToString();
 
@@ -178,6 +208,42 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void addRoomType_Click(object sender, EventArgs e)
+        {
+            AddRoomTypeForm addRoomTypeForm = new AddRoomTypeForm(_roomTypeController);
+            if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
+        private void btnAddBuilding_Click(object sender, EventArgs e)
+        {
+            AddBuildingForm addBuildingForm = new AddBuildingForm(_roomController);
+            if (addBuildingForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
+        private void btnArea_Click(object sender, EventArgs e)
+        {
+            AddAreaForm addAreaForm = new AddAreaForm(_roomController);
+            if (addAreaForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
+        private void AddFloor_Click(object sender, EventArgs e)
+        {
+            AddFloorForm addFloorForm = new AddFloorForm(_roomController);
+            if (addFloorForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
             }
         }
     }

@@ -79,6 +79,7 @@
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
+            this.cardMaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
@@ -358,6 +359,7 @@
             this.hardwareSetupToolStripMenuItem,
             this.roomSettingToolStripMenuItem,
             this.usersSettingToolStripMenuItem,
+            this.cardMaintenanceToolStripMenuItem,
             this.importsExportsToolStripMenuItem,
             this.restoreDataFromBackupToolStripMenuItem,
             this.taxFileMaintenanceToolStripMenuItem,
@@ -472,6 +474,14 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
+            // cardMaintenanceToolStripMenuItem
+            // 
+            this.cardMaintenanceToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cardMaintenanceToolStripMenuItem.Image")));
+            this.cardMaintenanceToolStripMenuItem.Name = "cardMaintenanceToolStripMenuItem";
+            this.cardMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.cardMaintenanceToolStripMenuItem.Text = "Card Maintenance";
+            this.cardMaintenanceToolStripMenuItem.Click += new System.EventHandler(this.cardMaintenanceToolStripMenuItem_Click);
+            // 
             // Home
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -551,5 +561,6 @@
         private System.Windows.Forms.ToolStripMenuItem archiveDataFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewRoomsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomSettingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cardMaintenanceToolStripMenuItem;
     }
 }

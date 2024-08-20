@@ -74,8 +74,23 @@ namespace ESMART_HMS.Infrastructure.Data
                                     Room = booking.Room.RoomNo,
                                     RoomType = booking.Room.RoomType.Title,
                                     Amount = booking.TotalAmount.ToString(),
+                                    Floor = booking.Room.Floor.FloorNo,
                                 };
                 return issueCard.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public Booking GetBookingById(string id)
+        {
+            try
+            {
+                return _db.Bookings.FirstOrDefault(b => b.Id == id);
             }
             catch (Exception ex)
             {

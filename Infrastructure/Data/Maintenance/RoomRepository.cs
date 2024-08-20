@@ -56,6 +56,8 @@ namespace ESMART_HMS.Repositories
                                   DateCreated = room.DateCreated,
                                   DateModified = room.DateModified,
                                   RoomType = roomType.Title,
+                                  Floor = room.Floor.FloorNo,
+                                  Area = room.Area.AreaName,
                                   Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                               };
                 return allRoom.OrderBy(r => r.RoomNo).ToList();
@@ -378,6 +380,8 @@ namespace ESMART_HMS.Repositories
             }
         }
 
+
+
         public void AddFloor(Floor floor)
         {
             try
@@ -452,6 +456,93 @@ namespace ESMART_HMS.Repositories
                 else
                 {
                     MessageBox.Show("Floor not found", "Not Found", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        public void AddBuilding(Building building)
+        {
+            try
+            {
+                _db.Buildings.Add(building);
+                _db.SaveChanges();
+                MessageBox.Show("Successfully added building information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public List<Building> GetAllBuildings()
+        {
+            try
+            {
+                return _db.Buildings.Where(b => b.IsTrashed != true).OrderBy(b => b.BuildingNo).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public void UpdateBuilding(Building building)
+        {
+            try
+            {
+                _db.Entry(building).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+                MessageBox.Show("Successfully edited building information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public Building GetBuildingById(string id)
+        {
+            try
+            {
+                return _db.Buildings.FirstOrDefault(b => b.Id == id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
+
+        public void DeleteBuilding(string id)
+        {
+            try
+            {
+                Building building = _db.Buildings.FirstOrDefault(b => b.Id == id);
+                if (building != null)
+                {
+                    building.IsTrashed = true;
+                    _db.Entry(building).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Building not found", "Not Found", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                 }
             }

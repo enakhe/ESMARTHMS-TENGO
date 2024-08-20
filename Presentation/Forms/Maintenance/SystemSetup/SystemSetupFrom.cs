@@ -31,7 +31,6 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
             InitializeComponent();
             tabControl1.Appearance = TabAppearance.Normal;
             InitializeCompanyTab(company);
-            InitializeRoomTab(room);
             _bookingController = bookingController;
         }
 
@@ -64,61 +63,6 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
                             }
                         }
                     }
-                }
-            }
-        }
-
-        private void InitializeRoomTab(TabPage tabPage)
-        {
-            if (tabPage != null)
-            {
-                if (tabPage.Text == "Room")
-                {
-                    List<RoomViewModel> allRooms = _roomController.GetAllRooms();
-                    if (allRooms.Count > 0)
-                    {
-                        foreach (var room in allRooms)
-                        {
-                            FormHelper.TryConvertStringToDecimal(room.Rate.ToString(), out decimal rate);
-                            room.Rate = FormHelper.FormatNumberWithCommas(rate);
-                        }
-                        dgvRooms.DataSource = allRooms;
-                        dgvRooms.CellFormatting += DataGridViewRooms_CellFormatting;
-                    }
-
-                    List<RoomTypeViewModel> allRoomType = _roomTypeController.GetAllRoomType();
-                    if (allRoomType.Count > 0)
-                    {
-                        dgvRoomType.DataSource = allRoomType;
-                    }
-                }
-            }
-        }
-
-        private void DataGridViewRooms_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgvRooms.Columns[e.ColumnIndex].Name == "statusDataGridViewTextBoxColumn")
-            {
-                var cell = dgvRooms.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                if (cell.Value != null && cell.Value.ToString() == "Vacant")
-                {
-                    cell.Style.BackColor = System.Drawing.Color.Green;
-                    cell.Style.ForeColor = System.Drawing.Color.White;
-                }
-                else if (cell.Value != null && cell.Value.ToString() == "Reserved")
-                {
-                    cell.Style.BackColor = System.Drawing.Color.Yellow;
-                    cell.Style.ForeColor = System.Drawing.Color.Black;
-                }
-                else if (cell.Value != null && cell.Value.ToString() == "CheckedIn")
-                {
-                    cell.Style.BackColor = System.Drawing.Color.Blue;
-                    cell.Style.ForeColor = System.Drawing.Color.White;
-                }
-                else
-                {
-                    cell.Style.BackColor = System.Drawing.Color.Red;
-                    cell.Style.ForeColor = System.Drawing.Color.Black;
                 }
             }
         }
@@ -235,87 +179,6 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
             this.roomTypeTableAdapter.Fill(this.eSMART_HMSDBDataSet.RoomType);
             // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Room' table. You can move, or remove it, as needed.
             this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            var services = new ServiceCollection();
-            DependencyInjection.ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
-
-            AddRoomForm addRoomForm = serviceProvider.GetRequiredService<AddRoomForm>();
-            if (addRoomForm.ShowDialog() == DialogResult.OK)
-            {
-                RoomForm roomForm = serviceProvider.GetRequiredService<RoomForm>();
-                InitializeRoomTab(room);
-            }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgvRooms.SelectedRows.Count > 0)
-                {
-                    var row = dgvRooms.SelectedRows[0];
-                    string id = row.Cells["Id"].Value.ToString();
-
-                    using (EditRoomForm editRoomForm = new EditRoomForm(_roomController, _roomTypeController, id))
-                    {
-                        if (editRoomForm.ShowDialog() == DialogResult.OK)
-                        {
-                            InitializeRoomTab(room);
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Please select a room to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnAddType_Click(object sender, EventArgs e)
-        {
-            AddRoomTypeForm addRoomTypeForm = new AddRoomTypeForm(_roomTypeController);
-            if (addRoomTypeForm.ShowDialog() == DialogResult.OK)
-            {
-                InitializeRoomTab(room);
-            }
-        }
-
-        private void btnIssueCard_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgvRooms.SelectedRows.Count > 0)
-                {
-                    var row = dgvRooms.SelectedRows[0];
-                    string id = row.Cells["Id"].Value.ToString();
-
-                    using (IsssueRoomSettingCardForm issueCardForm = new IsssueRoomSettingCardForm(id, _roomController))
-                    {
-                        if (issueCardForm.ShowDialog() == DialogResult.OK)
-                        {
-
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Please select a room to issue card.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-            }
         }
     }
 }

@@ -7,6 +7,6 @@
         public int CardQuantity { get; set; } = 1;
         public string RoomType { get; set; }
         public string Amount { get; set; }
-        public string Floor { get; set; } = "";
+        public string Floor { get; set; }
     }
 }

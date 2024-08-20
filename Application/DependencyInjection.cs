@@ -6,6 +6,7 @@ using ESMART_HMS.Application.UseCases.FrontDesk.Booking;
 using ESMART_HMS.Application.UseCases.Guest;
 using ESMART_HMS.Application.UseCases.Maintenance.Room;
 using ESMART_HMS.Application.UseCases.Maintenance.Room.Area;
+using ESMART_HMS.Application.UseCases.Maintenance.Room.Building;
 using ESMART_HMS.Application.UseCases.Maintenance.Room.Floor;
 using ESMART_HMS.Application.UseCases.Maintenance.Room.RoomType;
 using ESMART_HMS.Application.UseCases.Maintenance.SystemSetup;
@@ -57,6 +58,12 @@ namespace ESMART_HMS.Application
             services.AddScoped<GetFloorByIdUseCase>();
             services.AddScoped<DeleteFloorUseCase>();
 
+            services.AddScoped<CreateBuildingUseCase>();
+            services.AddScoped<GetAllBuildingUseCase>();
+            services.AddScoped<UpdateBuildingUseCase>();
+            services.AddScoped<GetBuildingByIdUseCase>();
+            services.AddScoped<DeleteBuildingUseCase>();
+
             // RoomType Use Cases
             services.AddScoped<CreateRoomTypeUseCase>();
             services.AddScoped<GetAllRoomTypeUseCase>();
@@ -73,6 +80,7 @@ namespace ESMART_HMS.Application
             // Booking Use Case
             services.AddScoped<CreateBookingUseCase>();
             services.AddScoped<GetAllBookingsUseCase>();
+            services.AddScoped<GetBookingByIdUseCase>();
             services.AddScoped<IssueCardUseCase>();
 
             // Configuration Use Case
