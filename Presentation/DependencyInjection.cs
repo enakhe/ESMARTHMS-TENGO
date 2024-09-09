@@ -11,6 +11,7 @@ using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
+using ESMART_HMS.Presentation.Forms.Report;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
@@ -38,6 +39,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<UserRoleController>();
             services.AddScoped<BarItemController>();
             services.AddScoped<SystemSetupController>();
+            services.AddScoped<CardController>();
 
             // Forms
             services.AddScoped<LoginForm>();
@@ -89,6 +91,13 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<RoomSettingForm>();
             services.AddScoped<CardMaintenanceForm>();
             services.AddScoped<MastercardForm>();
+            services.AddScoped<BuildingCardForm>();
+            services.AddScoped<FloorCardForm>();
+
+
+            // Report
+            services.AddScoped<RoomReportForm>();
+            services.AddScoped<BookingReportForm>();
 
             return services;
         }

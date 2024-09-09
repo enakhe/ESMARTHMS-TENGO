@@ -47,6 +47,12 @@
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__RoomTypeId__4CA06362" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.AuthorizationCard" Width="1.5" PointX="6.375" PointY="4.75" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.SpecialCard" Width="1.5" PointX="6.375" PointY="30.75" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.GuestCard" Width="1.5" PointX="6.375" PointY="34.875" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

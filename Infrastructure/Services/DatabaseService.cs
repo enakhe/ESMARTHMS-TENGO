@@ -320,6 +320,47 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[DateModified][datetime2](7) NOT NULL," +
                 "CONSTRAINT [PK_BankAccount] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
+            CreateTableIfNotExists("AuthorizationCard",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[ComputerName][nvarchar](450) NOT NULL," +
+                "[AuthId][nvarchar](450) NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_AuthorizationCard] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("SpecialCard",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[CardNo][nvarchar](450) NOT NULL," +
+                "[CardType][nvarchar](450) NULL," +
+                "[IssueTime][datetime2](7) NOT NULL," +
+                "[RefundTime][datetime2](7) NOT NULL," +
+                "[IssuedBy][nvarchar](450) NOT NULL," +
+                "[CanOpenDeadLocks][bit] NOT NULL," +
+                "[PassageMode][bit] NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_SpecialCard] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("GuestCard",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[CardNo][nvarchar](450) NOT NULL," +
+                "[CardType][nvarchar](450) NULL," +
+                "[IssueTime][datetime2](7) NOT NULL," +
+                "[RefundTime][datetime2](7) NOT NULL," +
+                "[IssuedBy][nvarchar](450) NOT NULL," +
+                "[CanOpenDeadLocks][bit] NOT NULL," +
+                "[PassageMode][bit] NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_GuestCard] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
             CreateTableIfNotExists("Configuration",
                 "[Key][nvarchar](450) NOT NULL," +
                 "[Value][nvarchar](450) NOT NULL," +

@@ -45,5 +45,8 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<Building> Buildings { get; set; }
         public virtual DbSet<Floor> Floors { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<AuthorizationCard> AuthorizationCards { get; set; }
+        public virtual DbSet<SpecialCard> SpecialCards { get; set; }
+        public virtual DbSet<GuestCard> GuestCards { get; set; }
     }
 }

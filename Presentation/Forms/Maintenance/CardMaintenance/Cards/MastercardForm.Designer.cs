@@ -29,31 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MastercardForm));
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTime = new System.Windows.Forms.DateTimePicker();
             this.passageMode = new System.Windows.Forms.CheckBox();
             this.openLocks = new System.Windows.Forms.CheckBox();
             this.cancleCard = new System.Windows.Forms.CheckBox();
             this.btnIssue = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTime = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Valid Time";
-            // 
-            // txtTime
-            // 
-            this.txtTime.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTime.Location = new System.Drawing.Point(128, 65);
-            this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(285, 30);
-            this.txtTime.TabIndex = 1;
             // 
             // passageMode
             // 
@@ -95,7 +77,7 @@
             this.btnIssue.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnIssue.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIssue.ForeColor = System.Drawing.Color.White;
-            this.btnIssue.Location = new System.Drawing.Point(216, 335);
+            this.btnIssue.Location = new System.Drawing.Point(176, 335);
             this.btnIssue.Name = "btnIssue";
             this.btnIssue.Size = new System.Drawing.Size(94, 29);
             this.btnIssue.TabIndex = 3;
@@ -103,10 +85,30 @@
             this.btnIssue.UseVisualStyleBackColor = false;
             this.btnIssue.Click += new System.EventHandler(this.btnIssue_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(27, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Valid Time";
+            // 
+            // txtTime
+            // 
+            this.txtTime.Enabled = false;
+            this.txtTime.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTime.Location = new System.Drawing.Point(128, 65);
+            this.txtTime.Name = "txtTime";
+            this.txtTime.Size = new System.Drawing.Size(285, 30);
+            this.txtTime.TabIndex = 1;
+            // 
             // MastercardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(455, 376);
             this.Controls.Add(this.btnIssue);
             this.Controls.Add(this.cancleCard);
@@ -120,7 +122,7 @@
             this.MinimizeBox = false;
             this.Name = "MastercardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Mastercard";
+            this.Text = "Master Card";
             this.Load += new System.EventHandler(this.MastercardForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -128,12 +130,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker txtTime;
         private System.Windows.Forms.CheckBox passageMode;
         private System.Windows.Forms.CheckBox openLocks;
         private System.Windows.Forms.CheckBox cancleCard;
         private System.Windows.Forms.Button btnIssue;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker txtTime;
     }
 }

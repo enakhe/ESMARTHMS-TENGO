@@ -19,6 +19,7 @@ namespace ESMART_HMS.Infrastructure
             services.AddScoped<UserRoleRepository>();
             services.AddScoped<BarItemRepository>();
             services.AddScoped<SystemSetupRepository>();
+            services.AddScoped<CardRepository>();
 
             return services;
         }

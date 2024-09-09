@@ -45,14 +45,14 @@ namespace ESMART_HMS.Infrastructure.Data
                                      Guest = booking.Guest.Title + " " + booking.Guest.FullName,
                                      GuestPhoneNo = booking.Guest.PhoneNumber,
                                      Room = booking.Room.RoomNo,
-                                     CheckInDate = booking.CheckInDate,
-                                     CheckOutDate = booking.CheckOutDate,
+                                     CheckInDate = booking.CheckInDate.ToString(),
+                                     CheckOutDate = booking.CheckOutDate.ToString(),
                                      PaymentMethod = booking.PaymentMethod,
                                      Duration = booking.Duration.ToString() + "Day",
                                      TotalAmount = booking.TotalAmount.ToString(),
                                      CreatedBy = booking.ApplicationUser.FullName,
-                                     DateCreated = booking.DateCreated,
-                                     DateModified = booking.DateModified,
+                                     DateCreated = booking.DateCreated.ToString(),
+                                     DateModified = booking.DateModified.ToString(),
                                  };
                 return allBooking.ToList();
             }
@@ -86,6 +86,174 @@ namespace ESMART_HMS.Infrastructure.Data
             return null;
         }
 
+        public List<BookingViewModel> GetActiveBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime)
+        {
+            var allBooking = from booking in _db.Bookings
+                .Where(b => b.Room.RoomTypeId == roomTypeId &&
+                               (
+                                   (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime && b.IsTrashed == false) ||
+                                   (b.CheckInDate == null && b.CheckOutDate == null)
+                               )).OrderBy(b => b.DateCreated)
+                             select new BookingViewModel
+                             {
+                                 Id = booking.Id,
+                                 BookingId = booking.BookingId,
+                                 Guest = booking.Guest.Title + " " + booking.Guest.FullName,
+                                 GuestPhoneNo = booking.Guest.PhoneNumber,
+                                 Room = booking.Room.RoomNo,
+                                 CheckInDate = booking.CheckInDate.ToString(),
+                                 CheckOutDate = booking.CheckOutDate.ToString(),
+                                 PaymentMethod = booking.PaymentMethod,
+                                 Duration = booking.Duration.ToString() + "Day",
+                                 TotalAmount = booking.TotalAmount.ToString(),
+                                 CreatedBy = booking.ApplicationUser.FullName,
+                                 DateCreated = booking.DateCreated.ToString(),
+                                 DateModified = booking.DateModified.ToString(),
+                             };
+
+            return allBooking.ToList(); ;
+        }
+
+        public List<BookingViewModel> GetInActiveBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime)
+        {
+            var allBooking = from booking in _db.Bookings
+                .Where(b => b.Room.RoomTypeId == roomTypeId &&
+                               (
+                                   (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime && b.IsTrashed == true) ||
+                                   (b.CheckInDate == null && b.CheckOutDate == null)
+                               )).OrderBy(b => b.DateCreated)
+                             select new BookingViewModel
+                             {
+                                 Id = booking.Id,
+                                 BookingId = booking.BookingId,
+                                 Guest = booking.Guest.Title + " " + booking.Guest.FullName,
+                                 GuestPhoneNo = booking.Guest.PhoneNumber,
+                                 Room = booking.Room.RoomNo,
+                                 CheckInDate = booking.CheckInDate.ToString(),
+                                 CheckOutDate = booking.CheckOutDate.ToString(),
+                                 PaymentMethod = booking.PaymentMethod,
+                                 Duration = booking.Duration.ToString() + "Day",
+                                 TotalAmount = booking.TotalAmount.ToString(),
+                                 CreatedBy = booking.ApplicationUser.FullName,
+                                 DateCreated = booking.DateCreated.ToString(),
+                                 DateModified = booking.DateModified.ToString(),
+                             };
+
+            return allBooking.ToList(); ;
+        }
+
+        public List<BookingViewModel> GetBookingByDate(DateTime fromTime, DateTime endTime)
+        {
+            var allBooking = from booking in _db.Bookings
+                .Where(b =>
+                               (
+                                   (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime && b.IsTrashed == false) ||
+                                   (b.CheckInDate == null && b.CheckOutDate == null)
+                               )).OrderBy(b => b.DateCreated)
+                             select new BookingViewModel
+                             {
+                                 Id = booking.Id,
+                                 BookingId = booking.BookingId,
+                                 Guest = booking.Guest.Title + " " + booking.Guest.FullName,
+                                 GuestPhoneNo = booking.Guest.PhoneNumber,
+                                 Room = booking.Room.RoomNo,
+                                 CheckInDate = booking.CheckInDate.ToString(),
+                                 CheckOutDate = booking.CheckOutDate.ToString(),
+                                 PaymentMethod = booking.PaymentMethod,
+                                 Duration = booking.Duration.ToString() + "Day",
+                                 TotalAmount = booking.TotalAmount.ToString(),
+                                 CreatedBy = booking.ApplicationUser.FullName,
+                                 DateCreated = booking.DateCreated.ToString(),
+                                 DateModified = booking.DateModified.ToString(),
+                             };
+
+            return allBooking.ToList(); ;
+        }
+
+        public List<BookingViewModel> GetAllBookingByDate(DateTime fromTime, DateTime endTime)
+        {
+            var allBooking = from booking in _db.Bookings
+                .Where(b =>
+                               (
+                                   (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime) ||
+                                   (b.CheckInDate == null && b.CheckOutDate == null)
+                               )).OrderBy(b => b.DateCreated)
+                             select new BookingViewModel
+                             {
+                                 Id = booking.Id,
+                                 BookingId = booking.BookingId,
+                                 Guest = booking.Guest.Title + " " + booking.Guest.FullName,
+                                 GuestPhoneNo = booking.Guest.PhoneNumber,
+                                 Room = booking.Room.RoomNo,
+                                 CheckInDate = booking.CheckInDate.ToString(),
+                                 CheckOutDate = booking.CheckOutDate.ToString(),
+                                 PaymentMethod = booking.PaymentMethod,
+                                 Duration = booking.Duration.ToString() + "Day",
+                                 TotalAmount = booking.TotalAmount.ToString(),
+                                 CreatedBy = booking.ApplicationUser.FullName,
+                                 DateCreated = booking.DateCreated.ToString(),
+                                 DateModified = booking.DateModified.ToString(),
+                             };
+
+            return allBooking.ToList(); ;
+        }
+
+        public List<BookingViewModel> GetCheckedOutBookingByDate(DateTime fromTime, DateTime endTime)
+        {
+            var allBooking = from booking in _db.Bookings
+                .Where(b =>
+                               (
+                                   (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime && b.IsTrashed == true) ||
+                                   (b.CheckInDate == null && b.CheckOutDate == null)
+                               )).OrderBy(b => b.DateCreated)
+                             select new BookingViewModel
+                             {
+                                 Id = booking.Id,
+                                 BookingId = booking.BookingId,
+                                 Guest = booking.Guest.Title + " " + booking.Guest.FullName,
+                                 GuestPhoneNo = booking.Guest.PhoneNumber,
+                                 Room = booking.Room.RoomNo,
+                                 CheckInDate = booking.CheckInDate.ToString(),
+                                 CheckOutDate = booking.CheckOutDate.ToString(),
+                                 PaymentMethod = booking.PaymentMethod,
+                                 Duration = booking.Duration.ToString() + "Day",
+                                 TotalAmount = booking.TotalAmount.ToString(),
+                                 CreatedBy = booking.ApplicationUser.FullName,
+                                 DateCreated = booking.DateCreated.ToString(),
+                                 DateModified = booking.DateModified.ToString(),
+                             };
+
+            return allBooking.ToList(); ;
+        }
+
+        public List<BookingViewModel> GetRoomTypeBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime)
+        {
+            var allBooking = from booking in _db.Bookings
+                .Where(b => b.Room.RoomTypeId == roomTypeId &&
+                               (
+                                   (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime) ||
+                                   (b.CheckInDate == null && b.CheckOutDate == null)
+                               )).OrderBy(b => b.DateCreated)
+                             select new BookingViewModel
+                             {
+                                 Id = booking.Id,
+                                 BookingId = booking.BookingId,
+                                 Guest = booking.Guest.Title + " " + booking.Guest.FullName,
+                                 GuestPhoneNo = booking.Guest.PhoneNumber,
+                                 Room = booking.Room.RoomNo,
+                                 CheckInDate = booking.CheckInDate.ToString(),
+                                 CheckOutDate = booking.CheckOutDate.ToString(),
+                                 PaymentMethod = booking.PaymentMethod,
+                                 Duration = booking.Duration.ToString() + "Day",
+                                 TotalAmount = booking.TotalAmount.ToString(),
+                                 CreatedBy = booking.ApplicationUser.FullName,
+                                 DateCreated = booking.DateCreated.ToString(),
+                                 DateModified = booking.DateModified.ToString(),
+                             };
+
+            return allBooking.ToList(); ;
+        }
+
         public Booking GetBookingById(string id)
         {
             try
@@ -98,6 +266,29 @@ namespace ESMART_HMS.Infrastructure.Data
                             MessageBoxIcon.Error);
             }
             return null;
+        }
+
+        public void DeleteBooking(Booking booking)
+        {
+            try
+            {
+                if (booking != null)
+                {
+                    booking.IsTrashed = true;
+                    _db.Entry(booking).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("booking not found", "Not Found", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
     }
 }

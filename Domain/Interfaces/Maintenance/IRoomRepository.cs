@@ -32,10 +32,12 @@ namespace ESMART_HMS.Domain.Interfaces
         List<Floor> GetAllFloors();
         List<RoomViewModel> GetAllRooms();
         List<Building> GetAllBuildings();
+        List<Floor> GetFloorsByBuilding(string id);
 
         List<RoomViewModel> GetVacantRoom();
         List<RoomViewModel> SearchRoom(string keyword);
         List<RoomViewModel> FilterByType(string keyword);
         List<RoomViewModel> FilterByStatus(string keyword);
+        List<RoomViewModel> GetRoomsByFilter(string roomTypeId, string status);
     }
 }

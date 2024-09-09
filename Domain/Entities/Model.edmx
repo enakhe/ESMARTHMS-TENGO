@@ -46,6 +46,18 @@
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="AuthorizationCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ComputerName" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="AuthId" Type="nvarchar" MaxLength="450" />
+          <Property Name="IsTrashed" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="BankAccount">
           <Key>
             <PropertyRef Name="Id" />
@@ -177,6 +189,22 @@
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="GuestCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CardNo" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="450" />
+          <Property Name="IssueTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RefundTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CanOpenDeadLocks" Type="bit" Nullable="false" />
+          <Property Name="PassageMode" Type="bit" Nullable="false" />
+          <Property Name="IsTrashed" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="IngredientItem">
           <Key>
             <PropertyRef Name="Id" />
@@ -288,6 +316,22 @@
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="SpecialCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CardNo" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="450" />
+          <Property Name="IssueTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="RefundTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CanOpenDeadLocks" Type="bit" Nullable="false" />
+          <Property Name="PassageMode" Type="bit" Nullable="false" />
+          <Property Name="IsTrashed" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="Transaction">
           <Key>
             <PropertyRef Name="Id" />
@@ -324,6 +368,18 @@
             </Principal>
             <Dependent Role="ApplicationUserRole">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Authoriza__Creat__70DDC3D8">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
+          <End Role="AuthorizationCard" Type="Self.AuthorizationCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorizationCard">
+              <PropertyRef Name="CreatedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -396,6 +452,18 @@
             </Principal>
             <Dependent Role="Guest">
               <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GuestCard__Issue__7C4F7684">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
+          <End Role="GuestCard" Type="Self.GuestCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GuestCard">
+              <PropertyRef Name="IssuedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -555,6 +623,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__SpecialCa__Issue__787EE5A0">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
+          <End Role="SpecialCard" Type="Self.SpecialCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpecialCard">
+              <PropertyRef Name="IssuedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Transacti__Guest__60A75C0F">
           <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
@@ -571,6 +651,7 @@
           <EntitySet Name="ApplicationUser" EntityType="Self.ApplicationUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApplicationUserRole" EntityType="Self.ApplicationUserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthorizationCard" EntityType="Self.AuthorizationCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankAccount" EntityType="Self.BankAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BarItem" EntityType="Self.BarItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
@@ -579,6 +660,7 @@
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Floor" EntityType="Self.Floor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GuestCard" EntityType="Self.GuestCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IngredientItem" EntityType="Self.IngredientItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
@@ -587,6 +669,7 @@
           <EntitySet Name="RolePermission" EntityType="Self.RolePermission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecialCard" EntityType="Self.SpecialCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Applicati__RoleI__3C69FB99" Association="Self.FK__Applicati__RoleI__3C69FB99">
             <End Role="Role" EntitySet="Role" />
@@ -595,6 +678,10 @@
           <AssociationSet Name="FK__Applicati__UserI__3B75D760" Association="Self.FK__Applicati__UserI__3B75D760">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Authoriza__Creat__70DDC3D8" Association="Self.FK__Authoriza__Creat__70DDC3D8">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="AuthorizationCard" EntitySet="AuthorizationCard" />
           </AssociationSet>
           <AssociationSet Name="FK__BarItem__Created__6754599E" Association="Self.FK__BarItem__Created__6754599E">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
@@ -619,6 +706,10 @@
           <AssociationSet Name="FK__Guest__CreatedBy__5441852A" Association="Self.FK__Guest__CreatedBy__5441852A">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="Guest" EntitySet="Guest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GuestCard__Issue__7C4F7684" Association="Self.FK__GuestCard__Issue__7C4F7684">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="GuestCard" EntitySet="GuestCard" />
           </AssociationSet>
           <AssociationSet Name="FK__Ingredien__Creat__6A30C649" Association="Self.FK__Ingredien__Creat__6A30C649">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
@@ -671,6 +762,10 @@
           <AssociationSet Name="FK__Room__RoomTypeId__4D94879B" Association="Self.FK__Room__RoomTypeId__4D94879B">
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SpecialCa__Issue__787EE5A0" Association="Self.FK__SpecialCa__Issue__787EE5A0">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="SpecialCard" EntitySet="SpecialCard" />
           </AssociationSet>
           <AssociationSet Name="FK__Transacti__Guest__60A75C0F" Association="Self.FK__Transacti__Guest__60A75C0F">
             <End Role="Guest" EntitySet="Guest" />
@@ -801,6 +896,21 @@
           <AssociationSet Name="FK__Floor__BuildingI__48CFD27E" Association="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E">
             <End Role="Building" EntitySet="Buildings" />
             <End Role="Floor" EntitySet="Floors" />
+          </AssociationSet>
+          <EntitySet Name="AuthorizationCards" EntityType="ESMART_HMSDBModel.AuthorizationCard" />
+          <AssociationSet Name="FK__Authoriza__Creat__70DDC3D8" Association="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="AuthorizationCard" EntitySet="AuthorizationCards" />
+          </AssociationSet>
+          <EntitySet Name="SpecialCards" EntityType="ESMART_HMSDBModel.SpecialCard" />
+          <AssociationSet Name="FK__SpecialCa__Issue__73BA3083" Association="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="SpecialCard" EntitySet="SpecialCards" />
+          </AssociationSet>
+          <EntitySet Name="GuestCards" EntityType="ESMART_HMSDBModel.GuestCard" />
+          <AssociationSet Name="FK__GuestCard__Issue__7C4F7684" Association="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="GuestCard" EntitySet="GuestCards" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Configuration">
@@ -938,6 +1048,9 @@
           <NavigationProperty Name="BarItems" Relationship="ESMART_HMSDBModel.FK__BarItem__Created__5EBF139D" FromRole="ApplicationUser" ToRole="BarItem" />
           <NavigationProperty Name="IngredientItems" Relationship="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048" FromRole="ApplicationUser" ToRole="IngredientItem" />
           <NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__CreatedBy__5070F446" FromRole="ApplicationUser" ToRole="Room" />
+          <NavigationProperty Name="AuthorizationCards" Relationship="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8" FromRole="ApplicationUser" ToRole="AuthorizationCard" />
+          <NavigationProperty Name="SpecialCards" Relationship="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083" FromRole="ApplicationUser" ToRole="SpecialCard" />
+          <NavigationProperty Name="GuestCards" Relationship="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" FromRole="ApplicationUser" ToRole="GuestCard" />
         </EntityType>
         <Association Name="FK__Applicati__UserI__3B75D760">
           <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
@@ -1397,6 +1510,89 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AuthorizationCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ComputerName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="AuthId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8" FromRole="AuthorizationCard" ToRole="ApplicationUser" />
+        </EntityType>
+        <Association Name="FK__Authoriza__Creat__70DDC3D8">
+          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.AuthorizationCard" Role="AuthorizationCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorizationCard">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SpecialCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CardNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CardType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="IssueTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RefundTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CanOpenDeadLocks" Type="Boolean" Nullable="false" />
+          <Property Name="PassageMode" Type="Boolean" Nullable="false" />
+          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083" FromRole="SpecialCard" ToRole="ApplicationUser" />
+        </EntityType>
+        <Association Name="FK__SpecialCa__Issue__73BA3083">
+          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.SpecialCard" Role="SpecialCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpecialCard">
+              <PropertyRef Name="IssuedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GuestCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CardNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CardType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="IssueTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="RefundTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CanOpenDeadLocks" Type="Boolean" Nullable="false" />
+          <Property Name="PassageMode" Type="Boolean" Nullable="false" />
+          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" FromRole="GuestCard" ToRole="ApplicationUser" />
+        </EntityType>
+        <Association Name="FK__GuestCard__Issue__7C4F7684">
+          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.GuestCard" Role="GuestCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GuestCard">
+              <PropertyRef Name="IssuedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1717,6 +1913,53 @@
                 <ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
                 <ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
                 <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthorizationCards">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.AuthorizationCard">
+              <MappingFragment StoreEntitySet="AuthorizationCard">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+                <ScalarProperty Name="AuthId" ColumnName="AuthId" />
+                <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialCards">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.SpecialCard">
+              <MappingFragment StoreEntitySet="SpecialCard">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+                <ScalarProperty Name="PassageMode" ColumnName="PassageMode" />
+                <ScalarProperty Name="CanOpenDeadLocks" ColumnName="CanOpenDeadLocks" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
+                <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuestCards">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.GuestCard">
+              <MappingFragment StoreEntitySet="GuestCard">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+                <ScalarProperty Name="PassageMode" ColumnName="PassageMode" />
+                <ScalarProperty Name="CanOpenDeadLocks" ColumnName="CanOpenDeadLocks" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
+                <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -3,12 +3,14 @@ using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -20,11 +22,13 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         private readonly RoomTypeController _roomTypeController;
         private readonly ApplicationUserController _applicationUserController;
         private readonly SystemSetupController _systemSetupController;
+        private readonly CardController _cardController;
+        private readonly ApplicationUserController _userController;
         private PrintDocument printDocument1 = new PrintDocument();
         private string documentTitle = "Rooms List";
         private PrintDocument printDocument = new PrintDocument();
 
-        public RoomForm(RoomController roomController, RoomTypeController roomTypeController, ApplicationUserController applicationUserController, SystemSetupController systemSetupController)
+        public RoomForm(RoomController roomController, RoomTypeController roomTypeController, ApplicationUserController applicationUserController, SystemSetupController systemSetupController, CardController cardController, ApplicationUserController userController)
         {
             _roomController = roomController;
             _roomTypeController = roomTypeController;
@@ -33,6 +37,8 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             InitializeComponent();
             ApplyAuthorization();
             _systemSetupController = systemSetupController;
+            _cardController = cardController;
+            _userController = userController;
         }
 
         private void ApplyAuthorization()
@@ -43,7 +49,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         private void RoomsForm_Load(object sender, EventArgs e)
         {
             LoadData();
-            this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
         }
 
         public void LoadData()
@@ -52,12 +57,18 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             try
             {
                 var allRooms = _roomController.GetAllRooms();
+                var allRoomTypes = new List<RoomTypeViewModel>();
+                var roomTypes = _roomTypeController.GetAllRoomType();
+
                 if (allRooms != null)
                 {
                     foreach (var room in allRooms)
                     {
                         FormHelper.TryConvertStringToDecimal(room.Rate.ToString(), out decimal rate);
                         room.Rate = FormHelper.FormatNumberWithCommas(rate);
+
+                        room.DateCreated = FormHelper.FormatDateTimeWithSuffix(room.DateCreated);
+                        room.DateModified = FormHelper.FormatDateTimeWithSuffix(room.DateModified);
                     }
 
                     dgvRooms.DataSource = allRooms;
@@ -65,6 +76,27 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     txtRoomCount.Text = allRooms.Count.ToString();
                     txtVacant.Text = _roomController.GetAllRooms().Where(r => r.Status == RoomStatusEnum.Vacant.ToString()).Count().ToString();
                     txtReserved.Text = _roomController.GetAllRooms().Where(r => r.Status == RoomStatusEnum.Reserved.ToString()).Count().ToString();
+                    txtBooked.Text = _roomController.GetAllRooms().Where(r => r.Status == RoomStatusEnum.CheckedIn.ToString()).Count().ToString();
+                }
+
+                if (roomTypes != null)
+                {
+                    RoomTypeViewModel all = new RoomTypeViewModel()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        RoomTypeId = "ALL",
+                        Title = "ALL",
+                        DateCreated = DateTime.Now,
+                        DateModified = DateTime.Now,
+                    };
+                    allRoomTypes.Add(all);
+
+                    foreach (var roomType in roomTypes)
+                    {
+                        allRoomTypes.Add(roomType);
+                    }
+
+                    txtRoomType.DataSource = allRoomTypes;
                 }
             }
             catch (Exception ex)
@@ -76,7 +108,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
         private void DataGridViewRooms_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvRooms.Columns[e.ColumnIndex].Name == "Status")
+            if (dgvRooms.Columns[e.ColumnIndex].Name == "statusDataGridViewTextBoxColumn")
             {
                 var cell = dgvRooms.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (cell.Value != null && cell.Value.ToString() == "Vacant")
@@ -149,30 +181,10 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             }
         }
 
-        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
-            bool isNull = FormHelper.AreAnyNullOrEmpty(comboBox1.Text);
-            if (isNull == false)
-            {
-                List<RoomViewModel> filteredRooms = _roomController.FilterByStatus(comboBox1.Text);
-                if (filteredRooms != null)
-                {
-                    if (filteredRooms.Count > 0)
-                    {
-                        foreach (var room in filteredRooms)
-                        {
-                            FormHelper.TryConvertStringToDecimal(room.Rate.ToString(), out decimal rate);
-                            room.Rate = FormHelper.FormatNumberWithCommas(rate);
-                        }
-
-                        dgvRooms.DataSource = filteredRooms;
-                    }
-                    else
-                    {
-                        LoadData();
-                    }
-                }
-            }
+            string companyName = _systemSetupController.GetCompanyInfo().Name;
+            PrintHelper.PrintDataGridView(dgvRooms, documentTitle, companyName);
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -183,7 +195,14 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 List<RoomViewModel> searchedRooms = _roomController.SearchRoom(txtSearch.Text);
                 if (searchedRooms != null)
                 {
+                    foreach (var room in searchedRooms)
+                    {
+                        FormHelper.TryConvertStringToDecimal(room.Rate.ToString(), out decimal rate);
+                        room.Rate = FormHelper.FormatNumberWithCommas(rate);
+                    }
+
                     dgvRooms.DataSource = searchedRooms;
+                    dgvRooms.CellFormatting += DataGridViewRooms_CellFormatting;
                 }
                 else
                 {
@@ -196,46 +215,33 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             }
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void btnShowRoom_Click(object sender, EventArgs e)
         {
-            string companyName = _systemSetupController.GetCompanyInfo().Name;
-            PrintHelper.PrintDataGridView(dgvRooms, documentTitle, companyName);
-        }
-
-        private void comboBox1_TextChanged(object sender, EventArgs e)
-        {
-            bool isNull = FormHelper.AreAnyNullOrEmpty(comboBox1.Text);
-            if (isNull == false)
+            try
             {
-                List<RoomViewModel> filteredRooms = _roomController.FilterByStatus(comboBox1.Text);
-                if (filteredRooms != null)
+                if (dgvRooms.SelectedRows.Count > 0)
                 {
-                    if (filteredRooms.Count > 0)
-                    {
-                        foreach (var room in filteredRooms)
-                        {
-                            FormHelper.TryConvertStringToDecimal(room.Rate.ToString(), out decimal rate);
-                            room.Rate = FormHelper.FormatNumberWithCommas(rate);
-                        }
+                    var row = dgvRooms.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
-                        dgvRooms.DataSource = filteredRooms;
-                    }
-                    else
+                    using (ShowRoomForm showRoomForm = new ShowRoomForm(id, _roomController, _cardController, _userController))
                     {
-                        LoadData();
+                        if (showRoomForm.ShowDialog() == DialogResult.OK)
+                        {
+
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Please select a room to issue card.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-        }
-
-        private void btnGrid_Click(object sender, EventArgs e)
-        {
-            var services = new ServiceCollection();
-            DependencyInjection.ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
-
-            RoomGridViewForm roomGridView = serviceProvider.GetRequiredService<RoomGridViewForm>();
-            roomGridView.Show();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -53,8 +53,8 @@ namespace ESMART_HMS.Repositories
                                   Rate = room.Rate.ToString(),
                                   Status = room.Status,
                                   CreatedBy = room.ApplicationUser.FullName,
-                                  DateCreated = room.DateCreated,
-                                  DateModified = room.DateModified,
+                                  DateCreated = room.DateCreated.ToString(),
+                                  DateModified = room.DateModified.ToString(),
                                   RoomType = roomType.Title,
                                   Floor = room.Floor.FloorNo,
                                   Area = room.Area.AreaName,
@@ -86,8 +86,8 @@ namespace ESMART_HMS.Repositories
                     Description = room.Description,
                     Rate = room.Rate.ToString(),
                     Status = room.Status,
-                    DateCreated = room.DateCreated,
-                    DateModified = room.DateModified,
+                    DateCreated = room.DateCreated.ToString(),
+                    DateModified = room.DateModified.ToString(),
                     RoomType = roomType.Title,
                     Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                 };
@@ -171,8 +171,8 @@ namespace ESMART_HMS.Repositories
                                      Description = room.Description,
                                      Rate = room.Rate.ToString(),
                                      Status = room.Status,
-                                     DateCreated = room.DateCreated,
-                                     DateModified = room.DateModified,
+                                     DateCreated = room.DateCreated.ToString(),
+                                     DateModified = room.DateModified.ToString(),
                                      RoomType = roomType.Title,
                                      Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                                  };
@@ -190,7 +190,7 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                var searchRooms = from room in _db.Rooms.Where(r => r.RoomId.Contains(keyword) || r.RoomNo.Contains(keyword) || r.RoomType.Title.Contains(keyword)).OrderBy(r => r.RoomNo)
+                var searchRooms = from room in _db.Rooms.Where(r => r.RoomNo == keyword)
                                   join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
                                   select new RoomViewModel
                                   {
@@ -202,8 +202,8 @@ namespace ESMART_HMS.Repositories
                                       Description = room.Description,
                                       Rate = room.Rate.ToString(),
                                       Status = room.Status,
-                                      DateCreated = room.DateCreated,
-                                      DateModified = room.DateModified,
+                                      DateCreated = room.DateCreated.ToString(),
+                                      DateModified = room.DateModified.ToString(),
                                       RoomType = roomType.Title,
                                       Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                                   };
@@ -234,12 +234,12 @@ namespace ESMART_HMS.Repositories
                                       Description = room.Description,
                                       Rate = room.Rate.ToString(),
                                       Status = room.Status,
-                                      DateCreated = room.DateCreated,
-                                      DateModified = room.DateModified,
+                                      DateCreated = room.DateCreated.ToString(),
+                                      DateModified = room.DateModified.ToString(),
                                       RoomType = roomType.Title,
                                       Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                                   };
-                return searchRooms.ToList();
+                return searchRooms.OrderBy(room => room.RoomNo).ToList();
             }
             catch (Exception ex)
             {
@@ -254,7 +254,7 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                var searchRooms = from room in _db.Rooms.Where(r => r.Status == keyword).OrderBy(r => r.RoomNo)
+                var searchRooms = from room in _db.Rooms.Where(r => r.RoomType.Id == keyword).OrderBy(r => r.RoomNo)
                                   join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
                                   select new RoomViewModel
                                   {
@@ -266,12 +266,12 @@ namespace ESMART_HMS.Repositories
                                       Description = room.Description,
                                       Rate = room.Rate.ToString(),
                                       Status = room.Status,
-                                      DateCreated = room.DateCreated,
-                                      DateModified = room.DateModified,
+                                      DateCreated = room.DateCreated.ToString(),
+                                      DateModified = room.DateModified.ToString(),
                                       RoomType = roomType.Title,
                                       Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
                                   };
-                return searchRooms.ToList();
+                return searchRooms.OrderBy(room => room.RoomNo).ToList();
             }
             catch (Exception ex)
             {
@@ -295,6 +295,32 @@ namespace ESMART_HMS.Repositories
             }
             return null;
         }
+
+        public List<RoomViewModel> GetRoomsByFilter(string roomTypeId, string status)
+        {
+            var rooms = from room in _db.Rooms.Where(room => room.RoomTypeId == roomTypeId && room.Status == status)
+                        join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
+                        select new RoomViewModel
+                        {
+                            Id = room.Id,
+                            RoomId = room.RoomId,
+                            RoomNo = room.RoomNo,
+                            AdultPerRoom = room.AdultPerRoom,
+                            ChildrenPerRoom = room.ChildrenPerRoom,
+                            Description = room.Description,
+                            Rate = room.Rate.ToString(),
+                            Status = room.Status,
+                            DateCreated = room.DateCreated.ToString(),
+                            DateModified = room.DateModified.ToString(),
+                            RoomType = roomType.Title,
+                            Capacity = (room.ChildrenPerRoom + room.AdultPerRoom).ToString()
+                        };
+
+            return rooms.OrderBy(room => room.RoomNo).ToList();
+        }
+
+
+
 
         public void AddArea(Area area)
         {
@@ -464,6 +490,20 @@ namespace ESMART_HMS.Repositories
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+        }
+
+        public List<Floor> GetFloorsByBuilding(string id)
+        {
+            try
+            {
+                return _db.Floors.Where(f => f.BuildingId == id).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
         }
 
 

@@ -27,6 +27,7 @@ namespace ESMART_HMS.Domain
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             services.AddScoped<IBarItemRepository, BarItemRepository>();
             services.AddScoped<ISystemSetupRepository, SystemSetupRepository>();
+            services.AddScoped<ICardRepository, CardRepository>();
             return services;
         }
     }

@@ -1,7 +1,7 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Forms.Booking;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Area;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
@@ -22,10 +22,15 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
     {
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
-        public RoomSettingForm(RoomController roomController, RoomTypeController roomTypeController)
+        private readonly CardController _cardController;
+        private readonly ApplicationUserController _userController;
+
+
+        public RoomSettingForm(RoomController roomController, RoomTypeController roomTypeController, CardController cardController, ApplicationUserController userController)
         {
             _roomController = roomController;
             _roomTypeController = roomTypeController;
+            _cardController = cardController;
             InitializeComponent();
             tabControl1.Appearance = TabAppearance.Normal;
             InitializeRoomTab(room);
@@ -33,11 +38,12 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
             InitializeAreaTab(area);
             InitializeFloorTab(floor);
             InitializeBuildingTab(buildingtab);
+            _userController = userController;
         }
 
         private void RoomSettingForm_Load(object sender, EventArgs e)
         {
-           
+
 
         }
 
@@ -203,7 +209,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                     var row = dgvRooms.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
-                    using (IsssueRoomSettingCardForm issueCardForm = new IsssueRoomSettingCardForm(id, _roomController))
+                    using (IsssueRoomSettingCardForm issueCardForm = new IsssueRoomSettingCardForm(id, _roomController, _cardController, _userController))
                     {
                         if (issueCardForm.ShowDialog() == DialogResult.OK)
                         {
@@ -507,7 +513,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 if (dgvBuilding.SelectedRows.Count > 0)
                 {
                     var row = dgvBuilding.SelectedRows[0];
-                    string id = row.Cells["idDataGridViewTextBoxColumn4"].Value.ToString();
+                    string id = row.Cells["dataGridViewTextBoxColumn1"].Value.ToString();
 
                     using (EditBuildingForm editBuildingForm = new EditBuildingForm(_roomController, id))
                     {

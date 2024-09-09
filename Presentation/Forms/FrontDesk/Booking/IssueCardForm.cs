@@ -1,14 +1,16 @@
 ﻿using ESMART_HMS.Application.LockSDK;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
-using ESMART_HMS.Infrastructure.Frameworks.TengoLock;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
+using NTwain.Data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Threading;
@@ -17,48 +19,73 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
 {
     public partial class IssueCardForm : Form
     {
-        private readonly BookingController _bookingController;
         private readonly string _id;
+        string computerName = Environment.MachineName;
         private DispatcherTimer dispatcherTimer;
-        public IssueCardForm(BookingController bookingController, string id)
+        private readonly BookingController _bookingController;
+        private readonly CardController _cardController;
+        private readonly ApplicationUserController _userController;
+
+        public IssueCardForm(BookingController bookingController, string id, CardController cardController, ApplicationUserController userController)
         {
             _bookingController = bookingController;
             _id = id;
+            _cardController = cardController;
             InitializeComponent();
             InitializeTimer();
+            _userController = userController;
         }
         int st = 0;
 
         private void IssueCardForm_Load(object sender, EventArgs e)
         {
-            var stResult = CheckEncoder();
-            if (stResult == -2)
+            LoadData();
+            dispatcherTimer.Start();
+            Int16 locktype = 5;
+            int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
+            if (checkEncoder != 1)
             {
-                this.Close();
+                LockSDKMethods.CheckErr(checkEncoder);
             }
-            else
+
+            int openPort = OpenPort(5);
+            if (openPort != 1)
             {
-                LoadCardDetails();
-                dispatcherTimer.Start();
-                BookingViewModel booking = _bookingController.GetAllBookings().FirstOrDefault(b => b.Id == _id);
-                if (booking != null)
+                LockSDKMethods.CheckErr(openPort);
+            }
+
+            StringBuilder authCard = GetAuthCardFromDB();
+            string fnp = "1011899778569788";
+            StringBuilder clientData = authCard;
+
+            int systemIni = LockSDKMethods.SystemInitialization(fnp, clientData);
+            if (systemIni != 1)
+            {
+                LockSDKMethods.CheckErr(systemIni);
+                return;
+            }
+        }
+
+        private void LoadData()
+        {
+            BookingViewModel booking = _bookingController.GetAllBookings().FirstOrDefault(b => b.Id == _id);
+            if (booking != null)
+            {
+                txtRoom.Text = "1.1." + booking.Room;
+                txtGuest.Text = booking.Guest;
+                txtInTime.Text = booking.CheckInDate.ToString();
+                txtOutTime.Text = booking.CheckOutDate.ToString();
+
+                List<IssueCardViewModel> issueCard = _bookingController.IssueCard(booking.Id);
+                if (issueCard != null)
                 {
-                    txtRoom.Text = "1.1." + booking.Room;
-                    txtGuest.Text = booking.Guest;
-                    txtInTime.Text = booking.CheckInDate.ToString();
-                    txtOutTime.Text = booking.CheckOutDate.ToString();
-
-                    List<IssueCardViewModel> issueCard = _bookingController.IssueCard(booking.Id);
-                    if (issueCard != null)
+                    foreach (var bookings in issueCard)
                     {
-                        foreach (var bookings in issueCard)
-                        {
-                            FormHelper.TryConvertStringToDecimal(booking.TotalAmount, out decimal amount);
+                        FormHelper.TryConvertStringToDecimal(booking.TotalAmount, out decimal amount);
 
-                            bookings.Amount = FormHelper.FormatNumberWithCommas(amount);
-                        }
-                        dgvIssueCard.DataSource = issueCard;
+                        bookings.Amount = FormHelper.FormatNumberWithCommas(amount);
                     }
+                    dgvIssueCard.DataSource = issueCard;
                 }
             }
         }
@@ -71,76 +98,89 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
             dispatcherTimer.Tick += DispatcherTimer_Tick;
         }
 
+        private int SelectDoorLockType(int doorType)
+        {
+            st = LockSDKHeaders.LS_SelectDoorLockType(doorType);
+            return st;
+        }
+
+        private int OpenPort(int port)
+        {
+            st = LockSDKHeaders.LS_OpenPort(port);
+            return st;
+        }
+
         public int CheckEncoder()
         {
             Int16 locktype = 5;
-            st = LockSDKHeaders.LS_OpenPort(locktype);
-            LockSDKHeaders.CheckErr(st);
+            st = LockSDKHeaders.TP_Configuration(locktype);
             return st;
+        }
+
+        public StringBuilder GetAuthCardFromDB()
+        {
+            Domain.Entities.AuthorizationCard AuthCard = _cardController.GetAuthCardByComputer(computerName);
+            if (AuthCard != null)
+            {
+                return new StringBuilder(AuthCard.AuthId);
+            }
+            return null;
         }
 
         private void LoadCardDetails()
         {
-
-            //Read card
             char[] card_snr = new char[100];
-            StringBuilder lockno = new StringBuilder(100);
-            StringBuilder intime = new StringBuilder(100);
-            StringBuilder outtime = new StringBuilder(100);
 
-            var card = LockSDKHeaders.LS_ReadRom(card_snr);
-
-            if (card == 1)
+            int st = LockSDKMethods.ReadCard(card_snr);
+            if (st != (int)ERROR_TYPE.OPR_OK)
             {
-                int iflags = 0;
-                st = LockSDKHeaders.LS_ReadGuestCard(card_snr, lockno, intime, outtime);
-                if (st == 1)
-                {
-                    string[] parts = lockno.ToString().Split('.');
-                    string roomNo = parts[parts.Length - 1];
+                txtStatus.Text = "No Found Card";
+                txtStatus.ForeColor = Color.Red;
 
-                    txtCardNo.Text = card_snr.ToString();
-                    txtLockNo.Text = lockno.ToString();
-                    txtRoomNo.Text = roomNo;
-                    txtClockIn.Text = intime.ToString();
-                    txtClockOut.Text = outtime.ToString();
-
-                    if (lockno.ToString() == "")
-                    {
-                        txtEmpty.Text = "Empty card";
-                        txtEmpty.ForeColor = Color.Red;
-
-                        txtClockIn.Text = "";
-                        txtClockOut.Text = "";
-                    }
-                    else
-                    {
-                        txtEmpty.Text = "";
-                        txtEmpty.ForeColor = Color.Transparent;
-                    }
-                    txtError.Text = "Card found";
-                    txtError.ForeColor = Color.Green;
-                }
-                else
-                {
-                    LockSDKHeaders.CheckErr(st);
-                }
+                txtCardNo.Text = "";
+                txtCardTypeTwo.Text = "";
+                txtLockNo.Text = "";
+                txtRoomNo.Text = "";
             }
             else
             {
-                txtCardNo.Text = "";
-                txtLockNo.Text = "";
-                txtRoomNo.Text = "";
-                txtClockIn.Text = "";
-                txtClockOut.Text = "";
+                Domain.Entities.Booking selectedBooking = _bookingController.GetBookingById(_id);
 
-                txtError.Text = "No card found";
-                txtError.ForeColor = Color.Red;
+                txtStatus.Text = "Card Found";
+                txtStatus.ForeColor = Color.Green;
+                txtCardTypeTwo.ForeColor = Color.Blue;
 
-                txtEmpty.Text = "";
-                txtEmpty.ForeColor = Color.Transparent;
+                CARD_INFO cardInfo = new CARD_INFO();
+                byte[] cbuf = new byte[10000];
+                cardInfo = new CARD_INFO();
+                int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+
+                if (result == (int)ERROR_TYPE.OPR_OK)
+                {
+                    var roomNo = FormHelper.ByteArrayToString(cardInfo.RoomList);
+                    bool isNull = FormHelper.AreAnyNullOrEmpty(roomNo);
+
+                    if (isNull)
+                    {
+                        txtStatus.Text = "Empty Card";
+                        txtStatus.ForeColor = Color.Red;
+
+                        txtCardNo.Text = "";
+                        txtCardTypeTwo.Text = "";
+                        txtLockNo.Text = "";
+                        txtRoomNo.Text = "";
+                    }
+                    else
+                    {
+                        MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
+
+                        txtRoomNo.Text = selectedBooking.Room.RoomNo;
+                        txtCardNo.Text = FormHelper.ByteArrayToString(cardInfo.CardNo);
+                        txtCardTypeTwo.Text = FormHelper.FormatEnumName(cardType);
+                        txtLockNo.Text = $"1.1.{selectedBooking.Room.RoomNo}";
+                    }
+                }
             }
-
         }
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
@@ -159,11 +199,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
             }
         }
 
-        private void IssueCardForm_Enter(object sender, EventArgs e)
-        {
-            LoadCardDetails();
-        }
-
         private void btnIssueCard_Click(object sender, EventArgs e)
         {
             //Issue card
@@ -177,12 +212,46 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
 
             if (LockSDKHeaders.PreparedIssue(card_snr) == false)
                 return;
-            st = LockSDKHeaders.LS_MakeGuestCard_EX1(card_snr, roomno, booking.Room.Area.AreaNo, booking.Room.Floor.FloorNo, intime, outtime, iflags);
+            st = LockSDKMethods.MakeGuestCard(card_snr, roomno, booking.Room.Area.AreaNo, booking.Room.Floor.FloorNo, intime, outtime, iflags);
 
-            if (st == 1)
+            if (st == (int)ERROR_TYPE.OPR_OK)
             {
+                CARD_INFO cardInfo = new CARD_INFO();
+                byte[] cbuf = new byte[10000];
+                cardInfo = new CARD_INFO();
+                int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+
+                string cardNoString = FormHelper.ByteArrayToString(cardInfo.CardNo);
+                MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
+
+                GuestCard guestCard = new GuestCard()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    CardNo = cardNoString,
+                    CardType = FormHelper.FormatEnumName(cardType),
+                    IssueTime = DateTime.Now,
+                    RefundTime = DateTime.Now,
+                    IssuedBy = AuthSession.CurrentUser.Id,
+                    ApplicationUser = _userController.GetApplicationUserById(AuthSession.CurrentUser.Id),
+                    CanOpenDeadLocks = true,
+                    PassageMode = false,
+                    DateCreated = DateTime.Now,
+                    DateModified = DateTime.Now,
+                };
+                _cardController.AddGuestCard(guestCard);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+
                 MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadCardDetails();
+            }
+            else if (st == (int)ERROR_TYPE.PORT_IN_USED)
+            {
+                MessageBox.Show("Failed to issue card: Port is already in use.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show($"Failed to issue card, error code: {st}", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

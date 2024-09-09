@@ -1,14 +1,18 @@
 ﻿using ESMART_HMS.Application.LockSDK;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Sessions;
+using NTwain.Data;
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
+using System.Drawing.Drawing2D;
+using System.Dynamic;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using ESMART_HMS.Application.LockSDK;
 
 namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 {
@@ -16,90 +20,133 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
     {
         private DispatcherTimer dispatcherTimer;
         private readonly string _id;
+        string computerName = Environment.MachineName;
+        private readonly CardController _cardController;
         private readonly RoomController _roomController;
-        public IsssueRoomSettingCardForm(string id, RoomController roomController)
+        private readonly ApplicationUserController _userController;
+        public IsssueRoomSettingCardForm(string id, RoomController roomController, CardController cardController, ApplicationUserController userController)
         {
             _id = id;
             _roomController = roomController;
+            _cardController = cardController;
             InitializeComponent();
             InitializeTimer();
+            _userController = userController;
         }
 
         int st = 0;
 
-        private void IsssueRoomSettingCardForm_Load(object sender, EventArgs e)
+        private int SelectDoorLockType(int doorType)
         {
-            var stResult = CheckEncoder();
-            if (stResult == -2)
-            {
-                this.Close();
-            }
-            dispatcherTimer.Start();
+            st = LockSDKHeaders.LS_SelectDoorLockType(doorType);
+            return st;
+        }
+
+        private int OpenPort(int port)
+        {
+            st = LockSDKHeaders.LS_OpenPort(port);
+            return st;
         }
 
         public int CheckEncoder()
         {
             Int16 locktype = 5;
             st = LockSDKHeaders.TP_Configuration(locktype);
-            LockSDKHeaders.CheckErr(st);
             return st;
+        }
+
+        public StringBuilder GetAuthCardFromDB()
+        {
+            Domain.Entities.AuthorizationCard AuthCard = _cardController.GetAuthCardByComputer(computerName);
+            if (AuthCard != null)
+            {
+                return new StringBuilder(AuthCard.AuthId);
+            }
+            return null;
+        }
+
+        private void IsssueRoomSettingCardForm_Load(object sender, EventArgs e)
+        {
+            dispatcherTimer.Start();
+            Int16 locktype = 5;
+            int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
+            if (checkEncoder != 1)
+            {
+                LockSDKMethods.CheckErr(checkEncoder);
+            }
+
+            int openPort = OpenPort(5);
+            if (openPort != 1)
+            {
+                LockSDKMethods.CheckErr(openPort);
+            }
+
+            StringBuilder authCard = GetAuthCardFromDB();
+            string fnp = "1011899778569788";
+            StringBuilder clientData = authCard;
+
+            int systemIni = LockSDKMethods.SystemInitialization(fnp, clientData);
+            if (systemIni != 1)
+            {
+                LockSDKMethods.CheckErr(systemIni);
+                return;
+            }
         }
 
         private void LoadCardDetails()
         {
-
-            //Read card
             char[] card_snr = new char[100];
-            StringBuilder lockno = new StringBuilder(100);
-            StringBuilder intime = new StringBuilder(100);
-            StringBuilder outtime = new StringBuilder(100);
 
-            var card = LockSDKHeaders.LS_ReadRom(card_snr);
-
-            if (card == 1)
+            int st = LockSDKMethods.ReadCard(card_snr);
+            if (st != (int)ERROR_TYPE.OPR_OK)
             {
-                int iflags = 0;
-                st = LockSDKHeaders.LS_ReadGuestCard(card_snr, lockno, intime, outtime);
-                if (st == 1)
-                {
-                    string[] parts = lockno.ToString().Split('.');
-                    string roomNo = parts[parts.Length - 1];
+                txtStatus.Text = "No Found Card";
+                txtStatus.ForeColor = Color.Red;
 
-                    txtCardNo.Text = card_snr.ToString();
-                    txtLockNo.Text = lockno.ToString();
-                    txtRoomNo.Text = roomNo;
-
-                    if (lockno.ToString() == "")
-                    {
-                        txtEmpty.Text = "Empty card";
-                        txtEmpty.ForeColor = Color.Red;
-                    }
-                    else
-                    {
-                        txtEmpty.Text = "";
-                        txtEmpty.ForeColor = Color.Transparent;
-                    }
-                    txtError.Text = "Card found";
-                    txtError.ForeColor = Color.Green;
-                }
-                else
-                {
-                    LockSDKHeaders.CheckErr(st);
-                }
+                txtCardNo.Text = "";
+                txtCardTypeTwo.Text = "";
+                txtLockNo.Text = "";
+                txtRoomNo.Text = "";
             }
             else
             {
-                txtCardNo.Text = "";
-                txtLockNo.Text = "";
-                txtRoomNo.Text = "";
+                Domain.Entities.Room selectedRoom = _roomController.GetRealRoom(_id);
 
-                txtError.Text = "No card found";
-                txtError.ForeColor = Color.Red;
+                txtStatus.Text = "Card Found";
+                txtStatus.ForeColor = Color.Green;
+                txtCardTypeTwo.ForeColor = Color.Blue;
 
-                txtEmpty.Text = "";
-                txtEmpty.ForeColor = Color.Transparent;
+                CARD_INFO cardInfo = new CARD_INFO();
+                byte[] cbuf = new byte[10000];
+                cardInfo = new CARD_INFO();
+                int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+
+                if (result == (int)ERROR_TYPE.OPR_OK)
+                {
+                    var roomNo = FormHelper.ByteArrayToString(cardInfo.RoomList);
+                    bool isNull = FormHelper.AreAnyNullOrEmpty(roomNo);
+
+                    if (isNull)
+                    {
+                        txtStatus.Text = "Empty Card";
+                        txtStatus.ForeColor = Color.Red;
+
+                        txtCardNo.Text = "";
+                        txtCardTypeTwo.Text = "";
+                        txtLockNo.Text = "";
+                        txtRoomNo.Text = "";
+                    } 
+                    else
+                    {
+                        MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
+
+                        txtRoomNo.Text = selectedRoom.RoomNo;
+                        txtCardNo.Text = FormHelper.ByteArrayToString(cardInfo.CardNo);
+                        txtCardTypeTwo.Text = FormHelper.FormatEnumName(cardType);
+                        txtLockNo.Text = $"1.1.{selectedRoom.RoomNo}";
+                    }
+                }
             }
-
         }
 
         private void InitializeTimer()
@@ -135,17 +182,42 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             int buildingno = int.Parse(selectedRoom.Building.BuildingNo);
             int floorno = int.Parse(selectedRoom.Floor.FloorNo);
             int areano1 = int.Parse(selectedRoom.Area.AreaNo);
-            int areano2 = 0; 
+            int areano2 = 0;
             ROOM_TYPE roomtype = ROOM_TYPE.RT_COMMON_ROOMS;
-            LOCK_SETTING lockSetting = LOCK_SETTING.LS_REPLACE_EN | LOCK_SETTING.LS_VALID_DATE_EN;
+            LOCK_SETTING lockSetting = LOCK_SETTING.LS_VALID_DATE_EN;
             int replaceNo = 0;
 
-            LockSDKHeaders.LS_ClosePort(5);
-
-            st = LockSDKHeaders.LS_MakeInstallCard(card_snr, buildingno, floorno, roomno, roomtype, areano1, areano2, lockSetting, replaceNo);
+            st = LockSDKMethods.MakeRoomSettingsCard(card_snr, buildingno, floorno, roomno, roomtype, areano1, areano2, lockSetting, replaceNo);
 
             if (st == (int)ERROR_TYPE.OPR_OK)
             {
+                CARD_INFO cardInfo = new CARD_INFO();
+                byte[] cbuf = new byte[10000];
+                cardInfo = new CARD_INFO();
+                int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+
+                string cardNoString = FormHelper.ByteArrayToString(cardInfo.CardNo);
+                MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
+
+
+                SpecialCard specialCard = new SpecialCard()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    CardNo = cardNoString,
+                    CardType = FormHelper.FormatEnumName(cardType),
+                    IssueTime = DateTime.Now,
+                    RefundTime = DateTime.Now,
+                    IssuedBy = AuthSession.CurrentUser.Id,
+                    ApplicationUser = _userController.GetApplicationUserById(AuthSession.CurrentUser.Id),
+                    CanOpenDeadLocks = true,
+                    PassageMode = false,
+                    DateCreated = DateTime.Now,
+                    DateModified = DateTime.Now,
+                };
+                _cardController.AddSpecialCard(specialCard);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+
                 MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadCardDetails();
             }
@@ -156,29 +228,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             else
             {
                 MessageBox.Show($"Failed to issue card, error code: {st}", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnOpenPort_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                st = LockSDKHeaders.LS_OpenPort(5);
-                if (st == (int)ERROR_TYPE.OPR_OK)
-                {
-                    MessageBox.Show("Successfully opened port", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadCardDetails();
-                    btnRecycle.Enabled = true;
-                    btnIssue.Enabled = true;
-                }
-                else
-                {
-                    MessageBox.Show($"Failed to open port, error code: {st}", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to open port, {ex.Message}. error code: {st}", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

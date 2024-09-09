@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ESMART_HMS.Application.LockSDK;
+﻿using ESMART_HMS.Application.LockSDK;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
+using ESMART_HMS.Domain.Utils;
+using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Sessions;
+using System;
+using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
 {
     public partial class MastercardForm : Form
     {
-        public MastercardForm()
+        private readonly CardController _cardController;
+        private readonly ApplicationUserController _userController;
+        public MastercardForm(CardController cardController, ApplicationUserController applicationUserController)
         {
+            _cardController = cardController;
+            _userController = applicationUserController;
             InitializeComponent();
         }
 
@@ -46,10 +48,6 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
             int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
             if (checkEncoder != 1)
             {
-                
-            }
-            else
-            {
                 LockSDKMethods.CheckErr(checkEncoder);
             }
         }
@@ -59,22 +57,59 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
             try
             {
                 char[] card_snr = new char[1000];
+
                 string validTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                string endTime = DateTime.Now.AddMinutes(5).ToString("yyyy-MM-dd HH:mm:ss");
+                string endTime = DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss");
                 int cardFlg = 0;
+
+                CARD_INFO cardInfo = new CARD_INFO();
 
                 cardFlg += passageMode.Checked ? 2 : 0;
                 cardFlg += openLocks.Checked ? 1 : 0;
                 cardFlg += cancleCard.Checked ? 4 : 0;
 
+                st = LockSDKHeaders.LS_ReadRom(card_snr);
                 if (LockSDKMethods.PreparedIssue(card_snr) == false)
                     return;
 
-                st = LockSDKHeaders.LS_MakeChiefCard(card_snr, validTime, endTime, 1, 0);
+                st = LockSDKMethods.ReadCard(card_snr);
+
+                if (st != (int)ERROR_TYPE.OPR_OK)
+                {
+                    LockSDKMethods.CheckErr(st);
+                    return;
+                }
+                else
+                {
+                    byte[] cbuf = new byte[10000];
+                    cardInfo = new CARD_INFO();
+                    int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+                }
+
+                st = LockSDKMethods.MakeMasterCard(card_snr, validTime, endTime, 1, 0);
 
                 if (st == (int)ERROR_TYPE.OPR_OK)
                 {
+                    string cardNoString = FormHelper.ByteArrayToString(cardInfo.CardNo);
+
+                    SpecialCard specialCard = new SpecialCard()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        CardNo = cardNoString,
+                        CardType = "Master Card",
+                        IssueTime = DateTime.ParseExact(validTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                        RefundTime = DateTime.ParseExact(endTime, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture),
+                        IssuedBy = AuthSession.CurrentUser.Id,
+                        ApplicationUser = _userController.GetApplicationUserById(AuthSession.CurrentUser.Id),
+                        CanOpenDeadLocks = true,
+                        PassageMode = false,
+                        DateCreated = DateTime.Now,
+                        DateModified = DateTime.Now,
+                    };
+                    _cardController.AddSpecialCard(specialCard);
                     MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else if (st == (int)ERROR_TYPE.PORT_IN_USED)
                 {
@@ -87,7 +122,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to open port, {ex.Message}. error code: {st}", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

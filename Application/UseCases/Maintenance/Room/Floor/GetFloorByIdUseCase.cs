@@ -1,5 +1,4 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
-using ESMART_HMS.Repositories;
 
 namespace ESMART_HMS.Application.UseCases.Maintenance.Room.Floor
 {

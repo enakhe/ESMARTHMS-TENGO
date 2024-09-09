@@ -31,19 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IsssueRoomSettingCardForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtCardTypeTwo = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtLockNo = new System.Windows.Forms.Label();
             this.txtRoomNo = new System.Windows.Forms.Label();
             this.txtCardNo = new System.Windows.Forms.Label();
             this.txtEmpty = new System.Windows.Forms.Label();
-            this.txtError = new System.Windows.Forms.Label();
+            this.txtStatus = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRecycle = new System.Windows.Forms.Button();
             this.btnIssue = new System.Windows.Forms.Button();
-            this.btnOpenPort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,11 +62,13 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(20);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(20);
             this.splitContainer1.Size = new System.Drawing.Size(374, 518);
@@ -74,16 +77,17 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnOpenPort);
+            this.panel1.Controls.Add(this.txtCardTypeTwo);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtLockNo);
             this.panel1.Controls.Add(this.txtRoomNo);
             this.panel1.Controls.Add(this.txtCardNo);
             this.panel1.Controls.Add(this.txtEmpty);
-            this.panel1.Controls.Add(this.txtError);
+            this.panel1.Controls.Add(this.txtStatus);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -93,6 +97,25 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
             this.panel1.Size = new System.Drawing.Size(334, 364);
             this.panel1.TabIndex = 2;
+            // 
+            // txtCardTypeTwo
+            // 
+            this.txtCardTypeTwo.AutoSize = true;
+            this.txtCardTypeTwo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCardTypeTwo.Location = new System.Drawing.Point(95, 248);
+            this.txtCardTypeTwo.Name = "txtCardTypeTwo";
+            this.txtCardTypeTwo.Size = new System.Drawing.Size(0, 20);
+            this.txtCardTypeTwo.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 248);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Lock No:";
             // 
             // label2
             // 
@@ -150,14 +173,14 @@
             this.txtEmpty.Size = new System.Drawing.Size(0, 20);
             this.txtEmpty.TabIndex = 3;
             // 
-            // txtError
+            // txtStatus
             // 
-            this.txtError.AutoSize = true;
-            this.txtError.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtError.Location = new System.Drawing.Point(11, 62);
-            this.txtError.Name = "txtError";
-            this.txtError.Size = new System.Drawing.Size(0, 20);
-            this.txtError.TabIndex = 3;
+            this.txtStatus.AutoSize = true;
+            this.txtStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Location = new System.Drawing.Point(11, 62);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(0, 20);
+            this.txtStatus.TabIndex = 3;
             // 
             // label16
             // 
@@ -181,7 +204,7 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Controls.Add(this.btnRecycle);
             this.flowLayoutPanel1.Controls.Add(this.btnIssue);
@@ -195,7 +218,6 @@
             // btnRecycle
             // 
             this.btnRecycle.BackColor = System.Drawing.Color.Red;
-            this.btnRecycle.Enabled = false;
             this.btnRecycle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecycle.ForeColor = System.Drawing.Color.White;
             this.btnRecycle.Location = new System.Drawing.Point(13, 13);
@@ -209,7 +231,6 @@
             // btnIssue
             // 
             this.btnIssue.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnIssue.Enabled = false;
             this.btnIssue.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIssue.ForeColor = System.Drawing.Color.White;
             this.btnIssue.Location = new System.Drawing.Point(170, 13);
@@ -219,18 +240,6 @@
             this.btnIssue.Text = "Issue";
             this.btnIssue.UseVisualStyleBackColor = false;
             this.btnIssue.Click += new System.EventHandler(this.btnIssue_Click);
-            // 
-            // btnOpenPort
-            // 
-            this.btnOpenPort.BackColor = System.Drawing.Color.White;
-            this.btnOpenPort.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenPort.Location = new System.Drawing.Point(15, 310);
-            this.btnOpenPort.Name = "btnOpenPort";
-            this.btnOpenPort.Size = new System.Drawing.Size(101, 39);
-            this.btnOpenPort.TabIndex = 4;
-            this.btnOpenPort.Text = "Open Port";
-            this.btnOpenPort.UseVisualStyleBackColor = false;
-            this.btnOpenPort.Click += new System.EventHandler(this.btnOpenPort_Click);
             // 
             // IsssueRoomSettingCardForm
             // 
@@ -266,13 +275,14 @@
         private System.Windows.Forms.Label txtLockNo;
         private System.Windows.Forms.Label txtRoomNo;
         private System.Windows.Forms.Label txtEmpty;
-        private System.Windows.Forms.Label txtError;
+        private System.Windows.Forms.Label txtStatus;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnRecycle;
         private System.Windows.Forms.Button btnIssue;
         private System.Windows.Forms.Label txtCardNo;
-        private System.Windows.Forms.Button btnOpenPort;
+        private System.Windows.Forms.Label txtCardTypeTwo;
+        private System.Windows.Forms.Label label1;
     }
 }

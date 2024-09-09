@@ -138,7 +138,7 @@ namespace ESMART_HMS.Presentation.Forms
             mainFlowLayoutPanel.Controls.Clear();
 
             List<Building> buildings = _roomController.GetAllBuildings();
-            List<Floor> floors = _roomController.GetAllFloors(); 
+            List<Floor> floors = _roomController.GetAllFloors();
 
             foreach (var buiding in buildings)
             {
@@ -173,7 +173,7 @@ namespace ESMART_HMS.Presentation.Forms
                     panel.Controls.Add(floorLabel);
                     floorFlowLayoutPanel.Controls.Add(panel);
 
-                    var rooms = floor.Rooms;
+                    var rooms = floor.Rooms.OrderBy(r => r.RoomNo);
                     foreach (var room in rooms)
                     {
                         var roomPanel = CreateRoomPanel(room.RoomType.Title, room.Rate.ToString(), room.RoomNo, room.Status);
@@ -181,21 +181,19 @@ namespace ESMART_HMS.Presentation.Forms
                     }
 
                     mainFlowLayoutPanel.Controls.Add(floorFlowLayoutPanel);
-                } 
+                }
             }
         }
 
         private Panel CreateRoomPanel(string roomType, string roomPrice, string roomName, string roomStatus)
         {
-            var panel = new RoundedPanel
+            var panel = new Panel
             {
                 Size = new Size(100, 80),
                 BackColor = GetColorByStatus(roomStatus),
                 BorderStyle = BorderStyle.None,
                 Margin = new Padding(9),
                 Dock = DockStyle.Bottom,
-                BorderThickness = 0,
-                BorderColor = Color.White
             };
 
             var roomNameLabel = new Label

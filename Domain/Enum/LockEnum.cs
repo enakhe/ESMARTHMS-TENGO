@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace ESMART_HMS.Domain.Enum
 {
@@ -98,5 +95,147 @@ namespace ESMART_HMS.Domain.Enum
         CF_SET_CHANNEL_TIME = (0x80 << 16),   // Set channel door time
     };
 
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct CARD_INFO
+    {
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 17)]
+        public byte[] CardNo;
+
+        public int CardType;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 30)]
+        public byte[] BuildingList;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 30)]
+        public byte[] FloorList;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2000)]
+        public byte[] RoomList;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 13)]
+        public byte[] RoomMask;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+        public byte[] SDateTime;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+        public byte[] EDateTime;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        public byte[] StartTime1;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        public byte[] EndTime1;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        public byte[] StartTime2;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        public byte[] EndTime2;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        public byte[] StartTime3;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        public byte[] EndTime3;
+
+        public int iCardFlags;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 17)]
+        public byte[] LostCardNo;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        public byte[] CardClientNo;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+        public byte[] NewClientNo;
+
+        public int MF1NewSecotr;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 13)]
+        public byte[] NewKeys;
+
+        public int ReplaceNo;
+
+        public int NewReplaceNo;
+
+        public int iRoomCnt;
+
+        public int iAreaCnt;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 100)]
+        public byte[] cAreaList;
+
+        public int FacultyNo;
+
+        public int MajorNo;
+
+        public int ClassNo;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+        public byte[] UserName;
+
+        public int iForbidCardType;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+        public byte[] cForbidDateTime;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+        public byte[] cSummerTimeStart;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+        public byte[] cSummerTimeEnd;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 200)]
+        public byte[] cStaffProhibitedDays;
+
+        public byte ClrReplaceOfCardType;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 59)]
+        public byte[] cRFU2;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 200)]
+        public byte[] cRFU3;
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 200)]
+        public byte[] cRFU4;
+
+        public int iRefreshCnt;
+
+        public int iStaffProhibitedDayOfWeek;
+
+        public int RFU3;
+
+        public int RFU4;
+    }
+
+    public enum MakeCardType
+    {
+        ClientCard = 0,      // Client Card Type
+        GuestCard = 1,      // Guest Card Type
+        FloorCard = 2,      // Floor Card Type
+        BuildingCard = 3,      // Building Card Type
+        EmergentCard = 4,      // Emergent Card Type
+        MasterCard = 5,      // Chief Card Type
+        RoomSettingsCard = 6,      // Install Card Type
+        LostCard = 7,      // Lost Card Type
+        UnLostCard = 8,      // Unlost Lost Card Type
+        TimeCard = 9,      // Time Card Type
+        DataCard = 10,     // Data Card Type
+        FactoryCard = 11,     // Factory Card Type
+        TimeStopCard = 12,     // Time Stop Card Type
+        UpgradeCard = 13,     // Upgrade Card
+        CheckoutCard = 14,     // Checkout Card
+        OfficeCard = 15,     // Office Card
+        ClearCard = 16,     // Clear Card (formerly Manage Card) 20200526:MANAGE_CARD-->CLEAR_CARD
+        StaffCard = 17,     // Staff Card
+        LockSettingCard = 18,     // Lock Setting Card
+        BackupCard = 19,     // Backup Card
+        ElevatorCard = 20,     // Elevator Card
+        JoinNetCard = 21,     // Join Network Card
+        ExitNetCard = 22,     // Exit Network Card
+        ParaSettingCard = 23,     // Parameter Setting Card
+        AcsElevatorSetCard = 24      // Access Control System Elevator Setting Card
+    }
 
 }

@@ -8,7 +8,7 @@
     <ProjectGuid>{3A7114A1-052F-44B6-924F-A11BE68FFC8B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ESMART_HMS</RootNamespace>
-    <AssemblyName>ESMART HMS</AssemblyName>
+    <AssemblyName>ESMARTHMS</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -67,6 +67,12 @@
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <HintPath>packages\AForge.2.2.5\lib\AForge.dll</HintPath>
@@ -76,6 +82,9 @@
     </Reference>
     <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
       <HintPath>packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL">
       <HintPath>packages\Bunifu.Licensing.6.0.2\lib\net48\Bunifu.Licensing.dll</HintPath>
@@ -88,6 +97,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll</HintPath>
@@ -160,6 +172,10 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.Primitives.3.1.32\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -258,13 +274,29 @@
     <Compile Include="Application\LockSDK\LockSDKMethods.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\GetByServiceIdAndStatusUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\UpdateTransactionUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\DeleteBookingUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\GetActiveBookingByFilterUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\GetAllBookingByDateUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\GetBookingByDateUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Booking\GetBookingByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\GetCheckedOutBookingByDateUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\GetInActiveBookingByFilterUseCase.cs" />
+    <Compile Include="Application\UseCases\FrontDesk\Booking\GetRoomTypeBookingByFilterUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Booking\IssueCardUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\ApplicationUserRole\CreateUserRoleUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\ApplicationUser\CreateApplicationUserUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\ApplicationUser\GetApplicationUserByIdUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Booking\CreateBookingUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Booking\GetAllBookingsUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\AddGuestCardUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\CreateAuthCardUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\CreateSpecialCardUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\DeleteCardUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\DeleteGuestCardUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\GetAllSpecialCardUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\GetAuthCardByComputerNameUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\GetCardByCardNoUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\CardMaintenance\GetGuestCardByBookingIdUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Configuration\GetConfigurationValueUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Configuration\SetConfigurationValueUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Guest\CreateCustomerUseCase.cs" />
@@ -289,8 +321,10 @@
     <Compile Include="Application\UseCases\Maintenance\Room\Floor\DeleteFloorUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\Floor\GetAllFloorUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\Floor\GetFloorByIdUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\Floor\GetFloorsByBuildingUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\Floor\UpdateFloorUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\GetRoomByRoomNoUseCase.cs" />
+    <Compile Include="Application\UseCases\Maintenance\Room\GetRoomsByFilterUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\RoomType\UpdateRoomTypeUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\SystemSetup\GetCompanyInfoUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\SystemSetup\SetupCompanyUseCase.cs" />
@@ -326,6 +360,9 @@
     <Compile Include="Domain\Entities\Area.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Entities\AuthorizationCard.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Entities\BankAccount.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -348,6 +385,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\Guest.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Entities\GuestCard.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\IngredientItem.cs">
@@ -374,6 +414,9 @@
     <Compile Include="Domain\Entities\RoomType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Entities\SpecialCard.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Entities\Transaction.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -381,6 +424,7 @@
     <Compile Include="Domain\Enum\RoomStatusEnum.cs" />
     <Compile Include="Domain\Interfaces\Bar\IBarItemRepository.cs" />
     <Compile Include="Domain\Interfaces\FrontDesk\IBookingRepository.cs" />
+    <Compile Include="Domain\Interfaces\Maintenance\ICardRepository.cs" />
     <Compile Include="Domain\Interfaces\Maintenance\IConfigurationRepository.cs" />
     <Compile Include="Domain\Interfaces\FrontDesk\IGuestRepository.cs" />
     <Compile Include="Domain\Enum\TitleEnum.cs" />
@@ -404,6 +448,7 @@
     </Compile>
     <Compile Include="Infrastructure\Data\Bar\BarItemRepository.cs" />
     <Compile Include="Infrastructure\Data\FrontDesk\BookingRepository.cs" />
+    <Compile Include="Infrastructure\Data\Maintenance\CardRepository.cs" />
     <Compile Include="Infrastructure\Data\Maintenance\ConfigurationRepository.cs" />
     <Compile Include="Infrastructure\Data\Maintenance\SystemSetupRepository.cs" />
     <Compile Include="Infrastructure\Data\FrontDesk\ReservationRepository.cs" />
@@ -418,6 +463,7 @@
     <Compile Include="Presentation\Controllers\Maintenance\ApplicationUserController.cs" />
     <Compile Include="Presentation\Controllers\Bar\BarItemController.cs" />
     <Compile Include="Presentation\Controllers\FrontDesk\BookingController.cs" />
+    <Compile Include="Presentation\Controllers\Maintenance\CardController.cs" />
     <Compile Include="Presentation\Controllers\Maintenance\ConfigurationController.cs" />
     <Compile Include="Presentation\Controllers\FrontDesk\GuestController.cs" />
     <Compile Include="Presentation\Controllers\Maintenance\SystemSetupController.cs" />
@@ -439,6 +485,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\Forms\FormClasses\RoundedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FormClasses\TimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Booking\AddBookingForm.cs">
@@ -537,6 +586,12 @@
     <Compile Include="Presentation\Forms\FrontDesk\Room\IsssueRoomSettingCardForm.Designer.cs">
       <DependentUpon>IsssueRoomSettingCardForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Room\ShowRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Room\ShowRoomForm.Designer.cs">
+      <DependentUpon>ShowRoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -613,6 +668,18 @@
     <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\CardMaintenanceForm.Designer.cs">
       <DependentUpon>CardMaintenanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\BuildingCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\BuildingCardForm.Designer.cs">
+      <DependentUpon>BuildingCardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\FloorCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\FloorCardForm.Designer.cs">
+      <DependentUpon>FloorCardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\MastercardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -630,6 +697,24 @@
     </Compile>
     <Compile Include="Presentation\Forms\Maintenance\SystemSetup\SystemSetupFrom.Designer.cs">
       <DependentUpon>SystemSetupFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Report\BookingReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Report\BookingReportForm.Designer.cs">
+      <DependentUpon>BookingReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Report\ExportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Report\ExportsForm.Designer.cs">
+      <DependentUpon>ExportsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Report\RoomReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Report\RoomReportForm.Designer.cs">
+      <DependentUpon>RoomReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\SplashScreenForm.cs">
       <SubType>Form</SubType>
@@ -692,6 +777,7 @@
     <Compile Include="Presentation\ViewModels\ReservationViewModel.cs" />
     <Compile Include="Presentation\ViewModels\RoomTypeViewModel.cs" />
     <Compile Include="Presentation\ViewModels\RoomViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\SpecialCardViewModel.cs" />
     <Compile Include="Presentation\ViewModels\TransactionViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -747,6 +833,9 @@
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\IsssueRoomSettingCardForm.resx">
       <DependentUpon>IsssueRoomSettingCardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\ShowRoomForm.resx">
+      <DependentUpon>ShowRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -780,6 +869,12 @@
     <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\CardMaintenanceForm.resx">
       <DependentUpon>CardMaintenanceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\BuildingCardForm.resx">
+      <DependentUpon>BuildingCardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\FloorCardForm.resx">
+      <DependentUpon>FloorCardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\MastercardForm.resx">
       <DependentUpon>MastercardForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -788,6 +883,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\SystemSetup\SystemSetupFrom.resx">
       <DependentUpon>SystemSetupFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Report\BookingReportForm.resx">
+      <DependentUpon>BookingReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Report\ExportsForm.resx">
+      <DependentUpon>ExportsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Report\RoomReportForm.resx">
+      <DependentUpon>RoomReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
@@ -821,6 +925,27 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
+    <None Include="DLL\cardRecord.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DLL\DataBase.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DLL\DBConfig.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DLL\Languages-cn.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DLL\Languages.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DLL\LockSDK.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DLL\RoomData.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ESMART_HMSDBDataSet.xsc">
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </None>
@@ -852,11 +977,55 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Interfaces\" />
-    <Folder Include="bin\Debug\" />
     <Folder Include="Presentation\Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="DLL\DataReader.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\DT266SDK.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\EasyD12_500.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\EasyZUSBMulti.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\HOOKS_M1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\HSDApp.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\LockCard.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\LockInfo.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\LockSDK.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\MF0SIM.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\PubFuns.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\RC500USB.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\RF50S.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\RF57S.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\Rf_Rw.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="MetroFramework.txt" />
     <Content Include="Domain\Entities\Model.Context.tt">
