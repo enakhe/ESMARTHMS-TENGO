@@ -23,8 +23,6 @@ namespace ESMART_HMS.Infrastructure.Data
             {
                 _db.Guests.Add(customer);
                 _db.SaveChanges();
-                MessageBox.Show("Successfully added customer information", "Success", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

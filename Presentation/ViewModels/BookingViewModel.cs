@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ESMART_HMS.Presentation.ViewModels
+﻿namespace ESMART_HMS.Presentation.ViewModels
 {
     public class BookingViewModel
     {

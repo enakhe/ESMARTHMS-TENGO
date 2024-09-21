@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Threading;
-using ESMART_HMS.Application.LockSDK;
-using ESMART_HMS.Domain.Entities;
+﻿using ESMART_HMS.Application.LockSDK;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
-using ESMART_HMS.Presentation.Sessions;
+using System;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.Windows.Threading;
 
 namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 {
@@ -107,7 +100,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
                 txtStatus.ForeColor = Color.Red;
 
                 txtCardNo.Text = "";
-                txtCardTypeTwo.Text = "";
                 txtLockNo.Text = "";
                 txtRoomNo.Text = "";
             }
@@ -117,7 +109,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 
                 txtStatus.Text = "Card Found";
                 txtStatus.ForeColor = Color.Green;
-                txtCardTypeTwo.ForeColor = Color.Blue;
 
                 CARD_INFO cardInfo = new CARD_INFO();
                 byte[] cbuf = new byte[10000];
@@ -135,7 +126,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
                         txtStatus.ForeColor = Color.Red;
 
                         txtCardNo.Text = "";
-                        txtCardTypeTwo.Text = "";
                         txtLockNo.Text = "";
                         txtRoomNo.Text = "";
                     }
@@ -145,7 +135,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 
                         txtRoomNo.Text = selectedRoom.RoomNo;
                         txtCardNo.Text = FormHelper.ByteArrayToString(cardInfo.CardNo);
-                        txtCardTypeTwo.Text = FormHelper.FormatEnumName(cardType);
                         txtLockNo.Text = $"1.1.{selectedRoom.RoomNo}";
                     }
                 }

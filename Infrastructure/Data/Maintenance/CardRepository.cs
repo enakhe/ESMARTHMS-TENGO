@@ -117,7 +117,7 @@ namespace ESMART_HMS.Infrastructure.Data.Maintenance
             return null;
         }
 
-        public GuestCard GetGuestCardByBookingId(string id)
+        public GuestCard GetGuestCardBybookingId(string id)
         {
             try
             {

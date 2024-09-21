@@ -2,7 +2,11 @@
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Forms.Account.BankAccount;
+using ESMART_HMS.Presentation.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -14,10 +18,10 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
         private readonly SystemSetupController _sytemSetupController;
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
-        private readonly BookingController _bookingController;
+        private readonly bookingController _bookingController;
         byte[] companyLogo;
 
-        public SystemSetupFrom(SystemSetupController sytemSetupController, RoomController roomController, RoomTypeController roomTypeController, BookingController bookingController)
+        public SystemSetupFrom(SystemSetupController sytemSetupController, RoomController roomController, RoomTypeController roomTypeController, bookingController bookingController)
         {
             _sytemSetupController = sytemSetupController;
             _roomController = roomController;
@@ -25,6 +29,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
             InitializeComponent();
             tabControl1.Appearance = TabAppearance.Normal;
             InitializeCompanyTab(company);
+            InitializeBankAccountTab(bankAccount);
             _bookingController = bookingController;
         }
 
@@ -56,6 +61,26 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        private void InitializeBankAccountTab(TabPage tabPage)
+        {
+            if (tabPage != null)
+            {
+                if (tabPage.Text == "Bank Account")
+                {
+                    List<BankAccountViewModel> allAccounts = _sytemSetupController.GetAllBankAccount();
+                    if (allAccounts != null)
+                    {
+                        foreach (BankAccountViewModel account in allAccounts)
+                        {
+                            account.DateCreated = FormHelper.FormatDateTimeWithSuffix(account.DateCreated);
+                            account.DateModified = FormHelper.FormatDateTimeWithSuffix(account.DateModified);
+                        }
+                        dgvAccount.DataSource = allAccounts;
                     }
                 }
             }
@@ -169,10 +194,80 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
 
         private void SystemSetupFrom_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.RoomType' table. You can move, or remove it, as needed.
-            this.roomTypeTableAdapter.Fill(this.eSMART_HMSDBDataSet.RoomType);
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Room' table. You can move, or remove it, as needed.
-            this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
+            this.bankAccountTableAdapter.Fill(this.eSMART_HMSDBDataSet.BankAccount);
+        }
+
+        private void btnAddBank_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            AddBankAccountForm addBankAccountForm = serviceProvider.GetRequiredService<AddBankAccountForm>();
+            if (addBankAccountForm.ShowDialog() == DialogResult.OK)
+            {
+                InitializeBankAccountTab(bankAccount);
+            }
+        }
+
+        private void btnEditAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvAccount.SelectedRows.Count > 0)
+                {
+                    var row = dgvAccount.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+
+                    using (EditBankAccountForm editBankAccountForm = new EditBankAccountForm(_sytemSetupController, id))
+                    {
+                        if (editBankAccountForm.ShowDialog() == DialogResult.OK)
+                        {
+                            InitializeBankAccountTab(bankAccount);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select an account to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvAccount.SelectedRows.Count > 0)
+                {
+                    var result = MessageBox.Show("Are you sure you want to add the selected accounts to the recycle?\nIts record including all entries tagged to such account will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgvAccount.SelectedRows)
+                        {
+                            string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+                            _sytemSetupController.DeleteBankAccount(id);
+                        }
+                        InitializeBankAccountTab(bankAccount);
+                        MessageBox.Show("Successfully added account information to recycle", "Success", MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select an account to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
     }
 }

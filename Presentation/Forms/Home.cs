@@ -1,6 +1,6 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Forms.Booking;
+using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
@@ -27,7 +27,7 @@ namespace ESMART_HMS.Presentation.Forms
         GuestForm customerForm;
         RoomForm roomForm;
         ReservationForm reservationForm;
-        BookingForm bookingForm;
+        bookingForm bookingForm;
         OptionsFrom optionsFrom;
         TransactionForm transactionForm;
         BarStoreForm barStoreForm;
@@ -39,7 +39,8 @@ namespace ESMART_HMS.Presentation.Forms
 
         // Report
         RoomReportForm roomReportForm;
-        BookingReportForm bookingReportForm;
+        bookingReportForm bookingReportForm;
+        ReservationReportForm reservationReportForm;
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
@@ -153,7 +154,7 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void Booking_FormClosed(object sender, FormClosedEventArgs e)
+        private void booking_FormClosed(object sender, FormClosedEventArgs e)
         {
             bookingForm = null;
         }
@@ -236,7 +237,7 @@ namespace ESMART_HMS.Presentation.Forms
 
         private void viewRoomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void transactionsToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -259,9 +260,9 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void addEditBookingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addEditbookingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void RoomSetting_FormClosed(object sender, FormClosedEventArgs e)
@@ -352,7 +353,7 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void manageBookingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void managebookingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (bookingForm == null)
             {
@@ -360,8 +361,8 @@ namespace ESMART_HMS.Presentation.Forms
                 DependencyInjection.ConfigureServices(services);
                 var serviceProvider = services.BuildServiceProvider();
 
-                bookingForm = serviceProvider.GetRequiredService<BookingForm>();
-                bookingForm.FormClosed += Booking_FormClosed;
+                bookingForm = serviceProvider.GetRequiredService<bookingForm>();
+                bookingForm.FormClosed += booking_FormClosed;
                 bookingForm.MdiParent = this;
                 bookingForm.Dock = DockStyle.Fill;
                 bookingForm.Show();
@@ -397,7 +398,7 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void BookingReport_FormClosed(object sender, FormClosedEventArgs e)
+        private void bookingReport_FormClosed(object sender, FormClosedEventArgs e)
         {
             bookingReportForm = null;
         }
@@ -410,8 +411,8 @@ namespace ESMART_HMS.Presentation.Forms
                 DependencyInjection.ConfigureServices(services);
                 var serviceProvider = services.BuildServiceProvider();
 
-                bookingReportForm = serviceProvider.GetRequiredService<BookingReportForm>();
-                bookingReportForm.FormClosed += BookingReport_FormClosed;
+                bookingReportForm = serviceProvider.GetRequiredService<bookingReportForm>();
+                bookingReportForm.FormClosed += bookingReport_FormClosed;
                 bookingReportForm.MdiParent = this;
                 bookingReportForm.Dock = DockStyle.Fill;
                 bookingReportForm.Show();
@@ -419,6 +420,31 @@ namespace ESMART_HMS.Presentation.Forms
             else
             {
                 bookingReportForm.Activate();
+            }
+        }
+
+        private void ReservationReport_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            reservationReportForm = null;
+        }
+
+        private void reservationReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (reservationReportForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                reservationReportForm = serviceProvider.GetRequiredService<ReservationReportForm>();
+                reservationReportForm.FormClosed += ReservationReport_FormClosed;
+                reservationReportForm.MdiParent = this;
+                reservationReportForm.Dock = DockStyle.Fill;
+                reservationReportForm.Show();
+            }
+            else
+            {
+                reservationReportForm.Activate();
             }
         }
     }

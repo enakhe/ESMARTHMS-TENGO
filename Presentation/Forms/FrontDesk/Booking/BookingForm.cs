@@ -3,27 +3,27 @@ using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
-using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
+using ESMART_HMS.Presentation.Forms.FrontDesk.booking;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Presentation.Forms.Booking
+namespace ESMART_HMS.Presentation.Forms.booking
 {
-    public partial class BookingForm : Form
+    public partial class bookingForm : Form
     {
         private readonly GuestController _guestController;
         private readonly RoomController _roomController;
         private readonly ReservationController _reservationController;
         private readonly ConfigurationController _configurationController;
-        private readonly BookingController _bookingController;
+        private readonly bookingController _bookingController;
         private readonly TransactionController _transactionController;
         private readonly ApplicationUserController _applicationUserController;
         private readonly CardController _cardController;
-        public BookingForm(BookingController bookingController, GuestController guestController, RoomController roomController, ReservationController reservationController, ConfigurationController configurationController, TransactionController transactionController, ApplicationUserController applicationUserController, CardController cardController)
+        private readonly SystemSetupController _systemSetupController;
+        public bookingForm(bookingController bookingController, GuestController guestController, RoomController roomController, ReservationController reservationController, ConfigurationController configurationController, TransactionController transactionController, ApplicationUserController applicationUserController, CardController cardController, SystemSetupController systemSetupController)
         {
             _guestController = guestController;
             _roomController = roomController;
@@ -35,6 +35,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             _cardController = cardController;
             InitializeComponent();
             ApplyAuthorization();
+            _systemSetupController = systemSetupController;
         }
 
         private void ApplyAuthorization()
@@ -42,25 +43,25 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
         }
 
-        private void BookingForm_Load(object sender, System.EventArgs e)
+        private void bookingForm_Load(object sender, System.EventArgs e)
         {
-            LoadBookingsData();
-            this.bookingTableAdapter.Fill(this.eSMART_HMSDBDataSet.Booking);
+            LoadbookingsData();
+            this.bookingTableAdapter.Fill(this.eSMART_HMSDBDataSet.booking);
 
-            dgvBooking.SelectionChanged += DataGridView1_SelectionChanged;
+            dgvbooking.SelectionChanged += DataGridView1_SelectionChanged;
         }
 
-        private void LoadBookingsData()
+        private void LoadbookingsData()
         {
-            List<BookingViewModel> allBookings = _bookingController.GetAllBookings();
-            if (allBookings != null)
+            List<BookingViewModel> allbookings = _bookingController.GetAllbookings();
+            if (allbookings != null)
             {
-                foreach (var booking in allBookings)
+                foreach (var booking in allbookings)
                 {
                     booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
                 }
-                dgvBooking.DataSource = allBookings;
-                txtCount.Text = allBookings.Count.ToString();
+                dgvbooking.DataSource = allbookings;
+                txtCount.Text = allbookings.Count.ToString();
             }
         }
 
@@ -68,13 +69,13 @@ namespace ESMART_HMS.Presentation.Forms.Booking
         {
             try
             {
-                if (dgvBooking.SelectedRows.Count > 0)
+                if (dgvbooking.SelectedRows.Count > 0)
                 {
-                    var row = dgvBooking.SelectedRows[0];
+                    var row = dgvbooking.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
                     GuestCard guestCard = _cardController.GetGuestCard(id);
-                    if (guestCard != null) 
+                    if (guestCard != null)
                     {
                         btnBook.Enabled = false;
                     }
@@ -93,10 +94,10 @@ namespace ESMART_HMS.Presentation.Forms.Booking
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddBookingForm addBookingForm = new AddBookingForm("0", "0", "0", _guestController, _roomController, _reservationController, _configurationController, _bookingController, _transactionController, _applicationUserController);
-            if (addBookingForm.ShowDialog() == DialogResult.OK)
+            AddbookingForm addbookingForm = new AddbookingForm("0", "0", "0", _guestController, _roomController, _reservationController, _configurationController, _bookingController, _transactionController, _applicationUserController, _systemSetupController);
+            if (addbookingForm.ShowDialog() == DialogResult.OK)
             {
-                LoadBookingsData();
+                LoadbookingsData();
             }
         }
 
@@ -104,18 +105,24 @@ namespace ESMART_HMS.Presentation.Forms.Booking
         {
             try
             {
-                if (dgvBooking.SelectedRows.Count > 0)
+                if (dgvbooking.SelectedRows.Count > 0)
                 {
-                    var row = dgvBooking.SelectedRows[0];
+                    var row = dgvbooking.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
-                    Domain.Entities.Booking booking = _bookingController.GetBookingById(id);
+                    Domain.Entities.Booking booking = _bookingController.GetbookingById(id);
                     Domain.Entities.Room room = _roomController.GetRealRoom(booking.RoomId);
+                    GuestCard guestCard = _cardController.GetGuestCard(booking.Id);
+
                     room.Status = RoomStatusEnum.Vacant.ToString();
 
+                    if (guestCard != null)
+                    {
+                        _cardController.DeleteGuestCard(guestCard.Id);
+                    }
                     _roomController.UpdateRoom(room);
-                    _bookingController.DeleteBooking(booking);
-                    LoadBookingsData();
+                    _bookingController.Deletebooking(booking);
+                    LoadbookingsData();
                 }
                 else
                 {
@@ -133,9 +140,9 @@ namespace ESMART_HMS.Presentation.Forms.Booking
         {
             try
             {
-                if (dgvBooking.SelectedRows.Count > 0)
+                if (dgvbooking.SelectedRows.Count > 0)
                 {
-                    var row = dgvBooking.SelectedRows[0];
+                    var row = dgvbooking.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
                     using (IssueCardForm issueCardForm = new IssueCardForm(_bookingController, id, _cardController, _applicationUserController))

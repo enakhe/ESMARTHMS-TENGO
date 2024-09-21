@@ -1,17 +1,12 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ESMART_HMS.Application.UseCases.FrontDesk.Booking
+namespace ESMART_HMS.Application.UseCases.FrontDesk.booking
 {
-    public class DeleteBookingUseCase
+    public class DeletebookingUseCase
     {
         private readonly IBookingRepository _bookingRepository;
 
-        public DeleteBookingUseCase(IBookingRepository bookingRepository)
+        public DeletebookingUseCase(IBookingRepository bookingRepository)
         {
             _bookingRepository = bookingRepository;
         }

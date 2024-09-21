@@ -1,10 +1,7 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Enum;
+﻿using ESMART_HMS.Domain.Enum;
 using System;
-using System.Data.SqlTypes;
 using System.Text;
 using System.Windows.Forms;
-using static ESMART_HMS.ESMART_HMSDBDataSet;
 
 namespace ESMART_HMS.Application.LockSDK
 {

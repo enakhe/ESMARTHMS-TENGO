@@ -1,18 +1,10 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Enum;
-using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Report

@@ -13,24 +13,10 @@ namespace ESMART_HMS.Presentation.Forms
         private readonly AuthService _authService;
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
-        public LoginForm(AuthService authService, GuestController customerViewModel, RoomController roomController)
+        public LoginForm(AuthService authService)
         {
             _authService = authService;
-            _customerController = customerViewModel;
             InitializeComponent();
-            _roomController = roomController;
-        }
-
-        private void chkPassword_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkPassword.Checked == false)
-            {
-                txtPassword.UseSystemPasswordChar = true;
-            }
-            else
-            {
-                txtPassword.UseSystemPasswordChar = false;
-            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -44,13 +30,19 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 this.Cursor = Cursors.WaitCursor;
                 AuthSession.CurrentUser = user;
-                var services = new ServiceCollection();
-                DependencyInjection.ConfigureServices(services);
-                var serviceProvider = services.BuildServiceProvider();
+                this.DialogResult = DialogResult.OK;
+            }
+        }
 
-                var homeForm = serviceProvider.GetRequiredService<Home>();
-                this.Hide();
-                homeForm.ShowDialog();
+        private void chkPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPassword.Checked == false)
+            {
+                txtPassword.UseSystemPasswordChar = true;
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = false;
             }
         }
     }

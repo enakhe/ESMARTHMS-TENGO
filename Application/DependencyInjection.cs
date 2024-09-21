@@ -1,10 +1,14 @@
 ﻿using ESMART_HMS.Application.UseCases.Account.Transaction;
 using ESMART_HMS.Application.UseCases.ApplicationUser;
-using ESMART_HMS.Application.UseCases.Booking;
+using ESMART_HMS.Application.UseCases.Bar.Order;
+using ESMART_HMS.Application.UseCases.Bar.Store.BarItem;
+using ESMART_HMS.Application.UseCases.booking;
 using ESMART_HMS.Application.UseCases.Configuration;
-using ESMART_HMS.Application.UseCases.FrontDesk.Booking;
+using ESMART_HMS.Application.UseCases.FrontDesk.booking;
+using ESMART_HMS.Application.UseCases.FrontDesk.Reservation;
 using ESMART_HMS.Application.UseCases.Guest;
 using ESMART_HMS.Application.UseCases.Maintenance.CardMaintenance;
+using ESMART_HMS.Application.UseCases.Maintenance.License;
 using ESMART_HMS.Application.UseCases.Maintenance.Room;
 using ESMART_HMS.Application.UseCases.Maintenance.Room.Area;
 using ESMART_HMS.Application.UseCases.Maintenance.Room.Building;
@@ -79,29 +83,39 @@ namespace ESMART_HMS.Application
             services.AddScoped<GetAllReservationUseCase>();
             services.AddScoped<GetReservationByIdUseCase>();
             services.AddScoped<UpdateReservationUseCase>();
+            services.AddScoped<GetReservationByPaymentStatusUseCase>();
+            services.AddScoped<GetReservationByRoomTypeAndDateUseCase>();
+            services.AddScoped<GetReservationByStatuseAndDateUseCase>();
+            services.AddScoped<GetReservationByDateUseCase>();
 
-            // Booking Use Case
-            services.AddScoped<CreateBookingUseCase>();
-            services.AddScoped<GetAllBookingsUseCase>();
-            services.AddScoped<GetBookingByIdUseCase>();
+            // booking Use Case
+            services.AddScoped<CreatebookingUseCase>();
+            services.AddScoped<GetAllbookingsUseCase>();
+            services.AddScoped<GetbookingByIdUseCase>();
             services.AddScoped<IssueCardUseCase>();
-            services.AddScoped<DeleteBookingUseCase>();
-            services.AddScoped<GetActiveBookingByFilterUseCase>();
-            services.AddScoped<GetInActiveBookingByFilterUseCase>();
-            services.AddScoped<GetRoomTypeBookingByFilterUseCase>();
-            services.AddScoped<GetBookingByDateUseCase>();
-            services.AddScoped<GetCheckedOutBookingByDateUseCase>();
-            services.AddScoped<GetAllBookingByDateUseCase>();
+            services.AddScoped<DeletebookingUseCase>();
+            services.AddScoped<GetActivebookingByFilterUseCase>();
+            services.AddScoped<GetInActivebookingByFilterUseCase>();
+            services.AddScoped<GetRoomTypebookingByFilterUseCase>();
+            services.AddScoped<GetbookingByDateUseCase>();
+            services.AddScoped<GetCheckedOutbookingByDateUseCase>();
+            services.AddScoped<GetAllbookingByDateUseCase>();
 
             // Configuration Use Case
             services.AddScoped<SetConfigurationValueUseCase>();
             services.AddScoped<GetConfigurationValueUseCase>();
+            services.AddScoped<AddBankAccountUseCase>();
+            services.AddScoped<GetAllBankAccountUseCase>();
+            services.AddScoped<UpdateBankAccountUseCase>();
 
             // Transaction Use Case
             services.AddScoped<CreateTransactionUseCase>();
             services.AddScoped<GetAllTransactionsUseCase>();
             services.AddScoped<GetByServiceIdAndStatusUseCase>();
             services.AddScoped<UpdateTransactionUseCase>();
+            services.AddScoped<GetBankAccountByIdUseCase>();
+            services.AddScoped<DeleteBankAccountUseCase>();
+            services.AddScoped<GetTotalAmountUseCase>();
 
             // ApplicationUser Use Case
             services.AddScoped<GetApplicationUserByIdUseCase>();
@@ -110,6 +124,12 @@ namespace ESMART_HMS.Application
             // BarItem Use Case
             services.AddScoped<CreateBarItemUseCase>();
             services.AddScoped<GetAllBarItemUseCase>();
+            services.AddScoped<UpdateBarItemUseCase>();
+            services.AddScoped<GetBarItemByIdUseCase>();
+            services.AddScoped<DeleteBarItemUseCase>();
+            services.AddScoped<FilterBarItemUseCase>();
+
+            services.AddScoped<OrderUseCases>();    
 
             // Maintenance / SystemSetup
             services.AddScoped<SetupCompanyUseCase>();
@@ -123,8 +143,11 @@ namespace ESMART_HMS.Application
             services.AddScoped<GetCardByCardNoUseCase>();
             services.AddScoped<DeleteCardUseCase>();
             services.AddScoped<AddGuestCardUseCase>();
-            services.AddScoped<GetGuestCardByBookingIdUseCase>();
+            services.AddScoped<GetGuestCardBybookingIdUseCase>();
             services.AddScoped<DeleteGuestCardUseCase>();
+
+            services.AddScoped<AddLicenseUseCase>();
+            services.AddScoped<GetLicenseUseCase>();
 
             return services;
         }

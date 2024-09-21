@@ -1,7 +1,6 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Forms.FormClasses;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -108,6 +107,7 @@ namespace ESMART_HMS.Presentation.Forms
             this.mainFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mainFlowLayoutPanel.Location = new System.Drawing.Point(12, 241);
             this.mainFlowLayoutPanel.Name = "flowLayoutPanel";
+            this.mainFlowLayoutPanel.BackColor = Color.Transparent;
             this.mainFlowLayoutPanel.Size = new System.Drawing.Size(1600, 828);
             this.mainFlowLayoutPanel.TabIndex = 0;
 
@@ -155,6 +155,7 @@ namespace ESMART_HMS.Presentation.Forms
                         AutoScroll = true,
                         WrapContents = false,
                         Size = new Size(1500, 200),
+                        BackColor = Color.White,
                         Padding = new Padding(10),
                         Margin = new Padding(10),
                         BorderStyle = BorderStyle.FixedSingle

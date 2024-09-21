@@ -17,14 +17,14 @@
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Applicati__RoleI__3C69FB99" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.ApplicationUser" Width="1.5" PointX="4.125" PointY="2.875" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Applicati__UserI__3B75D760" />
-        <EntityTypeShape EntityType="ESMART_HMSDBModel.Booking" Width="1.5" PointX="8.625" PointY="12.25" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.booking" Width="1.5" PointX="8.625" PointY="12.25" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Guest" Width="1.5" PointX="6.375" PointY="15.375" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Reservation" Width="1.5" PointX="11.625" PointY="11.875" />
-        <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__Created__5441852A" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__booking__Created__5441852A" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Guest__CreatedBy__4AB81AF0" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__Creat__4F7CD00D" />
-        <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8" />
-        <AssociationConnector Association="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__booking__GuestId__52593CB8" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Invoice__booking__5BE2A6F2" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.BarItem" Width="1.5" PointX="6.375" PointY="23" />
@@ -34,14 +34,13 @@
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Transaction" Width="1.5" PointX="8.625" PointY="19" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.CompanyInformation" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ESMART_HMSDBModel.BankAccount" Width="1.5" PointX="8.375" PointY="0.75" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Area" Width="1.5" PointX="9.5" PointY="23.625" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Building" Width="1.5" PointX="9.5" PointY="4.25" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Floor" Width="1.5" PointX="0.75" PointY="10" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.Room" Width="1.5" PointX="14.75" PointY="8.125" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__CreatedBy__5070F446" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__AreaId__4F7CD00D" />
-        <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__RoomId__5BE2A6F2" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__booking__RoomId__5BE2A6F2" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__BuildingId__4D94879B" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__FloorId__4E88ABD4" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5" />
@@ -53,6 +52,14 @@
         <AssociationConnector Association="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083" />
         <EntityTypeShape EntityType="ESMART_HMSDBModel.GuestCard" Width="1.5" PointX="6.375" PointY="34.875" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.BankAccount" Width="1.5" PointX="6.375" PointY="1.25" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__BankAccou__Creat__6EF57B66" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.booking" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.LicenseInfo" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Order" Width="1.5" PointX="8.625" PointY="13.375" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__IssuedBy__02FC7413" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__ItemId__03F0984C" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__CustomerI__07C12930" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -2,17 +2,14 @@
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ESMART_HMS.Application.UseCases.FrontDesk.Booking
+namespace ESMART_HMS.Application.UseCases.FrontDesk.booking
 {
-    public class GetActiveBookingByFilterUseCase
+    public class GetActivebookingByFilterUseCase
     {
         private readonly IBookingRepository _bookingRepository;
 
-        public GetActiveBookingByFilterUseCase(IBookingRepository bookingRepository)
+        public GetActivebookingByFilterUseCase(IBookingRepository bookingRepository)
         {
             _bookingRepository = bookingRepository;
         }

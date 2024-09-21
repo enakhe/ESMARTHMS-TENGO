@@ -14,6 +14,12 @@ namespace ESMART_HMS.Domain.Entities
     
     public partial class BarItem
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BarItem()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public string Id { get; set; }
         public string BarItemId { get; set; }
         public string ItemName { get; set; }
@@ -29,5 +35,7 @@ namespace ESMART_HMS.Domain.Entities
         public Nullable<decimal> SellingPrice { get; set; }
     
         public virtual ApplicationUser ApplicationUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

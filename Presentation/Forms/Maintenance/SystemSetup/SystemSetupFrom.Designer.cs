@@ -29,15 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SystemSetupFrom));
-            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
-            this.roomTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.roomTypeTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter();
             this.bankAccount = new System.Windows.Forms.TabPage();
-            this.general = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel7 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dgvAccount = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankAccNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankAccNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isTrashedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAddBank = new System.Windows.Forms.Button();
+            this.btnEditAccount = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.company = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,9 +87,30 @@
             this.companyLogoBox = new System.Windows.Forms.PictureBox();
             this.btnUpload = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
+            this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
+            this.roomTypeTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter();
+            this.bankAccountTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.BankAccountTableAdapter();
+            this.bankAccount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            this.flowLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.company.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -81,49 +121,286 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyLogoBox)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // roomBindingSource
-            // 
-            this.roomBindingSource.DataMember = "Room";
-            this.roomBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
-            // eSMART_HMSDBDataSet
-            // 
-            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
-            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // roomTypeBindingSource
-            // 
-            this.roomTypeBindingSource.DataMember = "RoomType";
-            this.roomTypeBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
-            // roomTableAdapter
-            // 
-            this.roomTableAdapter.ClearBeforeFill = true;
-            // 
-            // roomTypeTableAdapter
-            // 
-            this.roomTypeTableAdapter.ClearBeforeFill = true;
             // 
             // bankAccount
             // 
             this.bankAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
+            this.bankAccount.Controls.Add(this.splitContainer2);
+            this.bankAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bankAccount.Location = new System.Drawing.Point(4, 46);
             this.bankAccount.Name = "bankAccount";
             this.bankAccount.Size = new System.Drawing.Size(954, 478);
             this.bankAccount.TabIndex = 2;
             this.bankAccount.Text = "Bank Account";
             // 
-            // general
+            // splitContainer2
             // 
-            this.general.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(90)))), ((int)(((byte)(111)))));
-            this.general.Location = new System.Drawing.Point(4, 46);
-            this.general.Name = "general";
-            this.general.Padding = new System.Windows.Forms.Padding(3);
-            this.general.Size = new System.Drawing.Size(954, 478);
-            this.general.TabIndex = 1;
-            this.general.Text = "General";
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.panel4);
+            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(10);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer2.Size = new System.Drawing.Size(954, 478);
+            this.splitContainer2.SplitterDistance = 816;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.splitContainer3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(10, 10);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(796, 458);
+            this.panel4.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.splitContainer4);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.dgvAccount);
+            this.splitContainer3.Size = new System.Drawing.Size(796, 458);
+            this.splitContainer3.SplitterDistance = 54;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.flowLayoutPanel7);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.label13);
+            this.splitContainer4.Size = new System.Drawing.Size(796, 54);
+            this.splitContainer4.SplitterDistance = 545;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // flowLayoutPanel7
+            // 
+            this.flowLayoutPanel7.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanel7.Controls.Add(this.label14);
+            this.flowLayoutPanel7.Controls.Add(this.textBox2);
+            this.flowLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel7.Name = "flowLayoutPanel7";
+            this.flowLayoutPanel7.Padding = new System.Windows.Forms.Padding(20, 6, 5, 20);
+            this.flowLayoutPanel7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(545, 54);
+            this.flowLayoutPanel7.TabIndex = 3;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(23, 13);
+            this.label14.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(68, 23);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Search:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(97, 9);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(210, 30);
+            this.textBox2.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(88, 12);
+            this.label13.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label13.Name = "label13";
+            this.label13.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label13.Size = new System.Drawing.Size(144, 29);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Manage Account";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvAccount
+            // 
+            this.dgvAccount.AllowUserToAddRows = false;
+            this.dgvAccount.AllowUserToDeleteRows = false;
+            this.dgvAccount.AutoGenerateColumns = false;
+            this.dgvAccount.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAccount.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvAccount.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAccount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAccount.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAccount.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.bankNameDataGridViewTextBoxColumn,
+            this.bankAccNoDataGridViewTextBoxColumn,
+            this.bankAccNameDataGridViewTextBoxColumn,
+            this.createdByDataGridViewTextBoxColumn,
+            this.dateCreatedDataGridViewTextBoxColumn,
+            this.dateModifiedDataGridViewTextBoxColumn,
+            this.isTrashedDataGridViewCheckBoxColumn});
+            this.dgvAccount.DataSource = this.bankAccountBindingSource;
+            this.dgvAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvAccount.GridColor = System.Drawing.Color.Gray;
+            this.dgvAccount.Location = new System.Drawing.Point(0, 0);
+            this.dgvAccount.Name = "dgvAccount";
+            this.dgvAccount.ReadOnly = true;
+            this.dgvAccount.Size = new System.Drawing.Size(796, 400);
+            this.dgvAccount.TabIndex = 3;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bankNameDataGridViewTextBoxColumn
+            // 
+            this.bankNameDataGridViewTextBoxColumn.DataPropertyName = "BankName";
+            this.bankNameDataGridViewTextBoxColumn.HeaderText = "Bank Name";
+            this.bankNameDataGridViewTextBoxColumn.Name = "bankNameDataGridViewTextBoxColumn";
+            this.bankNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bankAccNoDataGridViewTextBoxColumn
+            // 
+            this.bankAccNoDataGridViewTextBoxColumn.DataPropertyName = "BankAccNo";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.bankAccNoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.bankAccNoDataGridViewTextBoxColumn.HeaderText = "Bank Acc No";
+            this.bankAccNoDataGridViewTextBoxColumn.Name = "bankAccNoDataGridViewTextBoxColumn";
+            this.bankAccNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bankAccNameDataGridViewTextBoxColumn
+            // 
+            this.bankAccNameDataGridViewTextBoxColumn.DataPropertyName = "BankAccName";
+            this.bankAccNameDataGridViewTextBoxColumn.HeaderText = "Bank Acc Name";
+            this.bankAccNameDataGridViewTextBoxColumn.Name = "bankAccNameDataGridViewTextBoxColumn";
+            this.bankAccNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // createdByDataGridViewTextBoxColumn
+            // 
+            this.createdByDataGridViewTextBoxColumn.DataPropertyName = "CreatedBy";
+            this.createdByDataGridViewTextBoxColumn.HeaderText = "Created By";
+            this.createdByDataGridViewTextBoxColumn.Name = "createdByDataGridViewTextBoxColumn";
+            this.createdByDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateCreatedDataGridViewTextBoxColumn
+            // 
+            this.dateCreatedDataGridViewTextBoxColumn.DataPropertyName = "DateCreated";
+            this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "Date Created";
+            this.dateCreatedDataGridViewTextBoxColumn.Name = "dateCreatedDataGridViewTextBoxColumn";
+            this.dateCreatedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateModifiedDataGridViewTextBoxColumn
+            // 
+            this.dateModifiedDataGridViewTextBoxColumn.DataPropertyName = "DateModified";
+            this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "Date Modified";
+            this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
+            this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isTrashedDataGridViewCheckBoxColumn
+            // 
+            this.isTrashedDataGridViewCheckBoxColumn.DataPropertyName = "IsTrashed";
+            this.isTrashedDataGridViewCheckBoxColumn.HeaderText = "IsTrashed";
+            this.isTrashedDataGridViewCheckBoxColumn.Name = "isTrashedDataGridViewCheckBoxColumn";
+            this.isTrashedDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isTrashedDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // bankAccountBindingSource
+            // 
+            this.bankAccountBindingSource.DataMember = "BankAccount";
+            this.bankAccountBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // eSMART_HMSDBDataSet
+            // 
+            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
+            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanel1.Controls.Add(this.btnAddBank);
+            this.flowLayoutPanel1.Controls.Add(this.btnEditAccount);
+            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 10);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(114, 458);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // btnAddBank
+            // 
+            this.btnAddBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(121)))), ((int)(((byte)(247)))));
+            this.btnAddBank.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnAddBank.ForeColor = System.Drawing.Color.White;
+            this.btnAddBank.Location = new System.Drawing.Point(3, 3);
+            this.btnAddBank.Name = "btnAddBank";
+            this.btnAddBank.Size = new System.Drawing.Size(108, 37);
+            this.btnAddBank.TabIndex = 1;
+            this.btnAddBank.Text = "New";
+            this.btnAddBank.UseVisualStyleBackColor = false;
+            this.btnAddBank.Click += new System.EventHandler(this.btnAddBank_Click);
+            // 
+            // btnEditAccount
+            // 
+            this.btnEditAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnEditAccount.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnEditAccount.ForeColor = System.Drawing.Color.White;
+            this.btnEditAccount.Location = new System.Drawing.Point(3, 46);
+            this.btnEditAccount.Name = "btnEditAccount";
+            this.btnEditAccount.Size = new System.Drawing.Size(108, 37);
+            this.btnEditAccount.TabIndex = 2;
+            this.btnEditAccount.Text = "Edit";
+            this.btnEditAccount.UseVisualStyleBackColor = false;
+            this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(3, 89);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(108, 37);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // company
             // 
@@ -321,11 +598,12 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(120)))), ((int)(((byte)(214)))));
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(230)))), ((int)(((byte)(252)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(187, 435);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 40);
@@ -434,7 +712,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.company);
-            this.tabControl1.Controls.Add(this.general);
             this.tabControl1.Controls.Add(this.bankAccount);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
@@ -447,6 +724,28 @@
             this.tabControl1.Size = new System.Drawing.Size(962, 528);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            // 
+            // roomBindingSource
+            // 
+            this.roomBindingSource.DataMember = "Room";
+            this.roomBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // roomTypeBindingSource
+            // 
+            this.roomTypeBindingSource.DataMember = "RoomType";
+            this.roomTypeBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // roomTableAdapter
+            // 
+            this.roomTableAdapter.ClearBeforeFill = true;
+            // 
+            // roomTypeTableAdapter
+            // 
+            this.roomTypeTableAdapter.ClearBeforeFill = true;
+            // 
+            // bankAccountTableAdapter
+            // 
+            this.bankAccountTableAdapter.ClearBeforeFill = true;
             // 
             // SystemSetupFrom
             // 
@@ -463,9 +762,27 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "System Setup";
             this.Load += new System.EventHandler(this.SystemSetupFrom_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
+            this.bankAccount.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            this.flowLayoutPanel7.ResumeLayout(false);
+            this.flowLayoutPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.company.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -480,6 +797,8 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.companyLogoBox)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -492,7 +811,6 @@
         private System.Windows.Forms.BindingSource roomTypeBindingSource;
         private ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter roomTypeTableAdapter;
         private System.Windows.Forms.TabPage bankAccount;
-        private System.Windows.Forms.TabPage general;
         private System.Windows.Forms.TabPage company;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
@@ -523,5 +841,28 @@
         private System.Windows.Forms.PictureBox companyLogoBox;
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnAddBank;
+        private System.Windows.Forms.Button btnEditAccount;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel7;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridView dgvAccount;
+        private System.Windows.Forms.BindingSource bankAccountBindingSource;
+        private ESMART_HMSDBDataSetTableAdapters.BankAccountTableAdapter bankAccountTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bankNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bankAccNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bankAccNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdByDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isTrashedDataGridViewCheckBoxColumn;
     }
 }

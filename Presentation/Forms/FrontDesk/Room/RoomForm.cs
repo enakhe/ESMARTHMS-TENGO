@@ -6,11 +6,9 @@ using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 

@@ -24,6 +24,7 @@ namespace ESMART_HMS.Domain.Entities
         public string Description { get; set; }
         public string Type { get; set; }
         public bool IsTrashed { get; set; }
+        public string BankAccount { get; set; }
     
         public virtual Guest Guest { get; set; }
     }

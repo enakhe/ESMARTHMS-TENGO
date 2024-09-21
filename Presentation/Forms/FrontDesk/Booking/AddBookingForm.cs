@@ -2,6 +2,7 @@
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
@@ -10,9 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Presentation.Forms.Booking
+namespace ESMART_HMS.Presentation.Forms.booking
 {
-    public partial class AddBookingForm : Form
+    public partial class AddbookingForm : Form
     {
         private readonly string _reservationId;
         private readonly string _guestId;
@@ -21,10 +22,11 @@ namespace ESMART_HMS.Presentation.Forms.Booking
         private readonly RoomController _roomController;
         private readonly ReservationController _reservationController;
         private readonly ConfigurationController _configurationController;
-        private readonly BookingController _bookingController;
+        private readonly bookingController _bookingController;
         private readonly TransactionController _transactionController;
         private readonly ApplicationUserController _applicationUserController;
-        public AddBookingForm(string reservationId, string guestId, string roomId, GuestController guestController, RoomController roomController, ReservationController reservationController, ConfigurationController configurationController, BookingController bookingController, TransactionController transactionController, ApplicationUserController applicationUserController)
+        private readonly SystemSetupController _systemSetupController;
+        public AddbookingForm(string reservationId, string guestId, string roomId, GuestController guestController, RoomController roomController, ReservationController reservationController, ConfigurationController configurationController, bookingController bookingController, TransactionController transactionController, ApplicationUserController applicationUserController, SystemSetupController systemSetupController)
         {
             InitializeComponent();
             DisableInput();
@@ -38,9 +40,10 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             _bookingController = bookingController;
             _transactionController = transactionController;
             _applicationUserController = applicationUserController;
+            _systemSetupController = systemSetupController;
         }
 
-        private void AddBookingForm_Load(object sender, EventArgs e)
+        private void AddbookingForm_Load(object sender, EventArgs e)
         {
             DisableInput();
             LoadGuest();
@@ -48,6 +51,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             LoadReservation();
             LoadMetric();
             LoadTotalAmount();
+            LoadBankDetails();
             txtCheckIn.Value = DateTime.Now;
         }
 
@@ -72,9 +76,21 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 txtRoom.Enabled = true;
                 txtCheckIn.Enabled = true;
                 txtPaymentMethod.Enabled = true;
-                txtBookingAmount.Enabled = true;
+                txtbookingAmount.Enabled = true;
                 btnGuest.Enabled = true;
-                txtBookingAmount.Enabled = false;
+                txtbookingAmount.Enabled = false;
+            }
+        }
+
+        public void LoadBankDetails()
+        {
+            List<BankAccountViewModel> allAccounts = _systemSetupController.GetAllBankAccount();
+            if (allAccounts != null)
+            {
+                foreach (BankAccountViewModel account in allAccounts)
+                {
+                    bankAccounts.Items.Add($"{account.BankAccNo} | {account.BankName}");
+                }
             }
         }
 
@@ -187,7 +203,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
 
                 if (room != null)
                 {
-                    txtBookingAmount.Text = (FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate)).ToString();
+                    txtbookingAmount.Text = (FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate)).ToString();
                 }
 
                 if (reservation != null)
@@ -202,7 +218,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 {
                     Room bookingRoom = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
                     txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), bookingRoom.Rate).ToString();
-                    txtBookingAmount.Text = txtAmount.Text;
+                    txtbookingAmount.Text = txtAmount.Text;
                 }
 
                 TimeSpan difference = txtCheckOut.Value - txtCheckIn.Value;
@@ -231,9 +247,15 @@ namespace ESMART_HMS.Presentation.Forms.Booking
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+
             bool isNull = FormHelper.AreAnyNullOrEmpty(txtAmount.Text, txtCheckIn.Text, txtCheckOut.Text, txtDiscount.Text, txtDuration.Text, txtGuest.Text, txtNoOfPerson.Text, txtPaymentMethod.Text, txtRoom.Text, txtTotalAmount.Text, txtVAT.Text);
             if (isNull == false)
             {
+                if (txtPaymentMethod.Text == "CASH")
+                {
+                    bankAccounts.SelectedItem = "";
+                }
+
                 Domain.Entities.Booking booking = new Domain.Entities.Booking();
 
                 Random random = new Random();
@@ -248,7 +270,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 booking.CheckInDate = txtCheckIn.Value;
                 booking.CheckOutDate = txtCheckOut.Value;
                 booking.PaymentMethod = txtPaymentMethod.Text;
-                booking.Amount = decimal.Parse(txtBookingAmount.Text);
+                booking.Amount = decimal.Parse(txtbookingAmount.Text);
                 booking.NoOfPerson = int.Parse(txtNoOfPerson.Text);
                 booking.Duration = int.Parse(txtDuration.Text);
                 booking.Discount = decimal.Parse(txtDiscount.Text);
@@ -260,7 +282,7 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                 booking.CreatedBy = AuthSession.CurrentUser.Id;
                 booking.ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
 
-                _bookingController.AddBooking(booking);
+                _bookingController.Addbooking(booking);
 
                 Domain.Entities.Room room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
                 room.Status = RoomStatusEnum.CheckedIn.ToString();
@@ -279,25 +301,38 @@ namespace ESMART_HMS.Presentation.Forms.Booking
                         foundTransaction.Amount = decimal.Parse(txtTotalAmount.Text);
                         _transactionController.UpdateTransaction(foundTransaction);
 
-                        reservation.Status = "Paid";
+                        if (bankAccounts.SelectedItem != null)
+                        {
+                            foundTransaction.BankAccount = bankAccounts.SelectedItem.ToString();
+                        }
+
+                        reservation.Status = "CheckedIn";
                         _reservationController.UpdateReservation(reservation);
                     }
                 }
-
-                ESMART_HMS.Domain.Entities.Transaction transaction = new ESMART_HMS.Domain.Entities.Transaction()
+                else
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    TransactionId = "TR" + random.Next(1000, 5000),
-                    GuestId = booking.GuestId,
-                    Guest = booking.Guest,
-                    ServiceId = booking.BookingId,
-                    Date = DateTime.Now,
-                    Amount = booking.TotalAmount,
-                    Type = "Room Service",
-                    Status = "Paid"
-                };
+                    ESMART_HMS.Domain.Entities.Transaction transaction = new ESMART_HMS.Domain.Entities.Transaction()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        TransactionId = "TR" + random.Next(1000, 5000),
+                        GuestId = booking.GuestId,
+                        Guest = booking.Guest,
+                        ServiceId = booking.BookingId,
+                        Date = DateTime.Now,
+                        Amount = booking.TotalAmount,
+                        Type = "Room Service",
+                        Description = "booking",
+                        Status = "Paid",
+                    };
 
-                _transactionController.AddTransaction(transaction);
+                    if (bankAccounts.SelectedItem != null)
+                    {
+                        transaction.BankAccount = bankAccounts.SelectedItem.ToString();
+                    }
+
+                    _transactionController.AddTransaction(transaction);
+                }
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -322,12 +357,12 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             }
         }
 
-        private void txtBookingAmount_TextChanged(object sender, EventArgs e)
+        private void txtbookingAmount_TextChanged(object sender, EventArgs e)
         {
-            bool isNull = FormHelper.AreAnyNullOrEmpty(txtBookingAmount.Text);
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtbookingAmount.Text);
             if (isNull == false)
             {
-                txtBookingAmount.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtBookingAmount.Text));
+                txtbookingAmount.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtbookingAmount.Text));
             }
         }
 
@@ -338,6 +373,18 @@ namespace ESMART_HMS.Presentation.Forms.Booking
             {
                 int numberOfDays = int.Parse(noOfDays.Text);
                 txtCheckOut.Value = txtCheckIn.Value.AddDays(numberOfDays);
+            }
+        }
+
+        private void txtPaymentMethod_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (txtPaymentMethod.Text == "CASH")
+            {
+                bankAccounts.Enabled = false;
+            }
+            else
+            {
+                bankAccounts.Enabled = true;
             }
         }
     }

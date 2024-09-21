@@ -1,6 +1,6 @@
-﻿namespace ESMART_HMS.Presentation.Forms.Booking
+﻿namespace ESMART_HMS.Presentation.Forms.booking
 {
-    partial class BookingForm
+    partial class bookingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookingForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(bookingForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -39,7 +39,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
-            this.bookingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.BookingTableAdapter();
+            this.bookingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.bookingTableAdapter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -60,7 +60,7 @@
             this.btnBook = new System.Windows.Forms.Button();
             this.btnCheckout = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.dgvBooking = new System.Windows.Forms.DataGridView();
+            this.dgvbooking = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookingIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Guest = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,12 +108,12 @@
             this.splitContainer3.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvbooking)).BeginInit();
             this.SuspendLayout();
             // 
             // bookingBindingSource
             // 
-            this.bookingBindingSource.DataMember = "Booking";
+            this.bookingBindingSource.DataMember = "booking";
             this.bookingBindingSource.DataSource = this.eSMART_HMSDBDataSet;
             // 
             // eSMART_HMSDBDataSet
@@ -256,7 +256,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.dgvBooking);
+            this.splitContainer2.Panel2.Controls.Add(this.dgvbooking);
             this.splitContainer2.Size = new System.Drawing.Size(1456, 435);
             this.splitContainer2.SplitterDistance = 54;
             this.splitContainer2.TabIndex = 1;
@@ -388,17 +388,17 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(143, 46);
             this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Add Booking";
+            this.btnAdd.Text = "Add booking";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // dgvBooking
+            // dgvbooking
             // 
-            this.dgvBooking.AllowUserToAddRows = false;
-            this.dgvBooking.AllowUserToDeleteRows = false;
-            this.dgvBooking.AutoGenerateColumns = false;
-            this.dgvBooking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBooking.BackgroundColor = System.Drawing.Color.White;
+            this.dgvbooking.AllowUserToAddRows = false;
+            this.dgvbooking.AllowUserToDeleteRows = false;
+            this.dgvbooking.AutoGenerateColumns = false;
+            this.dgvbooking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvbooking.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle36.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold);
@@ -407,9 +407,9 @@
             dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBooking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle36;
-            this.dgvBooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBooking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvbooking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle36;
+            this.dgvbooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvbooking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.bookingIdDataGridViewTextBoxColumn,
             this.Guest,
@@ -429,7 +429,7 @@
             this.dateCreatedDataGridViewTextBoxColumn,
             this.dateModifiedDataGridViewTextBoxColumn,
             this.isTrashedDataGridViewCheckBoxColumn});
-            this.dgvBooking.DataSource = this.bookingBindingSource;
+            this.dgvbooking.DataSource = this.bookingBindingSource;
             dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle41.Font = new System.Drawing.Font("Segoe UI", 10.2F);
@@ -438,13 +438,13 @@
             dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBooking.DefaultCellStyle = dataGridViewCellStyle41;
-            this.dgvBooking.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBooking.GridColor = System.Drawing.Color.Black;
-            this.dgvBooking.Location = new System.Drawing.Point(0, 0);
-            this.dgvBooking.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvBooking.Name = "dgvBooking";
-            this.dgvBooking.ReadOnly = true;
+            this.dgvbooking.DefaultCellStyle = dataGridViewCellStyle41;
+            this.dgvbooking.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvbooking.GridColor = System.Drawing.Color.Black;
+            this.dgvbooking.Location = new System.Drawing.Point(0, 0);
+            this.dgvbooking.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvbooking.Name = "dgvbooking";
+            this.dgvbooking.ReadOnly = true;
             dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle42.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle42.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -453,11 +453,11 @@
             dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBooking.RowHeadersDefaultCellStyle = dataGridViewCellStyle42;
-            this.dgvBooking.RowHeadersWidth = 51;
-            this.dgvBooking.RowTemplate.Height = 24;
-            this.dgvBooking.Size = new System.Drawing.Size(1456, 377);
-            this.dgvBooking.TabIndex = 2;
+            this.dgvbooking.RowHeadersDefaultCellStyle = dataGridViewCellStyle42;
+            this.dgvbooking.RowHeadersWidth = 51;
+            this.dgvbooking.RowTemplate.Height = 24;
+            this.dgvbooking.Size = new System.Drawing.Size(1456, 377);
+            this.dgvbooking.TabIndex = 2;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -469,8 +469,8 @@
             // 
             // bookingIdDataGridViewTextBoxColumn
             // 
-            this.bookingIdDataGridViewTextBoxColumn.DataPropertyName = "BookingId";
-            this.bookingIdDataGridViewTextBoxColumn.HeaderText = "Booking Id";
+            this.bookingIdDataGridViewTextBoxColumn.DataPropertyName = "bookingId";
+            this.bookingIdDataGridViewTextBoxColumn.HeaderText = "booking Id";
             this.bookingIdDataGridViewTextBoxColumn.Name = "bookingIdDataGridViewTextBoxColumn";
             this.bookingIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -607,7 +607,7 @@
             this.isTrashedDataGridViewCheckBoxColumn.ReadOnly = true;
             this.isTrashedDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // BookingForm
+            // bookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -617,9 +617,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "BookingForm";
-            this.Text = "BookingForm";
-            this.Load += new System.EventHandler(this.BookingForm_Load);
+            this.Name = "bookingForm";
+            this.Text = "bookingForm";
+            this.Load += new System.EventHandler(this.bookingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bookingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -650,7 +650,7 @@
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvbooking)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -658,7 +658,7 @@
         #endregion
         private ESMART_HMSDBDataSet eSMART_HMSDBDataSet;
         private System.Windows.Forms.BindingSource bookingBindingSource;
-        private ESMART_HMSDBDataSetTableAdapters.BookingTableAdapter bookingTableAdapter;
+        private ESMART_HMSDBDataSetTableAdapters.bookingTableAdapter bookingTableAdapter;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel5;
@@ -679,7 +679,7 @@
         private System.Windows.Forms.Button btnBook;
         private System.Windows.Forms.Button btnCheckout;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridView dgvBooking;
+        private System.Windows.Forms.DataGridView dgvbooking;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bookingIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Guest;

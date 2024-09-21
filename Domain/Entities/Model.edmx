@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
-  <!-- EF Runtime content -->
-  <edmx:Runtime>
-    <!-- SSDL content -->
-    <edmx:StorageModels>
-    <Schema Namespace="ESMART_HMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+	<!-- EF Runtime content -->
+	<edmx:Runtime>
+		<!-- SSDL content -->
+		<edmx:StorageModels>
+		<Schema Namespace="ESMART_HMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ApplicationUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -231,6 +231,32 @@
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="LicenseInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="HotelName" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ProductKey" Type="nvarchar" MaxLength="450" />
+          <Property Name="ExpiryDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="OrderId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ItemId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IsTrashed" Type="bit" Nullable="false" />
+          <Property Name="CustomerId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="Permission">
           <Key>
             <PropertyRef Name="Id" />
@@ -341,6 +367,7 @@
           <Property Name="GuestId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="ServiceId" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="BankAccount" Type="nvarchar" MaxLength="450" />
           <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="450" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -371,7 +398,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Authoriza__Creat__70DDC3D8">
+        <Association Name="FK__Authoriza__Creat__71D1E811">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="AuthorizationCard" Type="Self.AuthorizationCard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -379,6 +406,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AuthorizationCard">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BankAccou__Creat__6EF57B66">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
+          <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BankAccount">
               <PropertyRef Name="CreatedBy" />
             </Dependent>
           </ReferentialConstraint>
@@ -455,7 +494,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GuestCard__Issue__7C4F7684">
+        <Association Name="FK__GuestCard__Issue__778AC167">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="GuestCard" Type="Self.GuestCard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -500,6 +539,42 @@
             </Principal>
             <Dependent Role="Invoice">
               <PropertyRef Name="GuestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__CustomerI__07C12930">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__IssuedBy__06CD04F7">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IssuedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__ItemId__08B54D69">
+          <End Role="BarItem" Type="Self.BarItem" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BarItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -623,7 +698,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SpecialCa__Issue__787EE5A0">
+        <Association Name="FK__SpecialCa__Issue__74AE54BC">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="SpecialCard" Type="Self.SpecialCard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -663,6 +738,8 @@
           <EntitySet Name="GuestCard" EntityType="Self.GuestCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IngredientItem" EntityType="Self.IngredientItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LicenseInfo" EntityType="Self.LicenseInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -679,9 +756,13 @@
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
           </AssociationSet>
-          <AssociationSet Name="FK__Authoriza__Creat__70DDC3D8" Association="Self.FK__Authoriza__Creat__70DDC3D8">
+          <AssociationSet Name="FK__Authoriza__Creat__71D1E811" Association="Self.FK__Authoriza__Creat__71D1E811">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="AuthorizationCard" EntitySet="AuthorizationCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankAccou__Creat__6EF57B66" Association="Self.FK__BankAccou__Creat__6EF57B66">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="BankAccount" EntitySet="BankAccount" />
           </AssociationSet>
           <AssociationSet Name="FK__BarItem__Created__6754599E" Association="Self.FK__BarItem__Created__6754599E">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
@@ -707,7 +788,7 @@
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="Guest" EntitySet="Guest" />
           </AssociationSet>
-          <AssociationSet Name="FK__GuestCard__Issue__7C4F7684" Association="Self.FK__GuestCard__Issue__7C4F7684">
+          <AssociationSet Name="FK__GuestCard__Issue__778AC167" Association="Self.FK__GuestCard__Issue__778AC167">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="GuestCard" EntitySet="GuestCard" />
           </AssociationSet>
@@ -722,6 +803,18 @@
           <AssociationSet Name="FK__Invoice__GuestId__6383C8BA" Association="Self.FK__Invoice__GuestId__6383C8BA">
             <End Role="Guest" EntitySet="Guest" />
             <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__CustomerI__07C12930" Association="Self.FK__Order__CustomerI__07C12930">
+            <End Role="Guest" EntitySet="Guest" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__IssuedBy__06CD04F7" Association="Self.FK__Order__IssuedBy__06CD04F7">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__ItemId__08B54D69" Association="Self.FK__Order__ItemId__08B54D69">
+            <End Role="BarItem" EntitySet="BarItem" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK__Reservati__Creat__59063A47" Association="Self.FK__Reservati__Creat__59063A47">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
@@ -763,7 +856,7 @@
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="Room" EntitySet="Room" />
           </AssociationSet>
-          <AssociationSet Name="FK__SpecialCa__Issue__787EE5A0" Association="Self.FK__SpecialCa__Issue__787EE5A0">
+          <AssociationSet Name="FK__SpecialCa__Issue__74AE54BC" Association="Self.FK__SpecialCa__Issue__74AE54BC">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="SpecialCard" EntitySet="SpecialCard" />
           </AssociationSet>
@@ -773,1218 +866,1348 @@
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="ESMART_HMSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="RoomType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RoomTypeId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__RoomTypeId__4CA06362" FromRole="RoomType" ToRole="Room" />
-        </EntityType>
-        <EntityContainer Name="ESMART_HMSDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
-          <EntitySet Name="Configurations" EntityType="ESMART_HMSDBModel.Configuration" />
-          <EntitySet Name="Invoices" EntityType="ESMART_HMSDBModel.Invoice" />
-          <EntitySet Name="Permissions" EntityType="ESMART_HMSDBModel.Permission" />
-          <EntitySet Name="Roles" EntityType="ESMART_HMSDBModel.Role" />
-          <EntitySet Name="RolePermissions" EntityType="ESMART_HMSDBModel.RolePermission" />
-          <AssociationSet Name="FK__RolePermi__Permi__3E52440B" Association="ESMART_HMSDBModel.FK__RolePermi__Permi__3E52440B">
-            <End Role="Permission" EntitySet="Permissions" />
-            <End Role="RolePermission" EntitySet="RolePermissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RolePermi__RoleI__3D5E1FD2" Association="ESMART_HMSDBModel.FK__RolePermi__RoleI__3D5E1FD2">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="RolePermission" EntitySet="RolePermissions" />
-          </AssociationSet>
-          <EntitySet Name="ApplicationUserRoles" EntityType="ESMART_HMSDBModel.ApplicationUserRole" />
-          <AssociationSet Name="FK__Applicati__RoleI__3C69FB99" Association="ESMART_HMSDBModel.FK__Applicati__RoleI__3C69FB99">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="ApplicationUserRole" EntitySet="ApplicationUserRoles" />
-          </AssociationSet>
-          <EntitySet Name="ApplicationUsers" EntityType="ESMART_HMSDBModel.ApplicationUser" />
-          <AssociationSet Name="FK__Applicati__UserI__3B75D760" Association="ESMART_HMSDBModel.FK__Applicati__UserI__3B75D760">
+		<!-- CSDL content -->
+		<edmx:ConceptualModels>
+			<Schema Namespace="ESMART_HMSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+				<EntityType Name="RoomType">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+					<Property Name="RoomTypeId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+					<Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__RoomTypeId__4CA06362" FromRole="RoomType" ToRole="Room" />
+				</EntityType>
+				<EntityContainer Name="ESMART_HMSDBEntities" annotation:LazyLoadingEnabled="true">
+					<EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
+					<EntitySet Name="Configurations" EntityType="ESMART_HMSDBModel.Configuration" />
+					<EntitySet Name="Invoices" EntityType="ESMART_HMSDBModel.Invoice" />
+					<EntitySet Name="Permissions" EntityType="ESMART_HMSDBModel.Permission" />
+					<EntitySet Name="Roles" EntityType="ESMART_HMSDBModel.Role" />
+					<EntitySet Name="RolePermissions" EntityType="ESMART_HMSDBModel.RolePermission" />
+					<AssociationSet Name="FK__RolePermi__Permi__3E52440B" Association="ESMART_HMSDBModel.FK__RolePermi__Permi__3E52440B">
+						<End Role="Permission" EntitySet="Permissions" />
+						<End Role="RolePermission" EntitySet="RolePermissions" />
+					</AssociationSet>
+					<AssociationSet Name="FK__RolePermi__RoleI__3D5E1FD2" Association="ESMART_HMSDBModel.FK__RolePermi__RoleI__3D5E1FD2">
+						<End Role="Role" EntitySet="Roles" />
+						<End Role="RolePermission" EntitySet="RolePermissions" />
+					</AssociationSet>
+					<EntitySet Name="ApplicationUserRoles" EntityType="ESMART_HMSDBModel.ApplicationUserRole" />
+					<AssociationSet Name="FK__Applicati__RoleI__3C69FB99" Association="ESMART_HMSDBModel.FK__Applicati__RoleI__3C69FB99">
+						<End Role="Role" EntitySet="Roles" />
+						<End Role="ApplicationUserRole" EntitySet="ApplicationUserRoles" />
+					</AssociationSet>
+					<EntitySet Name="ApplicationUsers" EntityType="ESMART_HMSDBModel.ApplicationUser" />
+					<AssociationSet Name="FK__Applicati__UserI__3B75D760" Association="ESMART_HMSDBModel.FK__Applicati__UserI__3B75D760">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="ApplicationUserRole" EntitySet="ApplicationUserRoles" />
+					</AssociationSet>
+					<EntitySet Name="Bookings" EntityType="ESMART_HMSDBModel.Booking" />
+					<EntitySet Name="Guests" EntityType="ESMART_HMSDBModel.Guest" />
+					<EntitySet Name="Reservations" EntityType="ESMART_HMSDBModel.Reservation" />
+					<AssociationSet Name="FK__Booking__Created__5441852A" Association="ESMART_HMSDBModel.FK__Booking__Created__5441852A">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="Booking" EntitySet="Bookings" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Guest__CreatedBy__4AB81AF0" Association="ESMART_HMSDBModel.FK__Guest__CreatedBy__4AB81AF0">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="Guest" EntitySet="Guests" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Reservati__Creat__4F7CD00D" Association="ESMART_HMSDBModel.FK__Reservati__Creat__4F7CD00D">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="Reservation" EntitySet="Reservations" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Booking__GuestId__52593CB8" Association="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8">
+						<End Role="Guest" EntitySet="Guests" />
+						<End Role="Booking" EntitySet="Bookings" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Invoice__Booking__5BE2A6F2" Association="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2">
+						<End Role="Booking" EntitySet="Bookings" />
+						<End Role="Invoice" EntitySet="Invoices" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Invoice__GuestId__5AEE82B9" Association="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9">
+						<End Role="Guest" EntitySet="Guests" />
+						<End Role="Invoice" EntitySet="Invoices" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Reservati__Guest__4D94879B" Association="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B">
+						<End Role="Guest" EntitySet="Guests" />
+						<End Role="Reservation" EntitySet="Reservations" />
+					</AssociationSet>
+					<EntitySet Name="BarItems" EntityType="ESMART_HMSDBModel.BarItem" />
+					<EntitySet Name="IngredientItems" EntityType="ESMART_HMSDBModel.IngredientItem" />
+					<AssociationSet Name="FK__BarItem__Created__5EBF139D" Association="ESMART_HMSDBModel.FK__BarItem__Created__5EBF139D">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="BarItem" EntitySet="BarItems" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Ingredien__Creat__619B8048" Association="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="IngredientItem" EntitySet="IngredientItems" />
+					</AssociationSet>
+					<EntitySet Name="Transactions" EntityType="ESMART_HMSDBModel.Transaction" />
+					<AssociationSet Name="FK__Transacti__Guest__571DF1D5" Association="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5">
+						<End Role="Guest" EntitySet="Guests" />
+						<End Role="Transaction" EntitySet="Transactions" />
+					</AssociationSet>
+					<EntitySet Name="CompanyInformations" EntityType="ESMART_HMSDBModel.CompanyInformation" />
+					<EntitySet Name="BankAccounts" EntityType="ESMART_HMSDBModel.BankAccount" />
+					<EntitySet Name="Areas" EntityType="ESMART_HMSDBModel.Area" />
+					<EntitySet Name="Buildings" EntityType="ESMART_HMSDBModel.Building" />
+					<EntitySet Name="Floors" EntityType="ESMART_HMSDBModel.Floor" />
+					<EntitySet Name="Rooms" EntityType="ESMART_HMSDBModel.Room" />
+					<AssociationSet Name="FK__Room__CreatedBy__5070F446" Association="ESMART_HMSDBModel.FK__Room__CreatedBy__5070F446">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="Room" EntitySet="Rooms" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Room__AreaId__4F7CD00D" Association="ESMART_HMSDBModel.FK__Room__AreaId__4F7CD00D">
+						<End Role="Area" EntitySet="Areas" />
+						<End Role="Room" EntitySet="Rooms" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Booking__RoomId__5BE2A6F2" Association="ESMART_HMSDBModel.FK__Booking__RoomId__5BE2A6F2">
+						<End Role="Room" EntitySet="Rooms" />
+						<End Role="Booking" EntitySet="Bookings" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Room__BuildingId__4D94879B" Association="ESMART_HMSDBModel.FK__Room__BuildingId__4D94879B">
+						<End Role="Building" EntitySet="Buildings" />
+						<End Role="Room" EntitySet="Rooms" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Room__FloorId__4E88ABD4" Association="ESMART_HMSDBModel.FK__Room__FloorId__4E88ABD4">
+						<End Role="Floor" EntitySet="Floors" />
+						<End Role="Room" EntitySet="Rooms" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Reservati__RoomI__571DF1D5" Association="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5">
+						<End Role="Room" EntitySet="Rooms" />
+						<End Role="Reservation" EntitySet="Reservations" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Room__RoomTypeId__4CA06362" Association="ESMART_HMSDBModel.FK__Room__RoomTypeId__4CA06362">
+						<End Role="RoomType" EntitySet="RoomTypes" />
+						<End Role="Room" EntitySet="Rooms" />
+					</AssociationSet>
+					<AssociationSet Name="FK__Floor__BuildingI__48CFD27E" Association="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E">
+						<End Role="Building" EntitySet="Buildings" />
+						<End Role="Floor" EntitySet="Floors" />
+					</AssociationSet>
+					<EntitySet Name="AuthorizationCards" EntityType="ESMART_HMSDBModel.AuthorizationCard" />
+					<AssociationSet Name="FK__Authoriza__Creat__70DDC3D8" Association="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="AuthorizationCard" EntitySet="AuthorizationCards" />
+					</AssociationSet>
+					<EntitySet Name="SpecialCards" EntityType="ESMART_HMSDBModel.SpecialCard" />
+					<AssociationSet Name="FK__SpecialCa__Issue__73BA3083" Association="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="SpecialCard" EntitySet="SpecialCards" />
+					</AssociationSet>
+					<EntitySet Name="GuestCards" EntityType="ESMART_HMSDBModel.GuestCard" />
+					<AssociationSet Name="FK__GuestCard__Issue__7C4F7684" Association="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684">
+						<End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+						<End Role="GuestCard" EntitySet="GuestCards" />
+					</AssociationSet>
+          <EntitySet Name="LicenseInfoes" EntityType="ESMART_HMSDBModel.LicenseInfo" />
+          <AssociationSet Name="FK__BankAccou__Creat__6EF57B66" Association="ESMART_HMSDBModel.FK__BankAccou__Creat__6EF57B66">
             <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="ApplicationUserRole" EntitySet="ApplicationUserRoles" />
+            <End Role="BankAccount" EntitySet="BankAccounts" />
           </AssociationSet>
-          <EntitySet Name="Bookings" EntityType="ESMART_HMSDBModel.Booking" />
-          <EntitySet Name="Guests" EntityType="ESMART_HMSDBModel.Guest" />
-          <EntitySet Name="Reservations" EntityType="ESMART_HMSDBModel.Reservation" />
-          <AssociationSet Name="FK__Booking__Created__5441852A" Association="ESMART_HMSDBModel.FK__Booking__Created__5441852A">
+          <EntitySet Name="Orders" EntityType="ESMART_HMSDBModel.Order" />
+          <AssociationSet Name="FK__Order__IssuedBy__02FC7413" Association="ESMART_HMSDBModel.FK__Order__IssuedBy__02FC7413">
             <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="Booking" EntitySet="Bookings" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Guest__CreatedBy__4AB81AF0" Association="ESMART_HMSDBModel.FK__Guest__CreatedBy__4AB81AF0">
-            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="Guest" EntitySet="Guests" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reservati__Creat__4F7CD00D" Association="ESMART_HMSDBModel.FK__Reservati__Creat__4F7CD00D">
-            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="Reservation" EntitySet="Reservations" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Booking__GuestId__52593CB8" Association="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8">
-            <End Role="Guest" EntitySet="Guests" />
-            <End Role="Booking" EntitySet="Bookings" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Booking__5BE2A6F2" Association="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2">
-            <End Role="Booking" EntitySet="Bookings" />
-            <End Role="Invoice" EntitySet="Invoices" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Invoice__GuestId__5AEE82B9" Association="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9">
-            <End Role="Guest" EntitySet="Guests" />
-            <End Role="Invoice" EntitySet="Invoices" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reservati__Guest__4D94879B" Association="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B">
-            <End Role="Guest" EntitySet="Guests" />
-            <End Role="Reservation" EntitySet="Reservations" />
-          </AssociationSet>
-          <EntitySet Name="BarItems" EntityType="ESMART_HMSDBModel.BarItem" />
-          <EntitySet Name="IngredientItems" EntityType="ESMART_HMSDBModel.IngredientItem" />
-          <AssociationSet Name="FK__BarItem__Created__5EBF139D" Association="ESMART_HMSDBModel.FK__BarItem__Created__5EBF139D">
-            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+          <AssociationSet Name="FK__Order__ItemId__03F0984C" Association="ESMART_HMSDBModel.FK__Order__ItemId__03F0984C">
             <End Role="BarItem" EntitySet="BarItems" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingredien__Creat__619B8048" Association="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048">
-            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="IngredientItem" EntitySet="IngredientItems" />
-          </AssociationSet>
-          <EntitySet Name="Transactions" EntityType="ESMART_HMSDBModel.Transaction" />
-          <AssociationSet Name="FK__Transacti__Guest__571DF1D5" Association="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5">
+          <AssociationSet Name="FK__Order__CustomerI__07C12930" Association="ESMART_HMSDBModel.FK__Order__CustomerI__07C12930">
             <End Role="Guest" EntitySet="Guests" />
-            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
-          <EntitySet Name="CompanyInformations" EntityType="ESMART_HMSDBModel.CompanyInformation" />
-          <EntitySet Name="BankAccounts" EntityType="ESMART_HMSDBModel.BankAccount" />
-          <EntitySet Name="Areas" EntityType="ESMART_HMSDBModel.Area" />
-          <EntitySet Name="Buildings" EntityType="ESMART_HMSDBModel.Building" />
-          <EntitySet Name="Floors" EntityType="ESMART_HMSDBModel.Floor" />
-          <EntitySet Name="Rooms" EntityType="ESMART_HMSDBModel.Room" />
-          <AssociationSet Name="FK__Room__CreatedBy__5070F446" Association="ESMART_HMSDBModel.FK__Room__CreatedBy__5070F446">
-            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="Room" EntitySet="Rooms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Room__AreaId__4F7CD00D" Association="ESMART_HMSDBModel.FK__Room__AreaId__4F7CD00D">
-            <End Role="Area" EntitySet="Areas" />
-            <End Role="Room" EntitySet="Rooms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Booking__RoomId__5BE2A6F2" Association="ESMART_HMSDBModel.FK__Booking__RoomId__5BE2A6F2">
-            <End Role="Room" EntitySet="Rooms" />
-            <End Role="Booking" EntitySet="Bookings" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Room__BuildingId__4D94879B" Association="ESMART_HMSDBModel.FK__Room__BuildingId__4D94879B">
-            <End Role="Building" EntitySet="Buildings" />
-            <End Role="Room" EntitySet="Rooms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Room__FloorId__4E88ABD4" Association="ESMART_HMSDBModel.FK__Room__FloorId__4E88ABD4">
-            <End Role="Floor" EntitySet="Floors" />
-            <End Role="Room" EntitySet="Rooms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reservati__RoomI__571DF1D5" Association="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5">
-            <End Role="Room" EntitySet="Rooms" />
-            <End Role="Reservation" EntitySet="Reservations" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Room__RoomTypeId__4CA06362" Association="ESMART_HMSDBModel.FK__Room__RoomTypeId__4CA06362">
-            <End Role="RoomType" EntitySet="RoomTypes" />
-            <End Role="Room" EntitySet="Rooms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Floor__BuildingI__48CFD27E" Association="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E">
-            <End Role="Building" EntitySet="Buildings" />
-            <End Role="Floor" EntitySet="Floors" />
-          </AssociationSet>
-          <EntitySet Name="AuthorizationCards" EntityType="ESMART_HMSDBModel.AuthorizationCard" />
-          <AssociationSet Name="FK__Authoriza__Creat__70DDC3D8" Association="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8">
-            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="AuthorizationCard" EntitySet="AuthorizationCards" />
-          </AssociationSet>
-          <EntitySet Name="SpecialCards" EntityType="ESMART_HMSDBModel.SpecialCard" />
-          <AssociationSet Name="FK__SpecialCa__Issue__73BA3083" Association="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083">
-            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="SpecialCard" EntitySet="SpecialCards" />
-          </AssociationSet>
-          <EntitySet Name="GuestCards" EntityType="ESMART_HMSDBModel.GuestCard" />
-          <AssociationSet Name="FK__GuestCard__Issue__7C4F7684" Association="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684">
-            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
-            <End Role="GuestCard" EntitySet="GuestCards" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Configuration">
-          <Key>
-            <PropertyRef Name="Key" />
-          </Key>
-          <Property Name="Key" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Value" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Invoice">
+				</EntityContainer>
+				<EntityType Name="Configuration">
+					<Key>
+						<PropertyRef Name="Key" />
+					</Key>
+					<Property Name="Key" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Value" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+				</EntityType>
+				<EntityType Name="Invoice">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="InvoiceId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BookingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="VATAmount" Type="Decimal" Precision="10" Scale="2" />
+					<Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="Booking" Relationship="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2" FromRole="Invoice" ToRole="Booking" />
+					<NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9" FromRole="Invoice" ToRole="Guest" />
+				</EntityType>
+				<EntityType Name="Permission">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="PermissionId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Title" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="RolePermissions" Relationship="ESMART_HMSDBModel.FK__RolePermi__Permi__3E52440B" FromRole="Permission" ToRole="RolePermission" />
+				</EntityType>
+				<EntityType Name="Role">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Title" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="RolePermissions" Relationship="ESMART_HMSDBModel.FK__RolePermi__RoleI__3D5E1FD2" FromRole="Role" ToRole="RolePermission" />
+					<NavigationProperty Name="ApplicationUserRoles" Relationship="ESMART_HMSDBModel.FK__Applicati__RoleI__3C69FB99" FromRole="Role" ToRole="ApplicationUserRole" />
+				</EntityType>
+				<EntityType Name="RolePermission">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="PermissionId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="Permission" Relationship="ESMART_HMSDBModel.FK__RolePermi__Permi__3E52440B" FromRole="RolePermission" ToRole="Permission" />
+					<NavigationProperty Name="Role" Relationship="ESMART_HMSDBModel.FK__RolePermi__RoleI__3D5E1FD2" FromRole="RolePermission" ToRole="Role" />
+				</EntityType>
+				<Association Name="FK__RolePermi__Permi__3E52440B">
+					<End Type="ESMART_HMSDBModel.Permission" Role="Permission" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.RolePermission" Role="RolePermission" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Permission">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="RolePermission">
+							<PropertyRef Name="PermissionId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__RolePermi__RoleI__3D5E1FD2">
+					<End Type="ESMART_HMSDBModel.Role" Role="Role" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.RolePermission" Role="RolePermission" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Role">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="RolePermission">
+							<PropertyRef Name="RoleId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="ApplicationUserRole">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="UserRoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="Role" Relationship="ESMART_HMSDBModel.FK__Applicati__RoleI__3C69FB99" FromRole="ApplicationUserRole" ToRole="Role" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Applicati__UserI__3B75D760" FromRole="ApplicationUserRole" ToRole="ApplicationUser" />
+				</EntityType>
+				<Association Name="FK__Applicati__RoleI__3C69FB99">
+					<End Type="ESMART_HMSDBModel.Role" Role="Role" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.ApplicationUserRole" Role="ApplicationUserRole" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Role">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="ApplicationUserRole">
+							<PropertyRef Name="RoleId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="ApplicationUser">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+					<Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+					<Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="ApplicationUserRoles" Relationship="ESMART_HMSDBModel.FK__Applicati__UserI__3B75D760" FromRole="ApplicationUser" ToRole="ApplicationUserRole" />
+					<NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__Created__5441852A" FromRole="ApplicationUser" ToRole="Booking" />
+					<NavigationProperty Name="Guests" Relationship="ESMART_HMSDBModel.FK__Guest__CreatedBy__4AB81AF0" FromRole="ApplicationUser" ToRole="Guest" />
+					<NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Creat__4F7CD00D" FromRole="ApplicationUser" ToRole="Reservation" />
+					<NavigationProperty Name="BarItems" Relationship="ESMART_HMSDBModel.FK__BarItem__Created__5EBF139D" FromRole="ApplicationUser" ToRole="BarItem" />
+					<NavigationProperty Name="IngredientItems" Relationship="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048" FromRole="ApplicationUser" ToRole="IngredientItem" />
+					<NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__CreatedBy__5070F446" FromRole="ApplicationUser" ToRole="Room" />
+					<NavigationProperty Name="AuthorizationCards" Relationship="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8" FromRole="ApplicationUser" ToRole="AuthorizationCard" />
+					<NavigationProperty Name="SpecialCards" Relationship="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083" FromRole="ApplicationUser" ToRole="SpecialCard" />
+					<NavigationProperty Name="GuestCards" Relationship="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" FromRole="ApplicationUser" ToRole="GuestCard" />
+          <NavigationProperty Name="BankAccounts" Relationship="ESMART_HMSDBModel.FK__BankAccou__Creat__6EF57B66" FromRole="ApplicationUser" ToRole="BankAccount" />
+          <NavigationProperty Name="Orders" Relationship="ESMART_HMSDBModel.FK__Order__IssuedBy__02FC7413" FromRole="ApplicationUser" ToRole="Order" />
+				</EntityType>
+				<Association Name="FK__Applicati__UserI__3B75D760">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.ApplicationUserRole" Role="ApplicationUserRole" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="ApplicationUserRole">
+							<PropertyRef Name="UserId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="Booking">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BookingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="ReservationId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="PaymentMethod" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="NoOfPerson" Type="Int32" Nullable="false" />
+					<Property Name="Duration" Type="Int32" Nullable="false" />
+					<Property Name="Discount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="VAT" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Booking__Created__5441852A" FromRole="Booking" ToRole="ApplicationUser" />
+					<NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8" FromRole="Booking" ToRole="Guest" />
+					<NavigationProperty Name="Invoices" Relationship="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2" FromRole="Booking" ToRole="Invoice" />
+					<NavigationProperty Name="Room" Relationship="ESMART_HMSDBModel.FK__Booking__RoomId__5BE2A6F2" FromRole="Booking" ToRole="Room" />
+				</EntityType>
+				<EntityType Name="Guest">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+					<Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+					<Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+					<Property Name="IdNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IdType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IdentificationDocumentFront" Type="Binary" MaxLength="Max" FixedLength="false" />
+					<Property Name="IdentificationDocumentBack" Type="Binary" MaxLength="Max" FixedLength="false" />
+					<Property Name="GuestImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+					<Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Guest__CreatedBy__4AB81AF0" FromRole="Guest" ToRole="ApplicationUser" />
+					<NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8" FromRole="Guest" ToRole="Booking" />
+					<NavigationProperty Name="Invoices" Relationship="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9" FromRole="Guest" ToRole="Invoice" />
+					<NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B" FromRole="Guest" ToRole="Reservation" />
+					<NavigationProperty Name="Transactions" Relationship="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" FromRole="Guest" ToRole="Transaction" />
+          <NavigationProperty Name="Orders" Relationship="ESMART_HMSDBModel.FK__Order__CustomerI__07C12930" FromRole="Guest" ToRole="Order" />
+				</EntityType>
+				<EntityType Name="Reservation">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="ReservationId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="PaymentMethod" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="Status" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Reservati__Creat__4F7CD00D" FromRole="Reservation" ToRole="ApplicationUser" />
+					<NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B" FromRole="Reservation" ToRole="Guest" />
+					<Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<NavigationProperty Name="Room" Relationship="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5" FromRole="Reservation" ToRole="Room" />
+				</EntityType>
+				<Association Name="FK__Booking__Created__5441852A">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Booking">
+							<PropertyRef Name="CreatedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Guest__CreatedBy__4AB81AF0">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Guest">
+							<PropertyRef Name="CreatedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Reservati__Creat__4F7CD00D">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Reservation" Role="Reservation" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Reservation">
+							<PropertyRef Name="CreatedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Booking__GuestId__52593CB8">
+					<End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Guest">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Booking">
+							<PropertyRef Name="GuestId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Invoice__Booking__5BE2A6F2">
+					<End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Invoice" Role="Invoice" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Booking">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Invoice">
+							<PropertyRef Name="BookingId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Invoice__GuestId__5AEE82B9">
+					<End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Invoice" Role="Invoice" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Guest">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Invoice">
+							<PropertyRef Name="GuestId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Reservati__Guest__4D94879B">
+					<End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Reservation" Role="Reservation" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Guest">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Reservation">
+							<PropertyRef Name="GuestId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="BarItem">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BarItemId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="ItemName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Quantity" Type="Int32" Nullable="false" />
+					<Property Name="Type" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Measurement" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__BarItem__Created__5EBF139D" FromRole="BarItem" ToRole="ApplicationUser" />
+					<Property Name="Barcode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="CostPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="SellingPrice" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Orders" Relationship="ESMART_HMSDBModel.FK__Order__ItemId__03F0984C" FromRole="BarItem" ToRole="Order" />
+				</EntityType>
+				<EntityType Name="IngredientItem">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IngredientItemId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Name" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048" FromRole="IngredientItem" ToRole="ApplicationUser" />
+				</EntityType>
+				<Association Name="FK__BarItem__Created__5EBF139D">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.BarItem" Role="BarItem" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="BarItem">
+							<PropertyRef Name="CreatedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Ingredien__Creat__619B8048">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.IngredientItem" Role="IngredientItem" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="IngredientItem">
+							<PropertyRef Name="CreatedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="Transaction">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="TransactionId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="ServiceId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="Status" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" FromRole="Transaction" ToRole="Guest" />
+          <Property Name="BankAccount" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+				</EntityType>
+				<Association Name="FK__Transacti__Guest__571DF1D5">
+					<End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Guest">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Transaction">
+							<PropertyRef Name="GuestId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="CompanyInformation">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CompanyId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="PhoneNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Email" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="WebsiteURL" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="TaxNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="NoOfEmployees" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+				</EntityType>
+				<EntityType Name="BankAccount">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BankAccNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BankName" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BankAccName" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__BankAccou__Creat__6EF57B66" FromRole="BankAccount" ToRole="ApplicationUser" />
+				</EntityType>
+				<EntityType Name="Area">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="AreaName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="AreaNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Remark" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__AreaId__4F7CD00D" FromRole="Area" ToRole="Room" />
+				</EntityType>
+				<EntityType Name="Building">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BuildingName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BuildingNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Remark" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__BuildingId__4D94879B" FromRole="Building" ToRole="Room" />
+					<NavigationProperty Name="Floors" Relationship="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E" FromRole="Building" ToRole="Floor" />
+				</EntityType>
+				<EntityType Name="Floor">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="FloorNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="Remark" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__FloorId__4E88ABD4" FromRole="Floor" ToRole="Room" />
+					<Property Name="BuildingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<NavigationProperty Name="Building" Relationship="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E" FromRole="Floor" ToRole="Building" />
+				</EntityType>
+				<EntityType Name="Room">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="RoomNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="RoomTypeId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="BuildingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="FloorId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="AreaId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="AdultPerRoom" Type="Int32" Nullable="false" />
+					<Property Name="ChildrenPerRoom" Type="Int32" Nullable="false" />
+					<Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+					<Property Name="Rate" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+					<Property Name="Status" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Room__CreatedBy__5070F446" FromRole="Room" ToRole="ApplicationUser" />
+					<NavigationProperty Name="Area" Relationship="ESMART_HMSDBModel.FK__Room__AreaId__4F7CD00D" FromRole="Room" ToRole="Area" />
+					<NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__RoomId__5BE2A6F2" FromRole="Room" ToRole="Booking" />
+					<NavigationProperty Name="Building" Relationship="ESMART_HMSDBModel.FK__Room__BuildingId__4D94879B" FromRole="Room" ToRole="Building" />
+					<NavigationProperty Name="Floor" Relationship="ESMART_HMSDBModel.FK__Room__FloorId__4E88ABD4" FromRole="Room" ToRole="Floor" />
+					<NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5" FromRole="Room" ToRole="Reservation" />
+					<NavigationProperty Name="RoomType" Relationship="ESMART_HMSDBModel.FK__Room__RoomTypeId__4CA06362" FromRole="Room" ToRole="RoomType" />
+				</EntityType>
+				<Association Name="FK__Room__CreatedBy__5070F446">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Room">
+							<PropertyRef Name="CreatedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Room__AreaId__4F7CD00D">
+					<End Type="ESMART_HMSDBModel.Area" Role="Area" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Area">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Room">
+							<PropertyRef Name="AreaId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Booking__RoomId__5BE2A6F2">
+					<End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Room">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Booking">
+							<PropertyRef Name="RoomId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Room__BuildingId__4D94879B">
+					<End Type="ESMART_HMSDBModel.Building" Role="Building" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Building">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Room">
+							<PropertyRef Name="BuildingId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Room__FloorId__4E88ABD4">
+					<End Type="ESMART_HMSDBModel.Floor" Role="Floor" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Floor">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Room">
+							<PropertyRef Name="FloorId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Reservati__RoomI__571DF1D5">
+					<End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Reservation" Role="Reservation" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Room">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Reservation">
+							<PropertyRef Name="RoomId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Room__RoomTypeId__4CA06362">
+					<End Type="ESMART_HMSDBModel.RoomType" Role="RoomType" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="RoomType">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Room">
+							<PropertyRef Name="RoomTypeId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<Association Name="FK__Floor__BuildingI__48CFD27E">
+					<End Type="ESMART_HMSDBModel.Building" Role="Building" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.Floor" Role="Floor" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="Building">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="Floor">
+							<PropertyRef Name="BuildingId" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="AuthorizationCard">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="ComputerName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="AuthId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8" FromRole="AuthorizationCard" ToRole="ApplicationUser" />
+				</EntityType>
+				<Association Name="FK__Authoriza__Creat__70DDC3D8">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.AuthorizationCard" Role="AuthorizationCard" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="AuthorizationCard">
+							<PropertyRef Name="CreatedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="SpecialCard">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CardNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CardType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IssueTime" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="RefundTime" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CanOpenDeadLocks" Type="Boolean" Nullable="false" />
+					<Property Name="PassageMode" Type="Boolean" Nullable="false" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083" FromRole="SpecialCard" ToRole="ApplicationUser" />
+				</EntityType>
+				<Association Name="FK__SpecialCa__Issue__73BA3083">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.SpecialCard" Role="SpecialCard" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="SpecialCard">
+							<PropertyRef Name="IssuedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+				<EntityType Name="GuestCard">
+					<Key>
+						<PropertyRef Name="Id" />
+					</Key>
+					<Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CardNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CardType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="IssueTime" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="RefundTime" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+					<Property Name="CanOpenDeadLocks" Type="Boolean" Nullable="false" />
+					<Property Name="PassageMode" Type="Boolean" Nullable="false" />
+					<Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+					<NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" FromRole="GuestCard" ToRole="ApplicationUser" />
+				</EntityType>
+				<Association Name="FK__GuestCard__Issue__7C4F7684">
+					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+					<End Type="ESMART_HMSDBModel.GuestCard" Role="GuestCard" Multiplicity="*" />
+					<ReferentialConstraint>
+						<Principal Role="ApplicationUser">
+							<PropertyRef Name="Id" />
+						</Principal>
+						<Dependent Role="GuestCard">
+							<PropertyRef Name="IssuedBy" />
+						</Dependent>
+					</ReferentialConstraint>
+				</Association>
+        <EntityType Name="LicenseInfo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="InvoiceId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BookingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="VATAmount" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Booking" Relationship="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2" FromRole="Invoice" ToRole="Booking" />
-          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9" FromRole="Invoice" ToRole="Guest" />
-        </EntityType>
-        <EntityType Name="Permission">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="PermissionId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="HotelName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ProductKey" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="RolePermissions" Relationship="ESMART_HMSDBModel.FK__RolePermi__Permi__3E52440B" FromRole="Permission" ToRole="RolePermission" />
         </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="RolePermissions" Relationship="ESMART_HMSDBModel.FK__RolePermi__RoleI__3D5E1FD2" FromRole="Role" ToRole="RolePermission" />
-          <NavigationProperty Name="ApplicationUserRoles" Relationship="ESMART_HMSDBModel.FK__Applicati__RoleI__3C69FB99" FromRole="Role" ToRole="ApplicationUserRole" />
-        </EntityType>
-        <EntityType Name="RolePermission">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="PermissionId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Permission" Relationship="ESMART_HMSDBModel.FK__RolePermi__Permi__3E52440B" FromRole="RolePermission" ToRole="Permission" />
-          <NavigationProperty Name="Role" Relationship="ESMART_HMSDBModel.FK__RolePermi__RoleI__3D5E1FD2" FromRole="RolePermission" ToRole="Role" />
-        </EntityType>
-        <Association Name="FK__RolePermi__Permi__3E52440B">
-          <End Type="ESMART_HMSDBModel.Permission" Role="Permission" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.RolePermission" Role="RolePermission" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Permission">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RolePermission">
-              <PropertyRef Name="PermissionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RolePermi__RoleI__3D5E1FD2">
-          <End Type="ESMART_HMSDBModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.RolePermission" Role="RolePermission" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RolePermission">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ApplicationUserRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="UserRoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="ESMART_HMSDBModel.FK__Applicati__RoleI__3C69FB99" FromRole="ApplicationUserRole" ToRole="Role" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Applicati__UserI__3B75D760" FromRole="ApplicationUserRole" ToRole="ApplicationUser" />
-        </EntityType>
-        <Association Name="FK__Applicati__RoleI__3C69FB99">
-          <End Type="ESMART_HMSDBModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.ApplicationUserRole" Role="ApplicationUserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ApplicationUserRole">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ApplicationUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ApplicationUserRoles" Relationship="ESMART_HMSDBModel.FK__Applicati__UserI__3B75D760" FromRole="ApplicationUser" ToRole="ApplicationUserRole" />
-          <NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__Created__5441852A" FromRole="ApplicationUser" ToRole="Booking" />
-          <NavigationProperty Name="Guests" Relationship="ESMART_HMSDBModel.FK__Guest__CreatedBy__4AB81AF0" FromRole="ApplicationUser" ToRole="Guest" />
-          <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Creat__4F7CD00D" FromRole="ApplicationUser" ToRole="Reservation" />
-          <NavigationProperty Name="BarItems" Relationship="ESMART_HMSDBModel.FK__BarItem__Created__5EBF139D" FromRole="ApplicationUser" ToRole="BarItem" />
-          <NavigationProperty Name="IngredientItems" Relationship="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048" FromRole="ApplicationUser" ToRole="IngredientItem" />
-          <NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__CreatedBy__5070F446" FromRole="ApplicationUser" ToRole="Room" />
-          <NavigationProperty Name="AuthorizationCards" Relationship="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8" FromRole="ApplicationUser" ToRole="AuthorizationCard" />
-          <NavigationProperty Name="SpecialCards" Relationship="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083" FromRole="ApplicationUser" ToRole="SpecialCard" />
-          <NavigationProperty Name="GuestCards" Relationship="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" FromRole="ApplicationUser" ToRole="GuestCard" />
-        </EntityType>
-        <Association Name="FK__Applicati__UserI__3B75D760">
+        <Association Name="FK__BankAccou__Creat__6EF57B66">
           <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.ApplicationUserRole" Role="ApplicationUserRole" Multiplicity="*" />
+          <End Type="ESMART_HMSDBModel.BankAccount" Role="BankAccount" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ApplicationUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ApplicationUserRole">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Booking">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BookingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="ReservationId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="PaymentMethod" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="NoOfPerson" Type="Int32" Nullable="false" />
-          <Property Name="Duration" Type="Int32" Nullable="false" />
-          <Property Name="Discount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="VAT" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Booking__Created__5441852A" FromRole="Booking" ToRole="ApplicationUser" />
-          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8" FromRole="Booking" ToRole="Guest" />
-          <NavigationProperty Name="Invoices" Relationship="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2" FromRole="Booking" ToRole="Invoice" />
-          <NavigationProperty Name="Room" Relationship="ESMART_HMSDBModel.FK__Booking__RoomId__5BE2A6F2" FromRole="Booking" ToRole="Room" />
-        </EntityType>
-        <EntityType Name="Guest">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Company" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IdNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="IdType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="IdentificationDocumentFront" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IdentificationDocumentBack" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="GuestImage" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Guest__CreatedBy__4AB81AF0" FromRole="Guest" ToRole="ApplicationUser" />
-          <NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8" FromRole="Guest" ToRole="Booking" />
-          <NavigationProperty Name="Invoices" Relationship="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9" FromRole="Guest" ToRole="Invoice" />
-          <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B" FromRole="Guest" ToRole="Reservation" />
-          <NavigationProperty Name="Transactions" Relationship="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" FromRole="Guest" ToRole="Transaction" />
-        </EntityType>
-        <EntityType Name="Reservation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="ReservationId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CheckInDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CheckOutDate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="PaymentMethod" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Reservati__Creat__4F7CD00D" FromRole="Reservation" ToRole="ApplicationUser" />
-          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B" FromRole="Reservation" ToRole="Guest" />
-          <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <NavigationProperty Name="Room" Relationship="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5" FromRole="Reservation" ToRole="Room" />
-        </EntityType>
-        <Association Name="FK__Booking__Created__5441852A">
-          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApplicationUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Booking">
+            <Dependent Role="BankAccount">
               <PropertyRef Name="CreatedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Guest__CreatedBy__4AB81AF0">
-          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApplicationUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Guest">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reservati__Creat__4F7CD00D">
-          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Reservation" Role="Reservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApplicationUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reservation">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Booking__GuestId__52593CB8">
-          <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Guest">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Booking">
-              <PropertyRef Name="GuestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Invoice__Booking__5BE2A6F2">
-          <End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Invoice" Role="Invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Booking">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Invoice">
-              <PropertyRef Name="BookingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Invoice__GuestId__5AEE82B9">
-          <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Invoice" Role="Invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Guest">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Invoice">
-              <PropertyRef Name="GuestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reservati__Guest__4D94879B">
-          <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Reservation" Role="Reservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Guest">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reservation">
-              <PropertyRef Name="GuestId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="BarItem">
+        <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BarItemId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Measurement" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__BarItem__Created__5EBF139D" FromRole="BarItem" ToRole="ApplicationUser" />
-          <Property Name="Barcode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CostPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="SellingPrice" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Order__IssuedBy__02FC7413" FromRole="Order" ToRole="ApplicationUser" />
+          <NavigationProperty Name="BarItem" Relationship="ESMART_HMSDBModel.FK__Order__ItemId__03F0984C" FromRole="Order" ToRole="BarItem" />
+          <Property Name="OrderId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Order__CustomerI__07C12930" FromRole="Order" ToRole="Guest" />
         </EntityType>
-        <EntityType Name="IngredientItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="IngredientItemId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048" FromRole="IngredientItem" ToRole="ApplicationUser" />
-        </EntityType>
-        <Association Name="FK__BarItem__Created__5EBF139D">
+        <Association Name="FK__Order__IssuedBy__02FC7413">
           <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.BarItem" Role="BarItem" Multiplicity="*" />
+          <End Type="ESMART_HMSDBModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ApplicationUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="BarItem">
-              <PropertyRef Name="CreatedBy" />
+            <Dependent Role="Order">
+              <PropertyRef Name="IssuedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingredien__Creat__619B8048">
-          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.IngredientItem" Role="IngredientItem" Multiplicity="*" />
+        <Association Name="FK__Order__ItemId__03F0984C">
+          <End Type="ESMART_HMSDBModel.BarItem" Role="BarItem" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ApplicationUser">
+            <Principal Role="BarItem">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="IngredientItem">
-              <PropertyRef Name="CreatedBy" />
+            <Dependent Role="Order">
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Transaction">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="TransactionId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="GuestId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="ServiceId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Status" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Guest" Relationship="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" FromRole="Transaction" ToRole="Guest" />
-        </EntityType>
-        <Association Name="FK__Transacti__Guest__571DF1D5">
+        <Association Name="FK__Order__CustomerI__07C12930">
           <End Type="ESMART_HMSDBModel.Guest" Role="Guest" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <End Type="ESMART_HMSDBModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Guest">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="GuestId" />
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CompanyInformation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="WebsiteURL" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="TaxNumber" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="NoOfEmployees" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-        </EntityType>
-        <EntityType Name="BankAccount">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BankAccNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BankName" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BankAccName" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-        </EntityType>
-        <EntityType Name="Area">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="AreaName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="AreaNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Remark" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__AreaId__4F7CD00D" FromRole="Area" ToRole="Room" />
-        </EntityType>
-        <EntityType Name="Building">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BuildingName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BuildingNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Remark" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__BuildingId__4D94879B" FromRole="Building" ToRole="Room" />
-          <NavigationProperty Name="Floors" Relationship="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E" FromRole="Building" ToRole="Floor" />
-        </EntityType>
-        <EntityType Name="Floor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="FloorNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="Remark" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Rooms" Relationship="ESMART_HMSDBModel.FK__Room__FloorId__4E88ABD4" FromRole="Floor" ToRole="Room" />
-          <Property Name="BuildingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Building" Relationship="ESMART_HMSDBModel.FK__Floor__BuildingI__48CFD27E" FromRole="Floor" ToRole="Building" />
-        </EntityType>
-        <EntityType Name="Room">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="RoomId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="RoomNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RoomTypeId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="BuildingId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="FloorId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="AreaId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="AdultPerRoom" Type="Int32" Nullable="false" />
-          <Property Name="ChildrenPerRoom" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Rate" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Room__CreatedBy__5070F446" FromRole="Room" ToRole="ApplicationUser" />
-          <NavigationProperty Name="Area" Relationship="ESMART_HMSDBModel.FK__Room__AreaId__4F7CD00D" FromRole="Room" ToRole="Area" />
-          <NavigationProperty Name="Bookings" Relationship="ESMART_HMSDBModel.FK__Booking__RoomId__5BE2A6F2" FromRole="Room" ToRole="Booking" />
-          <NavigationProperty Name="Building" Relationship="ESMART_HMSDBModel.FK__Room__BuildingId__4D94879B" FromRole="Room" ToRole="Building" />
-          <NavigationProperty Name="Floor" Relationship="ESMART_HMSDBModel.FK__Room__FloorId__4E88ABD4" FromRole="Room" ToRole="Floor" />
-          <NavigationProperty Name="Reservations" Relationship="ESMART_HMSDBModel.FK__Reservati__RoomI__571DF1D5" FromRole="Room" ToRole="Reservation" />
-          <NavigationProperty Name="RoomType" Relationship="ESMART_HMSDBModel.FK__Room__RoomTypeId__4CA06362" FromRole="Room" ToRole="RoomType" />
-        </EntityType>
-        <Association Name="FK__Room__CreatedBy__5070F446">
-          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApplicationUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Room">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Room__AreaId__4F7CD00D">
-          <End Type="ESMART_HMSDBModel.Area" Role="Area" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Area">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Room">
-              <PropertyRef Name="AreaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Booking__RoomId__5BE2A6F2">
-          <End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Booking" Role="Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Room">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Booking">
-              <PropertyRef Name="RoomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Room__BuildingId__4D94879B">
-          <End Type="ESMART_HMSDBModel.Building" Role="Building" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Building">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Room">
-              <PropertyRef Name="BuildingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Room__FloorId__4E88ABD4">
-          <End Type="ESMART_HMSDBModel.Floor" Role="Floor" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Floor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Room">
-              <PropertyRef Name="FloorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reservati__RoomI__571DF1D5">
-          <End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Reservation" Role="Reservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Room">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reservation">
-              <PropertyRef Name="RoomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Room__RoomTypeId__4CA06362">
-          <End Type="ESMART_HMSDBModel.RoomType" Role="RoomType" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Room" Role="Room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoomType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Room">
-              <PropertyRef Name="RoomTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Floor__BuildingI__48CFD27E">
-          <End Type="ESMART_HMSDBModel.Building" Role="Building" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.Floor" Role="Floor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Building">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Floor">
-              <PropertyRef Name="BuildingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AuthorizationCard">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="ComputerName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="AuthId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__Authoriza__Creat__70DDC3D8" FromRole="AuthorizationCard" ToRole="ApplicationUser" />
-        </EntityType>
-        <Association Name="FK__Authoriza__Creat__70DDC3D8">
-          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.AuthorizationCard" Role="AuthorizationCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApplicationUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AuthorizationCard">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="SpecialCard">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CardNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CardType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="IssueTime" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="RefundTime" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CanOpenDeadLocks" Type="Boolean" Nullable="false" />
-          <Property Name="PassageMode" Type="Boolean" Nullable="false" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__SpecialCa__Issue__73BA3083" FromRole="SpecialCard" ToRole="ApplicationUser" />
-        </EntityType>
-        <Association Name="FK__SpecialCa__Issue__73BA3083">
-          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.SpecialCard" Role="SpecialCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApplicationUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SpecialCard">
-              <PropertyRef Name="IssuedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="GuestCard">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CardNo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CardType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="IssueTime" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="RefundTime" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="IssuedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="CanOpenDeadLocks" Type="Boolean" Nullable="false" />
-          <Property Name="PassageMode" Type="Boolean" Nullable="false" />
-          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" FromRole="GuestCard" ToRole="ApplicationUser" />
-        </EntityType>
-        <Association Name="FK__GuestCard__Issue__7C4F7684">
-          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
-          <End Type="ESMART_HMSDBModel.GuestCard" Role="GuestCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ApplicationUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GuestCard">
-              <PropertyRef Name="IssuedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        </Schema>
-    </edmx:ConceptualModels>
-    <!-- C-S mapping content -->
-    <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ESMART_HMSDBModelStoreContainer" CdmEntityContainer="ESMART_HMSDBEntities">
-          <EntitySetMapping Name="RoomTypes">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.RoomType">
-              <MappingFragment StoreEntitySet="RoomType">
+			</Schema>
+		</edmx:ConceptualModels>
+		<!-- C-S mapping content -->
+		<edmx:Mappings>
+			<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+				<EntityContainerMapping StorageEntityContainer="ESMART_HMSDBModelStoreContainer" CdmEntityContainer="ESMART_HMSDBEntities">
+					<EntitySetMapping Name="RoomTypes">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.RoomType">
+							<MappingFragment StoreEntitySet="RoomType">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+								<ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
+								<ScalarProperty Name="Title" ColumnName="Title" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Configurations">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Configuration">
+							<MappingFragment StoreEntitySet="Configuration">
+								<ScalarProperty Name="Value" ColumnName="Value" />
+								<ScalarProperty Name="Key" ColumnName="Key" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Invoices">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Invoice">
+							<MappingFragment StoreEntitySet="Invoice">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="Status" ColumnName="Status" />
+								<ScalarProperty Name="VATAmount" ColumnName="VATAmount" />
+								<ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+								<ScalarProperty Name="Date" ColumnName="Date" />
+								<ScalarProperty Name="BookingId" ColumnName="BookingId" />
+								<ScalarProperty Name="GuestId" ColumnName="GuestId" />
+								<ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Permissions">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Permission">
+							<MappingFragment StoreEntitySet="Permission">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="Title" ColumnName="Title" />
+								<ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Roles">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Role">
+							<MappingFragment StoreEntitySet="Role">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="Description" ColumnName="Description" />
+								<ScalarProperty Name="Title" ColumnName="Title" />
+								<ScalarProperty Name="RoleId" ColumnName="RoleId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="RolePermissions">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.RolePermission">
+							<MappingFragment StoreEntitySet="RolePermission">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+								<ScalarProperty Name="RoleId" ColumnName="RoleId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="ApplicationUserRoles">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.ApplicationUserRole">
+							<MappingFragment StoreEntitySet="ApplicationUserRole">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="RoleId" ColumnName="RoleId" />
+								<ScalarProperty Name="UserId" ColumnName="UserId" />
+								<ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="ApplicationUsers">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.ApplicationUser">
+							<MappingFragment StoreEntitySet="ApplicationUser">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+								<ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+								<ScalarProperty Name="Email" ColumnName="Email" />
+								<ScalarProperty Name="UserName" ColumnName="UserName" />
+								<ScalarProperty Name="FullName" ColumnName="FullName" />
+								<ScalarProperty Name="LastName" ColumnName="LastName" />
+								<ScalarProperty Name="FirstName" ColumnName="FirstName" />
+								<ScalarProperty Name="UserId" ColumnName="UserId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Bookings">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Booking">
+							<MappingFragment StoreEntitySet="Booking">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+								<ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+								<ScalarProperty Name="VAT" ColumnName="VAT" />
+								<ScalarProperty Name="Discount" ColumnName="Discount" />
+								<ScalarProperty Name="Duration" ColumnName="Duration" />
+								<ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+								<ScalarProperty Name="Amount" ColumnName="Amount" />
+								<ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+								<ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+								<ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+								<ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+								<ScalarProperty Name="RoomId" ColumnName="RoomId" />
+								<ScalarProperty Name="GuestId" ColumnName="GuestId" />
+								<ScalarProperty Name="BookingId" ColumnName="BookingId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Guests">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Guest">
+							<MappingFragment StoreEntitySet="Guest">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+								<ScalarProperty Name="GuestImage" ColumnName="GuestImage" />
+								<ScalarProperty Name="IdentificationDocumentBack" ColumnName="IdentificationDocumentBack" />
+								<ScalarProperty Name="IdentificationDocumentFront" ColumnName="IdentificationDocumentFront" />
+								<ScalarProperty Name="IdType" ColumnName="IdType" />
+								<ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+								<ScalarProperty Name="Gender" ColumnName="Gender" />
+								<ScalarProperty Name="Country" ColumnName="Country" />
+								<ScalarProperty Name="State" ColumnName="State" />
+								<ScalarProperty Name="Company" ColumnName="Company" />
+								<ScalarProperty Name="City" ColumnName="City" />
+								<ScalarProperty Name="Street" ColumnName="Street" />
+								<ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+								<ScalarProperty Name="Email" ColumnName="Email" />
+								<ScalarProperty Name="FullName" ColumnName="FullName" />
+								<ScalarProperty Name="LastName" ColumnName="LastName" />
+								<ScalarProperty Name="FirstName" ColumnName="FirstName" />
+								<ScalarProperty Name="Title" ColumnName="Title" />
+								<ScalarProperty Name="GuestId" ColumnName="GuestId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Reservations">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Reservation">
+							<MappingFragment StoreEntitySet="Reservation">
+								<ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+								<ScalarProperty Name="Status" ColumnName="Status" />
+								<ScalarProperty Name="Amount" ColumnName="Amount" />
+								<ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+								<ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
+								<ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
+								<ScalarProperty Name="RoomId" ColumnName="RoomId" />
+								<ScalarProperty Name="GuestId" ColumnName="GuestId" />
+								<ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="BarItems">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.BarItem">
+							<MappingFragment StoreEntitySet="BarItem">
+								<ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+								<ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+								<ScalarProperty Name="Barcode" ColumnName="Barcode" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+								<ScalarProperty Name="Measurement" ColumnName="Measurement" />
+								<ScalarProperty Name="Type" ColumnName="Type" />
+								<ScalarProperty Name="Quantity" ColumnName="Quantity" />
+								<ScalarProperty Name="ItemName" ColumnName="ItemName" />
+								<ScalarProperty Name="BarItemId" ColumnName="BarItemId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="IngredientItems">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.IngredientItem">
+							<MappingFragment StoreEntitySet="IngredientItem">
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="Name" ColumnName="Name" />
+								<ScalarProperty Name="IngredientItemId" ColumnName="IngredientItemId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Transactions">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Transaction">
+							<MappingFragment StoreEntitySet="Transaction">
+								<ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
                 <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="Type" ColumnName="Type" />
+								<ScalarProperty Name="Description" ColumnName="Description" />
+								<ScalarProperty Name="Status" ColumnName="Status" />
+								<ScalarProperty Name="Amount" ColumnName="Amount" />
+								<ScalarProperty Name="Date" ColumnName="Date" />
+								<ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+								<ScalarProperty Name="GuestId" ColumnName="GuestId" />
+								<ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="CompanyInformations">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.CompanyInformation">
+							<MappingFragment StoreEntitySet="CompanyInformation">
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="Logo" ColumnName="Logo" />
+								<ScalarProperty Name="NoOfEmployees" ColumnName="NoOfEmployees" />
+								<ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+								<ScalarProperty Name="WebsiteURL" ColumnName="WebsiteURL" />
+								<ScalarProperty Name="Email" ColumnName="Email" />
+								<ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+								<ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+								<ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+								<ScalarProperty Name="Name" ColumnName="Name" />
+								<ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="BankAccounts">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.BankAccount">
+							<MappingFragment StoreEntitySet="BankAccount">
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="BankAccName" ColumnName="BankAccName" />
+								<ScalarProperty Name="BankName" ColumnName="BankName" />
+								<ScalarProperty Name="BankAccNo" ColumnName="BankAccNo" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Areas">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Area">
+							<MappingFragment StoreEntitySet="Area">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="Remark" ColumnName="Remark" />
+								<ScalarProperty Name="AreaNo" ColumnName="AreaNo" />
+								<ScalarProperty Name="AreaName" ColumnName="AreaName" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Buildings">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Building">
+							<MappingFragment StoreEntitySet="Building">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="Remark" ColumnName="Remark" />
+								<ScalarProperty Name="BuildingNo" ColumnName="BuildingNo" />
+								<ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Floors">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Floor">
+							<MappingFragment StoreEntitySet="Floor">
+								<ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="Remark" ColumnName="Remark" />
+								<ScalarProperty Name="FloorNo" ColumnName="FloorNo" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="Rooms">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.Room">
+							<MappingFragment StoreEntitySet="Room">
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+								<ScalarProperty Name="Status" ColumnName="Status" />
+								<ScalarProperty Name="Rate" ColumnName="Rate" />
+								<ScalarProperty Name="Description" ColumnName="Description" />
+								<ScalarProperty Name="ChildrenPerRoom" ColumnName="ChildrenPerRoom" />
+								<ScalarProperty Name="AdultPerRoom" ColumnName="AdultPerRoom" />
+								<ScalarProperty Name="AreaId" ColumnName="AreaId" />
+								<ScalarProperty Name="FloorId" ColumnName="FloorId" />
+								<ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+								<ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
+								<ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
+								<ScalarProperty Name="RoomId" ColumnName="RoomId" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="AuthorizationCards">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.AuthorizationCard">
+							<MappingFragment StoreEntitySet="AuthorizationCard">
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="AuthId" ColumnName="AuthId" />
+								<ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="SpecialCards">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.SpecialCard">
+							<MappingFragment StoreEntitySet="SpecialCard">
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="PassageMode" ColumnName="PassageMode" />
+								<ScalarProperty Name="CanOpenDeadLocks" ColumnName="CanOpenDeadLocks" />
+								<ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+								<ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
+								<ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
+								<ScalarProperty Name="CardType" ColumnName="CardType" />
+								<ScalarProperty Name="CardNo" ColumnName="CardNo" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+					<EntitySetMapping Name="GuestCards">
+						<EntityTypeMapping TypeName="ESMART_HMSDBModel.GuestCard">
+							<MappingFragment StoreEntitySet="GuestCard">
+								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+								<ScalarProperty Name="PassageMode" ColumnName="PassageMode" />
+								<ScalarProperty Name="CanOpenDeadLocks" ColumnName="CanOpenDeadLocks" />
+								<ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+								<ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
+								<ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
+								<ScalarProperty Name="CardType" ColumnName="CardType" />
+								<ScalarProperty Name="CardNo" ColumnName="CardNo" />
+								<ScalarProperty Name="Id" ColumnName="Id" />
+							</MappingFragment>
+						</EntityTypeMapping>
+					</EntitySetMapping>
+          <EntitySetMapping Name="LicenseInfoes">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.LicenseInfo">
+              <MappingFragment StoreEntitySet="LicenseInfo">
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Configurations">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Configuration">
-              <MappingFragment StoreEntitySet="Configuration">
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Key" ColumnName="Key" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Invoices">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Invoice">
-              <MappingFragment StoreEntitySet="Invoice">
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
                 <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="VATAmount" ColumnName="VATAmount" />
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
-                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
-                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Permissions">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Permission">
-              <MappingFragment StoreEntitySet="Permission">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RolePermissions">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.RolePermission">
-              <MappingFragment StoreEntitySet="RolePermission">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ApplicationUserRoles">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.ApplicationUserRole">
-              <MappingFragment StoreEntitySet="ApplicationUserRole">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ApplicationUsers">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.ApplicationUser">
-              <MappingFragment StoreEntitySet="ApplicationUser">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Bookings">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Booking">
-              <MappingFragment StoreEntitySet="Booking">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="VAT" ColumnName="VAT" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="Duration" ColumnName="Duration" />
-                <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
-                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
-                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
-                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
-                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
-                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Guests">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Guest">
-              <MappingFragment StoreEntitySet="Guest">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="GuestImage" ColumnName="GuestImage" />
-                <ScalarProperty Name="IdentificationDocumentBack" ColumnName="IdentificationDocumentBack" />
-                <ScalarProperty Name="IdentificationDocumentFront" ColumnName="IdentificationDocumentFront" />
-                <ScalarProperty Name="IdType" ColumnName="IdType" />
-                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reservations">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Reservation">
-              <MappingFragment StoreEntitySet="Reservation">
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-                <ScalarProperty Name="CheckOutDate" ColumnName="CheckOutDate" />
-                <ScalarProperty Name="CheckInDate" ColumnName="CheckInDate" />
-                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
-                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
-                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BarItems">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.BarItem">
-              <MappingFragment StoreEntitySet="BarItem">
-                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
-                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Measurement" ColumnName="Measurement" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="BarItemId" ColumnName="BarItemId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="IngredientItems">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.IngredientItem">
-              <MappingFragment StoreEntitySet="IngredientItem">
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IngredientItemId" ColumnName="IngredientItemId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Transactions">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Transaction">
-              <MappingFragment StoreEntitySet="Transaction">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
-                <ScalarProperty Name="GuestId" ColumnName="GuestId" />
-                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompanyInformations">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.CompanyInformation">
-              <MappingFragment StoreEntitySet="CompanyInformation">
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="NoOfEmployees" ColumnName="NoOfEmployees" />
-                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
-                <ScalarProperty Name="WebsiteURL" ColumnName="WebsiteURL" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BankAccounts">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.BankAccount">
-              <MappingFragment StoreEntitySet="BankAccount">
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="BankAccName" ColumnName="BankAccName" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="BankAccNo" ColumnName="BankAccNo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Areas">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Area">
-              <MappingFragment StoreEntitySet="Area">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="AreaNo" ColumnName="AreaNo" />
-                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Buildings">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Building">
-              <MappingFragment StoreEntitySet="Building">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="BuildingNo" ColumnName="BuildingNo" />
-                <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Floors">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Floor">
-              <MappingFragment StoreEntitySet="Floor">
-                <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="FloorNo" ColumnName="FloorNo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rooms">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.Room">
-              <MappingFragment StoreEntitySet="Room">
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ChildrenPerRoom" ColumnName="ChildrenPerRoom" />
-                <ScalarProperty Name="AdultPerRoom" ColumnName="AdultPerRoom" />
-                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
-                <ScalarProperty Name="FloorId" ColumnName="FloorId" />
-                <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
-                <ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
-                <ScalarProperty Name="RoomNo" ColumnName="RoomNo" />
-                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AuthorizationCards">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.AuthorizationCard">
-              <MappingFragment StoreEntitySet="AuthorizationCard">
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="AuthId" ColumnName="AuthId" />
-                <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SpecialCards">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.SpecialCard">
-              <MappingFragment StoreEntitySet="SpecialCard">
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="PassageMode" ColumnName="PassageMode" />
-                <ScalarProperty Name="CanOpenDeadLocks" ColumnName="CanOpenDeadLocks" />
-                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
-                <ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
-                <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
-                <ScalarProperty Name="CardType" ColumnName="CardType" />
-                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GuestCards">
-            <EntityTypeMapping TypeName="ESMART_HMSDBModel.GuestCard">
-              <MappingFragment StoreEntitySet="GuestCard">
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
-                <ScalarProperty Name="PassageMode" ColumnName="PassageMode" />
-                <ScalarProperty Name="CanOpenDeadLocks" ColumnName="CanOpenDeadLocks" />
-                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
-                <ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
-                <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
-                <ScalarProperty Name="CardType" ColumnName="CardType" />
-                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
-  </edmx:Runtime>
-  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <Connection>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
-      </DesignerInfoPropertySet>
-    </Connection>
-    <Options>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-      </DesignerInfoPropertySet>
-    </Options>
-    <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
-  </Designer>
+				</EntityContainerMapping>
+			</Mapping>
+		</edmx:Mappings>
+	</edmx:Runtime>
+	<!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+	<Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+		<Connection>
+			<DesignerInfoPropertySet>
+				<DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+			</DesignerInfoPropertySet>
+		</Connection>
+		<Options>
+			<DesignerInfoPropertySet>
+				<DesignerProperty Name="ValidateOnBuild" Value="true" />
+				<DesignerProperty Name="EnablePluralization" Value="true" />
+				<DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+				<DesignerProperty Name="UseLegacyProvider" Value="false" />
+				<DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+			</DesignerInfoPropertySet>
+		</Options>
+		<!-- Diagram content (shape and connector positions) -->
+		<Diagrams></Diagrams>
+	</Designer>
 </edmx:Edmx>

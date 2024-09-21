@@ -181,7 +181,7 @@
         AU93TrV6c2Q2+QZgBwwMALDEC3A1jwKjAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="manageBookingsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="managebookingsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
         cAAAAHABznhikwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALQSURBVDhPZZP7
@@ -237,7 +237,7 @@
   <data name="roomSettingToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAKlESURBVHhe7b0H
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAKlESURBVHhe7b0H
         fFRHlu//Zja93X37Nr//7lvv21kPo55Wt3JECCRyzjnnnJMIxgRjDJhksAEbnAAbPNgGAzYZ5ZwDyhFJ
         KCdAgEDB/1Nw2WWuj3TvrU63u8/vM98Ptoe+XXWquk7dCuf8DxKJRCKRSCQSiUQikUgkEolEIpFIJBKJ
         RCKRSCQSiUQikUgkEolEIpFIJBKJRCKRSCQSiUQikUgkEolEIpFIJBKJRCKRSCQSiUQikUgkEolEIpFI
@@ -981,7 +981,7 @@
   <data name="cardMaintenanceToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKaSURBVEhL7ZVN
+        rAAAAKwBhgk01AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKaSURBVEhL7ZVN
         bxJBHIdXv4cX71712EQtbbcsLCxva22KxIJAgRZKgS60gYJaEN2+WLGv2lRTE5vUxmhrv0BjPHjXg1+g
         Jp48ePg5M4Ut4pblA3SSJywTeH4z/5md4c5bJ+2C1apckqT05XZYnbkrspzrslhSHkEY6zKC52PXiPsi
         J9rTmwQYITlzcMsFCNZxXO/2d4SpN/ydBvxplenhdE+xAF4Y05WdBQ1ggrSyhun8JiKx+f/kNinD5C5P

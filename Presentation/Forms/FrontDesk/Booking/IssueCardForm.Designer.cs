@@ -1,4 +1,4 @@
-﻿namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
+﻿namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
 {
     partial class IssueCardForm
     {
@@ -36,6 +36,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtLockNo = new System.Windows.Forms.Label();
+            this.txtRoomNo = new System.Windows.Forms.Label();
+            this.txtEdate = new System.Windows.Forms.Label();
+            this.txtSDate = new System.Windows.Forms.Label();
+            this.txtCardTypeTwo = new System.Windows.Forms.Label();
+            this.txtCardNo = new System.Windows.Forms.Label();
+            this.txtStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRecycle = new System.Windows.Forms.Button();
@@ -59,13 +66,6 @@
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Floor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnIssueCard = new System.Windows.Forms.Button();
-            this.txtEdate = new System.Windows.Forms.Label();
-            this.txtSDate = new System.Windows.Forms.Label();
-            this.txtCardTypeTwo = new System.Windows.Forms.Label();
-            this.txtCardNo = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.Label();
-            this.txtRoomNo = new System.Windows.Forms.Label();
-            this.txtLockNo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -156,6 +156,69 @@
             this.panel2.Size = new System.Drawing.Size(313, 483);
             this.panel2.TabIndex = 0;
             // 
+            // txtLockNo
+            // 
+            this.txtLockNo.AutoSize = true;
+            this.txtLockNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLockNo.Location = new System.Drawing.Point(13, 272);
+            this.txtLockNo.Name = "txtLockNo";
+            this.txtLockNo.Size = new System.Drawing.Size(0, 21);
+            this.txtLockNo.TabIndex = 3;
+            // 
+            // txtRoomNo
+            // 
+            this.txtRoomNo.AutoSize = true;
+            this.txtRoomNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRoomNo.Location = new System.Drawing.Point(13, 242);
+            this.txtRoomNo.Name = "txtRoomNo";
+            this.txtRoomNo.Size = new System.Drawing.Size(0, 21);
+            this.txtRoomNo.TabIndex = 3;
+            // 
+            // txtEdate
+            // 
+            this.txtEdate.AutoSize = true;
+            this.txtEdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEdate.Location = new System.Drawing.Point(13, 210);
+            this.txtEdate.Name = "txtEdate";
+            this.txtEdate.Size = new System.Drawing.Size(0, 21);
+            this.txtEdate.TabIndex = 3;
+            // 
+            // txtSDate
+            // 
+            this.txtSDate.AutoSize = true;
+            this.txtSDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSDate.Location = new System.Drawing.Point(13, 176);
+            this.txtSDate.Name = "txtSDate";
+            this.txtSDate.Size = new System.Drawing.Size(0, 21);
+            this.txtSDate.TabIndex = 4;
+            // 
+            // txtCardTypeTwo
+            // 
+            this.txtCardTypeTwo.AutoSize = true;
+            this.txtCardTypeTwo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCardTypeTwo.Location = new System.Drawing.Point(13, 138);
+            this.txtCardTypeTwo.Name = "txtCardTypeTwo";
+            this.txtCardTypeTwo.Size = new System.Drawing.Size(0, 21);
+            this.txtCardTypeTwo.TabIndex = 5;
+            // 
+            // txtCardNo
+            // 
+            this.txtCardNo.AutoSize = true;
+            this.txtCardNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCardNo.Location = new System.Drawing.Point(13, 102);
+            this.txtCardNo.Name = "txtCardNo";
+            this.txtCardNo.Size = new System.Drawing.Size(0, 21);
+            this.txtCardNo.TabIndex = 6;
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.AutoSize = true;
+            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Location = new System.Drawing.Point(13, 72);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(0, 21);
+            this.txtStatus.TabIndex = 7;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -179,7 +242,7 @@
             // 
             // btnRecycle
             // 
-            this.btnRecycle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnRecycle.BackColor = System.Drawing.Color.Red;
             this.btnRecycle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecycle.ForeColor = System.Drawing.Color.White;
             this.btnRecycle.Location = new System.Drawing.Point(13, 13);
@@ -435,82 +498,13 @@
             this.btnIssueCard.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnIssueCard.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIssueCard.ForeColor = System.Drawing.Color.White;
-            this.btnIssueCard.Location = new System.Drawing.Point(888, 3);
+            this.btnIssueCard.Location = new System.Drawing.Point(888, 5);
             this.btnIssueCard.Name = "btnIssueCard";
             this.btnIssueCard.Size = new System.Drawing.Size(138, 42);
             this.btnIssueCard.TabIndex = 0;
             this.btnIssueCard.Text = "Issue Card";
             this.btnIssueCard.UseVisualStyleBackColor = false;
             this.btnIssueCard.Click += new System.EventHandler(this.btnIssueCard_Click);
-            // 
-            // txtEdate
-            // 
-            this.txtEdate.AutoSize = true;
-            this.txtEdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEdate.Location = new System.Drawing.Point(13, 210);
-            this.txtEdate.Name = "txtEdate";
-            this.txtEdate.Size = new System.Drawing.Size(55, 21);
-            this.txtEdate.TabIndex = 3;
-            this.txtEdate.Text = "12456";
-            // 
-            // txtSDate
-            // 
-            this.txtSDate.AutoSize = true;
-            this.txtSDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDate.Location = new System.Drawing.Point(13, 176);
-            this.txtSDate.Name = "txtSDate";
-            this.txtSDate.Size = new System.Drawing.Size(55, 21);
-            this.txtSDate.TabIndex = 4;
-            this.txtSDate.Text = "12456";
-            // 
-            // txtCardTypeTwo
-            // 
-            this.txtCardTypeTwo.AutoSize = true;
-            this.txtCardTypeTwo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardTypeTwo.Location = new System.Drawing.Point(13, 138);
-            this.txtCardTypeTwo.Name = "txtCardTypeTwo";
-            this.txtCardTypeTwo.Size = new System.Drawing.Size(55, 21);
-            this.txtCardTypeTwo.TabIndex = 5;
-            this.txtCardTypeTwo.Text = "12456";
-            // 
-            // txtCardNo
-            // 
-            this.txtCardNo.AutoSize = true;
-            this.txtCardNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardNo.Location = new System.Drawing.Point(13, 102);
-            this.txtCardNo.Name = "txtCardNo";
-            this.txtCardNo.Size = new System.Drawing.Size(55, 21);
-            this.txtCardNo.TabIndex = 6;
-            this.txtCardNo.Text = "12456";
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.AutoSize = true;
-            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(13, 72);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(0, 21);
-            this.txtStatus.TabIndex = 7;
-            // 
-            // txtRoomNo
-            // 
-            this.txtRoomNo.AutoSize = true;
-            this.txtRoomNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRoomNo.Location = new System.Drawing.Point(13, 242);
-            this.txtRoomNo.Name = "txtRoomNo";
-            this.txtRoomNo.Size = new System.Drawing.Size(55, 21);
-            this.txtRoomNo.TabIndex = 3;
-            this.txtRoomNo.Text = "12456";
-            // 
-            // txtLockNo
-            // 
-            this.txtLockNo.AutoSize = true;
-            this.txtLockNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLockNo.Location = new System.Drawing.Point(13, 272);
-            this.txtLockNo.Name = "txtLockNo";
-            this.txtLockNo.Size = new System.Drawing.Size(55, 21);
-            this.txtLockNo.TabIndex = 3;
-            this.txtLockNo.Text = "12456";
             // 
             // IssueCardForm
             // 

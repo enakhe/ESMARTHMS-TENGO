@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Infrastructure.Services;
 using ESMART_HMS.Presentation.Forms;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ESMART_HMS
@@ -16,10 +17,15 @@ namespace ESMART_HMS
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            var splashScreenForm = serviceProvider.GetRequiredService<SplashScreenForm>();
             DatabaseService.InitializeDatabase();
             DatabaseService.SeedData();
 
-            System.Windows.Forms.Application.Run(new SplashScreenForm());
+            System.Windows.Forms.Application.Run(splashScreenForm);
         }
     }
 }

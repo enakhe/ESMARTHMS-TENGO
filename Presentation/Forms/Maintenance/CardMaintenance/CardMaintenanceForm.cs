@@ -141,7 +141,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance
                         txtCardTypeTwo.Text = $"Card Type: {FormHelper.FormatEnumName(cardType)}";
                         txtSDate.Text = $"Start Time: {FormHelper.ByteArrayToString(cardInfo.SDateTime)}";
                         txtEdate.Text = $"End Time: {FormHelper.ByteArrayToString(cardInfo.EDateTime)}";
-                    }     
+                    }
                 }
             }
         }
@@ -230,7 +230,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance
             {
                 LockSDKMethods.CheckErr(systemIni);
                 return;
-            } 
+            }
             else
             {
                 btnMasterCard.Enabled = true;
@@ -253,7 +253,10 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance
             int st = LockSDKHeaders.TP_CancelCard(card_snr);
             if (st == 1)
             {
-                _cardController.DeleteCard(card.Id);
+                if (card != null)
+                {
+                    _cardController.DeleteCard(card.Id);
+                }
 
                 MessageBox.Show("Successfully recycled card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadCardDetails();

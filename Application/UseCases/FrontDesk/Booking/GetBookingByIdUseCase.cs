@@ -1,12 +1,12 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
 
-namespace ESMART_HMS.Application.UseCases.FrontDesk.Booking
+namespace ESMART_HMS.Application.UseCases.FrontDesk.booking
 {
-    public class GetBookingByIdUseCase
+    public class GetbookingByIdUseCase
     {
         private readonly IBookingRepository _bookingRepository;
 
-        public GetBookingByIdUseCase(IBookingRepository bookingRepository)
+        public GetbookingByIdUseCase(IBookingRepository bookingRepository)
         {
             _bookingRepository = bookingRepository;
         }

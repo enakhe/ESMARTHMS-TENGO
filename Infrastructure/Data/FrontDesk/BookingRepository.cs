@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
@@ -37,7 +38,15 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                var allBooking = from booking in _db.Bookings.Where(b => b.IsTrashed == false).OrderBy(b => b.DateCreated)
+                List<Booking> bookings = _db.Bookings.Where(b => b.IsTrashed == false).OrderBy(b => b.DateCreated).ToList();
+                foreach (var booking in bookings)
+                {
+                    if (booking.CheckOutDate < DateTime.Now)
+                    {
+                        DeleteBooking(booking);
+                    }
+                }
+                var allbooking = from booking in bookings
                                  select new BookingViewModel
                                  {
                                      Id = booking.Id,
@@ -49,12 +58,12 @@ namespace ESMART_HMS.Infrastructure.Data
                                      CheckOutDate = booking.CheckOutDate.ToString(),
                                      PaymentMethod = booking.PaymentMethod,
                                      Duration = booking.Duration.ToString() + "Day",
-                                     TotalAmount = booking.TotalAmount.ToString(),
+                                     TotalAmount = booking.Amount.ToString(),
                                      CreatedBy = booking.ApplicationUser.FullName,
                                      DateCreated = booking.DateCreated.ToString(),
                                      DateModified = booking.DateModified.ToString(),
                                  };
-                return allBooking.ToList();
+                return allbooking.ToList();
             }
             catch (Exception ex)
             {
@@ -88,7 +97,7 @@ namespace ESMART_HMS.Infrastructure.Data
 
         public List<BookingViewModel> GetActiveBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime)
         {
-            var allBooking = from booking in _db.Bookings
+            var allbooking = from booking in _db.Bookings
                 .Where(b => b.Room.RoomTypeId == roomTypeId &&
                                (
                                    (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime && b.IsTrashed == false) ||
@@ -111,12 +120,12 @@ namespace ESMART_HMS.Infrastructure.Data
                                  DateModified = booking.DateModified.ToString(),
                              };
 
-            return allBooking.ToList(); ;
+            return allbooking.ToList(); ;
         }
 
         public List<BookingViewModel> GetInActiveBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime)
         {
-            var allBooking = from booking in _db.Bookings
+            var allbooking = from booking in _db.Bookings
                 .Where(b => b.Room.RoomTypeId == roomTypeId &&
                                (
                                    (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime && b.IsTrashed == true) ||
@@ -139,12 +148,12 @@ namespace ESMART_HMS.Infrastructure.Data
                                  DateModified = booking.DateModified.ToString(),
                              };
 
-            return allBooking.ToList(); ;
+            return allbooking.ToList(); ;
         }
 
         public List<BookingViewModel> GetBookingByDate(DateTime fromTime, DateTime endTime)
         {
-            var allBooking = from booking in _db.Bookings
+            var allbooking = from booking in _db.Bookings
                 .Where(b =>
                                (
                                    (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime && b.IsTrashed == false) ||
@@ -167,12 +176,12 @@ namespace ESMART_HMS.Infrastructure.Data
                                  DateModified = booking.DateModified.ToString(),
                              };
 
-            return allBooking.ToList(); ;
+            return allbooking.ToList(); ;
         }
 
         public List<BookingViewModel> GetAllBookingByDate(DateTime fromTime, DateTime endTime)
         {
-            var allBooking = from booking in _db.Bookings
+            var allbooking = from booking in _db.Bookings
                 .Where(b =>
                                (
                                    (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime) ||
@@ -195,12 +204,12 @@ namespace ESMART_HMS.Infrastructure.Data
                                  DateModified = booking.DateModified.ToString(),
                              };
 
-            return allBooking.ToList(); ;
+            return allbooking.ToList(); ;
         }
 
         public List<BookingViewModel> GetCheckedOutBookingByDate(DateTime fromTime, DateTime endTime)
         {
-            var allBooking = from booking in _db.Bookings
+            var allbooking = from booking in _db.Bookings
                 .Where(b =>
                                (
                                    (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime && b.IsTrashed == true) ||
@@ -223,12 +232,12 @@ namespace ESMART_HMS.Infrastructure.Data
                                  DateModified = booking.DateModified.ToString(),
                              };
 
-            return allBooking.ToList(); ;
+            return allbooking.ToList(); ;
         }
 
         public List<BookingViewModel> GetRoomTypeBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime)
         {
-            var allBooking = from booking in _db.Bookings
+            var allbooking = from booking in _db.Bookings
                 .Where(b => b.Room.RoomTypeId == roomTypeId &&
                                (
                                    (b.CheckInDate <= endTime && b.CheckOutDate >= fromTime) ||
@@ -251,7 +260,7 @@ namespace ESMART_HMS.Infrastructure.Data
                                  DateModified = booking.DateModified.ToString(),
                              };
 
-            return allBooking.ToList(); ;
+            return allbooking.ToList(); ;
         }
 
         public Booking GetBookingById(string id)
@@ -274,8 +283,11 @@ namespace ESMART_HMS.Infrastructure.Data
             {
                 if (booking != null)
                 {
+                    var room = _db.Rooms.FirstOrDefault(r => r.Id == booking.Room.Id);
+                    room.Status = RoomStatusEnum.Vacant.ToString();
                     booking.IsTrashed = true;
                     _db.Entry(booking).State = System.Data.Entity.EntityState.Modified;
+                    _db.Entry(room).State = System.Data.Entity.EntityState.Modified;
                     _db.SaveChanges();
                 }
                 else

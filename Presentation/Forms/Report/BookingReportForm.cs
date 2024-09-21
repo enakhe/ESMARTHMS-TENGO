@@ -1,36 +1,79 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Interfaces;
-using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Common;
 using System.Windows.Forms;
+using System.Windows.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ESMART_HMS.Presentation.Forms.Report
 {
-    public partial class BookingReportForm : Form
+    public partial class bookingReportForm : Form
     {
-        private readonly BookingController _bookingController;
+        private readonly bookingController _bookingController;
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
-        public BookingReportForm(BookingController bookingController, RoomController roomController, RoomTypeController roomTypeController)
+        private DispatcherTimer dispatcherTimer;
+
+        public bookingReportForm(bookingController bookingController, RoomController roomController, RoomTypeController roomTypeController)
         {
             _bookingController = bookingController;
-            InitializeComponent();
             _roomController = roomController;
             _roomTypeController = roomTypeController;
+            InitializeComponent();
+            InitializeTimer();
         }
 
-        private void BookingReportForm_Load(object sender, EventArgs e)
+        private void InitializeTimer()
         {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            string status = txtStatus.SelectedItem?.ToString();
+            string type = txtType.SelectedValue.ToString();
+            DateTime from = txtFrom.Value;
+            DateTime to = txtTo.Value;
+
+            LoadRoomType();
+            if (status != null)
+            {
+                if (status == "Checked In" && type == "ALL")
+                {
+                    GetBookingByDate(status, type, from, to);
+                }
+                else if (status == "Checked Out" && type == "ALL")
+                {
+                    GetCheckedOutBookingByDate(status, type, from, to);
+                }
+                else if (status == "Checked In")
+                {
+                    GetActiveBooking(status, type, from, to);
+                }
+                else if (status == "Checked Out")
+                {
+                    GetInActiveBooking(status, type, from, to);
+                }
+                else if (status == "All" && type != "ALL")
+                {
+                    GetAllBookings(status, type, from, to);
+                }
+                else if (status == "All" && type == "ALL")
+                {
+                    GetAllBookingByDate(status, type, from, to);
+                }
+            }
+            
+        }
+
+        private void bookingReportForm_Load(object sender, EventArgs e)
+        {
+            dispatcherTimer.Start();
             LoadRoomType();
 
             txtFrom.Value = DateTime.Now;
@@ -72,22 +115,135 @@ namespace ESMART_HMS.Presentation.Forms.Report
             }
         }
 
-        private void LoadBooking()
+        public void GetBookingByDate(string status, string type, DateTime from, DateTime to)
         {
-            List<BookingViewModel> allBookings = _bookingController.GetAllBookings();
-            if (allBookings != null)
+            if (status == "Checked In" && type == "ALL")
             {
-                foreach (var booking in allBookings)
+                List<BookingViewModel> filteredbooking = _bookingController.GetbookingByDate(from, to);
+                if (filteredbooking != null)
                 {
-                    booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
+                    foreach (var booking in filteredbooking)
+                    {
+                        booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
 
-                    booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
-                    booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
+                        booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
+                        booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
 
-                    booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
-                    booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
+                        booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
+                        booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
+                    }
+                    dgvbooking.DataSource = filteredbooking;
                 }
-                dgvBooking.DataSource = allBookings;
+            }
+        }
+
+        public void GetCheckedOutBookingByDate(string status, string type, DateTime from, DateTime to)
+        {
+            if (status == "Checked Out" && type == "ALL")
+            {
+                List<BookingViewModel> filteredbooking = _bookingController.GetCheckedOutbookingByDate(from, to);
+                if (filteredbooking != null)
+                {
+                    foreach (var booking in filteredbooking)
+                    {
+                        booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
+
+                        booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
+                        booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
+
+                        booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
+                        booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
+                    }
+                    dgvbooking.DataSource = filteredbooking;
+                }
+            }
+        }
+
+        public void GetActiveBooking(string status, string type, DateTime from, DateTime to)
+        {
+            if (status == "Checked In")
+            {
+                List<BookingViewModel> filteredbooking = _bookingController.GetActivebookingByFilter(type, from, to);
+                if (filteredbooking != null)
+                {
+                    foreach (var booking in filteredbooking)
+                    {
+                        booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
+
+                        booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
+                        booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
+
+                        booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
+                        booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
+                    }
+                    dgvbooking.DataSource = filteredbooking;
+                }
+            }
+        }
+
+        public void GetInActiveBooking(string status, string type, DateTime from, DateTime to)
+        {
+            if (status == "Checked Out")
+            {
+                List<BookingViewModel> filteredbooking = _bookingController.GetInActivebookingByfilter(type, from, to);
+                if (filteredbooking != null)
+                {
+                    foreach (var booking in filteredbooking)
+                    {
+                        booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
+
+                        booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
+                        booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
+
+                        booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
+                        booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
+                    }
+                    dgvbooking.DataSource = filteredbooking;
+                }
+            }
+        }
+
+        private void GetAllBookings(string status, string type, DateTime from, DateTime to)
+        {
+            if (status == "All" && type != "ALL")
+            {
+                List<BookingViewModel> filteredbooking = _bookingController.GetRoomTypebooking(type, from, to);
+                if (filteredbooking != null)
+                {
+                    foreach (var booking in filteredbooking)
+                    {
+                        booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
+
+                        booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
+                        booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
+
+                        booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
+                        booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
+                    }
+                    dgvbooking.DataSource = filteredbooking;
+                }
+            }
+        }
+
+        private void GetAllBookingByDate(string status, string type, DateTime from, DateTime to)
+        {
+            if (status == "All" && type == "ALL")
+            {
+                List<BookingViewModel> filteredbooking = _bookingController.GetAllbookingByDate(from, to);
+                if (filteredbooking != null)
+                {
+                    foreach (var booking in filteredbooking)
+                    {
+                        booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
+
+                        booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
+                        booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
+
+                        booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
+                        booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
+                    }
+                    dgvbooking.DataSource = filteredbooking;
+                }
             }
         }
 
@@ -103,118 +259,34 @@ namespace ESMART_HMS.Presentation.Forms.Report
 
                 if (status == "Checked In" && type == "ALL")
                 {
-                    List<BookingViewModel> filteredBooking = _bookingController.GetBookingByDate(from, to);
-                    if (filteredBooking != null)
-                    {
-                        foreach (var booking in filteredBooking)
-                        {
-                            booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
-
-                            booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
-                            booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
-
-                            booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
-                            booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
-                        }
-                        dgvBooking.DataSource = filteredBooking;
-                    }
+                    GetBookingByDate(status, type, from, to);
                 }
                 else if (status == "Checked Out" && type == "ALL")
                 {
-                    List<BookingViewModel> filteredBooking = _bookingController.GetCheckedOutBookingByDate(from, to);
-                    if (filteredBooking != null)
-                    {
-                        foreach (var booking in filteredBooking)
-                        {
-                            booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
-
-                            booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
-                            booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
-
-                            booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
-                            booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
-                        }
-                        dgvBooking.DataSource = filteredBooking;
-                    }
+                    GetCheckedOutBookingByDate(status, type, from, to);
                 }
                 else if (status == "Checked In")
                 {
-                    List<BookingViewModel> filteredBooking = _bookingController.GetActiveBookingByFilter(type, from, to);
-                    if (filteredBooking != null)
-                    {
-                        foreach (var booking in filteredBooking)
-                        {
-                            booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
-
-                            booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
-                            booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
-
-                            booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
-                            booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
-                        }
-                        dgvBooking.DataSource = filteredBooking;
-                    }
-                } 
+                    GetActiveBooking(status, type, from, to);
+                }
                 else if (status == "Checked Out")
                 {
-                    List<BookingViewModel> filteredBooking = _bookingController.GetInActiveBookingByfilter(type, from, to);
-                    if (filteredBooking != null)
-                    {
-                        foreach (var booking in filteredBooking)
-                        {
-                            booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
-
-                            booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
-                            booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
-
-                            booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
-                            booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
-                        }
-                        dgvBooking.DataSource = filteredBooking;
-                    }
+                    GetInActiveBooking(status, type, from, to);
                 }
                 else if (status == "All" && type != "ALL")
                 {
-                    List<BookingViewModel> filteredBooking = _bookingController.GetRoomTypeBooking(type, from, to);
-                    if (filteredBooking != null)
-                    {
-                        foreach (var booking in filteredBooking)
-                        {
-                            booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
-
-                            booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
-                            booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
-
-                            booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
-                            booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
-                        }
-                        dgvBooking.DataSource = filteredBooking;
-                    }
-                } 
+                    GetAllBookings(status, type, from, to);
+                }
                 else if (status == "All" && type == "ALL")
                 {
-                    List<BookingViewModel> filteredBooking = _bookingController.GetAllBookingByDate(from, to);
-                    if (filteredBooking != null)
-                    {
-                        foreach (var booking in filteredBooking)
-                        {
-                            booking.TotalAmount = FormHelper.FormatNumberWithCommas(decimal.Parse(booking.TotalAmount));
-
-                            booking.DateCreated = FormHelper.FormatDateTimeWithSuffix(booking.DateCreated);
-                            booking.DateModified = FormHelper.FormatDateTimeWithSuffix(booking.DateModified);
-
-                            booking.CheckInDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckInDate);
-                            booking.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(booking.CheckOutDate);
-                        }
-                        dgvBooking.DataSource = filteredBooking;
-                    }
+                    GetAllBookingByDate(status, type, from, to);
                 }
             }
         }
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            ExportsForm exportForm = new ExportsForm(dgvBooking);
+            ExportsForm exportForm = new ExportsForm(dgvbooking);
             exportForm.ShowDialog();
         }
     }

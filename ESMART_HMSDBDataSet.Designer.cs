@@ -32,7 +32,7 @@ namespace ESMART_HMS {
         
         private ReservationDataTable tableReservation;
         
-        private BookingDataTable tableBooking;
+        private bookingDataTable tablebooking;
         
         private TransactionDataTable tableTransaction;
         
@@ -50,11 +50,13 @@ namespace ESMART_HMS {
         
         private SpecialCardDataTable tableSpecialCard;
         
+        private BankAccountDataTable tableBankAccount;
+        
         private global::System.Data.DataRelation relationFK__Reservati__Custo__403A8C7D;
         
-        private global::System.Data.DataRelation relationFK__Booking__GuestId__440B1D61;
+        private global::System.Data.DataRelation relationFK__booking__GuestId__440B1D61;
         
-        private global::System.Data.DataRelation relationFK__Booking__Reserva__45F365D3;
+        private global::System.Data.DataRelation relationFK__booking__Reserva__45F365D3;
         
         private global::System.Data.DataRelation relationFK__Transacti__Booki__48CFD27E;
         
@@ -62,7 +64,7 @@ namespace ESMART_HMS {
         
         private global::System.Data.DataRelation relationFK__Reservati__RoomI__571DF1D5;
         
-        private global::System.Data.DataRelation relationFK__Booking__RoomId__5BE2A6F2;
+        private global::System.Data.DataRelation relationFK__booking__RoomId__5BE2A6F2;
         
         private global::System.Data.DataRelation relationFK__Room__AreaId__4F7CD00D;
         
@@ -112,8 +114,8 @@ namespace ESMART_HMS {
                 if ((ds.Tables["Reservation"] != null)) {
                     base.Tables.Add(new ReservationDataTable(ds.Tables["Reservation"]));
                 }
-                if ((ds.Tables["Booking"] != null)) {
-                    base.Tables.Add(new BookingDataTable(ds.Tables["Booking"]));
+                if ((ds.Tables["booking"] != null)) {
+                    base.Tables.Add(new bookingDataTable(ds.Tables["booking"]));
                 }
                 if ((ds.Tables["Transaction"] != null)) {
                     base.Tables.Add(new TransactionDataTable(ds.Tables["Transaction"]));
@@ -138,6 +140,9 @@ namespace ESMART_HMS {
                 }
                 if ((ds.Tables["SpecialCard"] != null)) {
                     base.Tables.Add(new SpecialCardDataTable(ds.Tables["SpecialCard"]));
+                }
+                if ((ds.Tables["BankAccount"] != null)) {
+                    base.Tables.Add(new BankAccountDataTable(ds.Tables["BankAccount"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -201,9 +206,9 @@ namespace ESMART_HMS {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public BookingDataTable Booking {
+        public bookingDataTable booking {
             get {
-                return this.tableBooking;
+                return this.tablebooking;
             }
         }
         
@@ -289,6 +294,16 @@ namespace ESMART_HMS {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public BankAccountDataTable BankAccount {
+            get {
+                return this.tableBankAccount;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -366,8 +381,8 @@ namespace ESMART_HMS {
                 if ((ds.Tables["Reservation"] != null)) {
                     base.Tables.Add(new ReservationDataTable(ds.Tables["Reservation"]));
                 }
-                if ((ds.Tables["Booking"] != null)) {
-                    base.Tables.Add(new BookingDataTable(ds.Tables["Booking"]));
+                if ((ds.Tables["booking"] != null)) {
+                    base.Tables.Add(new bookingDataTable(ds.Tables["booking"]));
                 }
                 if ((ds.Tables["Transaction"] != null)) {
                     base.Tables.Add(new TransactionDataTable(ds.Tables["Transaction"]));
@@ -392,6 +407,9 @@ namespace ESMART_HMS {
                 }
                 if ((ds.Tables["SpecialCard"] != null)) {
                     base.Tables.Add(new SpecialCardDataTable(ds.Tables["SpecialCard"]));
+                }
+                if ((ds.Tables["BankAccount"] != null)) {
+                    base.Tables.Add(new BankAccountDataTable(ds.Tables["BankAccount"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -450,10 +468,10 @@ namespace ESMART_HMS {
                     this.tableReservation.InitVars();
                 }
             }
-            this.tableBooking = ((BookingDataTable)(base.Tables["Booking"]));
+            this.tablebooking = ((bookingDataTable)(base.Tables["booking"]));
             if ((initTable == true)) {
-                if ((this.tableBooking != null)) {
-                    this.tableBooking.InitVars();
+                if ((this.tablebooking != null)) {
+                    this.tablebooking.InitVars();
                 }
             }
             this.tableTransaction = ((TransactionDataTable)(base.Tables["Transaction"]));
@@ -504,13 +522,19 @@ namespace ESMART_HMS {
                     this.tableSpecialCard.InitVars();
                 }
             }
+            this.tableBankAccount = ((BankAccountDataTable)(base.Tables["BankAccount"]));
+            if ((initTable == true)) {
+                if ((this.tableBankAccount != null)) {
+                    this.tableBankAccount.InitVars();
+                }
+            }
             this.relationFK__Reservati__Custo__403A8C7D = this.Relations["FK__Reservati__Custo__403A8C7D"];
-            this.relationFK__Booking__GuestId__440B1D61 = this.Relations["FK__Booking__GuestId__440B1D61"];
-            this.relationFK__Booking__Reserva__45F365D3 = this.Relations["FK__Booking__Reserva__45F365D3"];
+            this.relationFK__booking__GuestId__440B1D61 = this.Relations["FK__booking__GuestId__440B1D61"];
+            this.relationFK__booking__Reserva__45F365D3 = this.Relations["FK__booking__Reserva__45F365D3"];
             this.relationFK__Transacti__Booki__48CFD27E = this.Relations["FK__Transacti__Booki__48CFD27E"];
             this.relationFK__Transacti__Guest__47DBAE45 = this.Relations["FK__Transacti__Guest__47DBAE45"];
             this.relationFK__Reservati__RoomI__571DF1D5 = this.Relations["FK__Reservati__RoomI__571DF1D5"];
-            this.relationFK__Booking__RoomId__5BE2A6F2 = this.Relations["FK__Booking__RoomId__5BE2A6F2"];
+            this.relationFK__booking__RoomId__5BE2A6F2 = this.Relations["FK__booking__RoomId__5BE2A6F2"];
             this.relationFK__Room__AreaId__4F7CD00D = this.Relations["FK__Room__AreaId__4F7CD00D"];
             this.relationFK__Room__BuildingId__4D94879B = this.Relations["FK__Room__BuildingId__4D94879B"];
             this.relationFK__Room__FloorId__4E88ABD4 = this.Relations["FK__Room__FloorId__4E88ABD4"];
@@ -533,8 +557,8 @@ namespace ESMART_HMS {
             base.Tables.Add(this.tableUser);
             this.tableReservation = new ReservationDataTable();
             base.Tables.Add(this.tableReservation);
-            this.tableBooking = new BookingDataTable();
-            base.Tables.Add(this.tableBooking);
+            this.tablebooking = new bookingDataTable();
+            base.Tables.Add(this.tablebooking);
             this.tableTransaction = new TransactionDataTable();
             base.Tables.Add(this.tableTransaction);
             this.tableIngredientItem = new IngredientItemDataTable();
@@ -551,21 +575,23 @@ namespace ESMART_HMS {
             base.Tables.Add(this.tableRoom);
             this.tableSpecialCard = new SpecialCardDataTable();
             base.Tables.Add(this.tableSpecialCard);
+            this.tableBankAccount = new BankAccountDataTable();
+            base.Tables.Add(this.tableBankAccount);
             this.relationFK__Reservati__Custo__403A8C7D = new global::System.Data.DataRelation("FK__Reservati__Custo__403A8C7D", new global::System.Data.DataColumn[] {
                         this.tableGuest.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableReservation.GuestIdColumn}, false);
             this.Relations.Add(this.relationFK__Reservati__Custo__403A8C7D);
-            this.relationFK__Booking__GuestId__440B1D61 = new global::System.Data.DataRelation("FK__Booking__GuestId__440B1D61", new global::System.Data.DataColumn[] {
+            this.relationFK__booking__GuestId__440B1D61 = new global::System.Data.DataRelation("FK__booking__GuestId__440B1D61", new global::System.Data.DataColumn[] {
                         this.tableGuest.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBooking.GuestIdColumn}, false);
-            this.Relations.Add(this.relationFK__Booking__GuestId__440B1D61);
-            this.relationFK__Booking__Reserva__45F365D3 = new global::System.Data.DataRelation("FK__Booking__Reserva__45F365D3", new global::System.Data.DataColumn[] {
+                        this.tablebooking.GuestIdColumn}, false);
+            this.Relations.Add(this.relationFK__booking__GuestId__440B1D61);
+            this.relationFK__booking__Reserva__45F365D3 = new global::System.Data.DataRelation("FK__booking__Reserva__45F365D3", new global::System.Data.DataColumn[] {
                         this.tableReservation.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBooking.ReservationIdColumn}, false);
-            this.Relations.Add(this.relationFK__Booking__Reserva__45F365D3);
+                        this.tablebooking.ReservationIdColumn}, false);
+            this.Relations.Add(this.relationFK__booking__Reserva__45F365D3);
             this.relationFK__Transacti__Booki__48CFD27E = new global::System.Data.DataRelation("FK__Transacti__Booki__48CFD27E", new global::System.Data.DataColumn[] {
-                        this.tableBooking.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTransaction.BookingIdColumn}, false);
+                        this.tablebooking.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTransaction.bookingIdColumn}, false);
             this.Relations.Add(this.relationFK__Transacti__Booki__48CFD27E);
             this.relationFK__Transacti__Guest__47DBAE45 = new global::System.Data.DataRelation("FK__Transacti__Guest__47DBAE45", new global::System.Data.DataColumn[] {
                         this.tableGuest.IdColumn}, new global::System.Data.DataColumn[] {
@@ -575,10 +601,10 @@ namespace ESMART_HMS {
                         this.tableRoom.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableReservation.RoomIdColumn}, false);
             this.Relations.Add(this.relationFK__Reservati__RoomI__571DF1D5);
-            this.relationFK__Booking__RoomId__5BE2A6F2 = new global::System.Data.DataRelation("FK__Booking__RoomId__5BE2A6F2", new global::System.Data.DataColumn[] {
+            this.relationFK__booking__RoomId__5BE2A6F2 = new global::System.Data.DataRelation("FK__booking__RoomId__5BE2A6F2", new global::System.Data.DataColumn[] {
                         this.tableRoom.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableBooking.RoomIdColumn}, false);
-            this.Relations.Add(this.relationFK__Booking__RoomId__5BE2A6F2);
+                        this.tablebooking.RoomIdColumn}, false);
+            this.Relations.Add(this.relationFK__booking__RoomId__5BE2A6F2);
             this.relationFK__Room__AreaId__4F7CD00D = new global::System.Data.DataRelation("FK__Room__AreaId__4F7CD00D", new global::System.Data.DataColumn[] {
                         this.tableArea.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableRoom.AreaIdColumn}, false);
@@ -623,7 +649,7 @@ namespace ESMART_HMS {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeBooking() {
+        private bool ShouldSerializebooking() {
             return false;
         }
         
@@ -672,6 +698,12 @@ namespace ESMART_HMS {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeSpecialCard() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeBankAccount() {
             return false;
         }
         
@@ -743,7 +775,7 @@ namespace ESMART_HMS {
         public delegate void ReservationRowChangeEventHandler(object sender, ReservationRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void BookingRowChangeEventHandler(object sender, BookingRowChangeEvent e);
+        public delegate void bookingRowChangeEventHandler(object sender, bookingRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void TransactionRowChangeEventHandler(object sender, TransactionRowChangeEvent e);
@@ -768,6 +800,9 @@ namespace ESMART_HMS {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void SpecialCardRowChangeEventHandler(object sender, SpecialCardRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void BankAccountRowChangeEventHandler(object sender, BankAccountRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2608,11 +2643,11 @@ namespace ESMART_HMS {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class BookingDataTable : global::System.Data.TypedTableBase<BookingRow> {
+        public partial class bookingDataTable : global::System.Data.TypedTableBase<bookingRow> {
             
             private global::System.Data.DataColumn columnId;
             
-            private global::System.Data.DataColumn columnBookingId;
+            private global::System.Data.DataColumn columnbookingId;
             
             private global::System.Data.DataColumn columnGuestId;
             
@@ -2648,8 +2683,8 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingDataTable() {
-                this.TableName = "Booking";
+            public bookingDataTable() {
+                this.TableName = "booking";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -2657,7 +2692,7 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal BookingDataTable(global::System.Data.DataTable table) {
+            internal bookingDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -2674,7 +2709,7 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected BookingDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected bookingDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -2689,9 +2724,9 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn BookingIdColumn {
+            public global::System.Data.DataColumn bookingIdColumn {
                 get {
-                    return this.columnBookingId;
+                    return this.columnbookingId;
                 }
             }
             
@@ -2834,38 +2869,38 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow this[int index] {
+            public bookingRow this[int index] {
                 get {
-                    return ((BookingRow)(this.Rows[index]));
+                    return ((bookingRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BookingRowChangeEventHandler BookingRowChanging;
+            public event bookingRowChangeEventHandler bookingRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BookingRowChangeEventHandler BookingRowChanged;
+            public event bookingRowChangeEventHandler bookingRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BookingRowChangeEventHandler BookingRowDeleting;
+            public event bookingRowChangeEventHandler bookingRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event BookingRowChangeEventHandler BookingRowDeleted;
+            public event bookingRowChangeEventHandler bookingRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddBookingRow(BookingRow row) {
+            public void AddbookingRow(bookingRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow AddBookingRow(
+            public bookingRow AddbookingRow(
                         string Id, 
-                        string BookingId, 
-                        GuestRow parentGuestRowByFK__Booking__GuestId__440B1D61, 
-                        RoomRow parentRoomRowByFK__Booking__RoomId__5BE2A6F2, 
-                        ReservationRow parentReservationRowByFK__Booking__Reserva__45F365D3, 
+                        string bookingId, 
+                        GuestRow parentGuestRowByFK__booking__GuestId__440B1D61, 
+                        RoomRow parentRoomRowByFK__booking__RoomId__5BE2A6F2, 
+                        ReservationRow parentReservationRowByFK__booking__Reserva__45F365D3, 
                         System.DateTime CheckInDate, 
                         System.DateTime CheckOutDate, 
                         string PaymentMethod, 
@@ -2879,10 +2914,10 @@ namespace ESMART_HMS {
                         System.DateTime DateModified, 
                         bool IsTrashed, 
                         string CreatedBy) {
-                BookingRow rowBookingRow = ((BookingRow)(this.NewRow()));
+                bookingRow rowbookingRow = ((bookingRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
-                        BookingId,
+                        bookingId,
                         null,
                         null,
                         null,
@@ -2899,31 +2934,31 @@ namespace ESMART_HMS {
                         DateModified,
                         IsTrashed,
                         CreatedBy};
-                if ((parentGuestRowByFK__Booking__GuestId__440B1D61 != null)) {
-                    columnValuesArray[2] = parentGuestRowByFK__Booking__GuestId__440B1D61[0];
+                if ((parentGuestRowByFK__booking__GuestId__440B1D61 != null)) {
+                    columnValuesArray[2] = parentGuestRowByFK__booking__GuestId__440B1D61[0];
                 }
-                if ((parentRoomRowByFK__Booking__RoomId__5BE2A6F2 != null)) {
-                    columnValuesArray[3] = parentRoomRowByFK__Booking__RoomId__5BE2A6F2[0];
+                if ((parentRoomRowByFK__booking__RoomId__5BE2A6F2 != null)) {
+                    columnValuesArray[3] = parentRoomRowByFK__booking__RoomId__5BE2A6F2[0];
                 }
-                if ((parentReservationRowByFK__Booking__Reserva__45F365D3 != null)) {
-                    columnValuesArray[4] = parentReservationRowByFK__Booking__Reserva__45F365D3[0];
+                if ((parentReservationRowByFK__booking__Reserva__45F365D3 != null)) {
+                    columnValuesArray[4] = parentReservationRowByFK__booking__Reserva__45F365D3[0];
                 }
-                rowBookingRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowBookingRow);
-                return rowBookingRow;
+                rowbookingRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowbookingRow);
+                return rowbookingRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow FindById(string Id) {
-                return ((BookingRow)(this.Rows.Find(new object[] {
+            public bookingRow FindById(string Id) {
+                return ((bookingRow)(this.Rows.Find(new object[] {
                             Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                BookingDataTable cln = ((BookingDataTable)(base.Clone()));
+                bookingDataTable cln = ((bookingDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -2931,14 +2966,14 @@ namespace ESMART_HMS {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new BookingDataTable();
+                return new bookingDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
-                this.columnBookingId = base.Columns["BookingId"];
+                this.columnbookingId = base.Columns["bookingId"];
                 this.columnGuestId = base.Columns["GuestId"];
                 this.columnRoomId = base.Columns["RoomId"];
                 this.columnReservationId = base.Columns["ReservationId"];
@@ -2962,8 +2997,8 @@ namespace ESMART_HMS {
             private void InitClass() {
                 this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnId);
-                this.columnBookingId = new global::System.Data.DataColumn("BookingId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBookingId);
+                this.columnbookingId = new global::System.Data.DataColumn("bookingId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbookingId);
                 this.columnGuestId = new global::System.Data.DataColumn("GuestId", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGuestId);
                 this.columnRoomId = new global::System.Data.DataColumn("RoomId", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3001,8 +3036,8 @@ namespace ESMART_HMS {
                 this.columnId.AllowDBNull = false;
                 this.columnId.Unique = true;
                 this.columnId.MaxLength = 450;
-                this.columnBookingId.AllowDBNull = false;
-                this.columnBookingId.MaxLength = 450;
+                this.columnbookingId.AllowDBNull = false;
+                this.columnbookingId.MaxLength = 450;
                 this.columnGuestId.AllowDBNull = false;
                 this.columnGuestId.MaxLength = 450;
                 this.columnRoomId.AllowDBNull = false;
@@ -3027,28 +3062,28 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow NewBookingRow() {
-                return ((BookingRow)(this.NewRow()));
+            public bookingRow NewbookingRow() {
+                return ((bookingRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new BookingRow(builder);
+                return new bookingRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(BookingRow);
+                return typeof(bookingRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.BookingRowChanged != null)) {
-                    this.BookingRowChanged(this, new BookingRowChangeEvent(((BookingRow)(e.Row)), e.Action));
+                if ((this.bookingRowChanged != null)) {
+                    this.bookingRowChanged(this, new bookingRowChangeEvent(((bookingRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3056,8 +3091,8 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.BookingRowChanging != null)) {
-                    this.BookingRowChanging(this, new BookingRowChangeEvent(((BookingRow)(e.Row)), e.Action));
+                if ((this.bookingRowChanging != null)) {
+                    this.bookingRowChanging(this, new bookingRowChangeEvent(((bookingRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3065,8 +3100,8 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.BookingRowDeleted != null)) {
-                    this.BookingRowDeleted(this, new BookingRowChangeEvent(((BookingRow)(e.Row)), e.Action));
+                if ((this.bookingRowDeleted != null)) {
+                    this.bookingRowDeleted(this, new bookingRowChangeEvent(((bookingRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3074,14 +3109,14 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.BookingRowDeleting != null)) {
-                    this.BookingRowDeleting(this, new BookingRowChangeEvent(((BookingRow)(e.Row)), e.Action));
+                if ((this.bookingRowDeleting != null)) {
+                    this.bookingRowDeleting(this, new bookingRowChangeEvent(((bookingRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveBookingRow(BookingRow row) {
+            public void RemovebookingRow(bookingRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -3108,7 +3143,7 @@ namespace ESMART_HMS {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "BookingDataTable";
+                attribute2.FixedValue = "bookingDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3162,7 +3197,7 @@ namespace ESMART_HMS {
             
             private global::System.Data.DataColumn columnGuestId;
             
-            private global::System.Data.DataColumn columnBookingId;
+            private global::System.Data.DataColumn columnbookingId;
             
             private global::System.Data.DataColumn columnDate;
             
@@ -3177,6 +3212,8 @@ namespace ESMART_HMS {
             private global::System.Data.DataColumn columnServiceId;
             
             private global::System.Data.DataColumn columnStatus;
+            
+            private global::System.Data.DataColumn columnBankAccount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -3237,9 +3274,9 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn BookingIdColumn {
+            public global::System.Data.DataColumn bookingIdColumn {
                 get {
-                    return this.columnBookingId;
+                    return this.columnbookingId;
                 }
             }
             
@@ -3301,6 +3338,14 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BankAccountColumn {
+                get {
+                    return this.columnBankAccount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3336,7 +3381,7 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TransactionRow AddTransactionRow(string Id, string TransactionId, GuestRow parentGuestRowByFK__Transacti__Guest__47DBAE45, BookingRow parentBookingRowByFK__Transacti__Booki__48CFD27E, System.DateTime Date, decimal Amount, string Description, string Type, bool IsTrashed, string ServiceId, string Status) {
+            public TransactionRow AddTransactionRow(string Id, string TransactionId, GuestRow parentGuestRowByFK__Transacti__Guest__47DBAE45, bookingRow parentbookingRowByFK__Transacti__Booki__48CFD27E, System.DateTime Date, decimal Amount, string Description, string Type, bool IsTrashed, string ServiceId, string Status, string BankAccount) {
                 TransactionRow rowTransactionRow = ((TransactionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -3349,12 +3394,13 @@ namespace ESMART_HMS {
                         Type,
                         IsTrashed,
                         ServiceId,
-                        Status};
+                        Status,
+                        BankAccount};
                 if ((parentGuestRowByFK__Transacti__Guest__47DBAE45 != null)) {
                     columnValuesArray[2] = parentGuestRowByFK__Transacti__Guest__47DBAE45[0];
                 }
-                if ((parentBookingRowByFK__Transacti__Booki__48CFD27E != null)) {
-                    columnValuesArray[3] = parentBookingRowByFK__Transacti__Booki__48CFD27E[0];
+                if ((parentbookingRowByFK__Transacti__Booki__48CFD27E != null)) {
+                    columnValuesArray[3] = parentbookingRowByFK__Transacti__Booki__48CFD27E[0];
                 }
                 rowTransactionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTransactionRow);
@@ -3388,7 +3434,7 @@ namespace ESMART_HMS {
                 this.columnId = base.Columns["Id"];
                 this.columnTransactionId = base.Columns["TransactionId"];
                 this.columnGuestId = base.Columns["GuestId"];
-                this.columnBookingId = base.Columns["BookingId"];
+                this.columnbookingId = base.Columns["bookingId"];
                 this.columnDate = base.Columns["Date"];
                 this.columnAmount = base.Columns["Amount"];
                 this.columnDescription = base.Columns["Description"];
@@ -3396,6 +3442,7 @@ namespace ESMART_HMS {
                 this.columnIsTrashed = base.Columns["IsTrashed"];
                 this.columnServiceId = base.Columns["ServiceId"];
                 this.columnStatus = base.Columns["Status"];
+                this.columnBankAccount = base.Columns["BankAccount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3407,8 +3454,8 @@ namespace ESMART_HMS {
                 base.Columns.Add(this.columnTransactionId);
                 this.columnGuestId = new global::System.Data.DataColumn("GuestId", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGuestId);
-                this.columnBookingId = new global::System.Data.DataColumn("BookingId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBookingId);
+                this.columnbookingId = new global::System.Data.DataColumn("bookingId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbookingId);
                 this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDate);
                 this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -3423,6 +3470,8 @@ namespace ESMART_HMS {
                 base.Columns.Add(this.columnServiceId);
                 this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatus);
+                this.columnBankAccount = new global::System.Data.DataColumn("BankAccount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBankAccount);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -3432,8 +3481,8 @@ namespace ESMART_HMS {
                 this.columnTransactionId.MaxLength = 450;
                 this.columnGuestId.AllowDBNull = false;
                 this.columnGuestId.MaxLength = 450;
-                this.columnBookingId.AllowDBNull = false;
-                this.columnBookingId.MaxLength = 450;
+                this.columnbookingId.AllowDBNull = false;
+                this.columnbookingId.MaxLength = 450;
                 this.columnDate.AllowDBNull = false;
                 this.columnAmount.AllowDBNull = false;
                 this.columnDescription.MaxLength = 2147483647;
@@ -3442,6 +3491,7 @@ namespace ESMART_HMS {
                 this.columnServiceId.AllowDBNull = false;
                 this.columnServiceId.MaxLength = 450;
                 this.columnStatus.MaxLength = 450;
+                this.columnBankAccount.MaxLength = 450;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6336,6 +6386,372 @@ namespace ESMART_HMS {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class BankAccountDataTable : global::System.Data.TypedTableBase<BankAccountRow> {
+            
+            private global::System.Data.DataColumn columnId;
+            
+            private global::System.Data.DataColumn columnBankAccNo;
+            
+            private global::System.Data.DataColumn columnBankName;
+            
+            private global::System.Data.DataColumn columnBankAccName;
+            
+            private global::System.Data.DataColumn columnIsTrashed;
+            
+            private global::System.Data.DataColumn columnCreatedBy;
+            
+            private global::System.Data.DataColumn columnDateCreated;
+            
+            private global::System.Data.DataColumn columnDateModified;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BankAccountDataTable() {
+                this.TableName = "BankAccount";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal BankAccountDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected BankAccountDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BankAccNoColumn {
+                get {
+                    return this.columnBankAccNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BankNameColumn {
+                get {
+                    return this.columnBankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BankAccNameColumn {
+                get {
+                    return this.columnBankAccName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsTrashedColumn {
+                get {
+                    return this.columnIsTrashed;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CreatedByColumn {
+                get {
+                    return this.columnCreatedBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateCreatedColumn {
+                get {
+                    return this.columnDateCreated;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DateModifiedColumn {
+                get {
+                    return this.columnDateModified;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BankAccountRow this[int index] {
+                get {
+                    return ((BankAccountRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event BankAccountRowChangeEventHandler BankAccountRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event BankAccountRowChangeEventHandler BankAccountRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event BankAccountRowChangeEventHandler BankAccountRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event BankAccountRowChangeEventHandler BankAccountRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddBankAccountRow(BankAccountRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BankAccountRow AddBankAccountRow(string Id, string BankAccNo, string BankName, string BankAccName, bool IsTrashed, string CreatedBy, System.DateTime DateCreated, System.DateTime DateModified) {
+                BankAccountRow rowBankAccountRow = ((BankAccountRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Id,
+                        BankAccNo,
+                        BankName,
+                        BankAccName,
+                        IsTrashed,
+                        CreatedBy,
+                        DateCreated,
+                        DateModified};
+                rowBankAccountRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowBankAccountRow);
+                return rowBankAccountRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BankAccountRow FindById(string Id) {
+                return ((BankAccountRow)(this.Rows.Find(new object[] {
+                            Id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                BankAccountDataTable cln = ((BankAccountDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new BankAccountDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnId = base.Columns["Id"];
+                this.columnBankAccNo = base.Columns["BankAccNo"];
+                this.columnBankName = base.Columns["BankName"];
+                this.columnBankAccName = base.Columns["BankAccName"];
+                this.columnIsTrashed = base.Columns["IsTrashed"];
+                this.columnCreatedBy = base.Columns["CreatedBy"];
+                this.columnDateCreated = base.Columns["DateCreated"];
+                this.columnDateModified = base.Columns["DateModified"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
+                this.columnBankAccNo = new global::System.Data.DataColumn("BankAccNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBankAccNo);
+                this.columnBankName = new global::System.Data.DataColumn("BankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBankName);
+                this.columnBankAccName = new global::System.Data.DataColumn("BankAccName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBankAccName);
+                this.columnIsTrashed = new global::System.Data.DataColumn("IsTrashed", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsTrashed);
+                this.columnCreatedBy = new global::System.Data.DataColumn("CreatedBy", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCreatedBy);
+                this.columnDateCreated = new global::System.Data.DataColumn("DateCreated", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateCreated);
+                this.columnDateModified = new global::System.Data.DataColumn("DateModified", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateModified);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnId}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
+                this.columnId.MaxLength = 450;
+                this.columnBankAccNo.AllowDBNull = false;
+                this.columnBankAccNo.MaxLength = 450;
+                this.columnBankName.MaxLength = 450;
+                this.columnBankAccName.MaxLength = 450;
+                this.columnIsTrashed.AllowDBNull = false;
+                this.columnCreatedBy.AllowDBNull = false;
+                this.columnCreatedBy.MaxLength = 450;
+                this.columnDateCreated.AllowDBNull = false;
+                this.columnDateModified.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BankAccountRow NewBankAccountRow() {
+                return ((BankAccountRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new BankAccountRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(BankAccountRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.BankAccountRowChanged != null)) {
+                    this.BankAccountRowChanged(this, new BankAccountRowChangeEvent(((BankAccountRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.BankAccountRowChanging != null)) {
+                    this.BankAccountRowChanging(this, new BankAccountRowChangeEvent(((BankAccountRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.BankAccountRowDeleted != null)) {
+                    this.BankAccountRowDeleted(this, new BankAccountRowChangeEvent(((BankAccountRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.BankAccountRowDeleting != null)) {
+                    this.BankAccountRowDeleting(this, new BankAccountRowChangeEvent(((BankAccountRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveBankAccountRow(BankAccountRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ESMART_HMSDBDataSet ds = new ESMART_HMSDBDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "BankAccountDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class GuestRow : global::System.Data.DataRow {
@@ -6785,12 +7201,12 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow[] GetBookingRows() {
-                if ((this.Table.ChildRelations["FK__Booking__GuestId__440B1D61"] == null)) {
-                    return new BookingRow[0];
+            public bookingRow[] GetbookingRows() {
+                if ((this.Table.ChildRelations["FK__booking__GuestId__440B1D61"] == null)) {
+                    return new bookingRow[0];
                 }
                 else {
-                    return ((BookingRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Booking__GuestId__440B1D61"])));
+                    return ((bookingRow[])(base.GetChildRows(this.Table.ChildRelations["FK__booking__GuestId__440B1D61"])));
                 }
             }
             
@@ -7277,12 +7693,12 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow[] GetBookingRows() {
-                if ((this.Table.ChildRelations["FK__Booking__Reserva__45F365D3"] == null)) {
-                    return new BookingRow[0];
+            public bookingRow[] GetbookingRows() {
+                if ((this.Table.ChildRelations["FK__booking__Reserva__45F365D3"] == null)) {
+                    return new bookingRow[0];
                 }
                 else {
-                    return ((BookingRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Booking__Reserva__45F365D3"])));
+                    return ((bookingRow[])(base.GetChildRows(this.Table.ChildRelations["FK__booking__Reserva__45F365D3"])));
                 }
             }
         }
@@ -7290,36 +7706,36 @@ namespace ESMART_HMS {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class BookingRow : global::System.Data.DataRow {
+        public partial class bookingRow : global::System.Data.DataRow {
             
-            private BookingDataTable tableBooking;
+            private bookingDataTable tablebooking;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal BookingRow(global::System.Data.DataRowBuilder rb) : 
+            internal bookingRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableBooking = ((BookingDataTable)(this.Table));
+                this.tablebooking = ((bookingDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Id {
                 get {
-                    return ((string)(this[this.tableBooking.IdColumn]));
+                    return ((string)(this[this.tablebooking.IdColumn]));
                 }
                 set {
-                    this[this.tableBooking.IdColumn] = value;
+                    this[this.tablebooking.IdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string BookingId {
+            public string bookingId {
                 get {
-                    return ((string)(this[this.tableBooking.BookingIdColumn]));
+                    return ((string)(this[this.tablebooking.bookingIdColumn]));
                 }
                 set {
-                    this[this.tableBooking.BookingIdColumn] = value;
+                    this[this.tablebooking.bookingIdColumn] = value;
                 }
             }
             
@@ -7327,10 +7743,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string GuestId {
                 get {
-                    return ((string)(this[this.tableBooking.GuestIdColumn]));
+                    return ((string)(this[this.tablebooking.GuestIdColumn]));
                 }
                 set {
-                    this[this.tableBooking.GuestIdColumn] = value;
+                    this[this.tablebooking.GuestIdColumn] = value;
                 }
             }
             
@@ -7338,10 +7754,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string RoomId {
                 get {
-                    return ((string)(this[this.tableBooking.RoomIdColumn]));
+                    return ((string)(this[this.tablebooking.RoomIdColumn]));
                 }
                 set {
-                    this[this.tableBooking.RoomIdColumn] = value;
+                    this[this.tablebooking.RoomIdColumn] = value;
                 }
             }
             
@@ -7350,14 +7766,14 @@ namespace ESMART_HMS {
             public string ReservationId {
                 get {
                     try {
-                        return ((string)(this[this.tableBooking.ReservationIdColumn]));
+                        return ((string)(this[this.tablebooking.ReservationIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ReservationId\' in table \'Booking\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReservationId\' in table \'booking\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBooking.ReservationIdColumn] = value;
+                    this[this.tablebooking.ReservationIdColumn] = value;
                 }
             }
             
@@ -7365,10 +7781,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime CheckInDate {
                 get {
-                    return ((global::System.DateTime)(this[this.tableBooking.CheckInDateColumn]));
+                    return ((global::System.DateTime)(this[this.tablebooking.CheckInDateColumn]));
                 }
                 set {
-                    this[this.tableBooking.CheckInDateColumn] = value;
+                    this[this.tablebooking.CheckInDateColumn] = value;
                 }
             }
             
@@ -7376,10 +7792,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime CheckOutDate {
                 get {
-                    return ((global::System.DateTime)(this[this.tableBooking.CheckOutDateColumn]));
+                    return ((global::System.DateTime)(this[this.tablebooking.CheckOutDateColumn]));
                 }
                 set {
-                    this[this.tableBooking.CheckOutDateColumn] = value;
+                    this[this.tablebooking.CheckOutDateColumn] = value;
                 }
             }
             
@@ -7387,10 +7803,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string PaymentMethod {
                 get {
-                    return ((string)(this[this.tableBooking.PaymentMethodColumn]));
+                    return ((string)(this[this.tablebooking.PaymentMethodColumn]));
                 }
                 set {
-                    this[this.tableBooking.PaymentMethodColumn] = value;
+                    this[this.tablebooking.PaymentMethodColumn] = value;
                 }
             }
             
@@ -7398,10 +7814,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public decimal Amount {
                 get {
-                    return ((decimal)(this[this.tableBooking.AmountColumn]));
+                    return ((decimal)(this[this.tablebooking.AmountColumn]));
                 }
                 set {
-                    this[this.tableBooking.AmountColumn] = value;
+                    this[this.tablebooking.AmountColumn] = value;
                 }
             }
             
@@ -7409,10 +7825,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int NoOfPerson {
                 get {
-                    return ((int)(this[this.tableBooking.NoOfPersonColumn]));
+                    return ((int)(this[this.tablebooking.NoOfPersonColumn]));
                 }
                 set {
-                    this[this.tableBooking.NoOfPersonColumn] = value;
+                    this[this.tablebooking.NoOfPersonColumn] = value;
                 }
             }
             
@@ -7420,10 +7836,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int Duration {
                 get {
-                    return ((int)(this[this.tableBooking.DurationColumn]));
+                    return ((int)(this[this.tablebooking.DurationColumn]));
                 }
                 set {
-                    this[this.tableBooking.DurationColumn] = value;
+                    this[this.tablebooking.DurationColumn] = value;
                 }
             }
             
@@ -7431,10 +7847,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public decimal Discount {
                 get {
-                    return ((decimal)(this[this.tableBooking.DiscountColumn]));
+                    return ((decimal)(this[this.tablebooking.DiscountColumn]));
                 }
                 set {
-                    this[this.tableBooking.DiscountColumn] = value;
+                    this[this.tablebooking.DiscountColumn] = value;
                 }
             }
             
@@ -7442,10 +7858,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public decimal VAT {
                 get {
-                    return ((decimal)(this[this.tableBooking.VATColumn]));
+                    return ((decimal)(this[this.tablebooking.VATColumn]));
                 }
                 set {
-                    this[this.tableBooking.VATColumn] = value;
+                    this[this.tablebooking.VATColumn] = value;
                 }
             }
             
@@ -7453,10 +7869,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public decimal TotalAmount {
                 get {
-                    return ((decimal)(this[this.tableBooking.TotalAmountColumn]));
+                    return ((decimal)(this[this.tablebooking.TotalAmountColumn]));
                 }
                 set {
-                    this[this.tableBooking.TotalAmountColumn] = value;
+                    this[this.tablebooking.TotalAmountColumn] = value;
                 }
             }
             
@@ -7464,10 +7880,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime DateCreated {
                 get {
-                    return ((global::System.DateTime)(this[this.tableBooking.DateCreatedColumn]));
+                    return ((global::System.DateTime)(this[this.tablebooking.DateCreatedColumn]));
                 }
                 set {
-                    this[this.tableBooking.DateCreatedColumn] = value;
+                    this[this.tablebooking.DateCreatedColumn] = value;
                 }
             }
             
@@ -7475,10 +7891,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.DateTime DateModified {
                 get {
-                    return ((global::System.DateTime)(this[this.tableBooking.DateModifiedColumn]));
+                    return ((global::System.DateTime)(this[this.tablebooking.DateModifiedColumn]));
                 }
                 set {
-                    this[this.tableBooking.DateModifiedColumn] = value;
+                    this[this.tablebooking.DateModifiedColumn] = value;
                 }
             }
             
@@ -7486,10 +7902,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsTrashed {
                 get {
-                    return ((bool)(this[this.tableBooking.IsTrashedColumn]));
+                    return ((bool)(this[this.tablebooking.IsTrashedColumn]));
                 }
                 set {
-                    this[this.tableBooking.IsTrashedColumn] = value;
+                    this[this.tablebooking.IsTrashedColumn] = value;
                 }
             }
             
@@ -7497,10 +7913,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string CreatedBy {
                 get {
-                    return ((string)(this[this.tableBooking.CreatedByColumn]));
+                    return ((string)(this[this.tablebooking.CreatedByColumn]));
                 }
                 set {
-                    this[this.tableBooking.CreatedByColumn] = value;
+                    this[this.tablebooking.CreatedByColumn] = value;
                 }
             }
             
@@ -7508,10 +7924,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public GuestRow GuestRow {
                 get {
-                    return ((GuestRow)(this.GetParentRow(this.Table.ParentRelations["FK__Booking__GuestId__440B1D61"])));
+                    return ((GuestRow)(this.GetParentRow(this.Table.ParentRelations["FK__booking__GuestId__440B1D61"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__Booking__GuestId__440B1D61"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__booking__GuestId__440B1D61"]);
                 }
             }
             
@@ -7519,10 +7935,10 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ReservationRow ReservationRow {
                 get {
-                    return ((ReservationRow)(this.GetParentRow(this.Table.ParentRelations["FK__Booking__Reserva__45F365D3"])));
+                    return ((ReservationRow)(this.GetParentRow(this.Table.ParentRelations["FK__booking__Reserva__45F365D3"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__Booking__Reserva__45F365D3"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__booking__Reserva__45F365D3"]);
                 }
             }
             
@@ -7530,23 +7946,23 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RoomRow RoomRow {
                 get {
-                    return ((RoomRow)(this.GetParentRow(this.Table.ParentRelations["FK__Booking__RoomId__5BE2A6F2"])));
+                    return ((RoomRow)(this.GetParentRow(this.Table.ParentRelations["FK__booking__RoomId__5BE2A6F2"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK__Booking__RoomId__5BE2A6F2"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK__booking__RoomId__5BE2A6F2"]);
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsReservationIdNull() {
-                return this.IsNull(this.tableBooking.ReservationIdColumn);
+                return this.IsNull(this.tablebooking.ReservationIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetReservationIdNull() {
-                this[this.tableBooking.ReservationIdColumn] = global::System.Convert.DBNull;
+                this[this.tablebooking.ReservationIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7610,12 +8026,12 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string BookingId {
+            public string bookingId {
                 get {
-                    return ((string)(this[this.tableTransaction.BookingIdColumn]));
+                    return ((string)(this[this.tableTransaction.bookingIdColumn]));
                 }
                 set {
-                    this[this.tableTransaction.BookingIdColumn] = value;
+                    this[this.tableTransaction.bookingIdColumn] = value;
                 }
             }
             
@@ -7713,9 +8129,25 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow BookingRow {
+            public string BankAccount {
                 get {
-                    return ((BookingRow)(this.GetParentRow(this.Table.ParentRelations["FK__Transacti__Booki__48CFD27E"])));
+                    try {
+                        return ((string)(this[this.tableTransaction.BankAccountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BankAccount\' in table \'Transaction\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTransaction.BankAccountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bookingRow bookingRow {
+                get {
+                    return ((bookingRow)(this.GetParentRow(this.Table.ParentRelations["FK__Transacti__Booki__48CFD27E"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK__Transacti__Booki__48CFD27E"]);
@@ -7767,6 +8199,18 @@ namespace ESMART_HMS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetStatusNull() {
                 this[this.tableTransaction.StatusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBankAccountNull() {
+                return this.IsNull(this.tableTransaction.BankAccountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBankAccountNull() {
+                this[this.tableTransaction.BankAccountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8599,12 +9043,12 @@ namespace ESMART_HMS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow[] GetBookingRows() {
-                if ((this.Table.ChildRelations["FK__Booking__RoomId__5BE2A6F2"] == null)) {
-                    return new BookingRow[0];
+            public bookingRow[] GetbookingRows() {
+                if ((this.Table.ChildRelations["FK__booking__RoomId__5BE2A6F2"] == null)) {
+                    return new bookingRow[0];
                 }
                 else {
-                    return ((BookingRow[])(base.GetChildRows(this.Table.ChildRelations["FK__Booking__RoomId__5BE2A6F2"])));
+                    return ((bookingRow[])(base.GetChildRows(this.Table.ChildRelations["FK__booking__RoomId__5BE2A6F2"])));
                 }
             }
         }
@@ -8763,6 +9207,143 @@ namespace ESMART_HMS {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class BankAccountRow : global::System.Data.DataRow {
+            
+            private BankAccountDataTable tableBankAccount;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal BankAccountRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableBankAccount = ((BankAccountDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Id {
+                get {
+                    return ((string)(this[this.tableBankAccount.IdColumn]));
+                }
+                set {
+                    this[this.tableBankAccount.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string BankAccNo {
+                get {
+                    return ((string)(this[this.tableBankAccount.BankAccNoColumn]));
+                }
+                set {
+                    this[this.tableBankAccount.BankAccNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string BankName {
+                get {
+                    try {
+                        return ((string)(this[this.tableBankAccount.BankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BankName\' in table \'BankAccount\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBankAccount.BankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string BankAccName {
+                get {
+                    try {
+                        return ((string)(this[this.tableBankAccount.BankAccNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BankAccName\' in table \'BankAccount\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableBankAccount.BankAccNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTrashed {
+                get {
+                    return ((bool)(this[this.tableBankAccount.IsTrashedColumn]));
+                }
+                set {
+                    this[this.tableBankAccount.IsTrashedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CreatedBy {
+                get {
+                    return ((string)(this[this.tableBankAccount.CreatedByColumn]));
+                }
+                set {
+                    this[this.tableBankAccount.CreatedByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateCreated {
+                get {
+                    return ((global::System.DateTime)(this[this.tableBankAccount.DateCreatedColumn]));
+                }
+                set {
+                    this[this.tableBankAccount.DateCreatedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DateModified {
+                get {
+                    return ((global::System.DateTime)(this[this.tableBankAccount.DateModifiedColumn]));
+                }
+                set {
+                    this[this.tableBankAccount.DateModifiedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBankNameNull() {
+                return this.IsNull(this.tableBankAccount.BankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBankNameNull() {
+                this[this.tableBankAccount.BankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBankAccNameNull() {
+                return this.IsNull(this.tableBankAccount.BankAccNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBankAccNameNull() {
+                this[this.tableBankAccount.BankAccNameColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -8902,22 +9483,22 @@ namespace ESMART_HMS {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class BookingRowChangeEvent : global::System.EventArgs {
+        public class bookingRowChangeEvent : global::System.EventArgs {
             
-            private BookingRow eventRow;
+            private bookingRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRowChangeEvent(BookingRow row, global::System.Data.DataRowAction action) {
+            public bookingRowChangeEvent(bookingRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public BookingRow Row {
+            public bookingRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -9190,6 +9771,40 @@ namespace ESMART_HMS {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public SpecialCardRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class BankAccountRowChangeEvent : global::System.EventArgs {
+            
+            private BankAccountRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BankAccountRowChangeEvent(BankAccountRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public BankAccountRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -11497,7 +12112,7 @@ SELECT Id, ReservationId, GuestId, RoomId, CheckInDate, CheckOutDate, PaymentMet
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class BookingTableAdapter : global::System.ComponentModel.Component {
+    public partial class bookingTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -11511,7 +12126,7 @@ SELECT Id, ReservationId, GuestId, RoomId, CheckInDate, CheckOutDate, PaymentMet
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public BookingTableAdapter() {
+        public bookingTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -11608,9 +12223,9 @@ SELECT Id, ReservationId, GuestId, RoomId, CheckInDate, CheckOutDate, PaymentMet
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Booking";
+            tableMapping.DataSetTable = "booking";
             tableMapping.ColumnMappings.Add("Id", "Id");
-            tableMapping.ColumnMappings.Add("BookingId", "BookingId");
+            tableMapping.ColumnMappings.Add("bookingId", "bookingId");
             tableMapping.ColumnMappings.Add("GuestId", "GuestId");
             tableMapping.ColumnMappings.Add("RoomId", "RoomId");
             tableMapping.ColumnMappings.Add("ReservationId", "ReservationId");
@@ -11630,10 +12245,10 @@ SELECT Id, ReservationId, GuestId, RoomId, CheckInDate, CheckOutDate, PaymentMet
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Booking] WHERE (([Id] = @Original_Id) AND ([BookingId] = @Original_BookingId) AND ([GuestId] = @Original_GuestId) AND ([RoomId] = @Original_RoomId) AND ((@IsNull_ReservationId = 1 AND [ReservationId] IS NULL) OR ([ReservationId] = @Original_ReservationId)) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([Amount] = @Original_Amount) AND ([NoOfPerson] = @Original_NoOfPerson) AND ([Duration] = @Original_Duration) AND ([Discount] = @Original_Discount) AND ([VAT] = @Original_VAT) AND ([TotalAmount] = @Original_TotalAmount) AND ([CreatedBy] = @Original_CreatedBy) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([IsTrashed] = @Original_IsTrashed))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [booking] WHERE (([Id] = @Original_Id) AND ([bookingId] = @Original_bookingId) AND ([GuestId] = @Original_GuestId) AND ([RoomId] = @Original_RoomId) AND ((@IsNull_ReservationId = 1 AND [ReservationId] IS NULL) OR ([ReservationId] = @Original_ReservationId)) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([Amount] = @Original_Amount) AND ([NoOfPerson] = @Original_NoOfPerson) AND ([Duration] = @Original_Duration) AND ([Discount] = @Original_Discount) AND ([VAT] = @Original_VAT) AND ([TotalAmount] = @Original_TotalAmount) AND ([CreatedBy] = @Original_CreatedBy) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([IsTrashed] = @Original_IsTrashed))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BookingId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_bookingId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "bookingId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GuestId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ReservationId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -11653,11 +12268,11 @@ SELECT Id, ReservationId, GuestId, RoomId, CheckInDate, CheckOutDate, PaymentMet
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Booking] ([Id], [BookingId], [GuestId], [RoomId], [ReservationId], [CheckInDate], [CheckOutDate], [PaymentMethod], [Amount], [NoOfPerson], [Duration], [Discount], [VAT], [TotalAmount], [CreatedBy], [DateCreated], [DateModified], [IsTrashed]) VALUES (@Id, @BookingId, @GuestId, @RoomId, @ReservationId, @CheckInDate, @CheckOutDate, @PaymentMethod, @Amount, @NoOfPerson, @Duration, @Discount, @VAT, @TotalAmount, @CreatedBy, @DateCreated, @DateModified, @IsTrashed);
-SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate, PaymentMethod, Amount, NoOfPerson, Duration, Discount, VAT, TotalAmount, CreatedBy, DateCreated, DateModified, IsTrashed FROM Booking WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [booking] ([Id], [bookingId], [GuestId], [RoomId], [ReservationId], [CheckInDate], [CheckOutDate], [PaymentMethod], [Amount], [NoOfPerson], [Duration], [Discount], [VAT], [TotalAmount], [CreatedBy], [DateCreated], [DateModified], [IsTrashed]) VALUES (@Id, @bookingId, @GuestId, @RoomId, @ReservationId, @CheckInDate, @CheckOutDate, @PaymentMethod, @Amount, @NoOfPerson, @Duration, @Discount, @VAT, @TotalAmount, @CreatedBy, @DateCreated, @DateModified, @IsTrashed);
+SELECT Id, bookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate, PaymentMethod, Amount, NoOfPerson, Duration, Discount, VAT, TotalAmount, CreatedBy, DateCreated, DateModified, IsTrashed FROM booking WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookingId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@bookingId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "bookingId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GuestId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReservationId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -11676,11 +12291,11 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Booking] SET [Id] = @Id, [BookingId] = @BookingId, [GuestId] = @GuestId, [RoomId] = @RoomId, [ReservationId] = @ReservationId, [CheckInDate] = @CheckInDate, [CheckOutDate] = @CheckOutDate, [PaymentMethod] = @PaymentMethod, [Amount] = @Amount, [NoOfPerson] = @NoOfPerson, [Duration] = @Duration, [Discount] = @Discount, [VAT] = @VAT, [TotalAmount] = @TotalAmount, [CreatedBy] = @CreatedBy, [DateCreated] = @DateCreated, [DateModified] = @DateModified, [IsTrashed] = @IsTrashed WHERE (([Id] = @Original_Id) AND ([BookingId] = @Original_BookingId) AND ([GuestId] = @Original_GuestId) AND ([RoomId] = @Original_RoomId) AND ((@IsNull_ReservationId = 1 AND [ReservationId] IS NULL) OR ([ReservationId] = @Original_ReservationId)) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([Amount] = @Original_Amount) AND ([NoOfPerson] = @Original_NoOfPerson) AND ([Duration] = @Original_Duration) AND ([Discount] = @Original_Discount) AND ([VAT] = @Original_VAT) AND ([TotalAmount] = @Original_TotalAmount) AND ([CreatedBy] = @Original_CreatedBy) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([IsTrashed] = @Original_IsTrashed));
-SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate, PaymentMethod, Amount, NoOfPerson, Duration, Discount, VAT, TotalAmount, CreatedBy, DateCreated, DateModified, IsTrashed FROM Booking WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [booking] SET [Id] = @Id, [bookingId] = @bookingId, [GuestId] = @GuestId, [RoomId] = @RoomId, [ReservationId] = @ReservationId, [CheckInDate] = @CheckInDate, [CheckOutDate] = @CheckOutDate, [PaymentMethod] = @PaymentMethod, [Amount] = @Amount, [NoOfPerson] = @NoOfPerson, [Duration] = @Duration, [Discount] = @Discount, [VAT] = @VAT, [TotalAmount] = @TotalAmount, [CreatedBy] = @CreatedBy, [DateCreated] = @DateCreated, [DateModified] = @DateModified, [IsTrashed] = @IsTrashed WHERE (([Id] = @Original_Id) AND ([bookingId] = @Original_bookingId) AND ([GuestId] = @Original_GuestId) AND ([RoomId] = @Original_RoomId) AND ((@IsNull_ReservationId = 1 AND [ReservationId] IS NULL) OR ([ReservationId] = @Original_ReservationId)) AND ([CheckInDate] = @Original_CheckInDate) AND ([CheckOutDate] = @Original_CheckOutDate) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([Amount] = @Original_Amount) AND ([NoOfPerson] = @Original_NoOfPerson) AND ([Duration] = @Original_Duration) AND ([Discount] = @Original_Discount) AND ([VAT] = @Original_VAT) AND ([TotalAmount] = @Original_TotalAmount) AND ([CreatedBy] = @Original_CreatedBy) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified) AND ([IsTrashed] = @Original_IsTrashed));
+SELECT Id, bookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate, PaymentMethod, Amount, NoOfPerson, Duration, Discount, VAT, TotalAmount, CreatedBy, DateCreated, DateModified, IsTrashed FROM booking WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookingId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@bookingId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "bookingId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GuestId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReservationId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -11698,7 +12313,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BookingId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookingId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_bookingId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "bookingId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GuestId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ReservationId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReservationId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -11731,9 +12346,9 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate, " +
+            this._commandCollection[0].CommandText = "SELECT Id, bookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate, " +
                 "PaymentMethod, Amount, NoOfPerson, Duration, Discount, VAT, TotalAmount, Created" +
-                "By, DateCreated, DateModified, IsTrashed\r\nFROM     Booking";
+                "By, DateCreated, DateModified, IsTrashed\r\nFROM     booking";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -11741,7 +12356,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(ESMART_HMSDBDataSet.BookingDataTable dataTable) {
+        public virtual int Fill(ESMART_HMSDBDataSet.bookingDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -11754,9 +12369,9 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ESMART_HMSDBDataSet.BookingDataTable GetData() {
+        public virtual ESMART_HMSDBDataSet.bookingDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            ESMART_HMSDBDataSet.BookingDataTable dataTable = new ESMART_HMSDBDataSet.BookingDataTable();
+            ESMART_HMSDBDataSet.bookingDataTable dataTable = new ESMART_HMSDBDataSet.bookingDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -11764,7 +12379,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ESMART_HMSDBDataSet.BookingDataTable dataTable) {
+        public virtual int Update(ESMART_HMSDBDataSet.bookingDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -11772,7 +12387,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(ESMART_HMSDBDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Booking");
+            return this.Adapter.Update(dataSet, "booking");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11796,7 +12411,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
         public virtual int Delete(
                     string Original_Id, 
-                    string Original_BookingId, 
+                    string Original_bookingId, 
                     string Original_GuestId, 
                     string Original_RoomId, 
                     string Original_ReservationId, 
@@ -11819,11 +12434,11 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             else {
                 this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Id));
             }
-            if ((Original_BookingId == null)) {
-                throw new global::System.ArgumentNullException("Original_BookingId");
+            if ((Original_bookingId == null)) {
+                throw new global::System.ArgumentNullException("Original_bookingId");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_BookingId));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_bookingId));
             }
             if ((Original_GuestId == null)) {
                 throw new global::System.ArgumentNullException("Original_GuestId");
@@ -11890,7 +12505,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(
                     string Id, 
-                    string BookingId, 
+                    string bookingId, 
                     string GuestId, 
                     string RoomId, 
                     string ReservationId, 
@@ -11913,11 +12528,11 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Id));
             }
-            if ((BookingId == null)) {
-                throw new global::System.ArgumentNullException("BookingId");
+            if ((bookingId == null)) {
+                throw new global::System.ArgumentNullException("bookingId");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(BookingId));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(bookingId));
             }
             if ((GuestId == null)) {
                 throw new global::System.ArgumentNullException("GuestId");
@@ -11982,7 +12597,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
                     string Id, 
-                    string BookingId, 
+                    string bookingId, 
                     string GuestId, 
                     string RoomId, 
                     string ReservationId, 
@@ -12000,7 +12615,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
                     System.DateTime DateModified, 
                     bool IsTrashed, 
                     string Original_Id, 
-                    string Original_BookingId, 
+                    string Original_bookingId, 
                     string Original_GuestId, 
                     string Original_RoomId, 
                     string Original_ReservationId, 
@@ -12023,11 +12638,11 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Id));
             }
-            if ((BookingId == null)) {
-                throw new global::System.ArgumentNullException("BookingId");
+            if ((bookingId == null)) {
+                throw new global::System.ArgumentNullException("bookingId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(BookingId));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(bookingId));
             }
             if ((GuestId == null)) {
                 throw new global::System.ArgumentNullException("GuestId");
@@ -12076,11 +12691,11 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             else {
                 this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Id));
             }
-            if ((Original_BookingId == null)) {
-                throw new global::System.ArgumentNullException("Original_BookingId");
+            if ((Original_bookingId == null)) {
+                throw new global::System.ArgumentNullException("Original_bookingId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_BookingId));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_bookingId));
             }
             if ((Original_GuestId == null)) {
                 throw new global::System.ArgumentNullException("Original_GuestId");
@@ -12146,7 +12761,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    string BookingId, 
+                    string bookingId, 
                     string GuestId, 
                     string RoomId, 
                     string ReservationId, 
@@ -12164,7 +12779,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
                     System.DateTime DateModified, 
                     bool IsTrashed, 
                     string Original_Id, 
-                    string Original_BookingId, 
+                    string Original_bookingId, 
                     string Original_GuestId, 
                     string Original_RoomId, 
                     string Original_ReservationId, 
@@ -12181,7 +12796,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
                     System.DateTime Original_DateCreated, 
                     System.DateTime Original_DateModified, 
                     bool Original_IsTrashed) {
-            return this.Update(Original_Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate, PaymentMethod, Amount, NoOfPerson, Duration, Discount, VAT, TotalAmount, CreatedBy, DateCreated, DateModified, IsTrashed, Original_Id, Original_BookingId, Original_GuestId, Original_RoomId, Original_ReservationId, Original_CheckInDate, Original_CheckOutDate, Original_PaymentMethod, Original_Amount, Original_NoOfPerson, Original_Duration, Original_Discount, Original_VAT, Original_TotalAmount, Original_CreatedBy, Original_DateCreated, Original_DateModified, Original_IsTrashed);
+            return this.Update(Original_Id, bookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate, PaymentMethod, Amount, NoOfPerson, Duration, Discount, VAT, TotalAmount, CreatedBy, DateCreated, DateModified, IsTrashed, Original_Id, Original_bookingId, Original_GuestId, Original_RoomId, Original_ReservationId, Original_CheckInDate, Original_CheckOutDate, Original_PaymentMethod, Original_Amount, Original_NoOfPerson, Original_Duration, Original_Discount, Original_VAT, Original_TotalAmount, Original_CreatedBy, Original_DateCreated, Original_DateModified, Original_IsTrashed);
         }
     }
     
@@ -12309,7 +12924,7 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("TransactionId", "TransactionId");
             tableMapping.ColumnMappings.Add("GuestId", "GuestId");
-            tableMapping.ColumnMappings.Add("BookingId", "BookingId");
+            tableMapping.ColumnMappings.Add("bookingId", "bookingId");
             tableMapping.ColumnMappings.Add("Date", "Date");
             tableMapping.ColumnMappings.Add("Amount", "Amount");
             tableMapping.ColumnMappings.Add("Description", "Description");
@@ -12317,16 +12932,19 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             tableMapping.ColumnMappings.Add("IsTrashed", "IsTrashed");
             tableMapping.ColumnMappings.Add("ServiceId", "ServiceId");
             tableMapping.ColumnMappings.Add("Status", "Status");
+            tableMapping.ColumnMappings.Add("BankAccount", "BankAccount");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Transaction] WHERE (([Id] = @Original_Id) AND ([TransactionId] = @Original_TransactionId) AND ([GuestId] = @Original_GuestId) AND ([ServiceId] = @Original_ServiceId) AND ([Date] = @Original_Date) AND ([Amount] = @Original_Amount) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ([IsTrashed] = @Original_IsTrashed))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Transaction] WHERE (([Id] = @Original_Id) AND ([TransactionId] = @Original_TransactionId) AND ([GuestId] = @Original_GuestId) AND ([ServiceId] = @Original_ServiceId) AND ([Date] = @Original_Date) AND ((@IsNull_BankAccount = 1 AND [BankAccount] IS NULL) OR ([BankAccount] = @Original_BankAccount)) AND ([Amount] = @Original_Amount) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ([IsTrashed] = @Original_IsTrashed))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TransactionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GuestId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ServiceId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ServiceId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_BankAccount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccount", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BankAccount", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Status", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -12335,14 +12953,15 @@ SELECT Id, BookingId, GuestId, RoomId, ReservationId, CheckInDate, CheckOutDate,
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Transaction] ([Id], [TransactionId], [GuestId], [ServiceId], [Date], [Amount], [Status], [Description], [Type], [IsTrashed]) VALUES (@Id, @TransactionId, @GuestId, @ServiceId, @Date, @Amount, @Status, @Description, @Type, @IsTrashed);
-SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description, Type, IsTrashed FROM [Transaction] WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Transaction] ([Id], [TransactionId], [GuestId], [ServiceId], [Date], [BankAccount], [Amount], [Status], [Description], [Type], [IsTrashed]) VALUES (@Id, @TransactionId, @GuestId, @ServiceId, @Date, @BankAccount, @Amount, @Status, @Description, @Type, @IsTrashed);
+SELECT Id, TransactionId, GuestId, ServiceId, Date, BankAccount, Amount, Status, Description, Type, IsTrashed FROM [Transaction] WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TransactionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GuestId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ServiceId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ServiceId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BankAccount", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12350,14 +12969,15 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Transaction] SET [Id] = @Id, [TransactionId] = @TransactionId, [GuestId] = @GuestId, [ServiceId] = @ServiceId, [Date] = @Date, [Amount] = @Amount, [Status] = @Status, [Description] = @Description, [Type] = @Type, [IsTrashed] = @IsTrashed WHERE (([Id] = @Original_Id) AND ([TransactionId] = @Original_TransactionId) AND ([GuestId] = @Original_GuestId) AND ([ServiceId] = @Original_ServiceId) AND ([Date] = @Original_Date) AND ([Amount] = @Original_Amount) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ([IsTrashed] = @Original_IsTrashed));
-SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description, Type, IsTrashed FROM [Transaction] WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Transaction] SET [Id] = @Id, [TransactionId] = @TransactionId, [GuestId] = @GuestId, [ServiceId] = @ServiceId, [Date] = @Date, [BankAccount] = @BankAccount, [Amount] = @Amount, [Status] = @Status, [Description] = @Description, [Type] = @Type, [IsTrashed] = @IsTrashed WHERE (([Id] = @Original_Id) AND ([TransactionId] = @Original_TransactionId) AND ([GuestId] = @Original_GuestId) AND ([ServiceId] = @Original_ServiceId) AND ([Date] = @Original_Date) AND ((@IsNull_BankAccount = 1 AND [BankAccount] IS NULL) OR ([BankAccount] = @Original_BankAccount)) AND ([Amount] = @Original_Amount) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ([IsTrashed] = @Original_IsTrashed));
+SELECT Id, TransactionId, GuestId, ServiceId, Date, BankAccount, Amount, Status, Description, Type, IsTrashed FROM [Transaction] WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TransactionId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TransactionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GuestId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ServiceId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ServiceId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BankAccount", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12368,6 +12988,8 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GuestId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ServiceId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ServiceId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_BankAccount", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccount", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BankAccount", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Amount", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "Amount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Status", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Status", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -12389,7 +13011,7 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [Transaction].*\r\nFROM     [Transaction]";
+            this._commandCollection[0].CommandText = "SELECT        [Transaction].*\r\nFROM            [Transaction]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -12450,7 +13072,7 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Id, string Original_TransactionId, string Original_GuestId, string Original_ServiceId, System.DateTime Original_Date, decimal Original_Amount, string Original_Status, string Original_Type, bool Original_IsTrashed) {
+        public virtual int Delete(string Original_Id, string Original_TransactionId, string Original_GuestId, string Original_ServiceId, System.DateTime Original_Date, string Original_BankAccount, decimal Original_Amount, string Original_Status, string Original_Type, bool Original_IsTrashed) {
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
@@ -12476,24 +13098,32 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_ServiceId));
             }
             this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_Date));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_Amount));
-            if ((Original_Status == null)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            if ((Original_BankAccount == null)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_Status));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_BankAccount));
             }
-            if ((Original_Type == null)) {
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((decimal)(Original_Amount));
+            if ((Original_Status == null)) {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Type));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Status));
             }
-            this.Adapter.DeleteCommand.Parameters[10].Value = ((bool)(Original_IsTrashed));
+            if ((Original_Type == null)) {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_Type));
+            }
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((bool)(Original_IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12514,7 +13144,7 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Id, string TransactionId, string GuestId, string ServiceId, System.DateTime Date, decimal Amount, string Status, string Description, string Type, bool IsTrashed) {
+        public virtual int Insert(string Id, string TransactionId, string GuestId, string ServiceId, System.DateTime Date, string BankAccount, decimal Amount, string Status, string Description, string Type, bool IsTrashed) {
             if ((Id == null)) {
                 throw new global::System.ArgumentNullException("Id");
             }
@@ -12540,26 +13170,32 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ServiceId));
             }
             this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(Date));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(Amount));
-            if ((Status == null)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            if ((BankAccount == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(Status));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(BankAccount));
             }
-            if ((Description == null)) {
+            this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(Amount));
+            if ((Status == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Description));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Status));
             }
-            if ((Type == null)) {
+            if ((Description == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Type));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Description));
             }
-            this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(IsTrashed));
+            if ((Type == null)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Type));
+            }
+            this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12586,6 +13222,7 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
                     string GuestId, 
                     string ServiceId, 
                     System.DateTime Date, 
+                    string BankAccount, 
                     decimal Amount, 
                     string Status, 
                     string Description, 
@@ -12596,6 +13233,7 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
                     string Original_GuestId, 
                     string Original_ServiceId, 
                     System.DateTime Original_Date, 
+                    string Original_BankAccount, 
                     decimal Original_Amount, 
                     string Original_Status, 
                     string Original_Type, 
@@ -12625,69 +13263,83 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ServiceId));
             }
             this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(Date));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(Amount));
-            if ((Status == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            if ((BankAccount == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Status));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(BankAccount));
             }
-            if ((Description == null)) {
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(Amount));
+            if ((Status == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Description));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Status));
             }
-            if ((Type == null)) {
+            if ((Description == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Type));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Description));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(IsTrashed));
+            if ((Type == null)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Type));
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(IsTrashed));
             if ((Original_Id == null)) {
                 throw new global::System.ArgumentNullException("Original_Id");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Id));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Id));
             }
             if ((Original_TransactionId == null)) {
                 throw new global::System.ArgumentNullException("Original_TransactionId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_TransactionId));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_TransactionId));
             }
             if ((Original_GuestId == null)) {
                 throw new global::System.ArgumentNullException("Original_GuestId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_GuestId));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_GuestId));
             }
             if ((Original_ServiceId == null)) {
                 throw new global::System.ArgumentNullException("Original_ServiceId");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_ServiceId));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_ServiceId));
             }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_Date));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(Original_Amount));
-            if ((Original_Status == null)) {
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(Original_Date));
+            if ((Original_BankAccount == null)) {
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Status));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_BankAccount));
             }
-            if ((Original_Type == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((decimal)(Original_Amount));
+            if ((Original_Status == null)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_Type));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Status));
             }
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((bool)(Original_IsTrashed));
+            if ((Original_Type == null)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Type));
+            }
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_IsTrashed));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12713,6 +13365,7 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
                     string GuestId, 
                     string ServiceId, 
                     System.DateTime Date, 
+                    string BankAccount, 
                     decimal Amount, 
                     string Status, 
                     string Description, 
@@ -12723,11 +13376,12 @@ SELECT Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description,
                     string Original_GuestId, 
                     string Original_ServiceId, 
                     System.DateTime Original_Date, 
+                    string Original_BankAccount, 
                     decimal Original_Amount, 
                     string Original_Status, 
                     string Original_Type, 
                     bool Original_IsTrashed) {
-            return this.Update(Original_Id, TransactionId, GuestId, ServiceId, Date, Amount, Status, Description, Type, IsTrashed, Original_Id, Original_TransactionId, Original_GuestId, Original_ServiceId, Original_Date, Original_Amount, Original_Status, Original_Type, Original_IsTrashed);
+            return this.Update(Original_Id, TransactionId, GuestId, ServiceId, Date, BankAccount, Amount, Status, Description, Type, IsTrashed, Original_Id, Original_TransactionId, Original_GuestId, Original_ServiceId, Original_Date, Original_BankAccount, Original_Amount, Original_Status, Original_Type, Original_IsTrashed);
         }
     }
     
@@ -16092,6 +16746,486 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class BankAccountTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public BankAccountTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "BankAccount";
+            tableMapping.ColumnMappings.Add("Id", "Id");
+            tableMapping.ColumnMappings.Add("BankAccNo", "BankAccNo");
+            tableMapping.ColumnMappings.Add("BankName", "BankName");
+            tableMapping.ColumnMappings.Add("BankAccName", "BankAccName");
+            tableMapping.ColumnMappings.Add("IsTrashed", "IsTrashed");
+            tableMapping.ColumnMappings.Add("CreatedBy", "CreatedBy");
+            tableMapping.ColumnMappings.Add("DateCreated", "DateCreated");
+            tableMapping.ColumnMappings.Add("DateModified", "DateModified");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [BankAccount] WHERE (([Id] = @Original_Id) AND ([BankAccNo] = @Original_BankAccNo) AND ((@IsNull_BankName = 1 AND [BankName] IS NULL) OR ([BankName] = @Original_BankName)) AND ((@IsNull_BankAccName = 1 AND [BankAccName] IS NULL) OR ([BankAccName] = @Original_BankAccName)) AND ([IsTrashed] = @Original_IsTrashed) AND ([CreatedBy] = @Original_CreatedBy) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BankAccNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_BankName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BankName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_BankAccName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BankAccName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreatedBy", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [BankAccount] ([Id], [BankAccNo], [BankName], [BankAccName], [IsTrashed], [CreatedBy], [DateCreated], [DateModified]) VALUES (@Id, @BankAccNo, @BankName, @BankAccName, @IsTrashed, @CreatedBy, @DateCreated, @DateModified);
+SELECT Id, BankAccNo, BankName, BankAccName, IsTrashed, CreatedBy, DateCreated, DateModified FROM BankAccount WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BankAccNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BankName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BankAccName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreatedBy", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [BankAccount] SET [Id] = @Id, [BankAccNo] = @BankAccNo, [BankName] = @BankName, [BankAccName] = @BankAccName, [IsTrashed] = @IsTrashed, [CreatedBy] = @CreatedBy, [DateCreated] = @DateCreated, [DateModified] = @DateModified WHERE (([Id] = @Original_Id) AND ([BankAccNo] = @Original_BankAccNo) AND ((@IsNull_BankName = 1 AND [BankName] IS NULL) OR ([BankName] = @Original_BankName)) AND ((@IsNull_BankAccName = 1 AND [BankAccName] IS NULL) OR ([BankAccName] = @Original_BankAccName)) AND ([IsTrashed] = @Original_IsTrashed) AND ([CreatedBy] = @Original_CreatedBy) AND ([DateCreated] = @Original_DateCreated) AND ([DateModified] = @Original_DateModified));
+SELECT Id, BankAccNo, BankName, BankAccName, IsTrashed, CreatedBy, DateCreated, DateModified FROM BankAccount WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BankAccNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BankName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BankAccName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreatedBy", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BankAccNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_BankName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BankName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_BankAccName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BankAccName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BankAccName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsTrashed", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsTrashed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreatedBy", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateCreated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateCreated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateModified", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateModified", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::ESMART_HMS.Properties.Settings.Default.ESMART_HMSDBConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT        BankAccount.*\r\nFROM            BankAccount";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ESMART_HMSDBDataSet.BankAccountDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ESMART_HMSDBDataSet.BankAccountDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ESMART_HMSDBDataSet.BankAccountDataTable dataTable = new ESMART_HMSDBDataSet.BankAccountDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ESMART_HMSDBDataSet.BankAccountDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ESMART_HMSDBDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "BankAccount");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(string Original_Id, string Original_BankAccNo, string Original_BankName, string Original_BankAccName, bool Original_IsTrashed, string Original_CreatedBy, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
+            if ((Original_Id == null)) {
+                throw new global::System.ArgumentNullException("Original_Id");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Id));
+            }
+            if ((Original_BankAccNo == null)) {
+                throw new global::System.ArgumentNullException("Original_BankAccNo");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_BankAccNo));
+            }
+            if ((Original_BankName == null)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_BankName));
+            }
+            if ((Original_BankAccName == null)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_BankAccName));
+            }
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_IsTrashed));
+            if ((Original_CreatedBy == null)) {
+                throw new global::System.ArgumentNullException("Original_CreatedBy");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_CreatedBy));
+            }
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((System.DateTime)(Original_DateModified));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string Id, string BankAccNo, string BankName, string BankAccName, bool IsTrashed, string CreatedBy, System.DateTime DateCreated, System.DateTime DateModified) {
+            if ((Id == null)) {
+                throw new global::System.ArgumentNullException("Id");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Id));
+            }
+            if ((BankAccNo == null)) {
+                throw new global::System.ArgumentNullException("BankAccNo");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(BankAccNo));
+            }
+            if ((BankName == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(BankName));
+            }
+            if ((BankAccName == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(BankAccName));
+            }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(IsTrashed));
+            if ((CreatedBy == null)) {
+                throw new global::System.ArgumentNullException("CreatedBy");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(CreatedBy));
+            }
+            this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(DateModified));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string Id, 
+                    string BankAccNo, 
+                    string BankName, 
+                    string BankAccName, 
+                    bool IsTrashed, 
+                    string CreatedBy, 
+                    System.DateTime DateCreated, 
+                    System.DateTime DateModified, 
+                    string Original_Id, 
+                    string Original_BankAccNo, 
+                    string Original_BankName, 
+                    string Original_BankAccName, 
+                    bool Original_IsTrashed, 
+                    string Original_CreatedBy, 
+                    System.DateTime Original_DateCreated, 
+                    System.DateTime Original_DateModified) {
+            if ((Id == null)) {
+                throw new global::System.ArgumentNullException("Id");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Id));
+            }
+            if ((BankAccNo == null)) {
+                throw new global::System.ArgumentNullException("BankAccNo");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(BankAccNo));
+            }
+            if ((BankName == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(BankName));
+            }
+            if ((BankAccName == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(BankAccName));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(IsTrashed));
+            if ((CreatedBy == null)) {
+                throw new global::System.ArgumentNullException("CreatedBy");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(CreatedBy));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(DateCreated));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(DateModified));
+            if ((Original_Id == null)) {
+                throw new global::System.ArgumentNullException("Original_Id");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Id));
+            }
+            if ((Original_BankAccNo == null)) {
+                throw new global::System.ArgumentNullException("Original_BankAccNo");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_BankAccNo));
+            }
+            if ((Original_BankName == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_BankName));
+            }
+            if ((Original_BankAccName == null)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_BankAccName));
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_IsTrashed));
+            if ((Original_CreatedBy == null)) {
+                throw new global::System.ArgumentNullException("Original_CreatedBy");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_CreatedBy));
+            }
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_DateCreated));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((System.DateTime)(Original_DateModified));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string BankAccNo, string BankName, string BankAccName, bool IsTrashed, string CreatedBy, System.DateTime DateCreated, System.DateTime DateModified, string Original_Id, string Original_BankAccNo, string Original_BankName, string Original_BankAccName, bool Original_IsTrashed, string Original_CreatedBy, System.DateTime Original_DateCreated, System.DateTime Original_DateModified) {
+            return this.Update(Original_Id, BankAccNo, BankName, BankAccName, IsTrashed, CreatedBy, DateCreated, DateModified, Original_Id, Original_BankAccNo, Original_BankName, Original_BankAccName, Original_IsTrashed, Original_CreatedBy, Original_DateCreated, Original_DateModified);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -16111,7 +17245,7 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
         
         private ReservationTableAdapter _reservationTableAdapter;
         
-        private BookingTableAdapter _bookingTableAdapter;
+        private bookingTableAdapter _bookingTableAdapter;
         
         private TransactionTableAdapter _transactionTableAdapter;
         
@@ -16128,6 +17262,8 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
         private RoomTableAdapter _roomTableAdapter;
         
         private SpecialCardTableAdapter _specialCardTableAdapter;
+        
+        private BankAccountTableAdapter _bankAccountTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -16205,7 +17341,7 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public BookingTableAdapter BookingTableAdapter {
+        public bookingTableAdapter bookingTableAdapter {
             get {
                 return this._bookingTableAdapter;
             }
@@ -16328,6 +17464,20 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public BankAccountTableAdapter BankAccountTableAdapter {
+            get {
+                return this._bankAccountTableAdapter;
+            }
+            set {
+                this._bankAccountTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -16397,6 +17547,10 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                             && (this._specialCardTableAdapter.Connection != null))) {
                     return this._specialCardTableAdapter.Connection;
                 }
+                if (((this._bankAccountTableAdapter != null) 
+                            && (this._bankAccountTableAdapter.Connection != null))) {
+                    return this._bankAccountTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -16447,6 +17601,9 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                     count = (count + 1);
                 }
                 if ((this._specialCardTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._bankAccountTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -16524,7 +17681,7 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                 }
             }
             if ((this._bookingTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Booking.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                global::System.Data.DataRow[] updatedRows = dataSet.booking.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
@@ -16574,6 +17731,15 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._specialCardTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._bankAccountTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.BankAccount.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._bankAccountTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -16644,7 +17810,7 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                 }
             }
             if ((this._bookingTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Booking.Select(null, null, global::System.Data.DataViewRowState.Added);
+                global::System.Data.DataRow[] addedRows = dataSet.booking.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._bookingTableAdapter.Update(addedRows));
@@ -16691,6 +17857,14 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._bankAccountTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.BankAccount.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._bankAccountTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -16701,6 +17875,14 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(ESMART_HMSDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._bankAccountTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.BankAccount.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._bankAccountTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._specialCardTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.SpecialCard.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -16742,7 +17924,7 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                 }
             }
             if ((this._bookingTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Booking.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                global::System.Data.DataRow[] deletedRows = dataSet.booking.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._bookingTableAdapter.Update(deletedRows));
@@ -16909,6 +18091,11 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._bankAccountTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._bankAccountTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -17058,6 +18245,15 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                         adaptersWithAcceptChangesDuringUpdate.Add(this._specialCardTableAdapter.Adapter);
                     }
                 }
+                if ((this._bankAccountTableAdapter != null)) {
+                    revertConnections.Add(this._bankAccountTableAdapter, this._bankAccountTableAdapter.Connection);
+                    this._bankAccountTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._bankAccountTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._bankAccountTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._bankAccountTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._bankAccountTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -17167,6 +18363,10 @@ SELECT Id, CardNo, CardType, IssueTime, RefundTime, IssuedBy, CanOpenDeadLocks, 
                 if ((this._specialCardTableAdapter != null)) {
                     this._specialCardTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._specialCardTableAdapter]));
                     this._specialCardTableAdapter.Transaction = null;
+                }
+                if ((this._bankAccountTableAdapter != null)) {
+                    this._bankAccountTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._bankAccountTableAdapter]));
+                    this._bankAccountTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

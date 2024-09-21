@@ -121,6 +121,7 @@
             this.chkPassword.TabIndex = 18;
             this.chkPassword.Text = "Show Password";
             this.chkPassword.UseVisualStyleBackColor = true;
+            this.chkPassword.CheckedChanged += new System.EventHandler(this.chkPassword_CheckedChanged);
             // 
             // btnLogin
             // 

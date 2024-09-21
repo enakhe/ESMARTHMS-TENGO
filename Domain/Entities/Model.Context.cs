@@ -48,5 +48,7 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<AuthorizationCard> AuthorizationCards { get; set; }
         public virtual DbSet<SpecialCard> SpecialCards { get; set; }
         public virtual DbSet<GuestCard> GuestCards { get; set; }
+        public virtual DbSet<LicenseInfo> LicenseInfoes { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Domain.Interfaces.Bar;
 using ESMART_HMS.Domain.Interfaces.Maintenance;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Infrastructure.Data.Bar;
 using ESMART_HMS.Infrastructure.Data.Maintenance;
 using ESMART_HMS.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,8 @@ namespace ESMART_HMS.Domain
             services.AddScoped<IBarItemRepository, BarItemRepository>();
             services.AddScoped<ISystemSetupRepository, SystemSetupRepository>();
             services.AddScoped<ICardRepository, CardRepository>();
+            services.AddScoped<ILicenseRepository, LicenseRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             return services;
         }
     }

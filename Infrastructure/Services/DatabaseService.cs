@@ -26,7 +26,7 @@ namespace ESMART_HMS.Infrastructure.Services
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT COUNT(*) FROM sys.databases WHERE name = 'ESMART_HMSDB'";
+                command.CommandText = $"SELECT COUNT(*) FROM sys.databases WHERE name = 'ESMART_HMSDB'";
                 int result = (int)command.ExecuteScalar();
                 return result > 0;
             }
@@ -38,7 +38,7 @@ namespace ESMART_HMS.Infrastructure.Services
             {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "CREATE DATABASE ESMART_HMSDB";
+                command.CommandText = $"CREATE DATABASE ESMART_HMSDB";
                 command.ExecuteNonQuery();
             }
         }
@@ -243,6 +243,7 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[GuestId][nvarchar](450) NOT NULL," +
                 "[ServiceId][nvarchar](450) NOT NULL," +
                 "[Date][datetime2](7) NOT NULL," +
+                "[BankAccount][nvarchar](450) NULL," +
                 "[Amount][decimal](10, 2) NOT NULL," +
                 "[Status][nvarchar](450) NULL," +
                 "[Description][nvarchar](max) NULL," +
@@ -282,6 +283,22 @@ namespace ESMART_HMS.Infrastructure.Services
                 "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
                 "CONSTRAINT [PK_BarItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
+            CreateTableIfNotExists("Order",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[OrderId][nvarchar](450) NOT NULL," +
+                "[ItemId][nvarchar](450) NOT NULL," +
+                "[Quantity][int] NOT NULL," +
+                "[TotalAmount][decimal](10, 2) NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[CustomerId][nvarchar](450)NOT NULL," +
+                "[IssuedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
+                "FOREIGN KEY (CustomerId) REFERENCES Guest(Id), " +
+                "FOREIGN KEY (ItemId) REFERENCES BarItem(Id), " +
+                "CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
             CreateTableIfNotExists("IngredientItem",
                 "[Id][nvarchar](450) NOT NULL," +
                 "[IngredientItemId][nvarchar](450) NOT NULL," +
@@ -318,6 +335,7 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[CreatedBy][nvarchar](450) NOT NULL," +
                 "[DateCreated][datetime2](7) NOT NULL," +
                 "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
                 "CONSTRAINT [PK_BankAccount] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
             CreateTableIfNotExists("AuthorizationCard",
@@ -361,6 +379,15 @@ namespace ESMART_HMS.Infrastructure.Services
                 "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
                 "CONSTRAINT [PK_GuestCard] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
+            CreateTableIfNotExists("LicenseInfo",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[HotelName][nvarchar](450) NOT NULL," +
+                "[ProductKey][nvarchar](450) NULL," +
+                "[ExpiryDate][datetime2](7) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "CONSTRAINT [PK_LicenseInfo] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
             CreateTableIfNotExists("Configuration",
                 "[Key][nvarchar](450) NOT NULL," +
                 "[Value][nvarchar](450) NOT NULL," +
@@ -394,27 +421,64 @@ namespace ESMART_HMS.Infrastructure.Services
 
         public static void SeedUser()
         {
-            ApplicationUser user = new ApplicationUser();
-            user.UserName = "SuperAdmin";
-            user.FirstName = "";
-            user.LastName = "";
-            user.FullName = "Super Admin";
-            user.Email = "";
-            user.PhoneNumber = "";
-            user.PasswordHash = "Admin123";
-            user.DateCreated = DateTime.Now;
-            user.DateModified = DateTime.Now;
-
             using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
             {
-                var foundUser = db.ApplicationUsers.FirstOrDefault(u => u.UserName == user.UserName);
+                var foundUser = db.ApplicationUsers.FirstOrDefault(u => u.UserName == "SuperAdmin");
                 if (foundUser == null)
                 {
+                    ApplicationUser user = new ApplicationUser
+                    {
+                        UserName = "SuperAdmin",
+                        FirstName = "",
+                        LastName = "",
+                        FullName = "Super Admin",
+                        Email = "",
+                        PhoneNumber = "",
+                        PasswordHash = "Admin123",
+                        DateCreated = DateTime.Now,
+                        DateModified = DateTime.Now
+                    };
                     UserRepository userRepository = new UserRepository(db);
                     userRepository.AddUser(user);
+                    db.SaveChanges();
+                    SeedAnonymous(user.Id);
                 }
             }
         }
+
+
+        public static void SeedAnonymous(string appUser)
+        {
+            using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
+            {
+                var foundGuest = db.Guests.FirstOrDefault(g => g.GuestId == "ANO");
+                if (foundGuest == null)
+                {
+                    Guest guest = new Guest
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        GuestId = "ANO",
+                        Title = "Mr/Mrs",
+                        FirstName = "",
+                        LastName = "",
+                        FullName = "Anonymous Guest",
+                        Email = "",
+                        PhoneNumber = "",
+                        Gender = "Other",
+                        CreatedBy = appUser,
+                        IsTrashed = true,
+                        ApplicationUser = db.ApplicationUsers.Find(appUser),
+                        DateCreated = DateTime.Now,
+                        DateModified = DateTime.Now
+                    };
+
+                    GuestRepository guestRepository = new GuestRepository(db);
+                    guestRepository.AddGuest(guest);
+                    db.SaveChanges();
+                }
+            }
+        }
+
 
         public static void SeedRole()
         {
@@ -491,6 +555,22 @@ namespace ESMART_HMS.Infrastructure.Services
             using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
             {
                 var foundVatConf = db.Configurations.FirstOrDefault(fv => fv.Key == "Discount");
+                if (foundVatConf == null)
+                {
+                    ConfigurationRepository configurationRepository = new ConfigurationRepository(db);
+                    configurationRepository.AddConfiguration(vatConfiguration);
+                }
+            }
+        }
+
+        public static void SeedTrialMode()
+        {
+            Configuration vatConfiguration = new Configuration();
+            vatConfiguration.Key = "Trial Mode";
+            vatConfiguration.Value = "False";
+            using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
+            {
+                var foundVatConf = db.Configurations.FirstOrDefault(fv => fv.Key == "Trial Mode");
                 if (foundVatConf == null)
                 {
                     ConfigurationRepository configurationRepository = new ConfigurationRepository(db);

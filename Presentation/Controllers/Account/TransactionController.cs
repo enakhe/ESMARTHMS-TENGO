@@ -12,13 +12,15 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly GetAllTransactionsUseCase _getAllTransactionsUseCase;
         private readonly GetByServiceIdAndStatusUseCase _getByServiceIdAndStatus;
         private readonly UpdateTransactionUseCase _updateTransactionUseCase;
+        private readonly GetTotalAmountUseCase _getTotalAmountUseCase;
 
-        public TransactionController(CreateTransactionUseCase createTransactionUseCase, GetAllTransactionsUseCase getAllTransactionsUseCase, GetByServiceIdAndStatusUseCase getByServiceIdAndStatus, UpdateTransactionUseCase updateTransactionUseCase)
+        public TransactionController(CreateTransactionUseCase createTransactionUseCase, GetAllTransactionsUseCase getAllTransactionsUseCase, GetByServiceIdAndStatusUseCase getByServiceIdAndStatus, UpdateTransactionUseCase updateTransactionUseCase, GetTotalAmountUseCase getTotalAmountUseCase)
         {
             _createTransactionUseCase = createTransactionUseCase;
             _getAllTransactionsUseCase = getAllTransactionsUseCase;
             _getByServiceIdAndStatus = getByServiceIdAndStatus;
             _updateTransactionUseCase = updateTransactionUseCase;
+            _getTotalAmountUseCase = getTotalAmountUseCase;
         }
 
         public void AddTransaction(Transaction transaction)
@@ -39,6 +41,11 @@ namespace ESMART_HMS.Presentation.Controllers
         public void UpdateTransaction(Transaction transaction)
         {
             _updateTransactionUseCase.Execute(transaction);
+        }
+
+        public List<decimal> GetTotalAmount()
+        {
+            return _getTotalAmountUseCase.Execute();
         }
     }
 }

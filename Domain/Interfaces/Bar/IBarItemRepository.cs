@@ -8,5 +8,9 @@ namespace ESMART_HMS.Domain.Interfaces
     {
         void AddItem(BarItem barItem);
         List<BarItemViewModel> GetBarItems();
+        void UpdateBarItem(BarItem barItem);
+        BarItem GetBarItemById(string id);
+        void DeleteBarItem(string id);
+        List<BarItemViewModel> FilterBarItem(string keyword);
     }
 }

@@ -1,6 +1,9 @@
-﻿using ESMART_HMS.Application.UseCases.Reservation;
+﻿using ESMART_HMS.Application.UseCases.FrontDesk.Reservation;
+using ESMART_HMS.Application.UseCases.Reservation;
 using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.ViewModels;
+using iTextSharp.text.pdf.parser.clipper;
+using System;
 using System.Collections.Generic;
 
 namespace ESMART_HMS.Presentation.Controllers
@@ -11,13 +14,21 @@ namespace ESMART_HMS.Presentation.Controllers
         private readonly GetAllReservationUseCase _allReservationUseCase;
         private readonly GetReservationByIdUseCase _getReservationByIdUseCase;
         private readonly UpdateReservationUseCase _updateReservationUseCase;
+        private readonly GetReservationByPaymentStatusUseCase _getReservationByPaymentStatusUseCase;
+        private readonly GetReservationByRoomTypeAndDateUseCase _getReservationByRoomTypeAndDateUseCase;
+        private readonly GetReservationByStatuseAndDateUseCase _getReservationByStatuseAndDateUseCase;
+        private readonly GetReservationByDateUseCase _getReservationByDateUseCase;
 
-        public ReservationController(CreateReservationUseCase addReservationUseCase, GetAllReservationUseCase allReservationUseCase, GetReservationByIdUseCase getReservationByIdUseCase, UpdateReservationUseCase updateReservationUseCase)
+        public ReservationController(CreateReservationUseCase addReservationUseCase, GetAllReservationUseCase allReservationUseCase, GetReservationByIdUseCase getReservationByIdUseCase, UpdateReservationUseCase updateReservationUseCase, GetReservationByPaymentStatusUseCase getReservationByPaymentStatusUseCase, GetReservationByRoomTypeAndDateUseCase getReservationByRoomTypeAndDateUseCase, GetReservationByStatuseAndDateUseCase getReservationByStatuseAndDateUseCase, GetReservationByDateUseCase getReservationByDateUseCase)
         {
             _addReservationUseCase = addReservationUseCase;
             _allReservationUseCase = allReservationUseCase;
             _getReservationByIdUseCase = getReservationByIdUseCase;
             _updateReservationUseCase = updateReservationUseCase;
+            _getReservationByPaymentStatusUseCase = getReservationByPaymentStatusUseCase;
+            _getReservationByRoomTypeAndDateUseCase = getReservationByRoomTypeAndDateUseCase;
+            _getReservationByStatuseAndDateUseCase = getReservationByStatuseAndDateUseCase;
+            _getReservationByDateUseCase = getReservationByDateUseCase;
         }
 
         public void AddReservation(Reservation reservation)
@@ -38,6 +49,26 @@ namespace ESMART_HMS.Presentation.Controllers
         public void UpdateReservation(Reservation reservation)
         {
             _updateReservationUseCase.Execute(reservation);
+        }
+
+        public List<ReservationViewModel> GetReservationByPaymentStatus(string roomTypeId, DateTime fromTime, DateTime endTime, string paymentStatus)
+        {
+            return _getReservationByPaymentStatusUseCase.Execute(roomTypeId, fromTime, endTime, paymentStatus);
+        }
+
+        public List<ReservationViewModel> GetReservationByRoomTypeAndDate(string roomTypeId, DateTime fromTime, DateTime endTime)
+        {
+            return _getReservationByRoomTypeAndDateUseCase.Execute(roomTypeId, fromTime, endTime);
+        }
+
+        public List<ReservationViewModel> GetReservationByStatusAndDate(string status, DateTime fromTime, DateTime endTime)
+        {
+            return _getReservationByStatuseAndDateUseCase.Execute(status, fromTime, endTime);
+        }
+
+        public List<ReservationViewModel> GetReservationDate(DateTime fromTime, DateTime endTime)
+        {
+            return _getReservationByDateUseCase.Execute(fromTime, endTime);
         }
     }
 }

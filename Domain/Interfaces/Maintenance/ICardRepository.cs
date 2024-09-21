@@ -9,7 +9,7 @@ namespace ESMART_HMS.Domain.Interfaces.Maintenance
         void AddAuthCard(AuthorizationCard card);
         void AddGuestCard(GuestCard card);
         AuthorizationCard GetAuthCardByComputer(string computerName);
-        GuestCard GetGuestCardByBookingId(string id);
+        GuestCard GetGuestCardBybookingId(string id);
         AuthorizationCard GetAuthCardById(string id);
         void AddSpecialCard(SpecialCard card);
         List<SpecialCardViewModel> GetAllSpecialCards();

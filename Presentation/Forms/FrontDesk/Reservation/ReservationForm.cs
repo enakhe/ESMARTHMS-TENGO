@@ -1,7 +1,8 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Forms.Booking;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
@@ -17,10 +18,11 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private readonly GuestController _guestController;
         private readonly RoomController _roomController;
         private readonly ConfigurationController _configurationController;
-        private readonly BookingController _bookingController;
+        private readonly bookingController _bookingController;
         private readonly TransactionController _transactionController;
         private readonly ApplicationUserController _applicationUserController;
-        public ReservationForm(ReservationController reservationController, GuestController guestController, RoomController roomController, ConfigurationController configurationController, BookingController bookingController, TransactionController transactionController, ApplicationUserController applicationUserController)
+        private readonly SystemSetupController _systemSetupController;
+        public ReservationForm(ReservationController reservationController, GuestController guestController, RoomController roomController, ConfigurationController configurationController, bookingController bookingController, TransactionController transactionController, ApplicationUserController applicationUserController, SystemSetupController systemSetupController)
         {
             _reservationController = reservationController;
             _guestController = guestController;
@@ -29,6 +31,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             _bookingController = bookingController;
             _transactionController = transactionController;
             _applicationUserController = applicationUserController;
+            _systemSetupController = systemSetupController;
             InitializeComponent();
             ApplyAuthorization();
         }
@@ -60,6 +63,11 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                         reservation.Amount = FormHelper.FormatNumberWithCommas(amount);
                         reservation.AmountPaid = FormHelper.FormatNumberWithCommas(amountPaid);
                         reservation.Balance = FormHelper.FormatNumberWithCommas(balance);
+                        reservation.DateCreated = FormHelper.FormatDateTimeWithSuffix(reservation.DateCreated);
+                        reservation.DateModified = FormHelper.FormatDateTimeWithSuffix(reservation.DateModified);
+
+                        reservation.CheckInDate = FormHelper.FormatDateTimeWithSuffix(reservation.CheckInDate);
+                        reservation.CheckOutDate = FormHelper.FormatDateTimeWithSuffix(reservation.CheckOutDate);
                     }
 
                     dgvReservation.DataSource = allReservations;
@@ -99,8 +107,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     string roomId = row.Cells["roomIdDataGridViewTextBoxColumn"].Value.ToString();
                     string guestId = row.Cells["GuestId"].Value.ToString();
 
-                    AddBookingForm addBookingForm = new AddBookingForm(reservationId, guestId, roomId, _guestController, _roomController, _reservationController, _configurationController, _bookingController, _transactionController, _applicationUserController);
-                    if (addBookingForm.ShowDialog() == DialogResult.OK)
+                    AddbookingForm addbookingForm = new AddbookingForm(reservationId, guestId, roomId, _guestController, _roomController, _reservationController, _configurationController, _bookingController, _transactionController, _applicationUserController, _systemSetupController);
+                    if (addbookingForm.ShowDialog() == DialogResult.OK)
                     {
                         LoadData();
                     }

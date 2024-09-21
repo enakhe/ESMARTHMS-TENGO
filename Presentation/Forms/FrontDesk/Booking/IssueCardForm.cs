@@ -6,7 +6,6 @@ using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
-using NTwain.Data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,18 +14,18 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
-namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
+namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
 {
     public partial class IssueCardForm : Form
     {
         private readonly string _id;
         string computerName = Environment.MachineName;
         private DispatcherTimer dispatcherTimer;
-        private readonly BookingController _bookingController;
+        private readonly bookingController _bookingController;
         private readonly CardController _cardController;
         private readonly ApplicationUserController _userController;
 
-        public IssueCardForm(BookingController bookingController, string id, CardController cardController, ApplicationUserController userController)
+        public IssueCardForm(bookingController bookingController, string id, CardController cardController, ApplicationUserController userController)
         {
             _bookingController = bookingController;
             _id = id;
@@ -68,7 +67,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
 
         private void LoadData()
         {
-            BookingViewModel booking = _bookingController.GetAllBookings().FirstOrDefault(b => b.Id == _id);
+            BookingViewModel booking = _bookingController.GetAllbookings().FirstOrDefault(b => b.Id == _id);
             if (booking != null)
             {
                 txtRoom.Text = "1.1." + booking.Room;
@@ -144,7 +143,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
             }
             else
             {
-                Domain.Entities.Booking selectedBooking = _bookingController.GetBookingById(_id);
+                Domain.Entities.Booking selectedbooking = _bookingController.GetbookingById(_id);
 
                 txtStatus.Text = "Card Found";
                 txtStatus.ForeColor = Color.Green;
@@ -174,10 +173,10 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
                     {
                         MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
 
-                        txtRoomNo.Text = selectedBooking.Room.RoomNo;
+                        txtRoomNo.Text = selectedbooking.Room.RoomNo;
                         txtCardNo.Text = FormHelper.ByteArrayToString(cardInfo.CardNo);
                         txtCardTypeTwo.Text = FormHelper.FormatEnumName(cardType);
-                        txtLockNo.Text = $"1.1.{selectedBooking.Room.RoomNo}";
+                        txtLockNo.Text = $"1.1.{selectedbooking.Room.RoomNo}";
                     }
                 }
             }
@@ -203,12 +202,12 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
         {
             //Issue card
             char[] card_snr = new char[100];
-            Domain.Entities.Booking booking = _bookingController.GetBookingById(_id);
+            Domain.Entities.Booking booking = _bookingController.GetbookingById(_id);
 
-            string roomno = txtRoom.Text;
-            string intime = txtInTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            string roomno = $"{booking.Room.Building.BuildingNo}.{booking.Room.Floor.FloorNo}.{booking.Room.RoomNo}";
+            string intime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             String outtime = txtOutTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            short iflags = 136;
+            short iflags = 80;
 
             if (LockSDKHeaders.PreparedIssue(card_snr) == false)
                 return;
@@ -226,7 +225,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Booking
 
                 GuestCard guestCard = new GuestCard()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = booking.Id,
                     CardNo = cardNoString,
                     CardType = FormHelper.FormatEnumName(cardType),
                     IssueTime = DateTime.Now,

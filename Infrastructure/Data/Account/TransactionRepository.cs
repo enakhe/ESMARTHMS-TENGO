@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ESMART_HMS.Infrastructure.Data
 {
@@ -16,7 +17,7 @@ namespace ESMART_HMS.Infrastructure.Data
             _db = db;
         }
 
-        public void AddTransaction(Transaction transaction)
+        public void AddTransaction(Domain.Entities.Transaction transaction)
         {
             try
             {
@@ -41,11 +42,12 @@ namespace ESMART_HMS.Infrastructure.Data
                                           Guest = transaction.Guest.FullName,
                                           GuestPhoneNo = transaction.Guest.PhoneNumber,
                                           ServiceId = transaction.ServiceId,
-                                          Date = transaction.Date,
+                                          Date = transaction.Date.ToString(),
                                           Status = transaction.Status,
                                           Amount = transaction.Amount.ToString(),
                                           Description = transaction.Description,
                                           Type = transaction.Type,
+                                          BankAccount = transaction.BankAccount,
                                       };
                 return allTransactions.ToList();
             }
@@ -58,7 +60,7 @@ namespace ESMART_HMS.Infrastructure.Data
             return null;
         }
 
-        public void UpdateTransaction(Transaction transaction)
+        public void UpdateTransaction(Domain.Entities.Transaction transaction)
         {
             try
             {
@@ -72,7 +74,7 @@ namespace ESMART_HMS.Infrastructure.Data
             }
         }
 
-        public Transaction GetByServiceIdAndStatus(string serviceId, string status)
+        public Domain.Entities.Transaction GetByServiceIdAndStatus(string serviceId, string status)
         {
             try
             {
@@ -84,6 +86,34 @@ namespace ESMART_HMS.Infrastructure.Data
                             MessageBoxIcon.Error);
             }
             return null;
+        }
+
+        public List<decimal> GetTotalAmount()
+        {
+            try
+            {
+                var totalAmount = _db.Transactions
+                     .Where(t => t.Status == "Paid")
+                     .Select(t => (decimal?)t.Amount)
+                     .Sum() ?? 0m;
+
+                var receivables = _db.Transactions
+                                     .Where(t => t.Status == "Un Paid")
+                                     .Select(t => (decimal?)t.Amount);
+
+                decimal totalReceivables = receivables.Any()
+                                           ? receivables.Sum() ?? 0m
+                                           : 0m;
+
+                return new List<decimal> { totalAmount, totalReceivables };
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return new List<decimal> { 0, 0 };
         }
     }
 }

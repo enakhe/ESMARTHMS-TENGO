@@ -1,12 +1,16 @@
 ﻿using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Bar;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms;
-using ESMART_HMS.Presentation.Forms.Booking;
-using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
+using ESMART_HMS.Presentation.Forms.Account.BankAccount;
+using ESMART_HMS.Presentation.Forms.Bar;
+using ESMART_HMS.Presentation.Forms.booking;
+using ESMART_HMS.Presentation.Forms.FrontDesk.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
 using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.License;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
@@ -33,17 +37,22 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<RoomTypeController>();
             services.AddScoped<ReservationController>();
             services.AddScoped<ConfigurationController>();
-            services.AddScoped<BookingController>();
+            services.AddScoped<bookingController>();
             services.AddScoped<TransactionController>();
             services.AddScoped<ApplicationUserController>();
             services.AddScoped<UserRoleController>();
             services.AddScoped<BarItemController>();
             services.AddScoped<SystemSetupController>();
             services.AddScoped<CardController>();
+            services.AddScoped<LicenseController>();
+            services.AddScoped<OrderController>();
 
             // Forms
             services.AddScoped<LoginForm>();
             services.AddScoped<Home>();
+            services.AddScoped<LicenseForm>();
+            services.AddScoped<InitializeDatabaseForm>();
+            services.AddScoped<SplashScreenForm>();
 
             services.AddScoped<GuestForm>();
             services.AddScoped<AddGuestForm>();
@@ -68,8 +77,8 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<ReservationForm>();
             services.AddScoped<AddReservationForm>();
 
-            services.AddScoped<BookingForm>();
-            services.AddScoped<AddBookingForm>();
+            services.AddScoped<bookingForm>();
+            services.AddScoped<AddbookingForm>();
             services.AddScoped<IssueCardForm>();
 
             services.AddScoped<FinancialForm>();
@@ -81,6 +90,7 @@ namespace ESMART_HMS.Presentation
             // Bar Store Forms
             services.AddScoped<BarStoreForm>();
             services.AddScoped<AddBarItemForm>();
+            services.AddScoped<OrderForm>();
 
             // Home Form
             services.AddScoped<DashboardForm>();
@@ -93,11 +103,13 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<MastercardForm>();
             services.AddScoped<BuildingCardForm>();
             services.AddScoped<FloorCardForm>();
+            services.AddScoped<AddBankAccountForm>();
 
 
             // Report
             services.AddScoped<RoomReportForm>();
-            services.AddScoped<BookingReportForm>();
+            services.AddScoped<bookingReportForm>();
+            services.AddScoped<ReservationReportForm>();
 
             return services;
         }

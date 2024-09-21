@@ -14,10 +14,10 @@ namespace ESMART_HMS.Presentation.Controllers.Maintenance
         private readonly GetCardByCardNoUseCase _getCardByCardNoUseCase;
         private readonly DeleteCardUseCase _deleteCardUseCase;
         private readonly AddGuestCardUseCase _addGuestCardUseCase;
-        private readonly GetGuestCardByBookingIdUseCase _getGuestCardByBookingIdUseCase;
+        private readonly GetGuestCardBybookingIdUseCase _getGuestCardBybookingIdUseCase;
         private readonly DeleteGuestCardUseCase _deleteGuestCardUseCase;
 
-        public CardController(CreateAuthCardUseCase createAuthCardUseCase, GetAuthCardByComputerNameUseCase getAuthCardByComputerNameUseCase, CreateSpecialCardUseCase createSpecialCardUseCase, GetAllSpecialCardUseCase getAllSpecialCardUseCase, GetCardByCardNoUseCase getCardByCardNoUseCase, DeleteCardUseCase deleteCardUseCase, AddGuestCardUseCase addGuestCardUseCase, GetGuestCardByBookingIdUseCase getGuestCardByBookingIdUseCase, DeleteGuestCardUseCase deleteGuestCardUseCase)
+        public CardController(CreateAuthCardUseCase createAuthCardUseCase, GetAuthCardByComputerNameUseCase getAuthCardByComputerNameUseCase, CreateSpecialCardUseCase createSpecialCardUseCase, GetAllSpecialCardUseCase getAllSpecialCardUseCase, GetCardByCardNoUseCase getCardByCardNoUseCase, DeleteCardUseCase deleteCardUseCase, AddGuestCardUseCase addGuestCardUseCase, GetGuestCardBybookingIdUseCase getGuestCardBybookingIdUseCase, DeleteGuestCardUseCase deleteGuestCardUseCase)
         {
             _createAuthCardUseCase = createAuthCardUseCase;
             _getAuthCardByComputerNameUseCase = getAuthCardByComputerNameUseCase;
@@ -26,7 +26,7 @@ namespace ESMART_HMS.Presentation.Controllers.Maintenance
             _getCardByCardNoUseCase = getCardByCardNoUseCase;
             _deleteCardUseCase = deleteCardUseCase;
             _addGuestCardUseCase = addGuestCardUseCase;
-            _getGuestCardByBookingIdUseCase = getGuestCardByBookingIdUseCase;
+            _getGuestCardBybookingIdUseCase = getGuestCardBybookingIdUseCase;
             _deleteGuestCardUseCase = deleteGuestCardUseCase;
         }
 
@@ -67,7 +67,7 @@ namespace ESMART_HMS.Presentation.Controllers.Maintenance
 
         public GuestCard GetGuestCard(string id)
         {
-            return _getGuestCardByBookingIdUseCase.Execute(id);
+            return _getGuestCardBybookingIdUseCase.Execute(id);
         }
 
         public void DeleteGuestCard(string id)

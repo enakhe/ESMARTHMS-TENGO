@@ -49,14 +49,13 @@
             this.reservationTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.ReservationTableAdapter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.roundedPanel4 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
-            this.splitContainer8 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer9 = new System.Windows.Forms.SplitContainer();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.splitContainer18 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer19 = new System.Windows.Forms.SplitContainer();
+            this.label12 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.txtReservationCount = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.roundedPanel1 = new ESMART_HMS.Presentation.Forms.FormClasses.RoundedPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
@@ -65,10 +64,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnBook = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvReservation = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,17 +91,17 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            this.roundedPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
-            this.splitContainer8.Panel1.SuspendLayout();
-            this.splitContainer8.Panel2.SuspendLayout();
-            this.splitContainer8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).BeginInit();
-            this.splitContainer9.Panel1.SuspendLayout();
-            this.splitContainer9.Panel2.SuspendLayout();
-            this.splitContainer9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.roundedPanel1.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer18)).BeginInit();
+            this.splitContainer18.Panel1.SuspendLayout();
+            this.splitContainer18.Panel2.SuspendLayout();
+            this.splitContainer18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer19)).BeginInit();
+            this.splitContainer19.Panel1.SuspendLayout();
+            this.splitContainer19.Panel2.SuspendLayout();
+            this.splitContainer19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -145,7 +142,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.roundedPanel1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(30);
             this.splitContainer1.Size = new System.Drawing.Size(1556, 763);
             this.splitContainer1.SplitterDistance = 224;
@@ -153,7 +150,7 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.roundedPanel4);
+            this.flowLayoutPanel2.Controls.Add(this.panel4);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -161,76 +158,71 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(1556, 224);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
-            // roundedPanel4
+            // panel4
             // 
-            this.roundedPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(207)))), ((int)(((byte)(5)))));
-            this.roundedPanel4.BorderColor = System.Drawing.Color.Gray;
-            this.roundedPanel4.BorderRadius = 15;
-            this.roundedPanel4.BorderThickness = 2;
-            this.roundedPanel4.Controls.Add(this.splitContainer8);
-            this.roundedPanel4.Controls.Add(this.button2);
-            this.roundedPanel4.Location = new System.Drawing.Point(33, 23);
-            this.roundedPanel4.Name = "roundedPanel4";
-            this.roundedPanel4.Size = new System.Drawing.Size(300, 150);
-            this.roundedPanel4.TabIndex = 8;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(207)))), ((int)(((byte)(5)))));
+            this.panel4.Controls.Add(this.splitContainer18);
+            this.panel4.Location = new System.Drawing.Point(33, 23);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(300, 155);
+            this.panel4.TabIndex = 7;
             // 
-            // splitContainer8
+            // splitContainer18
             // 
-            this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer8.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer8.Name = "splitContainer8";
+            this.splitContainer18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer18.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer18.Name = "splitContainer18";
             // 
-            // splitContainer8.Panel1
+            // splitContainer18.Panel1
             // 
-            this.splitContainer8.Panel1.Controls.Add(this.splitContainer9);
+            this.splitContainer18.Panel1.Controls.Add(this.splitContainer19);
             // 
-            // splitContainer8.Panel2
+            // splitContainer18.Panel2
             // 
-            this.splitContainer8.Panel2.Controls.Add(this.txtReservationCount);
-            this.splitContainer8.Size = new System.Drawing.Size(300, 113);
-            this.splitContainer8.SplitterDistance = 187;
-            this.splitContainer8.TabIndex = 4;
+            this.splitContainer18.Panel2.Controls.Add(this.txtReservationCount);
+            this.splitContainer18.Size = new System.Drawing.Size(300, 155);
+            this.splitContainer18.SplitterDistance = 207;
+            this.splitContainer18.TabIndex = 0;
             // 
-            // splitContainer9
+            // splitContainer19
             // 
-            this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer9.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer9.Name = "splitContainer9";
-            this.splitContainer9.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer19.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer19.Name = "splitContainer19";
+            this.splitContainer19.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer9.Panel1
+            // splitContainer19.Panel1
             // 
-            this.splitContainer9.Panel1.Controls.Add(this.label4);
+            this.splitContainer19.Panel1.Controls.Add(this.label12);
             // 
-            // splitContainer9.Panel2
+            // splitContainer19.Panel2
             // 
-            this.splitContainer9.Panel2.Controls.Add(this.pictureBox3);
-            this.splitContainer9.Size = new System.Drawing.Size(187, 113);
-            this.splitContainer9.SplitterDistance = 30;
-            this.splitContainer9.TabIndex = 0;
+            this.splitContainer19.Panel2.Controls.Add(this.pictureBox7);
+            this.splitContainer19.Size = new System.Drawing.Size(207, 155);
+            this.splitContainer19.SplitterDistance = 39;
+            this.splitContainer19.TabIndex = 0;
             // 
-            // label4
+            // label12
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(189, 31);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Reserved Rooms";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(5, 3);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(189, 31);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Reserved Rooms";
             // 
-            // pictureBox3
+            // pictureBox7
             // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(187, 79);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
+            this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(207, 112);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox7.TabIndex = 2;
+            this.pictureBox7.TabStop = false;
             // 
             // txtReservationCount
             // 
@@ -239,41 +231,21 @@
             this.txtReservationCount.ForeColor = System.Drawing.Color.White;
             this.txtReservationCount.Location = new System.Drawing.Point(0, 0);
             this.txtReservationCount.Name = "txtReservationCount";
-            this.txtReservationCount.Size = new System.Drawing.Size(109, 113);
-            this.txtReservationCount.TabIndex = 2;
+            this.txtReservationCount.Size = new System.Drawing.Size(89, 155);
+            this.txtReservationCount.TabIndex = 3;
             this.txtReservationCount.Text = "0";
             this.txtReservationCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button2
+            // panel1
             // 
-            this.button2.BackColor = System.Drawing.Color.Black;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 113);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(300, 37);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Click to view rooms";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // roundedPanel1
-            // 
-            this.roundedPanel1.BackColor = System.Drawing.SystemColors.Control;
-            this.roundedPanel1.BorderColor = System.Drawing.Color.Gray;
-            this.roundedPanel1.BorderRadius = 15;
-            this.roundedPanel1.BorderThickness = 3;
-            this.roundedPanel1.Controls.Add(this.splitContainer2);
-            this.roundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundedPanel1.Location = new System.Drawing.Point(30, 30);
-            this.roundedPanel1.Name = "roundedPanel1";
-            this.roundedPanel1.Padding = new System.Windows.Forms.Padding(20);
-            this.roundedPanel1.Size = new System.Drawing.Size(1496, 475);
-            this.roundedPanel1.TabIndex = 0;
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.splitContainer2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(30, 30);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(20);
+            this.panel1.Size = new System.Drawing.Size(1496, 475);
+            this.panel1.TabIndex = 0;
             // 
             // splitContainer2
             // 
@@ -291,7 +263,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.dgvReservation);
             this.splitContainer2.Size = new System.Drawing.Size(1456, 435);
             this.splitContainer2.SplitterDistance = 58;
-            this.splitContainer2.TabIndex = 0;
+            this.splitContainer2.TabIndex = 1;
             // 
             // splitContainer3
             // 
@@ -373,10 +345,8 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
-            this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Controls.Add(this.btnBook);
-            this.flowLayoutPanel1.Controls.Add(this.btnView);
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -386,24 +356,12 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(776, 58);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(605, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 46);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Print";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(456, 8);
+            this.btnDelete.Location = new System.Drawing.Point(605, 8);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(143, 46);
             this.btnDelete.TabIndex = 0;
@@ -415,7 +373,7 @@
             this.btnBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnBook.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBook.ForeColor = System.Drawing.Color.White;
-            this.btnBook.Location = new System.Drawing.Point(307, 8);
+            this.btnBook.Location = new System.Drawing.Point(456, 8);
             this.btnBook.Name = "btnBook";
             this.btnBook.Size = new System.Drawing.Size(143, 46);
             this.btnBook.TabIndex = 2;
@@ -423,24 +381,12 @@
             this.btnBook.UseVisualStyleBackColor = false;
             this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
             // 
-            // btnView
-            // 
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnView.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnView.ForeColor = System.Drawing.Color.White;
-            this.btnView.Location = new System.Drawing.Point(158, 8);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(143, 46);
-            this.btnView.TabIndex = 0;
-            this.btnView.Text = "View Details";
-            this.btnView.UseVisualStyleBackColor = false;
-            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(121)))), ((int)(((byte)(247)))));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(9, 8);
+            this.btnAdd.Location = new System.Drawing.Point(307, 8);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(143, 46);
             this.btnAdd.TabIndex = 0;
@@ -543,6 +489,7 @@
             this.ReservationId.HeaderText = "Id";
             this.ReservationId.Name = "ReservationId";
             this.ReservationId.ReadOnly = true;
+            this.ReservationId.Visible = false;
             // 
             // customerDataGridViewTextBoxColumn
             // 
@@ -684,18 +631,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
-            this.roundedPanel4.ResumeLayout(false);
-            this.splitContainer8.Panel1.ResumeLayout(false);
-            this.splitContainer8.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
-            this.splitContainer8.ResumeLayout(false);
-            this.splitContainer9.Panel1.ResumeLayout(false);
-            this.splitContainer9.Panel1.PerformLayout();
-            this.splitContainer9.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).EndInit();
-            this.splitContainer9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.roundedPanel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.splitContainer18.Panel1.ResumeLayout(false);
+            this.splitContainer18.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer18)).EndInit();
+            this.splitContainer18.ResumeLayout(false);
+            this.splitContainer19.Panel1.ResumeLayout(false);
+            this.splitContainer19.Panel1.PerformLayout();
+            this.splitContainer19.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer19)).EndInit();
+            this.splitContainer19.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -719,29 +666,26 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn reservationRefNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private FormClasses.RoundedPanel roundedPanel1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.DataGridView dgvReservation;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private FormClasses.RoundedPanel roundedPanel4;
-        private System.Windows.Forms.SplitContainer splitContainer8;
-        private System.Windows.Forms.SplitContainer splitContainer9;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.SplitContainer splitContainer18;
+        private System.Windows.Forms.SplitContainer splitContainer19;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label txtReservationCount;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnBook;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DataGridView dgvReservation;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn GuestId;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomIdDataGridViewTextBoxColumn;

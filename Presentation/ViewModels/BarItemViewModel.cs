@@ -14,7 +14,7 @@ namespace ESMART_HMS.Presentation.ViewModels
         public string CreatedBy { get; set; }
         public string CostPrice { get; set; }
         public string SellingPrice { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
+        public string DateCreated { get; set; }
+        public string DateModified { get; set; }
     }
 }

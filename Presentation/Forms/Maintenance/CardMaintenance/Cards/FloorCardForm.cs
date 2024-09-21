@@ -4,17 +4,10 @@ using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
-using ESMART_HMS.Presentation.Forms.FormClasses;
 using ESMART_HMS.Presentation.Sessions;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
@@ -84,7 +77,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
         {
             int hours = (int)txtHour.Value;
             int minutes = (int)txtMinute.Value;
-            
+
             return $"{hours}:{minutes}";
         }
 

@@ -107,8 +107,6 @@ namespace ESMART_HMS.Repositories
             {
                 _db.Entry(room).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
-                MessageBox.Show("Successfully edited room information", "Success", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

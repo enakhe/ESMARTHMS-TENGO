@@ -2,9 +2,11 @@
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Sessions;
+using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -20,15 +22,18 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private readonly ReservationController _reservationController;
         private readonly ApplicationUserController _applicationUserController;
         private readonly TransactionController _transactionController;
-        public AddReservationForm(GuestController guestController, RoomController roomController, ReservationController reservationController, ApplicationUserController applicationUserController, TransactionController transactionController)
+        private readonly SystemSetupController _systemSetupController;
+        public AddReservationForm(GuestController guestController, RoomController roomController, ReservationController reservationController, ApplicationUserController applicationUserController, TransactionController transactionController, SystemSetupController systemSetupController)
         {
             _guestController = guestController;
             _reservationController = reservationController;
             _roomController = roomController;
             _applicationUserController = applicationUserController;
             _transactionController = transactionController;
+            _systemSetupController = systemSetupController;
             InitializeComponent();
             ApplyAuthorization();
+            LoadBankDetails();
         }
 
         private void AddReservationForm_Load(object sender, EventArgs e)
@@ -42,6 +47,18 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private void ApplyAuthorization()
         {
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+        }
+
+        public void LoadBankDetails()
+        {
+            List<BankAccountViewModel> allAccounts = _systemSetupController.GetAllBankAccount();
+            if (allAccounts != null)
+            {
+                foreach (BankAccountViewModel account in allAccounts)
+                {
+                    bankAccounts.Items.Add($"{account.BankAccNo} | {account.BankName}");
+                }
+            }
         }
 
         public void LoadRoomData()
@@ -198,7 +215,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     }
                     else
                     {
-                        reservation.Status = "Unpaid";
+                        reservation.Status = "Paid";
                     }
 
                     reservation.CreatedBy = AuthSession.CurrentUser.Id;
@@ -226,6 +243,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                             Description = "Reservation",
                             Status = "Paid"
                         };
+
                         _transactionController.AddTransaction(transaction);
                     }
                     else if (reservation.Amount > reservation.AmountPaid)
@@ -243,6 +261,12 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                             Description = "Reservation",
                             Status = "Paid"
                         };
+
+                        if (bankAccounts.SelectedItem != null)
+                        {
+                            paidTransaction.BankAccount = bankAccounts.SelectedItem.ToString();
+                        }
+
                         _transactionController.AddTransaction(paidTransaction);
 
                         Domain.Entities.Transaction unPaidTransaction = new Domain.Entities.Transaction()
@@ -319,6 +343,18 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             if (!isNull)
             {
                 txtAmountPaid.Text = FormHelper.FormatNumberWithCommas(decimal.Parse(txtAmountPaid.Text));
+            }
+        }
+
+        private void txtPaymentMethod_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (txtPaymentMethod.Text == "CASH")
+            {
+                bankAccounts.Enabled = false;
+            }
+            else
+            {
+                bankAccounts.Enabled = true;
             }
         }
     }

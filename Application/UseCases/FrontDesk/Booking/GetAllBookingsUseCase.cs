@@ -1,14 +1,14 @@
-﻿using ESMART_HMS.Infrastructure.Data;
+﻿using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
 
-namespace ESMART_HMS.Application.UseCases.Booking
+namespace ESMART_HMS.Application.UseCases.booking
 {
-    public class GetAllBookingsUseCase
+    public class GetAllbookingsUseCase
     {
-        private readonly BookingRepository _bookingRepository;
+        private readonly IBookingRepository _bookingRepository;
 
-        public GetAllBookingsUseCase(BookingRepository bookingRepository)
+        public GetAllbookingsUseCase(IBookingRepository bookingRepository)
         {
             _bookingRepository = bookingRepository;
         }

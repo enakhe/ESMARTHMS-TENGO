@@ -1,5 +1,4 @@
 ﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Middleware;
@@ -29,8 +28,6 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             InitializeComponent();
             LoadData();
             ApplyAuthorization();
-            ResizeDataGridView();
-            this.Resize += new EventHandler(Form1_Resize);
             printDocument1.DefaultPageSettings.Landscape = true;
         }
 
@@ -38,16 +35,6 @@ namespace ESMART_HMS.Presentation.Forms.Guests
         {
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.Protect(user, btnDelete, "SuperAdmin");
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            ResizeDataGridView();
-        }
-
-        private void ResizeDataGridView()
-        {
-            tablePanel.Height = (int)(this.ClientSize.Height * 0.25);
         }
 
         public void LoadData()
@@ -69,6 +56,28 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             }
         }
 
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                var keyword = txtSearch.Text;
+
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    List<GuestViewModel> searchedGuest = _customerController.SearchGuest(keyword);
+                    dgvGuests.DataSource = searchedGuest;
+                }
+                else
+                {
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -83,14 +92,43 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             }
         }
 
-        private void btnView_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
                 if (dgvGuests.SelectedRows.Count > 0)
                 {
                     var row = dgvGuests.SelectedRows[0];
-                    string id = row.Cells["Id"].Value.ToString();
+                    string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+
+                    using (EditGuest editGuestForm = new EditGuest(id, _customerController))
+                    {
+                        if (editGuestForm.ShowDialog() == DialogResult.OK)
+                        {
+                            LoadData();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a guest to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnViewDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvGuests.SelectedRows.Count > 0)
+                {
+                    var row = dgvGuests.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
                     using (ViewGuestForm viewGuestForm = new ViewGuestForm(id, _customerController))
                     {
@@ -112,7 +150,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDeleteG_Click(object sender, EventArgs e)
         {
             try
             {
@@ -141,52 +179,6 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
-        }
-
-        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                var keyword = txtSearch.Text;
-
-                if (!string.IsNullOrEmpty(keyword))
-                {
-                    List<GuestViewModel> searchedGuest = _customerController.SearchGuest(keyword);
-                    dgvGuests.DataSource = searchedGuest;
-                }
-                else
-                {
-                    LoadData();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-            }
-        }
-
-        private void dgvGuests_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvGuests.Rows[e.RowIndex];
-                string customerId = row.Cells["Id"].Value.ToString();
-
-                using (EditGuest editGuestForm = new EditGuest(customerId, _customerController))
-                {
-                    if (editGuestForm.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadData();
-                    }
-                }
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string companyName = _systemSetupController.GetCompanyInfo().Name;
-            PrintHelper.PrintDataGridView(dgvGuests, documentTitle, companyName);
         }
     }
 }

@@ -2,7 +2,7 @@
 using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
 
-namespace ESMART_HMS.Application.UseCases.FrontDesk.Booking
+namespace ESMART_HMS.Application.UseCases.FrontDesk.booking
 {
     public class IssueCardUseCase
     {

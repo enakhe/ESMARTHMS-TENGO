@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddBankAccountForm));
-            this.txtRemark = new System.Windows.Forms.TextBox();
+            this.txtBankName = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtAreaNumber = new System.Windows.Forms.TextBox();
+            this.txtAccName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtAreaName = new System.Windows.Forms.TextBox();
+            this.txtBankAccNo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtRemark
+            // txtBankName
             // 
-            this.txtRemark.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemark.Location = new System.Drawing.Point(27, 282);
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(361, 30);
-            this.txtRemark.TabIndex = 21;
+            this.txtBankName.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBankName.Location = new System.Drawing.Point(27, 282);
+            this.txtBankName.Name = "txtBankName";
+            this.txtBankName.Size = new System.Drawing.Size(361, 30);
+            this.txtBankName.TabIndex = 21;
             // 
             // btnSave
             // 
@@ -60,15 +60,16 @@
             this.btnSave.TabIndex = 20;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtAreaNumber
+            // txtAccName
             // 
-            this.txtAreaNumber.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAreaNumber.Location = new System.Drawing.Point(28, 189);
-            this.txtAreaNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.txtAreaNumber.Name = "txtAreaNumber";
-            this.txtAreaNumber.Size = new System.Drawing.Size(360, 31);
-            this.txtAreaNumber.TabIndex = 19;
+            this.txtAccName.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAccName.Location = new System.Drawing.Point(28, 189);
+            this.txtAccName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtAccName.Name = "txtAccName";
+            this.txtAccName.Size = new System.Drawing.Size(360, 31);
+            this.txtAccName.TabIndex = 19;
             // 
             // label2
             // 
@@ -92,14 +93,15 @@
             this.label5.TabIndex = 18;
             this.label5.Text = "Bank Acc Name";
             // 
-            // txtAreaName
+            // txtBankAccNo
             // 
-            this.txtAreaName.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAreaName.Location = new System.Drawing.Point(27, 101);
-            this.txtAreaName.Margin = new System.Windows.Forms.Padding(2);
-            this.txtAreaName.Name = "txtAreaName";
-            this.txtAreaName.Size = new System.Drawing.Size(361, 31);
-            this.txtAreaName.TabIndex = 16;
+            this.txtBankAccNo.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBankAccNo.Location = new System.Drawing.Point(27, 101);
+            this.txtBankAccNo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBankAccNo.Name = "txtBankAccNo";
+            this.txtBankAccNo.Size = new System.Drawing.Size(361, 31);
+            this.txtBankAccNo.TabIndex = 16;
+            this.txtBankAccNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBankAccNo_KeyPress);
             // 
             // label3
             // 
@@ -128,18 +130,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(410, 380);
-            this.Controls.Add(this.txtRemark);
+            this.Controls.Add(this.txtBankName);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtAreaNumber);
+            this.Controls.Add(this.txtAccName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtAreaName);
+            this.Controls.Add(this.txtBankAccNo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddBankAccountForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add BankAccount";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -148,12 +152,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtRemark;
+        private System.Windows.Forms.TextBox txtBankName;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtAreaNumber;
+        private System.Windows.Forms.TextBox txtAccName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtAreaName;
+        private System.Windows.Forms.TextBox txtBankAccNo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
     }

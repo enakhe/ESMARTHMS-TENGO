@@ -43,6 +43,8 @@
             this.btnReadAuthCard = new System.Windows.Forms.Button();
             this.btnOpenPort = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtTime = new System.Windows.Forms.Label();
+            this.txtFloorList = new System.Windows.Forms.Label();
             this.txtBuilding = new System.Windows.Forms.Label();
             this.txtEdate = new System.Windows.Forms.Label();
             this.btnRecycle = new System.Windows.Forms.Button();
@@ -81,8 +83,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.specialCardTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.SpecialCardTableAdapter();
-            this.txtFloorList = new System.Windows.Forms.Label();
-            this.txtTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -280,6 +280,24 @@
             this.panel4.Size = new System.Drawing.Size(422, 376);
             this.panel4.TabIndex = 0;
             // 
+            // txtTime
+            // 
+            this.txtTime.AutoSize = true;
+            this.txtTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTime.Location = new System.Drawing.Point(18, 239);
+            this.txtTime.Name = "txtTime";
+            this.txtTime.Size = new System.Drawing.Size(0, 21);
+            this.txtTime.TabIndex = 0;
+            // 
+            // txtFloorList
+            // 
+            this.txtFloorList.AutoSize = true;
+            this.txtFloorList.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFloorList.Location = new System.Drawing.Point(18, 209);
+            this.txtFloorList.Name = "txtFloorList";
+            this.txtFloorList.Size = new System.Drawing.Size(0, 21);
+            this.txtFloorList.TabIndex = 0;
+            // 
             // txtBuilding
             // 
             this.txtBuilding.AutoSize = true;
@@ -300,7 +318,7 @@
             // 
             // btnRecycle
             // 
-            this.btnRecycle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnRecycle.BackColor = System.Drawing.Color.Red;
             this.btnRecycle.Enabled = false;
             this.btnRecycle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecycle.ForeColor = System.Drawing.Color.White;
@@ -687,24 +705,6 @@
             // specialCardTableAdapter
             // 
             this.specialCardTableAdapter.ClearBeforeFill = true;
-            // 
-            // txtFloorList
-            // 
-            this.txtFloorList.AutoSize = true;
-            this.txtFloorList.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFloorList.Location = new System.Drawing.Point(18, 209);
-            this.txtFloorList.Name = "txtFloorList";
-            this.txtFloorList.Size = new System.Drawing.Size(0, 21);
-            this.txtFloorList.TabIndex = 0;
-            // 
-            // txtTime
-            // 
-            this.txtTime.AutoSize = true;
-            this.txtTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTime.Location = new System.Drawing.Point(18, 239);
-            this.txtTime.Name = "txtTime";
-            this.txtTime.Size = new System.Drawing.Size(0, 21);
-            this.txtTime.TabIndex = 0;
             // 
             // CardMaintenanceForm
             // 

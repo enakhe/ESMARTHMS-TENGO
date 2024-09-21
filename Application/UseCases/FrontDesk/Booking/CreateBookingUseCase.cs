@@ -1,12 +1,12 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
 
-namespace ESMART_HMS.Application.UseCases.Booking
+namespace ESMART_HMS.Application.UseCases.booking
 {
-    public class CreateBookingUseCase
+    public class CreatebookingUseCase
     {
         private readonly IBookingRepository _bookingRepository;
 
-        public CreateBookingUseCase(IBookingRepository bookingRepository)
+        public CreatebookingUseCase(IBookingRepository bookingRepository)
         {
             _bookingRepository = bookingRepository;
         }
