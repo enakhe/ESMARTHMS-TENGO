@@ -18,6 +18,8 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
             InitializeComponent();
             LoadData();
             InitializeTimer();
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
         }
 
         private void InitializeTimer()
@@ -37,6 +39,8 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
         {
             dispatcherTimer.Start();
             LoadData();
+            splitContainer21.SplitterWidth = 1;
+            splitContainer21.BackColor = splitContainer21.Panel1.BackColor;
         }
 
         public void LoadData()

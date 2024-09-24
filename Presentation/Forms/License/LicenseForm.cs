@@ -57,14 +57,21 @@ namespace ESMART_HMS.Presentation.Forms
                 txtHotelName.Text = "Free Trial";
                 txtProductKey.Text = productKey;
 
-                txtHotelName.Enabled = false;
-                txtProductKey.Enabled = false;
+                txtHotelName.ReadOnly = true;
+                txtProductKey.ReadOnly = true;
             }
         }
 
         private void LicenseForm_Load(object sender, EventArgs e)
         {
-
+            Configuration configuration = _configurationController.GetConfigurationValue("Trial Mode");
+            if (configuration != null)
+            {
+                if (configuration.Value.ToString() == "True")
+                {
+                    freeTrial.Enabled = false;
+                }
+            }
         }
 
         private void btnVerify_Click(object sender, EventArgs e)
@@ -114,6 +121,7 @@ namespace ESMART_HMS.Presentation.Forms
                                 };
                                 _licenseController.AddLicense(licenseInfo);
                                 SecureFileHelper.SaveSecureFile(txtHotelName.Text, txtProductKey.Text, expirationDate);
+                                DatabaseService.SeedLicensedUser(licenseInfo.HotelName, licenseInfo.ProductKey.Replace("-", "").Substring(0, 7));
                                 this.DialogResult = DialogResult.OK;
                             }
                             else

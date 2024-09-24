@@ -45,17 +45,24 @@ namespace ESMART_HMS.Presentation.Forms.License
 
             InitializationPanal.Controls.Add(progressBarSeed);
 
-            await Task.Run(() =>
+            var isDatabaseExit = DatabaseService.DatabaseExists();
+            if (isDatabaseExit)
             {
-                SeedDatabase(progressBarSeed);
-            }).ContinueWith(t =>
+                MessageBox.Show("Database already exist. Exiting...", "Seeding Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
             {
-                this.Invoke((Action)(() =>
+                await Task.Run(() =>
                 {
-                    MessageBox.Show("Database seeding completed successfully!", "Seeding Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }));
-            });
-
+                    SeedDatabase(progressBarSeed);
+                }).ContinueWith(t =>
+                {
+                    this.Invoke((Action)(() =>
+                    {
+                        MessageBox.Show("Database seeding completed successfully!", "Seeding Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }));
+                });
+            }
             this.DialogResult = DialogResult.OK;
         }
     }

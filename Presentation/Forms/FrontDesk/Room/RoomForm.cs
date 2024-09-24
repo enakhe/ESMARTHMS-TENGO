@@ -33,6 +33,8 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             printDocument.DefaultPageSettings.Landscape = true;
             _applicationUserController = applicationUserController;
             InitializeComponent();
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
             ApplyAuthorization();
             _systemSetupController = systemSetupController;
             _cardController = cardController;
@@ -47,6 +49,8 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         private void RoomsForm_Load(object sender, EventArgs e)
         {
             LoadData();
+            splitContainer15.SplitterWidth = 1;
+            splitContainer5.BackColor = splitContainer15.Panel1.BackColor;
         }
 
         public void LoadData()

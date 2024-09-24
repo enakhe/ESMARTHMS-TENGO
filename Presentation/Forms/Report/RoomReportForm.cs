@@ -18,6 +18,8 @@ namespace ESMART_HMS.Presentation.Forms.Report
             _roomController = roomController;
             _roomTypeController = roomTypeController;
             InitializeComponent();
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
             LoadData();
         }
 

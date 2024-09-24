@@ -16,6 +16,7 @@ using ESMART_HMS.Application.UseCases.Maintenance.Room.Floor;
 using ESMART_HMS.Application.UseCases.Maintenance.Room.RoomType;
 using ESMART_HMS.Application.UseCases.Maintenance.SystemSetup;
 using ESMART_HMS.Application.UseCases.Reservation;
+using ESMART_HMS.Application.UseCases.Restaurant;
 using ESMART_HMS.Application.UseCases.Room;
 using ESMART_HMS.Application.UseCases.RoomTypes;
 using ESMART_HMS.Application.UseCases.Store.BarItem;
@@ -148,6 +149,8 @@ namespace ESMART_HMS.Application
 
             services.AddScoped<AddLicenseUseCase>();
             services.AddScoped<GetLicenseUseCase>();
+
+            services.AddScoped<RestaurantUseCases>();
 
             return services;
         }

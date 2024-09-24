@@ -297,9 +297,13 @@ namespace ESMART_HMS.Presentation.Forms.Bar
                     }
                     else
                     {
-                        var guest = _guestController.GetGuestById(txtCustomer.SelectedValue.ToString());
-                        order.CustomerId = txtCustomer.SelectedValue.ToString();
-                        order.Guest = guest;
+                        if (txtCustomer.SelectedValue.ToString() != null)
+                        {
+                            var guest = _guestController.GetGuestById(txtCustomer.SelectedValue.ToString());
+                            order.CustomerId = txtCustomer.SelectedValue.ToString();
+                            order.Guest = guest;
+                        }
+                        
                     }
 
                     Domain.Entities.Transaction transaction = new Domain.Entities.Transaction()
@@ -324,6 +328,11 @@ namespace ESMART_HMS.Presentation.Forms.Bar
                     flowLayoutPanelItems.Controls.Clear();
                     LoadData();
                     txtGrandTotal.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Please provide all fields", "Error", MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
                 }
             }
             MessageBox.Show("Successfully made order", "Success", MessageBoxButtons.OK,

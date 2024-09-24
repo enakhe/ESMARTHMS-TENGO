@@ -20,7 +20,7 @@ namespace ESMART_HMS.Infrastructure.Services
             EnsureTablesExist();
         }
 
-        private static bool DatabaseExists()
+        public static bool DatabaseExists()
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -266,11 +266,12 @@ namespace ESMART_HMS.Infrastructure.Services
                 "FOREIGN KEY (BookingId) REFERENCES Booking(Id), " +
                 "CONSTRAINT [PK_Invoices] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
-            CreateTableIfNotExists("BarItem",
+            CreateTableIfNotExists("MenuItem",
                 "[Id][nvarchar](450) NOT NULL," +
-                "[BarItemId][nvarchar](450) NOT NULL," +
+                "[MenuItemId][nvarchar](450) NOT NULL," +
                 "[Barcode][nvarchar](max) NOT NULL," +
                 "[ItemName][nvarchar](max) NOT NULL," +
+                "[Category][nvarchar](max) NOT NULL," +
                 "[CostPrice][decimal](10, 2) NOT NULL," +
                 "[SellingPrice][decimal](10, 2) NULL," +
                 "[Quantity][int] NOT NULL," +
@@ -281,23 +282,53 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[DateCreated][datetime2](7) NOT NULL," +
                 "[DateModified][datetime2](7) NOT NULL," +
                 "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
-                "CONSTRAINT [PK_BarItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
+                "CONSTRAINT [PK_MenuItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("OrderItem",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[OrderItemId][nvarchar](450) NOT NULL," +
+                "[MenuItemId][nvarchar](450) NOT NULL," +
+                "[Quantity][int] NOT NULL," +
+                "[OrderDate][datetime2](7) NOT NULL," +
+                "[ItemPrice][decimal](10, 2) NULL," +
+                "[TotalAmount][decimal](10, 2) NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[IssuedBy][nvarchar](450) NOT NULL," +
+                "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
+                "FOREIGN KEY (ItemId) REFERENCES MeuItem(Id), " +
+                "CONSTRAINT [PK_OrderItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
             CreateTableIfNotExists("Order",
                 "[Id][nvarchar](450) NOT NULL," +
                 "[OrderId][nvarchar](450) NOT NULL," +
+                "[CustomerId][nvarchar](450)NOT NULL," +
+                "[OrderDate][datetime2](7) NOT NULL," +
+                "[TotalAmount][decimal](10, 2) NULL," +
+                "[PaymentMethod][nvarchar](450) NOT NULL," +
+                "[PaymentStatus][nvarchar](450) NOT NULL," +
                 "[ItemId][nvarchar](450) NOT NULL," +
                 "[Quantity][int] NOT NULL," +
-                "[TotalAmount][decimal](10, 2) NULL," +
                 "[IsTrashed][bit] NOT NULL," +
-                "[CustomerId][nvarchar](450)NOT NULL," +
                 "[IssuedBy][nvarchar](450) NOT NULL," +
-                "[DateCreated][datetime2](7) NOT NULL," +
-                "[DateModified][datetime2](7) NOT NULL," +
                 "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
                 "FOREIGN KEY (CustomerId) REFERENCES Guest(Id), " +
-                "FOREIGN KEY (ItemId) REFERENCES BarItem(Id), " +
+                "FOREIGN KEY (ItemId) REFERENCES OrderItem(Id), " +
                 "CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("Inventory",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[MenuItemId][nvarchar](450) NOT NULL," +
+                "[InitialStock][int] NOT NULL," +
+                "[CurrentStock][int] NOT NULL," +
+                "[StockAdded][int] NOT NULL," +
+                "[LowStockThreshold][int] NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (MenuItemId) REFERENCES MenuItem(Id), " +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_MenuItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
             CreateTableIfNotExists("IngredientItem",
                 "[Id][nvarchar](450) NOT NULL," +
@@ -417,6 +448,7 @@ namespace ESMART_HMS.Infrastructure.Services
             SeedUserToRole();
             SeedVAT();
             SeedDiscount();
+            SeedTrialMode();
         }
 
         public static void SeedUser()
@@ -442,6 +474,32 @@ namespace ESMART_HMS.Infrastructure.Services
                     userRepository.AddUser(user);
                     db.SaveChanges();
                     SeedAnonymous(user.Id);
+                }
+            }
+        }
+
+        public static void SeedLicensedUser(string hotelname, string password)
+        {
+            using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
+            {
+                var foundUser = db.ApplicationUsers.FirstOrDefault(u => u.UserName == hotelname);
+                if (foundUser == null)
+                {
+                    ApplicationUser user = new ApplicationUser
+                    {
+                        UserName = hotelname,
+                        FirstName = "",
+                        LastName = "",
+                        FullName = hotelname,
+                        Email = "",
+                        PhoneNumber = "",
+                        PasswordHash = password,
+                        DateCreated = DateTime.Now,
+                        DateModified = DateTime.Now
+                    };
+                    UserRepository userRepository = new UserRepository(db);
+                    userRepository.AddUser(user);
+                    db.SaveChanges();
                 }
             }
         }

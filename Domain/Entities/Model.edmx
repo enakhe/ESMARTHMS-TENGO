@@ -242,6 +242,25 @@
           <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="MenuItemId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Barcode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CostPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SellingPrice" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Measurement" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="IsTrashed" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
@@ -398,7 +417,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Authoriza__Creat__71D1E811">
+        <Association Name="FK__Authoriza__Creat__76969D2E">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="AuthorizationCard" Type="Self.AuthorizationCard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -410,7 +429,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BankAccou__Creat__6EF57B66">
+        <Association Name="FK__BankAccou__Creat__73BA3083">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="BankAccount" Type="Self.BankAccount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -494,7 +513,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GuestCard__Issue__778AC167">
+        <Association Name="FK__GuestCard__Issue__7C4F7684">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="GuestCard" Type="Self.GuestCard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -506,7 +525,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ingredien__Creat__6A30C649">
+        <Association Name="FK__Ingredien__Creat__6EF57B66">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="IngredientItem" Type="Self.IngredientItem" Multiplicity="*" />
           <ReferentialConstraint>
@@ -542,7 +561,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__CustomerI__07C12930">
+        <Association Name="FK__MenuItem__Create__02FC7413">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
+          <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__CustomerI__6B24EA82">
           <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -554,7 +585,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__IssuedBy__06CD04F7">
+        <Association Name="FK__Order__IssuedBy__6A30C649">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -566,7 +597,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__ItemId__08B54D69">
+        <Association Name="FK__Order__ItemId__6C190EBB">
           <End Role="BarItem" Type="Self.BarItem" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -698,7 +729,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SpecialCa__Issue__74AE54BC">
+        <Association Name="FK__SpecialCa__Issue__797309D9">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="SpecialCard" Type="Self.SpecialCard" Multiplicity="*" />
           <ReferentialConstraint>
@@ -739,6 +770,7 @@
           <EntitySet Name="IngredientItem" EntityType="Self.IngredientItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenseInfo" EntityType="Self.LicenseInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuItem" EntityType="Self.MenuItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
@@ -756,11 +788,11 @@
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="ApplicationUserRole" EntitySet="ApplicationUserRole" />
           </AssociationSet>
-          <AssociationSet Name="FK__Authoriza__Creat__71D1E811" Association="Self.FK__Authoriza__Creat__71D1E811">
+          <AssociationSet Name="FK__Authoriza__Creat__76969D2E" Association="Self.FK__Authoriza__Creat__76969D2E">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="AuthorizationCard" EntitySet="AuthorizationCard" />
           </AssociationSet>
-          <AssociationSet Name="FK__BankAccou__Creat__6EF57B66" Association="Self.FK__BankAccou__Creat__6EF57B66">
+          <AssociationSet Name="FK__BankAccou__Creat__73BA3083" Association="Self.FK__BankAccou__Creat__73BA3083">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="BankAccount" EntitySet="BankAccount" />
           </AssociationSet>
@@ -788,11 +820,11 @@
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="Guest" EntitySet="Guest" />
           </AssociationSet>
-          <AssociationSet Name="FK__GuestCard__Issue__778AC167" Association="Self.FK__GuestCard__Issue__778AC167">
+          <AssociationSet Name="FK__GuestCard__Issue__7C4F7684" Association="Self.FK__GuestCard__Issue__7C4F7684">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="GuestCard" EntitySet="GuestCard" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ingredien__Creat__6A30C649" Association="Self.FK__Ingredien__Creat__6A30C649">
+          <AssociationSet Name="FK__Ingredien__Creat__6EF57B66" Association="Self.FK__Ingredien__Creat__6EF57B66">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="IngredientItem" EntitySet="IngredientItem" />
           </AssociationSet>
@@ -804,15 +836,19 @@
             <End Role="Guest" EntitySet="Guest" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__CustomerI__07C12930" Association="Self.FK__Order__CustomerI__07C12930">
+          <AssociationSet Name="FK__MenuItem__Create__02FC7413" Association="Self.FK__MenuItem__Create__02FC7413">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="MenuItem" EntitySet="MenuItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__CustomerI__6B24EA82" Association="Self.FK__Order__CustomerI__6B24EA82">
             <End Role="Guest" EntitySet="Guest" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__IssuedBy__06CD04F7" Association="Self.FK__Order__IssuedBy__06CD04F7">
+          <AssociationSet Name="FK__Order__IssuedBy__6A30C649" Association="Self.FK__Order__IssuedBy__6A30C649">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__ItemId__08B54D69" Association="Self.FK__Order__ItemId__08B54D69">
+          <AssociationSet Name="FK__Order__ItemId__6C190EBB" Association="Self.FK__Order__ItemId__6C190EBB">
             <End Role="BarItem" EntitySet="BarItem" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
@@ -856,7 +892,7 @@
             <End Role="RoomType" EntitySet="RoomType" />
             <End Role="Room" EntitySet="Room" />
           </AssociationSet>
-          <AssociationSet Name="FK__SpecialCa__Issue__74AE54BC" Association="Self.FK__SpecialCa__Issue__74AE54BC">
+          <AssociationSet Name="FK__SpecialCa__Issue__797309D9" Association="Self.FK__SpecialCa__Issue__797309D9">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="SpecialCard" EntitySet="SpecialCard" />
           </AssociationSet>
@@ -1023,6 +1059,11 @@
             <End Role="Guest" EntitySet="Guests" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
+          <EntitySet Name="MenuItems" EntityType="ESMART_HMSDBModel.MenuItem" />
+          <AssociationSet Name="FK__MenuItem__Create__02FC7413" Association="ESMART_HMSDBModel.FK__MenuItem__Create__02FC7413">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="MenuItem" EntitySet="MenuItems" />
+          </AssociationSet>
 				</EntityContainer>
 				<EntityType Name="Configuration">
 					<Key>
@@ -1164,6 +1205,7 @@
 					<NavigationProperty Name="GuestCards" Relationship="ESMART_HMSDBModel.FK__GuestCard__Issue__7C4F7684" FromRole="ApplicationUser" ToRole="GuestCard" />
           <NavigationProperty Name="BankAccounts" Relationship="ESMART_HMSDBModel.FK__BankAccou__Creat__6EF57B66" FromRole="ApplicationUser" ToRole="BankAccount" />
           <NavigationProperty Name="Orders" Relationship="ESMART_HMSDBModel.FK__Order__IssuedBy__02FC7413" FromRole="ApplicationUser" ToRole="Order" />
+          <NavigationProperty Name="MenuItems" Relationship="ESMART_HMSDBModel.FK__MenuItem__Create__02FC7413" FromRole="ApplicationUser" ToRole="MenuItem" />
 				</EntityType>
 				<Association Name="FK__Applicati__UserI__3B75D760">
 					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
@@ -1787,6 +1829,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="MenuItemId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Barcode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CostPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="SellingPrice" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Measurement" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__MenuItem__Create__02FC7413" FromRole="MenuItem" ToRole="ApplicationUser" />
+        </EntityType>
+        <Association Name="FK__MenuItem__Create__02FC7413">
+          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.MenuItem" Role="MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
 			</Schema>
 		</edmx:ConceptualModels>
 		<!-- C-S mapping content -->
@@ -2183,6 +2257,26 @@
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuItems">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.MenuItem">
+              <MappingFragment StoreEntitySet="MenuItem">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Measurement" ColumnName="Measurement" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

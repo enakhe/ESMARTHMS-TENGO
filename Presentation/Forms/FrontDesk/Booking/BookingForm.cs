@@ -34,6 +34,8 @@ namespace ESMART_HMS.Presentation.Forms.booking
             _applicationUserController = applicationUserController;
             _cardController = cardController;
             InitializeComponent();
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
             ApplyAuthorization();
             _systemSetupController = systemSetupController;
         }
@@ -49,6 +51,9 @@ namespace ESMART_HMS.Presentation.Forms.booking
             this.bookingTableAdapter.Fill(this.eSMART_HMSDBDataSet.booking);
 
             dgvbooking.SelectionChanged += DataGridView1_SelectionChanged;
+            splitContainer21.BackColor = splitContainer21.Panel1.BackColor;
+            splitContainer21.SplitterWidth = 1;
+            splitContainer21.BackColor = splitContainer21.Panel1.BackColor;
         }
 
         private void LoadbookingsData()

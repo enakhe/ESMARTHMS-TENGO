@@ -41,6 +41,14 @@
             this.label14 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.txtCount = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtToalAmount = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtReceivables = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
@@ -64,14 +72,6 @@
             this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.transactionTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.TransactionTableAdapter();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.txtToalAmount = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtReceivables = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,6 +87,16 @@
             this.splitContainer21.Panel2.SuspendLayout();
             this.splitContainer21.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
+            this.splitContainer5.Panel2.SuspendLayout();
+            this.splitContainer5.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -99,22 +109,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
-            this.splitContainer5.Panel1.SuspendLayout();
-            this.splitContainer5.Panel2.SuspendLayout();
-            this.splitContainer5.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Black;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(30, 30);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -124,14 +125,16 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(30);
-            this.splitContainer1.Size = new System.Drawing.Size(1513, 761);
-            this.splitContainer1.SplitterDistance = 223;
+            this.splitContainer1.Size = new System.Drawing.Size(1453, 701);
+            this.splitContainer1.SplitterDistance = 205;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
             this.flowLayoutPanel1.Controls.Add(this.panel5);
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
@@ -139,7 +142,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30, 20, 20, 20);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1513, 223);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1453, 205);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel5
@@ -220,6 +223,106 @@
             this.txtCount.Text = "0";
             this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.panel2.Controls.Add(this.splitContainer4);
+            this.panel2.Location = new System.Drawing.Point(339, 23);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(409, 155);
+            this.panel2.TabIndex = 10;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.label2);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.txtToalAmount);
+            this.splitContainer4.Size = new System.Drawing.Size(409, 155);
+            this.splitContainer4.SplitterDistance = 42;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(6, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(152, 31);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Total Income";
+            // 
+            // txtToalAmount
+            // 
+            this.txtToalAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtToalAmount.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtToalAmount.ForeColor = System.Drawing.Color.White;
+            this.txtToalAmount.Location = new System.Drawing.Point(0, 0);
+            this.txtToalAmount.Name = "txtToalAmount";
+            this.txtToalAmount.Size = new System.Drawing.Size(409, 109);
+            this.txtToalAmount.TabIndex = 4;
+            this.txtToalAmount.Text = "0";
+            this.txtToalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.panel3.Controls.Add(this.splitContainer5);
+            this.panel3.Location = new System.Drawing.Point(754, 23);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(409, 155);
+            this.panel3.TabIndex = 11;
+            // 
+            // splitContainer5
+            // 
+            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer5.Name = "splitContainer5";
+            this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer5.Panel1
+            // 
+            this.splitContainer5.Panel1.Controls.Add(this.label3);
+            // 
+            // splitContainer5.Panel2
+            // 
+            this.splitContainer5.Panel2.Controls.Add(this.txtReceivables);
+            this.splitContainer5.Size = new System.Drawing.Size(409, 155);
+            this.splitContainer5.SplitterDistance = 42;
+            this.splitContainer5.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(6, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(196, 31);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Total Receivables";
+            // 
+            // txtReceivables
+            // 
+            this.txtReceivables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtReceivables.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceivables.ForeColor = System.Drawing.Color.White;
+            this.txtReceivables.Location = new System.Drawing.Point(0, 0);
+            this.txtReceivables.Name = "txtReceivables";
+            this.txtReceivables.Size = new System.Drawing.Size(409, 109);
+            this.txtReceivables.TabIndex = 4;
+            this.txtReceivables.Text = "0";
+            this.txtReceivables.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
@@ -227,14 +330,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(30, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(20);
-            this.panel1.Size = new System.Drawing.Size(1453, 474);
+            this.panel1.Size = new System.Drawing.Size(1393, 432);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(20, 20);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -245,8 +347,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dgvTransaction);
-            this.splitContainer2.Size = new System.Drawing.Size(1413, 434);
-            this.splitContainer2.SplitterDistance = 51;
+            this.splitContainer2.Size = new System.Drawing.Size(1393, 432);
+            this.splitContainer2.SplitterDistance = 60;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -258,8 +360,8 @@
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.Controls.Add(this.flowLayoutPanel3);
-            this.splitContainer3.Size = new System.Drawing.Size(1413, 51);
-            this.splitContainer3.SplitterDistance = 634;
+            this.splitContainer3.Size = new System.Drawing.Size(1393, 60);
+            this.splitContainer3.SplitterDistance = 625;
             this.splitContainer3.TabIndex = 0;
             // 
             // flowLayoutPanel3
@@ -272,7 +374,7 @@
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(20, 15, 5, 20);
             this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(634, 51);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(625, 60);
             this.flowLayoutPanel3.TabIndex = 4;
             // 
             // label1
@@ -352,7 +454,7 @@
             this.dgvTransaction.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
-            this.dgvTransaction.Size = new System.Drawing.Size(1413, 379);
+            this.dgvTransaction.Size = new System.Drawing.Size(1393, 368);
             this.dgvTransaction.TabIndex = 3;
             // 
             // idDataGridViewTextBoxColumn
@@ -463,116 +565,17 @@
             // 
             this.transactionTableAdapter.ClearBeforeFill = true;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.panel2.Controls.Add(this.splitContainer4);
-            this.panel2.Location = new System.Drawing.Point(339, 23);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(409, 155);
-            this.panel2.TabIndex = 10;
-            // 
-            // splitContainer4
-            // 
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer4.Panel1
-            // 
-            this.splitContainer4.Panel1.Controls.Add(this.label2);
-            // 
-            // splitContainer4.Panel2
-            // 
-            this.splitContainer4.Panel2.Controls.Add(this.txtToalAmount);
-            this.splitContainer4.Size = new System.Drawing.Size(409, 155);
-            this.splitContainer4.SplitterDistance = 42;
-            this.splitContainer4.TabIndex = 0;
-            // 
-            // txtToalAmount
-            // 
-            this.txtToalAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtToalAmount.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtToalAmount.ForeColor = System.Drawing.Color.White;
-            this.txtToalAmount.Location = new System.Drawing.Point(0, 0);
-            this.txtToalAmount.Name = "txtToalAmount";
-            this.txtToalAmount.Size = new System.Drawing.Size(409, 109);
-            this.txtToalAmount.TabIndex = 4;
-            this.txtToalAmount.Text = "0";
-            this.txtToalAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(6, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 31);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Total Income";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.panel3.Controls.Add(this.splitContainer5);
-            this.panel3.Location = new System.Drawing.Point(754, 23);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(409, 155);
-            this.panel3.TabIndex = 11;
-            // 
-            // splitContainer5
-            // 
-            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer5.Name = "splitContainer5";
-            this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer5.Panel1
-            // 
-            this.splitContainer5.Panel1.Controls.Add(this.label3);
-            // 
-            // splitContainer5.Panel2
-            // 
-            this.splitContainer5.Panel2.Controls.Add(this.txtReceivables);
-            this.splitContainer5.Size = new System.Drawing.Size(409, 155);
-            this.splitContainer5.SplitterDistance = 42;
-            this.splitContainer5.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(6, 5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(196, 31);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Total Receivables";
-            // 
-            // txtReceivables
-            // 
-            this.txtReceivables.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtReceivables.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReceivables.ForeColor = System.Drawing.Color.White;
-            this.txtReceivables.Location = new System.Drawing.Point(0, 0);
-            this.txtReceivables.Name = "txtReceivables";
-            this.txtReceivables.Size = new System.Drawing.Size(409, 109);
-            this.txtReceivables.TabIndex = 4;
-            this.txtReceivables.Text = "0";
-            this.txtReceivables.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // TransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1513, 761);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TransactionForm";
+            this.Padding = new System.Windows.Forms.Padding(30);
             this.Text = "TransactionForm";
             this.Load += new System.EventHandler(this.TransactionForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -591,6 +594,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer21)).EndInit();
             this.splitContainer21.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel1.PerformLayout();
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.splitContainer5.Panel1.ResumeLayout(false);
+            this.splitContainer5.Panel1.PerformLayout();
+            this.splitContainer5.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -604,18 +619,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel1.PerformLayout();
-            this.splitContainer4.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.splitContainer5.Panel1.ResumeLayout(false);
-            this.splitContainer5.Panel1.PerformLayout();
-            this.splitContainer5.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
-            this.splitContainer5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

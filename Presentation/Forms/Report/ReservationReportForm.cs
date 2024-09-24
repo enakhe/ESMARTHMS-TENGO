@@ -28,6 +28,8 @@ namespace ESMART_HMS.Presentation.Forms.Report
             _roomTypeController = roomTypeController;
             _reservationController = reservationController;
             InitializeComponent();
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
             InitializeTimer();
         }
 

@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -56,6 +54,9 @@
             this.manageReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookingReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservationReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transactionReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barItemReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,43 +75,19 @@
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.reservationReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.transactionReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.barItemReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1.SuspendLayout();
+            this.storeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.ForeColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1924, 75);
-            this.panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(51, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
-            this.label1.TabIndex = 2;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 100);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 41);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 617);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 676);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // menuStrip1
@@ -130,7 +107,8 @@
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 10, 0, 10);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 41);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -146,7 +124,7 @@
             // 
             this.homeToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("homeToolStripMenuItem1.Image")));
             this.homeToolStripMenuItem1.Name = "homeToolStripMenuItem1";
-            this.homeToolStripMenuItem1.Size = new System.Drawing.Size(117, 26);
+            this.homeToolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
             this.homeToolStripMenuItem1.Text = "Home";
             this.homeToolStripMenuItem1.Click += new System.EventHandler(this.homeToolStripMenuItem1_Click);
             // 
@@ -214,13 +192,16 @@
             // 
             // storeForToolStripMenuItem
             // 
+            this.storeForToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("storeForToolStripMenuItem.Image")));
             this.storeForToolStripMenuItem.Name = "storeForToolStripMenuItem";
-            this.storeForToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.storeForToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.storeForToolStripMenuItem.Text = "Store";
             this.storeForToolStripMenuItem.Click += new System.EventHandler(this.storeForToolStripMenuItem_Click);
             // 
             // restaurantToolStripMenuItem
             // 
+            this.restaurantToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.storeToolStripMenuItem});
             this.restaurantToolStripMenuItem.Name = "restaurantToolStripMenuItem";
             this.restaurantToolStripMenuItem.Size = new System.Drawing.Size(86, 21);
             this.restaurantToolStripMenuItem.Text = "Restaurant";
@@ -280,17 +261,40 @@
             // 
             // roomReportToolStripMenuItem
             // 
+            this.roomReportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("roomReportToolStripMenuItem.Image")));
             this.roomReportToolStripMenuItem.Name = "roomReportToolStripMenuItem";
-            this.roomReportToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.roomReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.roomReportToolStripMenuItem.Text = "Room Report";
             this.roomReportToolStripMenuItem.Click += new System.EventHandler(this.roomReportToolStripMenuItem_Click);
             // 
             // bookingReportToolStripMenuItem
             // 
+            this.bookingReportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bookingReportToolStripMenuItem.Image")));
             this.bookingReportToolStripMenuItem.Name = "bookingReportToolStripMenuItem";
-            this.bookingReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bookingReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.bookingReportToolStripMenuItem.Text = "Booking Report";
             this.bookingReportToolStripMenuItem.Click += new System.EventHandler(this.bookingReportToolStripMenuItem_Click);
+            // 
+            // reservationReportToolStripMenuItem
+            // 
+            this.reservationReportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reservationReportToolStripMenuItem.Image")));
+            this.reservationReportToolStripMenuItem.Name = "reservationReportToolStripMenuItem";
+            this.reservationReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.reservationReportToolStripMenuItem.Text = "Reservation Report";
+            this.reservationReportToolStripMenuItem.Click += new System.EventHandler(this.reservationReportToolStripMenuItem_Click);
+            // 
+            // transactionReportToolStripMenuItem
+            // 
+            this.transactionReportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("transactionReportToolStripMenuItem.Image")));
+            this.transactionReportToolStripMenuItem.Name = "transactionReportToolStripMenuItem";
+            this.transactionReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.transactionReportToolStripMenuItem.Text = "Transaction Report";
+            // 
+            // barItemReportToolStripMenuItem
+            // 
+            this.barItemReportToolStripMenuItem.Name = "barItemReportToolStripMenuItem";
+            this.barItemReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
+            this.barItemReportToolStripMenuItem.Text = "Bar Item Report";
             // 
             // accountsToolStripMenuItem
             // 
@@ -311,10 +315,10 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.systemSetupToolStripMenuItem,
-            this.hardwareSetupToolStripMenuItem,
             this.roomSettingToolStripMenuItem,
             this.usersSettingToolStripMenuItem,
             this.cardMaintenanceToolStripMenuItem,
+            this.hardwareSetupToolStripMenuItem,
             this.importsExportsToolStripMenuItem,
             this.restoreDataFromBackupToolStripMenuItem,
             this.taxFileMaintenanceToolStripMenuItem,
@@ -437,24 +441,13 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
-            // reservationReportToolStripMenuItem
+            // storeToolStripMenuItem
             // 
-            this.reservationReportToolStripMenuItem.Name = "reservationReportToolStripMenuItem";
-            this.reservationReportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.reservationReportToolStripMenuItem.Text = "Reservation Report";
-            this.reservationReportToolStripMenuItem.Click += new System.EventHandler(this.reservationReportToolStripMenuItem_Click);
-            // 
-            // transactionReportToolStripMenuItem
-            // 
-            this.transactionReportToolStripMenuItem.Name = "transactionReportToolStripMenuItem";
-            this.transactionReportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.transactionReportToolStripMenuItem.Text = "Transaction Report";
-            // 
-            // barItemReportToolStripMenuItem
-            // 
-            this.barItemReportToolStripMenuItem.Name = "barItemReportToolStripMenuItem";
-            this.barItemReportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.barItemReportToolStripMenuItem.Text = "Bar Item Report";
+            this.storeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("storeToolStripMenuItem.Image")));
+            this.storeToolStripMenuItem.Name = "storeToolStripMenuItem";
+            this.storeToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.storeToolStripMenuItem.Text = "Store";
+            this.storeToolStripMenuItem.Click += new System.EventHandler(this.storeToolStripMenuItem_Click);
             // 
             // Home
             // 
@@ -463,7 +456,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(212)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(1924, 717);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
@@ -473,8 +465,6 @@
             this.Text = "E-SMART HMS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Home_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
@@ -485,9 +475,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer menuTransition;
         private System.Windows.Forms.Timer sidebarTransition;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -533,5 +520,6 @@
         private System.Windows.Forms.ToolStripMenuItem reservationReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem barItemReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem storeToolStripMenuItem;
     }
 }

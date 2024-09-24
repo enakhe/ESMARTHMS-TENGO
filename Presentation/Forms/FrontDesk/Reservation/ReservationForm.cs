@@ -33,6 +33,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             _applicationUserController = applicationUserController;
             _systemSetupController = systemSetupController;
             InitializeComponent();
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
             ApplyAuthorization();
         }
 
@@ -45,6 +47,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private void ReservationForm_Load(object sender, EventArgs e)
         {
             LoadData();
+            splitContainer19.SplitterWidth = 1;
+            splitContainer19.BackColor = splitContainer19.Panel1.BackColor;
         }
 
         private void LoadData()

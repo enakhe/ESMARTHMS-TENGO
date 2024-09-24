@@ -18,12 +18,17 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
         public BarStoreForm(BarItemController barItemController)
         {
             _barItemController = barItemController;
+            this.DoubleBuffered = true;
             InitializeComponent();
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
         }
 
         private void BarStoreForm_Load(object sender, EventArgs e)
         {
             LoadData();
+            splitContainer19.SplitterWidth = 1;
+            splitContainer19.BackColor = splitContainer19.Panel1.BackColor;
         }
 
         public void LoadData()

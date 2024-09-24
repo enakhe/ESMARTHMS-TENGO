@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace ESMART_HMS.Infrastructure.Data
 {
-    public class BarItemRepository : IBarItemRepository
+    public class MenuItemRepository : IBarItemRepository
     {
         private readonly ESMART_HMSDBEntities _db;
 
-        public BarItemRepository(ESMART_HMSDBEntities db)
+        public MenuItemRepository(ESMART_HMSDBEntities db)
         {
             _db = db;
         }

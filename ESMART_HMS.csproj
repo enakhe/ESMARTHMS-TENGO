@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ESMART_HMS</RootNamespace>
     <AssemblyName>ESMARTHMS</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -32,6 +32,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -197,7 +198,9 @@
     <Reference Include="SQLitePCLRaw.provider.dynamic_cdecl, Version=2.1.8.2226, Culture=neutral, PublicKeyToken=b68184102cba0b3b, processorArchitecture=MSIL">
       <HintPath>packages\SQLitePCLRaw.provider.dynamic_cdecl.2.1.8\lib\netstandard2.0\SQLitePCLRaw.provider.dynamic_cdecl.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -366,6 +369,7 @@
     <Compile Include="Application\UseCases\Bar\Store\BarItem\GetAllBarItemUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\CreateTransactionUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\GetAllTransactionsUseCase.cs" />
+    <Compile Include="Application\UseCases\Restaurant\RestaurantUseCases.cs" />
     <Compile Include="DependencyInjection.cs" />
     <Compile Include="Domain\DependencyInjection.cs" />
     <Compile Include="Domain\Entities\ApplicationUser.cs">
@@ -416,6 +420,9 @@
     <Compile Include="Domain\Entities\LicenseInfo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Entities\MenuItem.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Entities\Order.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -461,6 +468,7 @@
     <Compile Include="Domain\Interfaces\Maintenance\IRoleRepository.cs" />
     <Compile Include="Domain\Interfaces\Maintenance\IUserRoleRepository.cs" />
     <Compile Include="Domain\Interfaces\Maintenance\ISystemSetupRepository.cs" />
+    <Compile Include="Domain\Interfaces\Restaurant\IRestaurantRepository.cs" />
     <Compile Include="Domain\Utils\FormHelper.cs" />
     <Compile Include="Domain\Utils\LicenceHelper.cs" />
     <Compile Include="Domain\Utils\PrintHelper.cs" />
@@ -487,6 +495,7 @@
     <Compile Include="Infrastructure\Data\Maintenance\UserRepository.cs" />
     <Compile Include="Infrastructure\Data\Maintenance\RoleRepository.cs" />
     <Compile Include="Infrastructure\Data\Maintenance\UserRoleRepository.cs" />
+    <Compile Include="Infrastructure\Data\Restaurant\RestaurantRepository.cs" />
     <Compile Include="Infrastructure\DependencyInjection.cs" />
     <Compile Include="Infrastructure\Frameworks\TengoLock\Language.cs" />
     <Compile Include="Presentation\Controllers\Bar\OrderController.cs" />
@@ -503,6 +512,7 @@
     <Compile Include="Presentation\Controllers\Maintenance\RoomTypeController.cs" />
     <Compile Include="Presentation\Controllers\Account\TransactionController.cs" />
     <Compile Include="Presentation\Controllers\Maintenance\UserRoleController.cs" />
+    <Compile Include="Presentation\Controllers\Restaurant\RestaurantContoller.cs" />
     <Compile Include="Presentation\Forms\Account\BankAccount\AddBankAccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -723,6 +733,12 @@
     <Compile Include="Presentation\Forms\License\LicenseForm.Designer.cs">
       <DependentUpon>LicenseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\CardMaintenanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -783,6 +799,30 @@
     <Compile Include="Presentation\Forms\Report\RoomReportForm.Designer.cs">
       <DependentUpon>RoomReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Restaurant\AddMenuItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Restaurant\AddMenuItemForm.Designer.cs">
+      <DependentUpon>AddMenuItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Restaurant\EditRestaurantForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Restaurant\EditRestaurantForm.Designer.cs">
+      <DependentUpon>EditRestaurantForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Restaurant\OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Restaurant\OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Restaurant\RestaurantForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Restaurant\RestaurantForm.Designer.cs">
+      <DependentUpon>RestaurantForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\SplashScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -842,6 +882,7 @@
     <Compile Include="Domain\Enum\MembershipStatusEnum.cs" />
     <Compile Include="Presentation\DependencyInjection.cs" />
     <Compile Include="Presentation\ViewModels\IssueCardViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\MenuItemViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ReservationViewModel.cs" />
     <Compile Include="Presentation\ViewModels\RoomTypeViewModel.cs" />
     <Compile Include="Presentation\ViewModels\RoomViewModel.cs" />
@@ -978,6 +1019,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Report\RoomReportForm.resx">
       <DependentUpon>RoomReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Restaurant\AddMenuItemForm.resx">
+      <DependentUpon>AddMenuItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Restaurant\EditRestaurantForm.resx">
+      <DependentUpon>EditRestaurantForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Restaurant\OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Restaurant\RestaurantForm.resx">
+      <DependentUpon>RestaurantForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>

@@ -38,7 +38,7 @@ namespace ESMART_HMS.Infrastructure.Services
                             }
                             else
                             {
-                                MessageBox.Show("No user with the username exits. Please check if the username and the password is correct", "User not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Password incorrect. Please check if the password is correct", "Invalid credentials", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }

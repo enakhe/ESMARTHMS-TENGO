@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
+using System.Web.Configuration;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Guests
@@ -29,6 +30,8 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             LoadData();
             ApplyAuthorization();
             printDocument1.DefaultPageSettings.Landscape = true;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
         }
 
         private void ApplyAuthorization()
@@ -179,6 +182,12 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+        }
+
+        private void GuestForm_Load(object sender, EventArgs e)
+        {
+            splitContainer5.SplitterWidth = 1;
+            splitContainer5.BackColor = splitContainer5.Panel1.BackColor;
         }
     }
 }

@@ -40,6 +40,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         {
             this.customerTableAdapter.Fill(this.eSMART_HMSDBDataSet.Guest);
             LoadRoomData();
+            LoadGuestData();
             txtCheckIn.Value = DateTime.Now;
             txtCheckOut.Value = DateTime.Now.AddDays(1);
         }

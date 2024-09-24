@@ -23,7 +23,6 @@ namespace ESMART_HMS.Presentation.Forms
             _roomController = roomController;
             _guestController = guestController;
             InitializeComponent();
-            InitializeFlowPanel();
             floyLayoutPopulate();
             InitializeFlowLayoutPanel();
             PopulateRooms();
@@ -47,45 +46,7 @@ namespace ESMART_HMS.Presentation.Forms
 
         private void DashboardForm_Load(object sender, EventArgs e)
         {
-            LoadRoomData();
-            LoadGuestData();
             dispatcherTimer.Start();
-        }
-
-        public void InitializeFlowPanel()
-        {
-            this.Load += (sender, e) => CenterFlowLayoutPanel(flowLayoutPanel1, mainFlowLayoutPanel);
-        }
-
-        private void CenterFlowLayoutPanel(FlowLayoutPanel flowLayoutPanel, FlowLayoutPanel flowLayoutPanel2)
-        {
-            int totalWidth = flowLayoutPanel.Controls.Cast<Control>().Sum(c => c.Width);
-            int totalHeight = flowLayoutPanel.Controls.Cast<Control>().Sum(c => c.Height);
-
-            int paddingX = (flowLayoutPanel.ClientSize.Width - totalWidth) / 2;
-            int paddingY = (flowLayoutPanel.ClientSize.Height - totalHeight) / 2;
-
-            flowLayoutPanel.Padding = new Padding(paddingX, paddingY, paddingX, paddingY);
-
-            int totalWidth2 = flowLayoutPanel2.Controls.Cast<Control>().Sum(c => c.Width);
-            int totalHeight2 = flowLayoutPanel2.Controls.Cast<Control>().Sum(c => c.Height);
-
-            int paddingX2 = (flowLayoutPanel2.ClientSize.Width - totalWidth) / 2;
-            int paddingY2 = (flowLayoutPanel2.ClientSize.Height - totalHeight) / 2;
-
-            flowLayoutPanel2.Padding = new Padding(paddingX, paddingY, paddingX, paddingY);
-        }
-
-        public void LoadRoomData()
-        {
-            int roomCount = _roomController.GetAllRooms().Count;
-            txtRoomCount.Text = roomCount.ToString();
-        }
-
-        public void LoadGuestData()
-        {
-            int guestCount = _guestController.LoadGuests().Count;
-            txtGuestCount.Text = guestCount.ToString();
         }
 
         private void btnView_Click(object sender, EventArgs e)

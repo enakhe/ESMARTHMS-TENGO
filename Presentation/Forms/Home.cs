@@ -7,6 +7,7 @@ using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
 using ESMART_HMS.Presentation.Forms.Report;
 using ESMART_HMS.Presentation.Forms.Reservation;
+using ESMART_HMS.Presentation.Forms.Restaurant;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.Store.BarStore;
 using ESMART_HMS.Presentation.Forms.Tools.Option;
@@ -31,6 +32,7 @@ namespace ESMART_HMS.Presentation.Forms
         OptionsFrom optionsFrom;
         TransactionForm transactionForm;
         BarStoreForm barStoreForm;
+        RestaurantForm restaurantForm;
 
         // Maintenance
         SystemSetupFrom systemSetupFrom;
@@ -51,6 +53,7 @@ namespace ESMART_HMS.Presentation.Forms
         private Color vacantColor = Color.LightGreen;
         private Color reservedColor = Color.LightYellow;
         private Color bookedColor = Color.LightBlue;
+        private Image _bgImage;
 
         public Home(GuestController customerViewModel, RoomController roomController, RoomTypeController roomTypeController, ReservationController reservationController, ApplicationUserController userController)
         {
@@ -60,9 +63,21 @@ namespace ESMART_HMS.Presentation.Forms
             _reservationController = reservationController;
             _applicationUserController = userController;
             InitializeComponent();
+            LoadBackgroundImage();
+
+            this.BackgroundImage = _bgImage;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
             this.IsMdiContainer = true;
             this.BackColor = Color.White;
             this.Load += new EventHandler(MainForm_Load);
+        }
+
+        private void LoadBackgroundImage()
+        {
+            _bgImage = new Bitmap(@"C:\Users\izuag\OneDrive\Desktop\ESMART\ESMART_HMS\Files\background.jpg");
+            this.DoubleBuffered = true;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -76,18 +91,7 @@ namespace ESMART_HMS.Presentation.Forms
 
         private void Home_Load(object sender, EventArgs e)
         {
-            if (indexForm == null)
-            {
-                var services = new ServiceCollection();
-                DependencyInjection.ConfigureServices(services);
-                var serviceProvider = services.BuildServiceProvider();
 
-                indexForm = serviceProvider.GetRequiredService<DashboardForm>();
-                indexForm.FormClosed += Dashboard_FormClosed;
-                indexForm.MdiParent = this;
-                indexForm.Dock = DockStyle.Fill;
-                indexForm.Show();
-            }
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -111,6 +115,8 @@ namespace ESMART_HMS.Presentation.Forms
                 customerForm = serviceProvider.GetRequiredService<GuestForm>();
                 customerForm.FormClosed += Guest_FormClosed;
                 customerForm.MdiParent = this;
+                customerForm.BackgroundImage = _bgImage;
+                customerForm.BackgroundImageLayout = ImageLayout.Stretch;
                 customerForm.Dock = DockStyle.Fill;
                 customerForm.Show();
             }
@@ -180,6 +186,8 @@ namespace ESMART_HMS.Presentation.Forms
                 barStoreForm = serviceProvider.GetRequiredService<BarStoreForm>();
                 barStoreForm.FormClosed += BarStore_FormClosed;
                 barStoreForm.MdiParent = this;
+                barStoreForm.BackgroundImage = _bgImage;
+                barStoreForm.BackgroundImageLayout = ImageLayout.Stretch;
                 barStoreForm.Dock = DockStyle.Fill;
                 barStoreForm.Show();
             }
@@ -199,6 +207,8 @@ namespace ESMART_HMS.Presentation.Forms
             indexForm.FormClosed += Dashboard_FormClosed;
             indexForm.MdiParent = this;
             indexForm.Dock = DockStyle.Fill;
+            indexForm.BackgroundImage = _bgImage;
+            indexForm.BackgroundImageLayout = ImageLayout.Stretch;
             indexForm.Show();
         }
 
@@ -251,6 +261,8 @@ namespace ESMART_HMS.Presentation.Forms
                 transactionForm = serviceProvider.GetRequiredService<TransactionForm>();
                 transactionForm.FormClosed += Transaction_FormClosed;
                 transactionForm.MdiParent = this;
+                transactionForm.BackgroundImage = _bgImage;
+                transactionForm.BackgroundImageLayout = ImageLayout.Stretch;
                 transactionForm.Dock = DockStyle.Fill;
                 transactionForm.Show();
             }
@@ -322,6 +334,8 @@ namespace ESMART_HMS.Presentation.Forms
                 roomForm = serviceProvider.GetRequiredService<RoomForm>();
                 roomForm.FormClosed += Room_FormClosed;
                 roomForm.MdiParent = this;
+                roomForm.BackgroundImage = _bgImage;
+                roomForm.BackgroundImageLayout = ImageLayout.Stretch;
                 roomForm.Dock = DockStyle.Fill;
                 roomForm.Show();
             }
@@ -344,6 +358,8 @@ namespace ESMART_HMS.Presentation.Forms
                 reservationForm = serviceProvider.GetRequiredService<ReservationForm>();
                 reservationForm.FormClosed += Reservation_FormClosed;
                 reservationForm.MdiParent = this;
+                reservationForm.BackgroundImage = _bgImage;
+                reservationForm.BackgroundImageLayout = ImageLayout.Stretch;
                 reservationForm.Dock = DockStyle.Fill;
                 reservationForm.Show();
             }
@@ -364,6 +380,8 @@ namespace ESMART_HMS.Presentation.Forms
                 bookingForm = serviceProvider.GetRequiredService<bookingForm>();
                 bookingForm.FormClosed += booking_FormClosed;
                 bookingForm.MdiParent = this;
+                bookingForm.BackgroundImage = _bgImage;
+                bookingForm.BackgroundImageLayout = ImageLayout.Stretch;
                 bookingForm.Dock = DockStyle.Fill;
                 bookingForm.Show();
             }
@@ -389,6 +407,8 @@ namespace ESMART_HMS.Presentation.Forms
                 roomReportForm = serviceProvider.GetRequiredService<RoomReportForm>();
                 roomReportForm.FormClosed += RoomReport_FormClosed;
                 roomReportForm.MdiParent = this;
+                roomReportForm.BackgroundImage = _bgImage;
+                roomReportForm.BackgroundImageLayout = ImageLayout.Stretch;
                 roomReportForm.Dock = DockStyle.Fill;
                 roomReportForm.Show();
             }
@@ -414,6 +434,8 @@ namespace ESMART_HMS.Presentation.Forms
                 bookingReportForm = serviceProvider.GetRequiredService<bookingReportForm>();
                 bookingReportForm.FormClosed += bookingReport_FormClosed;
                 bookingReportForm.MdiParent = this;
+                bookingReportForm.BackgroundImage = _bgImage;
+                bookingReportForm.BackgroundImageLayout = ImageLayout.Stretch;
                 bookingReportForm.Dock = DockStyle.Fill;
                 bookingReportForm.Show();
             }
@@ -439,12 +461,41 @@ namespace ESMART_HMS.Presentation.Forms
                 reservationReportForm = serviceProvider.GetRequiredService<ReservationReportForm>();
                 reservationReportForm.FormClosed += ReservationReport_FormClosed;
                 reservationReportForm.MdiParent = this;
+                reservationReportForm.BackgroundImage = _bgImage;
+                reservationReportForm.BackgroundImageLayout = ImageLayout.Stretch;
                 reservationReportForm.Dock = DockStyle.Fill;
                 reservationReportForm.Show();
             }
             else
             {
                 reservationReportForm.Activate();
+            }
+        }
+
+        private void Restaurant_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            restaurantForm = null;
+        }
+
+        private void storeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (restaurantForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                restaurantForm = serviceProvider.GetRequiredService<RestaurantForm>();
+                restaurantForm.FormClosed += Restaurant_FormClosed;
+                restaurantForm.MdiParent = this;
+                restaurantForm.BackgroundImage = _bgImage;
+                restaurantForm.BackgroundImageLayout = ImageLayout.Stretch;
+                restaurantForm.Dock = DockStyle.Fill;
+                restaurantForm.Show();
+            }
+            else
+            {
+                restaurantForm.Activate();
             }
         }
     }

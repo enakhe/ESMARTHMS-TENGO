@@ -42,7 +42,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.topFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.customerBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.customerTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter();
@@ -61,6 +60,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnDeleteG = new System.Windows.Forms.Button();
             this.btnViewDetails = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -112,7 +112,6 @@
             this.CreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDeleteG = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -167,20 +166,10 @@
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1556, 0);
+            this.panel1.Location = new System.Drawing.Point(1526, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(0, 763);
+            this.panel1.Size = new System.Drawing.Size(0, 703);
             this.panel1.TabIndex = 3;
-            // 
-            // topFlowPanel
-            // 
-            this.topFlowPanel.BackColor = System.Drawing.Color.White;
-            this.topFlowPanel.Location = new System.Drawing.Point(1549, 473);
-            this.topFlowPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.topFlowPanel.Name = "topFlowPanel";
-            this.topFlowPanel.Padding = new System.Windows.Forms.Padding(30, 30, 0, 0);
-            this.topFlowPanel.Size = new System.Drawing.Size(596, 198);
-            this.topFlowPanel.TabIndex = 15;
             // 
             // customerBindingSource2
             // 
@@ -198,8 +187,9 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Black;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(30, 30);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -209,20 +199,22 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(30);
-            this.splitContainer1.Size = new System.Drawing.Size(1556, 763);
-            this.splitContainer1.SplitterDistance = 224;
+            this.splitContainer1.Size = new System.Drawing.Size(1496, 703);
+            this.splitContainer1.SplitterDistance = 206;
             this.splitContainer1.TabIndex = 16;
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.BackColor = System.Drawing.SystemColors.Control;
             this.flowLayoutPanel2.Controls.Add(this.panel2);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(30, 20, 20, 20);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1556, 224);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1496, 206);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // panel2
@@ -311,14 +303,13 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(30, 30);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(20);
-            this.panel3.Size = new System.Drawing.Size(1496, 475);
+            this.panel3.Size = new System.Drawing.Size(1436, 433);
             this.panel3.TabIndex = 0;
             // 
             // splitContainer6
             // 
             this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer6.Location = new System.Drawing.Point(20, 20);
+            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
             this.splitContainer6.Name = "splitContainer6";
             this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -329,8 +320,8 @@
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.dgvGuests);
-            this.splitContainer6.Size = new System.Drawing.Size(1454, 433);
-            this.splitContainer6.SplitterDistance = 58;
+            this.splitContainer6.Size = new System.Drawing.Size(1434, 431);
+            this.splitContainer6.SplitterDistance = 57;
             this.splitContainer6.TabIndex = 0;
             // 
             // splitContainer7
@@ -346,8 +337,8 @@
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.Controls.Add(this.flowLayoutPanel5);
-            this.splitContainer7.Size = new System.Drawing.Size(1454, 58);
-            this.splitContainer7.SplitterDistance = 798;
+            this.splitContainer7.Size = new System.Drawing.Size(1434, 57);
+            this.splitContainer7.SplitterDistance = 787;
             this.splitContainer7.TabIndex = 0;
             // 
             // flowLayoutPanel4
@@ -360,7 +351,7 @@
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Padding = new System.Windows.Forms.Padding(20, 15, 5, 20);
             this.flowLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(798, 58);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(787, 57);
             this.flowLayoutPanel4.TabIndex = 5;
             // 
             // label5
@@ -395,15 +386,28 @@
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Padding = new System.Windows.Forms.Padding(20, 5, 5, 20);
             this.flowLayoutPanel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(652, 58);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(643, 57);
             this.flowLayoutPanel5.TabIndex = 4;
+            // 
+            // btnDeleteG
+            // 
+            this.btnDeleteG.BackColor = System.Drawing.Color.Red;
+            this.btnDeleteG.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteG.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteG.Location = new System.Drawing.Point(472, 8);
+            this.btnDeleteG.Name = "btnDeleteG";
+            this.btnDeleteG.Size = new System.Drawing.Size(143, 46);
+            this.btnDeleteG.TabIndex = 0;
+            this.btnDeleteG.Text = "Delete";
+            this.btnDeleteG.UseVisualStyleBackColor = false;
+            this.btnDeleteG.Click += new System.EventHandler(this.btnDeleteG_Click);
             // 
             // btnViewDetails
             // 
             this.btnViewDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnViewDetails.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewDetails.ForeColor = System.Drawing.Color.White;
-            this.btnViewDetails.Location = new System.Drawing.Point(332, 8);
+            this.btnViewDetails.Location = new System.Drawing.Point(323, 8);
             this.btnViewDetails.Name = "btnViewDetails";
             this.btnViewDetails.Size = new System.Drawing.Size(143, 46);
             this.btnViewDetails.TabIndex = 0;
@@ -416,7 +420,7 @@
             this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(183, 8);
+            this.btnEdit.Location = new System.Drawing.Point(174, 8);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(143, 46);
             this.btnEdit.TabIndex = 0;
@@ -429,7 +433,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(121)))), ((int)(((byte)(247)))));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(34, 8);
+            this.btnAdd.Location = new System.Drawing.Point(25, 8);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(143, 46);
             this.btnAdd.TabIndex = 0;
@@ -501,7 +505,7 @@
             this.dgvGuests.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvGuests.RowHeadersWidth = 51;
             this.dgvGuests.RowTemplate.Height = 24;
-            this.dgvGuests.Size = new System.Drawing.Size(1454, 371);
+            this.dgvGuests.Size = new System.Drawing.Size(1434, 370);
             this.dgvGuests.TabIndex = 4;
             // 
             // idDataGridViewTextBoxColumn
@@ -974,32 +978,20 @@
             this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
             this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // btnDeleteG
-            // 
-            this.btnDeleteG.BackColor = System.Drawing.Color.Red;
-            this.btnDeleteG.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteG.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteG.Location = new System.Drawing.Point(481, 8);
-            this.btnDeleteG.Name = "btnDeleteG";
-            this.btnDeleteG.Size = new System.Drawing.Size(143, 46);
-            this.btnDeleteG.TabIndex = 0;
-            this.btnDeleteG.Text = "Delete";
-            this.btnDeleteG.UseVisualStyleBackColor = false;
-            this.btnDeleteG.Click += new System.EventHandler(this.btnDeleteG_Click);
-            // 
             // GuestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1556, 763);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.topFlowPanel);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GuestForm";
-            this.Text = "GuestsForm";
+            this.Padding = new System.Windows.Forms.Padding(30);
+            this.Text = "Guests";
+            this.Load += new System.EventHandler(this.GuestForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1058,7 +1050,6 @@
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.FlowLayoutPanel topFlowPanel;
         private ESMART_HMSDBDataSet eSMART_HMSDBDataSet;
         private System.Windows.Forms.BindingSource customerBindingSource2;
         private ESMART_HMSDBDataSetTableAdapters.GuestTableAdapter customerTableAdapter;

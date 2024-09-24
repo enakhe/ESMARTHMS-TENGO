@@ -60,6 +60,8 @@
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__IssuedBy__02FC7413" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__ItemId__03F0984C" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__CustomerI__07C12930" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.MenuItem" Width="1.5" PointX="6.375" PointY="39.875" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__MenuItem__Create__02FC7413" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
