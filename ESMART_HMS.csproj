@@ -278,11 +278,6 @@
     <Compile Include="Application\UseCases\Account\Transaction\GetByServiceIdAndStatusUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\GetTotalAmountUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\UpdateTransactionUseCase.cs" />
-    <Compile Include="Application\UseCases\Bar\Order\OrderUseCases.cs" />
-    <Compile Include="Application\UseCases\Bar\Store\BarItem\DeleteBarItemUseCase.cs" />
-    <Compile Include="Application\UseCases\Bar\Store\BarItem\FilterBarItemUseCase.cs" />
-    <Compile Include="Application\UseCases\Bar\Store\BarItem\GetBarItemByIdUseCase.cs" />
-    <Compile Include="Application\UseCases\Bar\Store\BarItem\UpdateBarItemUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Booking\DeleteBookingUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Booking\GetActiveBookingByFilterUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Booking\GetAllBookingByDateUseCase.cs" />
@@ -296,6 +291,7 @@
     <Compile Include="Application\UseCases\FrontDesk\Reservation\GetReservationByPaymentStatusUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Reservation\GetReservationByRoomTypeAndDateUseCase.cs" />
     <Compile Include="Application\UseCases\FrontDesk\Reservation\GetReservationByStatuseAndDateUseCase.cs" />
+    <Compile Include="Application\UseCases\Inventory\InventoryUseCases.cs" />
     <Compile Include="Application\UseCases\Maintenance\ApplicationUserRole\CreateUserRoleUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\ApplicationUser\CreateApplicationUserUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\ApplicationUser\GetApplicationUserByIdUseCase.cs" />
@@ -365,8 +361,6 @@
     <Compile Include="Application\UseCases\Maintenance\Room\GetRoomByIdUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\SearchRoomUseCase.cs" />
     <Compile Include="Application\UseCases\Maintenance\Room\UpdateRoomUseCase.cs" />
-    <Compile Include="Application\UseCases\Bar\Store\BarItem\CreateBarItemUseCase.cs" />
-    <Compile Include="Application\UseCases\Bar\Store\BarItem\GetAllBarItemUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\CreateTransactionUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\GetAllTransactionsUseCase.cs" />
     <Compile Include="Application\UseCases\Restaurant\RestaurantUseCases.cs" />
@@ -385,9 +379,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\BankAccount.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Domain\Entities\BarItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\Booking.cs">
@@ -414,6 +405,9 @@
     <Compile Include="Domain\Entities\IngredientItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Entities\Inventory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Entities\Invoice.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -424,6 +418,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\Order.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Entities\OrderItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\Entities\Permission.cs">
@@ -452,9 +449,8 @@
     </Compile>
     <Compile Include="Domain\Enum\LockEnum.cs" />
     <Compile Include="Domain\Enum\RoomStatusEnum.cs" />
-    <Compile Include="Domain\Interfaces\Bar\IBarItemRepository.cs" />
-    <Compile Include="Domain\Interfaces\Bar\IOrderRepository.cs" />
     <Compile Include="Domain\Interfaces\FrontDesk\IBookingRepository.cs" />
+    <Compile Include="Domain\Interfaces\Inventory\IInventoryRespository.cs" />
     <Compile Include="Domain\Interfaces\Maintenance\ICardRepository.cs" />
     <Compile Include="Domain\Interfaces\Maintenance\IConfigurationRepository.cs" />
     <Compile Include="Domain\Interfaces\FrontDesk\IGuestRepository.cs" />
@@ -481,9 +477,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Data\Bar\BarItemRepository.cs" />
-    <Compile Include="Infrastructure\Data\Bar\OrderRepository.cs" />
     <Compile Include="Infrastructure\Data\FrontDesk\BookingRepository.cs" />
+    <Compile Include="Infrastructure\Data\Inventory\InventoryRepository.cs" />
     <Compile Include="Infrastructure\Data\Maintenance\CardRepository.cs" />
     <Compile Include="Infrastructure\Data\Maintenance\ConfigurationRepository.cs" />
     <Compile Include="Infrastructure\Data\Maintenance\LicenseRepository.cs" />
@@ -498,9 +493,8 @@
     <Compile Include="Infrastructure\Data\Restaurant\RestaurantRepository.cs" />
     <Compile Include="Infrastructure\DependencyInjection.cs" />
     <Compile Include="Infrastructure\Frameworks\TengoLock\Language.cs" />
-    <Compile Include="Presentation\Controllers\Bar\OrderController.cs" />
+    <Compile Include="Presentation\Controllers\Inventory\InventoryController.cs" />
     <Compile Include="Presentation\Controllers\Maintenance\ApplicationUserController.cs" />
-    <Compile Include="Presentation\Controllers\Bar\BarItemController.cs" />
     <Compile Include="Presentation\Controllers\FrontDesk\BookingController.cs" />
     <Compile Include="Presentation\Controllers\Maintenance\CardController.cs" />
     <Compile Include="Presentation\Controllers\Maintenance\ConfigurationController.cs" />
@@ -524,12 +518,6 @@
     </Compile>
     <Compile Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.Designer.cs">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Forms\Bar\BarStore\EditBarItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\Bar\BarStore\EditBarItemForm.Designer.cs">
-      <DependentUpon>EditBarItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FormClasses\BorderPanel.cs">
       <SubType>Component</SubType>
@@ -620,12 +608,6 @@
     </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Room\Building\EditBuildingForm.Designer.cs">
       <DependentUpon>EditBuildingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Forms\Bar\BarStore\OrderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\Bar\BarStore\OrderForm.Designer.cs">
-      <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Room\Floor\AddFloorForm.cs">
       <SubType>Form</SubType>
@@ -720,6 +702,18 @@
     </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\RoomType\AddRoomTypeForm.Designer.cs">
       <DependentUpon>AddRoomTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Inventory\AddInventoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Inventory\AddInventoryForm.Designer.cs">
+      <DependentUpon>AddInventoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Inventory\MenuItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Inventory\MenuItemForm.Designer.cs">
+      <DependentUpon>MenuItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\License\InitializeDatabaseForm.cs">
       <SubType>Form</SubType>
@@ -829,18 +823,6 @@
     <Compile Include="Presentation\Forms\SplashScreenForm.Designer.cs">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Bar\BarStore\AddBarItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\Bar\BarStore\AddBarItemForm.Designer.cs">
-      <DependentUpon>AddBarItemForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Forms\Bar\BarStore\BarStoreForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Presentation\Forms\Bar\BarStore\BarStoreForm.Designer.cs">
-      <DependentUpon>BarStoreForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Forms\Maintenance\Tools\Options\Accounts\UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -869,7 +851,6 @@
     <Compile Include="Presentation\Sessions\AuthSession.cs" />
     <Compile Include="Presentation\ViewModels\AreaViewModel.cs" />
     <Compile Include="Presentation\ViewModels\BankAccountViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\BarItemViewModel.cs" />
     <Compile Include="Presentation\ViewModels\BookingViewModel.cs" />
     <Compile Include="Presentation\ViewModels\GuestViewModel.cs" />
     <Compile Include="Infrastructure\Services\DatabaseService.cs" />
@@ -896,9 +877,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.resx">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Bar\BarStore\EditBarItemForm.resx">
-      <DependentUpon>EditBarItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Booking\AddBookingForm.resx">
       <DependentUpon>AddBookingForm.cs</DependentUpon>
@@ -939,9 +917,6 @@
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\Building\EditBuildingForm.resx">
       <DependentUpon>EditBuildingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Bar\BarStore\OrderForm.resx">
-      <DependentUpon>OrderForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\Floor\AddFloorForm.resx">
       <DependentUpon>AddFloorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -956,6 +931,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Inventory\AddInventoryForm.resx">
+      <DependentUpon>AddInventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Inventory\MenuItemForm.resx">
+      <DependentUpon>MenuItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\License\InitializeDatabaseForm.resx">
       <DependentUpon>InitializeDatabaseForm.cs</DependentUpon>
@@ -1035,12 +1016,6 @@
     <EmbeddedResource Include="Presentation\Forms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Bar\BarStore\AddBarItemForm.resx">
-      <DependentUpon>AddBarItemForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Bar\BarStore\BarStoreForm.resx">
-      <DependentUpon>BarStoreForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\Tools\Options\Accounts\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1116,6 +1091,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Interfaces\" />
+    <Folder Include="Infrastructure\Data\Inventory\MenuItem\" />
     <Folder Include="Presentation\Mappers\" />
   </ItemGroup>
   <ItemGroup>

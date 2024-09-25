@@ -6,10 +6,10 @@ namespace ESMART_HMS.Domain.Interfaces
 {
     public interface IBarItemRepository
     {
-        void AddItem(BarItem barItem);
+        void AddItem(MenuItem barItem);
         List<BarItemViewModel> GetBarItems();
-        void UpdateBarItem(BarItem barItem);
-        BarItem GetBarItemById(string id);
+        void UpdateBarItem(MenuItem barItem);
+        MenuItem GetBarItemById(string id);
         void DeleteBarItem(string id);
         List<BarItemViewModel> FilterBarItem(string keyword);
     }

@@ -1,8 +1,8 @@
-﻿using ESMART_HMS.Presentation.Controllers.Bar;
+﻿//using ESMART_HMS.Presentation.Controllers.Bar;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Account.BankAccount;
-using ESMART_HMS.Presentation.Forms.Bar;
+//using ESMART_HMS.Presentation.Forms.Bar;
 using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
@@ -19,13 +19,15 @@ using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Restaurant;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
-using ESMART_HMS.Presentation.Forms.Store.BarStore;
+//using ESMART_HMS.Presentation.Forms.Store.BarStore;
 using ESMART_HMS.Presentation.Forms.Tools.Option.Financial;
 using ESMART_HMS.Presentation.Forms.Tools.Options.Accounts;
 using ESMART_HMS.Presentation.Forms.Transaction;
 using ESMART_HMS.Presentation.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using ESMART_HMS.Presentation.Controllers.Restaurant;
+using ESMART_HMS.Presentation.Forms.Inventory;
+using ESMART_HMS.Presentation.Controllers.Inventory;
 
 namespace ESMART_HMS.Presentation
 {
@@ -55,12 +57,13 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<TransactionController>();
             services.AddScoped<ApplicationUserController>();
             services.AddScoped<UserRoleController>();
-            services.AddScoped<BarItemController>();
+            //services.AddScoped<BarItemController>();
             services.AddScoped<SystemSetupController>();
             services.AddScoped<CardController>();
             services.AddScoped<LicenseController>();
-            services.AddScoped<OrderController>();
+            //services.AddScoped<OrderController>();
             services.AddScoped<RestaurantContoller>();
+            services.AddScoped<InventoryController>();
 
             return services;
         }
@@ -100,14 +103,16 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<FinancialForm>();
             services.AddScoped<UserForm>();
 
-            services.AddScoped<BarStoreForm>();
-            services.AddScoped<AddBarItemForm>();
-            services.AddScoped<Presentation.Forms.Bar.OrderForm>();
+            //services.AddScoped<BarStoreForm>();
+            //services.AddScoped<AddBarItemForm>();
+            //services.AddScoped<Presentation.Forms.Bar.OrderForm>();
             services.AddScoped<DashboardForm>();
 
             services.AddScoped<RestaurantForm>();
             services.AddScoped<AddMenuItemForm>();
             services.AddScoped<Presentation.Forms.Restaurant.OrderForm>();
+            services.AddScoped<MenuItemForm>();
+            services.AddScoped<AddInventoryForm>();
 
             return services;
         }

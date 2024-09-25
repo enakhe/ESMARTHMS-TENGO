@@ -12,22 +12,27 @@ namespace ESMART_HMS.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class OrderItem
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public OrderItem()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public string Id { get; set; }
-        public string OrderId { get; set; }
-        public string CustomerId { get; set; }
-        public System.DateTime OrderDate { get; set; }
-        public Nullable<decimal> TotalAmount { get; set; }
-        public string PaymentMethod { get; set; }
-        public string PaymentStatus { get; set; }
+        public string OrderItemId { get; set; }
         public string ItemId { get; set; }
         public int Quantity { get; set; }
+        public System.DateTime OrderDate { get; set; }
+        public Nullable<decimal> ItemPrice { get; set; }
+        public Nullable<decimal> TotalAmount { get; set; }
         public bool IsTrashed { get; set; }
         public string IssuedBy { get; set; }
     
         public virtual ApplicationUser ApplicationUser { get; set; }
-        public virtual Guest Guest { get; set; }
-        public virtual OrderItem OrderItem { get; set; }
+        public virtual MenuItem MenuItem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

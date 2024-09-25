@@ -42,10 +42,8 @@
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managebookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manageStoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.storeForToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restaurantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.laundryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gymToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spaServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,10 +59,10 @@
             this.transactionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hardwareSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cardMaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hardwareSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importsExportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreDataFromBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taxFileMaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +73,9 @@
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.storeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restaurantToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.laundryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
@@ -98,9 +98,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem,
             this.customerToolStripMenuItem,
-            this.manageStoreToolStripMenuItem,
-            this.restaurantToolStripMenuItem,
-            this.laundryToolStripMenuItem,
+            this.inventoryToolStripMenuItem,
             this.newOrderToolStripMenuItem,
             this.manageReportsToolStripMenuItem,
             this.accountsToolStripMenuItem,
@@ -124,7 +122,7 @@
             // 
             this.homeToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("homeToolStripMenuItem1.Image")));
             this.homeToolStripMenuItem1.Name = "homeToolStripMenuItem1";
-            this.homeToolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
+            this.homeToolStripMenuItem1.Size = new System.Drawing.Size(117, 26);
             this.homeToolStripMenuItem1.Text = "Home";
             this.homeToolStripMenuItem1.Click += new System.EventHandler(this.homeToolStripMenuItem1_Click);
             // 
@@ -146,21 +144,21 @@
             this.customerMainToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.customerMainToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.customerMainToolStripMenuItem.Name = "customerMainToolStripMenuItem";
-            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.customerMainToolStripMenuItem.Text = "Guests";
             this.customerMainToolStripMenuItem.Click += new System.EventHandler(this.customerMainToolStripMenuItem_Click_1);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("roomsToolStripMenuItem.Image")));
             this.roomsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
@@ -169,7 +167,7 @@
             this.manageReservationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("manageReservationToolStripMenuItem.Image")));
             this.manageReservationToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.manageReservationToolStripMenuItem.Name = "manageReservationToolStripMenuItem";
-            this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.manageReservationToolStripMenuItem.Text = "Reservations";
             this.manageReservationToolStripMenuItem.Click += new System.EventHandler(this.manageReservationToolStripMenuItem_Click);
             // 
@@ -178,39 +176,27 @@
             this.managebookingsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("managebookingsToolStripMenuItem.Image")));
             this.managebookingsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.managebookingsToolStripMenuItem.Name = "managebookingsToolStripMenuItem";
-            this.managebookingsToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.managebookingsToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.managebookingsToolStripMenuItem.Text = "Bookings";
             this.managebookingsToolStripMenuItem.Click += new System.EventHandler(this.managebookingsToolStripMenuItem_Click);
             // 
-            // manageStoreToolStripMenuItem
+            // inventoryToolStripMenuItem
             // 
-            this.manageStoreToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.storeForToolStripMenuItem});
-            this.manageStoreToolStripMenuItem.Name = "manageStoreToolStripMenuItem";
-            this.manageStoreToolStripMenuItem.Size = new System.Drawing.Size(40, 21);
-            this.manageStoreToolStripMenuItem.Text = "Bar";
+            this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemsToolStripMenuItem,
+            this.barToolStripMenuItem,
+            this.restaurantToolStripMenuItem1,
+            this.laundryToolStripMenuItem});
+            this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(80, 21);
+            this.inventoryToolStripMenuItem.Text = "Inventory";
             // 
-            // storeForToolStripMenuItem
+            // itemsToolStripMenuItem
             // 
-            this.storeForToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("storeForToolStripMenuItem.Image")));
-            this.storeForToolStripMenuItem.Name = "storeForToolStripMenuItem";
-            this.storeForToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.storeForToolStripMenuItem.Text = "Store";
-            this.storeForToolStripMenuItem.Click += new System.EventHandler(this.storeForToolStripMenuItem_Click);
-            // 
-            // restaurantToolStripMenuItem
-            // 
-            this.restaurantToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.storeToolStripMenuItem});
-            this.restaurantToolStripMenuItem.Name = "restaurantToolStripMenuItem";
-            this.restaurantToolStripMenuItem.Size = new System.Drawing.Size(86, 21);
-            this.restaurantToolStripMenuItem.Text = "Restaurant";
-            // 
-            // laundryToolStripMenuItem
-            // 
-            this.laundryToolStripMenuItem.Name = "laundryToolStripMenuItem";
-            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
-            this.laundryToolStripMenuItem.Text = "Laundry";
+            this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
+            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.itemsToolStripMenuItem.Text = "Items";
+            this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
             // newOrderToolStripMenuItem
             // 
@@ -339,14 +325,6 @@
             this.systemSetupToolStripMenuItem.Text = "System Setup";
             this.systemSetupToolStripMenuItem.Click += new System.EventHandler(this.systemSetupToolStripMenuItem_Click);
             // 
-            // hardwareSetupToolStripMenuItem
-            // 
-            this.hardwareSetupToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("hardwareSetupToolStripMenuItem.Image")));
-            this.hardwareSetupToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.hardwareSetupToolStripMenuItem.Name = "hardwareSetupToolStripMenuItem";
-            this.hardwareSetupToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.hardwareSetupToolStripMenuItem.Text = "Hardware Setup";
-            // 
             // roomSettingToolStripMenuItem
             // 
             this.roomSettingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("roomSettingToolStripMenuItem.Image")));
@@ -370,6 +348,14 @@
             this.cardMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.cardMaintenanceToolStripMenuItem.Text = "Card Maintenance";
             this.cardMaintenanceToolStripMenuItem.Click += new System.EventHandler(this.cardMaintenanceToolStripMenuItem_Click);
+            // 
+            // hardwareSetupToolStripMenuItem
+            // 
+            this.hardwareSetupToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("hardwareSetupToolStripMenuItem.Image")));
+            this.hardwareSetupToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.hardwareSetupToolStripMenuItem.Name = "hardwareSetupToolStripMenuItem";
+            this.hardwareSetupToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.hardwareSetupToolStripMenuItem.Text = "Hardware Setup";
             // 
             // importsExportsToolStripMenuItem
             // 
@@ -441,13 +427,23 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
-            // storeToolStripMenuItem
+            // barToolStripMenuItem
             // 
-            this.storeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("storeToolStripMenuItem.Image")));
-            this.storeToolStripMenuItem.Name = "storeToolStripMenuItem";
-            this.storeToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.storeToolStripMenuItem.Text = "Store";
-            this.storeToolStripMenuItem.Click += new System.EventHandler(this.storeToolStripMenuItem_Click);
+            this.barToolStripMenuItem.Name = "barToolStripMenuItem";
+            this.barToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.barToolStripMenuItem.Text = "Bar";
+            // 
+            // restaurantToolStripMenuItem1
+            // 
+            this.restaurantToolStripMenuItem1.Name = "restaurantToolStripMenuItem1";
+            this.restaurantToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.restaurantToolStripMenuItem1.Text = "Restaurant";
+            // 
+            // laundryToolStripMenuItem
+            // 
+            this.laundryToolStripMenuItem.Name = "laundryToolStripMenuItem";
+            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.laundryToolStripMenuItem.Text = "Laundry";
             // 
             // Home
             // 
@@ -483,8 +479,6 @@
         private System.Windows.Forms.ToolStripMenuItem customerMainToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manageStoreToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem storeForToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem swimmingPoolServiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spaServiceToolStripMenuItem;
@@ -499,8 +493,6 @@
         private System.Windows.Forms.ToolStripMenuItem manageReservationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem managebookingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem restaurantToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem laundryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gymToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem systemSetupToolStripMenuItem;
@@ -520,6 +512,10 @@
         private System.Windows.Forms.ToolStripMenuItem reservationReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem barItemReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem storeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inventoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem barToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restaurantToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem laundryToolStripMenuItem;
     }
 }

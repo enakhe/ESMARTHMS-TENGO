@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Infrastructure.Data.Inventory;
 using ESMART_HMS.Infrastructure.Data.Maintenance;
 using ESMART_HMS.Infrastructure.Data.Restaurant;
 using ESMART_HMS.Infrastructure.Services;
@@ -18,11 +19,12 @@ namespace ESMART_HMS.Infrastructure
             services.AddScoped<TransactionRepository>();
             services.AddScoped<UserRepository>();
             services.AddScoped<UserRoleRepository>();
-            services.AddScoped<MenuItemRepository>();
+            //services.AddScoped<MenuItemRepository>();
             services.AddScoped<SystemSetupRepository>();
             services.AddScoped<CardRepository>();
             services.AddScoped<LicenseRepository>();
             services.AddScoped<RestaurantRepository>();
+            services.AddScoped<InventoryRepository>();
 
             return services;
         }

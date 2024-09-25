@@ -1,4 +1,4 @@
-﻿using ESMART_HMS.Presentation.Controllers.Bar;
+﻿//using ESMART_HMS.Presentation.Controllers.Bar;
 using ESMART_HMS.Presentation.Controllers;
 using System;
 using System.Collections.Generic;
@@ -23,13 +23,12 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
         private readonly RestaurantContoller _restaurantContoller;
         private readonly GuestController _guestController;
         private readonly ApplicationUserController _applicationUserController;
-        private readonly OrderController _orderController;
+        //private readonly OrderController _orderController;
         private readonly TransactionController _transactionController;
-        public OrderForm(RestaurantContoller restaurantContoller, GuestController guestController, ApplicationUserController applicationUserController, OrderController orderController, TransactionController transactionController)
+        public OrderForm(RestaurantContoller restaurantContoller, GuestController guestController, ApplicationUserController applicationUserController, TransactionController transactionController)
         {
             _restaurantContoller = restaurantContoller;
             _guestController = guestController;
-            _orderController = orderController;
             _applicationUserController = applicationUserController;
             _transactionController = transactionController;
 
@@ -278,8 +277,7 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
                     order.ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
                     order.IssuedBy = AuthSession.CurrentUser.Id;
                     order.OrderId = "ORD" + random.Next(1000, 5000);
-                    order.DateCreated = DateTime.Now;
-                    order.DateModified = DateTime.Now;
+                   
 
                     if (checkBox1.Checked)
                     {
@@ -317,7 +315,7 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
 
                     _transactionController.AddTransaction(transaction);
 
-                    _orderController.AddOrder(order);
+                    //_orderController.AddOrder(order);
                     _restaurantContoller.UpdateItem(menuItem);
                     groupBox1.Controls.Clear();
                     flowLayoutPanelItems.Controls.Clear();

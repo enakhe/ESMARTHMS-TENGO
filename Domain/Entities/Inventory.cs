@@ -12,30 +12,20 @@ namespace ESMART_HMS.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class BarItem
+    public partial class Inventory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BarItem()
-        {
-            this.Orders = new HashSet<Order>();
-        }
-    
         public string Id { get; set; }
-        public string BarItemId { get; set; }
-        public string ItemName { get; set; }
-        public int Quantity { get; set; }
-        public string Type { get; set; }
-        public string Measurement { get; set; }
+        public string MenuItemId { get; set; }
+        public int InitialStock { get; set; }
+        public int CurrentStock { get; set; }
+        public int StockAdded { get; set; }
+        public int LowStockThreshold { get; set; }
         public string CreatedBy { get; set; }
         public bool IsTrashed { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
-        public string Barcode { get; set; }
-        public decimal CostPrice { get; set; }
-        public Nullable<decimal> SellingPrice { get; set; }
     
         public virtual ApplicationUser ApplicationUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual MenuItem MenuItem { get; set; }
     }
 }

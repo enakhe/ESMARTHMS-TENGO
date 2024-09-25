@@ -1,12 +1,13 @@
 ﻿using ESMART_HMS.Application.UseCases.Account.Transaction;
 using ESMART_HMS.Application.UseCases.ApplicationUser;
-using ESMART_HMS.Application.UseCases.Bar.Order;
-using ESMART_HMS.Application.UseCases.Bar.Store.BarItem;
+//using ESMART_HMS.Application.UseCases.Bar.Order;
+//using ESMART_HMS.Application.UseCases.Bar.Store.BarItem;
 using ESMART_HMS.Application.UseCases.booking;
 using ESMART_HMS.Application.UseCases.Configuration;
 using ESMART_HMS.Application.UseCases.FrontDesk.booking;
 using ESMART_HMS.Application.UseCases.FrontDesk.Reservation;
 using ESMART_HMS.Application.UseCases.Guest;
+using ESMART_HMS.Application.UseCases.Inventory;
 using ESMART_HMS.Application.UseCases.Maintenance.CardMaintenance;
 using ESMART_HMS.Application.UseCases.Maintenance.License;
 using ESMART_HMS.Application.UseCases.Maintenance.Room;
@@ -19,7 +20,7 @@ using ESMART_HMS.Application.UseCases.Reservation;
 using ESMART_HMS.Application.UseCases.Restaurant;
 using ESMART_HMS.Application.UseCases.Room;
 using ESMART_HMS.Application.UseCases.RoomTypes;
-using ESMART_HMS.Application.UseCases.Store.BarItem;
+//using ESMART_HMS.Application.UseCases.Store.BarItem;
 using ESMART_HMS.Application.UseCases.Transaction;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -123,14 +124,16 @@ namespace ESMART_HMS.Application
             services.AddScoped<CreateApplicationUserUseCase>();
 
             // BarItem Use Case
-            services.AddScoped<CreateBarItemUseCase>();
-            services.AddScoped<GetAllBarItemUseCase>();
-            services.AddScoped<UpdateBarItemUseCase>();
-            services.AddScoped<GetBarItemByIdUseCase>();
-            services.AddScoped<DeleteBarItemUseCase>();
-            services.AddScoped<FilterBarItemUseCase>();
+            //services.AddScoped<CreateBarItemUseCase>();
+            //services.AddScoped<GetAllBarItemUseCase>();
+            //services.AddScoped<UpdateBarItemUseCase>();
+            //services.AddScoped<GetBarItemByIdUseCase>();
+            //services.AddScoped<DeleteBarItemUseCase>();
+            //services.AddScoped<FilterBarItemUseCase>();
 
-            services.AddScoped<OrderUseCases>();    
+            //services.AddScoped<OrderUseCases>();    
+
+            services.AddScoped<InventoryUseCases>();
 
             // Maintenance / SystemSetup
             services.AddScoped<SetupCompanyUseCase>();

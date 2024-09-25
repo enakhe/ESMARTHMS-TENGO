@@ -2,6 +2,7 @@
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.Inventory;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
@@ -9,7 +10,7 @@ using ESMART_HMS.Presentation.Forms.Report;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Restaurant;
 using ESMART_HMS.Presentation.Forms.Rooms;
-using ESMART_HMS.Presentation.Forms.Store.BarStore;
+//using ESMART_HMS.Presentation.Forms.Store.BarStore;
 using ESMART_HMS.Presentation.Forms.Tools.Option;
 using ESMART_HMS.Presentation.Forms.Transaction;
 using ESMART_HMS.Presentation.Middleware;
@@ -31,7 +32,7 @@ namespace ESMART_HMS.Presentation.Forms
         bookingForm bookingForm;
         OptionsFrom optionsFrom;
         TransactionForm transactionForm;
-        BarStoreForm barStoreForm;
+        //BarStoreForm barStoreForm;
         RestaurantForm restaurantForm;
 
         // Maintenance
@@ -43,6 +44,7 @@ namespace ESMART_HMS.Presentation.Forms
         RoomReportForm roomReportForm;
         bookingReportForm bookingReportForm;
         ReservationReportForm reservationReportForm;
+        MenuItemForm menuItemForm;
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
@@ -170,32 +172,32 @@ namespace ESMART_HMS.Presentation.Forms
             transactionForm = null;
         }
 
-        private void BarStore_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            barStoreForm = null;
-        }
+        //private void BarStore_FormClosed(object sender, FormClosedEventArgs e)
+        //{
+        //    barStoreForm = null;
+        //}
 
-        private void storeForToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (barStoreForm == null)
-            {
-                var services = new ServiceCollection();
-                DependencyInjection.ConfigureServices(services);
-                var serviceProvider = services.BuildServiceProvider();
+        //private void storeForToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (barStoreForm == null)
+        //    {
+        //        var services = new ServiceCollection();
+        //        DependencyInjection.ConfigureServices(services);
+        //        var serviceProvider = services.BuildServiceProvider();
 
-                barStoreForm = serviceProvider.GetRequiredService<BarStoreForm>();
-                barStoreForm.FormClosed += BarStore_FormClosed;
-                barStoreForm.MdiParent = this;
-                barStoreForm.BackgroundImage = _bgImage;
-                barStoreForm.BackgroundImageLayout = ImageLayout.Stretch;
-                barStoreForm.Dock = DockStyle.Fill;
-                barStoreForm.Show();
-            }
-            else
-            {
-                barStoreForm.Activate();
-            }
-        }
+        //        barStoreForm = serviceProvider.GetRequiredService<BarStoreForm>();
+        //        barStoreForm.FormClosed += BarStore_FormClosed;
+        //        barStoreForm.MdiParent = this;
+        //        barStoreForm.BackgroundImage = _bgImage;
+        //        barStoreForm.BackgroundImageLayout = ImageLayout.Stretch;
+        //        barStoreForm.Dock = DockStyle.Fill;
+        //        barStoreForm.Show();
+        //    }
+        //    else
+        //    {
+        //        barStoreForm.Activate();
+        //    }
+        //}
 
         private void homeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -496,6 +498,33 @@ namespace ESMART_HMS.Presentation.Forms
             else
             {
                 restaurantForm.Activate();
+            }
+        }
+
+        private void MenuItem_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            menuItemForm = null;
+        }
+
+        private void itemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (menuItemForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                menuItemForm = serviceProvider.GetRequiredService<MenuItemForm>();
+                menuItemForm.FormClosed += MenuItem_FormClosed;
+                menuItemForm.MdiParent = this;
+                menuItemForm.BackgroundImage = _bgImage;
+                menuItemForm.BackgroundImageLayout = ImageLayout.Stretch;
+                menuItemForm.Dock = DockStyle.Fill;
+                menuItemForm.Show();
+            }
+            else
+            {
+                menuItemForm.Activate();
             }
         }
     }

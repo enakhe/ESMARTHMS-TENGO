@@ -17,7 +17,7 @@ namespace ESMART_HMS.Infrastructure.Data
             _db = db;
         }
 
-        public void AddItem(BarItem barItem)
+        public void AddItem(MenuItem barItem)
         {
             try
             {

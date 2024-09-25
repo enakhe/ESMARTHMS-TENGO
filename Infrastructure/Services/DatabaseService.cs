@@ -271,6 +271,7 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[MenuItemId][nvarchar](450) NOT NULL," +
                 "[Barcode][nvarchar](max) NOT NULL," +
                 "[ItemName][nvarchar](max) NOT NULL," +
+                "[Section][nvarchar](max) NOT NULL," +
                 "[Category][nvarchar](max) NOT NULL," +
                 "[CostPrice][decimal](10, 2) NOT NULL," +
                 "[SellingPrice][decimal](10, 2) NULL," +
@@ -287,7 +288,7 @@ namespace ESMART_HMS.Infrastructure.Services
             CreateTableIfNotExists("OrderItem",
                 "[Id][nvarchar](450) NOT NULL," +
                 "[OrderItemId][nvarchar](450) NOT NULL," +
-                "[MenuItemId][nvarchar](450) NOT NULL," +
+                "[ItemId][nvarchar](450) NOT NULL," +
                 "[Quantity][int] NOT NULL," +
                 "[OrderDate][datetime2](7) NOT NULL," +
                 "[ItemPrice][decimal](10, 2) NULL," +
@@ -295,7 +296,7 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[IsTrashed][bit] NOT NULL," +
                 "[IssuedBy][nvarchar](450) NOT NULL," +
                 "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
-                "FOREIGN KEY (ItemId) REFERENCES MeuItem(Id), " +
+                "FOREIGN KEY (ItemId) REFERENCES MenuItem(Id), " +
                 "CONSTRAINT [PK_OrderItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
             CreateTableIfNotExists("Order",
@@ -328,7 +329,7 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[DateModified][datetime2](7) NOT NULL," +
                 "FOREIGN KEY (MenuItemId) REFERENCES MenuItem(Id), " +
                 "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
-                "CONSTRAINT [PK_MenuItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
+                "CONSTRAINT [PK_Inventory] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
             CreateTableIfNotExists("IngredientItem",
                 "[Id][nvarchar](450) NOT NULL," +

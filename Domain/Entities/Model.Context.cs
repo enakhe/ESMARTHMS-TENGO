@@ -36,7 +36,6 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<Guest> Guests { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
-        public virtual DbSet<BarItem> BarItems { get; set; }
         public virtual DbSet<IngredientItem> IngredientItems { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<CompanyInformation> CompanyInformations { get; set; }
@@ -49,7 +48,9 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<SpecialCard> SpecialCards { get; set; }
         public virtual DbSet<GuestCard> GuestCards { get; set; }
         public virtual DbSet<LicenseInfo> LicenseInfoes { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<MenuItem> MenuItems { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }
