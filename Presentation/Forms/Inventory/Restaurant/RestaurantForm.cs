@@ -1,17 +1,16 @@
-﻿using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Restaurant;
+using ESMART_HMS.Presentation.Middleware;
+
+using ESMART_HMS.Presentation.Sessions;
+
 //using ESMART_HMS.Presentation.Forms.Bar.BarStore;
 using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Restaurant
@@ -19,13 +18,16 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
     public partial class RestaurantForm : Form
     {
         private readonly RestaurantContoller _restaurantContoller;
-        public RestaurantForm(RestaurantContoller restaurantContoller)
+        private readonly ApplicationUserController _applicationUserController;
+        public RestaurantForm(RestaurantContoller restaurantContoller, ApplicationUserController applicationUserController)
         {
             _restaurantContoller = restaurantContoller;
+            _applicationUserController = applicationUserController;
             this.DoubleBuffered = true;
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
         }
 
         private void RestaurantForm_Load(object sender, EventArgs e)
@@ -33,6 +35,8 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
             LoadData();
             splitContainer19.SplitterWidth = 1;
             splitContainer19.BackColor = splitContainer19.Panel1.BackColor;
+            dgvMenu.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvMenu.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
         public void LoadData()

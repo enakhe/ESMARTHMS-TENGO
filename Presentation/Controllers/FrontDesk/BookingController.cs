@@ -90,5 +90,10 @@ namespace ESMART_HMS.Presentation.Controllers
         {
             return _getAllBookingByDateUseCase.Execute(from, to);
         }
+
+        public List<BookingViewModel> GetRecycledBooking()
+        {
+            return _getAllBookingsUseCase.GetRecycledBooking();
+        }
     }
 }

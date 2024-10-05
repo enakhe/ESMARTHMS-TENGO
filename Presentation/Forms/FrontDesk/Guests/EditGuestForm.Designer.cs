@@ -101,6 +101,7 @@
             this.btnSave.TabIndex = 51;
             this.btnSave.Text = "Edit";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // splitContainer1
             // 

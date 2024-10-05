@@ -25,9 +25,9 @@ namespace ESMART_HMS.Presentation.Controllers
             _filterBarItemUseCase = filterBarItemUseCase;
         }
 
-        public void AddItem(BarItem barItem)
+        public void AddItem(Domain.Entities.MenuItem menuItem)
         {
-            _createBarItemUseCase.Execute(barItem);
+            _createBarItemUseCase.Execute(menuItem);
         }
 
         public List<BarItemViewModel> GetAllBarItem()
@@ -35,12 +35,12 @@ namespace ESMART_HMS.Presentation.Controllers
             return _getAllBarItemUseCase.Execute();
         }
 
-        public void UpdateBarItem(BarItem barItem) 
+        public void UpdateBarItem(Domain.Entities.MenuItem menuItem) 
         {
-            _updateBarItemUseCase.Execute(barItem);
+            _updateBarItemUseCase.Execute(menuItem);
         }
 
-        public BarItem GetBarItemById(string id)
+        public Domain.Entities.MenuItem GetBarItemById(string id)
         {
             return _getByIdUseCase.Execute(id);
         }

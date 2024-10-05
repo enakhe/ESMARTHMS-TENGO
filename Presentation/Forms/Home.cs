@@ -1,5 +1,6 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Inventory;
@@ -10,8 +11,9 @@ using ESMART_HMS.Presentation.Forms.Report;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Restaurant;
 using ESMART_HMS.Presentation.Forms.Rooms;
-//using ESMART_HMS.Presentation.Forms.Store.BarStore;
+using ESMART_HMS.Presentation.Forms.Store.BarStore;
 using ESMART_HMS.Presentation.Forms.Tools.Option;
+using ESMART_HMS.Presentation.Forms.Tools.Options.Accounts;
 using ESMART_HMS.Presentation.Forms.Transaction;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
@@ -19,7 +21,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Drawing;
 using System.Linq;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using ESMART_HMS.Presentation.Forms.Maintenance;
 
 namespace ESMART_HMS.Presentation.Forms
 {
@@ -32,7 +36,7 @@ namespace ESMART_HMS.Presentation.Forms
         bookingForm bookingForm;
         OptionsFrom optionsFrom;
         TransactionForm transactionForm;
-        //BarStoreForm barStoreForm;
+        BarStoreForm barStoreForm;
         RestaurantForm restaurantForm;
 
         // Maintenance
@@ -45,19 +49,23 @@ namespace ESMART_HMS.Presentation.Forms
         bookingReportForm bookingReportForm;
         ReservationReportForm reservationReportForm;
         MenuItemForm menuItemForm;
+        UserForm userForm;
+        RecycledItemForm recycledItemForm;
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
         private readonly ReservationController _reservationController;
         private readonly ApplicationUserController _applicationUserController;
+        private readonly LicenseController _licenseController;
+        private readonly ConfigurationController _configurationController;
 
         private Color vacantColor = Color.LightGreen;
         private Color reservedColor = Color.LightYellow;
         private Color bookedColor = Color.LightBlue;
         private Image _bgImage;
 
-        public Home(GuestController customerViewModel, RoomController roomController, RoomTypeController roomTypeController, ReservationController reservationController, ApplicationUserController userController)
+        public Home(GuestController customerViewModel, RoomController roomController, RoomTypeController roomTypeController, ReservationController reservationController, ApplicationUserController userController, LicenseController licenseController, ConfigurationController configurationController)
         {
             _customerController = customerViewModel;
             _roomController = roomController;
@@ -65,7 +73,8 @@ namespace ESMART_HMS.Presentation.Forms
             _reservationController = reservationController;
             _applicationUserController = userController;
             InitializeComponent();
-            LoadBackgroundImage();
+            ApplyAuthorization();
+            ApplyAuthorization2();
 
             this.BackgroundImage = _bgImage;
             this.BackgroundImageLayout = ImageLayout.Stretch;
@@ -74,12 +83,25 @@ namespace ESMART_HMS.Presentation.Forms
             this.IsMdiContainer = true;
             this.BackColor = Color.White;
             this.Load += new EventHandler(MainForm_Load);
+            _licenseController = licenseController;
+            _configurationController = configurationController;
         }
 
-        private void LoadBackgroundImage()
+        private void ApplyAuthorization()
         {
-            _bgImage = new Bitmap(@"C:\Users\izuag\OneDrive\Desktop\ESMART\ESMART_HMS\Files\background.jpg");
-            this.DoubleBuffered = true;
+            List<string> roles = new List<string> { "Admin", "SuperAdmin" };
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.Protect(user, systemSetupToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, recycleBinToolStripMenuItem, roles);
+        }
+        private void ApplyAuthorization2()
+        {
+            List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.Protect(user, roomSettingToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, manageReportsToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, usersSettingToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, cardMaintenanceToolStripMenuItem, roles);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -88,6 +110,36 @@ namespace ESMART_HMS.Presentation.Forms
             if (client != null)
             {
                 client.BackColor = Color.White;
+            }
+
+            LicenseInfo licenseInfo = _licenseController.GetLicenseInfo();
+            Configuration configuration = _configurationController.GetConfigurationValue("Trial Mode");
+
+            if (licenseInfo != null)
+            {
+                if (licenseInfo.HotelName != null)
+                {
+                    this.Text = $"ESMART Hotel Management Software ({licenseInfo.HotelName})";
+                }
+            }
+            else if (configuration != null)
+            {
+                if (configuration.Value.ToString() == "True")
+                {
+                    this.Text = $"ESMART Hotel Management Software (Free Trial)";
+                }
+            }
+
+            string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "background.jpg");
+
+            try
+            {
+                this.BackgroundImage = new Bitmap(imagePath);
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading image: {ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -117,8 +169,6 @@ namespace ESMART_HMS.Presentation.Forms
                 customerForm = serviceProvider.GetRequiredService<GuestForm>();
                 customerForm.FormClosed += Guest_FormClosed;
                 customerForm.MdiParent = this;
-                customerForm.BackgroundImage = _bgImage;
-                customerForm.BackgroundImageLayout = ImageLayout.Stretch;
                 customerForm.Dock = DockStyle.Fill;
                 customerForm.Show();
             }
@@ -138,30 +188,6 @@ namespace ESMART_HMS.Presentation.Forms
             optionsFrom = null;
         }
 
-        private void optionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
-            bool IsAuthorized = AuthorizationMiddleware.IsAuthorized(user, "SuperAdmin");
-            if (IsAuthorized)
-            {
-                if (optionsFrom == null)
-                {
-                    optionsFrom = new OptionsFrom();
-                    optionsFrom.FormClosed += Option_FormClosed;
-                    optionsFrom.ShowDialog();
-                }
-                else
-                {
-                    optionsFrom.Activate();
-                }
-            }
-            else
-            {
-                MessageBox.Show("You are not authorized to view this resource", "Not Authorized", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-            }
-        }
-
         private void booking_FormClosed(object sender, FormClosedEventArgs e)
         {
             bookingForm = null;
@@ -171,33 +197,6 @@ namespace ESMART_HMS.Presentation.Forms
         {
             transactionForm = null;
         }
-
-        //private void BarStore_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-        //    barStoreForm = null;
-        //}
-
-        //private void storeForToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    if (barStoreForm == null)
-        //    {
-        //        var services = new ServiceCollection();
-        //        DependencyInjection.ConfigureServices(services);
-        //        var serviceProvider = services.BuildServiceProvider();
-
-        //        barStoreForm = serviceProvider.GetRequiredService<BarStoreForm>();
-        //        barStoreForm.FormClosed += BarStore_FormClosed;
-        //        barStoreForm.MdiParent = this;
-        //        barStoreForm.BackgroundImage = _bgImage;
-        //        barStoreForm.BackgroundImageLayout = ImageLayout.Stretch;
-        //        barStoreForm.Dock = DockStyle.Fill;
-        //        barStoreForm.Show();
-        //    }
-        //    else
-        //    {
-        //        barStoreForm.Activate();
-        //    }
-        //}
 
         private void homeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -209,8 +208,6 @@ namespace ESMART_HMS.Presentation.Forms
             indexForm.FormClosed += Dashboard_FormClosed;
             indexForm.MdiParent = this;
             indexForm.Dock = DockStyle.Fill;
-            indexForm.BackgroundImage = _bgImage;
-            indexForm.BackgroundImageLayout = ImageLayout.Stretch;
             indexForm.Show();
         }
 
@@ -263,8 +260,6 @@ namespace ESMART_HMS.Presentation.Forms
                 transactionForm = serviceProvider.GetRequiredService<TransactionForm>();
                 transactionForm.FormClosed += Transaction_FormClosed;
                 transactionForm.MdiParent = this;
-                transactionForm.BackgroundImage = _bgImage;
-                transactionForm.BackgroundImageLayout = ImageLayout.Stretch;
                 transactionForm.Dock = DockStyle.Fill;
                 transactionForm.Show();
             }
@@ -336,8 +331,6 @@ namespace ESMART_HMS.Presentation.Forms
                 roomForm = serviceProvider.GetRequiredService<RoomForm>();
                 roomForm.FormClosed += Room_FormClosed;
                 roomForm.MdiParent = this;
-                roomForm.BackgroundImage = _bgImage;
-                roomForm.BackgroundImageLayout = ImageLayout.Stretch;
                 roomForm.Dock = DockStyle.Fill;
                 roomForm.Show();
             }
@@ -360,8 +353,6 @@ namespace ESMART_HMS.Presentation.Forms
                 reservationForm = serviceProvider.GetRequiredService<ReservationForm>();
                 reservationForm.FormClosed += Reservation_FormClosed;
                 reservationForm.MdiParent = this;
-                reservationForm.BackgroundImage = _bgImage;
-                reservationForm.BackgroundImageLayout = ImageLayout.Stretch;
                 reservationForm.Dock = DockStyle.Fill;
                 reservationForm.Show();
             }
@@ -382,8 +373,6 @@ namespace ESMART_HMS.Presentation.Forms
                 bookingForm = serviceProvider.GetRequiredService<bookingForm>();
                 bookingForm.FormClosed += booking_FormClosed;
                 bookingForm.MdiParent = this;
-                bookingForm.BackgroundImage = _bgImage;
-                bookingForm.BackgroundImageLayout = ImageLayout.Stretch;
                 bookingForm.Dock = DockStyle.Fill;
                 bookingForm.Show();
             }
@@ -409,8 +398,6 @@ namespace ESMART_HMS.Presentation.Forms
                 roomReportForm = serviceProvider.GetRequiredService<RoomReportForm>();
                 roomReportForm.FormClosed += RoomReport_FormClosed;
                 roomReportForm.MdiParent = this;
-                roomReportForm.BackgroundImage = _bgImage;
-                roomReportForm.BackgroundImageLayout = ImageLayout.Stretch;
                 roomReportForm.Dock = DockStyle.Fill;
                 roomReportForm.Show();
             }
@@ -436,8 +423,6 @@ namespace ESMART_HMS.Presentation.Forms
                 bookingReportForm = serviceProvider.GetRequiredService<bookingReportForm>();
                 bookingReportForm.FormClosed += bookingReport_FormClosed;
                 bookingReportForm.MdiParent = this;
-                bookingReportForm.BackgroundImage = _bgImage;
-                bookingReportForm.BackgroundImageLayout = ImageLayout.Stretch;
                 bookingReportForm.Dock = DockStyle.Fill;
                 bookingReportForm.Show();
             }
@@ -463,8 +448,6 @@ namespace ESMART_HMS.Presentation.Forms
                 reservationReportForm = serviceProvider.GetRequiredService<ReservationReportForm>();
                 reservationReportForm.FormClosed += ReservationReport_FormClosed;
                 reservationReportForm.MdiParent = this;
-                reservationReportForm.BackgroundImage = _bgImage;
-                reservationReportForm.BackgroundImageLayout = ImageLayout.Stretch;
                 reservationReportForm.Dock = DockStyle.Fill;
                 reservationReportForm.Show();
             }
@@ -481,24 +464,7 @@ namespace ESMART_HMS.Presentation.Forms
 
         private void storeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (restaurantForm == null)
-            {
-                var services = new ServiceCollection();
-                DependencyInjection.ConfigureServices(services);
-                var serviceProvider = services.BuildServiceProvider();
-
-                restaurantForm = serviceProvider.GetRequiredService<RestaurantForm>();
-                restaurantForm.FormClosed += Restaurant_FormClosed;
-                restaurantForm.MdiParent = this;
-                restaurantForm.BackgroundImage = _bgImage;
-                restaurantForm.BackgroundImageLayout = ImageLayout.Stretch;
-                restaurantForm.Dock = DockStyle.Fill;
-                restaurantForm.Show();
-            }
-            else
-            {
-                restaurantForm.Activate();
-            }
+            
         }
 
         private void MenuItem_FormClosed(object sender, FormClosedEventArgs e)
@@ -517,14 +483,124 @@ namespace ESMART_HMS.Presentation.Forms
                 menuItemForm = serviceProvider.GetRequiredService<MenuItemForm>();
                 menuItemForm.FormClosed += MenuItem_FormClosed;
                 menuItemForm.MdiParent = this;
-                menuItemForm.BackgroundImage = _bgImage;
-                menuItemForm.BackgroundImageLayout = ImageLayout.Stretch;
                 menuItemForm.Dock = DockStyle.Fill;
                 menuItemForm.Show();
             }
             else
             {
                 menuItemForm.Activate();
+            }
+        }
+
+        private void User_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            userForm = null;
+        }
+
+        private void usersSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (userForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                userForm = serviceProvider.GetRequiredService<UserForm>();
+                userForm.FormClosed += User_FormClosed;
+                userForm.ShowDialog();
+            }
+            else
+            {
+                userForm.Activate();
+            }
+        }
+
+        private void BarStore_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            barStoreForm = null;
+        }
+
+        private void barToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (barStoreForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                barStoreForm = serviceProvider.GetRequiredService<BarStoreForm>();
+                barStoreForm.FormClosed += BarStore_FormClosed;
+                barStoreForm.MdiParent = this;
+                barStoreForm.Dock = DockStyle.Fill;
+                barStoreForm.Show();
+            }
+            else
+            {
+                barStoreForm.Activate();
+            }
+        }
+
+        private void restaurantToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (restaurantForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                restaurantForm = serviceProvider.GetRequiredService<RestaurantForm>();
+                restaurantForm.FormClosed += Restaurant_FormClosed;
+                restaurantForm.MdiParent = this;
+                restaurantForm.Dock = DockStyle.Fill;
+                restaurantForm.Show();
+            }
+            else
+            {
+                restaurantForm.Activate();
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to close the application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            LockApp lockApp = serviceProvider.GetRequiredService<LockApp>();
+            lockApp.ShowDialog();
+        }
+
+        private void Recycled_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            recycledItemForm = null;
+        }
+
+        private void recycleBinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recycledItemForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                recycledItemForm = serviceProvider.GetRequiredService<RecycledItemForm>();
+                recycledItemForm.FormClosed += Recycled_FormClosed;
+                recycledItemForm.MdiParent = this;
+                recycledItemForm.Dock = DockStyle.Fill;
+                recycledItemForm.Show();
+            }
+            else
+            {
+                recycledItemForm.Activate();
             }
         }
     }

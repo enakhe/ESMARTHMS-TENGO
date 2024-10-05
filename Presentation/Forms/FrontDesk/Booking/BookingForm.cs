@@ -36,6 +36,7 @@ namespace ESMART_HMS.Presentation.Forms.booking
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             ApplyAuthorization();
             _systemSetupController = systemSetupController;
         }
@@ -54,6 +55,8 @@ namespace ESMART_HMS.Presentation.Forms.booking
             splitContainer21.BackColor = splitContainer21.Panel1.BackColor;
             splitContainer21.SplitterWidth = 1;
             splitContainer21.BackColor = splitContainer21.Panel1.BackColor;
+            dgvbooking.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvbooking.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
         private void LoadbookingsData()
@@ -150,7 +153,7 @@ namespace ESMART_HMS.Presentation.Forms.booking
                     var row = dgvbooking.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
-                    using (IssueCardForm issueCardForm = new IssueCardForm(_bookingController, id, _cardController, _applicationUserController))
+                    using (IssueCardForm issueCardForm = new IssueCardForm(_bookingController, id, _cardController, _applicationUserController, _systemSetupController))
                     {
                         if (issueCardForm.ShowDialog() == DialogResult.OK)
                         {

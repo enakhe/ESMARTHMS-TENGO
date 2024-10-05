@@ -4,8 +4,6 @@ using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Infrastructure.Data.Restaurant
@@ -39,23 +37,23 @@ namespace ESMART_HMS.Infrastructure.Data.Restaurant
         {
             try
             {
-                var allMenuItems = from menuItem in _db.MenuItems.Where(b => b.IsTrashed == false).OrderBy(b => b.DateCreated)
-                                  select new MenuItemViewModel
-                                  {
-                                      Id = menuItem.Id,
-                                      MenuItemId = menuItem.MenuItemId,
-                                      Barcode = menuItem.Barcode,
-                                      ItemName = menuItem.ItemName,
-                                      Quantity = menuItem.Quantity.ToString(),
-                                      Type = menuItem.Type,
-                                      Category = menuItem.Category,
-                                      Measurement = menuItem.Measurement,
-                                      CostPrice = menuItem.CostPrice.ToString(),
-                                      SellingPrice = menuItem.SellingPrice.ToString(),
-                                      CreatedBy = menuItem.ApplicationUser.FullName,
-                                      DateCreated = menuItem.DateCreated.ToString(),
-                                      DateModified = menuItem.DateModified.ToString(),
-                                  };
+                var allMenuItems = from menuItem in _db.MenuItems.Where(b => b.IsTrashed == false && b.Section == "RESTAURANT").OrderBy(b => b.DateCreated)
+                                   select new MenuItemViewModel
+                                   {
+                                       Id = menuItem.Id,
+                                       MenuItemId = menuItem.MenuItemId,
+                                       Barcode = menuItem.Barcode,
+                                       ItemName = menuItem.ItemName,
+                                       Quantity = menuItem.Quantity.ToString(),
+                                       Type = menuItem.Type,
+                                       Category = menuItem.Category,
+                                       Measurement = menuItem.Measurement,
+                                       CostPrice = menuItem.CostPrice.ToString(),
+                                       SellingPrice = menuItem.SellingPrice.ToString(),
+                                       CreatedBy = menuItem.ApplicationUser.FullName,
+                                       DateCreated = menuItem.DateCreated.ToString(),
+                                       DateModified = menuItem.DateModified.ToString(),
+                                   };
                 return allMenuItems.ToList();
             }
             catch (Exception ex)
@@ -118,22 +116,22 @@ namespace ESMART_HMS.Infrastructure.Data.Restaurant
             try
             {
                 var allMenuItems = from menuItem in _db.MenuItems.Where(b => b.IsTrashed == false && b.ItemName.Contains(keyword)).OrderBy(b => b.DateCreated)
-                                  select new MenuItemViewModel
-                                  {
-                                      Id = menuItem.Id,
-                                      MenuItemId = menuItem.MenuItemId,
-                                      Barcode = menuItem.Barcode,
-                                      ItemName = menuItem.ItemName,
-                                      Category = menuItem.Category,
-                                      Quantity = menuItem.Quantity.ToString(),
-                                      Type = menuItem.Type,
-                                      Measurement = menuItem.Measurement,
-                                      CostPrice = menuItem.CostPrice.ToString(),
-                                      SellingPrice = menuItem.SellingPrice.ToString(),
-                                      CreatedBy = menuItem.ApplicationUser.FullName,
-                                      DateCreated = menuItem.DateCreated.ToString(),
-                                      DateModified = menuItem.DateModified.ToString(),
-                                  };
+                                   select new MenuItemViewModel
+                                   {
+                                       Id = menuItem.Id,
+                                       MenuItemId = menuItem.MenuItemId,
+                                       Barcode = menuItem.Barcode,
+                                       ItemName = menuItem.ItemName,
+                                       Category = menuItem.Category,
+                                       Quantity = menuItem.Quantity.ToString(),
+                                       Type = menuItem.Type,
+                                       Measurement = menuItem.Measurement,
+                                       CostPrice = menuItem.CostPrice.ToString(),
+                                       SellingPrice = menuItem.SellingPrice.ToString(),
+                                       CreatedBy = menuItem.ApplicationUser.FullName,
+                                       DateCreated = menuItem.DateCreated.ToString(),
+                                       DateModified = menuItem.DateModified.ToString(),
+                                   };
                 return allMenuItems.ToList();
             }
             catch (Exception ex)

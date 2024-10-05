@@ -1,5 +1,7 @@
 ﻿using ESMART_HMS.Application.UseCases.ApplicationUser;
 using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Presentation.ViewModels;
+using System.Collections.Generic;
 
 namespace ESMART_HMS.Presentation.Controllers
 {
@@ -22,6 +24,16 @@ namespace ESMART_HMS.Presentation.Controllers
         public void AddApplicationUser(ApplicationUser applicationUser)
         {
             _createApplicationUserUseCase.Execute(applicationUser);
+        }
+
+        public List<UserViewModel> GetAllUserViewModel()
+        {
+            return _getApplicationUserByIdUseCase.GetallUsers();
+        }
+
+        public void UpdateUser(Domain.Entities.ApplicationUser user)
+        {
+            _createApplicationUserUseCase.UpdateUser(user);
         }
     }
 }

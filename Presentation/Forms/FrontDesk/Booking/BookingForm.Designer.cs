@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(bookingForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.bookingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.bookingTableAdapter();
@@ -62,7 +62,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgvbooking = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bookingIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Guest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GuestPhoneNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Room = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -143,7 +142,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(30);
             this.splitContainer1.Size = new System.Drawing.Size(1496, 703);
-            this.splitContainer1.SplitterDistance = 206;
+            this.splitContainer1.SplitterDistance = 171;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -153,17 +152,17 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30, 20, 20, 20);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1496, 206);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1496, 171);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
             this.panel5.Controls.Add(this.splitContainer20);
-            this.panel5.Location = new System.Drawing.Point(33, 23);
+            this.panel5.Location = new System.Drawing.Point(33, 33);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(300, 155);
+            this.panel5.Size = new System.Drawing.Size(391, 155);
             this.panel5.TabIndex = 8;
             // 
             // splitContainer20
@@ -179,8 +178,8 @@
             // splitContainer20.Panel2
             // 
             this.splitContainer20.Panel2.Controls.Add(this.txtCount);
-            this.splitContainer20.Size = new System.Drawing.Size(300, 155);
-            this.splitContainer20.SplitterDistance = 207;
+            this.splitContainer20.Size = new System.Drawing.Size(391, 155);
+            this.splitContainer20.SplitterDistance = 269;
             this.splitContainer20.TabIndex = 0;
             // 
             // splitContainer21
@@ -197,7 +196,7 @@
             // splitContainer21.Panel2
             // 
             this.splitContainer21.Panel2.Controls.Add(this.pictureBox8);
-            this.splitContainer21.Size = new System.Drawing.Size(207, 155);
+            this.splitContainer21.Size = new System.Drawing.Size(269, 155);
             this.splitContainer21.SplitterDistance = 39;
             this.splitContainer21.TabIndex = 0;
             // 
@@ -218,7 +217,7 @@
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(0, 0);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(207, 112);
+            this.pictureBox8.Size = new System.Drawing.Size(269, 112);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox8.TabIndex = 2;
             this.pictureBox8.TabStop = false;
@@ -226,11 +225,11 @@
             // txtCount
             // 
             this.txtCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCount.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCount.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCount.ForeColor = System.Drawing.Color.White;
             this.txtCount.Location = new System.Drawing.Point(0, 0);
             this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(89, 155);
+            this.txtCount.Size = new System.Drawing.Size(118, 155);
             this.txtCount.TabIndex = 3;
             this.txtCount.Text = "0";
             this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -242,7 +241,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(30, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1436, 433);
+            this.panel1.Size = new System.Drawing.Size(1436, 468);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer2
@@ -259,8 +258,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dgvbooking);
-            this.splitContainer2.Size = new System.Drawing.Size(1436, 433);
-            this.splitContainer2.SplitterDistance = 53;
+            this.splitContainer2.Size = new System.Drawing.Size(1436, 468);
+            this.splitContainer2.SplitterDistance = 56;
             this.splitContainer2.TabIndex = 1;
             // 
             // splitContainer3
@@ -276,7 +275,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel2);
-            this.splitContainer3.Size = new System.Drawing.Size(1436, 53);
+            this.splitContainer3.Size = new System.Drawing.Size(1436, 56);
             this.splitContainer3.SplitterDistance = 668;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -292,7 +291,7 @@
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(20, 15, 5, 20);
             this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(668, 53);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(668, 56);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
             // label1
@@ -351,7 +350,7 @@
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(20, 5, 5, 20);
             this.flowLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(764, 53);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(764, 56);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // btnCheckout
@@ -401,19 +400,18 @@
             this.dgvbooking.AutoGenerateColumns = false;
             this.dgvbooking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvbooking.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvbooking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvbooking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvbooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvbooking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
-            this.bookingIdDataGridViewTextBoxColumn,
             this.Guest,
             this.GuestPhoneNo,
             this.Room,
@@ -432,33 +430,33 @@
             this.dateModifiedDataGridViewTextBoxColumn,
             this.isTrashedDataGridViewCheckBoxColumn});
             this.dgvbooking.DataSource = this.bookingBindingSource;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvbooking.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvbooking.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvbooking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvbooking.GridColor = System.Drawing.Color.Black;
             this.dgvbooking.Location = new System.Drawing.Point(0, 0);
             this.dgvbooking.Margin = new System.Windows.Forms.Padding(2);
             this.dgvbooking.Name = "dgvbooking";
             this.dgvbooking.ReadOnly = true;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvbooking.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvbooking.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvbooking.RowHeadersWidth = 51;
             this.dgvbooking.RowTemplate.Height = 24;
-            this.dgvbooking.Size = new System.Drawing.Size(1436, 376);
+            this.dgvbooking.Size = new System.Drawing.Size(1436, 408);
             this.dgvbooking.TabIndex = 2;
             // 
             // idDataGridViewTextBoxColumn
@@ -468,13 +466,6 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bookingIdDataGridViewTextBoxColumn
-            // 
-            this.bookingIdDataGridViewTextBoxColumn.DataPropertyName = "bookingId";
-            this.bookingIdDataGridViewTextBoxColumn.HeaderText = "booking Id";
-            this.bookingIdDataGridViewTextBoxColumn.Name = "bookingIdDataGridViewTextBoxColumn";
-            this.bookingIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Guest
             // 
@@ -538,8 +529,8 @@
             // paymentMethodDataGridViewTextBoxColumn
             // 
             this.paymentMethodDataGridViewTextBoxColumn.DataPropertyName = "PaymentMethod";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.paymentMethodDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.paymentMethodDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.paymentMethodDataGridViewTextBoxColumn.HeaderText = "Payment Method";
             this.paymentMethodDataGridViewTextBoxColumn.Name = "paymentMethodDataGridViewTextBoxColumn";
             this.paymentMethodDataGridViewTextBoxColumn.ReadOnly = true;
@@ -563,8 +554,8 @@
             // durationDataGridViewTextBoxColumn
             // 
             this.durationDataGridViewTextBoxColumn.DataPropertyName = "Duration";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.durationDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.durationDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.durationDataGridViewTextBoxColumn.HeaderText = "Duration";
             this.durationDataGridViewTextBoxColumn.Name = "durationDataGridViewTextBoxColumn";
             this.durationDataGridViewTextBoxColumn.ReadOnly = true;
@@ -572,8 +563,8 @@
             // totalAmountDataGridViewTextBoxColumn
             // 
             this.totalAmountDataGridViewTextBoxColumn.DataPropertyName = "TotalAmount";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.totalAmountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.totalAmountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.totalAmountDataGridViewTextBoxColumn.HeaderText = "Total Amount";
             this.totalAmountDataGridViewTextBoxColumn.Name = "totalAmountDataGridViewTextBoxColumn";
             this.totalAmountDataGridViewTextBoxColumn.ReadOnly = true;
@@ -581,8 +572,8 @@
             // createdByDataGridViewTextBoxColumn
             // 
             this.createdByDataGridViewTextBoxColumn.DataPropertyName = "CreatedBy";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.createdByDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.createdByDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.createdByDataGridViewTextBoxColumn.HeaderText = "Created By";
             this.createdByDataGridViewTextBoxColumn.Name = "createdByDataGridViewTextBoxColumn";
             this.createdByDataGridViewTextBoxColumn.ReadOnly = true;
@@ -613,7 +604,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(55)))), ((int)(((byte)(134)))));
             this.ClientSize = new System.Drawing.Size(1556, 763);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -684,7 +675,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView dgvbooking;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bookingIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Guest;
         private System.Windows.Forms.DataGridViewTextBoxColumn GuestPhoneNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Room;

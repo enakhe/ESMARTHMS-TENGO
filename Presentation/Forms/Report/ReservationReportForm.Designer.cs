@@ -155,7 +155,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30, 20, 0, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(235, 102);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(235, 81);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label7
@@ -229,7 +229,7 @@
             this.mainFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.mainFlowLayoutPanel.Name = "mainFlowLayoutPanel";
             this.mainFlowLayoutPanel.Padding = new System.Windows.Forms.Padding(30, 20, 0, 0);
-            this.mainFlowLayoutPanel.Size = new System.Drawing.Size(1520, 102);
+            this.mainFlowLayoutPanel.Size = new System.Drawing.Size(1520, 81);
             this.mainFlowLayoutPanel.TabIndex = 1;
             // 
             // label1
@@ -299,7 +299,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer2.Size = new System.Drawing.Size(1759, 102);
+            this.splitContainer2.Size = new System.Drawing.Size(1759, 81);
             this.splitContainer2.SplitterDistance = 1520;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -321,7 +321,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(20);
             this.splitContainer1.Size = new System.Drawing.Size(1759, 786);
-            this.splitContainer1.SplitterDistance = 102;
+            this.splitContainer1.SplitterDistance = 81;
             this.splitContainer1.TabIndex = 2;
             // 
             // panel2
@@ -332,7 +332,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(20, 20);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1719, 640);
+            this.panel2.Size = new System.Drawing.Size(1719, 661);
             this.panel2.TabIndex = 0;
             // 
             // dgvReservation
@@ -396,7 +396,7 @@
             this.dgvReservation.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvReservation.RowHeadersWidth = 51;
             this.dgvReservation.RowTemplate.Height = 24;
-            this.dgvReservation.Size = new System.Drawing.Size(1717, 638);
+            this.dgvReservation.Size = new System.Drawing.Size(1717, 659);
             this.dgvReservation.TabIndex = 2;
             // 
             // idDataGridViewTextBoxColumn
@@ -563,7 +563,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(55)))), ((int)(((byte)(134)))));
             this.ClientSize = new System.Drawing.Size(1819, 846);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

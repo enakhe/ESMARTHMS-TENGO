@@ -1,7 +1,7 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
-using ESMART_HMS.Presentation.Controllers.Restaurant;
+using ESMART_HMS.Presentation.Sessions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,16 +12,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Presentation.Forms.Restaurant
+namespace ESMART_HMS.Presentation.Forms.Bar.BarStore
 {
-    public partial class EditRestaurantForm : Form
+    public partial class EditBarItemForm : Form
     {
-        private readonly RestaurantContoller _restaurantContoller;
+        private readonly BarItemController _barItemController;
         private readonly string _id;
-        public EditRestaurantForm(RestaurantContoller restaurantContoller, string id)
+        public EditBarItemForm(BarItemController barItemController, string id)
         {
-            _restaurantContoller = restaurantContoller;
             _id = id;
+            _barItemController = barItemController;
             InitializeComponent();
         }
 
@@ -29,31 +29,29 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
         {
             try
             {
-                Domain.Entities.MenuItem menuItem = _restaurantContoller.GetMenuItemById(_id);
-                if (menuItem != null)
+                Domain.Entities.MenuItem barItem = _barItemController.GetBarItemById(_id);
+                if (barItem != null)
                 {
-                    txtBarcode.Text = menuItem.Barcode;
-                    txtCostPrice.Text = menuItem.CostPrice.ToString();
-                    txtItemType.Text = menuItem.Type;
-                    txtCategory.Text = menuItem.Category;
-                    txtMeasurement.Text = menuItem.Measurement;
-                    txtName.Text = menuItem.ItemName;
-                    txtQuantity.Text = menuItem.Quantity.ToString();
-                    txtSellingPrice.Text = menuItem.SellingPrice.ToString();
+                    txtBarcode.Text = barItem.Barcode;
+                    txtCostPrice.Text = barItem.CostPrice.ToString();
+                    txtItemType.Text = barItem.Type;
+                    txtMeasurement.Text = barItem.Measurement;
+                    txtName.Text = barItem.ItemName;
+                    txtQuantity.Text = barItem.Quantity.ToString();
+                    txtSellingPrice.Text = barItem.SellingPrice.ToString();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
-
+            
         }
-
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            bool isNull = FormHelper.AreAnyNullOrEmpty(txtBarcode.Text, txtCategory.Text, txtName.Text, txtQuantity.Text, txtItemType.Text, txtMeasurement.Text, txtCostPrice.Text);
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtBarcode.Text, txtName.Text, txtQuantity.Text, txtItemType.Text, txtMeasurement.Text, txtCostPrice.Text);
             if (isNull)
             {
                 MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
@@ -61,23 +59,22 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
             }
             else
             {
-                Domain.Entities.MenuItem menuItem = _restaurantContoller.GetMenuItemById(_id);
-                menuItem.Barcode = txtBarcode.Text;
-                menuItem.CostPrice = decimal.Parse(txtCostPrice.Text);
-                menuItem.SellingPrice = decimal.Parse(txtSellingPrice.Text);
-                menuItem.Type = txtItemType.Text;
-                menuItem.Category = txtCategory.Text;
-                menuItem.Measurement = txtMeasurement.Text;
-                menuItem.Quantity = int.Parse(txtQuantity.Text);
-                menuItem.ItemName = txtName.Text;
-
-                _restaurantContoller.UpdateItem(menuItem);
+                Domain.Entities.MenuItem barItem = _barItemController.GetBarItemById(_id);
+                barItem.Barcode = txtBarcode.Text;
+                barItem.CostPrice = decimal.Parse(txtCostPrice.Text);
+                barItem.SellingPrice = decimal.Parse(txtSellingPrice.Text);
+                barItem.Type = txtItemType.Text;
+                barItem.Measurement = txtMeasurement.Text;
+                barItem.Quantity = int.Parse(txtQuantity.Text);
+                barItem.ItemName = txtName.Text;
+                
+                _barItemController.UpdateBarItem(barItem);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
 
-        private void EditRestaurantForm_Load(object sender, EventArgs e)
+        private void EditBarItemForm_Load(object sender, EventArgs e)
         {
             LoadData();
         }

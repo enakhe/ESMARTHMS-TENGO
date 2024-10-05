@@ -20,6 +20,7 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
             InitializeTimer();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
         }
 
         private void InitializeTimer()
@@ -41,6 +42,8 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
             LoadData();
             splitContainer21.SplitterWidth = 1;
             splitContainer21.BackColor = splitContainer21.Panel1.BackColor;
+            dgvTransaction.Font = new System.Drawing.Font("Segoe UI", 10); 
+            dgvTransaction.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
         public void LoadData()

@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ESMART_HMS.Infrastructure.Data
 {
@@ -240,14 +239,61 @@ namespace ESMART_HMS.Infrastructure.Data
             {
                 _db.Entry(reservation).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
-                MessageBox.Show("Successfully edited reservation information", "Success", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+        }
+        public void DeleteReservation(string id)
+        {
+            try
+            {
+                Reservation reservation = GetReservationById(id);
+                reservation.IsTrashed = true;
+                _db.Entry(reservation).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when recycling reservation", ex);
+            }
+        }
+
+        public List<ReservationViewModel> GetRecycledReservation()
+        {
+            try
+            {
+                var allReservation = from reservation in _db.Reservations.Where(r => r.IsTrashed == true && r.Status != RoomStatusEnum.CheckedIn.ToString())
+                                     select new ReservationViewModel
+                                     {
+                                         Id = reservation.Id,
+                                         ReservationId = reservation.ReservationId,
+                                         GuestId = reservation.GuestId,
+                                         RoomId = reservation.RoomId,
+                                         Guest = reservation.Guest.FullName,
+                                         GuestPhoneNo = reservation.Guest.PhoneNumber,
+                                         Room = reservation.Room.RoomNo,
+                                         PaymentMethod = reservation.PaymentMethod,
+                                         Amount = reservation.Amount.ToString(),
+                                         AmountPaid = reservation.AmountPaid.ToString(),
+                                         Balance = (reservation.Amount - reservation.AmountPaid).ToString(),
+                                         CheckInDate = reservation.CheckInDate.ToString(),
+                                         CheckOutDate = reservation.CheckOutDate.ToString(),
+                                         CreatedBy = reservation.ApplicationUser.FullName,
+                                         DateCreated = reservation.DateCreated.ToString(),
+                                         DateModified = reservation.DateModified.ToString(),
+                                     };
+                return allReservation.OrderBy(r => r.DateCreated).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
+            }
+            return null;
         }
     }
 }

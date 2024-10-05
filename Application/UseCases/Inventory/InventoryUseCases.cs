@@ -1,9 +1,6 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
-using System;
+using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESMART_HMS.Application.UseCases.Inventory
 {
@@ -24,6 +21,31 @@ namespace ESMART_HMS.Application.UseCases.Inventory
         public void AddInventory(Domain.Entities.Inventory inventory)
         {
             _inventoryRespository.AddInventory(inventory);
+        }
+
+        public List<InventoryViewModel> GetAllInventory()
+        {
+            return _inventoryRespository.GetAllInventoryViewModels();
+        }
+
+        public List<InventoryViewModel> GetRecycledInventory()
+        {
+            return _inventoryRespository.GetRecycledInventoryViewModels();
+        }
+
+        public Domain.Entities.Inventory GetInventoryById(string id)
+        {
+            return _inventoryRespository.GetInventoryById(id);
+        }
+
+        public void UpdateInventory(Domain.Entities.Inventory inventory) 
+        { 
+            _inventoryRespository.UpdateInventory(inventory);
+        }
+
+        public void DeleteInventory(string id)
+        {
+            _inventoryRespository.DeleteInventory(id);
         }
     }
 }

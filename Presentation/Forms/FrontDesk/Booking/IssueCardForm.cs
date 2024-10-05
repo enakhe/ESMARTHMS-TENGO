@@ -24,8 +24,9 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
         private readonly bookingController _bookingController;
         private readonly CardController _cardController;
         private readonly ApplicationUserController _userController;
+        private readonly SystemSetupController _sytemSetupController;
 
-        public IssueCardForm(bookingController bookingController, string id, CardController cardController, ApplicationUserController userController)
+        public IssueCardForm(bookingController bookingController, string id, CardController cardController, ApplicationUserController userController, SystemSetupController systemSetupController)
         {
             _bookingController = bookingController;
             _id = id;
@@ -33,6 +34,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
             InitializeComponent();
             InitializeTimer();
             _userController = userController;
+            _sytemSetupController = systemSetupController;
         }
         int st = 0;
 
@@ -198,20 +200,21 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
             }
         }
 
-        private void btnIssueCard_Click(object sender, EventArgs e)
+        private async void btnIssueCard_Click(object sender, EventArgs e)
         {
             //Issue card
             char[] card_snr = new char[100];
             Domain.Entities.Booking booking = _bookingController.GetbookingById(_id);
 
             string roomno = $"{booking.Room.Building.BuildingNo}.{booking.Room.Floor.FloorNo}.{booking.Room.RoomNo}";
+
             string intime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             String outtime = txtOutTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            short iflags = 80;
+            CARD_FLAGS iflags = CARD_FLAGS.CF_CHECK_TIMESTAMP;
 
             if (LockSDKHeaders.PreparedIssue(card_snr) == false)
                 return;
-            st = LockSDKMethods.MakeGuestCard(card_snr, roomno, booking.Room.Area.AreaNo, booking.Room.Floor.FloorNo, intime, outtime, iflags);
+            st = LockSDKMethods.MakeGuestCard(card_snr, roomno, "", "", intime, outtime, iflags);
 
             if (st == (int)ERROR_TYPE.OPR_OK)
             {
@@ -219,6 +222,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
                 byte[] cbuf = new byte[10000];
                 cardInfo = new CARD_INFO();
                 int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+                CompanyInformation foundCompany = _sytemSetupController.GetCompanyInfo();
 
                 string cardNoString = FormHelper.ByteArrayToString(cardInfo.CardNo);
                 MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
@@ -229,7 +233,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
                     CardNo = cardNoString,
                     CardType = FormHelper.FormatEnumName(cardType),
                     IssueTime = DateTime.Now,
-                    RefundTime = DateTime.Now,
+                    RefundTime = txtOutTime.Value,
                     IssuedBy = AuthSession.CurrentUser.Id,
                     ApplicationUser = _userController.GetApplicationUserById(AuthSession.CurrentUser.Id),
                     CanOpenDeadLocks = true,
@@ -238,6 +242,23 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
                     DateModified = DateTime.Now,
                 };
                 _cardController.AddGuestCard(guestCard);
+                string guestCardString = $"Id = {guestCard.Id}\n" +
+                         $"Card No = {guestCard.CardNo}\n" +
+                         $"Card Type = {guestCard.CardType}\n" +
+                         $"Issue Time = {guestCard.IssueTime}\n" +
+                         $"Refund Time = {guestCard.RefundTime}\n" +
+                         $"Issued By = {guestCard.IssuedBy}\n" +
+                         $"Application User = {guestCard.ApplicationUser?.FullName}\n" +
+                         $"Date Created = {guestCard.DateCreated}\n" +
+                         $"Date Modified = {guestCard.DateModified}";
+
+                if (foundCompany != null)
+                {
+                    if (foundCompany.Email != null)
+                    {
+                        await EmailHelper.SendEmail(foundCompany.Email, "Booking Card Created", guestCardString);
+                    }
+                }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
 

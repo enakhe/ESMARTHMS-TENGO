@@ -1,5 +1,4 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using Microsoft.Extensions.DependencyInjection;
 using System;

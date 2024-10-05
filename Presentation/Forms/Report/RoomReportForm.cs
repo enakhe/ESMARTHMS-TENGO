@@ -20,12 +20,15 @@ namespace ESMART_HMS.Presentation.Forms.Report
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             LoadData();
         }
 
         private void RoomReportForm_Load(object sender, EventArgs e)
         {
             LoadData();
+            dgvRooms.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvRooms.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
         public void LoadData()

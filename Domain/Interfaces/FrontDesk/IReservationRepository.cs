@@ -14,5 +14,7 @@ namespace ESMART_HMS.Domain.Interfaces
         List<ReservationViewModel> GetReservationByRoomTypeAndDate(string roomTypeId, DateTime fromTime, DateTime endTime);
         List<ReservationViewModel> GetReservationByStatuseAndDate(string status, DateTime fromTime, DateTime endTime);
         List<ReservationViewModel> GetReservationByDate(DateTime fromTime, DateTime endTime);
+        void DeleteReservation(string id);
+        List<ReservationViewModel> GetRecycledReservation();
     }
 }

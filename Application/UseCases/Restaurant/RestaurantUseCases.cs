@@ -1,11 +1,7 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Interfaces.Restaurant;
 using ESMART_HMS.Presentation.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESMART_HMS.Application.UseCases.Restaurant
 {
@@ -18,7 +14,7 @@ namespace ESMART_HMS.Application.UseCases.Restaurant
             _repository = repository;
         }
 
-        public void AddMenuItem(MenuItem  menuItem)
+        public void AddMenuItem(MenuItem menuItem)
         {
             _repository.AddItem(menuItem);
         }

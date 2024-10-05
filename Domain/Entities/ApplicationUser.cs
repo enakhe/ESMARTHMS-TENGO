@@ -29,7 +29,6 @@ namespace ESMART_HMS.Domain.Entities
             this.BankAccounts = new HashSet<BankAccount>();
             this.MenuItems = new HashSet<MenuItem>();
             this.Inventories = new HashSet<Inventory>();
-            this.OrderItems = new HashSet<OrderItem>();
             this.Orders = new HashSet<Order>();
         }
     
@@ -70,8 +69,6 @@ namespace ESMART_HMS.Domain.Entities
         public virtual ICollection<MenuItem> MenuItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventory> Inventories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
     }

@@ -19,13 +19,13 @@ namespace ESMART_HMS.Infrastructure.Data.Bar
         }
 
         public void AddOrder(Order order)
-        {
+        {  
             try
             {
                 _db.Orders.Add(order);
                 _db.SaveChanges();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);

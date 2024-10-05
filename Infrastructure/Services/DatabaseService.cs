@@ -3,6 +3,9 @@ using ESMART_HMS.Infrastructure.Data;
 using System;
 using System.Data.SqlClient;
 using System.Linq;
+using static ESMART_HMS.ESMART_HMSDBDataSet;
+using static Org.BouncyCastle.Asn1.Cmp.Challenge;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ESMART_HMS.Infrastructure.Services
 {
@@ -285,35 +288,19 @@ namespace ESMART_HMS.Infrastructure.Services
                 "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
                 "CONSTRAINT [PK_MenuItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
-            CreateTableIfNotExists("OrderItem",
-                "[Id][nvarchar](450) NOT NULL," +
-                "[OrderItemId][nvarchar](450) NOT NULL," +
-                "[ItemId][nvarchar](450) NOT NULL," +
-                "[Quantity][int] NOT NULL," +
-                "[OrderDate][datetime2](7) NOT NULL," +
-                "[ItemPrice][decimal](10, 2) NULL," +
-                "[TotalAmount][decimal](10, 2) NULL," +
-                "[IsTrashed][bit] NOT NULL," +
-                "[IssuedBy][nvarchar](450) NOT NULL," +
-                "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
-                "FOREIGN KEY (ItemId) REFERENCES MenuItem(Id), " +
-                "CONSTRAINT [PK_OrderItem] PRIMARY KEY CLUSTERED ([Id] ASC)");
-
             CreateTableIfNotExists("Order",
                 "[Id][nvarchar](450) NOT NULL," +
                 "[OrderId][nvarchar](450) NOT NULL," +
                 "[CustomerId][nvarchar](450)NOT NULL," +
                 "[OrderDate][datetime2](7) NOT NULL," +
                 "[TotalAmount][decimal](10, 2) NULL," +
-                "[PaymentMethod][nvarchar](450) NOT NULL," +
-                "[PaymentStatus][nvarchar](450) NOT NULL," +
                 "[ItemId][nvarchar](450) NOT NULL," +
                 "[Quantity][int] NOT NULL," +
                 "[IsTrashed][bit] NOT NULL," +
                 "[IssuedBy][nvarchar](450) NOT NULL," +
                 "FOREIGN KEY (IssuedBy) REFERENCES ApplicationUser(Id), " +
                 "FOREIGN KEY (CustomerId) REFERENCES Guest(Id), " +
-                "FOREIGN KEY (ItemId) REFERENCES OrderItem(Id), " +
+                "FOREIGN KEY (ItemId) REFERENCES MenuItem(Id), " +
                 "CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
             CreateTableIfNotExists("Inventory",
@@ -321,7 +308,6 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[MenuItemId][nvarchar](450) NOT NULL," +
                 "[InitialStock][int] NOT NULL," +
                 "[CurrentStock][int] NOT NULL," +
-                "[StockAdded][int] NOT NULL," +
                 "[LowStockThreshold][int] NOT NULL," +
                 "[CreatedBy][nvarchar](450) NOT NULL," +
                 "[IsTrashed][bit] NOT NULL," +
@@ -501,7 +487,34 @@ namespace ESMART_HMS.Infrastructure.Services
                     UserRepository userRepository = new UserRepository(db);
                     userRepository.AddUser(user);
                     db.SaveChanges();
+                    SeeLicenceAdmin(user.UserName);
                 }
+            }
+        }
+
+        public static void SeeLicenceAdmin(string userName)
+        {
+            ESMART_HMSDBEntities db = new ESMART_HMSDBEntities();
+
+            Random random = new Random();
+            ApplicationUserRole adminRole = new ApplicationUserRole()
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserRoleId = "USR" + "12345",
+                Role = db.Roles.FirstOrDefault(r => r.Title == "Admin"),
+                ApplicationUser = db.ApplicationUsers.FirstOrDefault(u => u.UserName == userName),
+                RoleId = db.Roles.FirstOrDefault(r => r.Title == "Admin").Id,
+                UserId = db.ApplicationUsers.FirstOrDefault(r => r.UserName == userName).Id,
+                IsTrashed = false,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now,
+            };
+
+            var foundUserRole = db.ApplicationUserRoles.FirstOrDefault(ur => ur.Role.Id == adminRole.Role.Id && ur.ApplicationUser.Id == adminRole.ApplicationUser.Id);
+            if (foundUserRole == null)
+            {
+                UserRoleRepository userRoleRepository = new UserRoleRepository(db);
+                userRoleRepository.AssignUserToRole(adminRole);
             }
         }
 
@@ -553,6 +566,16 @@ namespace ESMART_HMS.Infrastructure.Services
                 DateModified = DateTime.Now
             };
 
+            Role role2 = new Role()
+            {
+                Id = Guid.NewGuid().ToString(),
+                RoleId = "ROL" + random.Next(1000, 5000),
+                Title = "Admin",
+                Description = "Admin Role",
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now
+            };
+
             using (ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
             {
                 var foundRole = db.Roles.FirstOrDefault(r => r.Title == role.Title);
@@ -560,6 +583,13 @@ namespace ESMART_HMS.Infrastructure.Services
                 {
                     RoleRepository roleRepository = new RoleRepository(db);
                     roleRepository.AddRole(role);
+                }
+
+                var foundRole2 = db.Roles.FirstOrDefault(r => r.Title == role2.Title);
+                if (foundRole2 == null)
+                {
+                    RoleRepository roleRepository = new RoleRepository(db);
+                    roleRepository.AddRole(role2);
                 }
             }
         }

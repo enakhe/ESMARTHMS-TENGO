@@ -3,13 +3,6 @@ using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Restaurant;
 using ESMART_HMS.Presentation.Sessions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Restaurant
@@ -67,7 +60,7 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
-            
+
             }
         }
 

@@ -1,11 +1,16 @@
-﻿using ESMART_HMS.Domain.Entities;
+﻿using DocumentFormat.OpenXml.Drawing.Spreadsheet;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static ESMART_HMS.ESMART_HMSDBDataSet;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ESMART_HMS.Presentation.Forms.Rooms
 {
@@ -14,29 +19,52 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         private string _Id;
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
-        public EditRoomForm(RoomController roomController, RoomTypeController roomTypeController, string Id)
+        private readonly SystemSetupController _systemSetupController;
+        public EditRoomForm(RoomController roomController, RoomTypeController roomTypeController, SystemSetupController systemSetupController, string Id)
         {
             InitializeComponent();
             _roomController = roomController;
+            _systemSetupController = systemSetupController;
             _roomTypeController = roomTypeController;
             _Id = Id;
         }
 
         private void EditRoomForm_Load(object sender, EventArgs e)
         {
-            LoadRoomType();
+            LoadData();
             LoadRoomTypeData();
         }
 
-        public void LoadRoomType()
+        public void LoadData()
         {
             try
             {
-                List<RoomTypeViewModel> roomTypes = _roomTypeController.GetAllRoomType();
-                txtRoomType.DataSource = roomTypes;
-                txtRoomType.DisplayMember = "Title";
-                txtRoomType.ValueMember = "Id";
+                var allRoomTypes = _roomTypeController.GetAllRoomType();
+                var allBuilding = _roomController.GetAllBuildings();
+                var allFloors = _roomController.GetAllFloors();
+                var allAreas = _roomController.GetAllAreas();
+                if (allRoomTypes != null)
+                {
+                    txtRoomType.DataSource = allRoomTypes;
+                    txtRoomType.Text = allRoomTypes.Count.ToString();
+                }
+
+                if (allBuilding != null)
+                {
+                    txtBuilding.DataSource = allBuilding;
+                }
+
+                if (allFloors != null)
+                {
+                    txtFloor.DataSource = allFloors;
+                }
+
+                if (allAreas != null)
+                {
+                    txtArea.DataSource = allAreas;
+                }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,
@@ -59,11 +87,22 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 else
                 {
                     txtId.Text = room.Id;
+                    txtRate.Text = FormHelper.FormatNumberWithCommas(room.Rate);
+
+                    txtBuilding.SelectedValue = room.BuildingId;
+                    txtBuilding.SelectedItem = room.Building;
+
+                    txtFloor.SelectedItem = room.Floor;
+                    txtFloor.SelectedValue = room.FloorId;
+
+                    txtArea.SelectedItem = room.Area;
+                    txtArea.SelectedValue = room.AreaId;
+
                     txtRoomNo.Text = room.RoomNo;
                     txtAdultPerRoom.Text = room.AdultPerRoom.ToString();
                     txtChildrenPerRoom.Text = room.ChildrenPerRoom.ToString();
-                    txtRate.Text = FormHelper.FormatNumberWithCommas(room.Rate);
                     txtDescription.Text = room.Description;
+
                     txtRoomType.SelectedValue = room.RoomTypeId;
                     txtRoomType.SelectedItem = room.RoomType;
                 }
@@ -73,15 +112,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            var closeForm = MessageBox.Show("Are you sure you want to close this form?", "Confirm Closure", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            if (closeForm == DialogResult.Yes)
-            {
-                this.Close();
             }
         }
 
@@ -95,24 +125,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
         }
 
         private void txtRoomNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow control keys like backspace
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtCardNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow control keys like backspace
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtLockNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow control keys like backspace
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -156,12 +168,14 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                CompanyInformation foundCompany = _systemSetupController.GetCompanyInfo();
+
                 Room room = _roomController.GetRealRoom(_Id);
-                bool anyNull = FormHelper.AreAnyNullOrEmpty(txtRoomNo.Text, txtCardNo.Text, txtLockNo.Text, txtRate.Text, txtAdultPerRoom.Text, txtChildrenPerRoom.Text, txtRoomType.Text);
+                bool anyNull = FormHelper.AreAnyNullOrEmpty(txtRoomNo.Text, txtRate.Text, txtAdultPerRoom.Text, txtChildrenPerRoom.Text, txtRoomType.Text, txtBuilding.Text, txtArea.Text, txtFloor.Text);
                 if (anyNull == true)
                 {
                     MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
@@ -174,13 +188,43 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     room.Rate = decimal.Parse(txtRate.Text);
                     room.AdultPerRoom = int.Parse(txtAdultPerRoom.Text);
                     room.ChildrenPerRoom = int.Parse(txtChildrenPerRoom.Text);
+                    room.Description = txtDescription.Text.Trim().ToUpper();
+
                     room.RoomTypeId = (string)txtRoomType.SelectedValue.ToString();
                     room.RoomType = _roomTypeController?.GetRoomTypeById(txtRoomType.SelectedValue?.ToString());
-                    room.Description = txtDescription.Text.Trim().ToUpper();
+
+                    room.BuildingId = (string)txtBuilding.SelectedValue.ToString();
+                    room.Building = _roomController?.GetBuildingById(txtBuilding.SelectedValue?.ToString());
+
+                    room.FloorId = (string)txtFloor.SelectedValue.ToString();
+                    room.Floor = _roomController?.GetFloorById(txtFloor.SelectedValue?.ToString());
+
+                    room.AreaId = (string)txtArea.SelectedValue.ToString();
+                    room.Area = _roomController?.GetAreaById(txtArea.SelectedValue?.ToString());
 
                     room.DateModified = DateTime.Now;
 
                     _roomController.UpdateRoom(room);
+                    string roomString = $"Room Details:\n" +
+               $"Id: {room.Id}\n" +
+               $"RoomId: {room.RoomId}\n" +
+               $"RoomNo: {room.RoomNo}\n" +
+               $"RoomType: {room.RoomType.Title}\n" +
+               $"Building: {room.Building.BuildingName}\n" +
+               $"Floor: {room.Floor.FloorNo}\n" +
+               $"Area: {room.Area.AreaName}\n" +
+               $"Rate: {room.Rate}\n" +
+               $"Status: {room.Status}\n" +
+               $"Created By: {room.CreatedBy}\n" +
+               $"Date Created: {room.DateCreated}\n" +
+               $"Date Modified: {room.DateModified}\n";
+                    if (foundCompany != null)
+                    {
+                        if (foundCompany.Email != null)
+                        {
+                            await EmailHelper.SendEmail(foundCompany.Email, "Room Edited", roomString);
+                        }
+                    }
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

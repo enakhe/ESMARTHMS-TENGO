@@ -3,12 +3,9 @@ using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Infrastructure.Services;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
-using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
 using ESMART_HMS.Presentation.Forms.License;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms
@@ -51,7 +48,9 @@ namespace ESMART_HMS.Presentation.Forms
 
         private void freeTrial_Click(object sender, EventArgs e)
         {
-            string productKey = LicenceHelper.GenerateProductKey("Free Trial", DateTime.Now.AddDays(7));
+            Random random = new Random();
+            var hotelName = "Free Trial" + random.Next(100000, 200000);
+            string productKey = LicenceHelper.GenerateProductKey(hotelName, DateTime.Now.AddDays(7));
             if (productKey != null)
             {
                 txtHotelName.Text = "Free Trial";
@@ -86,7 +85,7 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 if (txtProductKey.Text.Length != 27)
                 {
-                    MessageBox.Show("Product key must be 27 characters long ", "Invalid product key", MessageBoxButtons.OK,
+                    MessageBox.Show("Invalid product key", "Invalid product key", MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                 }
                 else

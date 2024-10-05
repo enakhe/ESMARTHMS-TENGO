@@ -36,10 +36,10 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
             else
             {
                 Random random = new Random();
-                Domain.Entities.BarItem barItem = new Domain.Entities.BarItem()
+                Domain.Entities.MenuItem barItem = new Domain.Entities.MenuItem()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    BarItemId = "BITM" + random.Next(1000, 4000),
+                    MenuItemId = "BITM" + random.Next(1000, 4000),
                     Barcode = txtBarcode.Text,
                     ItemName = txtName.Text.ToUpper(),
                     CostPrice = decimal.Parse(txtCostPrice.Text),

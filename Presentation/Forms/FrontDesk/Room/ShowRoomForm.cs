@@ -1,8 +1,10 @@
 ﻿using ESMART_HMS.Application.LockSDK;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Sessions;
 using System;
 using System.Drawing;
 using System.Text;
@@ -19,15 +21,17 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
         private readonly CardController _cardController;
         private readonly RoomController _roomController;
         private readonly ApplicationUserController _userController;
+        private readonly SystemSetupController _sytemSetupController;
 
-        public ShowRoomForm(string id, RoomController roomController, CardController cardController, ApplicationUserController userController)
+        public ShowRoomForm(string id, RoomController roomController, CardController cardController, ApplicationUserController userController, SystemSetupController sytemSetupController)
         {
             _id = id;
             _roomController = roomController;
             _cardController = cardController;
+            _sytemSetupController = sytemSetupController;
+            _userController = userController;
             InitializeComponent();
             InitializeTimer();
-            _userController = userController;
         }
 
         int st = 0;
@@ -153,7 +157,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             LoadCardDetails();
         }
 
-        private void btnIssue_Click(object sender, EventArgs e)
+        private async void btnIssue_Click(object sender, EventArgs e)
         {
             //Issue card
             char[] card_snr = new char[100];
@@ -162,17 +166,29 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             string roomno = $"{room.Building.BuildingNo}.{room.Floor.FloorNo}.{room.RoomNo}";
 
             string intime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            String outtime = DateTime.Now.AddMinutes(1).ToString("yyyy-MM-dd HH:mm:ss");
-
-            short iflags = 80;
+            String outtime = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss");
+            CARD_FLAGS iflags = CARD_FLAGS.CF_OPEN_ONCE;
 
             if (LockSDKHeaders.PreparedIssue(card_snr) == false)
                 return;
-            st = LockSDKMethods.MakeGuestCard(card_snr, roomno, room.Area.AreaNo, room.Floor.FloorNo, intime, outtime, iflags);
+            st = LockSDKMethods.MakeGuestCard(card_snr, roomno, "", "", intime, outtime, iflags);
 
             if (st == (int)ERROR_TYPE.OPR_OK)
             {
                 MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CompanyInformation foundCompany = _sytemSetupController.GetCompanyInfo();
+                ApplicationUser user = _userController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+
+                string details = $"Room Number: {room.RoomNo}\nArea Number: {room.Area.AreaNo}\nFloor Number: {room.Floor.FloorNo}\nDate Issued: {DateTime.Now}\nIssuedBy: {user.FullName}";
+
+                if(foundCompany != null)
+                {
+                    if(foundCompany.Email != null)
+                    {
+                        await EmailHelper.SendEmail(foundCompany.Email, "Show Room Card Created", details);
+                    }
+                }
+
                 LoadCardDetails();
             }
             else if (st == (int)ERROR_TYPE.PORT_IN_USED)

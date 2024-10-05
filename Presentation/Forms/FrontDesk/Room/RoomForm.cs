@@ -35,6 +35,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             ApplyAuthorization();
             _systemSetupController = systemSetupController;
             _cardController = cardController;
@@ -51,6 +52,8 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             LoadData();
             splitContainer15.SplitterWidth = 1;
             splitContainer5.BackColor = splitContainer15.Panel1.BackColor;
+            dgvRooms.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvRooms.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
         public void LoadData()
@@ -79,26 +82,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     txtVacant.Text = _roomController.GetAllRooms().Where(r => r.Status == RoomStatusEnum.Vacant.ToString()).Count().ToString();
                     txtReserved.Text = _roomController.GetAllRooms().Where(r => r.Status == RoomStatusEnum.Reserved.ToString()).Count().ToString();
                     txtBooked.Text = _roomController.GetAllRooms().Where(r => r.Status == RoomStatusEnum.CheckedIn.ToString()).Count().ToString();
-                }
-
-                if (roomTypes != null)
-                {
-                    RoomTypeViewModel all = new RoomTypeViewModel()
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        RoomTypeId = "ALL",
-                        Title = "ALL",
-                        DateCreated = DateTime.Now,
-                        DateModified = DateTime.Now,
-                    };
-                    allRoomTypes.Add(all);
-
-                    foreach (var roomType in roomTypes)
-                    {
-                        allRoomTypes.Add(roomType);
-                    }
-
-                    txtRoomType.DataSource = allRoomTypes;
                 }
             }
             catch (Exception ex)
@@ -172,7 +155,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 DataGridViewRow row = dgvRooms.Rows[e.RowIndex];
                 string roomId = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
-                using (EditRoomForm editRoomForm = new EditRoomForm(_roomController, _roomTypeController, roomId))
+                using (EditRoomForm editRoomForm = new EditRoomForm(_roomController, _roomTypeController, _systemSetupController, roomId))
                 {
                     if (editRoomForm.ShowDialog() == DialogResult.OK)
                     {
@@ -226,7 +209,7 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     var row = dgvRooms.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
-                    using (ShowRoomForm showRoomForm = new ShowRoomForm(id, _roomController, _cardController, _userController))
+                    using (ShowRoomForm showRoomForm = new ShowRoomForm(id, _roomController, _cardController, _userController, _systemSetupController))
                     {
                         if (showRoomForm.ShowDialog() == DialogResult.OK)
                         {

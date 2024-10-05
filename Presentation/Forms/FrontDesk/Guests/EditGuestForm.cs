@@ -41,6 +41,9 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                     txtCountry.Text = customer.Country;
                     txtCompany.Text = customer.Company;
                     txtPhoneNumber.Text = customer.PhoneNumber;
+                    txtIdType.Text = customer.IdType;
+                    txtId.Text = customer.Id;
+                    
                 }
             }
             catch (Exception ex)
@@ -72,7 +75,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 }
                 else
                 {
-                    if (txtTitle.Text == "" || txtFirstName.Text == "" || txtLastName.Text == "" || txtEmail.Text == "" || txtStreet.Text == "" || txtCity.Text == "" || txtState.Text == "" || txtCountry.Text == "" || txtCompany.Text == "" || txtPhoneNumber.Text == "")
+                    if (txtTitle.Text == "" || txtFirstName.Text == "" || txtLastName.Text == "" || txtEmail.Text == "" || txtPhoneNumber.Text == "")
                     {
                         MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);

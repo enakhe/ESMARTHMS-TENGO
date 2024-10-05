@@ -18,7 +18,6 @@ namespace ESMART_HMS.Domain.Entities
         public string MenuItemId { get; set; }
         public int InitialStock { get; set; }
         public int CurrentStock { get; set; }
-        public int StockAdded { get; set; }
         public int LowStockThreshold { get; set; }
         public string CreatedBy { get; set; }
         public bool IsTrashed { get; set; }

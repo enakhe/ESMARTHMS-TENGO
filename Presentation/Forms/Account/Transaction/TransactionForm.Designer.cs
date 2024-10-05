@@ -129,7 +129,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(30);
             this.splitContainer1.Size = new System.Drawing.Size(1453, 701);
-            this.splitContainer1.SplitterDistance = 205;
+            this.splitContainer1.SplitterDistance = 172;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -141,15 +141,15 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30, 20, 20, 20);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1453, 205);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1453, 172);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.ForestGreen;
             this.panel5.Controls.Add(this.splitContainer20);
-            this.panel5.Location = new System.Drawing.Point(33, 23);
+            this.panel5.Location = new System.Drawing.Point(33, 33);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(300, 155);
             this.panel5.TabIndex = 9;
@@ -227,7 +227,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumTurquoise;
             this.panel2.Controls.Add(this.splitContainer4);
-            this.panel2.Location = new System.Drawing.Point(339, 23);
+            this.panel2.Location = new System.Drawing.Point(339, 33);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(409, 155);
             this.panel2.TabIndex = 10;
@@ -277,7 +277,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.MediumTurquoise;
             this.panel3.Controls.Add(this.splitContainer5);
-            this.panel3.Location = new System.Drawing.Point(754, 23);
+            this.panel3.Location = new System.Drawing.Point(754, 33);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(409, 155);
             this.panel3.TabIndex = 11;
@@ -330,7 +330,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(30, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1393, 432);
+            this.panel1.Size = new System.Drawing.Size(1393, 465);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer2
@@ -347,8 +347,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dgvTransaction);
-            this.splitContainer2.Size = new System.Drawing.Size(1393, 432);
-            this.splitContainer2.SplitterDistance = 60;
+            this.splitContainer2.Size = new System.Drawing.Size(1393, 465);
+            this.splitContainer2.SplitterDistance = 47;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -360,7 +360,7 @@
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.Controls.Add(this.flowLayoutPanel3);
-            this.splitContainer3.Size = new System.Drawing.Size(1393, 60);
+            this.splitContainer3.Size = new System.Drawing.Size(1393, 47);
             this.splitContainer3.SplitterDistance = 625;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -374,7 +374,7 @@
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(20, 15, 5, 20);
             this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(625, 60);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(625, 47);
             this.flowLayoutPanel3.TabIndex = 4;
             // 
             // label1
@@ -454,7 +454,7 @@
             this.dgvTransaction.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTransaction.RowHeadersWidth = 51;
             this.dgvTransaction.RowTemplate.Height = 24;
-            this.dgvTransaction.Size = new System.Drawing.Size(1393, 368);
+            this.dgvTransaction.Size = new System.Drawing.Size(1393, 414);
             this.dgvTransaction.TabIndex = 3;
             // 
             // idDataGridViewTextBoxColumn
@@ -569,7 +569,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(55)))), ((int)(((byte)(134)))));
             this.ClientSize = new System.Drawing.Size(1513, 761);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

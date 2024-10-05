@@ -50,7 +50,6 @@ namespace ESMART_HMS.Domain.Entities
         public virtual DbSet<LicenseInfo> LicenseInfoes { get; set; }
         public virtual DbSet<MenuItem> MenuItems { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
-        public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
     }
 }

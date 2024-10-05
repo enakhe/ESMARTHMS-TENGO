@@ -18,7 +18,8 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
         private readonly CardController _cardController;
         private readonly ApplicationUserController _userController;
         private readonly RoomController _roomController;
-        public FloorCardForm(CardController cardController, ApplicationUserController userController, RoomController roomController)
+        private readonly SystemSetupController _sytemSetupController;
+        public FloorCardForm(CardController cardController, ApplicationUserController userController, RoomController roomController, SystemSetupController sytemSetupController)
         {
             _cardController = cardController;
             _userController = userController;
@@ -26,6 +27,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
             InitializeComponent();
             Initialize();
             LoadBuilding();
+            _sytemSetupController = sytemSetupController;
         }
 
         int st;
@@ -154,7 +156,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
         }
 
 
-        private void btnIssue_Click(object sender, EventArgs e)
+        private async void btnIssue_Click(object sender, EventArgs e)
         {
 
             try
@@ -164,6 +166,8 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
                 string selectedTime = SelectedTime();
                 string selectedToTime = SelectedToTime();
                 Building building = _roomController.GetBuildingById(comboBuilding.SelectedValue.ToString());
+                CompanyInformation foundCompany = _sytemSetupController.GetCompanyInfo();
+
 
                 string validTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string endTime = DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss");
@@ -216,6 +220,24 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
                         DateModified = DateTime.Now,
                     };
                     _cardController.AddSpecialCard(specialCard);
+                    string specialCardString = $"Id = {specialCard.Id}\n" +
+                         $"Card No = {specialCard.CardNo}\n" +
+                         $"Card Type = {specialCard.CardType}\n" +
+                         $"Issue Time = {specialCard.IssueTime}\n" +
+                         $"Refund Time = {specialCard.RefundTime}\n" +
+                         $"Issued By = {specialCard.IssuedBy}\n" +
+                         $"Application User = {specialCard.ApplicationUser?.FullName}\n" +
+                         $"Can Open Dead Locks = {specialCard.CanOpenDeadLocks}\n" +
+                         $"Passage Mode = {specialCard.PassageMode}\n" +
+                         $"Date Created = {specialCard.DateCreated}\n" +
+                         $"Date Modified = {specialCard.DateModified}";
+                    if (foundCompany != null)
+                    {
+                        if (foundCompany.Email != null)
+                        {
+                            await EmailHelper.SendEmail(foundCompany.Email, "Floor Card Created", specialCardString);
+                        }
+                    }
                     MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                     this.Close();

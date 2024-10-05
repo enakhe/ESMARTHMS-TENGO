@@ -1,4 +1,6 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Presentation.ViewModels;
+using System.Collections.Generic;
 
 namespace ESMART_HMS.Application.UseCases.ApplicationUser
 {
@@ -14,6 +16,11 @@ namespace ESMART_HMS.Application.UseCases.ApplicationUser
         public Domain.Entities.ApplicationUser Execute(string id)
         {
             return _userRepository.GetUserById(id);
+        }
+
+        public List<UserViewModel> GetallUsers()
+        {
+            return _userRepository.GetAllUsers();
         }
     }
 }

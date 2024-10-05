@@ -1,33 +1,36 @@
-﻿//using ESMART_HMS.Presentation.Controllers.Bar;
-using ESMART_HMS.Presentation.Controllers.Maintenance;
+﻿using ESMART_HMS.Presentation.Controllers.Bar;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Inventory;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Controllers.Restaurant;
+using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Account.BankAccount;
-//using ESMART_HMS.Presentation.Forms.Bar;
+using ESMART_HMS.Presentation.Forms.Bar;
 using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.booking;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
-using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.Inventory;
 using ESMART_HMS.Presentation.Forms.License;
-using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
+using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
+using ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.Role;
+using ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.User;
 using ESMART_HMS.Presentation.Forms.Report;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Restaurant;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
-//using ESMART_HMS.Presentation.Forms.Store.BarStore;
+using ESMART_HMS.Presentation.Forms.Store.BarStore;
 using ESMART_HMS.Presentation.Forms.Tools.Option.Financial;
 using ESMART_HMS.Presentation.Forms.Tools.Options.Accounts;
 using ESMART_HMS.Presentation.Forms.Transaction;
-using ESMART_HMS.Presentation.Forms;
 using Microsoft.Extensions.DependencyInjection;
-using ESMART_HMS.Presentation.Controllers.Restaurant;
-using ESMART_HMS.Presentation.Forms.Inventory;
-using ESMART_HMS.Presentation.Controllers.Inventory;
+using ESMART_HMS.Presentation.Forms.Maintenance;
 
 namespace ESMART_HMS.Presentation
 {
@@ -57,13 +60,14 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<TransactionController>();
             services.AddScoped<ApplicationUserController>();
             services.AddScoped<UserRoleController>();
-            //services.AddScoped<BarItemController>();
+            services.AddScoped<BarItemController>();
             services.AddScoped<SystemSetupController>();
             services.AddScoped<CardController>();
             services.AddScoped<LicenseController>();
-            //services.AddScoped<OrderController>();
+            services.AddScoped<OrderController>();
             services.AddScoped<RestaurantContoller>();
             services.AddScoped<InventoryController>();
+            services.AddScoped<RoleController>();
 
             return services;
         }
@@ -102,10 +106,11 @@ namespace ESMART_HMS.Presentation
 
             services.AddScoped<FinancialForm>();
             services.AddScoped<UserForm>();
+            services.AddScoped<AddRoleForm>();
 
-            //services.AddScoped<BarStoreForm>();
-            //services.AddScoped<AddBarItemForm>();
-            //services.AddScoped<Presentation.Forms.Bar.OrderForm>();
+            services.AddScoped<BarStoreForm>();
+            services.AddScoped<AddBarItemForm>();
+            services.AddScoped<Presentation.Forms.Bar.OrderForm>();
             services.AddScoped<DashboardForm>();
 
             services.AddScoped<RestaurantForm>();
@@ -113,6 +118,12 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<Presentation.Forms.Restaurant.OrderForm>();
             services.AddScoped<MenuItemForm>();
             services.AddScoped<AddInventoryForm>();
+            services.AddScoped<EditMenuItemForm>();
+            services.AddScoped<AddUserForm>();
+
+            services.AddScoped<LockApp>();
+            services.AddScoped<EditUserForm>();
+            services.AddScoped<RecycledItemForm>();
 
             return services;
         }

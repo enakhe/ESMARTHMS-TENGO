@@ -15,5 +15,10 @@ namespace ESMART_HMS.Application.UseCases.Reservation
         {
             _reservationRepository.UpdateReservation(reservation);
         }
+
+        public void DeleteReservation(string id)
+        {
+            _reservationRepository.DeleteReservation(id);
+        }
     }
 }

@@ -1,6 +1,9 @@
-﻿using ESMART_HMS.Domain.Entities;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
@@ -58,6 +61,7 @@ namespace ESMART_HMS.Infrastructure.Data
                 return Convert.ToBase64String(hashBytes);
             }
         }
+
         public bool VerifyPassword(string enteredPassword, string storedHash)
         {
             byte[] hashBytes = Convert.FromBase64String(storedHash);
@@ -89,6 +93,48 @@ namespace ESMART_HMS.Infrastructure.Data
                             MessageBoxIcon.Error);
             }
             return null;
+        }
+
+        public List<UserViewModel> GetAllUsers()
+        {
+            try
+            {
+                var liscenceInfo = _db.LicenseInfoes.FirstOrDefault();
+                var allUsers = _db.ApplicationUsers
+                                      .Where(u => !u.IsTrashed && u.UserName != "SuperAdmin" && u.UserName != liscenceInfo.HotelName)
+                                      .OrderBy(u => u.FullName)
+                                      .Select(user => new UserViewModel
+                                      {
+                                          Id = user.Id,
+                                          UserId = user.UserId,
+                                          FullName = user.FullName,
+                                          UserName = user.UserName,
+                                          Email = user.Email,
+                                          PhoneNumber = user.PhoneNumber,
+                                          Role = user.ApplicationUserRoles.FirstOrDefault(ur => ur.UserId == user.Id).Role.Title,
+                                          DateCreated = user.DateCreated.ToString()
+                                      })
+                                      .ToList();
+                return allUsers;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when getting all user", ex);
+            }
+        }
+
+        public void UpdateUser(ApplicationUser user)
+        {
+            try
+            {
+                user.PasswordHash = HashPassword(user.PasswordHash);
+                _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when updating user", ex);
+            }
         }
     }
 }

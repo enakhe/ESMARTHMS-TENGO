@@ -8,6 +8,7 @@ using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Reservation
@@ -33,15 +34,10 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             _applicationUserController = applicationUserController;
             _systemSetupController = systemSetupController;
             InitializeComponent();
+            ApplyAuthorization();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
-            ApplyAuthorization();
-        }
-
-        private void ApplyAuthorization()
-        {
-            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
-            AuthorizationMiddleware.Protect(user, btnDelete, "SuperAdmin");
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
         }
 
         private void ReservationForm_Load(object sender, EventArgs e)
@@ -49,6 +45,15 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             LoadData();
             splitContainer19.SplitterWidth = 1;
             splitContainer19.BackColor = splitContainer19.Panel1.BackColor;
+            dgvReservation.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvReservation.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
+        }
+
+        private void ApplyAuthorization()
+        {
+            List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.ProtectControl(user, btnDelete, roles);
         }
 
         private void LoadData()
@@ -120,6 +125,62 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                 else
                 {
                     MessageBox.Show("Please select a reservation to book.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvReservation.SelectedRows.Count > 0)
+                {
+                    CompanyInformation foundCompany = _systemSetupController.GetCompanyInfo();
+
+                    var result = MessageBox.Show("Are you sure you want to add the selected reservation to the recycle?\nIts record including all entries tagged to such reservation will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgvReservation.SelectedRows)
+                        {
+                            string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+                            _reservationController.DeleteReservation(id);
+                            var reservation = _reservationController.GetReservationById(id);
+                            string reservationString = $"Id = {reservation.Id}\n" +
+     $"Reservation Id = {reservation.ReservationId}\n" +
+     $"Guest Id = {reservation.GuestId}\n" +
+     $"Room Id = {reservation.RoomId}\n" +
+     $"Check-In Date = {reservation.CheckInDate.ToString("yyyy-MM-dd HH:mm:ss")}\n" +
+     $"Check-Out Date = {reservation.CheckOutDate.ToString("yyyy-MM-dd HH:mm:ss")}\n" +
+     $"Payment Method = {reservation.PaymentMethod}\n" +
+     $"Amount = {reservation.Amount}\n" +
+     $"Status = {reservation.Status}\n" +
+     $"Created By = {reservation.ApplicationUser.FullName}\n" +
+     $"Date Created = {reservation.DateCreated.ToString("yyyy-MM-dd HH:mm:ss")}\n" +
+     $"Date Modified = {reservation.DateModified.ToString("yyyy-MM-dd HH:mm:ss")}\n" +
+     $"Is Trashed = {reservation.IsTrashed}\n" +
+     $"Amount Paid = {reservation.AmountPaid}";
+
+                            if (foundCompany != null)
+                            {
+                                if (foundCompany.Email != null)
+                                {
+                                    await EmailHelper.SendEmail(foundCompany.Email, "Reservation Recycled", reservationString);
+                                }
+                            }
+                        }
+                        LoadData();
+                        MessageBox.Show("Successfully added reservation information to recycle", "Success", MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a reservation to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

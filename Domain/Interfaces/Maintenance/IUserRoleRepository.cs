@@ -6,5 +6,7 @@ namespace ESMART_HMS.Domain.Interfaces
     {
         void AssignUserToRole(ApplicationUserRole userRole);
         bool IsInRole(ApplicationUser user, string title);
+        void UpdateUserRole(ApplicationUserRole userRole);
+        ApplicationUserRole FindUserRole(string id);
     }
 }

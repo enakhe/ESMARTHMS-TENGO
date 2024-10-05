@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RoomForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.roomBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -80,8 +80,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtFilter = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtRoomType = new System.Windows.Forms.ComboBox();
-            this.roomTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnShowRoom = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -98,6 +96,7 @@
             this.Floor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roomTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
@@ -194,9 +193,9 @@
             this.splitContainer13.Panel2.SuspendLayout();
             this.splitContainer13.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).BeginInit();
             this.flowLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -280,7 +279,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(30);
             this.splitContainer1.Size = new System.Drawing.Size(1496, 703);
-            this.splitContainer1.SplitterDistance = 206;
+            this.splitContainer1.SplitterDistance = 172;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -293,17 +292,17 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30, 20, 20, 20);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1496, 206);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1496, 172);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
             this.panel2.Controls.Add(this.splitContainer14);
-            this.panel2.Location = new System.Drawing.Point(33, 23);
+            this.panel2.Location = new System.Drawing.Point(33, 33);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(300, 155);
+            this.panel2.Size = new System.Drawing.Size(391, 155);
             this.panel2.TabIndex = 0;
             // 
             // splitContainer14
@@ -319,8 +318,8 @@
             // splitContainer14.Panel2
             // 
             this.splitContainer14.Panel2.Controls.Add(this.txtRoomCount);
-            this.splitContainer14.Size = new System.Drawing.Size(300, 155);
-            this.splitContainer14.SplitterDistance = 207;
+            this.splitContainer14.Size = new System.Drawing.Size(391, 155);
+            this.splitContainer14.SplitterDistance = 269;
             this.splitContainer14.TabIndex = 0;
             // 
             // splitContainer15
@@ -337,7 +336,7 @@
             // splitContainer15.Panel2
             // 
             this.splitContainer15.Panel2.Controls.Add(this.pictureBox5);
-            this.splitContainer15.Size = new System.Drawing.Size(207, 155);
+            this.splitContainer15.Size = new System.Drawing.Size(269, 155);
             this.splitContainer15.SplitterDistance = 39;
             this.splitContainer15.TabIndex = 0;
             // 
@@ -358,7 +357,7 @@
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(0, 0);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(207, 112);
+            this.pictureBox5.Size = new System.Drawing.Size(269, 112);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox5.TabIndex = 2;
             this.pictureBox5.TabStop = false;
@@ -366,11 +365,11 @@
             // txtRoomCount
             // 
             this.txtRoomCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtRoomCount.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRoomCount.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRoomCount.ForeColor = System.Drawing.Color.White;
             this.txtRoomCount.Location = new System.Drawing.Point(0, 0);
             this.txtRoomCount.Name = "txtRoomCount";
-            this.txtRoomCount.Size = new System.Drawing.Size(89, 155);
+            this.txtRoomCount.Size = new System.Drawing.Size(118, 155);
             this.txtRoomCount.TabIndex = 3;
             this.txtRoomCount.Text = "0";
             this.txtRoomCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -379,9 +378,9 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(175)))), ((int)(((byte)(129)))));
             this.panel3.Controls.Add(this.splitContainer16);
-            this.panel3.Location = new System.Drawing.Point(339, 23);
+            this.panel3.Location = new System.Drawing.Point(430, 33);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(300, 155);
+            this.panel3.Size = new System.Drawing.Size(391, 155);
             this.panel3.TabIndex = 1;
             // 
             // splitContainer16
@@ -397,8 +396,8 @@
             // splitContainer16.Panel2
             // 
             this.splitContainer16.Panel2.Controls.Add(this.txtVacant);
-            this.splitContainer16.Size = new System.Drawing.Size(300, 155);
-            this.splitContainer16.SplitterDistance = 207;
+            this.splitContainer16.Size = new System.Drawing.Size(391, 155);
+            this.splitContainer16.SplitterDistance = 269;
             this.splitContainer16.TabIndex = 0;
             // 
             // splitContainer17
@@ -415,7 +414,7 @@
             // splitContainer17.Panel2
             // 
             this.splitContainer17.Panel2.Controls.Add(this.pictureBox6);
-            this.splitContainer17.Size = new System.Drawing.Size(207, 155);
+            this.splitContainer17.Size = new System.Drawing.Size(269, 155);
             this.splitContainer17.SplitterDistance = 39;
             this.splitContainer17.TabIndex = 0;
             // 
@@ -436,7 +435,7 @@
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(0, 0);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(207, 112);
+            this.pictureBox6.Size = new System.Drawing.Size(269, 112);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox6.TabIndex = 2;
             this.pictureBox6.TabStop = false;
@@ -444,11 +443,11 @@
             // txtVacant
             // 
             this.txtVacant.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtVacant.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVacant.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtVacant.ForeColor = System.Drawing.Color.White;
             this.txtVacant.Location = new System.Drawing.Point(0, 0);
             this.txtVacant.Name = "txtVacant";
-            this.txtVacant.Size = new System.Drawing.Size(89, 155);
+            this.txtVacant.Size = new System.Drawing.Size(118, 155);
             this.txtVacant.TabIndex = 3;
             this.txtVacant.Text = "0";
             this.txtVacant.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -457,9 +456,9 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(207)))), ((int)(((byte)(5)))));
             this.panel4.Controls.Add(this.splitContainer18);
-            this.panel4.Location = new System.Drawing.Point(645, 23);
+            this.panel4.Location = new System.Drawing.Point(827, 33);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(300, 155);
+            this.panel4.Size = new System.Drawing.Size(391, 155);
             this.panel4.TabIndex = 2;
             // 
             // splitContainer18
@@ -475,8 +474,8 @@
             // splitContainer18.Panel2
             // 
             this.splitContainer18.Panel2.Controls.Add(this.txtReserved);
-            this.splitContainer18.Size = new System.Drawing.Size(300, 155);
-            this.splitContainer18.SplitterDistance = 207;
+            this.splitContainer18.Size = new System.Drawing.Size(391, 155);
+            this.splitContainer18.SplitterDistance = 269;
             this.splitContainer18.TabIndex = 0;
             // 
             // splitContainer19
@@ -493,7 +492,7 @@
             // splitContainer19.Panel2
             // 
             this.splitContainer19.Panel2.Controls.Add(this.pictureBox7);
-            this.splitContainer19.Size = new System.Drawing.Size(207, 155);
+            this.splitContainer19.Size = new System.Drawing.Size(269, 155);
             this.splitContainer19.SplitterDistance = 39;
             this.splitContainer19.TabIndex = 0;
             // 
@@ -514,7 +513,7 @@
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(0, 0);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(207, 112);
+            this.pictureBox7.Size = new System.Drawing.Size(269, 112);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox7.TabIndex = 2;
             this.pictureBox7.TabStop = false;
@@ -522,11 +521,11 @@
             // txtReserved
             // 
             this.txtReserved.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtReserved.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReserved.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReserved.ForeColor = System.Drawing.Color.White;
             this.txtReserved.Location = new System.Drawing.Point(0, 0);
             this.txtReserved.Name = "txtReserved";
-            this.txtReserved.Size = new System.Drawing.Size(89, 155);
+            this.txtReserved.Size = new System.Drawing.Size(118, 155);
             this.txtReserved.TabIndex = 3;
             this.txtReserved.Text = "0";
             this.txtReserved.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -535,9 +534,9 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
             this.panel5.Controls.Add(this.splitContainer20);
-            this.panel5.Location = new System.Drawing.Point(951, 23);
+            this.panel5.Location = new System.Drawing.Point(33, 194);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(300, 155);
+            this.panel5.Size = new System.Drawing.Size(391, 155);
             this.panel5.TabIndex = 3;
             // 
             // splitContainer20
@@ -553,8 +552,8 @@
             // splitContainer20.Panel2
             // 
             this.splitContainer20.Panel2.Controls.Add(this.txtBooked);
-            this.splitContainer20.Size = new System.Drawing.Size(300, 155);
-            this.splitContainer20.SplitterDistance = 207;
+            this.splitContainer20.Size = new System.Drawing.Size(391, 155);
+            this.splitContainer20.SplitterDistance = 269;
             this.splitContainer20.TabIndex = 0;
             // 
             // splitContainer21
@@ -571,7 +570,7 @@
             // splitContainer21.Panel2
             // 
             this.splitContainer21.Panel2.Controls.Add(this.pictureBox8);
-            this.splitContainer21.Size = new System.Drawing.Size(207, 155);
+            this.splitContainer21.Size = new System.Drawing.Size(269, 155);
             this.splitContainer21.SplitterDistance = 39;
             this.splitContainer21.TabIndex = 0;
             // 
@@ -592,7 +591,7 @@
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(0, 0);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(207, 112);
+            this.pictureBox8.Size = new System.Drawing.Size(269, 112);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox8.TabIndex = 2;
             this.pictureBox8.TabStop = false;
@@ -600,11 +599,11 @@
             // txtBooked
             // 
             this.txtBooked.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBooked.Font = new System.Drawing.Font("Segoe UI", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBooked.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBooked.ForeColor = System.Drawing.Color.White;
             this.txtBooked.Location = new System.Drawing.Point(0, 0);
             this.txtBooked.Name = "txtBooked";
-            this.txtBooked.Size = new System.Drawing.Size(89, 155);
+            this.txtBooked.Size = new System.Drawing.Size(118, 155);
             this.txtBooked.TabIndex = 3;
             this.txtBooked.Text = "0";
             this.txtBooked.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -616,7 +615,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(30, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1436, 433);
+            this.panel1.Size = new System.Drawing.Size(1436, 467);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer12
@@ -633,8 +632,8 @@
             // splitContainer12.Panel2
             // 
             this.splitContainer12.Panel2.Controls.Add(this.dgvRooms);
-            this.splitContainer12.Size = new System.Drawing.Size(1436, 433);
-            this.splitContainer12.SplitterDistance = 56;
+            this.splitContainer12.Size = new System.Drawing.Size(1436, 467);
+            this.splitContainer12.SplitterDistance = 60;
             this.splitContainer12.TabIndex = 0;
             // 
             // splitContainer13
@@ -650,7 +649,7 @@
             // splitContainer13.Panel2
             // 
             this.splitContainer13.Panel2.Controls.Add(this.flowLayoutPanel5);
-            this.splitContainer13.Size = new System.Drawing.Size(1436, 56);
+            this.splitContainer13.Size = new System.Drawing.Size(1436, 60);
             this.splitContainer13.SplitterDistance = 934;
             this.splitContainer13.TabIndex = 0;
             // 
@@ -662,13 +661,12 @@
             this.flowLayoutPanel4.Controls.Add(this.label7);
             this.flowLayoutPanel4.Controls.Add(this.txtFilter);
             this.flowLayoutPanel4.Controls.Add(this.label15);
-            this.flowLayoutPanel4.Controls.Add(this.txtRoomType);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Padding = new System.Windows.Forms.Padding(20, 15, 5, 20);
             this.flowLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(934, 56);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(934, 60);
             this.flowLayoutPanel4.TabIndex = 4;
             // 
             // label5
@@ -730,24 +728,6 @@
             this.label15.TabIndex = 2;
             this.label15.Text = "Filter by type:";
             // 
-            // txtRoomType
-            // 
-            this.txtRoomType.DataSource = this.roomTypeBindingSource;
-            this.txtRoomType.DisplayMember = "Title";
-            this.txtRoomType.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRoomType.FormattingEnabled = true;
-            this.txtRoomType.Location = new System.Drawing.Point(23, 55);
-            this.txtRoomType.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.txtRoomType.Name = "txtRoomType";
-            this.txtRoomType.Size = new System.Drawing.Size(250, 31);
-            this.txtRoomType.TabIndex = 3;
-            this.txtRoomType.ValueMember = "Id";
-            // 
-            // roomTypeBindingSource
-            // 
-            this.roomTypeBindingSource.DataMember = "RoomType";
-            this.roomTypeBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
             // flowLayoutPanel5
             // 
             this.flowLayoutPanel5.BackColor = System.Drawing.SystemColors.Control;
@@ -758,7 +738,7 @@
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
             this.flowLayoutPanel5.Padding = new System.Windows.Forms.Padding(20, 5, 5, 20);
             this.flowLayoutPanel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(498, 56);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(498, 60);
             this.flowLayoutPanel5.TabIndex = 3;
             // 
             // btnShowRoom
@@ -793,15 +773,15 @@
             this.dgvRooms.AutoGenerateColumns = false;
             this.dgvRooms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRooms.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRooms.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRooms.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRooms.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -817,33 +797,33 @@
             this.dateCreatedDataGridViewTextBoxColumn1,
             this.dateModifiedDataGridViewTextBoxColumn1});
             this.dgvRooms.DataSource = this.roomBindingSource1;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRooms.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRooms.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRooms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRooms.GridColor = System.Drawing.Color.Black;
             this.dgvRooms.Location = new System.Drawing.Point(0, 0);
             this.dgvRooms.Margin = new System.Windows.Forms.Padding(2);
             this.dgvRooms.Name = "dgvRooms";
             this.dgvRooms.ReadOnly = true;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRooms.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRooms.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRooms.RowHeadersWidth = 51;
             this.dgvRooms.RowTemplate.Height = 24;
-            this.dgvRooms.Size = new System.Drawing.Size(1436, 373);
+            this.dgvRooms.Size = new System.Drawing.Size(1436, 403);
             this.dgvRooms.TabIndex = 3;
             // 
             // idDataGridViewTextBoxColumn
@@ -934,6 +914,11 @@
             this.dateModifiedDataGridViewTextBoxColumn1.Name = "dateModifiedDataGridViewTextBoxColumn1";
             this.dateModifiedDataGridViewTextBoxColumn1.ReadOnly = true;
             this.dateModifiedDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // roomTypeBindingSource
+            // 
+            this.roomTypeBindingSource.DataMember = "RoomType";
+            this.roomTypeBindingSource.DataSource = this.eSMART_HMSDBDataSet;
             // 
             // splitContainer3
             // 
@@ -1355,8 +1340,8 @@
             // roomIdDataGridViewTextBoxColumn
             // 
             this.roomIdDataGridViewTextBoxColumn.DataPropertyName = "RoomId";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.roomIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.roomIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.roomIdDataGridViewTextBoxColumn.HeaderText = "Room Id";
             this.roomIdDataGridViewTextBoxColumn.Name = "roomIdDataGridViewTextBoxColumn";
             this.roomIdDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1364,8 +1349,8 @@
             // roomNoDataGridViewTextBoxColumn
             // 
             this.roomNoDataGridViewTextBoxColumn.DataPropertyName = "RoomNo";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.roomNoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.roomNoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.roomNoDataGridViewTextBoxColumn.HeaderText = "Room No";
             this.roomNoDataGridViewTextBoxColumn.Name = "roomNoDataGridViewTextBoxColumn";
             this.roomNoDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1373,8 +1358,8 @@
             // rateDataGridViewTextBoxColumn
             // 
             this.rateDataGridViewTextBoxColumn.DataPropertyName = "Rate";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.rateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.rateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.rateDataGridViewTextBoxColumn.HeaderText = "Rate";
             this.rateDataGridViewTextBoxColumn.Name = "rateDataGridViewTextBoxColumn";
             this.rateDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1382,8 +1367,8 @@
             // Status
             // 
             this.Status.DataPropertyName = "Status";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Status.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Status.DefaultCellStyle = dataGridViewCellStyle7;
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
             this.Status.ReadOnly = true;
@@ -1391,8 +1376,8 @@
             // createdByDataGridViewTextBoxColumn
             // 
             this.createdByDataGridViewTextBoxColumn.DataPropertyName = "CreatedBy";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.createdByDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.createdByDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.createdByDataGridViewTextBoxColumn.HeaderText = "Created By";
             this.createdByDataGridViewTextBoxColumn.Name = "createdByDataGridViewTextBoxColumn";
             this.createdByDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1400,8 +1385,8 @@
             // dateCreatedDataGridViewTextBoxColumn
             // 
             this.dateCreatedDataGridViewTextBoxColumn.DataPropertyName = "DateCreated";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dateCreatedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dateCreatedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "Date Created";
             this.dateCreatedDataGridViewTextBoxColumn.Name = "dateCreatedDataGridViewTextBoxColumn";
             this.dateCreatedDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1409,8 +1394,8 @@
             // dateModifiedDataGridViewTextBoxColumn
             // 
             this.dateModifiedDataGridViewTextBoxColumn.DataPropertyName = "DateModified";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dateModifiedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dateModifiedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
             this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "Date Modified";
             this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
             this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1423,7 +1408,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(55)))), ((int)(((byte)(134)))));
             this.ClientSize = new System.Drawing.Size(1556, 763);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
@@ -1496,9 +1481,9 @@
             this.splitContainer13.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).EndInit();
             this.flowLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRooms)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
@@ -1649,6 +1634,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button btnShowRoom;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox txtRoomType;
     }
 }

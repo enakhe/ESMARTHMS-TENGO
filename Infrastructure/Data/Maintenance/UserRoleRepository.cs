@@ -46,5 +46,30 @@ namespace ESMART_HMS.Infrastructure.Data
             }
             return false;
         }
+
+        public void UpdateUserRole(ApplicationUserRole userRole)
+        {
+            try
+            {
+                _db.Entry(userRole).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when updating user role", ex);
+            }
+        }
+
+        public ApplicationUserRole FindUserRole(string id)
+        {
+            try
+            {
+                return _db.ApplicationUserRoles.FirstOrDefault(uR => uR.ApplicationUser.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when getting user role", ex);
+            }
+        }
     }
 }

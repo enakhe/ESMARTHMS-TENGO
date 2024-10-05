@@ -60,7 +60,7 @@ namespace ESMART_HMS.Presentation.Controllers
         {
             return _searchGuestUseCase.Execute(keyword);
         }
-        public List<ESMART_HMS.Domain.Entities.Guest> GetDeletedGuest()
+        public List<GuestViewModel> GetDeletedGuest()
         {
             return _getDeletedGuestUseCase.Execute();
         }

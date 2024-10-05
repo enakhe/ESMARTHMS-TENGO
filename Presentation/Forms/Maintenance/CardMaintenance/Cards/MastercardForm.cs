@@ -7,6 +7,7 @@ using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Sessions;
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
 {
@@ -14,11 +15,13 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
     {
         private readonly CardController _cardController;
         private readonly ApplicationUserController _userController;
-        public MastercardForm(CardController cardController, ApplicationUserController applicationUserController)
+        private readonly SystemSetupController _sytemSetupController;
+        public MastercardForm(CardController cardController, ApplicationUserController applicationUserController, SystemSetupController sytemSetupController)
         {
             _cardController = cardController;
             _userController = applicationUserController;
             InitializeComponent();
+            _sytemSetupController = sytemSetupController;
         }
 
         int st = 0;
@@ -52,7 +55,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
             }
         }
 
-        private void btnIssue_Click(object sender, EventArgs e)
+        private async void btnIssue_Click(object sender, EventArgs e)
         {
             try
             {
@@ -91,6 +94,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
                 if (st == (int)ERROR_TYPE.OPR_OK)
                 {
                     string cardNoString = FormHelper.ByteArrayToString(cardInfo.CardNo);
+                    CompanyInformation foundCompany = _sytemSetupController.GetCompanyInfo();
 
                     SpecialCard specialCard = new SpecialCard()
                     {
@@ -108,6 +112,24 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
                     };
                     _cardController.AddSpecialCard(specialCard);
                     MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string specialCardString = $"Id = {specialCard.Id}\n" +
+                         $"Card No = {specialCard.CardNo}\n" +
+                         $"Card Type = {specialCard.CardType}\n" +
+                         $"Issue Time = {specialCard.IssueTime}\n" +
+                         $"Refund Time = {specialCard.RefundTime}\n" +
+                         $"Issued By = {specialCard.IssuedBy}\n" +
+                         $"Application User = {specialCard.ApplicationUser?.FullName}\n" +
+                         $"Can Open Dead Locks = {specialCard.CanOpenDeadLocks}\n" +
+                         $"Passage Mode = {specialCard.PassageMode}\n" +
+                         $"Date Created = {specialCard.DateCreated}\n" +
+                         $"Date Modified = {specialCard.DateModified}";
+                    if (foundCompany != null)
+                    {
+                        if (foundCompany.Email != null)
+                        {
+                            await EmailHelper.SendEmail(foundCompany.Email, "Master Card Created", specialCardString);
+                        }
+                    }
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

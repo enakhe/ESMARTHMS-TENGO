@@ -268,7 +268,8 @@ namespace ESMART_HMS.Presentation.Forms.booking
                 booking.Room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
                 booking.ReservationId = _reservationId;
                 booking.CheckInDate = txtCheckIn.Value;
-                booking.CheckOutDate = txtCheckOut.Value;
+                DateTime selectedDate = txtCheckOut.Value;
+                booking.CheckOutDate = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 12, 0, 0);
                 booking.PaymentMethod = txtPaymentMethod.Text;
                 booking.Amount = decimal.Parse(txtbookingAmount.Text);
                 booking.NoOfPerson = int.Parse(txtNoOfPerson.Text);

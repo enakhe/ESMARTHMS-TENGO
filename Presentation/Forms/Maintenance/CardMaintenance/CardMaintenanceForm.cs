@@ -5,6 +5,7 @@ using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards;
+using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,13 +24,22 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance
         private DispatcherTimer dispatcherTimer;
         private readonly CardController _cardController;
         private readonly ApplicationUserController _userController;
-        public CardMaintenanceForm(CardController cardController, ApplicationUserController userController)
+        private readonly ApplicationUserController _applicationUserController;
+        public CardMaintenanceForm(CardController cardController, ApplicationUserController userController, ApplicationUserController applicationUserController)
         {
             _cardController = cardController;
             _userController = userController;
             InitializeComponent();
             InitializeTimer();
             LoadSpecialCards();
+            _applicationUserController = applicationUserController;
+        }
+
+        private void ApplyAuthorization2()
+        {
+            List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.ProtectControl(user, btnMasterCard, roles);
         }
 
         private void btnMasterCard_Click(object sender, EventArgs e)

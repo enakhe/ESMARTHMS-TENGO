@@ -19,11 +19,12 @@ namespace ESMART_HMS.Infrastructure
             services.AddScoped<TransactionRepository>();
             services.AddScoped<UserRepository>();
             services.AddScoped<UserRoleRepository>();
-            //services.AddScoped<MenuItemRepository>();
+            services.AddScoped<MenuItemRepository>();
             services.AddScoped<SystemSetupRepository>();
             services.AddScoped<CardRepository>();
             services.AddScoped<LicenseRepository>();
             services.AddScoped<RestaurantRepository>();
+            services.AddScoped<RoleRepository>();
             services.AddScoped<InventoryRepository>();
 
             return services;

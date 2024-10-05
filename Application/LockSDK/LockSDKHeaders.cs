@@ -27,7 +27,7 @@ namespace ESMART_HMS.Application.LockSDK
 
         [DllImport("LockSDK.dll", EntryPoint = "LS_MakeGuestCard_EX1")]
         public static extern int LS_MakeGuestCard_EX1(char[] card_snr, string roomno, string areas,
-            string floors, string intime, string outtime, short iflags);
+            string floors, string intime, string outtime, CARD_FLAGS iflags);
 
 
         [DllImport("LockSDK.dll", EntryPoint = "LS_MakeLockSettingCard")]

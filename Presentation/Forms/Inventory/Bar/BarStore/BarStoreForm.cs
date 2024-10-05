@@ -4,6 +4,8 @@ using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Forms.Bar;
 using ESMART_HMS.Presentation.Forms.Bar.BarStore;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
+using ESMART_HMS.Presentation.Middleware;
+using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -15,13 +17,16 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
     public partial class BarStoreForm : Form
     {
         private readonly BarItemController _barItemController;
-        public BarStoreForm(BarItemController barItemController)
+        private readonly ApplicationUserController _applicationUserController;
+        public BarStoreForm(BarItemController barItemController, ApplicationUserController applicationUserController)
         {
             _barItemController = barItemController;
+            _applicationUserController = applicationUserController;
             this.DoubleBuffered = true;
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
         }
 
         private void BarStoreForm_Load(object sender, EventArgs e)
@@ -29,6 +34,8 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
             LoadData();
             splitContainer19.SplitterWidth = 1;
             splitContainer19.BackColor = splitContainer19.Panel1.BackColor;
+            dgvBarStore.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvBarStore.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
         public void LoadData()

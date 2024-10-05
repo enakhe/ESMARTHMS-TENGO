@@ -2,7 +2,6 @@
 using ESMART_HMS.Application.UseCases.Reservation;
 using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.ViewModels;
-using iTextSharp.text.pdf.parser.clipper;
 using System;
 using System.Collections.Generic;
 
@@ -69,6 +68,16 @@ namespace ESMART_HMS.Presentation.Controllers
         public List<ReservationViewModel> GetReservationDate(DateTime fromTime, DateTime endTime)
         {
             return _getReservationByDateUseCase.Execute(fromTime, endTime);
+        }
+
+        public void DeleteReservation(string id)
+        {
+            _updateReservationUseCase.DeleteReservation(id);
+        }
+
+        public List<ReservationViewModel> GetRecycledReservation()
+        {
+            return _allReservationUseCase.GetRecycledReservation();
         }
     }
 }

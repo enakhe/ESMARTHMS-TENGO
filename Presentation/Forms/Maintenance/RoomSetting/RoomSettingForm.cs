@@ -24,9 +24,10 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
         private readonly RoomTypeController _roomTypeController;
         private readonly CardController _cardController;
         private readonly ApplicationUserController _userController;
+        private readonly SystemSetupController _systemSetupController;
 
 
-        public RoomSettingForm(RoomController roomController, RoomTypeController roomTypeController, CardController cardController, ApplicationUserController userController)
+        public RoomSettingForm(RoomController roomController, RoomTypeController roomTypeController, CardController cardController, ApplicationUserController userController, SystemSetupController systemSetupController)
         {
             _roomController = roomController;
             _roomTypeController = roomTypeController;
@@ -39,6 +40,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
             InitializeFloorTab(floor);
             InitializeBuildingTab(buildingtab);
             _userController = userController;
+            _systemSetupController = systemSetupController;
         }
 
         private void RoomSettingForm_Load(object sender, EventArgs e)
@@ -180,7 +182,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                     var row = dgvRooms.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
-                    using (EditRoomForm editRoomForm = new EditRoomForm(_roomController, _roomTypeController, id))
+                    using (EditRoomForm editRoomForm = new EditRoomForm(_roomController, _roomTypeController, _systemSetupController, id))
                     {
                         if (editRoomForm.ShowDialog() == DialogResult.OK)
                         {
@@ -557,6 +559,63 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 else
                 {
                     MessageBox.Show("Please select a builing to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvBuilding.SelectedRows.Count > 0)
+                {
+                    CompanyInformation foundCompany = _systemSetupController.GetCompanyInfo();
+
+                    var result = MessageBox.Show("Are you sure you want to add the selected room to the recycle?\nIts record including all entries tagged to such room will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgvBuilding.SelectedRows)
+                        {
+                            string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+                            _roomController.DeleteRoom(id);
+                            Room room = _roomController.GetRealRoom(id);
+                            string roomString = $"Id = {room.Id}\n" +
+     $"Room Id = {room.RoomId}\n" +
+     $"Room No = {room.RoomNo}\n" +
+     $"Room Type Id = {room.RoomTypeId}\n" +
+     $"Building Id = {room.BuildingId}\n" +
+     $"Floor Id = {room.FloorId}\n" +
+     $"Area Id = {room.AreaId}\n" +
+     $"Adults Per Room = {room.AdultPerRoom}\n" +
+     $"Children Per Room = {room.ChildrenPerRoom}\n" +
+     $"Description = {room.Description}\n" +
+     $"Rate = {room.Rate}\n" +
+     $"Status = {room.Status}\n" +
+     $"Created By = {room.ApplicationUser.FullName}\n" +
+     $"Date Created = {room.DateCreated.ToString("yyyy-MM-dd HH:mm:ss")}\n" +
+     $"Date Modified = {room.DateModified.ToString("yyyy-MM-dd HH:mm:ss")}";
+                            if (foundCompany != null)
+                            {
+                                if (foundCompany.Email != null)
+                                {
+                                    await EmailHelper.SendEmail(foundCompany.Email, "Room Recycled", roomString);
+                                }
+                            }
+
+                        }
+                        InitializeRoomTab(room);
+                        MessageBox.Show("Successfully added room information to recycle", "Success", MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a room to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

@@ -36,9 +36,7 @@
             this.txtMeasurement = new System.Windows.Forms.ComboBox();
             this.txtItemType = new System.Windows.Forms.ComboBox();
             this.txtBarcode = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtStockAdded = new System.Windows.Forms.TextBox();
             this.txtCostPrice = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -107,6 +105,7 @@
             this.btnSave.TabIndex = 71;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtMeasurement
             // 
@@ -148,17 +147,7 @@
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(224, 31);
             this.txtBarcode.TabIndex = 68;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(28, 557);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(114, 23);
-            this.label12.TabIndex = 51;
-            this.label12.Text = "Stock Added";
+            this.txtBarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarcode_KeyPress);
             // 
             // label5
             // 
@@ -171,16 +160,6 @@
             this.label5.TabIndex = 52;
             this.label5.Text = "Cost Price";
             // 
-            // txtStockAdded
-            // 
-            this.txtStockAdded.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockAdded.Location = new System.Drawing.Point(32, 584);
-            this.txtStockAdded.Margin = new System.Windows.Forms.Padding(2);
-            this.txtStockAdded.Name = "txtStockAdded";
-            this.txtStockAdded.ReadOnly = true;
-            this.txtStockAdded.Size = new System.Drawing.Size(224, 31);
-            this.txtStockAdded.TabIndex = 63;
-            // 
             // txtCostPrice
             // 
             this.txtCostPrice.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -189,6 +168,8 @@
             this.txtCostPrice.Name = "txtCostPrice";
             this.txtCostPrice.Size = new System.Drawing.Size(224, 31);
             this.txtCostPrice.TabIndex = 62;
+            this.txtCostPrice.TextChanged += new System.EventHandler(this.txtCostPrice_TextChanged);
+            this.txtCostPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCostPrice_KeyPress);
             // 
             // txtName
             // 
@@ -214,7 +195,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(269, 557);
+            this.label11.Location = new System.Drawing.Point(28, 559);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(177, 23);
@@ -235,11 +216,12 @@
             // txtLowStockThreshold
             // 
             this.txtLowStockThreshold.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLowStockThreshold.Location = new System.Drawing.Point(273, 584);
+            this.txtLowStockThreshold.Location = new System.Drawing.Point(32, 584);
             this.txtLowStockThreshold.Margin = new System.Windows.Forms.Padding(2);
             this.txtLowStockThreshold.Name = "txtLowStockThreshold";
-            this.txtLowStockThreshold.Size = new System.Drawing.Size(224, 31);
+            this.txtLowStockThreshold.Size = new System.Drawing.Size(465, 31);
             this.txtLowStockThreshold.TabIndex = 65;
+            this.txtLowStockThreshold.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLowStockThreshold_KeyPress);
             // 
             // txtSellingPrice
             // 
@@ -249,6 +231,8 @@
             this.txtSellingPrice.Name = "txtSellingPrice";
             this.txtSellingPrice.Size = new System.Drawing.Size(224, 31);
             this.txtSellingPrice.TabIndex = 66;
+            this.txtSellingPrice.TextChanged += new System.EventHandler(this.txtSellingPrice_TextChanged);
+            this.txtSellingPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSellingPrice_KeyPress);
             // 
             // txtQuantity
             // 
@@ -258,6 +242,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(224, 31);
             this.txtQuantity.TabIndex = 67;
+            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // label2
             // 
@@ -336,9 +321,7 @@
             this.Controls.Add(this.txtMeasurement);
             this.Controls.Add(this.txtItemType);
             this.Controls.Add(this.txtBarcode);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtStockAdded);
             this.Controls.Add(this.txtCostPrice);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label3);
@@ -354,6 +337,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -373,9 +357,7 @@
         private System.Windows.Forms.ComboBox txtMeasurement;
         private System.Windows.Forms.ComboBox txtItemType;
         private System.Windows.Forms.TextBox txtBarcode;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtStockAdded;
         private System.Windows.Forms.TextBox txtCostPrice;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label3;

@@ -17,11 +17,11 @@ namespace ESMART_HMS.Infrastructure.Data
             _db = db;
         }
 
-        public void AddItem(MenuItem barItem)
+        public void AddItem(Domain.Entities.MenuItem menuItem)
         {
             try
             {
-                _db.BarItems.Add(barItem);
+                _db.MenuItems.Add(menuItem);
                 _db.SaveChanges();
                 MessageBox.Show("Successfully added item information", "Success", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
@@ -37,21 +37,21 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                var allBarItems = from barItem in _db.BarItems.Where(b => b.IsTrashed == false).OrderBy(b => b.DateCreated)
+                var allBarItems = from menuItem in _db.MenuItems.Where(b => b.IsTrashed == false && b.Section == "bar").OrderBy(b => b.DateCreated)
                                   select new BarItemViewModel
                                   {
-                                      Id = barItem.Id,
-                                      BarItemId = barItem.BarItemId,
-                                      Barcode = barItem.Barcode,
-                                      ItemName = barItem.ItemName,
-                                      Quantity = barItem.Quantity.ToString(),
-                                      Type = barItem.Type,
-                                      Measurement = barItem.Measurement,
-                                      CostPrice = barItem.CostPrice.ToString(),
-                                      SellingPrice = barItem.SellingPrice.ToString(),
-                                      CreatedBy = barItem.ApplicationUser.FullName,
-                                      DateCreated = barItem.DateCreated.ToString(),
-                                      DateModified = barItem.DateModified.ToString(),
+                                      Id = menuItem.Id,
+                                      BarItemId = menuItem.MenuItemId,
+                                      Barcode = menuItem.Barcode,
+                                      ItemName = menuItem.ItemName,
+                                      Quantity = menuItem.Quantity.ToString(),
+                                      Type = menuItem.Type,
+                                      Measurement = menuItem.Measurement,
+                                      CostPrice = menuItem.CostPrice.ToString(),
+                                      SellingPrice = menuItem.SellingPrice.ToString(),
+                                      CreatedBy = menuItem.ApplicationUser.FullName,
+                                      DateCreated = menuItem.DateCreated.ToString(),
+                                      DateModified = menuItem.DateModified.ToString(),
                                   };
                 return allBarItems.ToList();
             }
@@ -63,11 +63,11 @@ namespace ESMART_HMS.Infrastructure.Data
             return null;
         }
 
-        public void UpdateBarItem(BarItem barItem)
+        public void UpdateBarItem(Domain.Entities.MenuItem menuItem)
         {
             try
             {
-                _db.Entry(barItem).State = System.Data.Entity.EntityState.Modified;
+                _db.Entry(menuItem).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
             }
             catch (Exception ex)
@@ -77,11 +77,11 @@ namespace ESMART_HMS.Infrastructure.Data
             }
         }
 
-        public BarItem GetBarItemById(string id)
+        public Domain.Entities.MenuItem GetBarItemById(string id)
         {
             try
             {
-                return _db.BarItems.FirstOrDefault(bI => bI.Id == id);
+                return _db.MenuItems.FirstOrDefault(bI => bI.Id == id);
             }
             catch (Exception ex)
             {
@@ -95,11 +95,11 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                BarItem barItem = _db.BarItems.FirstOrDefault(b => b.Id == id);
-                if (barItem != null)
+                Domain.Entities.MenuItem menuItem = _db.MenuItems.FirstOrDefault(b => b.Id == id);
+                if (menuItem != null)
                 {
-                    barItem.IsTrashed = true;
-                    _db.Entry(barItem).State = System.Data.Entity.EntityState.Modified;
+                    menuItem.IsTrashed = true;
+                    _db.Entry(menuItem).State = System.Data.Entity.EntityState.Modified;
                     _db.SaveChanges();
                 }
             }
@@ -114,21 +114,21 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                var allBarItems = from barItem in _db.BarItems.Where(b => b.IsTrashed == false && b.ItemName.Contains(keyword)).OrderBy(b => b.DateCreated)
+                var allBarItems = from menuItem in _db.MenuItems.Where(b => b.IsTrashed == false && b.ItemName.Contains(keyword)).OrderBy(b => b.DateCreated)
                                   select new BarItemViewModel
                                   {
-                                      Id = barItem.Id,
-                                      BarItemId = barItem.BarItemId,
-                                      Barcode = barItem.Barcode,
-                                      ItemName = barItem.ItemName,
-                                      Quantity = barItem.Quantity.ToString(),
-                                      Type = barItem.Type,
-                                      Measurement = barItem.Measurement,
-                                      CostPrice = barItem.CostPrice.ToString(),
-                                      SellingPrice = barItem.SellingPrice.ToString(),
-                                      CreatedBy = barItem.ApplicationUser.FullName,
-                                      DateCreated = barItem.DateCreated.ToString(),
-                                      DateModified = barItem.DateModified.ToString(),
+                                      Id = menuItem.Id,
+                                      BarItemId = menuItem.MenuItemId,
+                                      Barcode = menuItem.Barcode,
+                                      ItemName = menuItem.ItemName,
+                                      Quantity = menuItem.Quantity.ToString(),
+                                      Type = menuItem.Type,
+                                      Measurement = menuItem.Measurement,
+                                      CostPrice = menuItem.CostPrice.ToString(),
+                                      SellingPrice = menuItem.SellingPrice.ToString(),
+                                      CreatedBy = menuItem.ApplicationUser.FullName,
+                                      DateCreated = menuItem.DateCreated.ToString(),
+                                      DateModified = menuItem.DateModified.ToString(),
                                   };
                 return allBarItems.ToList();
             }

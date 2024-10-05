@@ -149,11 +149,25 @@ namespace ESMART_HMS.Infrastructure.Data
             return null;
         }
 
-        public List<Guest> GetDeletedGuest()
+        public List<GuestViewModel> GetDeletedGuest()
         {
             try
             {
-                return _db.Guests.Where(c => c.IsTrashed == true).ToList();
+                var allGuest = from guest in _db.Guests.Where(g => g.IsTrashed == true).OrderBy(g => g.FullName)
+                               select new GuestViewModel
+                               {
+                                   Id = guest.Id,
+                                   GuestId = guest.GuestId,
+                                   FullName = guest.Title + " " + guest.FullName,
+                                   Email = guest.Email,
+                                   PhoneNumber = guest.PhoneNumber,
+                                   City = guest.City,
+                                   State = guest.State,
+                                   CreatedBy = guest.ApplicationUser.FullName,
+                                   DateCreated = guest.DateCreated,
+                                   DateModified = guest.DateModified,
+                               };
+                return allGuest.ToList();
             }
             catch (Exception ex)
             {

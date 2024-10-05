@@ -2,16 +2,13 @@
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESMART_HMS.Application.UseCases.FrontDesk.Reservation
 {
     public class GetReservationByPaymentStatusUseCase
     {
-        private readonly IReservationRepository _reservationRepository;  
-        
+        private readonly IReservationRepository _reservationRepository;
+
         public GetReservationByPaymentStatusUseCase(IReservationRepository reservationRepository)
         {
             _reservationRepository = reservationRepository;

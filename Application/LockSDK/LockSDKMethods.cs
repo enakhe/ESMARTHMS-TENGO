@@ -98,7 +98,7 @@ namespace ESMART_HMS.Application.LockSDK
             return st;
         }
 
-        public static int MakeGuestCard(char[] card_snr, string roomno, string area, string floor, string intime, string outtime, short iflags)
+        public static int MakeGuestCard(char[] card_snr, string roomno, string area, string floor, string intime, string outtime, CARD_FLAGS iflags)
         {
             int st = LockSDKHeaders.LS_MakeGuestCard_EX1(card_snr, roomno, area, floor, intime, outtime, iflags);
 

@@ -268,7 +268,7 @@ namespace ESMART_HMS.Presentation.Forms.Bar
                 bool isNull = checkBox != null && checkBox.Checked && numQuantity != null && itemNameLabel != null && totalLabel != null && itemId != null && txtCustomer != null;
                 if (isNull == true)
                 {
-                    Domain.Entities.BarItem barItem = _barItemController.GetBarItemById(itemId.Text);
+                    Domain.Entities.MenuItem barItem = _barItemController.GetBarItemById(itemId.Text);
                     barItem.Quantity = barItem.Quantity - int.Parse(numQuantity.Text);
                     Order order = new Order();
                     Random random = new Random();
@@ -276,14 +276,14 @@ namespace ESMART_HMS.Presentation.Forms.Bar
                     decimal result = decimal.Parse(totalLabel.Text.Split(':')[1].Trim(), NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
                     order.Id = Guid.NewGuid().ToString();
+                    order.OrderId = "ORD" + random.Next(1000, 5000);
                     order.ItemId = barItem.Id;
                     order.Quantity = int.Parse(numQuantity.Value.ToString());
                     order.TotalAmount = result;
                     order.ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
                     order.IssuedBy = AuthSession.CurrentUser.Id;
-                    order.OrderId = "ORD" + random.Next(1000, 5000);
-                    order.DateCreated = DateTime.Now;
-                    order.DateModified = DateTime.Now;
+                    order.OrderDate = DateTime.Now;
+                    order.IsTrashed = false;
 
                     if (checkBox1.Checked)
                     {

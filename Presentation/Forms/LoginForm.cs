@@ -2,7 +2,6 @@
 using ESMART_HMS.Infrastructure.Services;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Sessions;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
@@ -11,8 +10,6 @@ namespace ESMART_HMS.Presentation.Forms
     public partial class LoginForm : Form
     {
         private readonly AuthService _authService;
-        private readonly GuestController _customerController;
-        private readonly RoomController _roomController;
         public LoginForm(AuthService authService)
         {
             _authService = authService;

@@ -1,16 +1,8 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.ViewModels;
-using iTextSharp.text.pdf.parser.clipper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
@@ -30,6 +22,7 @@ namespace ESMART_HMS.Presentation.Forms.Report
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             InitializeTimer();
         }
 
@@ -101,7 +94,7 @@ namespace ESMART_HMS.Presentation.Forms.Report
         }
 
         private void FilterReservation(string roomTypeId, DateTime fromTime, DateTime endTime, string paymentStatus)
-        { 
+        {
             List<ReservationViewModel> filtreredReservation = _reservationController.GetReservationByPaymentStatus(roomTypeId, fromTime, endTime, paymentStatus);
             if (filtreredReservation != null)
             {
@@ -191,6 +184,8 @@ namespace ESMART_HMS.Presentation.Forms.Report
 
             txtFrom.Value = DateTime.Now;
             txtTo.Value = DateTime.Now;
+            dgvReservation.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvReservation.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
         private void btnExport_Click(object sender, EventArgs e)

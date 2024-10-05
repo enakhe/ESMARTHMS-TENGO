@@ -19,8 +19,6 @@ namespace ESMART_HMS.Domain.Entities
         public string CustomerId { get; set; }
         public System.DateTime OrderDate { get; set; }
         public Nullable<decimal> TotalAmount { get; set; }
-        public string PaymentMethod { get; set; }
-        public string PaymentStatus { get; set; }
         public string ItemId { get; set; }
         public int Quantity { get; set; }
         public bool IsTrashed { get; set; }
@@ -28,6 +26,6 @@ namespace ESMART_HMS.Domain.Entities
     
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Guest Guest { get; set; }
-        public virtual OrderItem OrderItem { get; set; }
+        public virtual MenuItem MenuItem { get; set; }
     }
 }

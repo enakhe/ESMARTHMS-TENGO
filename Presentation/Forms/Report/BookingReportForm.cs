@@ -3,10 +3,8 @@ using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ESMART_HMS.Presentation.Forms.Report
 {
@@ -25,6 +23,7 @@ namespace ESMART_HMS.Presentation.Forms.Report
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             InitializeTimer();
         }
 
@@ -70,7 +69,7 @@ namespace ESMART_HMS.Presentation.Forms.Report
                     GetAllBookingByDate(status, type, from, to);
                 }
             }
-            
+
         }
 
         private void bookingReportForm_Load(object sender, EventArgs e)
@@ -80,6 +79,8 @@ namespace ESMART_HMS.Presentation.Forms.Report
 
             txtFrom.Value = DateTime.Now;
             txtTo.Value = DateTime.Now;
+            dgvbooking.Font = new System.Drawing.Font("Segoe UI", 10);
+            dgvbooking.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
         private void LoadRoomType()

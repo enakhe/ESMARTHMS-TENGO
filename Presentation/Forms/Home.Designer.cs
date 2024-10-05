@@ -44,6 +44,9 @@
             this.managebookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restaurantToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.laundryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gymToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spaServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,15 +73,19 @@
             this.clearDataFiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataFileStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archiveDataFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recycleBinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
-            this.barToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restaurantToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.laundryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
+            this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -117,6 +124,7 @@
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
             this.homeToolStripMenuItem.Size = new System.Drawing.Size(86, 21);
             this.homeToolStripMenuItem.Text = "Dashboard";
+            this.homeToolStripMenuItem.Visible = false;
             // 
             // homeToolStripMenuItem1
             // 
@@ -194,9 +202,29 @@
             // itemsToolStripMenuItem
             // 
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
-            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.itemsToolStripMenuItem.Text = "Items";
             this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
+            // 
+            // barToolStripMenuItem
+            // 
+            this.barToolStripMenuItem.Name = "barToolStripMenuItem";
+            this.barToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.barToolStripMenuItem.Text = "Bar";
+            this.barToolStripMenuItem.Click += new System.EventHandler(this.barToolStripMenuItem_Click);
+            // 
+            // restaurantToolStripMenuItem1
+            // 
+            this.restaurantToolStripMenuItem1.Name = "restaurantToolStripMenuItem1";
+            this.restaurantToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.restaurantToolStripMenuItem1.Text = "Restaurant";
+            this.restaurantToolStripMenuItem1.Click += new System.EventHandler(this.restaurantToolStripMenuItem1_Click);
+            // 
+            // laundryToolStripMenuItem
+            // 
+            this.laundryToolStripMenuItem.Name = "laundryToolStripMenuItem";
+            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.laundryToolStripMenuItem.Text = "Laundry";
             // 
             // newOrderToolStripMenuItem
             // 
@@ -311,7 +339,8 @@
             this.defaultAccountSetupToolStripMenuItem,
             this.clearDataFiToolStripMenuItem,
             this.dataFileStatisticsToolStripMenuItem,
-            this.archiveDataFilesToolStripMenuItem});
+            this.archiveDataFilesToolStripMenuItem,
+            this.recycleBinToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(98, 21);
             this.toolsToolStripMenuItem.Text = "Maintenance";
@@ -340,6 +369,7 @@
             this.usersSettingToolStripMenuItem.Name = "usersSettingToolStripMenuItem";
             this.usersSettingToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.usersSettingToolStripMenuItem.Text = "Users Setting";
+            this.usersSettingToolStripMenuItem.Click += new System.EventHandler(this.usersSettingToolStripMenuItem_Click);
             // 
             // cardMaintenanceToolStripMenuItem
             // 
@@ -413,6 +443,14 @@
             this.archiveDataFilesToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.archiveDataFilesToolStripMenuItem.Text = "Archive Data Files";
             // 
+            // recycleBinToolStripMenuItem
+            // 
+            this.recycleBinToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("recycleBinToolStripMenuItem.Image")));
+            this.recycleBinToolStripMenuItem.Name = "recycleBinToolStripMenuItem";
+            this.recycleBinToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.recycleBinToolStripMenuItem.Text = "Recycle Bin";
+            this.recycleBinToolStripMenuItem.Click += new System.EventHandler(this.recycleBinToolStripMenuItem_Click);
+            // 
             // eSMART_HMSDBDataSet
             // 
             this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
@@ -427,32 +465,48 @@
             // 
             this.roomTableAdapter.ClearBeforeFill = true;
             // 
-            // barToolStripMenuItem
+            // flowLayoutPanel2
             // 
-            this.barToolStripMenuItem.Name = "barToolStripMenuItem";
-            this.barToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.barToolStripMenuItem.Text = "Bar";
+            this.flowLayoutPanel2.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanel2.Controls.Add(this.pictureBox1);
+            this.flowLayoutPanel2.Controls.Add(this.pictureBox2);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(1689, -2);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(231, 41);
+            this.flowLayoutPanel2.TabIndex = 9;
             // 
-            // restaurantToolStripMenuItem1
+            // pictureBox1
             // 
-            this.restaurantToolStripMenuItem1.Name = "restaurantToolStripMenuItem1";
-            this.restaurantToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.restaurantToolStripMenuItem1.Text = "Restaurant";
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 38);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // laundryToolStripMenuItem
+            // pictureBox2
             // 
-            this.laundryToolStripMenuItem.Name = "laundryToolStripMenuItem";
-            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.laundryToolStripMenuItem.Text = "Laundry";
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(109, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 38);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 11;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // Home
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(212)))), ((int)(((byte)(241)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1924, 717);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -465,6 +519,9 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,5 +574,9 @@
         private System.Windows.Forms.ToolStripMenuItem barToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restaurantToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem laundryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recycleBinToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

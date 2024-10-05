@@ -58,7 +58,7 @@ namespace ESMART_HMS.Infrastructure.Data
                                      CheckOutDate = booking.CheckOutDate.ToString(),
                                      PaymentMethod = booking.PaymentMethod,
                                      Duration = booking.Duration.ToString() + "Day",
-                                     TotalAmount = booking.Amount.ToString(),
+                                     TotalAmount = booking.TotalAmount.ToString(),
                                      CreatedBy = booking.ApplicationUser.FullName,
                                      DateCreated = booking.DateCreated.ToString(),
                                      DateModified = booking.DateModified.ToString(),
@@ -301,6 +301,45 @@ namespace ESMART_HMS.Infrastructure.Data
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+        }
+
+        public List<BookingViewModel> GetRecycledBookings()
+        {
+            try
+            {
+                List<Booking> bookings = _db.Bookings.Where(b => b.IsTrashed == true).OrderBy(b => b.DateCreated).ToList();
+                foreach (var booking in bookings)
+                {
+                    if (booking.CheckOutDate < DateTime.Now)
+                    {
+                        DeleteBooking(booking);
+                    }
+                }
+                var allbooking = from booking in bookings
+                                 select new BookingViewModel
+                                 {
+                                     Id = booking.Id,
+                                     BookingId = booking.BookingId,
+                                     Guest = booking.Guest.Title + " " + booking.Guest.FullName,
+                                     GuestPhoneNo = booking.Guest.PhoneNumber,
+                                     Room = booking.Room.RoomNo,
+                                     CheckInDate = booking.CheckInDate.ToString(),
+                                     CheckOutDate = booking.CheckOutDate.ToString(),
+                                     PaymentMethod = booking.PaymentMethod,
+                                     Duration = booking.Duration.ToString() + "Day",
+                                     TotalAmount = booking.TotalAmount.ToString(),
+                                     CreatedBy = booking.ApplicationUser.FullName,
+                                     DateCreated = booking.DateCreated.ToString(),
+                                     DateModified = booking.DateModified.ToString(),
+                                 };
+                return allbooking.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
         }
     }
 }

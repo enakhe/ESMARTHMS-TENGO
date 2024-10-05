@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
 
 namespace ESMART_HMS.Application.UseCases.Guest
@@ -12,7 +13,7 @@ namespace ESMART_HMS.Application.UseCases.Guest
             _customerRepository = customerRepository;
         }
 
-        public List<ESMART_HMS.Domain.Entities.Guest> Execute()
+        public List<GuestViewModel> Execute()
         {
             return _customerRepository.GetDeletedGuest();
         }

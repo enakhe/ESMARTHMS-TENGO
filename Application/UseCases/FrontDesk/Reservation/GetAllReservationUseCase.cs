@@ -17,5 +17,10 @@ namespace ESMART_HMS.Application.UseCases.Reservation
         {
             return _reservationRepository.GetReservationViewModel();
         }
+
+        public List<ReservationViewModel> GetRecycledReservation()
+        {
+            return _reservationRepository.GetRecycledReservation();
+        }
     }
 }

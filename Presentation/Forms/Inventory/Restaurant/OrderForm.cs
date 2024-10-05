@@ -1,20 +1,16 @@
 ﻿//using ESMART_HMS.Presentation.Controllers.Bar;
+using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Restaurant;
+using ESMART_HMS.Presentation.Sessions;
+using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ESMART_HMS.Presentation.ViewModels;
-using ESMART_HMS.Presentation.Controllers.Restaurant;
-using ESMART_HMS.Domain.Utils;
 using System.Globalization;
-using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Presentation.Sessions;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Restaurant
 {
@@ -277,7 +273,7 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
                     order.ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
                     order.IssuedBy = AuthSession.CurrentUser.Id;
                     order.OrderId = "ORD" + random.Next(1000, 5000);
-                   
+
 
                     if (checkBox1.Checked)
                     {
@@ -296,7 +292,7 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
                             var guest = _guestController.GetGuestById(txtCustomer.SelectedValue.ToString());
                             order.CustomerId = txtCustomer.SelectedValue.ToString();
                             order.Guest = guest;
-                        } 
+                        }
                     }
 
                     Domain.Entities.Transaction transaction = new Domain.Entities.Transaction()

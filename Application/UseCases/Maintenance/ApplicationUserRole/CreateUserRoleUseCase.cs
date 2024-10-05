@@ -16,5 +16,15 @@ namespace ESMART_HMS.Application.UseCases.ApplicationUserRole
             _userRoleRepository.AssignUserToRole(applicationUserRole);
         }
 
+        public void UpdateUserRole(Domain.Entities.ApplicationUserRole applicationUserRole)
+        {
+            _userRoleRepository.UpdateUserRole(applicationUserRole);
+        }
+
+        public Domain.Entities.ApplicationUserRole FindUserRole(string id)
+        {
+            return _userRoleRepository.FindUserRole(id);
+        }
+
     }
 }

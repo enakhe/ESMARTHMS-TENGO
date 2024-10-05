@@ -16,7 +16,7 @@ namespace ESMART_HMS.Application.UseCases.Bar.Store.BarItem
             _barItemRepository = barItemRepository;
         }
 
-        public void Execute(Domain.Entities.BarItem barItem)
+        public void Execute(Domain.Entities.MenuItem barItem)
         {
             _barItemRepository.UpdateBarItem(barItem);
         }

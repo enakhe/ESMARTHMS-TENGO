@@ -15,5 +15,10 @@ namespace ESMART_HMS.Application.UseCases.ApplicationUser
         {
             _userRepository.AddUser(user);
         }
+
+        public void UpdateUser(Domain.Entities.ApplicationUser user)
+        {
+            _userRepository.UpdateUser(user);
+        }
     }
 }

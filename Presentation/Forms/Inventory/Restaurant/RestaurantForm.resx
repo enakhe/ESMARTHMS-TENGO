@@ -132,9 +132,6 @@
   <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1379, 17</value>
   </metadata>
-  <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1379, 17</value>
-  </metadata>
   <metadata name="barItemBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1207, 17</value>
   </metadata>
@@ -142,7 +139,7 @@
   <data name="pictureBox7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAerSURBVHhe7Zt3
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAerSURBVHhe7Zt3
         iB1FHMcTjS323jtE0WAvKEKIYiUKsRF7iRU7IvqHiAr2gr3EhjVixdiCvcbYu7FrbFGxK3Y9P5/d367v
         7u17+9757u55d1/4cDu/+c3szLzdmd/O7g0ZVAvU0dGxOCwTyYEnOn8nPBnJgSc6/yC8FsmBJzo/AX6B
         RcM0cESnN4BN4E94HQ6D/brBbmA9y0XV7S8aOxP8BifDWPgUWqGXYDzMFKdqX9HIj2EaLAWzwV9wK6zd
@@ -183,9 +180,6 @@
   </metadata>
   <metadata name="reservationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 54</value>
-  </metadata>
-  <metadata name="esmarT_HMSDBDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>206, 54</value>
   </metadata>
   <metadata name="esmarT_HMSDBDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>206, 54</value>

@@ -62,7 +62,7 @@ namespace ESMART_HMS.Domain.Enum
         ERR_ROOMS_CNT_OVER = -31,    // Number of rooms exceeds available sectors
     };
 
-    enum CARD_FLAGS
+    public enum CARD_FLAGS
     {
         CF_BACK_LOCK_EN = 0x01,      // Enable back lock (various key cards)
         CF_CHANNEL_MODE = 0x02,      // Channel mode (various key cards)

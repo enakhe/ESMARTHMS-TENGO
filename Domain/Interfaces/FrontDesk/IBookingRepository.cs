@@ -18,5 +18,6 @@ namespace ESMART_HMS.Domain.Interfaces
         List<BookingViewModel> GetActiveBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime);
         List<BookingViewModel> GetInActiveBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime);
         List<BookingViewModel> GetRoomTypeBookingByFilter(string roomTypeId, DateTime fromTime, DateTime endTime);
+        List<BookingViewModel> GetRecycledBookings();
     }
 }

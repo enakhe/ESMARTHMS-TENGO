@@ -56,7 +56,9 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvbooking = new System.Windows.Forms.DataGridView();
-            this.bookingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bookingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.bookingTableAdapter();
+            this.roomTypeTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter();
             this.Guest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GuestPhoneNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Room = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,27 +70,6 @@
             this.CreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateModified = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bookingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bookingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.bookingTableAdapter();
-            this.roomTypeTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bookingIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guestIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roomIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.reservationIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkInDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkOutDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paymentMethodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noOfPersonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.durationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isTrashedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.createdByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -146,7 +127,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(30, 20, 0, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(235, 102);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(235, 80);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label7
@@ -235,7 +216,7 @@
             this.mainFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.mainFlowLayoutPanel.Name = "mainFlowLayoutPanel";
             this.mainFlowLayoutPanel.Padding = new System.Windows.Forms.Padding(30, 20, 0, 0);
-            this.mainFlowLayoutPanel.Size = new System.Drawing.Size(1520, 102);
+            this.mainFlowLayoutPanel.Size = new System.Drawing.Size(1520, 80);
             this.mainFlowLayoutPanel.TabIndex = 1;
             // 
             // label1
@@ -292,7 +273,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer2.Size = new System.Drawing.Size(1759, 102);
+            this.splitContainer2.Size = new System.Drawing.Size(1759, 80);
             this.splitContainer2.SplitterDistance = 1520;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -314,7 +295,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(20);
             this.splitContainer1.Size = new System.Drawing.Size(1759, 786);
-            this.splitContainer1.SplitterDistance = 102;
+            this.splitContainer1.SplitterDistance = 80;
             this.splitContainer1.TabIndex = 1;
             // 
             // panel2
@@ -325,7 +306,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(20, 20);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1719, 640);
+            this.panel2.Size = new System.Drawing.Size(1719, 662);
             this.panel2.TabIndex = 0;
             // 
             // dgvbooking
@@ -346,7 +327,6 @@
             this.dgvbooking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvbooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvbooking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.bookingId,
             this.Guest,
             this.GuestPhoneNo,
             this.Room,
@@ -357,25 +337,7 @@
             this.TotalAmount,
             this.CreatedBy,
             this.DateCreated,
-            this.DateModified,
-            this.idDataGridViewTextBoxColumn,
-            this.bookingIdDataGridViewTextBoxColumn,
-            this.guestIdDataGridViewTextBoxColumn,
-            this.roomIdDataGridViewTextBoxColumn,
-            this.reservationIdDataGridViewTextBoxColumn,
-            this.checkInDateDataGridViewTextBoxColumn,
-            this.checkOutDateDataGridViewTextBoxColumn,
-            this.paymentMethodDataGridViewTextBoxColumn,
-            this.amountDataGridViewTextBoxColumn,
-            this.noOfPersonDataGridViewTextBoxColumn,
-            this.durationDataGridViewTextBoxColumn,
-            this.discountDataGridViewTextBoxColumn,
-            this.vATDataGridViewTextBoxColumn,
-            this.totalAmountDataGridViewTextBoxColumn,
-            this.dateCreatedDataGridViewTextBoxColumn,
-            this.dateModifiedDataGridViewTextBoxColumn,
-            this.isTrashedDataGridViewCheckBoxColumn,
-            this.createdByDataGridViewTextBoxColumn});
+            this.DateModified});
             this.dgvbooking.DataSource = this.bookingBindingSource;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -403,15 +365,21 @@
             this.dgvbooking.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvbooking.RowHeadersWidth = 51;
             this.dgvbooking.RowTemplate.Height = 24;
-            this.dgvbooking.Size = new System.Drawing.Size(1717, 638);
+            this.dgvbooking.Size = new System.Drawing.Size(1717, 660);
             this.dgvbooking.TabIndex = 4;
             // 
-            // bookingId
+            // bookingBindingSource
             // 
-            this.bookingId.DataPropertyName = "bookingId";
-            this.bookingId.HeaderText = "booking Id";
-            this.bookingId.Name = "bookingId";
-            this.bookingId.ReadOnly = true;
+            this.bookingBindingSource.DataMember = "booking";
+            this.bookingBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // bookingTableAdapter
+            // 
+            this.bookingTableAdapter.ClearBeforeFill = true;
+            // 
+            // roomTypeTableAdapter
+            // 
+            this.roomTypeTableAdapter.ClearBeforeFill = true;
             // 
             // Guest
             // 
@@ -498,150 +466,11 @@
             this.DateModified.Name = "DateModified";
             this.DateModified.ReadOnly = true;
             // 
-            // bookingBindingSource
-            // 
-            this.bookingBindingSource.DataMember = "booking";
-            this.bookingBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
-            // bookingTableAdapter
-            // 
-            this.bookingTableAdapter.ClearBeforeFill = true;
-            // 
-            // roomTypeTableAdapter
-            // 
-            this.roomTypeTableAdapter.ClearBeforeFill = true;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bookingIdDataGridViewTextBoxColumn
-            // 
-            this.bookingIdDataGridViewTextBoxColumn.DataPropertyName = "bookingId";
-            this.bookingIdDataGridViewTextBoxColumn.HeaderText = "bookingId";
-            this.bookingIdDataGridViewTextBoxColumn.Name = "bookingIdDataGridViewTextBoxColumn";
-            this.bookingIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // guestIdDataGridViewTextBoxColumn
-            // 
-            this.guestIdDataGridViewTextBoxColumn.DataPropertyName = "GuestId";
-            this.guestIdDataGridViewTextBoxColumn.HeaderText = "GuestId";
-            this.guestIdDataGridViewTextBoxColumn.Name = "guestIdDataGridViewTextBoxColumn";
-            this.guestIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // roomIdDataGridViewTextBoxColumn
-            // 
-            this.roomIdDataGridViewTextBoxColumn.DataPropertyName = "RoomId";
-            this.roomIdDataGridViewTextBoxColumn.HeaderText = "RoomId";
-            this.roomIdDataGridViewTextBoxColumn.Name = "roomIdDataGridViewTextBoxColumn";
-            this.roomIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // reservationIdDataGridViewTextBoxColumn
-            // 
-            this.reservationIdDataGridViewTextBoxColumn.DataPropertyName = "ReservationId";
-            this.reservationIdDataGridViewTextBoxColumn.HeaderText = "ReservationId";
-            this.reservationIdDataGridViewTextBoxColumn.Name = "reservationIdDataGridViewTextBoxColumn";
-            this.reservationIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // checkInDateDataGridViewTextBoxColumn
-            // 
-            this.checkInDateDataGridViewTextBoxColumn.DataPropertyName = "CheckInDate";
-            this.checkInDateDataGridViewTextBoxColumn.HeaderText = "CheckInDate";
-            this.checkInDateDataGridViewTextBoxColumn.Name = "checkInDateDataGridViewTextBoxColumn";
-            this.checkInDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // checkOutDateDataGridViewTextBoxColumn
-            // 
-            this.checkOutDateDataGridViewTextBoxColumn.DataPropertyName = "CheckOutDate";
-            this.checkOutDateDataGridViewTextBoxColumn.HeaderText = "CheckOutDate";
-            this.checkOutDateDataGridViewTextBoxColumn.Name = "checkOutDateDataGridViewTextBoxColumn";
-            this.checkOutDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // paymentMethodDataGridViewTextBoxColumn
-            // 
-            this.paymentMethodDataGridViewTextBoxColumn.DataPropertyName = "PaymentMethod";
-            this.paymentMethodDataGridViewTextBoxColumn.HeaderText = "PaymentMethod";
-            this.paymentMethodDataGridViewTextBoxColumn.Name = "paymentMethodDataGridViewTextBoxColumn";
-            this.paymentMethodDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // noOfPersonDataGridViewTextBoxColumn
-            // 
-            this.noOfPersonDataGridViewTextBoxColumn.DataPropertyName = "NoOfPerson";
-            this.noOfPersonDataGridViewTextBoxColumn.HeaderText = "NoOfPerson";
-            this.noOfPersonDataGridViewTextBoxColumn.Name = "noOfPersonDataGridViewTextBoxColumn";
-            this.noOfPersonDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // durationDataGridViewTextBoxColumn
-            // 
-            this.durationDataGridViewTextBoxColumn.DataPropertyName = "Duration";
-            this.durationDataGridViewTextBoxColumn.HeaderText = "Duration";
-            this.durationDataGridViewTextBoxColumn.Name = "durationDataGridViewTextBoxColumn";
-            this.durationDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // discountDataGridViewTextBoxColumn
-            // 
-            this.discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
-            this.discountDataGridViewTextBoxColumn.HeaderText = "Discount";
-            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
-            this.discountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // vATDataGridViewTextBoxColumn
-            // 
-            this.vATDataGridViewTextBoxColumn.DataPropertyName = "VAT";
-            this.vATDataGridViewTextBoxColumn.HeaderText = "VAT";
-            this.vATDataGridViewTextBoxColumn.Name = "vATDataGridViewTextBoxColumn";
-            this.vATDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalAmountDataGridViewTextBoxColumn
-            // 
-            this.totalAmountDataGridViewTextBoxColumn.DataPropertyName = "TotalAmount";
-            this.totalAmountDataGridViewTextBoxColumn.HeaderText = "TotalAmount";
-            this.totalAmountDataGridViewTextBoxColumn.Name = "totalAmountDataGridViewTextBoxColumn";
-            this.totalAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateCreatedDataGridViewTextBoxColumn
-            // 
-            this.dateCreatedDataGridViewTextBoxColumn.DataPropertyName = "DateCreated";
-            this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "DateCreated";
-            this.dateCreatedDataGridViewTextBoxColumn.Name = "dateCreatedDataGridViewTextBoxColumn";
-            this.dateCreatedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateModifiedDataGridViewTextBoxColumn
-            // 
-            this.dateModifiedDataGridViewTextBoxColumn.DataPropertyName = "DateModified";
-            this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "DateModified";
-            this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
-            this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isTrashedDataGridViewCheckBoxColumn
-            // 
-            this.isTrashedDataGridViewCheckBoxColumn.DataPropertyName = "IsTrashed";
-            this.isTrashedDataGridViewCheckBoxColumn.HeaderText = "IsTrashed";
-            this.isTrashedDataGridViewCheckBoxColumn.Name = "isTrashedDataGridViewCheckBoxColumn";
-            this.isTrashedDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // createdByDataGridViewTextBoxColumn
-            // 
-            this.createdByDataGridViewTextBoxColumn.DataPropertyName = "CreatedBy";
-            this.createdByDataGridViewTextBoxColumn.HeaderText = "CreatedBy";
-            this.createdByDataGridViewTextBoxColumn.Name = "createdByDataGridViewTextBoxColumn";
-            this.createdByDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // bookingReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(55)))), ((int)(((byte)(134)))));
             this.ClientSize = new System.Drawing.Size(1819, 846);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -696,7 +525,6 @@
         private System.Windows.Forms.DateTimePicker txtTo;
         private System.Windows.Forms.BindingSource roomTypeBindingSource;
         private ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter roomTypeTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bookingId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Guest;
         private System.Windows.Forms.DataGridViewTextBoxColumn GuestPhoneNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Room;
@@ -708,23 +536,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateCreated;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateModified;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bookingIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn guestIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn roomIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn reservationIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn checkInDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn checkOutDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn paymentMethodDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noOfPersonDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn durationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn discountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalAmountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isTrashedDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdByDataGridViewTextBoxColumn;
     }
 }
