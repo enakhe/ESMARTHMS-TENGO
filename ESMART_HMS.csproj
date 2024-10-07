@@ -569,6 +569,12 @@
     <Compile Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.Designer.cs">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Room\RoomStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Room\RoomStatusForm.Designer.cs">
+      <DependentUpon>RoomStatusForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Inventory\Bar\AddBarItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1015,6 +1021,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.resx">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\RoomStatusForm.resx">
+      <DependentUpon>RoomStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\AddBarItemForm.resx">
       <DependentUpon>AddBarItemForm.cs</DependentUpon>

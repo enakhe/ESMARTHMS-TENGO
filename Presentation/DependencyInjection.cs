@@ -127,6 +127,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<AuthCard>();
             services.AddScoped<ProfileForm>();
             services.AddScoped<LostPassword>();
+            services.AddScoped<RoomStatusForm>();
 
             return services;
         }

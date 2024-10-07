@@ -572,7 +572,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
         {
             try
             {
-                if (dgvBuilding.SelectedRows.Count > 0)
+                if (dgvRooms.SelectedRows.Count > 0)
                 {
                     CompanyInformation foundCompany = _systemSetupController.GetCompanyInfo();
 
@@ -616,6 +616,43 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                 else
                 {
                     MessageBox.Show("Please select a room to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnMaintenance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvRooms.SelectedRows.Count > 0)
+                {
+                    var services = new ServiceCollection();
+                    DependencyInjection.ConfigureServices(services);
+                    var serviceProvider = services.BuildServiceProvider();
+                    List<Room> rooms = new List<Room>();
+
+                    foreach (DataGridViewRow row in dgvRooms.SelectedRows)
+                    {
+                        string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+                        Room room = _roomController.GetRealRoom(id);
+                        rooms.Add(room);
+                    }
+
+
+                    RoomStatusForm roomStatusForm = new RoomStatusForm(_roomController, _systemSetupController, rooms);
+                    if (roomStatusForm.ShowDialog() == DialogResult.OK)
+                    {
+                        InitializeRoomTab(room);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select room to change status.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
