@@ -8,7 +8,6 @@ using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -48,23 +47,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
             {
                 LockSDKMethods.CheckErr(checkEncoder);
             }
-
-            int openPort = OpenPort(5);
-            if (openPort != 1)
-            {
-                LockSDKMethods.CheckErr(openPort);
-            }
-
-            StringBuilder authCard = GetAuthCardFromDB();
-            string fnp = "1011899778569788";
-            StringBuilder clientData = authCard;
-
-            int systemIni = LockSDKMethods.SystemInitialization(fnp, clientData);
-            if (systemIni != 1)
-            {
-                LockSDKMethods.CheckErr(systemIni);
-                return;
-            }
         }
 
         private void LoadData()
@@ -91,102 +73,17 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
             }
         }
 
-        // Initialize the timer
         private void InitializeTimer()
         {
             dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = TimeSpan.FromSeconds(1); // Set interval to 1 second
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
         }
 
-        private int SelectDoorLockType(int doorType)
-        {
-            st = LockSDKHeaders.LS_SelectDoorLockType(doorType);
-            return st;
-        }
-
-        private int OpenPort(int port)
-        {
-            st = LockSDKHeaders.LS_OpenPort(port);
-            return st;
-        }
-
-        public int CheckEncoder()
-        {
-            Int16 locktype = 5;
-            st = LockSDKHeaders.TP_Configuration(locktype);
-            return st;
-        }
-
-        public StringBuilder GetAuthCardFromDB()
-        {
-            Domain.Entities.AuthorizationCard AuthCard = _cardController.GetAuthCardByComputer(computerName);
-            if (AuthCard != null)
-            {
-                return new StringBuilder(AuthCard.AuthId);
-            }
-            return null;
-        }
-
-        private void LoadCardDetails()
-        {
-            char[] card_snr = new char[100];
-
-            int st = LockSDKMethods.ReadCard(card_snr);
-            if (st != (int)ERROR_TYPE.OPR_OK)
-            {
-                txtStatus.Text = "No Found Card";
-                txtStatus.ForeColor = Color.Red;
-
-                txtCardNo.Text = "";
-                txtCardTypeTwo.Text = "";
-                txtLockNo.Text = "";
-                txtRoomNo.Text = "";
-            }
-            else
-            {
-                Domain.Entities.Booking selectedbooking = _bookingController.GetbookingById(_id);
-
-                txtStatus.Text = "Card Found";
-                txtStatus.ForeColor = Color.Green;
-                txtCardTypeTwo.ForeColor = Color.Blue;
-
-                CARD_INFO cardInfo = new CARD_INFO();
-                byte[] cbuf = new byte[10000];
-                cardInfo = new CARD_INFO();
-                int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
-
-                if (result == (int)ERROR_TYPE.OPR_OK)
-                {
-                    var roomNo = FormHelper.ByteArrayToString(cardInfo.RoomList);
-                    bool isNull = FormHelper.AreAnyNullOrEmpty(roomNo);
-
-                    if (isNull)
-                    {
-                        txtStatus.Text = "Empty Card";
-                        txtStatus.ForeColor = Color.Red;
-
-                        txtCardNo.Text = "";
-                        txtCardTypeTwo.Text = "";
-                        txtLockNo.Text = "";
-                        txtRoomNo.Text = "";
-                    }
-                    else
-                    {
-                        MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
-
-                        txtRoomNo.Text = selectedbooking.Room.RoomNo;
-                        txtCardNo.Text = FormHelper.ByteArrayToString(cardInfo.CardNo);
-                        txtCardTypeTwo.Text = FormHelper.FormatEnumName(cardType);
-                        txtLockNo.Text = $"1.1.{selectedbooking.Room.RoomNo}";
-                    }
-                }
-            }
-        }
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            LoadCardDetails();
+
         }
 
         private void btnRecycle_Click(object sender, EventArgs e)
@@ -196,7 +93,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
             if (st == 1)
             {
                 MessageBox.Show("Successfully recycled card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadCardDetails();
             }
         }
 
@@ -214,7 +110,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
 
             if (LockSDKHeaders.PreparedIssue(card_snr) == false)
                 return;
-            st = LockSDKMethods.MakeGuestCard(card_snr, roomno, "", "", intime, outtime, iflags);
+            st = LockSDKMethods.MakeGuestCard(card_snr, roomno, booking.Room.Area.AreaNo, "", intime, outtime, iflags);
 
             if (st == (int)ERROR_TYPE.OPR_OK)
             {
@@ -263,7 +159,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
                 this.Close();
 
                 MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadCardDetails();
             }
             else if (st == (int)ERROR_TYPE.PORT_IN_USED)
             {

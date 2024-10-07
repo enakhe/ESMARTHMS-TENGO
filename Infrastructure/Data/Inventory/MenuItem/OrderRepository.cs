@@ -1,10 +1,6 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Interfaces.Bar;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Infrastructure.Data.Bar
@@ -19,7 +15,7 @@ namespace ESMART_HMS.Infrastructure.Data.Bar
         }
 
         public void AddOrder(Order order)
-        {  
+        {
             try
             {
                 _db.Orders.Add(order);

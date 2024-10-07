@@ -123,7 +123,7 @@ namespace ESMART_HMS.Infrastructure.Data
                             MessageBoxIcon.Error);
                 }
 
-                var searchGuest = from guest in _db.Guests.Where(c => c.FullName.Contains(keyword) || c.Email.Contains(keyword) || c.PhoneNumber.Contains(keyword) || c.Street.Contains(keyword) || c.City.Contains(keyword) || c.State.Contains(keyword) || c.Country.Contains(keyword) || c.GuestId.Contains(keyword) || c.Company.Contains(keyword)).OrderBy(g => g.FullName)
+                var searchGuest = from guest in _db.Guests.Where(c => c.FullName.Contains(keyword) || c.Email.Contains(keyword) || c.PhoneNumber.Contains(keyword) || c.Street.Contains(keyword) || c.City.Contains(keyword) || c.State.Contains(keyword) || c.Country.Contains(keyword) || c.GuestId.Contains(keyword) || c.Company.Contains(keyword) && c.IsTrashed == false ).OrderBy(g => g.FullName)
                                   select new GuestViewModel
                                   {
                                       Id = guest.Id,
@@ -142,11 +142,8 @@ namespace ESMART_HMS.Infrastructure.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                throw new Exception("An error occured when retrieving guest details", ex);
             }
-
-            return null;
         }
 
         public List<GuestViewModel> GetDeletedGuest()

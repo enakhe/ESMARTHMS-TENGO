@@ -250,5 +250,20 @@ namespace ESMART_HMS.Presentation.Controllers
         {
             return _getRoomsByFilterUseCase.Execute(roomTypeId, status);
         }
+
+        public int GetReservedRoom()
+        {
+            return _getVacantRoomUseCase.GetReservedRoom();
+        }
+
+        public int GetCheckedIn()
+        {
+            return _getVacantRoomUseCase.GetCheckedIn();
+        }
+
+        public int GetMaintenance()
+        {
+            return _getVacantRoomUseCase.GetMaintenance();
+        }
     }
 }

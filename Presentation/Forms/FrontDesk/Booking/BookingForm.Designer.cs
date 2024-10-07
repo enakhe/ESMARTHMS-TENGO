@@ -407,7 +407,7 @@
             dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvbooking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvbooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvbooking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

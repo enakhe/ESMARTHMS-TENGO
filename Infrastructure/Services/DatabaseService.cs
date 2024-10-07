@@ -3,15 +3,13 @@ using ESMART_HMS.Infrastructure.Data;
 using System;
 using System.Data.SqlClient;
 using System.Linq;
-using static ESMART_HMS.ESMART_HMSDBDataSet;
-using static Org.BouncyCastle.Asn1.Cmp.Challenge;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ESMART_HMS.Infrastructure.Services
 {
     public static class DatabaseService
     {
-        private static readonly string connectionString = @"data source=localhost;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True";
+        private static readonly string connectionString = @"Server=localhost;Database=ESMART_HMSDB;User Id=enakhe;Password=samcooper$01;TrustServerCertificate=True;MultipleActiveResultSets=True;";
+
 
         public static void InitializeDatabase()
         {

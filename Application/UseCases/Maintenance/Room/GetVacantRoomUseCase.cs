@@ -17,5 +17,20 @@ namespace ESMART_HMS.Application.UseCases.Room
         {
             return _roomRepository.GetVacantRoom();
         }
+
+        public int GetReservedRoom()
+        {
+            return _roomRepository.GetNoReserved();
+        }
+
+        public int GetCheckedIn()
+        {
+            return _roomRepository.GetNoBooking();
+        }
+
+        public int GetMaintenance()
+        {
+            return _roomRepository.GetNoMaintenance();
+        }
     }
 }

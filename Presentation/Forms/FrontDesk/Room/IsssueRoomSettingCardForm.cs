@@ -6,7 +6,6 @@ using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Sessions;
 using System;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Threading;
@@ -64,6 +63,11 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 
         private void IsssueRoomSettingCardForm_Load(object sender, EventArgs e)
         {
+            var allAreas = _roomController.GetAllAreas();
+            if (allAreas != null)
+            {
+                txtArea.DataSource = allAreas;
+            }
             dispatcherTimer.Start();
             Int16 locktype = 5;
             int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
@@ -90,58 +94,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             }
         }
 
-        private void LoadCardDetails()
-        {
-            char[] card_snr = new char[100];
-
-            int st = LockSDKMethods.ReadCard(card_snr);
-            if (st != (int)ERROR_TYPE.OPR_OK)
-            {
-                txtStatus.Text = "No Found Card";
-                txtStatus.ForeColor = Color.Red;
-
-                txtCardNo.Text = "";
-                txtLockNo.Text = "";
-                txtRoomNo.Text = "";
-            }
-            else
-            {
-                Domain.Entities.Room selectedRoom = _roomController.GetRealRoom(_id);
-
-                txtStatus.Text = "Card Found";
-                txtStatus.ForeColor = Color.Green;
-
-                CARD_INFO cardInfo = new CARD_INFO();
-                byte[] cbuf = new byte[10000];
-                cardInfo = new CARD_INFO();
-                int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
-
-                if (result == (int)ERROR_TYPE.OPR_OK)
-                {
-                    var roomNo = FormHelper.ByteArrayToString(cardInfo.RoomList);
-                    bool isNull = FormHelper.AreAnyNullOrEmpty(roomNo);
-
-                    if (isNull)
-                    {
-                        txtStatus.Text = "Empty Card";
-                        txtStatus.ForeColor = Color.Red;
-
-                        txtCardNo.Text = "";
-                        txtLockNo.Text = "";
-                        txtRoomNo.Text = "";
-                    }
-                    else
-                    {
-                        MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
-
-                        txtRoomNo.Text = selectedRoom.RoomNo;
-                        txtCardNo.Text = FormHelper.ByteArrayToString(cardInfo.CardNo);
-                        txtLockNo.Text = $"1.1.{selectedRoom.RoomNo}";
-                    }
-                }
-            }
-        }
-
         private void InitializeTimer()
         {
             dispatcherTimer = new DispatcherTimer();
@@ -151,7 +103,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            LoadCardDetails();
+
         }
 
         private void btnRecycle_Click(object sender, EventArgs e)
@@ -161,7 +113,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             if (st == 1)
             {
                 MessageBox.Show("Successfully recycled card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadCardDetails();
             }
         }
 
@@ -174,7 +125,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             string roomno = $"{selectedRoom.Building.BuildingNo}.{selectedRoom.Floor.FloorNo}.{selectedRoom.RoomNo}";
             int buildingno = int.Parse(selectedRoom.Building.BuildingNo);
             int floorno = int.Parse(selectedRoom.Floor.FloorNo);
-            int areano1 = int.Parse(selectedRoom.Area.AreaNo);
+            int areano1 = int.Parse(txtArea.SelectedValue.ToString());
             int areano2 = 0;
             ROOM_TYPE roomtype = ROOM_TYPE.RT_COMMON_ROOMS;
             LOCK_SETTING lockSetting = LOCK_SETTING.LS_VALID_DATE_EN;
@@ -212,7 +163,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
                 this.Close();
 
                 MessageBox.Show("Successfully issued card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadCardDetails();
             }
             else if (st == (int)ERROR_TYPE.PORT_IN_USED)
             {

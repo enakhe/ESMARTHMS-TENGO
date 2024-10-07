@@ -1,13 +1,16 @@
-﻿using ESMART_HMS.Domain.Entities;
+﻿using ESMART_HMS.Application.LockSDK;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.FrontDesk.booking;
 using ESMART_HMS.Presentation.Sessions;
+using System.Threading.Tasks;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.booking
@@ -15,6 +18,8 @@ namespace ESMART_HMS.Presentation.Forms.booking
     public partial class bookingForm : Form
     {
         private readonly GuestController _guestController;
+        private bool _continueRunning = true;
+
         private readonly RoomController _roomController;
         private readonly ReservationController _reservationController;
         private readonly ConfigurationController _configurationController;
@@ -23,6 +28,8 @@ namespace ESMART_HMS.Presentation.Forms.booking
         private readonly ApplicationUserController _applicationUserController;
         private readonly CardController _cardController;
         private readonly SystemSetupController _systemSetupController;
+        int st = 0;
+
         public bookingForm(bookingController bookingController, GuestController guestController, RoomController roomController, ReservationController reservationController, ConfigurationController configurationController, TransactionController transactionController, ApplicationUserController applicationUserController, CardController cardController, SystemSetupController systemSetupController)
         {
             _guestController = guestController;
@@ -117,24 +124,60 @@ namespace ESMART_HMS.Presentation.Forms.booking
                 {
                     var row = dgvbooking.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
-
+                    char[] card_snr = new char[100];
+                    int st = LockSDKMethods.ReadCard(card_snr);
                     Domain.Entities.Booking booking = _bookingController.GetbookingById(id);
                     Domain.Entities.Room room = _roomController.GetRealRoom(booking.RoomId);
                     GuestCard guestCard = _cardController.GetGuestCard(booking.Id);
 
-                    room.Status = RoomStatusEnum.Vacant.ToString();
-
-                    if (guestCard != null)
+                    if (st != (int)ERROR_TYPE.OPR_OK)
                     {
-                        _cardController.DeleteGuestCard(guestCard.Id);
+                        MessageBox.Show("Please place card", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    _roomController.UpdateRoom(room);
-                    _bookingController.Deletebooking(booking);
-                    LoadbookingsData();
+                    else
+                    {
+                        CARD_INFO cardInfo = new CARD_INFO();
+                        byte[] cbuf = new byte[10000];
+                        cardInfo = new CARD_INFO();
+                        int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+                        if (result == (int)ERROR_TYPE.OPR_OK)
+                        {
+                            var cardInfoRoom = FormHelper.ByteArrayToString(cardInfo.RoomList);
+                            string[] parts = cardInfoRoom.Split('.');
+                            var roomno = parts[parts.Length - 1];
+                            string realRoomNo = roomno.Substring(roomno.Length - 4);
+
+                            if (realRoomNo == room.RoomNo)
+                            {
+                                room.Status = RoomStatusEnum.Vacant.ToString();
+
+                                if (guestCard != null)
+                                {
+                                    _cardController.DeleteGuestCard(guestCard.Id);
+                                }
+                                _roomController.UpdateRoom(room);
+                                _bookingController.Deletebooking(booking);
+                                StringBuilder card_snr2 = new StringBuilder();
+                                st = LockSDKHeaders.TP_CancelCard(card_snr2);
+                                if (st == 1)
+                                {
+                                    MessageBox.Show("Successfully checkout card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                LoadbookingsData();
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid room card", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("Please select a booking to isue card.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Please select a booking to checkout.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

@@ -1,6 +1,5 @@
 ﻿using ESMART_HMS.Application.UseCases.Bar.Store.BarItem;
 using ESMART_HMS.Application.UseCases.Store.BarItem;
-using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.ViewModels;
 using System.Collections.Generic;
 
@@ -35,7 +34,7 @@ namespace ESMART_HMS.Presentation.Controllers
             return _getAllBarItemUseCase.Execute();
         }
 
-        public void UpdateBarItem(Domain.Entities.MenuItem menuItem) 
+        public void UpdateBarItem(Domain.Entities.MenuItem menuItem)
         {
             _updateBarItemUseCase.Execute(menuItem);
         }

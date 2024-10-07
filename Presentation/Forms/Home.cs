@@ -1,9 +1,13 @@
-﻿using ESMART_HMS.Domain.Entities;
+﻿using ESMART_HMS.Application.LockSDK;
+using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Enum;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Inventory;
+using ESMART_HMS.Presentation.Forms.Maintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
@@ -19,11 +23,13 @@ using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
-using ESMART_HMS.Presentation.Forms.Maintenance;
+using System.Windows.Threading;
 
 namespace ESMART_HMS.Presentation.Forms
 {
@@ -38,13 +44,9 @@ namespace ESMART_HMS.Presentation.Forms
         TransactionForm transactionForm;
         BarStoreForm barStoreForm;
         RestaurantForm restaurantForm;
-
-        // Maintenance
         SystemSetupFrom systemSetupFrom;
         RoomSettingForm roomSettingForm;
         CardMaintenanceForm cardMaintenanceForm;
-
-        // Report
         RoomReportForm roomReportForm;
         bookingReportForm bookingReportForm;
         ReservationReportForm reservationReportForm;
@@ -59,22 +61,32 @@ namespace ESMART_HMS.Presentation.Forms
         private readonly ApplicationUserController _applicationUserController;
         private readonly LicenseController _licenseController;
         private readonly ConfigurationController _configurationController;
+        private readonly CardController _cardController;
 
         private Color vacantColor = Color.LightGreen;
         private Color reservedColor = Color.LightYellow;
         private Color bookedColor = Color.LightBlue;
         private Image _bgImage;
+        private DispatcherTimer dispatcherTimer;
+        int st = 0;
+        string computerName = Environment.MachineName;
 
-        public Home(GuestController customerViewModel, RoomController roomController, RoomTypeController roomTypeController, ReservationController reservationController, ApplicationUserController userController, LicenseController licenseController, ConfigurationController configurationController)
+
+        public Home(GuestController customerViewModel, RoomController roomController, RoomTypeController roomTypeController, ReservationController reservationController, ApplicationUserController userController, LicenseController licenseController, ConfigurationController configurationController, CardController cardController)
         {
             _customerController = customerViewModel;
             _roomController = roomController;
             _roomTypeController = roomTypeController;
             _reservationController = reservationController;
             _applicationUserController = userController;
+            _licenseController = licenseController;
+            _configurationController = configurationController;
+            _cardController = cardController;
             InitializeComponent();
             ApplyAuthorization();
             ApplyAuthorization2();
+            RoomStatus();
+            StartBackgroundTask();
 
             this.BackgroundImage = _bgImage;
             this.BackgroundImageLayout = ImageLayout.Stretch;
@@ -83,12 +95,15 @@ namespace ESMART_HMS.Presentation.Forms
             this.IsMdiContainer = true;
             this.BackColor = Color.White;
             this.Load += new EventHandler(MainForm_Load);
-            _licenseController = licenseController;
-            _configurationController = configurationController;
         }
 
         private void ApplyAuthorization()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(ApplyAuthorization));
+                return;
+            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.Protect(user, systemSetupToolStripMenuItem, roles);
@@ -96,6 +111,11 @@ namespace ESMART_HMS.Presentation.Forms
         }
         private void ApplyAuthorization2()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(ApplyAuthorization2));
+                return;
+            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.Protect(user, roomSettingToolStripMenuItem, roles);
@@ -143,9 +163,20 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void Home_Load(object sender, EventArgs e)
-        {
+        private bool _continueRunning = true;
 
+        public async void StartBackgroundTask()
+        {
+            await Task.Run(() =>
+            {
+                while (_continueRunning)
+                {
+                    RoomStatus();
+                    ApplyAuthorization();
+                    ApplyAuthorization2();
+                    Task.Delay(1000).Wait();
+                }
+            });
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -178,16 +209,6 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void Room_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            roomForm = null;
-        }
-
-        private void Option_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            optionsFrom = null;
-        }
-
         private void booking_FormClosed(object sender, FormClosedEventArgs e)
         {
             bookingForm = null;
@@ -212,15 +233,6 @@ namespace ESMART_HMS.Presentation.Forms
         }
 
 
-        private void Reservation_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            reservationForm = null;
-        }
-
-        private void addEditReservationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
         private void SystemSetup_FormClosed(object sender, FormClosedEventArgs e)
         {
             systemSetupFrom = null;
@@ -240,13 +252,8 @@ namespace ESMART_HMS.Presentation.Forms
             }
             else
             {
-                reservationForm.Activate();
+                systemSetupFrom.Activate();
             }
-        }
-
-        private void viewRoomsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void transactionsToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -267,11 +274,6 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 transactionForm.Activate();
             }
-        }
-
-        private void addEditbookingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void RoomSetting_FormClosed(object sender, FormClosedEventArgs e)
@@ -320,6 +322,11 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
+        private void Room_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            roomForm = null;
+        }
+
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (roomForm == null)
@@ -339,6 +346,11 @@ namespace ESMART_HMS.Presentation.Forms
                 roomForm.Activate();
                 roomForm.LoadData();
             }
+        }
+
+        private void Reservation_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            reservationForm = null;
         }
 
         private void manageReservationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -407,7 +419,7 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void bookingReport_FormClosed(object sender, FormClosedEventArgs e)
+        private void BookingReport_FormClosed(object sender, FormClosedEventArgs e)
         {
             bookingReportForm = null;
         }
@@ -421,7 +433,7 @@ namespace ESMART_HMS.Presentation.Forms
                 var serviceProvider = services.BuildServiceProvider();
 
                 bookingReportForm = serviceProvider.GetRequiredService<bookingReportForm>();
-                bookingReportForm.FormClosed += bookingReport_FormClosed;
+                bookingReportForm.FormClosed += BookingReport_FormClosed;
                 bookingReportForm.MdiParent = this;
                 bookingReportForm.Dock = DockStyle.Fill;
                 bookingReportForm.Show();
@@ -460,11 +472,6 @@ namespace ESMART_HMS.Presentation.Forms
         private void Restaurant_FormClosed(object sender, FormClosedEventArgs e)
         {
             restaurantForm = null;
-        }
-
-        private void storeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void MenuItem_FormClosed(object sender, FormClosedEventArgs e)
@@ -560,25 +567,6 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show("Are you sure you want to close the application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            var services = new ServiceCollection();
-            DependencyInjection.ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
-
-            LockApp lockApp = serviceProvider.GetRequiredService<LockApp>();
-            lockApp.ShowDialog();
-        }
-
         private void Recycled_FormClosed(object sender, FormClosedEventArgs e)
         {
             recycledItemForm = null;
@@ -602,6 +590,168 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 recycledItemForm.Activate();
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to close the application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            LockApp lockApp = serviceProvider.GetRequiredService<LockApp>();
+            lockApp.ShowDialog();
+        }
+
+
+        private void InitializeTimer()
+        {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            ValidateCardEncoderConnection();
+            LoadCardDetails();
+        }
+
+        private void ValidateCardEncoderConnection()
+        {
+            const Int16 EncoderLockType = 5;
+            int encoderStatus = LockSDKMethods.CheckEncoder(EncoderLockType);
+
+            if (encoderStatus != 1)
+            {
+                txtEncoderStatus.Text = "Please connect the encoder!";
+                txtEncoderStatus.ForeColor = Color.Red;
+            }
+            else
+            {
+                txtEncoderStatus.Text = "Encoder connected";
+                txtEncoderStatus.ForeColor = Color.Green;
+            }
+        }
+
+        public void LoadCardDetails()
+        {
+            char[] card_snr = new char[100];
+
+            int st = LockSDKMethods.ReadCard(card_snr);
+            if (st != (int)ERROR_TYPE.OPR_OK)
+            {
+                txtStatus.Text = "No Found Card";
+                txtStatus.ForeColor = Color.Red;
+
+                txtCardNo.Visible = false;
+                txtCardType.Visible = false;
+                txtRoomNo.Visible = false;
+                txtSDate.Visible = false;
+                txtEdate.Visible = false;
+                txtAreas.Visible = false;
+                txtFloors.Visible = false;
+            }
+            else
+            {
+                CARD_INFO cardInfo = new CARD_INFO();
+                byte[] cbuf = new byte[10000];
+                cardInfo = new CARD_INFO();
+                int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+
+                var roomNo = FormHelper.ByteArrayToString(cardInfo.RoomList);
+                bool isNull = FormHelper.AreAnyNullOrEmpty(roomNo);
+
+                if (isNull)
+                {
+                    txtStatus.Text = "Empty Card";
+                    txtStatus.ForeColor = Color.Red;
+
+                    txtCardNo.Visible = false;
+                    txtCardType.Visible = false;
+                    txtRoomNo.Visible = false;
+                    txtSDate.Visible = false;
+                    txtEdate.Visible = false;
+                    txtAreas.Visible = false;
+                    txtFloors.Visible = false;
+                }
+                else
+                {
+                    txtStatus.Text = "Card found";
+                    txtStatus.ForeColor = Color.Green;
+                    txtCardType.ForeColor = Color.Blue;
+
+                    if (result == (int)ERROR_TYPE.OPR_OK)
+                    {
+                        MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
+                        var cardInfoRoom = FormHelper.ByteArrayToString(cardInfo.RoomList);
+                        string[] parts = cardInfoRoom.Split('.');
+                        var roomno = parts[parts.Length - 1];
+
+                        txtCardNo.Text = $"Card No:\n {FormHelper.ByteArrayToString(cardInfo.CardNo)}";
+                        txtCardType.Text = $"Card Type:\n {FormHelper.FormatEnumName(cardType)}";
+                        txtRoomNo.Text = $"Room No:\n {roomno}";
+                        txtSDate.Text = $"Start Time:\n {FormHelper.ByteArrayToString(cardInfo.SDateTime)}";
+                        txtEdate.Text = $"End Time:\n {FormHelper.ByteArrayToString(cardInfo.EDateTime)}";
+                        txtAreas.Text = $"Areas:\n {FormHelper.ByteArrayToString(cardInfo.cAreaList)}";
+                        txtFloors.Text = $"Floors:\n {FormHelper.ByteArrayToString(cardInfo.FloorList)}";
+                    }
+                }
+
+            }
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            InitializeTimer();
+            dispatcherTimer.Start();
+        }
+
+        private void btnRecycle_Click(object sender, EventArgs e)
+        {
+            StringBuilder card_snr = new StringBuilder();
+            st = LockSDKHeaders.TP_CancelCard(card_snr);
+            if (st == 1)
+            {
+                MessageBox.Show("Successfully recycled card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void RoomStatus()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(RoomStatus));
+                return;
+            }
+            var vacantRoom = _roomController.GetAvailbleRoom().Count();
+            txtVacant.Text = $"Vacant: {vacantRoom}";
+
+            var reservedRoom = _roomController.GetReservedRoom();
+            txtReserved.Text = $"Reserved: {reservedRoom}";
+
+            var bookingRoom = _roomController.GetCheckedIn();
+            txtChecked.Text = $"Checked In: {bookingRoom}";
+
+            var maintenanceRoom = _roomController.GetMaintenance();
+            txtMaintenance.Text = $"Maintenance: {maintenanceRoom}";
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
+            var loginResult = loginForm.ShowDialog();
         }
     }
 }

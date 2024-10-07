@@ -569,28 +569,28 @@
     <Compile Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.Designer.cs">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Inventory\Bar\BarStore\AddBarItemForm.cs">
+    <Compile Include="Presentation\Forms\Inventory\Bar\AddBarItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Inventory\Bar\BarStore\AddBarItemForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Inventory\Bar\AddBarItemForm.Designer.cs">
       <DependentUpon>AddBarItemForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Inventory\Bar\BarStore\BarStoreForm.cs">
+    <Compile Include="Presentation\Forms\Inventory\Bar\BarStoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Inventory\Bar\BarStore\BarStoreForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Inventory\Bar\BarStoreForm.Designer.cs">
       <DependentUpon>BarStoreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Inventory\Bar\BarStore\EditBarItemForm.cs">
+    <Compile Include="Presentation\Forms\Inventory\Bar\EditBarItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Inventory\Bar\BarStore\EditBarItemForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Inventory\Bar\EditBarItemForm.Designer.cs">
       <DependentUpon>EditBarItemForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Inventory\Bar\BarStore\OrderForm.cs">
+    <Compile Include="Presentation\Forms\Inventory\Bar\OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Inventory\Bar\BarStore\OrderForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Inventory\Bar\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FormClasses\BorderPanel.cs">
@@ -825,6 +825,12 @@
     <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\CardMaintenanceForm.Designer.cs">
       <DependentUpon>CardMaintenanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\AuthCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\AuthCard.Designer.cs">
+      <DependentUpon>AuthCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\BuildingCardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -998,16 +1004,16 @@
     <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.resx">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\BarStore\AddBarItemForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\AddBarItemForm.resx">
       <DependentUpon>AddBarItemForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\BarStore\BarStoreForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\BarStoreForm.resx">
       <DependentUpon>BarStoreForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\BarStore\EditBarItemForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\EditBarItemForm.resx">
       <DependentUpon>EditBarItemForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\BarStore\OrderForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Inventory\Bar\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Booking\AddBookingForm.resx">
@@ -1111,6 +1117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\CardMaintenanceForm.resx">
       <DependentUpon>CardMaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\AuthCard.resx">
+      <DependentUpon>AuthCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\BuildingCardForm.resx">
       <DependentUpon>BuildingCardForm.cs</DependentUpon>

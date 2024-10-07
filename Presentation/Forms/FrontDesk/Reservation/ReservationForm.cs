@@ -8,6 +8,7 @@ using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -15,6 +16,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
 {
     public partial class ReservationForm : Form
     {
+        private bool _continueRunning = true;
+
         private readonly ReservationController _reservationController;
         private readonly GuestController _guestController;
         private readonly RoomController _roomController;
@@ -35,6 +38,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             _systemSetupController = systemSetupController;
             InitializeComponent();
             ApplyAuthorization();
+            StartBackgroundTask();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -49,8 +53,25 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             dgvReservation.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
+        public async void StartBackgroundTask()
+        {
+            await Task.Run(() =>
+            {
+                while (_continueRunning)
+                {
+                    ApplyAuthorization();
+                    Task.Delay(1000).Wait();
+                }
+            });
+        }
+
         private void ApplyAuthorization()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(ApplyAuthorization));
+                return;
+            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.ProtectControl(user, btnDelete, roles);

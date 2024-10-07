@@ -1,9 +1,8 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Infrastructure.Data;
 using System.Collections.Generic;
-using System.Web.Security;
-using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Forms;
 
 
 namespace ESMART_HMS.Presentation.Middleware
@@ -23,11 +22,11 @@ namespace ESMART_HMS.Presentation.Middleware
         {
             if (!IsAuthorized(user, requiredRoles))
             {
-                control.Enabled = false;
+                control.Visible = false;
             }
             else
             {
-                control.Enabled = true;
+                control.Visible = true;
             }
         }
 
@@ -35,11 +34,11 @@ namespace ESMART_HMS.Presentation.Middleware
         {
             if (!IsAuthorized(user, requiredRoles))
             {
-                control.Enabled = false;
+                control.Visible = false;
             }
             else
             {
-                control.Enabled = true;
+                control.Visible = true;
             }
         }
     }

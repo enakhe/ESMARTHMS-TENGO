@@ -28,27 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IsssueRoomSettingCardForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtLockNo = new System.Windows.Forms.Label();
-            this.txtRoomNo = new System.Windows.Forms.Label();
-            this.txtCardNo = new System.Windows.Forms.Label();
-            this.txtEmpty = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRecycle = new System.Windows.Forms.Button();
             this.btnIssue = new System.Windows.Forms.Button();
+            this.txtArea = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
+            this.areaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.areaTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.AreaTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -77,15 +76,8 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtLockNo);
-            this.panel1.Controls.Add(this.txtRoomNo);
-            this.panel1.Controls.Add(this.txtCardNo);
-            this.panel1.Controls.Add(this.txtEmpty);
-            this.panel1.Controls.Add(this.txtStatus);
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtArea);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(20, 20);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
@@ -93,91 +85,6 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(10);
             this.panel1.Size = new System.Drawing.Size(334, 364);
             this.panel1.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 203);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Lock No:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(11, 155);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 20);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Room No:";
-            // 
-            // txtLockNo
-            // 
-            this.txtLockNo.AutoSize = true;
-            this.txtLockNo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLockNo.Location = new System.Drawing.Point(96, 203);
-            this.txtLockNo.Name = "txtLockNo";
-            this.txtLockNo.Size = new System.Drawing.Size(0, 20);
-            this.txtLockNo.TabIndex = 3;
-            // 
-            // txtRoomNo
-            // 
-            this.txtRoomNo.AutoSize = true;
-            this.txtRoomNo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRoomNo.Location = new System.Drawing.Point(95, 156);
-            this.txtRoomNo.Name = "txtRoomNo";
-            this.txtRoomNo.Size = new System.Drawing.Size(0, 20);
-            this.txtRoomNo.TabIndex = 3;
-            // 
-            // txtCardNo
-            // 
-            this.txtCardNo.AutoSize = true;
-            this.txtCardNo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardNo.Location = new System.Drawing.Point(87, 110);
-            this.txtCardNo.Name = "txtCardNo";
-            this.txtCardNo.Size = new System.Drawing.Size(0, 20);
-            this.txtCardNo.TabIndex = 3;
-            // 
-            // txtEmpty
-            // 
-            this.txtEmpty.AutoSize = true;
-            this.txtEmpty.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmpty.Location = new System.Drawing.Point(116, 62);
-            this.txtEmpty.Name = "txtEmpty";
-            this.txtEmpty.Size = new System.Drawing.Size(0, 20);
-            this.txtEmpty.TabIndex = 3;
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.AutoSize = true;
-            this.txtStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(11, 62);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(0, 20);
-            this.txtStatus.TabIndex = 3;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(11, 110);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(70, 20);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "Card No:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(13, 10);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(108, 23);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "Card Details";
             // 
             // flowLayoutPanel1
             // 
@@ -218,6 +125,42 @@
             this.btnIssue.UseVisualStyleBackColor = false;
             this.btnIssue.Click += new System.EventHandler(this.btnIssue_Click);
             // 
+            // txtArea
+            // 
+            this.txtArea.DataSource = this.areaBindingSource;
+            this.txtArea.DisplayMember = "AreaName";
+            this.txtArea.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtArea.FormattingEnabled = true;
+            this.txtArea.Location = new System.Drawing.Point(14, 49);
+            this.txtArea.Name = "txtArea";
+            this.txtArea.Size = new System.Drawing.Size(305, 31);
+            this.txtArea.TabIndex = 0;
+            this.txtArea.ValueMember = "AreaNo";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(14, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 25);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Area";
+            // 
+            // eSMART_HMSDBDataSet
+            // 
+            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
+            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // areaBindingSource
+            // 
+            this.areaBindingSource.DataMember = "Area";
+            this.areaBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // areaTableAdapter
+            // 
+            this.areaTableAdapter.ClearBeforeFill = true;
+            // 
             // IsssueRoomSettingCardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +182,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -247,17 +192,13 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label txtLockNo;
-        private System.Windows.Forms.Label txtRoomNo;
-        private System.Windows.Forms.Label txtEmpty;
-        private System.Windows.Forms.Label txtStatus;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnRecycle;
         private System.Windows.Forms.Button btnIssue;
-        private System.Windows.Forms.Label txtCardNo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox txtArea;
+        private ESMART_HMSDBDataSet eSMART_HMSDBDataSet;
+        private System.Windows.Forms.BindingSource areaBindingSource;
+        private ESMART_HMSDBDataSetTableAdapters.AreaTableAdapter areaTableAdapter;
     }
 }

@@ -1,11 +1,10 @@
-﻿using ESMART_HMS.Presentation.Controllers.Bar;
-using ESMART_HMS.Presentation.Controllers;
+﻿using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Bar;
 using ESMART_HMS.Presentation.Controllers.Inventory;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Controllers.Restaurant;
 using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Account.BankAccount;
-using ESMART_HMS.Presentation.Forms.Bar;
 using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
@@ -14,6 +13,7 @@ using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Inventory;
 using ESMART_HMS.Presentation.Forms.License;
+using ESMART_HMS.Presentation.Forms.Maintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
@@ -30,7 +30,6 @@ using ESMART_HMS.Presentation.Forms.Tools.Option.Financial;
 using ESMART_HMS.Presentation.Forms.Tools.Options.Accounts;
 using ESMART_HMS.Presentation.Forms.Transaction;
 using Microsoft.Extensions.DependencyInjection;
-using ESMART_HMS.Presentation.Forms.Maintenance;
 
 namespace ESMART_HMS.Presentation
 {
@@ -124,6 +123,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<LockApp>();
             services.AddScoped<EditUserForm>();
             services.AddScoped<RecycledItemForm>();
+            services.AddScoped<AuthCard>();
 
             return services;
         }

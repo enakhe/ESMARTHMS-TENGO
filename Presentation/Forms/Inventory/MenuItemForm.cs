@@ -3,8 +3,6 @@ using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Inventory;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
-using ESMART_HMS.Presentation.Controllers.Restaurant;
-using ESMART_HMS.Presentation.Forms.Restaurant;
 using ESMART_HMS.Presentation.Middleware;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
@@ -13,14 +11,16 @@ using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace ESMART_HMS.Presentation.Forms.Inventory
 {
     public partial class MenuItemForm : Form
     {
         private readonly InventoryController _inventoryController;
+        private bool _continueRunning = true;
+
         private readonly ApplicationUserController _applicationUserController;
         private readonly SystemSetupController _systemSetupController;
         public MenuItemForm(InventoryController inventoryController, ApplicationUserController applicationUserController, SystemSetupController systemSetupController)
@@ -30,14 +30,32 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
             _systemSetupController = systemSetupController;
             InitializeComponent();
             ApplyAuthorization();
+            StartBackgroundTask();
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             LoadInventoryData();
         }
 
+        public async void StartBackgroundTask()
+        {
+            await Task.Run(() =>
+            {
+                while (_continueRunning)
+                {
+                    ApplyAuthorization();
+                    Task.Delay(1000).Wait();
+                }
+            });
+        }
+
         private void ApplyAuthorization()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(ApplyAuthorization));
+                return;
+            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.ProtectControl(user, btnDelete, roles);

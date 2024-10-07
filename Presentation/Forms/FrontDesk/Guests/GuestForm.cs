@@ -8,8 +8,8 @@ using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Drawing.Printing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Guests
@@ -19,6 +19,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
         private readonly GuestController _customerController;
         private PrintDocument printDocument1 = new PrintDocument();
         private string documentTitle = "Guest List";
+        private bool _continueRunning = true;
         private readonly ApplicationUserController _applicationUserController;
         private readonly SystemSetupController _systemSetupController;
 
@@ -29,6 +30,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             _systemSetupController = systemSetupController;
             InitializeComponent();
             ApplyAuthorization();
+            StartBackgroundTask();
             LoadData();
             printDocument1.DefaultPageSettings.Landscape = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -36,11 +38,28 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             this.DoubleBuffered = true;
         }
 
+        public async void StartBackgroundTask()
+        {
+            await Task.Run(() =>
+            {
+                while (_continueRunning)
+                {
+                    ApplyAuthorization();
+                    Task.Delay(1000).Wait();
+                }
+            });
+        }
+
         private void ApplyAuthorization()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(ApplyAuthorization));
+                return;
+            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
-            AuthorizationMiddleware.ProtectControl(user, btnDelete, roles);
+            AuthorizationMiddleware.ProtectControl(user, btnDeleteG, roles);
         }
 
         public void LoadData()

@@ -38,8 +38,8 @@ namespace ESMART_HMS.Application.UseCases.Inventory
             return _inventoryRespository.GetInventoryById(id);
         }
 
-        public void UpdateInventory(Domain.Entities.Inventory inventory) 
-        { 
+        public void UpdateInventory(Domain.Entities.Inventory inventory)
+        {
             _inventoryRespository.UpdateInventory(inventory);
         }
 

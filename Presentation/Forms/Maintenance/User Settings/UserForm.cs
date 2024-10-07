@@ -1,16 +1,13 @@
-﻿using ESMART_HMS.Domain.Entities;
-using ESMART_HMS.Domain.Interfaces;
+﻿using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
-using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
 using ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.Role;
 using ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.User;
 using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Tools.Options.Accounts
@@ -74,7 +71,7 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Options.Accounts
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void addRoleBtn_Click(object sender, EventArgs e)

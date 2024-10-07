@@ -19,6 +19,9 @@ namespace ESMART_HMS.Domain.Interfaces
         void DeleteArea(string id);
         void DeleteFloor(string id);
         void DeleteBuilding(string id);
+        int GetNoReserved();
+        int GetNoBooking();
+        int GetNoMaintenance();
 
         Room GetRealRoom(string Id);
         Room FindByRoomNo(string roomNumber);

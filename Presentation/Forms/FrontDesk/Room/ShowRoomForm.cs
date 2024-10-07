@@ -181,9 +181,9 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 
                 string details = $"Room Number: {room.RoomNo}\nArea Number: {room.Area.AreaNo}\nFloor Number: {room.Floor.FloorNo}\nDate Issued: {DateTime.Now}\nIssuedBy: {user.FullName}";
 
-                if(foundCompany != null)
+                if (foundCompany != null)
                 {
-                    if(foundCompany.Email != null)
+                    if (foundCompany.Email != null)
                     {
                         await EmailHelper.SendEmail(foundCompany.Email, "Show Room Card Created", details);
                     }

@@ -1,16 +1,10 @@
-﻿using DocumentFormat.OpenXml.Drawing.Spreadsheet;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using ESMART_HMS.Domain.Entities;
+﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
-using ESMART_HMS.Presentation.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using static ESMART_HMS.ESMART_HMSDBDataSet;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ESMART_HMS.Presentation.Forms.Rooms
 {

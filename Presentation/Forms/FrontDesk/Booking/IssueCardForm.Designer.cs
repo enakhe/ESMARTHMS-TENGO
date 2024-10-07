@@ -32,20 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IssueCardForm));
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtLockNo = new System.Windows.Forms.Label();
-            this.txtRoomNo = new System.Windows.Forms.Label();
-            this.txtEdate = new System.Windows.Forms.Label();
-            this.txtSDate = new System.Windows.Forms.Label();
-            this.txtCardTypeTwo = new System.Windows.Forms.Label();
-            this.txtCardNo = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnRecycle = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtOutTime = new System.Windows.Forms.DateTimePicker();
@@ -66,17 +52,6 @@
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Floor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnIssueCard = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -90,173 +65,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvIssueCard)).BeginInit();
             this.SuspendLayout();
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(20);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(20);
-            this.splitContainer1.Size = new System.Drawing.Size(1460, 598);
-            this.splitContainer1.SplitterDistance = 353;
-            this.splitContainer1.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.splitContainer4);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(20, 20);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(313, 558);
-            this.panel1.TabIndex = 0;
-            // 
-            // splitContainer4
-            // 
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer4.Panel1
-            // 
-            this.splitContainer4.Panel1.Controls.Add(this.panel2);
-            // 
-            // splitContainer4.Panel2
-            // 
-            this.splitContainer4.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer4.Size = new System.Drawing.Size(313, 558);
-            this.splitContainer4.SplitterDistance = 483;
-            this.splitContainer4.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.txtLockNo);
-            this.panel2.Controls.Add(this.txtRoomNo);
-            this.panel2.Controls.Add(this.txtEdate);
-            this.panel2.Controls.Add(this.txtSDate);
-            this.panel2.Controls.Add(this.txtCardTypeTwo);
-            this.panel2.Controls.Add(this.txtCardNo);
-            this.panel2.Controls.Add(this.txtStatus);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.panel2.Size = new System.Drawing.Size(313, 483);
-            this.panel2.TabIndex = 0;
-            // 
-            // txtLockNo
-            // 
-            this.txtLockNo.AutoSize = true;
-            this.txtLockNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLockNo.Location = new System.Drawing.Point(13, 272);
-            this.txtLockNo.Name = "txtLockNo";
-            this.txtLockNo.Size = new System.Drawing.Size(0, 21);
-            this.txtLockNo.TabIndex = 3;
-            // 
-            // txtRoomNo
-            // 
-            this.txtRoomNo.AutoSize = true;
-            this.txtRoomNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRoomNo.Location = new System.Drawing.Point(13, 242);
-            this.txtRoomNo.Name = "txtRoomNo";
-            this.txtRoomNo.Size = new System.Drawing.Size(0, 21);
-            this.txtRoomNo.TabIndex = 3;
-            // 
-            // txtEdate
-            // 
-            this.txtEdate.AutoSize = true;
-            this.txtEdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEdate.Location = new System.Drawing.Point(13, 210);
-            this.txtEdate.Name = "txtEdate";
-            this.txtEdate.Size = new System.Drawing.Size(0, 21);
-            this.txtEdate.TabIndex = 3;
-            // 
-            // txtSDate
-            // 
-            this.txtSDate.AutoSize = true;
-            this.txtSDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDate.Location = new System.Drawing.Point(13, 176);
-            this.txtSDate.Name = "txtSDate";
-            this.txtSDate.Size = new System.Drawing.Size(0, 21);
-            this.txtSDate.TabIndex = 4;
-            // 
-            // txtCardTypeTwo
-            // 
-            this.txtCardTypeTwo.AutoSize = true;
-            this.txtCardTypeTwo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardTypeTwo.Location = new System.Drawing.Point(13, 138);
-            this.txtCardTypeTwo.Name = "txtCardTypeTwo";
-            this.txtCardTypeTwo.Size = new System.Drawing.Size(0, 21);
-            this.txtCardTypeTwo.TabIndex = 5;
-            // 
-            // txtCardNo
-            // 
-            this.txtCardNo.AutoSize = true;
-            this.txtCardNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardNo.Location = new System.Drawing.Point(13, 102);
-            this.txtCardNo.Name = "txtCardNo";
-            this.txtCardNo.Size = new System.Drawing.Size(0, 21);
-            this.txtCardNo.TabIndex = 6;
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.AutoSize = true;
-            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(13, 72);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(0, 21);
-            this.txtStatus.TabIndex = 7;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 23);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Card Details";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Controls.Add(this.btnRecycle);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(313, 71);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // btnRecycle
-            // 
-            this.btnRecycle.BackColor = System.Drawing.Color.Red;
-            this.btnRecycle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecycle.ForeColor = System.Drawing.Color.White;
-            this.btnRecycle.Location = new System.Drawing.Point(13, 13);
-            this.btnRecycle.Name = "btnRecycle";
-            this.btnRecycle.Size = new System.Drawing.Size(286, 42);
-            this.btnRecycle.TabIndex = 0;
-            this.btnRecycle.Text = "Recycle Card";
-            this.btnRecycle.UseVisualStyleBackColor = false;
-            this.btnRecycle.Click += new System.EventHandler(this.btnRecycle_Click);
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(20, 20);
+            this.splitContainer2.Location = new System.Drawing.Point(30, 30);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -268,9 +80,9 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.roundedPanel1);
-            this.splitContainer2.Size = new System.Drawing.Size(1063, 558);
-            this.splitContainer2.SplitterDistance = 160;
-            this.splitContainer2.TabIndex = 0;
+            this.splitContainer2.Size = new System.Drawing.Size(978, 538);
+            this.splitContainer2.SplitterDistance = 133;
+            this.splitContainer2.TabIndex = 1;
             // 
             // panel3
             // 
@@ -286,16 +98,16 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1063, 160);
+            this.panel3.Size = new System.Drawing.Size(978, 133);
             this.panel3.TabIndex = 0;
             // 
             // txtOutTime
             // 
             this.txtOutTime.Enabled = false;
             this.txtOutTime.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOutTime.Location = new System.Drawing.Point(689, 79);
+            this.txtOutTime.Location = new System.Drawing.Point(682, 79);
             this.txtOutTime.Name = "txtOutTime";
-            this.txtOutTime.Size = new System.Drawing.Size(346, 30);
+            this.txtOutTime.Size = new System.Drawing.Size(264, 30);
             this.txtOutTime.TabIndex = 10;
             // 
             // txtInTime
@@ -304,14 +116,14 @@
             this.txtInTime.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInTime.Location = new System.Drawing.Point(133, 79);
             this.txtInTime.Name = "txtInTime";
-            this.txtInTime.Size = new System.Drawing.Size(346, 30);
+            this.txtInTime.Size = new System.Drawing.Size(264, 30);
             this.txtInTime.TabIndex = 10;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(568, 82);
+            this.label4.Location = new System.Drawing.Point(561, 82);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 23);
             this.label4.TabIndex = 2;
@@ -330,17 +142,17 @@
             // txtRoom
             // 
             this.txtRoom.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRoom.Location = new System.Drawing.Point(689, 32);
+            this.txtRoom.Location = new System.Drawing.Point(682, 32);
             this.txtRoom.Name = "txtRoom";
             this.txtRoom.ReadOnly = true;
-            this.txtRoom.Size = new System.Drawing.Size(346, 30);
+            this.txtRoom.Size = new System.Drawing.Size(264, 30);
             this.txtRoom.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(568, 35);
+            this.label5.Location = new System.Drawing.Point(561, 35);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 23);
             this.label5.TabIndex = 4;
@@ -352,7 +164,7 @@
             this.txtGuest.Location = new System.Drawing.Point(133, 32);
             this.txtGuest.Name = "txtGuest";
             this.txtGuest.ReadOnly = true;
-            this.txtGuest.Size = new System.Drawing.Size(346, 30);
+            this.txtGuest.Size = new System.Drawing.Size(264, 30);
             this.txtGuest.TabIndex = 9;
             // 
             // label2
@@ -376,7 +188,7 @@
             this.roundedPanel1.Location = new System.Drawing.Point(0, 0);
             this.roundedPanel1.Name = "roundedPanel1";
             this.roundedPanel1.Padding = new System.Windows.Forms.Padding(10);
-            this.roundedPanel1.Size = new System.Drawing.Size(1063, 394);
+            this.roundedPanel1.Size = new System.Drawing.Size(978, 401);
             this.roundedPanel1.TabIndex = 1;
             // 
             // splitContainer3
@@ -393,8 +205,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.btnIssueCard);
-            this.splitContainer3.Size = new System.Drawing.Size(1043, 374);
-            this.splitContainer3.SplitterDistance = 319;
+            this.splitContainer3.Size = new System.Drawing.Size(958, 381);
+            this.splitContainer3.SplitterDistance = 324;
             this.splitContainer3.TabIndex = 0;
             // 
             // dgvIssueCard
@@ -447,7 +259,7 @@
             this.dgvIssueCard.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvIssueCard.RowHeadersWidth = 51;
             this.dgvIssueCard.RowTemplate.Height = 24;
-            this.dgvIssueCard.Size = new System.Drawing.Size(1043, 319);
+            this.dgvIssueCard.Size = new System.Drawing.Size(958, 324);
             this.dgvIssueCard.TabIndex = 4;
             // 
             // Id
@@ -498,7 +310,7 @@
             this.btnIssueCard.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnIssueCard.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIssueCard.ForeColor = System.Drawing.Color.White;
-            this.btnIssueCard.Location = new System.Drawing.Point(888, 5);
+            this.btnIssueCard.Location = new System.Drawing.Point(810, 5);
             this.btnIssueCard.Name = "btnIssueCard";
             this.btnIssueCard.Size = new System.Drawing.Size(138, 42);
             this.btnIssueCard.TabIndex = 0;
@@ -511,28 +323,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1460, 598);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(1038, 598);
+            this.Controls.Add(this.splitContainer2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "IssueCardForm";
+            this.Padding = new System.Windows.Forms.Padding(30);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Issue Card";
             this.Load += new System.EventHandler(this.IssueCardForm_Load);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -551,26 +352,18 @@
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private FormClasses.RoundedPanel roundedPanel1;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button btnRecycle;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DateTimePicker txtOutTime;
+        private System.Windows.Forms.DateTimePicker txtInTime;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtRoom;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtGuest;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnIssueCard;
-        private System.Windows.Forms.DateTimePicker txtOutTime;
-        private System.Windows.Forms.DateTimePicker txtInTime;
+        private FormClasses.RoundedPanel roundedPanel1;
+        private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.DataGridView dgvIssueCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Room;
@@ -578,12 +371,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RoomType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Floor;
-        private System.Windows.Forms.Label txtEdate;
-        private System.Windows.Forms.Label txtSDate;
-        private System.Windows.Forms.Label txtCardTypeTwo;
-        private System.Windows.Forms.Label txtCardNo;
-        private System.Windows.Forms.Label txtStatus;
-        private System.Windows.Forms.Label txtLockNo;
-        private System.Windows.Forms.Label txtRoomNo;
+        private System.Windows.Forms.Button btnIssueCard;
     }
 }

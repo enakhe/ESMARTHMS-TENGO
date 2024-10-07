@@ -132,6 +132,7 @@ namespace ESMART_HMS.Presentation.Forms.booking
                     else
                     {
                         List<string> noResult = new List<string>() { "No Vacant Room" };
+                        noOfDays.Enabled = false;
                         txtRoom.DataSource = noResult;
                     }
                 }
@@ -386,6 +387,27 @@ namespace ESMART_HMS.Presentation.Forms.booking
             else
             {
                 bankAccounts.Enabled = true;
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isNull = FormHelper.AreAnyNullOrEmpty(txtSearch.Text);
+                if (isNull == false)
+                {
+                    var guest = _guestController.SearchGuest(txtSearch.Text);
+                    if (guest != null)
+                    {
+                        txtGuest.DataSource = guest;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }

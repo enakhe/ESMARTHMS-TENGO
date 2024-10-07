@@ -3,13 +3,6 @@ using ESMART_HMS.Infrastructure.Services;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Sessions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms

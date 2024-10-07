@@ -590,5 +590,20 @@ namespace ESMART_HMS.Repositories
                             MessageBoxIcon.Error);
             }
         }
+
+        public int GetNoReserved()
+        {
+            return _db.Rooms.Where(r => r.Status == RoomStatusEnum.Reserved.ToString()).Count();
+        }
+
+        public int GetNoBooking()
+        {
+            return _db.Rooms.Where(r => r.Status == RoomStatusEnum.CheckedIn.ToString()).Count();
+        }
+
+        public int GetNoMaintenance()
+        {
+            return _db.Rooms.Where(r => r.Status == RoomStatusEnum.Maintenance.ToString()).Count();
+        }
     }
 }

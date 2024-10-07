@@ -42,7 +42,7 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
             LoadData();
             splitContainer21.SplitterWidth = 1;
             splitContainer21.BackColor = splitContainer21.Panel1.BackColor;
-            dgvTransaction.Font = new System.Drawing.Font("Segoe UI", 10); 
+            dgvTransaction.Font = new System.Drawing.Font("Segoe UI", 10);
             dgvTransaction.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 

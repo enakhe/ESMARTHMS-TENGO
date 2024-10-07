@@ -4,6 +4,7 @@ using ESMART_HMS.Infrastructure.Services;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.License;
+using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
@@ -121,7 +122,12 @@ namespace ESMART_HMS.Presentation.Forms
                                 _licenseController.AddLicense(licenseInfo);
                                 SecureFileHelper.SaveSecureFile(txtHotelName.Text, txtProductKey.Text, expirationDate);
                                 DatabaseService.SeedLicensedUser(licenseInfo.HotelName, licenseInfo.ProductKey.Replace("-", "").Substring(0, 7));
-                                this.DialogResult = DialogResult.OK;
+
+                                AuthCard authCard = serviceProvider.GetRequiredService<AuthCard>();
+                                if (authCard.ShowDialog() == DialogResult.OK)
+                                {
+                                    this.DialogResult = DialogResult.OK;
+                                }
                             }
                             else
                             {

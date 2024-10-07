@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using Microsoft.EntityFrameworkCore.Metadata;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using RestSharp;
-using RestSharp.Authenticators;
 
 namespace ESMART_HMS.Domain.Utils
 {

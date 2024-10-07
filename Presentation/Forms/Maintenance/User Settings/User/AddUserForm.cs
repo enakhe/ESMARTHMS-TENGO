@@ -6,12 +6,6 @@ using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.User
@@ -80,7 +74,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.User
                         UserName = txtUsername.Text.ToUpper(),
                         PasswordHash = txtPassword.Text,
                         DateCreated = DateTime.Now,
-                        DateModified = DateTime.Now,    
+                        DateModified = DateTime.Now,
                     };
                     user.FullName = user.FirstName + " " + user.LastName;
                     _userController.AddApplicationUser(user);

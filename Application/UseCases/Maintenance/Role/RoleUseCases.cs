@@ -1,10 +1,6 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Presentation.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESMART_HMS.Application.UseCases.Maintenance.Role
 {
@@ -37,8 +33,8 @@ namespace ESMART_HMS.Application.UseCases.Maintenance.Role
             _roleRepository.UpdateRole(role);
         }
 
-        public void DeleteRole(string id) 
-        { 
+        public void DeleteRole(string id)
+        {
             _roleRepository.DeleteRole(id);
         }
     }

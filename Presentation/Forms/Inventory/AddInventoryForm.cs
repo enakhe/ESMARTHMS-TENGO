@@ -28,7 +28,7 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
                     Random random = new Random();
                     Domain.Entities.MenuItem menuItem = new Domain.Entities.MenuItem()
                     {
-                        
+
                         Id = Guid.NewGuid().ToString(),
                         MenuItemId = "MNU" + random.Next(1000, 5000),
                         Barcode = txtBarcode.Text,
