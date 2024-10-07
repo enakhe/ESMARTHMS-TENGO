@@ -167,7 +167,7 @@ namespace ESMART_HMS.Presentation.Forms.booking
             bool isNull = FormHelper.AreAnyNullOrEmpty(txtVAT.Text, txtAmount.Text);
             if (isNull == false)
             {
-                decimal vatAmount = 100 * (decimal.Parse(txtVAT.Text) / 100);
+                decimal vatAmount = decimal.Parse(txtAmount.Text) * (decimal.Parse(txtVAT.Text) / 100);
                 decimal totalAmount = decimal.Parse(txtAmount.Text) + vatAmount;
 
                 txtTotalAmount.Text = totalAmount.ToString();

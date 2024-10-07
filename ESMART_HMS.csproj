@@ -969,10 +969,10 @@
     <Compile Include="Presentation\Forms\Maintenance\User Settings\UserForm.Designer.cs">
       <DependentUpon>UserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Forms\Maintenance\Tools\Options\Financial\FinancialForm.cs">
+    <Compile Include="Presentation\Forms\Maintenance\Financial\FinancialForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Forms\Maintenance\Tools\Options\Financial\FinancialForm.Designer.cs">
+    <Compile Include="Presentation\Forms\Maintenance\Financial\FinancialForm.Designer.cs">
       <DependentUpon>FinancialForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\Maintenance\Tools\Options\OptionsFrom.cs">
@@ -1208,7 +1208,7 @@
     <EmbeddedResource Include="Presentation\Forms\Maintenance\User Settings\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation\Forms\Maintenance\Tools\Options\Financial\FinancialForm.resx">
+    <EmbeddedResource Include="Presentation\Forms\Maintenance\Financial\FinancialForm.resx">
       <DependentUpon>FinancialForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\Tools\Options\OptionsFrom.resx">

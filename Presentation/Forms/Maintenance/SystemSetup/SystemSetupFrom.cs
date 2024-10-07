@@ -19,18 +19,47 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
         private readonly RoomController _roomController;
         private readonly RoomTypeController _roomTypeController;
         private readonly bookingController _bookingController;
+        private readonly ConfigurationController _configurationController;
         byte[] companyLogo;
 
-        public SystemSetupFrom(SystemSetupController sytemSetupController, RoomController roomController, RoomTypeController roomTypeController, bookingController bookingController)
+        public SystemSetupFrom(SystemSetupController sytemSetupController, RoomController roomController, RoomTypeController roomTypeController, bookingController bookingController, ConfigurationController configurationController)
         {
             _sytemSetupController = sytemSetupController;
             _roomController = roomController;
             _roomTypeController = roomTypeController;
+            _configurationController = configurationController;
+            _bookingController = bookingController;
             InitializeComponent();
             tabControl1.Appearance = TabAppearance.Normal;
             InitializeCompanyTab(company);
             InitializeBankAccountTab(bankAccount);
-            _bookingController = bookingController;
+            InitializeFinanceTab(financeTab);
+        }
+
+        private void LoadVAT()
+        {
+            Configuration configuration = _configurationController.GetConfigurationValue("VAT");
+            if (configuration == null)
+            {
+                txtVAT.Text = "0.00";
+            }
+            else
+            {
+                txtVAT.Text = configuration.Value.ToString();
+            }
+        }
+
+        private void LoadDiscount()
+        {
+            Configuration configuration = _configurationController.GetConfigurationValue("Discount");
+            if (configuration == null)
+            {
+                txtDiscount.Text = "0.00";
+            }
+            else
+            {
+                txtDiscount.Text = configuration.Value.ToString();
+            }
         }
 
         private void InitializeCompanyTab(TabPage tabPage)
@@ -82,6 +111,18 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
                         }
                         dgvAccount.DataSource = allAccounts;
                     }
+                }
+            }
+        }
+
+        private void InitializeFinanceTab(TabPage tabPage)
+        {
+            if (tabPage != null)
+            {
+                if (tabPage.Text == "Finance")
+                {
+                    LoadVAT();
+                    LoadDiscount();
                 }
             }
         }
@@ -267,6 +308,23 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup
             {
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSaveFin_Click(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtVAT.Text, txtDiscount.Text);
+            if (isNull)
+            {
+                MessageBox.Show("Add all necessary fields", "Invalid Credentials", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                _configurationController.SetConfigurationValue("VAT", txtVAT.Text);
+                _configurationController.SetConfigurationValue("Discount", txtDiscount.Text);
+
+                this.DialogResult = DialogResult.OK;
             }
         }
     }

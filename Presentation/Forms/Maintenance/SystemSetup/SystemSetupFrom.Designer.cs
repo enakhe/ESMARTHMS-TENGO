@@ -92,6 +92,15 @@
             this.roomTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTableAdapter();
             this.roomTypeTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter();
             this.bankAccountTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.BankAccountTableAdapter();
+            this.financeTab = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtVAT = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtDiscount = new System.Windows.Forms.TextBox();
+            this.btnSaveFin = new System.Windows.Forms.Button();
             this.bankAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -123,6 +132,9 @@
             this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).BeginInit();
+            this.financeTab.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // bankAccount
@@ -713,6 +725,7 @@
             // 
             this.tabControl1.Controls.Add(this.company);
             this.tabControl1.Controls.Add(this.bankAccount);
+            this.tabControl1.Controls.Add(this.financeTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -746,6 +759,106 @@
             // bankAccountTableAdapter
             // 
             this.bankAccountTableAdapter.ClearBeforeFill = true;
+            // 
+            // financeTab
+            // 
+            this.financeTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(90)))), ((int)(((byte)(111)))));
+            this.financeTab.Controls.Add(this.panel5);
+            this.financeTab.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.financeTab.Location = new System.Drawing.Point(4, 46);
+            this.financeTab.Name = "financeTab";
+            this.financeTab.Padding = new System.Windows.Forms.Padding(20);
+            this.financeTab.Size = new System.Drawing.Size(954, 478);
+            this.financeTab.TabIndex = 3;
+            this.financeTab.Text = "Finance";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.Control;
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(20, 20);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(914, 438);
+            this.panel5.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.Control;
+            this.panel6.Controls.Add(this.btnSaveFin);
+            this.panel6.Controls.Add(this.txtDiscount);
+            this.panel6.Controls.Add(this.label17);
+            this.panel6.Controls.Add(this.txtVAT);
+            this.panel6.Controls.Add(this.label16);
+            this.panel6.Controls.Add(this.label15);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(10);
+            this.panel6.Size = new System.Drawing.Size(914, 438);
+            this.panel6.TabIndex = 1;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(13, 7);
+            this.label15.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label15.Name = "label15";
+            this.label15.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.label15.Size = new System.Drawing.Size(248, 29);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "Manage Financial Adjustment";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(13, 114);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(297, 23);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "VAT (Value Added Tax) In Percentage:";
+            // 
+            // txtVAT
+            // 
+            this.txtVAT.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVAT.Location = new System.Drawing.Point(17, 140);
+            this.txtVAT.Name = "txtVAT";
+            this.txtVAT.Size = new System.Drawing.Size(369, 30);
+            this.txtVAT.TabIndex = 5;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(13, 208);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(191, 23);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Discount In Percentage:";
+            // 
+            // txtDiscount
+            // 
+            this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiscount.Location = new System.Drawing.Point(17, 234);
+            this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Size = new System.Drawing.Size(369, 30);
+            this.txtDiscount.TabIndex = 5;
+            // 
+            // btnSaveFin
+            // 
+            this.btnSaveFin.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnSaveFin.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveFin.ForeColor = System.Drawing.Color.White;
+            this.btnSaveFin.Location = new System.Drawing.Point(388, 381);
+            this.btnSaveFin.Name = "btnSaveFin";
+            this.btnSaveFin.Size = new System.Drawing.Size(128, 44);
+            this.btnSaveFin.TabIndex = 6;
+            this.btnSaveFin.Text = "Save";
+            this.btnSaveFin.UseVisualStyleBackColor = false;
+            this.btnSaveFin.Click += new System.EventHandler(this.btnSaveFin_Click);
             // 
             // SystemSetupFrom
             // 
@@ -799,6 +912,10 @@
             this.tabControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).EndInit();
+            this.financeTab.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -864,5 +981,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isTrashedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.TabPage financeTab;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnSaveFin;
+        private System.Windows.Forms.TextBox txtDiscount;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txtVAT;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
     }
 }

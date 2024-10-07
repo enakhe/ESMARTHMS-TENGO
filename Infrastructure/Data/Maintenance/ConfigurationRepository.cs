@@ -39,8 +39,6 @@ namespace ESMART_HMS.Infrastructure.Data
                     configuration.Value = value;
                     _db.Entry(configuration).State = System.Data.Entity.EntityState.Modified;
                     _db.SaveChanges();
-                    MessageBox.Show($"Successfully updated {configuration.Key} information", "Success", MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
                 }
                 else
                 {
