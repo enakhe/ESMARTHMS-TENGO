@@ -35,5 +35,15 @@ namespace ESMART_HMS.Presentation.Controllers
         {
             _createApplicationUserUseCase.UpdateUser(user);
         }
+
+        public string HashPassword(string password)
+        {
+            return _createApplicationUserUseCase.HashPassword(password);
+        }
+
+        public bool VerifyPassword(string enteredPassword, string storedHash)
+        {
+            return _createApplicationUserUseCase.VerifyPassword(enteredPassword, storedHash);
+        }
     }
 }

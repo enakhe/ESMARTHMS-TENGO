@@ -819,6 +819,12 @@
     <Compile Include="Presentation\Forms\LockApp.Designer.cs">
       <DependentUpon>LockApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\LostPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\LostPassword.Designer.cs">
+      <DependentUpon>LostPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\CardMaintenanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -848,6 +854,12 @@
     </Compile>
     <Compile Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\MastercardForm.Designer.cs">
       <DependentUpon>MastercardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Maintenance\Profile\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Maintenance\Profile\ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\Maintenance\RecycledItemForm.cs">
       <SubType>Form</SubType>
@@ -1115,6 +1127,9 @@
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\RoomType\AddRoomTypeForm.resx">
       <DependentUpon>AddRoomTypeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\LostPassword.resx">
+      <DependentUpon>LostPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\CardMaintenanceForm.resx">
       <DependentUpon>CardMaintenanceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1129,6 +1144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\CardMaintenance\Cards\MastercardForm.resx">
       <DependentUpon>MastercardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Maintenance\Profile\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Maintenance\RecycledItemForm.resx">
       <DependentUpon>RecycledItemForm.cs</DependentUpon>

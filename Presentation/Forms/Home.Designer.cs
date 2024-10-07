@@ -102,6 +102,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtVacant = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.profileSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
@@ -361,6 +362,7 @@
             this.clearDataFiToolStripMenuItem,
             this.dataFileStatisticsToolStripMenuItem,
             this.archiveDataFilesToolStripMenuItem,
+            this.profileSettingToolStripMenuItem,
             this.recycleBinToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(98, 21);
@@ -773,6 +775,14 @@
             this.panel2.Size = new System.Drawing.Size(1719, 52);
             this.panel2.TabIndex = 14;
             // 
+            // profileSettingToolStripMenuItem
+            // 
+            this.profileSettingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("profileSettingToolStripMenuItem.Image")));
+            this.profileSettingToolStripMenuItem.Name = "profileSettingToolStripMenuItem";
+            this.profileSettingToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.profileSettingToolStripMenuItem.Text = "Profile Setting";
+            this.profileSettingToolStripMenuItem.Click += new System.EventHandler(this.profileSettingToolStripMenuItem_Click);
+            // 
             // Home
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -892,5 +902,6 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btnRecycle;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.ToolStripMenuItem profileSettingToolStripMenuItem;
     }
 }

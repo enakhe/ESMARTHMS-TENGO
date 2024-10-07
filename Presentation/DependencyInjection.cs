@@ -16,6 +16,7 @@ using ESMART_HMS.Presentation.Forms.License;
 using ESMART_HMS.Presentation.Forms.Maintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards;
+using ESMART_HMS.Presentation.Forms.Maintenance.Profile;
 using ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting;
 using ESMART_HMS.Presentation.Forms.Maintenance.SystemSetup;
 using ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.Role;
@@ -124,6 +125,8 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<EditUserForm>();
             services.AddScoped<RecycledItemForm>();
             services.AddScoped<AuthCard>();
+            services.AddScoped<ProfileForm>();
+            services.AddScoped<LostPassword>();
 
             return services;
         }

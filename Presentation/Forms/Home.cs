@@ -30,6 +30,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
+using ESMART_HMS.Presentation.Forms.Maintenance.Profile;
 
 namespace ESMART_HMS.Presentation.Forms
 {
@@ -53,6 +55,7 @@ namespace ESMART_HMS.Presentation.Forms
         MenuItemForm menuItemForm;
         UserForm userForm;
         RecycledItemForm recycledItemForm;
+        ProfileForm profileForm;
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
@@ -108,6 +111,7 @@ namespace ESMART_HMS.Presentation.Forms
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.Protect(user, systemSetupToolStripMenuItem, roles);
             AuthorizationMiddleware.Protect(user, recycleBinToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, profileSettingToolStripMenuItem, roles);
         }
         private void ApplyAuthorization2()
         {
@@ -752,6 +756,20 @@ namespace ESMART_HMS.Presentation.Forms
             var serviceProvider = services.BuildServiceProvider();
             var loginForm = serviceProvider.GetRequiredService<LoginForm>();
             var loginResult = loginForm.ShowDialog();
+        }
+
+        private void profileSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            LockApp lockApp = serviceProvider.GetRequiredService<LockApp>();
+            if (lockApp.ShowDialog() == DialogResult.OK)
+            {
+                profileForm = serviceProvider.GetRequiredService<ProfileForm>();
+                profileForm.ShowDialog();
+            }
         }
     }
 }

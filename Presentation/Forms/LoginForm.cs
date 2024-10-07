@@ -1,6 +1,8 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Infrastructure.Services;
+using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Sessions;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows.Forms;
 
@@ -40,6 +42,16 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 txtPassword.UseSystemPasswordChar = false;
             }
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            LostPassword lostPassword = serviceProvider.GetRequiredService<LostPassword>();
+            lostPassword.ShowDialog();
         }
     }
 }

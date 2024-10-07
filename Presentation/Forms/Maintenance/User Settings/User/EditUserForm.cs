@@ -87,7 +87,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.User
                     user.LastName = txtLastName.Text;
                     user.Email = txtEmail.Text;
                     user.PhoneNumber = txtPhoneNumber.Text;
-                    user.PasswordHash = txtPassword.Text;
+                    user.PasswordHash = _userController.HashPassword(txtPassword.Text);
                     user.DateModified = DateTime.Now;
 
                     user.FullName = user.FirstName + " " + user.LastName;

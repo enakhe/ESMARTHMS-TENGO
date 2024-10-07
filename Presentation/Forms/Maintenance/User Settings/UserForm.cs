@@ -8,6 +8,7 @@ using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Tools.Options.Accounts
@@ -25,6 +26,7 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Options.Accounts
             _userRoleRepository = userRoleRepository;
             _systemSetupController = systemSetupController;
             InitializeComponent();
+            tabControl1.Appearance = TabAppearance.Normal;
             InitializeRoleTab(roleTab);
             InitializeUserTab(userTab);
         }
@@ -190,6 +192,39 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Options.Accounts
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage tabPage = tabControl.TabPages[e.Index];
+
+            Rectangle tabRect = tabControl.GetTabRect(e.Index);
+            tabRect.Inflate(-2, -2);
+
+            Color backColor;
+
+            if (tabPage.Text == "Roles")
+            {
+                backColor = ColorTranslator.FromHtml("#98b4d0");
+            }
+            else if (tabPage.Text == "Roles")
+            {
+                backColor = ColorTranslator.FromHtml("#EF5A6F");
+            }
+            else
+            {
+                backColor = e.State == DrawItemState.Selected ? Color.LightBlue : Color.LightGray;
+            }
+
+            using (Brush brush = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(brush, tabRect);
+            }
+
+            Font font = new Font("Segoe UI", 13, FontStyle.Bold);
+
+            TextRenderer.DrawText(e.Graphics, tabPage.Text, font, tabRect, tabPage.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
     }
 }

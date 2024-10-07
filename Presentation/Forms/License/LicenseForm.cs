@@ -123,11 +123,11 @@ namespace ESMART_HMS.Presentation.Forms
                                 SecureFileHelper.SaveSecureFile(txtHotelName.Text, txtProductKey.Text, expirationDate);
                                 DatabaseService.SeedLicensedUser(licenseInfo.HotelName, licenseInfo.ProductKey.Replace("-", "").Substring(0, 7));
 
-                                AuthCard authCard = serviceProvider.GetRequiredService<AuthCard>();
-                                if (authCard.ShowDialog() == DialogResult.OK)
-                                {
+                                //AuthCard authCard = serviceProvider.GetRequiredService<AuthCard>();
+                                //if (authCard.ShowDialog() == DialogResult.OK)
+                                //{
+                                //}
                                     this.DialogResult = DialogResult.OK;
-                                }
                             }
                             else
                             {

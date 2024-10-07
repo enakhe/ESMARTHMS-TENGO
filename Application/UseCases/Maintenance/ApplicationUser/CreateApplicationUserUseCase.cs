@@ -16,9 +16,19 @@ namespace ESMART_HMS.Application.UseCases.ApplicationUser
             _userRepository.AddUser(user);
         }
 
+        public string HashPassword(string password)
+        {
+            return _userRepository.HashPassword(password);
+        }
+
         public void UpdateUser(Domain.Entities.ApplicationUser user)
         {
             _userRepository.UpdateUser(user);
+        }
+
+        public bool VerifyPassword(string enteredPassword, string storedHash)
+        {
+            return _userRepository.VerifyPassword(enteredPassword, storedHash);
         }
     }
 }

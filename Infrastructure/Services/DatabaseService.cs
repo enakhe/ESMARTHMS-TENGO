@@ -8,7 +8,7 @@ namespace ESMART_HMS.Infrastructure.Services
 {
     public static class DatabaseService
     {
-        private static readonly string connectionString = @"Server=localhost;Database=ESMART_HMSDB;User Id=enakhe;Password=samcooper$01;TrustServerCertificate=True;MultipleActiveResultSets=True;";
+        private static readonly string connectionString = @"data source=localhost;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True";
 
 
         public static void InitializeDatabase()

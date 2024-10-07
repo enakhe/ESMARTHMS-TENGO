@@ -126,7 +126,6 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                user.PasswordHash = HashPassword(user.PasswordHash);
                 _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
             }
