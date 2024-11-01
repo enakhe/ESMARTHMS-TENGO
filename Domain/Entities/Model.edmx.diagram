@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4512c298fcac4365a536e9a4c84210e2" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.RoomType" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Configuration" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Invoice" Width="1.5" PointX="13.875" PointY="2.25" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Permission" Width="1.5" PointX="5.375" PointY="12" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Role" Width="1.5" PointX="5.375" PointY="8" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.RolePermission" Width="1.5" PointX="7.625" PointY="8" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__RolePermi__Permi__3E52440B" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__RolePermi__RoleI__3D5E1FD2" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.ApplicationUserRole" Width="1.5" PointX="10.625" PointY="8.375" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Applicati__RoleI__3C69FB99" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.ApplicationUser" Width="1.5" PointX="4.125" PointY="2.875" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Applicati__UserI__3B75D760" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Booking" Width="1.5" PointX="8.625" PointY="12.25" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Guest" Width="1.5" PointX="6.375" PointY="15.375" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Reservation" Width="1.5" PointX="11.625" PointY="11.875" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Room" Width="1.5" PointX="6.375" PointY="2" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__Created__5441852A" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Guest__CreatedBy__4AB81AF0" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__Creat__4F7CD00D" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__CreatedBy__47DBAE45" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__GuestId__52593CB8" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Booking__RoomId__534D60F1" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Invoice__Booking__5BE2A6F2" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Invoice__GuestId__5AEE82B9" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__Guest__4D94879B" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Reservati__RoomI__4E88ABD4" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Room__RoomTypeId__46E78A0C" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.BarItem" Width="1.5" PointX="6.375" PointY="23" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.IngredientItem" Width="1.5" PointX="6.375" PointY="26.875" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__BarItem__Created__5EBF139D" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Ingredien__Creat__619B8048" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.Transaction" Width="1.5" PointX="8.625" PointY="19" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__Transacti__Guest__571DF1D5" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

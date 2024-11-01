@@ -1,14 +1,10 @@
-﻿using ESMART_HMS.Forms;
-using ESMART_HMS.Services;
+﻿using ESMART_HMS.Infrastructure.Services;
+using ESMART_HMS.Presentation.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ESMART_HMS
 {
-    internal static class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,17 +12,14 @@ namespace ESMART_HMS
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
 
-            // DatabaseHelper.InitializeDatabase();
-            DatabaseHelper.AddSampleUser();
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-            AuthService authService = new AuthService();
+            DatabaseService.InitializeDatabase();
+            DatabaseService.SeedData();
 
-            Application.Run(new LoginForm(authService));
-
-            //Application.Run(new Home());
+            System.Windows.Forms.Application.Run(new SplashScreenForm());
         }
     }
 }

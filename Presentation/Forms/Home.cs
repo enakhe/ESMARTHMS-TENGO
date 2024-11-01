@@ -1,0 +1,308 @@
+﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Forms.Booking;
+using ESMART_HMS.Presentation.Forms.Guests;
+using ESMART_HMS.Presentation.Forms.Reservation;
+using ESMART_HMS.Presentation.Forms.Rooms;
+using ESMART_HMS.Presentation.Forms.Store.BarStore;
+using ESMART_HMS.Presentation.Forms.Tools.Option;
+using ESMART_HMS.Presentation.Forms;
+using ESMART_HMS.Presentation.Forms.Transaction;
+using ESMART_HMS.Presentation.Middleware;
+using ESMART_HMS.Presentation.Sessions;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using ESMART_HMS.Presentation.ViewModels;
+using System.Web.Security;
+using System.Windows.Controls;
+
+namespace ESMART_HMS.Presentation.Forms
+{
+    public partial class Home : Form
+    {
+        DashboardForm indexForm;
+        GuestForm customerForm;
+        RoomForm roomForm;
+        ReservationForm reservationForm;
+        BookingForm bookingForm;
+        OptionsFrom optionsFrom;
+        TransactionForm transactionForm;
+        BarStoreForm barStoreForm; 
+
+        private readonly GuestController _customerController;
+        private readonly RoomController _roomController;
+        private readonly RoomTypeController _roomTypeController;
+        private readonly ReservationController _reservationController;
+        private readonly ApplicationUserController _applicationUserController;
+
+        private Color vacantColor = Color.LightGreen;
+        private Color reservedColor = Color.LightYellow;
+        private Color bookedColor = Color.LightBlue;
+
+        public Home(GuestController customerViewModel, RoomController roomController, RoomTypeController roomTypeController, ReservationController reservationController, ApplicationUserController userController)
+        {
+            _customerController = customerViewModel;
+            _roomController = roomController;
+            _roomTypeController = roomTypeController;
+            _reservationController = reservationController;
+            _applicationUserController = userController;
+            InitializeComponent();
+            this.IsMdiContainer = true;
+            this.BackColor = Color.White;
+            this.Load += new EventHandler(MainForm_Load);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            MdiClient client = this.Controls.OfType<MdiClient>().FirstOrDefault();
+            if (client != null)
+            {
+                client.BackColor = Color.White;
+            }
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            if (indexForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                indexForm = serviceProvider.GetRequiredService<DashboardForm>();
+                indexForm.FormClosed += Dashboard_FormClosed;
+                indexForm.MdiParent = this;
+                indexForm.Dock = DockStyle.Fill;
+                indexForm.Show();
+            }
+        }
+
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            indexForm = null;
+        }
+
+        private void Guest_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            customerForm = null;
+        }
+
+        private void customerMainToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (customerForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                customerForm = serviceProvider.GetRequiredService<GuestForm>();
+                customerForm.FormClosed += Guest_FormClosed;
+                customerForm.MdiParent = this;
+                customerForm.Dock = DockStyle.Fill;
+                customerForm.Show();
+            }
+            else
+            {
+                customerForm.Activate();
+            }
+        }
+
+        private void Room_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            customerForm = null;
+        }
+
+        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (roomForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                roomForm = serviceProvider.GetRequiredService<RoomForm>();
+                roomForm.FormClosed += Room_FormClosed;
+                roomForm.MdiParent = this;
+                roomForm.Dock = DockStyle.Fill;
+                roomForm.Show();
+            }
+            else
+            {
+                roomForm.Activate();
+                roomForm.LoadData();
+            }
+        }
+
+        //private void Reservation_FormClosed(object sender, FormClosedEventArgs e)
+        //{
+        //    customerForm = null;
+        //}
+
+        //private void reservationListToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (reservationForm == null)
+        //    {
+        //        var services = new ServiceCollection();
+        //        DependencyInjection.ConfigureServices(services);
+        //        var serviceProvider = services.BuildServiceProvider();
+
+        //        reservationForm = serviceProvider.GetRequiredService<ReservationForm>();
+        //        reservationForm.FormClosed += Reservation_FormClosed;
+        //        reservationForm.MdiParent = this;
+        //        reservationForm.Dock = DockStyle.Fill;
+        //        reservationForm.Show();
+        //    }
+        //    else
+        //    {
+        //        reservationForm.Activate();
+        //    }
+        //}
+
+        private void Option_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            optionsFrom = null;
+        }
+
+        private void optionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            bool IsAuthorized = AuthorizationMiddleware.IsAuthorized(user, "SuperAdmin");
+            if (IsAuthorized)
+            {
+                if (optionsFrom == null)
+                {
+                    optionsFrom = new OptionsFrom();
+                    optionsFrom.FormClosed += Option_FormClosed;
+                    optionsFrom.ShowDialog();
+                }
+                else
+                {
+                    optionsFrom.Activate();
+                }
+            }
+            else
+            {
+                MessageBox.Show("You are not authorized to view this resource", "Not Authorized", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void Booking_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bookingForm = null;
+        }
+
+        private void bookingListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bookingForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                bookingForm = serviceProvider.GetRequiredService<BookingForm>();
+                bookingForm.FormClosed += Booking_FormClosed;
+                bookingForm.MdiParent = this;
+                bookingForm.Dock = DockStyle.Fill;
+                bookingForm.Show();
+            }
+            else
+            {
+                bookingForm.Activate();
+            }
+        }
+
+        private void Transaction_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            transactionForm = null;
+        }
+
+        private void transactionListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (transactionForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                transactionForm = serviceProvider.GetRequiredService<TransactionForm>();
+                transactionForm.FormClosed += Transaction_FormClosed;
+                transactionForm.MdiParent = this;
+                transactionForm.Dock = DockStyle.Fill;
+                transactionForm.Show();
+            }
+            else
+            {
+                transactionForm.Activate();
+            }
+        }
+
+        private void BarStore_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            barStoreForm = null;
+        }
+
+        private void storeForToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (barStoreForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                barStoreForm = serviceProvider.GetRequiredService<BarStoreForm>();
+                barStoreForm.FormClosed += BarStore_FormClosed;
+                barStoreForm.MdiParent = this;
+                barStoreForm.Dock = DockStyle.Fill;
+                barStoreForm.Show();
+            }
+            else
+            {
+                barStoreForm.Activate();
+            }
+        }
+
+        private void homeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            indexForm = serviceProvider.GetRequiredService<DashboardForm>();
+            indexForm.FormClosed += Dashboard_FormClosed;
+            indexForm.MdiParent = this;
+            indexForm.Dock = DockStyle.Fill;
+            indexForm.Show();
+        }
+
+
+        private void Reservation_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            reservationForm = null;
+        }
+
+        private void addEditReservationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (reservationForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                reservationForm = serviceProvider.GetRequiredService<ReservationForm>();
+                reservationForm.FormClosed += Reservation_FormClosed;
+                reservationForm.MdiParent = this;
+                reservationForm.Dock = DockStyle.Fill;
+                reservationForm.Show();
+            }
+            else
+            {
+                reservationForm.Activate();
+            }
+        }
+    }
+}
