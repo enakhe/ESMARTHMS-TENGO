@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Application.UseCases.Account.Transaction;
+﻿using ESMART_HMS.Application.UseCases.Account.Account;
+using ESMART_HMS.Application.UseCases.Account.Transaction;
 using ESMART_HMS.Application.UseCases.ApplicationUser;
 using ESMART_HMS.Application.UseCases.Bar.Order;
 using ESMART_HMS.Application.UseCases.Bar.Store.BarItem;
@@ -157,6 +158,7 @@ namespace ESMART_HMS.Application
             services.AddScoped<RestaurantUseCases>();
 
             services.AddScoped<RoleUseCases>();
+            services.AddScoped<AccountUseCases>();
 
             return services;
         }

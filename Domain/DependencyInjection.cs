@@ -1,9 +1,11 @@
 ﻿using ESMART_HMS.Domain.Interfaces;
+using ESMART_HMS.Domain.Interfaces.Account;
 using ESMART_HMS.Domain.Interfaces.Bar;
 using ESMART_HMS.Domain.Interfaces.Maintenance;
 using ESMART_HMS.Domain.Interfaces.Restaurant;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Infrastructure.Data;
+using ESMART_HMS.Infrastructure.Data.Account;
 using ESMART_HMS.Infrastructure.Data.Bar;
 using ESMART_HMS.Infrastructure.Data.Inventory;
 using ESMART_HMS.Infrastructure.Data.Maintenance;
@@ -38,6 +40,7 @@ namespace ESMART_HMS.Domain
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
             services.AddScoped<IInventoryRespository, InventoryRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
             return services;
         }
     }

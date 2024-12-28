@@ -14,12 +14,14 @@ using ESMART_HMS.Presentation.Forms.Account.BankAccount;
 using ESMART_HMS.Presentation.Forms.Guests;
 using Microsoft.Extensions.DependencyInjection;
 using System.Web.Configuration;
+using ESMART_HMS.Presentation.Forms.Account.ChartOfAccount;
 
 namespace ESMART_HMS.Presentation.Forms.RoleHome
 {
     public partial class AccountantHomeForm : Form
     {
         BankAccountForm bankAccountForm;
+        ChartAccountForm chartOfAccountForm;
 
         private readonly LicenseController _licenseController;
         private readonly ConfigurationController _configurationController;
@@ -92,6 +94,29 @@ namespace ESMART_HMS.Presentation.Forms.RoleHome
         private void BankAccountForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             bankAccountForm = null;
+        }
+
+        private void chartsOfAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (chartOfAccountForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                chartOfAccountForm = serviceProvider.GetRequiredService<ChartAccountForm>();
+                chartOfAccountForm.FormClosed += ChartOfAccountForm_FormClosed;
+                chartOfAccountForm.ShowDialog();
+            }
+            else
+            {
+                chartOfAccountForm.Activate();
+            }
+        }
+
+        private void ChartOfAccountForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            chartOfAccountForm = null;
         }
     }
 }

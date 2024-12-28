@@ -112,6 +112,7 @@
             this.chartsOfAccountToolStripMenuItem.Name = "chartsOfAccountToolStripMenuItem";
             this.chartsOfAccountToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.chartsOfAccountToolStripMenuItem.Text = "Chart of Account";
+            this.chartsOfAccountToolStripMenuItem.Click += new System.EventHandler(this.chartsOfAccountToolStripMenuItem_Click);
             // 
             // journalPostingToolStripMenuItem
             // 

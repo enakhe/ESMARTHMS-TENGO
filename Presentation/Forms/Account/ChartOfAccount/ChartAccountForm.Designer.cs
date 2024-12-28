@@ -109,6 +109,7 @@
             this.btnAddBank.TabIndex = 1;
             this.btnAddBank.Text = "New";
             this.btnAddBank.UseVisualStyleBackColor = false;
+            this.btnAddBank.Click += new System.EventHandler(this.btnAddBank_Click);
             // 
             // label13
             // 
@@ -295,14 +296,14 @@
             // 
             // bankAccount
             // 
-            this.bankAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.bankAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(159)))));
             this.bankAccount.Controls.Add(this.splitContainer2);
             this.bankAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bankAccount.Location = new System.Drawing.Point(4, 46);
             this.bankAccount.Name = "bankAccount";
             this.bankAccount.Size = new System.Drawing.Size(974, 498);
             this.bankAccount.TabIndex = 2;
-            this.bankAccount.Text = "Bank Account";
+            this.bankAccount.Text = "Chart of Account";
             // 
             // tabControl1
             // 
@@ -317,6 +318,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(982, 548);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             // 
             // chartOfAccountBindingSource
             // 

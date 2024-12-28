@@ -1089,6 +1089,9 @@
     <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.resx">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Account\ChartOfAccount\AddChartOfAccountForm.resx">
+      <DependentUpon>AddChartOfAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Account\ChartOfAccount\ChartAccountForm.resx">
       <DependentUpon>ChartAccountForm.cs</DependentUpon>
     </EmbeddedResource>

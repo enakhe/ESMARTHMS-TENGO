@@ -144,6 +144,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<BankAccountForm>();
             services.AddScoped<AccountantHomeForm>();
             services.AddScoped<ChartAccountForm>();
+            services.AddScoped<AddChartOfAccountForm>();
 
             return services;
         }
