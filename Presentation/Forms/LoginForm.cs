@@ -53,5 +53,12 @@ namespace ESMART_HMS.Presentation.Forms
             LostPassword lostPassword = serviceProvider.GetRequiredService<LostPassword>();
             lostPassword.ShowDialog();
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            splitContainer1.BackColor = splitContainer1.Panel1.BackColor;
+            splitContainer1.SplitterWidth = 1;
+            splitContainer1.BackColor = splitContainer1.Panel1.BackColor;
+        }
     }
 }

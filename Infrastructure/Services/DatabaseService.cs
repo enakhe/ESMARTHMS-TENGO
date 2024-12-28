@@ -349,6 +349,8 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[BankAccNo][nvarchar](450) NOT NULL," +
                 "[BankName][nvarchar](450) NULL," +
                 "[BankAccName][nvarchar](450) NULL," +
+                "[BankType][nvarchar](450) NULL," +
+                "[IsActive][bit] NOT NULL," +
                 "[IsTrashed][bit] NOT NULL," +
                 "[CreatedBy][nvarchar](450) NOT NULL," +
                 "[DateCreated][datetime2](7) NOT NULL," +

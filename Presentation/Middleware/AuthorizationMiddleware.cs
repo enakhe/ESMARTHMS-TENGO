@@ -18,6 +18,15 @@ namespace ESMART_HMS.Presentation.Middleware
             }
         }
 
+        public static bool IsInRole(ApplicationUser user, string role)
+        {
+            using(ESMART_HMSDBEntities db = new ESMART_HMSDBEntities())
+            {
+                UserRoleRepository userRoleRepository = new UserRoleRepository(db);
+                return userRoleRepository.IsInRole(user, role);
+            }
+        }
+
         public static void Protect(ApplicationUser user, ToolStripMenuItem control, List<string> requiredRoles)
         {
             if (!IsAuthorized(user, requiredRoles))
