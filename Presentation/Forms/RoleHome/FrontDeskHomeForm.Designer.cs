@@ -30,16 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrontDeskHomeForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookingReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reservationReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.guestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roomsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +48,6 @@
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.homeToolStripMenuItem,
             this.guestsToolStripMenuItem,
             this.roomsToolStripMenuItem1,
             this.reservationToolStripMenuItem,
@@ -62,11 +60,33 @@
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // homeToolStripMenuItem
+            // guestsToolStripMenuItem
             // 
-            this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(57, 21);
-            this.homeToolStripMenuItem.Text = "Home";
+            this.guestsToolStripMenuItem.Name = "guestsToolStripMenuItem";
+            this.guestsToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
+            this.guestsToolStripMenuItem.Text = "Guests";
+            this.guestsToolStripMenuItem.Click += new System.EventHandler(this.guestsToolStripMenuItem_Click);
+            // 
+            // roomsToolStripMenuItem1
+            // 
+            this.roomsToolStripMenuItem1.Name = "roomsToolStripMenuItem1";
+            this.roomsToolStripMenuItem1.Size = new System.Drawing.Size(62, 21);
+            this.roomsToolStripMenuItem1.Text = "Rooms";
+            this.roomsToolStripMenuItem1.Click += new System.EventHandler(this.roomsToolStripMenuItem1_Click);
+            // 
+            // reservationToolStripMenuItem
+            // 
+            this.reservationToolStripMenuItem.Name = "reservationToolStripMenuItem";
+            this.reservationToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.reservationToolStripMenuItem.Text = "Reservation";
+            this.reservationToolStripMenuItem.Click += new System.EventHandler(this.reservationToolStripMenuItem_Click);
+            // 
+            // bookingToolStripMenuItem
+            // 
+            this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
+            this.bookingToolStripMenuItem.Text = "Booking";
+            this.bookingToolStripMenuItem.Click += new System.EventHandler(this.bookingToolStripMenuItem_Click);
             // 
             // manageReportsToolStripMenuItem
             // 
@@ -84,6 +104,7 @@
             this.roomReportToolStripMenuItem.Name = "roomReportToolStripMenuItem";
             this.roomReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.roomReportToolStripMenuItem.Text = "Room Report";
+            this.roomReportToolStripMenuItem.Click += new System.EventHandler(this.roomReportToolStripMenuItem_Click);
             // 
             // bookingReportToolStripMenuItem
             // 
@@ -91,6 +112,7 @@
             this.bookingReportToolStripMenuItem.Name = "bookingReportToolStripMenuItem";
             this.bookingReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.bookingReportToolStripMenuItem.Text = "Booking Report";
+            this.bookingReportToolStripMenuItem.Click += new System.EventHandler(this.bookingReportToolStripMenuItem_Click);
             // 
             // reservationReportToolStripMenuItem
             // 
@@ -98,6 +120,7 @@
             this.reservationReportToolStripMenuItem.Name = "reservationReportToolStripMenuItem";
             this.reservationReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.reservationReportToolStripMenuItem.Text = "Reservation Report";
+            this.reservationReportToolStripMenuItem.Click += new System.EventHandler(this.reservationReportToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -106,30 +129,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1924, 52);
             this.panel2.TabIndex = 15;
-            // 
-            // guestsToolStripMenuItem
-            // 
-            this.guestsToolStripMenuItem.Name = "guestsToolStripMenuItem";
-            this.guestsToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
-            this.guestsToolStripMenuItem.Text = "Guests";
-            // 
-            // roomsToolStripMenuItem1
-            // 
-            this.roomsToolStripMenuItem1.Name = "roomsToolStripMenuItem1";
-            this.roomsToolStripMenuItem1.Size = new System.Drawing.Size(62, 21);
-            this.roomsToolStripMenuItem1.Text = "Rooms";
-            // 
-            // reservationToolStripMenuItem
-            // 
-            this.reservationToolStripMenuItem.Name = "reservationToolStripMenuItem";
-            this.reservationToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
-            this.reservationToolStripMenuItem.Text = "Reservation";
-            // 
-            // bookingToolStripMenuItem
-            // 
-            this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(70, 21);
-            this.bookingToolStripMenuItem.Text = "Booking";
             // 
             // FrontDeskHomeForm
             // 
@@ -142,11 +141,12 @@
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FrontDeskHomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "E-SMART HOTEL MANAGEMENT SOFTWARE";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrontDeskHomeForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -157,7 +157,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageReportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bookingReportToolStripMenuItem;

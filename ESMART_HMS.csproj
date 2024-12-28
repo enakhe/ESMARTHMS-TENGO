@@ -563,6 +563,12 @@
     <Compile Include="Presentation\Forms\Account\BankAccount\AddBankAccountForm.Designer.cs">
       <DependentUpon>AddBankAccountForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Account\BankAccount\BankAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Account\BankAccount\BankAccountForm.Designer.cs">
+      <DependentUpon>BankAccountForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -580,6 +586,12 @@
     </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Room\RoomStatusForm.Designer.cs">
       <DependentUpon>RoomStatusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\AccountantHomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\AccountantHomeForm.Designer.cs">
+      <DependentUpon>AccountantHomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\RoleHome\FrontDeskHomeForm.cs">
       <SubType>Form</SubType>
@@ -1052,6 +1064,9 @@
       <DependentUpon>AddBankAccountForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\BankAccountForm.resx">
+      <DependentUpon>BankAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.resx">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1060,6 +1075,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\RoomStatusForm.resx">
       <DependentUpon>RoomStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\RoleHome\AccountantHomeForm.resx">
+      <DependentUpon>AccountantHomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\RoleHome\FrontDeskHomeForm.resx">
       <DependentUpon>FrontDeskHomeForm.cs</DependentUpon>
@@ -1337,6 +1355,7 @@
   <ItemGroup>
     <Folder Include="Application\Interfaces\" />
     <Folder Include="Keys\" />
+    <Folder Include="Presentation\Forms\Account\ChartOfAccount\" />
     <Folder Include="Presentation\Mappers\" />
   </ItemGroup>
   <ItemGroup>

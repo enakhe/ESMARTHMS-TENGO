@@ -515,7 +515,7 @@ namespace ESMART_HMS.Presentation.Forms.booking
             for (int i = 0; i < BookingDetails.Count; i++)
             {
                 graphics.DrawString(BookingDetails[i].Room.RoomNo, smallFont, Brushes.Black, startX, startY + offsetY);
-                graphics.DrawString(BookingDetails[i].Room.RoomNo.ToString(), smallFont, Brushes.Black, startX + 160, startY + offsetY);
+                graphics.DrawString(BookingDetails[i].Room.Rate.ToString(), smallFont, Brushes.Black, startX + 160, startY + offsetY);
                 graphics.DrawString((BookingDetails[i].TotalAmount).ToString(), smallFont, Brushes.Black, startX + 220, startY + offsetY);
                 offsetY += 20;
             }

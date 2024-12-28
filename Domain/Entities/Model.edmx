@@ -108,6 +108,21 @@
           <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="ChartOfAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="AccountCode" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="450" />
+          <Property Name="AccountType" Type="nvarchar" MaxLength="450" />
+          <Property Name="AccountGroup" Type="nvarchar" MaxLength="450" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsTrashed" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DateModified" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="CompanyInformation">
           <Key>
             <PropertyRef Name="Id" />
@@ -476,6 +491,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ChartOfAc__Creat__06CD04F7">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
+          <End Role="ChartOfAccount" Type="Self.ChartOfAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChartOfAccount">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Floor__BuildingI__48CFD27E">
           <End Role="Building" Type="Self.Building" Multiplicity="1" />
           <End Role="Floor" Type="Self.Floor" Multiplicity="*" />
@@ -772,6 +799,7 @@
           <EntitySet Name="BankAccount" EntityType="Self.BankAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Building" EntityType="Self.Building" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChartOfAccount" EntityType="Self.ChartOfAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyInformation" EntityType="Self.CompanyInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Configuration" EntityType="Self.Configuration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Floor" EntityType="Self.Floor" Schema="dbo" store:Type="Tables" />
@@ -818,6 +846,10 @@
           <AssociationSet Name="FK__Booking__RoomId__5CD6CB2B" Association="Self.FK__Booking__RoomId__5CD6CB2B">
             <End Role="Room" EntitySet="Room" />
             <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChartOfAc__Creat__06CD04F7" Association="Self.FK__ChartOfAc__Creat__06CD04F7">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="ChartOfAccount" EntitySet="ChartOfAccount" />
           </AssociationSet>
           <AssociationSet Name="FK__Floor__BuildingI__48CFD27E" Association="Self.FK__Floor__BuildingI__48CFD27E">
             <End Role="Building" EntitySet="Building" />
@@ -1083,6 +1115,11 @@
             <End Role="MenuItem" EntitySet="MenuItems" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
+          <EntitySet Name="ChartOfAccounts" EntityType="ESMART_HMSDBModel.ChartOfAccount" />
+          <AssociationSet Name="FK__ChartOfAc__Creat__06CD04F7" Association="ESMART_HMSDBModel.FK__ChartOfAc__Creat__06CD04F7">
+            <End Role="ApplicationUser" EntitySet="ApplicationUsers" />
+            <End Role="ChartOfAccount" EntitySet="ChartOfAccounts" />
+          </AssociationSet>
 				</EntityContainer>
 				<EntityType Name="Configuration">
 					<Key>
@@ -1225,6 +1262,7 @@
           <NavigationProperty Name="MenuItems" Relationship="ESMART_HMSDBModel.FK__MenuItem__Create__02FC7413" FromRole="ApplicationUser" ToRole="MenuItem" />
           <NavigationProperty Name="Inventories" Relationship="ESMART_HMSDBModel.FK__Inventory__Creat__74AE54BC" FromRole="ApplicationUser" ToRole="Inventory" />
           <NavigationProperty Name="Orders" Relationship="ESMART_HMSDBModel.FK__Order__IssuedBy__6E01572D" FromRole="ApplicationUser" ToRole="Order" />
+          <NavigationProperty Name="ChartOfAccounts" Relationship="ESMART_HMSDBModel.FK__ChartOfAc__Creat__06CD04F7" FromRole="ApplicationUser" ToRole="ChartOfAccount" />
 				</EntityType>
 				<Association Name="FK__Applicati__UserI__3B75D760">
 					<End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
@@ -1893,6 +1931,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ChartOfAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="AccountCode" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="AccountName" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="AccountType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="AccountGroup" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__ChartOfAc__Creat__06CD04F7" FromRole="ChartOfAccount" ToRole="ApplicationUser" />
+        </EntityType>
+        <Association Name="FK__ChartOfAc__Creat__06CD04F7">
+          <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
+          <End Type="ESMART_HMSDBModel.ChartOfAccount" Role="ChartOfAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChartOfAccount">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
 			</Schema>
 		</edmx:ConceptualModels>
 		<!-- C-S mapping content -->
@@ -2308,6 +2374,22 @@
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChartOfAccounts">
+            <EntityTypeMapping TypeName="ESMART_HMSDBModel.ChartOfAccount">
+              <MappingFragment StoreEntitySet="ChartOfAccount">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AccountGroup" ColumnName="AccountGroup" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

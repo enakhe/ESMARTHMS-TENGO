@@ -52,8 +52,23 @@ namespace ESMART_HMS.Presentation.Forms
                         var loginResult = loginForm.ShowDialog();
                         if (loginResult == DialogResult.OK)
                         {
-                            var homeForm = serviceProvider.GetRequiredService<Home>();
-                            homeForm.ShowDialog();
+                            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+
+                            if (AuthorizationMiddleware.IsInRole(user, "SuperAdmin") || AuthorizationMiddleware.IsInRole(user, "Admin"))
+                            {
+                                var homeForm = serviceProvider.GetRequiredService<Home>();
+                                homeForm.ShowDialog();
+                            }
+                            else if (AuthorizationMiddleware.IsInRole(user, "FRONT DESK"))
+                            {
+                                var frontDeskHomeForm = serviceProvider.GetRequiredService<FrontDeskHomeForm>();
+                                frontDeskHomeForm.ShowDialog();
+                            }
+                            else if(AuthorizationMiddleware.IsInRole(user, "ACCOUNTANT"))
+                            {
+                                var accountingHomeForm = serviceProvider.GetRequiredService<AccountantHomeForm>();
+                                accountingHomeForm.ShowDialog();
+                            }
                         }
                     }
                     else
@@ -68,8 +83,23 @@ namespace ESMART_HMS.Presentation.Forms
                             var loginResult = loginForm.ShowDialog();
                             if (loginResult == DialogResult.OK)
                             {
-                                var homeForm = serviceProvider.GetRequiredService<Home>();
-                                homeForm.ShowDialog();
+                                ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+
+                                if (AuthorizationMiddleware.IsInRole(user, "SuperAdmin") || AuthorizationMiddleware.IsInRole(user, "Admin"))
+                                {
+                                    var homeForm = serviceProvider.GetRequiredService<Home>();
+                                    homeForm.ShowDialog();
+                                }
+                                else if (AuthorizationMiddleware.IsInRole(user, "FRONT DESK"))
+                                {
+                                    var frontDeskHomeForm = serviceProvider.GetRequiredService<FrontDeskHomeForm>();
+                                    frontDeskHomeForm.ShowDialog();
+                                }
+                                else if (AuthorizationMiddleware.IsInRole(user, "ACCOUNTANT"))
+                                {
+                                    var accountingHomeForm = serviceProvider.GetRequiredService<AccountantHomeForm>();
+                                    accountingHomeForm.ShowDialog();
+                                }
                             }
                         }
                     }
@@ -98,6 +128,11 @@ namespace ESMART_HMS.Presentation.Forms
                                 var frontDeskHomeForm = serviceProvider.GetRequiredService<FrontDeskHomeForm>();
                                 frontDeskHomeForm.ShowDialog();
                             }
+                            else if (AuthorizationMiddleware.IsInRole(user, "ACCOUNTANT"))
+                            {
+                                var accountingHomeForm = serviceProvider.GetRequiredService<AccountantHomeForm>();
+                                accountingHomeForm.ShowDialog();
+                            }
                         }
                     }
                 }
@@ -125,6 +160,11 @@ namespace ESMART_HMS.Presentation.Forms
                         {
                             var frontDeskHomeForm = serviceProvider.GetRequiredService<FrontDeskHomeForm>();
                             frontDeskHomeForm.ShowDialog();
+                        }
+                        else if (AuthorizationMiddleware.IsInRole(user, "ACCOUNTANT"))
+                        {
+                            var accountingHomeForm = serviceProvider.GetRequiredService<AccountantHomeForm>();
+                            accountingHomeForm.ShowDialog();
                         }
                     }
                 }

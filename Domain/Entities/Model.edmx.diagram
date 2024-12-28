@@ -63,6 +63,8 @@
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__IssuedBy__6E01572D" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__CustomerI__6EF57B66" />
         <AssociationConnector Association="ESMART_HMSDBModel.FK__Order__ItemId__6C190EBB" />
+        <EntityTypeShape EntityType="ESMART_HMSDBModel.ChartOfAccount" Width="1.5" PointX="5.5" PointY="12" />
+        <AssociationConnector Association="ESMART_HMSDBModel.FK__ChartOfAc__Creat__06CD04F7" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

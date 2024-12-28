@@ -349,14 +349,26 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[BankAccNo][nvarchar](450) NOT NULL," +
                 "[BankName][nvarchar](450) NULL," +
                 "[BankAccName][nvarchar](450) NULL," +
-                "[BankType][nvarchar](450) NULL," +
-                "[IsActive][bit] NOT NULL," +
                 "[IsTrashed][bit] NOT NULL," +
                 "[CreatedBy][nvarchar](450) NOT NULL," +
                 "[DateCreated][datetime2](7) NOT NULL," +
                 "[DateModified][datetime2](7) NOT NULL," +
                 "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
                 "CONSTRAINT [PK_BankAccount] PRIMARY KEY CLUSTERED ([Id] ASC)");
+
+            CreateTableIfNotExists("ChartOfAccount",
+                "[Id][nvarchar](450) NOT NULL," +
+                "[AccountCode][nvarchar](450) NOT NULL," +
+                "[AccountName][nvarchar](450) NULL," +
+                "[AccountType][nvarchar](450) NULL," +
+                "[AccountGroup][nvarchar](450) NULL," +
+                "[IsActive][bit] NOT NULL," +
+                "[IsTrashed][bit] NOT NULL," +
+                "[CreatedBy][nvarchar](450) NOT NULL," +
+                "[DateCreated][datetime2](7) NOT NULL," +
+                "[DateModified][datetime2](7) NOT NULL," +
+                "FOREIGN KEY (CreatedBy) REFERENCES ApplicationUser(Id), " +
+                "CONSTRAINT [PK_ChartOfAccount] PRIMARY KEY CLUSTERED ([Id] ASC)");
 
             CreateTableIfNotExists("AuthorizationCard",
                 "[Id][nvarchar](450) NOT NULL," +
