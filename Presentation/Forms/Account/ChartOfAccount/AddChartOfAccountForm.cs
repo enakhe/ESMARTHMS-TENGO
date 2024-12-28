@@ -10,19 +10,11 @@ using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
 {
-    public partial class ChartAccountForm : Form
+    public partial class AddChartOfAccountForm : Form
     {
-        public ChartAccountForm()
+        public AddChartOfAccountForm()
         {
             InitializeComponent();
-        }
-
-
-
-        private void ChartAccountForm_Load(object sender, EventArgs e)
-        {
-            
-
         }
     }
 }

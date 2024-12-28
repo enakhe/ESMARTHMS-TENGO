@@ -1,10 +1,12 @@
 ﻿using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Account;
 using ESMART_HMS.Presentation.Controllers.Bar;
 using ESMART_HMS.Presentation.Controllers.Inventory;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Controllers.Restaurant;
 using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Account.BankAccount;
+using ESMART_HMS.Presentation.Forms.Account.ChartOfAccount;
 using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
@@ -71,6 +73,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<RestaurantContoller>();
             services.AddScoped<InventoryController>();
             services.AddScoped<RoleController>();
+            services.AddScoped<AccountController>();
 
             return services;
         }
@@ -140,6 +143,7 @@ namespace ESMART_HMS.Presentation
 
             services.AddScoped<BankAccountForm>();
             services.AddScoped<AccountantHomeForm>();
+            services.AddScoped<ChartAccountForm>();
 
             return services;
         }

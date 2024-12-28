@@ -312,6 +312,7 @@
     <Compile Include="Application\DependencyInjection.cs" />
     <Compile Include="Application\LockSDK\LockSDKHeaders.cs" />
     <Compile Include="Application\LockSDK\LockSDKMethods.cs" />
+    <Compile Include="Application\UseCases\Account\Account\AccountUseCases.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\GetByServiceIdAndStatusUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\GetTotalAmountUseCase.cs" />
     <Compile Include="Application\UseCases\Account\Transaction\UpdateTransactionUseCase.cs" />
@@ -432,6 +433,9 @@
     <Compile Include="Domain\Entities\Building.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Entities\ChartOfAccount.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Entities\CompanyInformation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -491,6 +495,7 @@
     </Compile>
     <Compile Include="Domain\Enum\LockEnum.cs" />
     <Compile Include="Domain\Enum\RoomStatusEnum.cs" />
+    <Compile Include="Domain\Interfaces\Account\IAccountRepository.cs" />
     <Compile Include="Domain\Interfaces\Bar\IBarItemRepository.cs" />
     <Compile Include="Domain\Interfaces\Bar\IOrderRepository.cs" />
     <Compile Include="Domain\Interfaces\FrontDesk\IBookingRepository.cs" />
@@ -522,6 +527,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ESMART_HMSDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Data\Account\AccountRepository.cs" />
     <Compile Include="Infrastructure\Data\FrontDesk\BookingRepository.cs" />
     <Compile Include="Infrastructure\Data\Inventory\InventoryRepository.cs" />
     <Compile Include="Infrastructure\Data\Inventory\MenuItem\MenuItemRepository.cs" />
@@ -540,6 +546,7 @@
     <Compile Include="Infrastructure\Data\Restaurant\RestaurantRepository.cs" />
     <Compile Include="Infrastructure\DependencyInjection.cs" />
     <Compile Include="Infrastructure\Frameworks\TengoLock\Language.cs" />
+    <Compile Include="Presentation\Controllers\Account\AccountController.cs" />
     <Compile Include="Presentation\Controllers\Bar\BarItemController.cs" />
     <Compile Include="Presentation\Controllers\Bar\OrderController.cs" />
     <Compile Include="Presentation\Controllers\Inventory\InventoryController.cs" />
@@ -574,6 +581,18 @@
     </Compile>
     <Compile Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.Designer.cs">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Account\ChartOfAccount\AddChartOfAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Account\ChartOfAccount\AddChartOfAccountForm.Designer.cs">
+      <DependentUpon>AddChartOfAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Account\ChartOfAccount\ChartAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Account\ChartOfAccount\ChartAccountForm.Designer.cs">
+      <DependentUpon>ChartAccountForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Booking\EditBookingForm.cs">
       <SubType>Form</SubType>
@@ -1070,6 +1089,9 @@
     <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.resx">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Account\ChartOfAccount\ChartAccountForm.resx">
+      <DependentUpon>ChartAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Booking\EditBookingForm.resx">
       <DependentUpon>EditBookingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1355,7 +1377,6 @@
   <ItemGroup>
     <Folder Include="Application\Interfaces\" />
     <Folder Include="Keys\" />
-    <Folder Include="Presentation\Forms\Account\ChartOfAccount\" />
     <Folder Include="Presentation\Mappers\" />
   </ItemGroup>
   <ItemGroup>

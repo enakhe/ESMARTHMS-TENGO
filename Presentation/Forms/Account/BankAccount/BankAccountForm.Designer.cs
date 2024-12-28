@@ -209,9 +209,9 @@
             this.label13.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
             this.label13.Name = "label13";
             this.label13.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.label13.Size = new System.Drawing.Size(144, 29);
+            this.label13.Size = new System.Drawing.Size(189, 29);
             this.label13.TabIndex = 2;
-            this.label13.Text = "Manage Account";
+            this.label13.Text = "Manage Bank Account";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel1
