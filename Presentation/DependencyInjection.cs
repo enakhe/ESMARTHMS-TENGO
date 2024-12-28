@@ -7,11 +7,13 @@ using ESMART_HMS.Presentation.Forms;
 using ESMART_HMS.Presentation.Forms.Account.BankAccount;
 using ESMART_HMS.Presentation.Forms.booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.booking;
+using ESMART_HMS.Presentation.Forms.FrontDesk.Booking;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
 using ESMART_HMS.Presentation.Forms.Guests;
 using ESMART_HMS.Presentation.Forms.Inventory;
+using ESMART_HMS.Presentation.Forms.Inventory.Store;
 using ESMART_HMS.Presentation.Forms.License;
 using ESMART_HMS.Presentation.Forms.Maintenance;
 using ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance;
@@ -111,6 +113,7 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<BarStoreForm>();
             services.AddScoped<AddBarItemForm>();
             services.AddScoped<Presentation.Forms.Bar.OrderForm>();
+            services.AddScoped<Presentation.Forms.Inventory.Order>();
             services.AddScoped<DashboardForm>();
 
             services.AddScoped<RestaurantForm>();
@@ -128,6 +131,10 @@ namespace ESMART_HMS.Presentation
             services.AddScoped<ProfileForm>();
             services.AddScoped<LostPassword>();
             services.AddScoped<RoomStatusForm>();
+            services.AddScoped<EditBookingForm>();
+
+            services.AddScoped<TransactionReport>();
+            services.AddScoped<StoreForm>();
 
             return services;
         }

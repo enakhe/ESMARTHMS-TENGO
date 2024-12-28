@@ -42,6 +42,20 @@ namespace ESMART_HMS.Application.LockSDK
             }
         }
 
+        public static int TestBuzzer()
+        {
+            int st;
+            st = LockSDKHeaders.Buzzer(50);
+            return st;
+        }
+
+        //public static int InitializeUSB()
+        //{
+        //    int st;
+        //    st = LockSDKHeaders.initializeUSB(1);
+        //    return st;
+        //}
+
         public static Boolean PreparedIssue(char[] card_snr)
         {
             int st;
@@ -79,7 +93,7 @@ namespace ESMART_HMS.Application.LockSDK
             return st;
         }
 
-        public static int MakeMasterCard(char[] card_snr, string validTime, string endTime, int iFlags, int iReplaceNo)
+        public static int MakeMasterCard(char[] card_snr, string validTime, string endTime, CARD_FLAGS iFlags, int iReplaceNo)
         {
 
             int st = LockSDKHeaders.LS_MakeChiefCard(card_snr, validTime, endTime, iFlags, iReplaceNo);
@@ -111,7 +125,7 @@ namespace ESMART_HMS.Application.LockSDK
             return st;
         }
 
-        public static int MakeFloorCard(char[] cardSnr, int Building, string FloorList, string cSTime1, string cETime1, string SDateTime, string EDateTime, int iFlags, int iReplaceNo)
+        public static int MakeFloorCard(char[] cardSnr, int Building, string FloorList, string cSTime1, string cETime1, string SDateTime, string EDateTime, CARD_FLAGS iFlags, int iReplaceNo)
         {
             string cSTime2 = "00:00:00";
             string cETime2 = "00:00:00";

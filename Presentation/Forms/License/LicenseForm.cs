@@ -54,7 +54,7 @@ namespace ESMART_HMS.Presentation.Forms
             string productKey = LicenceHelper.GenerateProductKey(hotelName, DateTime.Now.AddDays(7));
             if (productKey != null)
             {
-                txtHotelName.Text = "Free Trial";
+                txtHotelName.Text = hotelName;
                 txtProductKey.Text = productKey;
 
                 txtHotelName.ReadOnly = true;

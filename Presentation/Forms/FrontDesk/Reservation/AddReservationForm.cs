@@ -10,6 +10,7 @@ using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Reservation
@@ -23,7 +24,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
         private readonly ApplicationUserController _applicationUserController;
         private readonly TransactionController _transactionController;
         private readonly SystemSetupController _systemSetupController;
-        public AddReservationForm(GuestController guestController, RoomController roomController, ReservationController reservationController, ApplicationUserController applicationUserController, TransactionController transactionController, SystemSetupController systemSetupController)
+        private readonly ESMART_HMSDBEntities _db;
+        public AddReservationForm(GuestController guestController, RoomController roomController, ReservationController reservationController, ApplicationUserController applicationUserController, TransactionController transactionController, SystemSetupController systemSetupController, ESMART_HMSDBEntities db)
         {
             _guestController = guestController;
             _reservationController = reservationController;
@@ -34,6 +36,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             InitializeComponent();
             ApplyAuthorization();
             LoadBankDetails();
+            _db = db;
         }
 
         private void AddReservationForm_Load(object sender, EventArgs e)
@@ -71,6 +74,10 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                 {
                     if (allRoom.Count > 0)
                     {
+                        foreach (var roomm in allRoom)
+                        {
+                            roomm.RoomNo = $"{roomm.RoomNo}";
+                        }
                         txtRoom.DataSource = allRoom;
                     }
                     else
@@ -158,7 +165,7 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
 
         private void txtCheckIn_ValueChanged(object sender, EventArgs e)
         {
-            bool isNull = FormHelper.AreAnyNullOrEmpty(txtCheckOut.Text, txtCheckIn.Text, txtRoom.SelectedValue.ToString());
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtCheckOut.Text, txtCheckIn.Text, txtRoom.SelectedValue.ToString(), textBox2.Text);
             if (isNull == false)
             {
                 Room room = _roomController.GetRealRoom(txtRoom.SelectedValue.ToString());
@@ -166,6 +173,9 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                 {
                     txtAmount.Text = FormHelper.GetPriceByRateAndTime(DateTime.Parse(txtCheckIn.Text), DateTime.Parse(txtCheckOut.Text), room.Rate).ToString();
                 }
+
+                int numberOfDays = int.Parse(textBox2.Text);
+                txtCheckOut.Value = txtCheckIn.Value.AddDays(numberOfDays);
             }
         }
 
@@ -200,7 +210,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     reservation.Room = _roomController.GetRealRoom(reservation.RoomId);
 
                     reservation.CheckInDate = txtCheckIn.Value;
-                    reservation.CheckOutDate = txtCheckOut.Value;
+                    DateTime selectedDate = txtCheckOut.Value;
+                    reservation.CheckOutDate = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 12, 0, 0);
 
                     reservation.PaymentMethod = txtPaymentMethod.Text;
                     reservation.Amount = FormHelper.GetPriceByRateAndTime(reservation.CheckInDate, reservation.CheckOutDate, reservation.Room.Rate);
@@ -222,12 +233,21 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     reservation.CreatedBy = AuthSession.CurrentUser.Id;
                     reservation.ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
 
-                    Room room = _roomController.GetRealRoom(reservation.RoomId);
-                    room.Status = RoomStatusEnum.Reserved.ToString();
-                    room.DateModified = DateTime.Now;
+                    //Room room = _roomController.GetRealRoom(reservation.RoomId);
+                    //room.Status = RoomStatusEnum.Reserved.ToString();
+                    //room.DateModified = DateTime.Now;
+                    var foundReservation = _db.Reservations.FirstOrDefault(r => r.RoomId == txtRoom.SelectedValue.ToString() && (r.CheckInDate.Month + r.CheckInDate.Day) == (txtCheckIn.Value.Month + txtCheckIn.Value.Day) && (r.CheckOutDate.Month + r.CheckOutDate.Day) == (txtCheckIn.Value.Month + txtCheckIn.Value.Day));
+                    if(foundReservation != null)
+                    {
+                        MessageBox.Show($"A reservation has already been made for {reservation.Room.RoomNo} with the selected date", "Invalid Date", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        _reservationController.AddReservation(reservation);
+                    }
 
-                    _reservationController.AddReservation(reservation);
-                    _roomController.UpdateRoom(room);
+                    //_roomController.UpdateRoom(room);
 
                     if (reservation.Amount == reservation.AmountPaid)
                     {
@@ -356,6 +376,27 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             else
             {
                 bankAccounts.Enabled = true;
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                bool isNull = FormHelper.AreAnyNullOrEmpty(txtSearch.Text);
+                if (isNull == false)
+                {
+                    var guest = _guestController.SearchGuest(txtSearch.Text);
+                    if (guest != null)
+                    {
+                        txtGuest.DataSource = guest;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }

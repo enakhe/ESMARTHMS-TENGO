@@ -45,5 +45,10 @@ namespace ESMART_HMS.Presentation.Controllers
         {
             return _createApplicationUserUseCase.VerifyPassword(enteredPassword, storedHash);
         }
+
+        public void DeleteUser(string id)
+        {
+            _createApplicationUserUseCase.DeleteUser(id);
+        }
     }
 }

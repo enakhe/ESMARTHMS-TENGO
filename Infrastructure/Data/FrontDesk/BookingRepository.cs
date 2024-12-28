@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Domain.Entities;
+﻿using DocumentFormat.OpenXml.Drawing;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Presentation.ViewModels;
@@ -340,6 +341,65 @@ namespace ESMART_HMS.Infrastructure.Data
                             MessageBoxIcon.Error);
             }
             return null;
+        }
+
+        public List<BookingViewModel> SearchBooking(string keyword)
+        {
+            try
+            {
+                var allbooking = from booking in _db.Bookings
+                .Where(b => b.IsTrashed != false && b.Room.RoomNo.Contains(keyword) || b.Guest.FullName.Contains(keyword) || b.Room.RoomType.Title == keyword)
+                                 select new BookingViewModel
+                                 {
+                                     Id = booking.Id,
+                                     BookingId = booking.BookingId,
+                                     Guest = booking.Guest.Title + " " + booking.Guest.FullName,
+                                     GuestPhoneNo = booking.Guest.PhoneNumber,
+                                     Room = booking.Room.RoomNo,
+                                     CheckInDate = booking.CheckInDate.ToString(),
+                                     CheckOutDate = booking.CheckOutDate.ToString(),
+                                     PaymentMethod = booking.PaymentMethod,
+                                     Duration = booking.Duration.ToString() + "Day",
+                                     TotalAmount = booking.TotalAmount.ToString(),
+                                     CreatedBy = booking.ApplicationUser.FullName,
+                                     DateCreated = booking.DateCreated.ToString(),
+                                     DateModified = booking.DateModified.ToString(),
+                                 };
+
+                return allbooking.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when searching booking", ex);
+            }
+        }
+
+        public void UpdateBooking(Booking booking)
+        {
+            try
+            {
+                _db.Entry(booking).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+                MessageBox.Show("Successfully edited booking information", "Success", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        public int GetGusteBooking(string id)
+        {
+            try
+            {
+                return _db.Bookings.Where(b => b.GuestId == id).ToList().Count();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error retriving total number of Guest Booking", ex);
+            }
         }
     }
 }

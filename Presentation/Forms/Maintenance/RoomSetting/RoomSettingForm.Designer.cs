@@ -78,12 +78,6 @@
             this.flowLayoutPanel11 = new System.Windows.Forms.FlowLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvFloor = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.floorNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remarkDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateCreatedDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateModifiedDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isTrashedDataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.floorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel12 = new System.Windows.Forms.FlowLayoutPanel();
             this.addFloorBtn = new System.Windows.Forms.Button();
@@ -166,6 +160,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnIssueCard = new System.Windows.Forms.Button();
+            this.btnStatus = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buildingNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -179,7 +174,12 @@
             this.areaTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.AreaTableAdapter();
             this.floorTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.FloorTableAdapter();
             this.buildingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.BuildingTableAdapter();
-            this.btnStatus = new System.Windows.Forms.Button();
+            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FloorNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remarkDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateCreatedDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateModifiedDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isTrashedDataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl1.SuspendLayout();
             this.buildingtab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).BeginInit();
@@ -735,7 +735,7 @@
             this.dgvFloor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFloor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn3,
-            this.floorNoDataGridViewTextBoxColumn,
+            this.FloorNo,
             this.remarkDataGridViewTextBoxColumn1,
             this.dateCreatedDataGridViewTextBoxColumn3,
             this.dateModifiedDataGridViewTextBoxColumn3,
@@ -748,50 +748,6 @@
             this.dgvFloor.ReadOnly = true;
             this.dgvFloor.Size = new System.Drawing.Size(785, 397);
             this.dgvFloor.TabIndex = 2;
-            // 
-            // idDataGridViewTextBoxColumn3
-            // 
-            this.idDataGridViewTextBoxColumn3.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn3.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
-            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // floorNoDataGridViewTextBoxColumn
-            // 
-            this.floorNoDataGridViewTextBoxColumn.DataPropertyName = "FloorNo";
-            this.floorNoDataGridViewTextBoxColumn.HeaderText = "No";
-            this.floorNoDataGridViewTextBoxColumn.Name = "floorNoDataGridViewTextBoxColumn";
-            this.floorNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // remarkDataGridViewTextBoxColumn1
-            // 
-            this.remarkDataGridViewTextBoxColumn1.DataPropertyName = "Remark";
-            this.remarkDataGridViewTextBoxColumn1.HeaderText = "Remark";
-            this.remarkDataGridViewTextBoxColumn1.Name = "remarkDataGridViewTextBoxColumn1";
-            this.remarkDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dateCreatedDataGridViewTextBoxColumn3
-            // 
-            this.dateCreatedDataGridViewTextBoxColumn3.DataPropertyName = "DateCreated";
-            this.dateCreatedDataGridViewTextBoxColumn3.HeaderText = "Date Created";
-            this.dateCreatedDataGridViewTextBoxColumn3.Name = "dateCreatedDataGridViewTextBoxColumn3";
-            this.dateCreatedDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dateModifiedDataGridViewTextBoxColumn3
-            // 
-            this.dateModifiedDataGridViewTextBoxColumn3.DataPropertyName = "DateModified";
-            this.dateModifiedDataGridViewTextBoxColumn3.HeaderText = "Date Modified";
-            this.dateModifiedDataGridViewTextBoxColumn3.Name = "dateModifiedDataGridViewTextBoxColumn3";
-            this.dateModifiedDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // isTrashedDataGridViewCheckBoxColumn2
-            // 
-            this.isTrashedDataGridViewCheckBoxColumn2.DataPropertyName = "IsTrashed";
-            this.isTrashedDataGridViewCheckBoxColumn2.HeaderText = "IsTrashed";
-            this.isTrashedDataGridViewCheckBoxColumn2.Name = "isTrashedDataGridViewCheckBoxColumn2";
-            this.isTrashedDataGridViewCheckBoxColumn2.ReadOnly = true;
-            this.isTrashedDataGridViewCheckBoxColumn2.Visible = false;
             // 
             // floorBindingSource
             // 
@@ -1767,6 +1723,18 @@
             this.btnIssueCard.UseVisualStyleBackColor = false;
             this.btnIssueCard.Click += new System.EventHandler(this.btnIssueCard_Click);
             // 
+            // btnStatus
+            // 
+            this.btnStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnStatus.ForeColor = System.Drawing.Color.White;
+            this.btnStatus.Location = new System.Drawing.Point(3, 175);
+            this.btnStatus.Name = "btnStatus";
+            this.btnStatus.Size = new System.Drawing.Size(108, 37);
+            this.btnStatus.TabIndex = 0;
+            this.btnStatus.Text = "Change Status";
+            this.btnStatus.UseVisualStyleBackColor = false;
+            this.btnStatus.Click += new System.EventHandler(this.btnMaintenance_Click);
+            // 
             // idDataGridViewTextBoxColumn4
             // 
             this.idDataGridViewTextBoxColumn4.DataPropertyName = "Id";
@@ -1843,17 +1811,49 @@
             // 
             this.buildingTableAdapter.ClearBeforeFill = true;
             // 
-            // btnStatus
+            // idDataGridViewTextBoxColumn3
             // 
-            this.btnStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnStatus.ForeColor = System.Drawing.Color.White;
-            this.btnStatus.Location = new System.Drawing.Point(3, 175);
-            this.btnStatus.Name = "btnStatus";
-            this.btnStatus.Size = new System.Drawing.Size(108, 37);
-            this.btnStatus.TabIndex = 0;
-            this.btnStatus.Text = "Change Status";
-            this.btnStatus.UseVisualStyleBackColor = false;
-            this.btnStatus.Click += new System.EventHandler(this.btnMaintenance_Click);
+            this.idDataGridViewTextBoxColumn3.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn3.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
+            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // FloorNo
+            // 
+            this.FloorNo.DataPropertyName = "FloorNo";
+            this.FloorNo.HeaderText = "Floor No";
+            this.FloorNo.Name = "FloorNo";
+            this.FloorNo.ReadOnly = true;
+            // 
+            // remarkDataGridViewTextBoxColumn1
+            // 
+            this.remarkDataGridViewTextBoxColumn1.DataPropertyName = "Remark";
+            this.remarkDataGridViewTextBoxColumn1.HeaderText = "Remark";
+            this.remarkDataGridViewTextBoxColumn1.Name = "remarkDataGridViewTextBoxColumn1";
+            this.remarkDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dateCreatedDataGridViewTextBoxColumn3
+            // 
+            this.dateCreatedDataGridViewTextBoxColumn3.DataPropertyName = "DateCreated";
+            this.dateCreatedDataGridViewTextBoxColumn3.HeaderText = "Date Created";
+            this.dateCreatedDataGridViewTextBoxColumn3.Name = "dateCreatedDataGridViewTextBoxColumn3";
+            this.dateCreatedDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dateModifiedDataGridViewTextBoxColumn3
+            // 
+            this.dateModifiedDataGridViewTextBoxColumn3.DataPropertyName = "DateModified";
+            this.dateModifiedDataGridViewTextBoxColumn3.HeaderText = "Date Modified";
+            this.dateModifiedDataGridViewTextBoxColumn3.Name = "dateModifiedDataGridViewTextBoxColumn3";
+            this.dateModifiedDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // isTrashedDataGridViewCheckBoxColumn2
+            // 
+            this.isTrashedDataGridViewCheckBoxColumn2.DataPropertyName = "IsTrashed";
+            this.isTrashedDataGridViewCheckBoxColumn2.HeaderText = "IsTrashed";
+            this.isTrashedDataGridViewCheckBoxColumn2.Name = "isTrashedDataGridViewCheckBoxColumn2";
+            this.isTrashedDataGridViewCheckBoxColumn2.ReadOnly = true;
+            this.isTrashedDataGridViewCheckBoxColumn2.Visible = false;
             // 
             // RoomSettingForm
             // 
@@ -2091,12 +2091,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isTrashedDataGridViewCheckBoxColumn3;
         private System.Windows.Forms.BindingSource buildingBindingSource1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn floorNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remarkDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isTrashedDataGridViewCheckBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomNoDataGridViewTextBoxColumn;
@@ -2122,5 +2116,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.Button btnStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn floorNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FloorNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn remarkDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isTrashedDataGridViewCheckBoxColumn2;
     }
 }

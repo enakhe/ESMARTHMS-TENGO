@@ -12,5 +12,6 @@ namespace ESMART_HMS.Domain.Interfaces
         void UpdateInventory(Domain.Entities.Inventory inventory);
         List<InventoryViewModel> GetRecycledInventoryViewModels();
         void DeleteInventory(string id);
+        List<MenuItemViewModel> GetStoreItems();
     }
 }

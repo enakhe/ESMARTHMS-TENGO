@@ -46,7 +46,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 
         public int CheckEncoder()
         {
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             st = LockSDKHeaders.TP_Configuration(locktype);
             return st;
         }
@@ -69,14 +69,14 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
                 txtArea.DataSource = allAreas;
             }
             dispatcherTimer.Start();
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
             if (checkEncoder != 1)
             {
                 LockSDKMethods.CheckErr(checkEncoder);
             }
 
-            int openPort = OpenPort(5);
+            int openPort = OpenPort(4);
             if (openPort != 1)
             {
                 LockSDKMethods.CheckErr(openPort);
@@ -128,7 +128,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
             int areano1 = int.Parse(txtArea.SelectedValue.ToString());
             int areano2 = 0;
             ROOM_TYPE roomtype = ROOM_TYPE.RT_COMMON_ROOMS;
-            LOCK_SETTING lockSetting = LOCK_SETTING.LS_VALID_DATE_EN;
+            LOCK_SETTING lockSetting = LOCK_SETTING.LS_ALL_REPLACE;
             int replaceNo = 0;
 
             st = LockSDKMethods.MakeRoomSettingsCard(card_snr, buildingno, floorno, roomno, roomtype, areano1, areano2, lockSetting, replaceNo);

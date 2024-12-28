@@ -587,10 +587,10 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.RoomSetting
                             string roomString = $"Id = {room.Id}\n" +
      $"Room Id = {room.RoomId}\n" +
      $"Room No = {room.RoomNo}\n" +
-     $"Room Type Id = {room.RoomTypeId}\n" +
-     $"Building Id = {room.BuildingId}\n" +
-     $"Floor Id = {room.FloorId}\n" +
-     $"Area Id = {room.AreaId}\n" +
+     $"Room Type= {room.RoomType.Title}\n" +
+     $"Building = {room.Building.BuildingName}\n" +
+     $"Floor = {room.Floor.FloorNo}\n" +
+     $"Area= {room.Area.AreaName}\n" +
      $"Adults Per Room = {room.AdultPerRoom}\n" +
      $"Children Per Room = {room.ChildrenPerRoom}\n" +
      $"Description = {room.Description}\n" +

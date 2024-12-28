@@ -54,7 +54,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
 
         public int CheckEncoder()
         {
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             st = LockSDKHeaders.TP_Configuration(locktype);
             return st;
         }
@@ -96,7 +96,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
         private void BuildingCardForm_Load(object sender, EventArgs e)
         {
             GetAllBuilding();
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
             if (checkEncoder != 1)
             {

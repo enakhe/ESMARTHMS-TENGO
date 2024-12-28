@@ -2,15 +2,19 @@
 using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
+using ESMART_HMS.Presentation.Controllers.Bar;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Controllers.Restaurant;
 using ESMART_HMS.Presentation.Sessions;
 using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ESMART_HMS.Presentation.Forms.Restaurant
 {
@@ -19,19 +23,32 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
         private readonly RestaurantContoller _restaurantContoller;
         private readonly GuestController _guestController;
         private readonly ApplicationUserController _applicationUserController;
-        //private readonly OrderController _orderController;
+        private readonly RoomController _roomController;
+        private readonly OrderController _orderController;
         private readonly TransactionController _transactionController;
-        public OrderForm(RestaurantContoller restaurantContoller, GuestController guestController, ApplicationUserController applicationUserController, TransactionController transactionController)
+        private readonly SystemSetupController _systemSetupController;
+        private readonly bookingController _bookingController;
+        private readonly ESMART_HMSDBEntities _db;
+
+        public List<Order> orderDetails = new List<Order>();
+        string status;
+
+        public OrderForm(RestaurantContoller restaurantContoller, GuestController guestController, ApplicationUserController applicationUserController, TransactionController transactionController, OrderController orderController, SystemSetupController systemSetupController, RoomController roomController, bookingController bookingController, ESMART_HMSDBEntities db)
         {
             _restaurantContoller = restaurantContoller;
             _guestController = guestController;
             _applicationUserController = applicationUserController;
             _transactionController = transactionController;
+            _systemSetupController = systemSetupController;
+            _roomController = roomController;
+            _transactionController = transactionController;
+            _orderController = orderController;
+            _bookingController = bookingController;
+            _db = db;
 
             InitializeComponent();
             LoadData();
             LoadCustomer();
-            _transactionController = transactionController;
         }
 
         public void LoadData()
@@ -39,7 +56,7 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
             List<MenuItemViewModel> menuItem = _restaurantContoller.GetMenuItems();
             if (menuItem != null)
             {
-                foreach (var item in menuItem)
+                foreach (var item in menuItem.OrderBy(i => i.ItemName).ToList())
                 {
                     CreateItemPanel(item);
                 }
@@ -49,10 +66,11 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
 
         public void LoadCustomer()
         {
-            List<GuestViewModel> allGuest = _guestController.LoadGuests();
-            if (allGuest != null)
+            List<RoomViewModel> rooms = _roomController.GetAllRooms();
+            var bookings = _bookingController.GetAllbookings();
+            if (bookings != null)
             {
-                txtCustomer.DataSource = allGuest;
+                txtCustomer.DataSource = bookings.Select(b => b.Room).ToList();
             }
         }
 
@@ -150,6 +168,7 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
             itemPanel.Controls.Add(lblTotalPrice);
 
             flowLayoutPanelItems.Controls.Add(itemPanel);
+            flowLayoutPanelItems.AutoScroll = true;
         }
 
         private void UpdateTotalPrice(CheckBox checkBox, NumericUpDown quantity, Label totalLabel, MenuItemViewModel item)
@@ -246,7 +265,111 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public CompanyInformation GetHotelName()
+        {
+            CompanyInformation companyInformation = _systemSetupController.GetCompanyInfo();
+            if (companyInformation != null)
+            {
+                return companyInformation;
+            }
+
+            return null;
+        }
+
+        public void PrintReceipt(List<Order> orderDetails, string status)
+        {
+            this.orderDetails = orderDetails;
+            this.status = status;
+
+            PrintDocument printDocument = new PrintDocument();
+            PrintDialog printDialog = new PrintDialog
+            {
+                Document = printDocument
+            };
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.PrintPage += PrintDocument_PrintPage;
+                printDocument.PrinterSettings = printDialog.PrinterSettings;
+                printDocument.Print();
+            }
+        }
+
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Font headerFont = new Font("Arial", 10, FontStyle.Bold);
+            Font subHeaderFont = new Font("Arial", 9, FontStyle.Bold);
+            Font regularFont = new Font("Arial", 9);
+            Font smallFont = new Font("Arial", 7);
+            int startX = 5;
+            int startY = 5;
+            int offsetY = 10;
+
+            string hotelName = "";
+            string otherInfo = "";
+            CompanyInformation hotelInformation = GetHotelName();
+
+
+            if (hotelInformation != null)
+            {
+                hotelName = $"{hotelInformation.Name}";
+                otherInfo = $"{hotelInformation.AddressLine1}\n{hotelInformation.PhoneNumber}";
+            }
+
+            // Logo
+            graphics.DrawString(hotelName, headerFont, Brushes.Blue, startX, startY);
+            graphics.DrawString(otherInfo, smallFont, Brushes.Blue, startX, startY + offsetY + 10);
+            offsetY += 40;
+
+            string issuedBy = _applicationUserController.GetApplicationUserById(orderDetails[0].IssuedBy).FullName;
+            string sellerDetails = $"Issued By\n{issuedBy}";
+            graphics.DrawString(sellerDetails, smallFont, Brushes.Black, startX, startY + offsetY + 20);
+            offsetY += 50;
+
+            graphics.DrawString("Client's Details", subHeaderFont, Brushes.Black, startX, startY + offsetY);
+            offsetY += 20;
+            string buyerDetails = orderDetails[0].Guest.FullName;
+            graphics.DrawString(buyerDetails, smallFont, Brushes.Black, startX, startY + offsetY);
+            offsetY += 30;
+
+
+            // Receipt and Date Details
+            graphics.DrawString($"Receipt No: {orderDetails[0].OrderId}", subHeaderFont, Brushes.Black, startX, startY + offsetY);
+            offsetY += 20;
+            graphics.DrawString($"Receipt Date: {DateTime.Now.ToString("MMM dd, yyyy")}", subHeaderFont, Brushes.Black, startX, startY + offsetY);
+            offsetY += 40;
+
+            // Table Headers
+            graphics.DrawString("Item", smallFont, Brushes.Black, startX, startY + offsetY);
+            graphics.DrawString("QTY", smallFont, Brushes.Black, startX + 130, startY + offsetY);
+            graphics.DrawString("Rate", smallFont, Brushes.Black, startX + 160, startY + offsetY);
+            graphics.DrawString("Subtotal", smallFont, Brushes.Black, startX + 220, startY + offsetY);
+            offsetY += 20;
+
+            for (int i = 0; i < orderDetails.Count; i++)
+            {
+                graphics.DrawString(orderDetails[i].MenuItem.ItemName, smallFont, Brushes.Black, startX, startY + offsetY);
+                graphics.DrawString(orderDetails[i].Quantity.ToString(), smallFont, Brushes.Black, startX + 130, startY + offsetY);
+                graphics.DrawString(orderDetails[i].MenuItem.SellingPrice.ToString(), smallFont, Brushes.Black, startX + 160, startY + offsetY);
+                graphics.DrawString((orderDetails[i].TotalAmount).ToString(), smallFont, Brushes.Black, startX + 220, startY + offsetY);
+                offsetY += 20;
+            }
+
+            offsetY += 20;
+
+            // Invoice Summary
+            graphics.DrawString("Invoice Summary", subHeaderFont, Brushes.Black, startX, startY + offsetY);
+            offsetY += 20;
+            graphics.DrawString("Total:", regularFont, Brushes.Black, startX, startY + offsetY);
+            graphics.DrawString($"N{FormHelper.FormatNumberWithCommas((decimal)orderDetails.Sum(o => o.TotalAmount))}", regularFont, Brushes.Black, startX + 100, startY + offsetY);
+            offsetY += 50;
+
+            graphics.DrawString($"Thank you and have a great day", regularFont, Brushes.Black, startX + 90, startY + offsetY);
+
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
         {
             foreach (Panel panel in flowLayoutPanelItems.Controls)
             {
@@ -259,20 +382,23 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
                 bool isNull = checkBox != null && checkBox.Checked && numQuantity != null && itemNameLabel != null && totalLabel != null && itemId != null && txtCustomer != null;
                 if (isNull == true)
                 {
-                    Domain.Entities.MenuItem menuItem = _restaurantContoller.GetMenuItemById(itemId.Text);
-                    menuItem.Quantity = menuItem.Quantity - int.Parse(numQuantity.Text);
+                    Domain.Entities.MenuItem barItem = _restaurantContoller.GetMenuItemById(itemId.Text);
+                    barItem.Quantity = barItem.Quantity - int.Parse(numQuantity.Text);
                     Order order = new Order();
                     Random random = new Random();
 
                     decimal result = decimal.Parse(totalLabel.Text.Split(':')[1].Trim(), NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
                     order.Id = Guid.NewGuid().ToString();
-                    order.ItemId = menuItem.Id;
+                    order.OrderId = "ORD" + random.Next(1000, 5000);
+                    order.ItemId = barItem.Id;
                     order.Quantity = int.Parse(numQuantity.Value.ToString());
                     order.TotalAmount = result;
                     order.ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
                     order.IssuedBy = AuthSession.CurrentUser.Id;
-                    order.OrderId = "ORD" + random.Next(1000, 5000);
+                    order.OrderDate = DateTime.Now;
+                    order.IsTrashed = false;
+                    order.MenuItem = barItem;
 
 
                     if (checkBox1.Checked)
@@ -287,45 +413,106 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
                     }
                     else
                     {
-                        if (txtCustomer.SelectedItem.ToString() != null)
+                        if (txtCustomer.SelectedValue.ToString() != null)
                         {
-                            var guest = _guestController.GetGuestById(txtCustomer.SelectedValue.ToString());
-                            order.CustomerId = txtCustomer.SelectedValue.ToString();
-                            order.Guest = guest;
+                            var booking = _db.Bookings.FirstOrDefault(b => b.Room.RoomNo == txtCustomer.SelectedValue.ToString());
+                            if (booking != null)
+                            {
+                                order.CustomerId = booking.Guest.Id;
+                                order.Guest = booking.Guest;
+                            }
+                        }
+
+                    }
+
+                    if (txtUnpaid.Checked)
+                    {
+                        Domain.Entities.Transaction transaction = new Domain.Entities.Transaction()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            TransactionId = "TR" + random.Next(1000, 5000),
+                            GuestId = order.CustomerId,
+                            Guest = order.Guest,
+                            ServiceId = order.OrderId,
+                            Date = DateTime.Now,
+                            Amount = result,
+                            Type = "Restaurant Service",
+                            Description = "Restaurant",
+                            Status = "Un Paid"
+                        };
+                        _transactionController.AddTransaction(transaction);
+
+                    }
+                    else
+                    {
+                        Domain.Entities.Transaction transaction = new Domain.Entities.Transaction()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            TransactionId = "TR" + random.Next(1000, 5000),
+                            GuestId = order.CustomerId,
+                            Guest = order.Guest,
+                            ServiceId = order.OrderId,
+                            Date = DateTime.Now,
+                            Amount = result,
+                            Type = "Restaurant Service",
+                            Description = "Restaurant",
+                            Status = "Paid"
+                        };
+                        _transactionController.AddTransaction(transaction);
+                    }
+
+                    CompanyInformation foundCompany = _systemSetupController.GetCompanyInfo();
+
+                    string guestCardString = $"Id = {order.Id}\n" +
+                         $"Item = {order.MenuItem.ItemName}\n" +
+                         $"Guest = {order.Guest.FullName}\n" +
+                         $"Amount = {order.TotalAmount}\n" +
+                         $"Quantity = {order.Quantity}\n" +
+                         $"Issued Time = {order.ApplicationUser.FullName}\n" +
+                         $"Order Date = {order.OrderDate}\n";
+
+                    if (foundCompany != null)
+                    {
+                        if (foundCompany.Email != null)
+                        {
+                            await EmailHelper.SendEmail(foundCompany.Email, "Order Placed", guestCardString);
                         }
                     }
 
-                    Domain.Entities.Transaction transaction = new Domain.Entities.Transaction()
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        TransactionId = "TR" + random.Next(1000, 5000),
-                        GuestId = order.CustomerId,
-                        Guest = order.Guest,
-                        ServiceId = order.OrderId,
-                        Date = DateTime.Now,
-                        Amount = result,
-                        Type = "Restaurant Service",
-                        Description = "Restaurant",
-                        Status = "Paid"
-                    };
 
-                    _transactionController.AddTransaction(transaction);
-
-                    //_orderController.AddOrder(order);
-                    _restaurantContoller.UpdateItem(menuItem);
-                    groupBox1.Controls.Clear();
-                    flowLayoutPanelItems.Controls.Clear();
-                    LoadData();
-                    txtGrandTotal.Text = "";
-                }
-                else
-                {
-                    MessageBox.Show("Please provide all fields", "Error", MessageBoxButtons.OK,
-                               MessageBoxIcon.Error);
+                    _orderController.AddOrder(order);
+                    orderDetails.Add(order);
+                    _restaurantContoller.UpdateItem(barItem);
                 }
             }
             MessageBox.Show("Successfully made order", "Success", MessageBoxButtons.OK,
                                MessageBoxIcon.Information);
+            if (txtUnpaid.Checked)
+            {
+                status = "Un Paid";
+                PrintReceipt(orderDetails, status);
+            }
+            else
+            {
+                status = "Paid";
+                PrintReceipt(orderDetails, status);
+            }
+            groupBox1.Controls.Clear();
+            flowLayoutPanelItems.Controls.Clear();
+            LoadData();
+            txtGrandTotal.Text = "";
+        }
+
+        private void OrderForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void OrderForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Room' table. You can move, or remove it, as needed.
+            this.roomTableAdapter.Fill(this.eSMART_HMSDBDataSet.Room);
+
         }
     }
 }

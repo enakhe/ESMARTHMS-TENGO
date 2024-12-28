@@ -22,5 +22,10 @@ namespace ESMART_HMS.Application.UseCases.booking
         {
             return _bookingRepository.GetRecycledBookings();
         }
+
+        public List<BookingViewModel> SearchBooking(string keyword)
+        {
+            return _bookingRepository.SearchBooking(keyword);
+        }
     }
 }

@@ -123,6 +123,9 @@
   <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>503, 17</value>
   </metadata>
+  <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>503, 17</value>
+  </metadata>
   <metadata name="roomBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>311, 17</value>
   </metadata>
@@ -133,6 +136,30 @@
     <value>1454, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnRefresh.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIFSURBVEhL7ZW9
+        SxxRFMWXdEp0sZOsEYS0gsEiBEUh+ReUmCJaqKmWFIFN/ooUllq62tiKEWIThKCFrRsbCz9SBTS4u7Of
+        OPnd553lOruub9PY5MBh37vvnPPuzLyZTbRDEASpSqXyuVwub8EzGChlvMXaJ9Go3B+YBkql0johdRje
+        wzraNe+N6GoaUz4W4sM83hnJYLOnzN9Loy40AsWP8FoNQhl/pcN3cCgMwy6YJGiY+Txru6qxG0lGTseH
+        Gu06f0vBig/p4IUu3wk2mkB7bHy3GIkGmfwxCzt0+tgtegBtDw3+MP4GnYDFrCnmOgkXoO+mydd4L0zO
+        zQb6QGpRgflL9XmB8D58p5E/zkS1Wh01hW31eUOek/HHeeVEDNJwuelYeYAreIR3CR5Yctv3uW2zKvuP
+        hwQP4hWUD9tGjGmVdAQ99isNP4PfsNURCznCI07UAfBtG/9zKTQFK68KhUK/+rzAnRg3/po79qYQMUC4
+        CAfV5wXeh168R1EO78GqW4gKlizuYehxAg9o+HeTcdl4aU0xzmOuYtKJ2oCgMbQ/je+aBt/ostvgly6c
+        Q/mziIRODHfZaAHTMJ0mYTe1Z9Tm+P2mGqv/oNE30I/dF/mVOUEzzP/1L3PKhd4HLjtFh2uYGp/xNqwR
+        nBWP2v0hJgIycBOewKJSxlLLFIvFJypvgUTiL+Ul89qRiHTLAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <metadata name="RoomType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Capacity.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Floor.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="pictureBox5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -219,15 +246,6 @@
         wKp1AAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="RoomType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Capacity.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Floor.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="roomTypeBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1635, 17</value>
   </metadata>

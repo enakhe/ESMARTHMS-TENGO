@@ -95,5 +95,20 @@ namespace ESMART_HMS.Presentation.Controllers
         {
             return _getAllBookingsUseCase.GetRecycledBooking();
         }
+
+        public List<BookingViewModel> SearchBooking(string keyword)
+        {
+            return _getAllBookingsUseCase.SearchBooking(keyword);
+        }
+
+        public void UpdateBooking(Booking booking)
+        {
+            _createBookingUseCase.UpdateBooking(booking);
+        }
+
+        public int GetGusteBooking(string id)
+        {
+            return _createBookingUseCase.GetGusteBooking(id);
+        }
     }
 }

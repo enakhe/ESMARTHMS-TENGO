@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Domain.Entities;
+﻿using Bunifu.UI.WinForms.Extensions;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
@@ -8,6 +9,7 @@ using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Floor;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using ESMART_HMS.Presentation.Sessions;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Rooms
@@ -46,11 +48,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                     txtBuilding.DataSource = allBuilding;
                 }
 
-                if (allFloors != null)
-                {
-                    txtFloor.DataSource = allFloors;
-                }
-
                 if (allAreas != null)
                 {
                     txtArea.DataSource = allAreas;
@@ -75,8 +72,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
 
         private void AddRoomForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Floor' table. You can move, or remove it, as needed.
-            this.floorTableAdapter.Fill(this.eSMART_HMSDBDataSet.Floor);
             // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Area' table. You can move, or remove it, as needed.
             this.areaTableAdapter.Fill(this.eSMART_HMSDBDataSet.Area);
             // TODO: This line of code loads data into the 'eSMART_HMSDBDataSet.Building' table. You can move, or remove it, as needed.
@@ -244,6 +239,15 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             if (addFloorForm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+            }
+        }
+
+        private void txtBuilding_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtBuilding.Text);
+            {
+                var building = _roomController.GetBuildingById(txtBuilding.SelectedValue.ToString());
+                txtFloor.DataSource = building.Floors.ToList();
             }
         }
     }

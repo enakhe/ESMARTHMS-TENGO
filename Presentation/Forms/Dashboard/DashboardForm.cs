@@ -23,10 +23,10 @@ namespace ESMART_HMS.Presentation.Forms
             _roomController = roomController;
             _guestController = guestController;
             InitializeComponent();
+            InitializeFlowPanel();
             floyLayoutPopulate();
             InitializeFlowLayoutPanel();
             PopulateRooms();
-            InitializeStatusIndicator();
 
             InitializeTimer();
         }
@@ -34,7 +34,7 @@ namespace ESMART_HMS.Presentation.Forms
         private void InitializeTimer()
         {
             dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = TimeSpan.FromSeconds(30);
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(15);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
         }
 
@@ -47,6 +47,23 @@ namespace ESMART_HMS.Presentation.Forms
         private void DashboardForm_Load(object sender, EventArgs e)
         {
             dispatcherTimer.Start();
+        }
+
+        public void InitializeFlowPanel()
+        {
+            this.Load += (sender, e) => CenterFlowLayoutPanel(mainFlowLayoutPanel);
+        }
+
+        private void CenterFlowLayoutPanel(FlowLayoutPanel flowLayoutPanel2)
+        {
+
+            int totalWidth = flowLayoutPanel2.Controls.Cast<Control>().Sum(c => c.Width);
+            int totalHeight = flowLayoutPanel2.Controls.Cast<Control>().Sum(c => c.Height);
+
+            int paddingX = (flowLayoutPanel2.ClientSize.Width - totalWidth) / 2;
+            int paddingY = (flowLayoutPanel2.ClientSize.Height - totalHeight) / 2;
+
+            flowLayoutPanel2.Padding = new Padding(paddingX, paddingY, paddingX, paddingY);
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -62,21 +79,13 @@ namespace ESMART_HMS.Presentation.Forms
         public void floyLayoutPopulate()
         {
             this.mainFlowLayoutPanel = new FlowLayoutPanel();
-            this.statusIndicatorPanel = new Panel();
             this.SuspendLayout();
 
-            this.mainFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.mainFlowLayoutPanel.Location = new System.Drawing.Point(12, 241);
+            this.mainFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.mainFlowLayoutPanel.Location = new System.Drawing.Point(100, 241);
             this.mainFlowLayoutPanel.Name = "flowLayoutPanel";
-            this.mainFlowLayoutPanel.BackColor = Color.Transparent;
             this.mainFlowLayoutPanel.Size = new System.Drawing.Size(1600, 828);
             this.mainFlowLayoutPanel.TabIndex = 0;
-
-            this.statusIndicatorPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.statusIndicatorPanel.Location = new System.Drawing.Point(12, 174);
-            this.statusIndicatorPanel.Name = "statusIndicatorPanel";
-            this.statusIndicatorPanel.Size = new System.Drawing.Size(800, 50);
-            this.statusIndicatorPanel.TabIndex = 1;
 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,6 +118,7 @@ namespace ESMART_HMS.Presentation.Forms
                     {
                         Dock = DockStyle.Top,
                         Padding = new Padding(10),
+                        Margin = new Padding(0, 20, 0, 0)
                     };
 
                     FlowLayoutPanel floorFlowLayoutPanel = new FlowLayoutPanel
@@ -116,7 +126,6 @@ namespace ESMART_HMS.Presentation.Forms
                         AutoScroll = true,
                         WrapContents = false,
                         Size = new Size(1500, 200),
-                        BackColor = Color.White,
                         Padding = new Padding(10),
                         Margin = new Padding(10),
                         BorderStyle = BorderStyle.FixedSingle
@@ -204,41 +213,6 @@ namespace ESMART_HMS.Presentation.Forms
                     return Color.Yellow;
                 default:
                     return Color.Red;
-            }
-        }
-
-        private void InitializeStatusIndicator()
-        {
-            var statusColors = new[]
-            {
-            new { Status = "Vacant", Color = Color.Green },
-            new { Status = "Booked", Color = Color.Blue },
-            new { Status = "Reserved", Color = Color.Yellow },
-            new { Status = "Maintenance", Color = Color.Red }
-            };
-
-            int x = 10;
-            foreach (var statusColor in statusColors)
-            {
-                var colorBox = new Panel
-                {
-                    Size = new Size(20, 20),
-                    BackColor = statusColor.Color,
-                    Location = new Point(x, 15)
-                };
-
-                var statusLabel = new Label
-                {
-                    Text = statusColor.Status,
-                    AutoSize = true,
-                    Location = new Point(x + 25, 15),
-                    Font = new Font("Segoe UI", 10)
-                };
-
-                statusIndicatorPanel.Controls.Add(colorBox);
-                statusIndicatorPanel.Controls.Add(statusLabel);
-
-                x += 100;
             }
         }
     }

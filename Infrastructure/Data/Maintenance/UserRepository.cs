@@ -134,5 +134,21 @@ namespace ESMART_HMS.Infrastructure.Data
                 throw new Exception("An error occured when updating user", ex);
             }
         }
+
+        public void DeleteUser(string id)
+        {
+            try
+            {
+                var user = _db.ApplicationUsers.FirstOrDefault(u => u.Id == id);
+                user.IsTrashed = true;
+                _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
     }
 }

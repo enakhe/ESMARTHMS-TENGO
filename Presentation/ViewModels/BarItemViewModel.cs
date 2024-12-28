@@ -14,5 +14,6 @@
         public string SellingPrice { get; set; }
         public string DateCreated { get; set; }
         public string DateModified { get; set; }
+        public string LowStock { get; set; }
     }
 }

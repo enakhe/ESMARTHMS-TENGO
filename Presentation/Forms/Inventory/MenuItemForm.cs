@@ -19,7 +19,6 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
     public partial class MenuItemForm : Form
     {
         private readonly InventoryController _inventoryController;
-        private bool _continueRunning = true;
 
         private readonly ApplicationUserController _applicationUserController;
         private readonly SystemSetupController _systemSetupController;
@@ -30,32 +29,15 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
             _systemSetupController = systemSetupController;
             InitializeComponent();
             ApplyAuthorization();
-            StartBackgroundTask();
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Activated += MenuItemForm_Activated;
             LoadInventoryData();
-        }
-
-        public async void StartBackgroundTask()
-        {
-            await Task.Run(() =>
-            {
-                while (_continueRunning)
-                {
-                    ApplyAuthorization();
-                    Task.Delay(1000).Wait();
-                }
-            });
         }
 
         private void ApplyAuthorization()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(ApplyAuthorization));
-                return;
-            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.ProtectControl(user, btnDelete, roles);
@@ -83,6 +65,7 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
                     inventoryViewModel.DateModified = FormHelper.FormatDateTimeWithSuffix(inventoryViewModel.DateModified);
                 }
                 dgvItem.DataSource = inventoryList;
+                txtCount.Text = inventoryList.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -293,6 +276,11 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+        }
+
+        private void MenuItemForm_Activated(object sender, EventArgs e)
+        {
+            LoadInventoryData();
         }
     }
 }

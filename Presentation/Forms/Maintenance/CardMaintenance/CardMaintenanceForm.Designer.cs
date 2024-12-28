@@ -238,7 +238,6 @@
             // btnReadAuthCard
             // 
             this.btnReadAuthCard.BackColor = System.Drawing.Color.SlateGray;
-            this.btnReadAuthCard.Enabled = false;
             this.btnReadAuthCard.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReadAuthCard.ForeColor = System.Drawing.Color.White;
             this.btnReadAuthCard.Location = new System.Drawing.Point(166, 16);

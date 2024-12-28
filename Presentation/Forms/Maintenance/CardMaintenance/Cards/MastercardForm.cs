@@ -39,14 +39,14 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
 
         public int CheckEncoder()
         {
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             st = LockSDKHeaders.TP_Configuration(locktype);
             return st;
         }
 
         private void MastercardForm_Load(object sender, EventArgs e)
         {
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
             if (checkEncoder != 1)
             {
@@ -61,7 +61,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
                 char[] card_snr = new char[1000];
 
                 string validTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                string endTime = DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss");
+                string endTime = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss");
                 int cardFlg = 0;
 
                 CARD_INFO cardInfo = new CARD_INFO();
@@ -88,7 +88,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
                     int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
                 }
 
-                st = LockSDKMethods.MakeMasterCard(card_snr, validTime, endTime, 1, 0);
+                st = LockSDKMethods.MakeMasterCard(card_snr, validTime, endTime, CARD_FLAGS.CF_CHECK_TIMESTAMP, 0);
 
                 if (st == (int)ERROR_TYPE.OPR_OK)
                 {

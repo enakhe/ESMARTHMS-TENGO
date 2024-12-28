@@ -2,6 +2,7 @@
 using ESMART_HMS.Application.UseCases.Transaction;
 using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.ViewModels;
+using System;
 using System.Collections.Generic;
 
 namespace ESMART_HMS.Presentation.Controllers
@@ -46,6 +47,16 @@ namespace ESMART_HMS.Presentation.Controllers
         public List<decimal> GetTotalAmount()
         {
             return _getTotalAmountUseCase.Execute();
+        }
+
+        public List<TransactionViewModel> GetByFilter(string status, DateTime fromTime, DateTime endTime)
+        {
+            return _getByServiceIdAndStatus.GetByFilter(status, fromTime, endTime); 
+        }
+
+        public List<TransactionViewModel> GetByFilterDate(DateTime fromTime, DateTime endTime)
+        {
+            return _getByServiceIdAndStatus.GetByFilterDate(fromTime, endTime);
         }
     }
 }

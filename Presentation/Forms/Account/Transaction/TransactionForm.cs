@@ -21,12 +21,13 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Activated += TransactionForm_Activated;
         }
 
         private void InitializeTimer()
         {
             dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(10);
             dispatcherTimer.Tick += DispatcherTimer_Tick;
         }
 
@@ -44,6 +45,11 @@ namespace ESMART_HMS.Presentation.Forms.Transaction
             splitContainer21.BackColor = splitContainer21.Panel1.BackColor;
             dgvTransaction.Font = new System.Drawing.Font("Segoe UI", 10);
             dgvTransaction.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
+        }
+
+        private void TransactionForm_Activated(object sender, EventArgs e)
+        {
+            LoadData();
         }
 
         public void LoadData()

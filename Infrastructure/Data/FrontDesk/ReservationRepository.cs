@@ -2,9 +2,12 @@
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Domain.Utils;
+using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,6 +16,7 @@ namespace ESMART_HMS.Infrastructure.Data
     public class ReservationRepository : IReservationRepository
     {
         private readonly ESMART_HMSDBEntities _db;
+        private string _connectionString = "data source=localhost;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True";
         private readonly FormHelper _formHelper;
 
         public ReservationRepository(ESMART_HMSDBEntities db, FormHelper formHelper)
@@ -41,7 +45,8 @@ namespace ESMART_HMS.Infrastructure.Data
         {
             try
             {
-                var allReservation = from reservation in _db.Reservations.Where(r => r.IsTrashed == false && r.Status != RoomStatusEnum.CheckedIn.ToString())
+            var reservations = _db.Reservations.Where(r => r.IsTrashed == false && r.Status != RoomStatusEnum.CheckedIn.ToString());
+                var allReservation = from reservation in reservations
                                      select new ReservationViewModel
                                      {
                                          Id = reservation.Id,
@@ -69,6 +74,49 @@ namespace ESMART_HMS.Infrastructure.Data
                                             MessageBoxIcon.Error);
             }
             return null;
+        }
+
+        public void UpdateRoomStatuses()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                // SQL query to update room status to 'vacant' where the check-out date has passed
+                string updateVacantQuery = @"
+                UPDATE Room
+                SET Status = 'Vacant'
+                WHERE RoomId IN (
+                    SELECT RoomId
+                    FROM Reservation
+                    WHERE CheckOutDate < @CurrentDate
+                    AND Status != 'vacant'
+                )";
+
+                // SQL query to update room status to 'reserved' where the check-in date has passed but check-out date is still in the future
+                string updateReservedQuery = @"
+                UPDATE Room
+                SET Status = 'Reserved'
+                WHERE RoomId IN (
+                    SELECT RoomId
+                    FROM Reservation
+                    WHERE CheckInDate < @CurrentDate
+                    AND CheckOutDate > @CurrentDate
+                    AND Status != 'Reserved'
+                )";
+
+                using (var command = new SqlCommand(updateVacantQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@CurrentDate", DateTime.Now);
+                    command.ExecuteNonQuery();
+                }
+
+                using (var command = new SqlCommand(updateReservedQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@CurrentDate", DateTime.Now);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<ReservationViewModel> GetReservationByPaymentStatus(string roomTypeId, DateTime fromTime, DateTime endTime, string paymentStatus)

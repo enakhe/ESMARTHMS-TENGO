@@ -6,6 +6,7 @@ using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Store.BarStore
@@ -23,6 +24,7 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Activated += BarStoreForm_Activated;
         }
 
         private void BarStoreForm_Load(object sender, EventArgs e)
@@ -51,6 +53,12 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
 
                         items.DateCreated = FormHelper.FormatDateTimeWithSuffix(items.DateCreated);
                         items.DateModified = FormHelper.FormatDateTimeWithSuffix(items.DateModified);
+
+                        if (int.Parse(items.Quantity) <= int.Parse(items.LowStock))
+                        {
+                            quantityDataGridViewTextBoxColumn.DefaultCellStyle.BackColor = Color.Red;
+                            quantityDataGridViewTextBoxColumn.DefaultCellStyle.ForeColor = Color.White;
+                        }
                     }
                     dgvBarStore.DataSource = allBarItems;
                     txtCount.Text = allBarItems.Count.ToString();
@@ -60,6 +68,34 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
             {
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
+            }
+        }
+
+        private void DataGridViewRooms_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvBarStore.Columns[e.ColumnIndex].Name == "quantityDataGridViewTextBoxColumn")
+            {
+                var cell = dgvBarStore.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null && cell.Value.ToString() == "Vacant")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Green;
+                    cell.Style.ForeColor = System.Drawing.Color.White;
+                }
+                else if (cell.Value != null && cell.Value.ToString() == "Reserved")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Yellow;
+                    cell.Style.ForeColor = System.Drawing.Color.Black;
+                }
+                else if (cell.Value != null && cell.Value.ToString() == "CheckedIn")
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Blue;
+                    cell.Style.ForeColor = System.Drawing.Color.White;
+                }
+                else
+                {
+                    cell.Style.BackColor = System.Drawing.Color.Red;
+                    cell.Style.ForeColor = System.Drawing.Color.Black;
+                }
             }
         }
 
@@ -147,6 +183,11 @@ namespace ESMART_HMS.Presentation.Forms.Store.BarStore
             {
                 LoadData();
             }
+        }
+
+        private void BarStoreForm_Activated(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

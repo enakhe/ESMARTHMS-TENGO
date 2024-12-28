@@ -569,6 +569,12 @@
     <Compile Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.Designer.cs">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Booking\EditBookingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\FrontDesk\Booking\EditBookingForm.Designer.cs">
+      <DependentUpon>EditBookingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\FrontDesk\Room\RoomStatusForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -801,6 +807,18 @@
     <Compile Include="Presentation\Forms\Inventory\MenuItemForm.Designer.cs">
       <DependentUpon>MenuItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Inventory\Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Inventory\Order.Designer.cs">
+      <DependentUpon>Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\Inventory\Store\StoreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Inventory\Store\StoreForm.Designer.cs">
+      <DependentUpon>StoreForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\License\InitializeDatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -957,6 +975,12 @@
     <Compile Include="Presentation\Forms\Inventory\Restaurant\RestaurantForm.Designer.cs">
       <DependentUpon>RestaurantForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Report\TransactionReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Report\TransactionReport.Designer.cs">
+      <DependentUpon>TransactionReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\SplashScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -993,6 +1017,7 @@
     <Compile Include="Presentation\ViewModels\BankAccountViewModel.cs" />
     <Compile Include="Presentation\ViewModels\BarItemViewModel.cs" />
     <Compile Include="Presentation\ViewModels\BookingViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\FloorViewModel.cs" />
     <Compile Include="Presentation\ViewModels\GuestViewModel.cs" />
     <Compile Include="Infrastructure\Services\DatabaseService.cs" />
     <Compile Include="Presentation\Forms\LoginForm.cs">
@@ -1006,6 +1031,7 @@
     <Compile Include="Presentation\ViewModels\InventoryViewModel.cs" />
     <Compile Include="Presentation\ViewModels\IssueCardViewModel.cs" />
     <Compile Include="Presentation\ViewModels\MenuItemViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\OrderViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ReservationViewModel.cs" />
     <Compile Include="Presentation\ViewModels\RoleViewModel.cs" />
     <Compile Include="Presentation\ViewModels\RoomTypeViewModel.cs" />
@@ -1018,9 +1044,13 @@
     <Compile Include="Infrastructure\Services\AuthService.cs" />
     <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\AddBankAccountForm.resx">
       <DependentUpon>AddBankAccountForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.resx">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\FrontDesk\Booking\EditBookingForm.resx">
+      <DependentUpon>EditBookingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\RoomStatusForm.resx">
       <DependentUpon>RoomStatusForm.cs</DependentUpon>
@@ -1066,6 +1096,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\Area\AddAreaForm.resx">
       <DependentUpon>AddAreaForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Room\Area\EditAreaForm.resx">
       <DependentUpon>EditAreaForm.cs</DependentUpon>
@@ -1099,6 +1130,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Inventory\MenuItemForm.resx">
       <DependentUpon>MenuItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Inventory\Order.resx">
+      <DependentUpon>Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Inventory\Store\StoreForm.resx">
+      <DependentUpon>StoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\License\InitializeDatabaseForm.resx">
       <DependentUpon>InitializeDatabaseForm.cs</DependentUpon>
@@ -1202,6 +1239,9 @@
     <EmbeddedResource Include="Presentation\Forms\Inventory\Restaurant\RestaurantForm.resx">
       <DependentUpon>RestaurantForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Report\TransactionReport.resx">
+      <DependentUpon>TransactionReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1232,6 +1272,9 @@
     <None Include="DLL\cardRecord.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="DLL\d12c.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DLL\DataBase.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1245,6 +1288,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DLL\LockSDK.lib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DLL\proRFL.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="DLL\RoomData.ini">
@@ -1286,6 +1332,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="DLL\d12.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\d12c.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\D12F.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DLL\DataReader.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1316,6 +1371,15 @@
     <Content Include="DLL\MF0SIM.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DLL\MFC42D.DLL">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\MSVCRTD.DLL">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\proRFL.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DLL\PubFuns.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1329,6 +1393,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DLL\Rf_Rw.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DLL\V9RF.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />

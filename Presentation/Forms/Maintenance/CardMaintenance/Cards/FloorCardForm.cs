@@ -67,7 +67,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
                 List<Floor> allFloor = _roomController.GetFloorsByBuilding(comboBuilding.SelectedValue.ToString());
                 if (allFloor != null)
                 {
-                    foreach (Floor floor in allFloor)
+                    foreach (Floor floor in allFloor.OrderBy(f => f.FloorNo))
                     {
                         listFloors.Items.Add(floor.FloorNo);
                     }
@@ -134,20 +134,17 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
             return result;
         }
 
-        public string GetFirstAndLastSelectedCodes(CheckedListBox checkedListBox)
+        public string GetSelectedCodes(CheckedListBox checkedListBox)
         {
             List<string> codes = new List<string>();
-
             foreach (var item in checkedListBox.CheckedItems)
             {
-                string itemString = item.ToString();
-                codes.Add(itemString);
+                codes.Add(item.ToString());
             }
 
             if (codes.Count > 0)
             {
-                var last = int.Parse(codes.Last()) + 1;
-                return $"{codes.First()}.{codes.Last()}.{last}";
+                return string.Join(".", codes);
             }
             else
             {
@@ -174,7 +171,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
 
                 int cardFlg = 0;
                 int buildingList = int.Parse(building.BuildingNo);
-                string floorList = GetFirstAndLastSelectedCodes(listFloors);
+                string floorList = GetSelectedCodes(listFloors);
 
                 cardFlg += passageMode.Checked ? 2 : 0;
                 cardFlg += openLocks.Checked ? 1 : 0;
@@ -192,7 +189,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance.Cards
                     return;
                 }
 
-                st = LockSDKMethods.MakeFloorCard(card_snr, buildingList, floorList, selectedTime, selectedToTime, validTime, endTime, 1, 0);
+                st = LockSDKMethods.MakeFloorCard(card_snr, buildingList, floorList, DateTime.Now.ToString("HH:mm"), DateTime.Now.AddMinutes(30).ToString("HH:mm"), validTime, endTime, CARD_FLAGS.CF_CHECK_TIMESTAMP, 0);
 
                 if (st == (int)ERROR_TYPE.OPR_OK)
                 {

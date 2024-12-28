@@ -195,7 +195,7 @@
             this.panel4.Controls.Add(this.splitContainer18);
             this.panel4.Location = new System.Drawing.Point(33, 23);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(300, 155);
+            this.panel4.Size = new System.Drawing.Size(626, 155);
             this.panel4.TabIndex = 10;
             // 
             // splitContainer18
@@ -211,8 +211,8 @@
             // splitContainer18.Panel2
             // 
             this.splitContainer18.Panel2.Controls.Add(this.txtCount);
-            this.splitContainer18.Size = new System.Drawing.Size(300, 155);
-            this.splitContainer18.SplitterDistance = 207;
+            this.splitContainer18.Size = new System.Drawing.Size(626, 155);
+            this.splitContainer18.SplitterDistance = 308;
             this.splitContainer18.TabIndex = 0;
             // 
             // splitContainer19
@@ -229,7 +229,7 @@
             // splitContainer19.Panel2
             // 
             this.splitContainer19.Panel2.Controls.Add(this.pictureBox7);
-            this.splitContainer19.Size = new System.Drawing.Size(207, 155);
+            this.splitContainer19.Size = new System.Drawing.Size(308, 155);
             this.splitContainer19.SplitterDistance = 39;
             this.splitContainer19.TabIndex = 0;
             // 
@@ -250,7 +250,7 @@
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(0, 0);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(207, 112);
+            this.pictureBox7.Size = new System.Drawing.Size(308, 112);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox7.TabIndex = 2;
             this.pictureBox7.TabStop = false;
@@ -262,7 +262,7 @@
             this.txtCount.ForeColor = System.Drawing.Color.White;
             this.txtCount.Location = new System.Drawing.Point(0, 0);
             this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(89, 155);
+            this.txtCount.Size = new System.Drawing.Size(314, 155);
             this.txtCount.TabIndex = 3;
             this.txtCount.Text = "0";
             this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

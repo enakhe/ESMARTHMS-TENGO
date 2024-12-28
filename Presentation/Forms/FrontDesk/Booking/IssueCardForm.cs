@@ -9,7 +9,9 @@ using ESMART_HMS.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
@@ -41,12 +43,6 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
         {
             LoadData();
             dispatcherTimer.Start();
-            Int16 locktype = 5;
-            int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
-            if (checkEncoder != 1)
-            {
-                LockSDKMethods.CheckErr(checkEncoder);
-            }
         }
 
         private void LoadData()
@@ -88,31 +84,110 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
 
         private void btnRecycle_Click(object sender, EventArgs e)
         {
-            StringBuilder card_snr = new StringBuilder();
-            st = LockSDKHeaders.TP_CancelCard(card_snr);
-            if (st == 1)
+            //StringBuilder card_snr = new StringBuilder();
+            //st = LockSDKHeaders.TP_CancelCard(card_snr);
+            //if (st == 1)
+            //{
+            //    MessageBox.Show("Successfully recycled card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            byte[] carddata = new byte[128];
+
+            int i, st;
+            string datastr = "";
+            byte[] cardbuf = new byte[128];
+            int dlscoid;
+
+            dlscoid = 66245;
+            st = LockSDKHeaders.CardEraseA(dlscoid, cardbuf);
+            Thread.Sleep(400);
+
+            if (st == 0)
             {
-                MessageBox.Show("Successfully recycled card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LockSDKHeaders.Buzzer(50);
+                for (i = 0; i < 38; i++)
+                    datastr = datastr + ((char)carddata[i]).ToString();
+
+                MessageBox.Show("Card successfully deactivated!");
             }
+            else
+            {
+                MessageBox.Show("Failed to deactivate card, return value: " + st.ToString());
+            }
+        }
+
+        public string GetAuthCardFromDB()
+        {
+            Domain.Entities.AuthorizationCard AuthCard = _cardController.GetAuthCardByComputer(computerName);
+            if (AuthCard != null)
+            {
+                return AuthCard.AuthId;
+            }
+            return null;
         }
 
         private async void btnIssueCard_Click(object sender, EventArgs e)
         {
             //Issue card
-            char[] card_snr = new char[100];
+            //char[] card_snr = new char[100];
             Domain.Entities.Booking booking = _bookingController.GetbookingById(_id);
 
-            string roomno = $"{booking.Room.Building.BuildingNo}.{booking.Room.Floor.FloorNo}.{booking.Room.RoomNo}";
+            //string roomno = $"{booking.Room.Building.BuildingNo}.{booking.Room.Floor.FloorNo}.{booking.Room.RoomNo}";
 
-            string intime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            String outtime = txtOutTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            CARD_FLAGS iflags = CARD_FLAGS.CF_CHECK_TIMESTAMP;
+            //string intime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            //String outtime = txtOutTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            //CARD_FLAGS iflags = CARD_FLAGS.CF_CHECK_TIMESTAMP;
 
-            if (LockSDKHeaders.PreparedIssue(card_snr) == false)
+            //if (LockSDKHeaders.PreparedIssue(card_snr) == false)
+            //    return;
+            //st = LockSDKMethods.MakeGuestCard(card_snr, roomno, booking.Room.Area.AreaNo, "", intime, outtime, iflags);
+
+            byte[] carddata = new byte[128];
+            int i, st;
+            int dlscoid;
+            byte cardno;
+            byte dai;
+            byte llock;
+            string datastr = "";
+            string lockstr, EDatestr;
+            byte[] cardbuf = new byte[128];
+            char[] lockno = new char[6];
+            char[] EDate = new char[10];
+
+            lockstr = $"{booking.Room.Building.BuildingNo.Substring(1)}0{booking.Room.Floor.FloorNo}{booking.Room.RoomNo.Substring(1)}";
+            if (lockstr.Length != 6)
+            {
+                MessageBox.Show("Lock number must be 6 digits.");
                 return;
-            st = LockSDKMethods.MakeGuestCard(card_snr, roomno, booking.Room.Area.AreaNo, "", intime, outtime, iflags);
+            }
+            for (i = 0; i < 6; i++)
+                lockno[i] = Convert.ToChar(lockstr.Substring(i, 1));
 
-            if (st == (int)ERROR_TYPE.OPR_OK)
+            EDatestr = txtOutTime.Value.ToString("yyMMdd") + txtOutTime.Value.ToString("HHmm"); // Valid time
+            for (i = 0; i < 10; i++)
+                EDate[i] = Convert.ToChar(EDatestr.Substring(i, 1));
+
+            dlscoid = 66245; // Hotel identifier
+            cardno = 0;   // Card number (0..15 cycle)
+            dai = 1;     // Incremental flag (0..255)
+            llock = (byte)1;
+
+            st = LockSDKHeaders.WriteGuestCardA(dlscoid, cardno, dai, llock, EDate, lockno, cardbuf);
+            Thread.Sleep(400); // Recommended 400ms delay for hardware response
+            if (st == 0)
+            {
+                LockSDKHeaders.Buzzer(50);
+                for (i = 0; i < 32; i++)
+                {
+                    datastr = datastr + ((char)carddata[i]).ToString();
+                }
+                MessageBox.Show("Guest card created successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Failed to create guest card, return value: " + st.ToString());
+            }
+
+            if (st == 0)
             {
                 CARD_INFO cardInfo = new CARD_INFO();
                 byte[] cbuf = new byte[10000];
@@ -141,6 +216,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.booking
                 string guestCardString = $"Id = {guestCard.Id}\n" +
                          $"Card No = {guestCard.CardNo}\n" +
                          $"Card Type = {guestCard.CardType}\n" +
+                         $"Room = {booking.Room.RoomNo}\n" +
                          $"Issue Time = {guestCard.IssueTime}\n" +
                          $"Refund Time = {guestCard.RefundTime}\n" +
                          $"Issued By = {guestCard.IssuedBy}\n" +

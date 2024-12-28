@@ -153,8 +153,6 @@
             // openLocks
             // 
             this.openLocks.AutoSize = true;
-            this.openLocks.Checked = true;
-            this.openLocks.CheckState = System.Windows.Forms.CheckState.Checked;
             this.openLocks.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openLocks.Location = new System.Drawing.Point(33, 191);
             this.openLocks.Name = "openLocks";

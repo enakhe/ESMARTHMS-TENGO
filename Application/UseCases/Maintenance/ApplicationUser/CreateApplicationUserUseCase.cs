@@ -30,5 +30,10 @@ namespace ESMART_HMS.Application.UseCases.ApplicationUser
         {
             return _userRepository.VerifyPassword(enteredPassword, storedHash);
         }
+
+        public void DeleteUser(string id)
+        {
+            _userRepository.DeleteUser(id);
+        }
     }
 }

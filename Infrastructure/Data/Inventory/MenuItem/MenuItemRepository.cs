@@ -52,6 +52,7 @@ namespace ESMART_HMS.Infrastructure.Data
                                       CreatedBy = menuItem.ApplicationUser.FullName,
                                       DateCreated = menuItem.DateCreated.ToString(),
                                       DateModified = menuItem.DateModified.ToString(),
+                                      LowStock = menuItem.LowStockThreshold.ToString()
                                   };
                 return allBarItems.ToList();
             }

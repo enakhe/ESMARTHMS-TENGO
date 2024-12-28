@@ -63,6 +63,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnBook = new System.Windows.Forms.Button();
@@ -281,7 +282,7 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer3.Size = new System.Drawing.Size(1436, 61);
-            this.splitContainer3.SplitterDistance = 666;
+            this.splitContainer3.SplitterDistance = 709;
             this.splitContainer3.TabIndex = 0;
             // 
             // flowLayoutPanel3
@@ -291,12 +292,13 @@
             this.flowLayoutPanel3.Controls.Add(this.txtSearch);
             this.flowLayoutPanel3.Controls.Add(this.label8);
             this.flowLayoutPanel3.Controls.Add(this.comboBox1);
+            this.flowLayoutPanel3.Controls.Add(this.btnRefresh);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(20, 15, 5, 20);
             this.flowLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(666, 61);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(709, 61);
             this.flowLayoutPanel3.TabIndex = 2;
             // 
             // label1
@@ -343,6 +345,20 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(210, 31);
             this.comboBox1.TabIndex = 3;
+            this.comboBox1.Visible = false;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRefresh.Location = new System.Drawing.Point(593, 18);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Padding = new System.Windows.Forms.Padding(2);
+            this.btnRefresh.Size = new System.Drawing.Size(86, 31);
+            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -355,7 +371,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(20, 5, 5, 20);
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(766, 61);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(723, 61);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // btnDelete
@@ -363,7 +379,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(595, 8);
+            this.btnDelete.Location = new System.Drawing.Point(552, 8);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(143, 46);
             this.btnDelete.TabIndex = 0;
@@ -376,7 +392,7 @@
             this.btnBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnBook.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBook.ForeColor = System.Drawing.Color.White;
-            this.btnBook.Location = new System.Drawing.Point(446, 8);
+            this.btnBook.Location = new System.Drawing.Point(403, 8);
             this.btnBook.Name = "btnBook";
             this.btnBook.Size = new System.Drawing.Size(143, 46);
             this.btnBook.TabIndex = 2;
@@ -389,7 +405,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(121)))), ((int)(((byte)(247)))));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(297, 8);
+            this.btnAdd.Location = new System.Drawing.Point(254, 8);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(143, 46);
             this.btnAdd.TabIndex = 0;
@@ -705,5 +721,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

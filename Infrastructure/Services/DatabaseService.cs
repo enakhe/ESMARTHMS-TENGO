@@ -8,6 +8,7 @@ namespace ESMART_HMS.Infrastructure.Services
 {
     public static class DatabaseService
     {
+        //private static readonly string connectionString = @"Server=192.168.1.211,1433;Database=ESMART_HMSDB;User Id=ESMART;Password=ESMART123;Trusted_Connection=False;MultipleActiveResultSets=True;";
         private static readonly string connectionString = @"data source=localhost;integrated security=True;trustservercertificate=True;MultipleActiveResultSets=True";
 
 
@@ -278,6 +279,7 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[SellingPrice][decimal](10, 2) NULL," +
                 "[Quantity][int] NOT NULL," +
                 "[Type][nvarchar](450) NOT NULL," +
+                "[LowStockThreshold][int] NOT NULL," +
                 "[Measurement][nvarchar](450) NOT NULL," +
                 "[CreatedBy][nvarchar](450) NOT NULL," +
                 "[IsTrashed][bit] NOT NULL," +

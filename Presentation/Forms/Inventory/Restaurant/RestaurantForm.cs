@@ -1,8 +1,6 @@
 ﻿using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Restaurant;
-
-//using ESMART_HMS.Presentation.Forms.Bar.BarStore;
 using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,9 +19,16 @@ namespace ESMART_HMS.Presentation.Forms.Restaurant
             _applicationUserController = applicationUserController;
             this.DoubleBuffered = true;
             InitializeComponent();
+            LoadData();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Activated += RestaurantForm_Activated;
+        }
+
+        private void RestaurantForm_Activated(object sender, EventArgs e)
+        {
+            LoadData();
         }
 
         private void RestaurantForm_Load(object sender, EventArgs e)

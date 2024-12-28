@@ -2,6 +2,8 @@
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -13,15 +15,15 @@ namespace ESMART_HMS.Domain.Utils
 {
     public class FormHelper
     {
-        public static decimal GetDateInterval(DateTime startDate, DateTime endDate)
+        public static double GetDateInterval(DateTime startDate, DateTime endDate)
         {
             TimeSpan difference = endDate - startDate;
-            return Math.Abs(difference.Days);
+            return Math.Ceiling(difference.TotalDays);
         }
 
         public static decimal GetPriceByRateAndTime(DateTime startDate, DateTime endDate, decimal rate)
         {
-            decimal timeSpan = GetDateInterval(startDate, endDate);
+            decimal timeSpan = (decimal)GetDateInterval(startDate, endDate);
             return timeSpan * rate;
         }
 
@@ -188,11 +190,17 @@ namespace ESMART_HMS.Domain.Utils
 
         public static string FormatDateTimeWithSuffix(string dateTimeString)
         {
-            DateTime dateTime = DateTime.ParseExact(dateTimeString, "yyyy-MM-dd HH:mm:ss.FFFFFFF", CultureInfo.InvariantCulture);
+            try
+            {
+                DateTime dateTime = DateTime.ParseExact(dateTimeString, "yyyy-MM-dd HH:mm:ss.FFFFFFF", CultureInfo.InvariantCulture);
+                string formattedDate = dateTime.ToString("MMM d, yyyy h:mm tt", CultureInfo.InvariantCulture);
 
-            string formattedDate = dateTime.ToString("MMM d, yyyy h:mm tt", CultureInfo.InvariantCulture);
-
-            return formattedDate;
+                return formattedDate;
+            }
+            catch (FormatException)
+            {
+                return "Invalid date format";
+            }
         }
     }
 }

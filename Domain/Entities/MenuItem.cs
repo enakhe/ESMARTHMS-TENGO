@@ -36,6 +36,7 @@ namespace ESMART_HMS.Domain.Entities
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
         public string Section { get; set; }
+        public int LowStockThreshold { get; set; }
     
         public virtual ApplicationUser ApplicationUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

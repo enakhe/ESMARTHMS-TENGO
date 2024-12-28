@@ -22,7 +22,7 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
         {
             try
             {
-                bool isNull = FormHelper.AreAnyNullOrEmpty(txtBarcode.Text, txtCategory.Text, txtCostPrice.Text, txtItemType.Text, txtLowStockThreshold.Text, txtMeasurement.Text, txtName.Text, txtQuantity.Text, txtSection.Text, txtSellingPrice.Text);
+                bool isNull = FormHelper.AreAnyNullOrEmpty(txtCategory.Text, txtCostPrice.Text, txtLowStockThreshold.Text, txtItemType.Text, txtMeasurement.Text, txtName.Text, txtQuantity.Text, txtSection.Text, txtSellingPrice.Text);
                 if (isNull == false)
                 {
                     Random random = new Random();
@@ -31,7 +31,7 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
 
                         Id = Guid.NewGuid().ToString(),
                         MenuItemId = "MNU" + random.Next(1000, 5000),
-                        Barcode = txtBarcode.Text,
+                        Barcode = "**********",
                         ItemName = txtName.Text,
                         Category = txtCategory.Text,
                         CostPrice = decimal.Parse(txtCostPrice.Text),
@@ -41,6 +41,7 @@ namespace ESMART_HMS.Presentation.Forms.Inventory
                         Measurement = txtMeasurement.Text,
                         Section = txtSection.Text,
                         DateCreated = DateTime.Now,
+                        LowStockThreshold = int.Parse(txtLowStockThreshold.Text),
                         DateModified = DateTime.Now,
                         CreatedBy = AuthSession.CurrentUser.Id,
                         ApplicationUser = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id),

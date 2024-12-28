@@ -47,6 +47,10 @@ namespace ESMART_HMS.Presentation.Controllers.Inventory
         {
             _inventoryUseCases.DeleteInventory(id);
         }
-    }
 
+        public List<MenuItemViewModel> GetStoreItems()
+        {
+            return _inventoryUseCases.GetStoreItems();
+        }
+    }
 }

@@ -3,6 +3,8 @@ using ESMART_HMS.Presentation.Controllers;
 using System;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -11,11 +13,13 @@ namespace ESMART_HMS.Presentation.Forms.Guests
     public partial class ViewGuestForm : Form
     {
         private readonly GuestController _customerController;
+        private readonly bookingController _bookingController;
         private readonly string _Id;
-        public ViewGuestForm(string Id, GuestController customerViewModel)
+        public ViewGuestForm(string Id, GuestController customerViewModel, bookingController bookingController)
         {
             InitializeComponent();
             _customerController = customerViewModel;
+            _bookingController = bookingController;
             _Id = Id;
             LoadGuestData();
             CenterLabel();
@@ -40,6 +44,21 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                     txtAddress.Text = $"{customer.Street}, {customer.City}, {customer.State}, {customer.Country}";
                     txtCompany.Text = customer.Company;
                     txtPhoneNumber.Text = customer.PhoneNumber;
+                    if (customer.IdentificationDocumentFront != null)
+                    {
+                        pictureBox2.Image = Image.FromStream(new MemoryStream(customer?.IdentificationDocumentFront));
+                    }
+
+                    if (customer.IdentificationDocumentBack != null)
+                    {
+                        pictureBox3.Image = Image.FromStream(new MemoryStream(customer?.IdentificationDocumentBack));
+                    }
+
+                    if (customer.GuestImage != null)
+                    {
+                        pictureBox1.Image = Image.FromStream(new MemoryStream(customer?.GuestImage));
+                    }
+                    txtTotalBooking.Text = $"Total number of booking: {_bookingController.GetGusteBooking(customer.Id)}";
                 }
             }
             catch (Exception ex)

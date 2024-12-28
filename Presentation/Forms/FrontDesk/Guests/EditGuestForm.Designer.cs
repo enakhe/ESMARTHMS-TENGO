@@ -426,6 +426,7 @@
             this.btnCaptureBack.TabIndex = 37;
             this.btnCaptureBack.Text = "Capture";
             this.btnCaptureBack.UseVisualStyleBackColor = true;
+            this.btnCaptureBack.Click += new System.EventHandler(this.btnCaptureBack_Click);
             // 
             // btnGuestImage
             // 
@@ -439,6 +440,7 @@
             this.btnGuestImage.TabIndex = 38;
             this.btnGuestImage.Text = "Capture";
             this.btnGuestImage.UseVisualStyleBackColor = true;
+            this.btnGuestImage.Click += new System.EventHandler(this.btnGuestImage_Click);
             // 
             // btnCaptureFront
             // 
@@ -452,6 +454,7 @@
             this.btnCaptureFront.TabIndex = 39;
             this.btnCaptureFront.Text = "Capture";
             this.btnCaptureFront.UseVisualStyleBackColor = true;
+            this.btnCaptureFront.Click += new System.EventHandler(this.btnCaptureFront_Click);
             // 
             // pictureBoxBack
             // 

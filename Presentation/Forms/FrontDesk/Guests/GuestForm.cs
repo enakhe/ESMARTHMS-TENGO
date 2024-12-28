@@ -19,44 +19,28 @@ namespace ESMART_HMS.Presentation.Forms.Guests
         private readonly GuestController _customerController;
         private PrintDocument printDocument1 = new PrintDocument();
         private string documentTitle = "Guest List";
-        private bool _continueRunning = true;
         private readonly ApplicationUserController _applicationUserController;
         private readonly SystemSetupController _systemSetupController;
+        private readonly bookingController _bookingController;
 
-        public GuestForm(GuestController customerViewModel, ApplicationUserController applicationUserController, SystemSetupController systemSetupController)
+        public GuestForm(GuestController customerViewModel, ApplicationUserController applicationUserController, SystemSetupController systemSetupController, bookingController bookingController)
         {
             _customerController = customerViewModel;
             _applicationUserController = applicationUserController;
             _systemSetupController = systemSetupController;
+            _bookingController = bookingController;
             InitializeComponent();
             ApplyAuthorization();
-            StartBackgroundTask();
             LoadData();
             printDocument1.DefaultPageSettings.Landscape = true;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.DoubleBuffered = true;
-        }
-
-        public async void StartBackgroundTask()
-        {
-            await Task.Run(() =>
-            {
-                while (_continueRunning)
-                {
-                    ApplyAuthorization();
-                    Task.Delay(1000).Wait();
-                }
-            });
+            this.Activated += GuestForm_Activated;
         }
 
         private void ApplyAuthorization()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(ApplyAuthorization));
-                return;
-            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.ProtectControl(user, btnDeleteG, roles);
@@ -64,6 +48,11 @@ namespace ESMART_HMS.Presentation.Forms.Guests
 
         public void LoadData()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(LoadData));
+                return;
+            }
             dgvGuests.AutoGenerateColumns = false;
             try
             {
@@ -71,7 +60,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 if (allGuests != null)
                 {
                     dgvGuests.DataSource = allGuests;
-                    txtGuestCount.Text = allGuests.Count.ToString();
+                    txtGuestCount2.Text = allGuests.Count.ToString();
                 }
             }
             catch (Exception ex)
@@ -155,7 +144,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                     var row = dgvGuests.SelectedRows[0];
                     string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
 
-                    using (ViewGuestForm viewGuestForm = new ViewGuestForm(id, _customerController))
+                    using (ViewGuestForm viewGuestForm = new ViewGuestForm(id, _customerController, _bookingController))
                     {
                         if (viewGuestForm.ShowDialog() == DialogResult.OK)
                         {
@@ -239,6 +228,33 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             splitContainer5.BackColor = splitContainer5.Panel1.BackColor;
             dgvGuests.Font = new System.Drawing.Font("Segoe UI", 10);
             dgvGuests.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(textBox1.Text);
+            if (isNull == false)
+            {
+                var searchedGuest = _customerController.SearchGuest(textBox1.Text);
+                if (searchedGuest != null )
+                {
+                    dgvGuests.DataSource = searchedGuest;
+                }
+            }
+            else
+            {
+                LoadData();
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void GuestForm_Activated(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

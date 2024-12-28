@@ -32,6 +32,7 @@ using System.Windows.Forms;
 using System.Windows.Threading;
 using ESMART_HMS.Presentation.Forms.FrontDesk.Room.Building;
 using ESMART_HMS.Presentation.Forms.Maintenance.Profile;
+using ESMART_HMS.Presentation.Forms.Inventory.Store;
 
 namespace ESMART_HMS.Presentation.Forms
 {
@@ -46,6 +47,7 @@ namespace ESMART_HMS.Presentation.Forms
         TransactionForm transactionForm;
         BarStoreForm barStoreForm;
         RestaurantForm restaurantForm;
+        Presentation.Forms.Inventory.Order orderForm;
         SystemSetupFrom systemSetupFrom;
         RoomSettingForm roomSettingForm;
         CardMaintenanceForm cardMaintenanceForm;
@@ -56,6 +58,8 @@ namespace ESMART_HMS.Presentation.Forms
         UserForm userForm;
         RecycledItemForm recycledItemForm;
         ProfileForm profileForm;
+        TransactionReport transactionReport;
+        StoreForm storeForm; 
 
         private readonly GuestController _customerController;
         private readonly RoomController _roomController;
@@ -88,12 +92,15 @@ namespace ESMART_HMS.Presentation.Forms
             InitializeComponent();
             ApplyAuthorization();
             ApplyAuthorization2();
+            ApplyAuthorization3();
+            ApplyAuthorization4();
+            ApplyAuthorization5();
             RoomStatus();
-            StartBackgroundTask();
 
             this.BackgroundImage = _bgImage;
             this.BackgroundImageLayout = ImageLayout.Stretch;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            RoomStatus();
             this.DoubleBuffered = true;
             this.IsMdiContainer = true;
             this.BackColor = Color.White;
@@ -102,30 +109,48 @@ namespace ESMART_HMS.Presentation.Forms
 
         private void ApplyAuthorization()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(ApplyAuthorization));
-                return;
-            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.Protect(user, systemSetupToolStripMenuItem, roles);
             AuthorizationMiddleware.Protect(user, recycleBinToolStripMenuItem, roles);
-            AuthorizationMiddleware.Protect(user, profileSettingToolStripMenuItem, roles);
         }
         private void ApplyAuthorization2()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(ApplyAuthorization2));
-                return;
-            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.Protect(user, roomSettingToolStripMenuItem, roles);
             AuthorizationMiddleware.Protect(user, manageReportsToolStripMenuItem, roles);
             AuthorizationMiddleware.Protect(user, usersSettingToolStripMenuItem, roles);
             AuthorizationMiddleware.Protect(user, cardMaintenanceToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, profileSettingToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, accountsToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, toolsToolStripMenuItem, roles);
+        }
+
+        private void ApplyAuthorization3()
+        {
+            List<string> roles = new List<string> { "Admin", "SuperAdmin", "Front Desk" };
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.Protect(user, customerToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, manageReportsToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, newOrderToolStripMenuItem, roles);
+        }
+
+        private void ApplyAuthorization4()
+        {
+            List<string> roles = new List<string> { "Admin", "SuperAdmin", "Inventory" };
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.Protect(user, inventoryToolStripMenuItem, roles);
+        }
+
+        private void ApplyAuthorization5()
+        {
+            List<string> roles = new List<string> { "Admin", "SuperAdmin", "Accountant" };
+            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+            AuthorizationMiddleware.Protect(user, transactionReportToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, manageReportsToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, accountsToolStripMenuItem, roles);
+            AuthorizationMiddleware.Protect(user, systemSetupToolStripMenuItem, roles);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -165,22 +190,6 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 MessageBox.Show($"Error loading image: {ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private bool _continueRunning = true;
-
-        public async void StartBackgroundTask()
-        {
-            await Task.Run(() =>
-            {
-                while (_continueRunning)
-                {
-                    RoomStatus();
-                    ApplyAuthorization();
-                    ApplyAuthorization2();
-                    Task.Delay(1000).Wait();
-                }
-            });
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -631,7 +640,7 @@ namespace ESMART_HMS.Presentation.Forms
 
         private void ValidateCardEncoderConnection()
         {
-            const Int16 EncoderLockType = 5;
+            const Int16 EncoderLockType = 4;
             int encoderStatus = LockSDKMethods.CheckEncoder(EncoderLockType);
 
             if (encoderStatus != 1)
@@ -729,13 +738,8 @@ namespace ESMART_HMS.Presentation.Forms
             }
         }
 
-        private void RoomStatus()
+        public void RoomStatus()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(RoomStatus));
-                return;
-            }
             var vacantRoom = _roomController.GetAvailbleRoom().Count();
             txtVacant.Text = $"Vacant: {vacantRoom}";
 
@@ -769,6 +773,99 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 profileForm = serviceProvider.GetRequiredService<ProfileForm>();
                 profileForm.ShowDialog();
+            }
+        }
+
+        private void pictureBox3_Click_1(object sender, EventArgs e)
+        {
+            RoomStatus();
+        }
+
+        private void Order_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            orderForm = null;
+        }
+
+        private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (orderForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                orderForm = serviceProvider.GetRequiredService<Presentation.Forms.Inventory.Order>();
+                orderForm.FormClosed += Order_FormClosed;
+                orderForm.MdiParent = this;
+                orderForm.Dock = DockStyle.Fill;
+                orderForm.Show();
+            }
+            else
+            {
+                orderForm.Activate();
+            }
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            indexForm = serviceProvider.GetRequiredService<DashboardForm>();
+            indexForm.FormClosed += Dashboard_FormClosed;
+            indexForm.MdiParent = this;
+            indexForm.Dock = DockStyle.Fill;
+            indexForm.Show();
+        }
+
+        private void TransactionReport_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            transactionForm = null;
+        }
+
+        private void transactionReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (transactionReport == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                transactionReport = serviceProvider.GetRequiredService<TransactionReport>();
+                transactionReport.FormClosed += TransactionReport_FormClosed;
+                transactionReport.MdiParent = this;
+                transactionReport.Dock = DockStyle.Fill;
+                transactionReport.Show();
+            }
+            else
+            {
+                transactionReport.Activate();
+            }
+        }
+
+        private void Store_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            storeForm = null;
+        }
+
+        private void storeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (storeForm == null)
+            {
+                var services = new ServiceCollection();
+                DependencyInjection.ConfigureServices(services);
+                var serviceProvider = services.BuildServiceProvider();
+
+                storeForm = serviceProvider.GetRequiredService<StoreForm>();
+                storeForm.FormClosed += Store_FormClosed;
+                storeForm.MdiParent = this;
+                storeForm.Dock = DockStyle.Fill;
+                storeForm.Show();
+            }
+            else
+            {
+                storeForm.Activate();
             }
         }
     }

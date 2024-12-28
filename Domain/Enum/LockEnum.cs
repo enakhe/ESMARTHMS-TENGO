@@ -19,6 +19,8 @@ namespace ESMART_HMS.Domain.Enum
         LS_NO_MUSIC_EN = 0x0400,   // Mute door open/close sound
         LS_PROMPT_CLOSE_EN = 0x0800,   // Prompt guest to close the door
         LS_NO_BLOCK_LIGHT_EN = 0x1000,   // No light prompt when backlocking
+
+        LOCK_TYPE = 5
     }
 
     public enum ROOM_TYPE

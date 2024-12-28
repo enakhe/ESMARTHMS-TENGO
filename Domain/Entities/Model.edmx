@@ -252,6 +252,7 @@
           <Property Name="SellingPrice" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="LowStockThreshold" Type="int" Nullable="false" />
           <Property Name="Measurement" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
@@ -1781,6 +1782,7 @@
           <NavigationProperty Name="Inventories" Relationship="ESMART_HMSDBModel.FK__Inventory__MenuI__73BA3083" FromRole="MenuItem" ToRole="Inventory" />
           <Property Name="Section" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="ESMART_HMSDBModel.FK__Order__ItemId__6C190EBB" FromRole="MenuItem" ToRole="Order" />
+          <Property Name="LowStockThreshold" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK__MenuItem__Create__02FC7413">
           <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
@@ -2255,6 +2257,7 @@
           <EntitySetMapping Name="MenuItems">
             <EntityTypeMapping TypeName="ESMART_HMSDBModel.MenuItem">
               <MappingFragment StoreEntitySet="MenuItem">
+                <ScalarProperty Name="LowStockThreshold" ColumnName="LowStockThreshold" />
                 <ScalarProperty Name="Section" ColumnName="Section" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />

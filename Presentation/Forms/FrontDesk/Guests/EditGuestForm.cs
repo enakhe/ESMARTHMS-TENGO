@@ -1,12 +1,15 @@
 ﻿using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Presentation.Controllers;
 using System;
+using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace ESMART_HMS.Presentation.Forms.Guests
 {
     public partial class EditGuest : Form
     {
+        Guest guest = new Guest();
         private readonly string _Id;
         private readonly GuestController _customerController;
 
@@ -105,6 +108,45 @@ namespace ESMART_HMS.Presentation.Forms.Guests
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCaptureFront_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    guest.IdentificationDocumentFront = File.ReadAllBytes(openFileDialog.FileName);
+                    pictureBoxFront.Image = Image.FromStream(new MemoryStream(guest.IdentificationDocumentFront));
+                }
+            }
+        }
+
+        private void btnCaptureBack_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    guest.IdentificationDocumentBack = File.ReadAllBytes(openFileDialog.FileName);
+                    pictureBoxBack.Image = Image.FromStream(new MemoryStream(guest.IdentificationDocumentBack));
+                }
+            }
+        }
+
+        private void btnGuestImage_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    guest.GuestImage = File.ReadAllBytes(openFileDialog.FileName);
+                    pictureBoxGuest.Image = Image.FromStream(new MemoryStream(guest.GuestImage));
+                }
             }
         }
     }

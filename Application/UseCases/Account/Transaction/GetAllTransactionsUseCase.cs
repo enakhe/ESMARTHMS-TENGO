@@ -17,5 +17,7 @@ namespace ESMART_HMS.Application.UseCases.Transaction
         {
             return _transactionRepository.GetAllTransactions();
         }
+
+
     }
 }

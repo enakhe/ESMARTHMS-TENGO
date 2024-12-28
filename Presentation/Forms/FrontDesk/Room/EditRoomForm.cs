@@ -4,6 +4,7 @@ using ESMART_HMS.Presentation.Controllers;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Rooms
@@ -35,7 +36,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             {
                 var allRoomTypes = _roomTypeController.GetAllRoomType();
                 var allBuilding = _roomController.GetAllBuildings();
-                var allFloors = _roomController.GetAllFloors();
                 var allAreas = _roomController.GetAllAreas();
                 if (allRoomTypes != null)
                 {
@@ -46,11 +46,6 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
                 if (allBuilding != null)
                 {
                     txtBuilding.DataSource = allBuilding;
-                }
-
-                if (allFloors != null)
-                {
-                    txtFloor.DataSource = allFloors;
                 }
 
                 if (allAreas != null)
@@ -227,6 +222,15 @@ namespace ESMART_HMS.Presentation.Forms.Rooms
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtBuilding_TextChanged(object sender, EventArgs e)
+        {
+            bool isNull = FormHelper.AreAnyNullOrEmpty(txtBuilding.Text);
+            {
+                var building = _roomController.GetBuildingById(txtBuilding.SelectedValue.ToString());
+                txtFloor.DataSource = building.Floors.ToList();
             }
         }
     }

@@ -42,7 +42,7 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     guest.IdentificationDocumentBack = File.ReadAllBytes(openFileDialog.FileName);
-                    pictureBoxBack.Image = Image.FromStream(new MemoryStream(guest.IdentificationDocumentFront));
+                    pictureBoxBack.Image = Image.FromStream(new MemoryStream(guest.IdentificationDocumentBack));
                 }
             }
         }
@@ -111,6 +111,11 @@ namespace ESMART_HMS.Presentation.Forms.Guests
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

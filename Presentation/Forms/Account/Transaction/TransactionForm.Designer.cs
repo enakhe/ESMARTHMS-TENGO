@@ -151,7 +151,7 @@
             this.panel5.Controls.Add(this.splitContainer20);
             this.panel5.Location = new System.Drawing.Point(33, 33);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(300, 155);
+            this.panel5.Size = new System.Drawing.Size(372, 155);
             this.panel5.TabIndex = 9;
             // 
             // splitContainer20
@@ -167,8 +167,8 @@
             // splitContainer20.Panel2
             // 
             this.splitContainer20.Panel2.Controls.Add(this.txtCount);
-            this.splitContainer20.Size = new System.Drawing.Size(300, 155);
-            this.splitContainer20.SplitterDistance = 207;
+            this.splitContainer20.Size = new System.Drawing.Size(372, 155);
+            this.splitContainer20.SplitterDistance = 162;
             this.splitContainer20.TabIndex = 0;
             // 
             // splitContainer21
@@ -185,7 +185,7 @@
             // splitContainer21.Panel2
             // 
             this.splitContainer21.Panel2.Controls.Add(this.pictureBox8);
-            this.splitContainer21.Size = new System.Drawing.Size(207, 155);
+            this.splitContainer21.Size = new System.Drawing.Size(162, 155);
             this.splitContainer21.SplitterDistance = 39;
             this.splitContainer21.TabIndex = 0;
             // 
@@ -206,7 +206,7 @@
             this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(0, 0);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(207, 112);
+            this.pictureBox8.Size = new System.Drawing.Size(162, 112);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox8.TabIndex = 2;
             this.pictureBox8.TabStop = false;
@@ -218,7 +218,7 @@
             this.txtCount.ForeColor = System.Drawing.Color.White;
             this.txtCount.Location = new System.Drawing.Point(0, 0);
             this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(89, 155);
+            this.txtCount.Size = new System.Drawing.Size(206, 155);
             this.txtCount.TabIndex = 3;
             this.txtCount.Text = "0";
             this.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -227,7 +227,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumTurquoise;
             this.panel2.Controls.Add(this.splitContainer4);
-            this.panel2.Location = new System.Drawing.Point(339, 33);
+            this.panel2.Location = new System.Drawing.Point(411, 33);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(409, 155);
             this.panel2.TabIndex = 10;
@@ -277,7 +277,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.MediumTurquoise;
             this.panel3.Controls.Add(this.splitContainer5);
-            this.panel3.Location = new System.Drawing.Point(754, 33);
+            this.panel3.Location = new System.Drawing.Point(826, 33);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(409, 155);
             this.panel3.TabIndex = 11;

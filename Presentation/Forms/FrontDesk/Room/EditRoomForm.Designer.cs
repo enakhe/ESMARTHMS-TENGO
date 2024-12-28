@@ -245,6 +245,7 @@
             this.txtBuilding.Size = new System.Drawing.Size(233, 33);
             this.txtBuilding.TabIndex = 45;
             this.txtBuilding.ValueMember = "Id";
+            this.txtBuilding.TextChanged += new System.EventHandler(this.txtBuilding_TextChanged);
             // 
             // txtRoomType
             // 

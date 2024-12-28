@@ -12,5 +12,6 @@ namespace ESMART_HMS.Domain.Interfaces
         ApplicationUser GetUserById(string id);
         List<UserViewModel> GetAllUsers();
         void UpdateUser(ApplicationUser user);
+        void DeleteUser(string id);
     }
 }

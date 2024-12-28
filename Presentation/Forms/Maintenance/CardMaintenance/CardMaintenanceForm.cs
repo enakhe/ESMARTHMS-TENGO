@@ -66,7 +66,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance
 
         private void btnOpenPort_Click(object sender, EventArgs e)
         {
-            int openPort = LockSDKMethods.OpenPort(5);
+            int openPort = LockSDKMethods.OpenPort(4);
             if (openPort == 1)
             {
                 btnReadAuthCard.Enabled = true;
@@ -159,14 +159,20 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance
         private void CardMaintenanceForm_Load(object sender, EventArgs e)
         {
             dispatcherTimer.Start();
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             AUTHDATA.Enabled = false;
-            int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
-            if (checkEncoder != 1)
+            int buzzer = LockSDKMethods.TestBuzzer();
+            if (buzzer != 0)
             {
                 btnOpenPort.Enabled = false;
-                LockSDKMethods.CheckErr(checkEncoder);
+                LockSDKMethods.CheckErr(buzzer);
             }
+            //int checkEncoder = LockSDKMethods.InitializeUSB();
+            //if (checkEncoder != 0)
+            //{
+            //    btnOpenPort.Enabled = false;
+            //    LockSDKMethods.CheckErr(checkEncoder);
+            //}
 
             StringBuilder authId = GetAuthCardFromDB();
             if (authId != null)
@@ -192,27 +198,64 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance
 
         private void btnReadAuthCard_Click(object sender, EventArgs e)
         {
-            char[] card_snr = new char[20];
-            string fnp = "1011899778569788";
-            StringBuilder clientData = new StringBuilder(100);
+            //char[] card_snr = new char[20];
+            //string fnp = "1011899778569788";
+            //StringBuilder clientData = new StringBuilder(100);
 
-            int clientDataResult = LockSDKMethods.ReadAuthCard(fnp, clientData, card_snr);
-            if (clientDataResult != 1)
+            //int clientDataResult = LockSDKMethods.ReadAuthCard(fnp, clientData, card_snr);
+            //if (clientDataResult != 1)
+            //{
+            //    LockSDKMethods.CheckErr(clientDataResult);
+            //}
+            //else
+            //{
+            //    btnUnlockParams.Enabled = true;
+            //    AUTHDATA.Text = clientData.ToString();
+
+            //    bool isNull = FormHelper.AreAnyNullOrEmpty(clientData.ToString(), computerName);
+            //    if (isNull == false)
+            //    {
+            //        Domain.Entities.AuthorizationCard authorizationCard = new Domain.Entities.AuthorizationCard()
+            //        {
+            //            Id = Guid.NewGuid().ToString(),
+            //            AuthId = clientData.ToString(),
+            //            ComputerName = computerName,
+            //            IsTrashed = false,
+            //            CreatedBy = AuthSession.CurrentUser.Id,
+            //            ApplicationUser = _userController.GetApplicationUserById(AuthSession.CurrentUser.Id),
+            //            DateCreated = DateTime.Now,
+            //            DateModified = DateTime.Now
+            //        };
+            //        _cardController.AddAuthCard(authorizationCard);
+            //        MessageBox.Show("Successfully saved auth card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Unable to save auth card to database, loaded auth card", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //}
+            int i, k;
+            byte[] Dcoid = new byte[20];
+            string coid = "";
+            k = LockSDKHeaders.Getcoid(Dcoid);
+            if (k == 0)
             {
-                LockSDKMethods.CheckErr(clientDataResult);
-            }
-            else
-            {
+                for (i = 0; i < 6; i++)
+                {
+                    coid = coid + ((char)Dcoid[i]).ToString();
+                }
+                //textBox5.Text = coid;
+                i = Convert.ToInt32(coid.Substring(0, 2), 16) * 65536 + Convert.ToInt32(coid.Substring(2, 4), 16) % 16383;
+                AUTHDATA.Text = i.ToString();
                 btnUnlockParams.Enabled = true;
-                AUTHDATA.Text = clientData.ToString();
 
-                bool isNull = FormHelper.AreAnyNullOrEmpty(clientData.ToString(), computerName);
+                bool isNull = FormHelper.AreAnyNullOrEmpty(i.ToString(), computerName);
                 if (isNull == false)
                 {
                     Domain.Entities.AuthorizationCard authorizationCard = new Domain.Entities.AuthorizationCard()
                     {
                         Id = Guid.NewGuid().ToString(),
-                        AuthId = clientData.ToString(),
+                        AuthId = i.ToString(),
                         ComputerName = computerName,
                         IsTrashed = false,
                         CreatedBy = AuthSession.CurrentUser.Id,
@@ -225,7 +268,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.CardMaintenance
                 }
                 else
                 {
-                    MessageBox.Show("Unable to save auth card to database, loaded auth card", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Failed to get hotel identifier, return value: " + k.ToString());
                 }
             }
         }

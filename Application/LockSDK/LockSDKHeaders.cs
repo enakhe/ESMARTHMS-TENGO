@@ -63,7 +63,7 @@ namespace ESMART_HMS.Application.LockSDK
         );
 
         [DllImport("LockSDK.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "LS_MakeChiefCard")]
-        public static extern int LS_MakeChiefCard(char[] cardSnr, string SDateTime, string EDateTime, int iFlags, int iReplaceNo);
+        public static extern int LS_MakeChiefCard(char[] cardSnr, string SDateTime, string EDateTime, CARD_FLAGS iFlags, int iReplaceNo);
 
 
 
@@ -73,7 +73,7 @@ namespace ESMART_HMS.Application.LockSDK
 
 
         [DllImport("LockSDK.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "LS_MakeFloorCard")]
-        public static extern int LS_MakeFloorCard(char[] cardSnr, int Building, string FloorList, string cSTime1, string cETime1, string cSTime2, string cETime2, string cSTime3, string cETime3, string SDateTime, string EDateTime, int iFlags, int iReplaceNo);
+        public static extern int LS_MakeFloorCard(char[] cardSnr, int Building, string FloorList, string cSTime1, string cETime1, string cSTime2, string cETime2, string cSTime3, string cETime3, string SDateTime, string EDateTime, CARD_FLAGS iFlags, int iReplaceNo);
 
 
         [DllImport("LockSDK.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "LS_SelectDoorLockType")]
@@ -163,5 +163,41 @@ namespace ESMART_HMS.Application.LockSDK
             return true;
         }
         #endregion
+
+
+        #region RF DLL functions
+        [DllImport("v9RF.dll", EntryPoint = "Buzzer")]
+        public static extern int Buzzer(int sc);
+
+        //读DLL版本号
+        [DllImport("v9RF.dll", EntryPoint = "GetDLLVersionA")]
+        public static extern int GetDLLVersionA(byte[] aType);
+
+        [DllImport("v9RF.dll", EntryPoint = "initializeUSB")]
+        public static extern int initializeUSB(int d12);
+
+        //从发卡器中读取酒店标识
+        [DllImport("v9RF.dll", EntryPoint = "Getcoid")]
+        public static extern int Getcoid(byte[] dlscoid);
+
+        //读卡数据
+        [DllImport("v9RF.dll", EntryPoint = "ReadCard")]
+        public static extern int ReadCard(byte[] carddata);
+
+        //注销卡片
+        [DllImport("v9RF.dll", EntryPoint = "CardEraseA")]
+        public static extern int CardEraseA(int coid, byte[] carddata);
+
+        //客人卡
+        [DllImport("v9RF.dll", EntryPoint = "WriteGuestCardA")]
+        public static extern int WriteGuestCardA(int dlscoid, byte cardno, byte dai, byte llock, char[] EDate, char[] RoomNo, byte[] cardhexstr);
+
+
+        //获得客人卡信息
+        [DllImport("v9RF.dll", EntryPoint = "GetGuestCardinfoA")]
+        public static extern int GetGuestCardinfoA(int dlscoid, byte[] carddata, byte[] lockno);
+        #endregion
+
     }
+
 }

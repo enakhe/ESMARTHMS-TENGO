@@ -33,7 +33,11 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBuilding = new System.Windows.Forms.ComboBox();
+            this.buildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.listFloors = new System.Windows.Forms.CheckedListBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,11 +53,7 @@
             this.passageMode = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnIssue = new System.Windows.Forms.Button();
-            this.comboBuilding = new System.Windows.Forms.ComboBox();
-            this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
-            this.buildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buildingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.BuildingTableAdapter();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -63,14 +63,14 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buildingBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtToMinute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtToHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHour)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buildingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -125,6 +125,29 @@
             this.panel2.Size = new System.Drawing.Size(241, 341);
             this.panel2.TabIndex = 0;
             // 
+            // comboBuilding
+            // 
+            this.comboBuilding.DataSource = this.buildingBindingSource;
+            this.comboBuilding.DisplayMember = "BuildingName";
+            this.comboBuilding.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBuilding.FormattingEnabled = true;
+            this.comboBuilding.Location = new System.Drawing.Point(21, 48);
+            this.comboBuilding.Name = "comboBuilding";
+            this.comboBuilding.Size = new System.Drawing.Size(196, 28);
+            this.comboBuilding.TabIndex = 2;
+            this.comboBuilding.ValueMember = "Id";
+            this.comboBuilding.SelectedValueChanged += new System.EventHandler(this.comboBuilding_SelectedValueChanged);
+            // 
+            // buildingBindingSource
+            // 
+            this.buildingBindingSource.DataMember = "Building";
+            this.buildingBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // eSMART_HMSDBDataSet
+            // 
+            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
+            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // listFloors
             // 
             this.listFloors.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -133,6 +156,16 @@
             this.listFloors.Name = "listFloors";
             this.listFloors.Size = new System.Drawing.Size(196, 220);
             this.listFloors.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(20, 87);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(201, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Pick floor based on selected building";
             // 
             // label2
             // 
@@ -207,6 +240,7 @@
             // 
             // txtToMinute
             // 
+            this.txtToMinute.Enabled = false;
             this.txtToMinute.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtToMinute.Location = new System.Drawing.Point(348, 60);
             this.txtToMinute.Name = "txtToMinute";
@@ -216,6 +250,7 @@
             // 
             // txtToHour
             // 
+            this.txtToHour.Enabled = false;
             this.txtToHour.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtToHour.Location = new System.Drawing.Point(278, 60);
             this.txtToHour.Name = "txtToHour";
@@ -225,6 +260,7 @@
             // 
             // txtMinute
             // 
+            this.txtMinute.Enabled = false;
             this.txtMinute.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMinute.Location = new System.Drawing.Point(146, 58);
             this.txtMinute.Name = "txtMinute";
@@ -234,6 +270,7 @@
             // 
             // txtHour
             // 
+            this.txtHour.Enabled = false;
             this.txtHour.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHour.Location = new System.Drawing.Point(76, 58);
             this.txtHour.Name = "txtHour";
@@ -255,8 +292,6 @@
             // openLocks
             // 
             this.openLocks.AutoSize = true;
-            this.openLocks.Checked = true;
-            this.openLocks.CheckState = System.Windows.Forms.CheckState.Checked;
             this.openLocks.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openLocks.Location = new System.Drawing.Point(33, 191);
             this.openLocks.Name = "openLocks";
@@ -302,42 +337,9 @@
             this.btnIssue.UseVisualStyleBackColor = false;
             this.btnIssue.Click += new System.EventHandler(this.btnIssue_Click);
             // 
-            // comboBuilding
-            // 
-            this.comboBuilding.DataSource = this.buildingBindingSource;
-            this.comboBuilding.DisplayMember = "BuildingName";
-            this.comboBuilding.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBuilding.FormattingEnabled = true;
-            this.comboBuilding.Location = new System.Drawing.Point(21, 48);
-            this.comboBuilding.Name = "comboBuilding";
-            this.comboBuilding.Size = new System.Drawing.Size(196, 28);
-            this.comboBuilding.TabIndex = 2;
-            this.comboBuilding.ValueMember = "Id";
-            this.comboBuilding.SelectedValueChanged += new System.EventHandler(this.comboBuilding_SelectedValueChanged);
-            // 
-            // eSMART_HMSDBDataSet
-            // 
-            this.eSMART_HMSDBDataSet.DataSetName = "ESMART_HMSDBDataSet";
-            this.eSMART_HMSDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // buildingBindingSource
-            // 
-            this.buildingBindingSource.DataMember = "Building";
-            this.buildingBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
             // buildingTableAdapter
             // 
             this.buildingTableAdapter.ClearBeforeFill = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(20, 87);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(201, 15);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Pick floor based on selected building";
             // 
             // FloorCardForm
             // 
@@ -362,6 +364,8 @@
             this.splitContainer2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buildingBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtToMinute)).EndInit();
@@ -369,8 +373,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMinute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHour)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buildingBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

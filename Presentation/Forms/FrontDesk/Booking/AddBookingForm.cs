@@ -9,6 +9,8 @@ using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.booking
@@ -16,6 +18,8 @@ namespace ESMART_HMS.Presentation.Forms.booking
     public partial class AddbookingForm : Form
     {
         private readonly string _reservationId;
+        private bool _continueRunning = true;
+
         private readonly string _guestId;
         private readonly string _roomId;
         private readonly GuestController _guestController;
@@ -55,6 +59,21 @@ namespace ESMART_HMS.Presentation.Forms.booking
             txtCheckIn.Value = DateTime.Now;
         }
 
+        public async void StartBackgroundTask()
+        {
+            await Task.Run(() =>
+            {
+                while (_continueRunning)
+                {
+                    LoadBankDetails();
+                    LoadGuest();
+                    LoadRoom();
+                    LoadMetric();
+                    Task.Delay(1000).Wait();
+                }
+            });
+        }
+
         private void DisableInput()
         {
             if (_reservationId != "0")
@@ -84,6 +103,11 @@ namespace ESMART_HMS.Presentation.Forms.booking
 
         public void LoadBankDetails()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(LoadBankDetails));
+                return;
+            }
             List<BankAccountViewModel> allAccounts = _systemSetupController.GetAllBankAccount();
             if (allAccounts != null)
             {
@@ -96,6 +120,11 @@ namespace ESMART_HMS.Presentation.Forms.booking
 
         private void LoadGuest()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(LoadGuest));
+                return;
+            }
             Guest guest = _guestController.GetGuestById(_guestId);
             if (guest != null)
             {
@@ -114,10 +143,19 @@ namespace ESMART_HMS.Presentation.Forms.booking
 
         private void LoadRoom()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(LoadRoom));
+                return;
+            }
             Room room = _roomController.GetRealRoom(_roomId);
             if (room != null)
             {
                 List<Room> roomList = new List<Room>() { room };
+                foreach (var roomm in roomList)
+                {
+                    roomm.RoomNo = $"{roomm.RoomNo}";
+                }
                 txtRoom.DataSource = roomList;
             }
             else
@@ -127,7 +165,11 @@ namespace ESMART_HMS.Presentation.Forms.booking
                 {
                     if (allRooms.Count > 0)
                     {
-                        txtRoom.DataSource = allRooms;
+                        foreach(var roomm in allRooms)
+                        {
+                            roomm.RoomNo = $"{roomm.RoomNo}";
+                        }
+                        txtRoom.DataSource = allRooms.OrderBy(r => r.RoomNo).ToList();
                     }
                     else
                     {
@@ -155,6 +197,11 @@ namespace ESMART_HMS.Presentation.Forms.booking
 
         private void LoadMetric()
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(LoadMetric));
+                return;
+            }
             Configuration vatConfiguration = _configurationController.GetConfigurationValue("VAT");
             txtVAT.Text = vatConfiguration.Value.ToString();
 
@@ -314,26 +361,55 @@ namespace ESMART_HMS.Presentation.Forms.booking
                 }
                 else
                 {
-                    ESMART_HMS.Domain.Entities.Transaction transaction = new ESMART_HMS.Domain.Entities.Transaction()
+                    if (txtUnpaid.Checked)
                     {
-                        Id = Guid.NewGuid().ToString(),
-                        TransactionId = "TR" + random.Next(1000, 5000),
-                        GuestId = booking.GuestId,
-                        Guest = booking.Guest,
-                        ServiceId = booking.BookingId,
-                        Date = DateTime.Now,
-                        Amount = booking.TotalAmount,
-                        Type = "Room Service",
-                        Description = "booking",
-                        Status = "Paid",
-                    };
+                        ESMART_HMS.Domain.Entities.Transaction transaction = new ESMART_HMS.Domain.Entities.Transaction()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            TransactionId = "TR" + random.Next(1000, 5000),
+                            GuestId = booking.GuestId,
+                            Guest = booking.Guest,
+                            ServiceId = booking.BookingId,
+                            Date = DateTime.Now,
+                            Amount = booking.TotalAmount,
+                            Type = "Room Service",
+                            Description = "Booking",
+                            Status = "Un Paid",
+                        };
 
-                    if (bankAccounts.SelectedItem != null)
-                    {
-                        transaction.BankAccount = bankAccounts.SelectedItem.ToString();
+                        if (bankAccounts.SelectedItem != null)
+                        {
+                            transaction.BankAccount = bankAccounts.SelectedItem.ToString();
+                        }
+
+                        _transactionController.AddTransaction(transaction);
                     }
+                    else
+                    {
+                        ESMART_HMS.Domain.Entities.Transaction transaction = new ESMART_HMS.Domain.Entities.Transaction()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            TransactionId = "TR" + random.Next(1000, 5000),
+                            GuestId = booking.GuestId,
+                            Guest = booking.Guest,
+                            ServiceId = booking.BookingId,
+                            Date = DateTime.Now,
+                            Amount = booking.TotalAmount,
+                            Type = "Room Service",
+                            Description = "Booking",
+                            Status = "Paid",
+                        };
 
-                    _transactionController.AddTransaction(transaction);
+                        if (bankAccounts.SelectedItem != null)
+                        {
+                            transaction.BankAccount = bankAccounts.SelectedItem.ToString();
+                        }
+
+                        _transactionController.AddTransaction(transaction);
+                    }
+                    
+
+                    
                 }
 
                 this.DialogResult = DialogResult.OK;

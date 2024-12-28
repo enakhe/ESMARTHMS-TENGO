@@ -42,6 +42,7 @@
             this.manageReservationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managebookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restaurantToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,6 +73,7 @@
             this.clearDataFiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataFileStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archiveDataFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.profileSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recycleBinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -102,7 +104,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtVacant = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.profileSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
@@ -154,6 +156,7 @@
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
             this.homeToolStripMenuItem.Size = new System.Drawing.Size(57, 21);
             this.homeToolStripMenuItem.Text = "Home";
+            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
             // customerToolStripMenuItem
             // 
@@ -212,40 +215,50 @@
             // inventoryToolStripMenuItem
             // 
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ordersToolStripMenuItem,
             this.itemsToolStripMenuItem,
             this.barToolStripMenuItem,
             this.restaurantToolStripMenuItem1,
-            this.laundryToolStripMenuItem});
+            this.laundryToolStripMenuItem,
+            this.storeToolStripMenuItem});
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(80, 21);
             this.inventoryToolStripMenuItem.Text = "Inventory";
             // 
+            // ordersToolStripMenuItem
+            // 
+            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ordersToolStripMenuItem.Text = "Orders";
+            this.ordersToolStripMenuItem.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
+            // 
             // itemsToolStripMenuItem
             // 
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
-            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.itemsToolStripMenuItem.Text = "Items";
             this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
             // barToolStripMenuItem
             // 
             this.barToolStripMenuItem.Name = "barToolStripMenuItem";
-            this.barToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.barToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.barToolStripMenuItem.Text = "Bar";
             this.barToolStripMenuItem.Click += new System.EventHandler(this.barToolStripMenuItem_Click);
             // 
             // restaurantToolStripMenuItem1
             // 
             this.restaurantToolStripMenuItem1.Name = "restaurantToolStripMenuItem1";
-            this.restaurantToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.restaurantToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.restaurantToolStripMenuItem1.Text = "Restaurant";
             this.restaurantToolStripMenuItem1.Click += new System.EventHandler(this.restaurantToolStripMenuItem1_Click);
             // 
             // laundryToolStripMenuItem
             // 
             this.laundryToolStripMenuItem.Name = "laundryToolStripMenuItem";
-            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.laundryToolStripMenuItem.Text = "Laundry";
+            this.laundryToolStripMenuItem.Visible = false;
             // 
             // newOrderToolStripMenuItem
             // 
@@ -325,12 +338,14 @@
             this.transactionReportToolStripMenuItem.Name = "transactionReportToolStripMenuItem";
             this.transactionReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.transactionReportToolStripMenuItem.Text = "Transaction Report";
+            this.transactionReportToolStripMenuItem.Click += new System.EventHandler(this.transactionReportToolStripMenuItem_Click);
             // 
             // barItemReportToolStripMenuItem
             // 
             this.barItemReportToolStripMenuItem.Name = "barItemReportToolStripMenuItem";
             this.barItemReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.barItemReportToolStripMenuItem.Text = "Bar Item Report";
+            this.barItemReportToolStripMenuItem.Visible = false;
             // 
             // accountsToolStripMenuItem
             // 
@@ -474,6 +489,14 @@
             this.archiveDataFilesToolStripMenuItem.Text = "Archive Data Files";
             this.archiveDataFilesToolStripMenuItem.Visible = false;
             // 
+            // profileSettingToolStripMenuItem
+            // 
+            this.profileSettingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("profileSettingToolStripMenuItem.Image")));
+            this.profileSettingToolStripMenuItem.Name = "profileSettingToolStripMenuItem";
+            this.profileSettingToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.profileSettingToolStripMenuItem.Text = "Profile Setting";
+            this.profileSettingToolStripMenuItem.Click += new System.EventHandler(this.profileSettingToolStripMenuItem_Click);
+            // 
             // recycleBinToolStripMenuItem
             // 
             this.recycleBinToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("recycleBinToolStripMenuItem.Image")));
@@ -525,9 +548,9 @@
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 38);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 16;
+            this.pictureBox3.TabIndex = 11;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click_1);
             // 
             // pictureBox2
             // 
@@ -558,6 +581,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(205, 676);
             this.panel1.TabIndex = 11;
+            this.panel1.Visible = false;
             // 
             // panel8
             // 
@@ -775,13 +799,12 @@
             this.panel2.Size = new System.Drawing.Size(1719, 52);
             this.panel2.TabIndex = 14;
             // 
-            // profileSettingToolStripMenuItem
+            // storeToolStripMenuItem
             // 
-            this.profileSettingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("profileSettingToolStripMenuItem.Image")));
-            this.profileSettingToolStripMenuItem.Name = "profileSettingToolStripMenuItem";
-            this.profileSettingToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.profileSettingToolStripMenuItem.Text = "Profile Setting";
-            this.profileSettingToolStripMenuItem.Click += new System.EventHandler(this.profileSettingToolStripMenuItem_Click);
+            this.storeToolStripMenuItem.Name = "storeToolStripMenuItem";
+            this.storeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.storeToolStripMenuItem.Text = "Store";
+            this.storeToolStripMenuItem.Click += new System.EventHandler(this.storeToolStripMenuItem_Click);
             // 
             // Home
             // 
@@ -901,7 +924,9 @@
         private System.Windows.Forms.Label txtStatus;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btnRecycle;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.ToolStripMenuItem profileSettingToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem storeToolStripMenuItem;
     }
 }

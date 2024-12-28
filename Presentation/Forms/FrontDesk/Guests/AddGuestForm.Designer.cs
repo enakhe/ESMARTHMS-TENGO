@@ -68,6 +68,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnCaptureBack = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFront)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGuest)).BeginInit();
@@ -209,6 +215,7 @@
             this.btnGuestImage.TabIndex = 38;
             this.btnGuestImage.Text = "Capture";
             this.btnGuestImage.UseVisualStyleBackColor = true;
+            this.btnGuestImage.Click += new System.EventHandler(this.btnGuestImage_Click);
             // 
             // pictureBoxBack
             // 
@@ -310,6 +317,7 @@
             this.btnCaptureFront.TabIndex = 39;
             this.btnCaptureFront.Text = "Capture";
             this.btnCaptureFront.UseVisualStyleBackColor = true;
+            this.btnCaptureFront.Click += new System.EventHandler(this.btnCaptureFront_Click);
             // 
             // label17
             // 
@@ -506,6 +514,12 @@
             this.splitContainer1.Panel1.Controls.Add(this.txtFirstName);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.label11);
+            this.splitContainer1.Panel1.Controls.Add(this.label20);
+            this.splitContainer1.Panel1.Controls.Add(this.label22);
+            this.splitContainer1.Panel1.Controls.Add(this.label23);
+            this.splitContainer1.Panel1.Controls.Add(this.label21);
+            this.splitContainer1.Panel1.Controls.Add(this.label19);
+            this.splitContainer1.Panel1.Controls.Add(this.label18);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.txtGender);
             this.splitContainer1.Panel1.Controls.Add(this.txtTitle);
@@ -542,6 +556,7 @@
             this.btnCaptureBack.TabIndex = 37;
             this.btnCaptureBack.Text = "Capture";
             this.btnCaptureBack.UseVisualStyleBackColor = true;
+            this.btnCaptureBack.Click += new System.EventHandler(this.btnCaptureBack_Click);
             // 
             // panel1
             // 
@@ -551,6 +566,82 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(935, 58);
             this.panel1.TabIndex = 2;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI Emoji", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(75, 58);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(18, 22);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "*";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI Emoji", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Red;
+            this.label19.Location = new System.Drawing.Point(125, 152);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(18, 22);
+            this.label19.TabIndex = 37;
+            this.label19.Text = "*";
+            this.label19.Click += new System.EventHandler(this.label19_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI Emoji", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Red;
+            this.label20.Location = new System.Drawing.Point(369, 152);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(18, 22);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "*";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI Emoji", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.Red;
+            this.label21.Location = new System.Drawing.Point(82, 241);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(18, 22);
+            this.label21.TabIndex = 37;
+            this.label21.Text = "*";
+            this.label21.Click += new System.EventHandler(this.label19_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI Emoji", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(159, 336);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(18, 22);
+            this.label22.TabIndex = 37;
+            this.label22.Text = "*";
+            this.label22.Click += new System.EventHandler(this.label19_Click);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI Emoji", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Red;
+            this.label23.Location = new System.Drawing.Point(344, 241);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(18, 22);
+            this.label23.TabIndex = 37;
+            this.label23.Text = "*";
+            this.label23.Click += new System.EventHandler(this.label19_Click);
             // 
             // AddGuestForm
             // 
@@ -626,5 +717,11 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button btnCaptureBack;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label21;
     }
 }

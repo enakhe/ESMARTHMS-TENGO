@@ -48,27 +48,27 @@
             this.label9 = new System.Windows.Forms.Label();
             this.roomTypeTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.RoomTypeTableAdapter();
             this.txtArea = new System.Windows.Forms.ComboBox();
+            this.areaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuilding = new System.Windows.Forms.ComboBox();
+            this.buildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtFloor = new System.Windows.Forms.ComboBox();
+            this.floorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.addRoomType = new System.Windows.Forms.Button();
             this.AddFloor = new System.Windows.Forms.Button();
             this.btnAddBuilding = new System.Windows.Forms.Button();
             this.btnArea = new System.Windows.Forms.Button();
-            this.buildingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buildingTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.BuildingTableAdapter();
-            this.areaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.areaTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.AreaTableAdapter();
-            this.floorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.floorTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.FloorTableAdapter();
             this.txtRoomType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.areaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buildingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.floorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -247,6 +247,11 @@
             this.txtArea.TabIndex = 10;
             this.txtArea.ValueMember = "Id";
             // 
+            // areaBindingSource
+            // 
+            this.areaBindingSource.DataMember = "Area";
+            this.areaBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -271,6 +276,12 @@
             this.txtBuilding.Size = new System.Drawing.Size(233, 33);
             this.txtBuilding.TabIndex = 10;
             this.txtBuilding.ValueMember = "Id";
+            this.txtBuilding.TextChanged += new System.EventHandler(this.txtBuilding_TextChanged);
+            // 
+            // buildingBindingSource
+            // 
+            this.buildingBindingSource.DataMember = "Building";
+            this.buildingBindingSource.DataSource = this.eSMART_HMSDBDataSet;
             // 
             // txtFloor
             // 
@@ -285,6 +296,11 @@
             this.txtFloor.Size = new System.Drawing.Size(225, 33);
             this.txtFloor.TabIndex = 10;
             this.txtFloor.ValueMember = "Id";
+            // 
+            // floorBindingSource
+            // 
+            this.floorBindingSource.DataMember = "Floor";
+            this.floorBindingSource.DataSource = this.eSMART_HMSDBDataSet;
             // 
             // label4
             // 
@@ -348,28 +364,13 @@
             this.btnArea.UseVisualStyleBackColor = true;
             this.btnArea.Click += new System.EventHandler(this.btnArea_Click);
             // 
-            // buildingBindingSource
-            // 
-            this.buildingBindingSource.DataMember = "Building";
-            this.buildingBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
             // buildingTableAdapter
             // 
             this.buildingTableAdapter.ClearBeforeFill = true;
             // 
-            // areaBindingSource
-            // 
-            this.areaBindingSource.DataMember = "Area";
-            this.areaBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
             // areaTableAdapter
             // 
             this.areaTableAdapter.ClearBeforeFill = true;
-            // 
-            // floorBindingSource
-            // 
-            this.floorBindingSource.DataMember = "Floor";
-            this.floorBindingSource.DataSource = this.eSMART_HMSDBDataSet;
             // 
             // floorTableAdapter
             // 
@@ -433,8 +434,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomTypeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buildingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.areaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buildingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.floorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

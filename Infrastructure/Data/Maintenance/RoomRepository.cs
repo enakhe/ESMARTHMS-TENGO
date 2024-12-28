@@ -1,4 +1,5 @@
-﻿using ESMART_HMS.Domain.Entities;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using ESMART_HMS.Domain.Entities;
 using ESMART_HMS.Domain.Enum;
 using ESMART_HMS.Domain.Interfaces;
 using ESMART_HMS.Presentation.ViewModels;
@@ -40,7 +41,34 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                var allRoom = from room in _db.Rooms.Where(r => r.IsTrashed == false).OrderBy(r => r.RoomNo)
+                var rooms = _db.Rooms.Where(r => r.IsTrashed == false).OrderBy(r => r.RoomNo).ToList();
+
+            foreach (var room in rooms)
+            {
+                // Load reservation for each room into memory
+                var reservation = _db.Reservations.FirstOrDefault(r => r.Room.RoomId == room.Id);
+                if (reservation != null)
+                {
+                    if (reservation.CheckInDate < DateTime.Now && reservation.CheckOutDate > DateTime.Now)
+                    {
+                        room.Status = RoomStatusEnum.Reserved.ToString();
+                    }
+                    else if (DateTime.Now > reservation.CheckOutDate)
+                    {
+                        room.Status = RoomStatusEnum.Vacant.ToString();
+                        reservation.IsTrashed = true;
+                    }
+
+                    room.DateModified = DateTime.Now;
+
+                    // Mark entities as modified
+                    _db.Entry(room).State = System.Data.Entity.EntityState.Modified;
+                    _db.Entry(reservation).State = System.Data.Entity.EntityState.Modified;
+                }
+            }
+
+            _db.SaveChanges();
+            var allRoom = from room in rooms
                               join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
                               select new RoomViewModel
                               {
@@ -188,7 +216,7 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                var searchRooms = from room in _db.Rooms.Where(r => r.RoomNo == keyword)
+                var searchRooms = from room in _db.Rooms.Where(r => r.RoomNo == (keyword) && r.IsTrashed == false)
                                   join roomType in _db.RoomTypes on room.RoomTypeId equals roomType.Id
                                   select new RoomViewModel
                                   {
@@ -494,7 +522,7 @@ namespace ESMART_HMS.Repositories
         {
             try
             {
-                return _db.Floors.Where(f => f.BuildingId == id).ToList();
+                return _db.Floors.Where(f => f.BuildingId == id).OrderBy(f => f.FloorNo).ToList();
             }
             catch (Exception ex)
             {

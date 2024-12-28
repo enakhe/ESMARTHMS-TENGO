@@ -146,5 +146,36 @@ namespace ESMART_HMS.Infrastructure.Data.Inventory
                 throw new Exception("An error occurred while deleteing inventory data.", ex);
             }
         }
+
+        public List<MenuItemViewModel> GetStoreItems()
+        {
+            try
+            {
+                var allMenuItems = from menuItem in _db.MenuItems.Where(b => b.IsTrashed == false && b.Section == "STORE").OrderBy(b => b.DateCreated)
+                                   select new MenuItemViewModel
+                                   {
+                                       Id = menuItem.Id,
+                                       MenuItemId = menuItem.MenuItemId,
+                                       Barcode = menuItem.Barcode,
+                                       ItemName = menuItem.ItemName,
+                                       Quantity = menuItem.Quantity.ToString(),
+                                       Type = menuItem.Type,
+                                       Category = menuItem.Category,
+                                       Measurement = menuItem.Measurement,
+                                       CostPrice = menuItem.CostPrice.ToString(),
+                                       SellingPrice = menuItem.SellingPrice.ToString(),
+                                       CreatedBy = menuItem.ApplicationUser.FullName,
+                                       DateCreated = menuItem.DateCreated.ToString(),
+                                       DateModified = menuItem.DateModified.ToString(),
+                                   };
+                return allMenuItems.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            return null;
+        }
     }
 }

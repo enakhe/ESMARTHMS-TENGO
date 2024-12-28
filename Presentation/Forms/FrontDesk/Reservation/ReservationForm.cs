@@ -11,6 +11,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using ESMART_HMS.Domain.Enum;
 
 namespace ESMART_HMS.Presentation.Forms.Reservation
 {
@@ -38,10 +39,10 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             _systemSetupController = systemSetupController;
             InitializeComponent();
             ApplyAuthorization();
-            StartBackgroundTask();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Activated += ReservationForm_Activated;
         }
 
         private void ReservationForm_Load(object sender, EventArgs e)
@@ -53,25 +54,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
             dgvReservation.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10);
         }
 
-        public async void StartBackgroundTask()
-        {
-            await Task.Run(() =>
-            {
-                while (_continueRunning)
-                {
-                    ApplyAuthorization();
-                    Task.Delay(1000).Wait();
-                }
-            });
-        }
-
         private void ApplyAuthorization()
         {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(ApplyAuthorization));
-                return;
-            }
             List<string> roles = new List<string> { "Admin", "SuperAdmin", "Manager" };
             ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
             AuthorizationMiddleware.ProtectControl(user, btnDelete, roles);
@@ -79,8 +63,8 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
 
         private void LoadData()
         {
-            try
-            {
+            //try
+            //{
                 var allReservations = _reservationController.GetAllReservation();
                 if (allReservations != null)
                 {
@@ -103,12 +87,12 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                     dgvReservation.DataSource = allReservations;
                     txtReservationCount.Text = allReservations.Count.ToString();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+            //                MessageBoxIcon.Error);
+            //}
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -169,12 +153,16 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                         foreach (DataGridViewRow row in dgvReservation.SelectedRows)
                         {
                             string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
-                            _reservationController.DeleteReservation(id);
                             var reservation = _reservationController.GetReservationById(id);
+                            var room = _roomController.GetRealRoom(reservation.Room.Id);
+                            room.Status = RoomStatusEnum.Vacant.ToString();
+                            _roomController.UpdateRoom(room);
+                            _reservationController.DeleteReservation(id);
+
                             string reservationString = $"Id = {reservation.Id}\n" +
      $"Reservation Id = {reservation.ReservationId}\n" +
-     $"Guest Id = {reservation.GuestId}\n" +
-     $"Room Id = {reservation.RoomId}\n" +
+     $"Guest = {reservation.Guest.FullName}\n" +
+     $"Room = {reservation.Room.RoomNo}\n" +
      $"Check-In Date = {reservation.CheckInDate.ToString("yyyy-MM-dd HH:mm:ss")}\n" +
      $"Check-Out Date = {reservation.CheckOutDate.ToString("yyyy-MM-dd HH:mm:ss")}\n" +
      $"Payment Method = {reservation.PaymentMethod}\n" +
@@ -209,6 +197,16 @@ namespace ESMART_HMS.Presentation.Forms.Reservation
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void ReservationForm_Activated(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

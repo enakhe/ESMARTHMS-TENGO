@@ -162,7 +162,31 @@ namespace ESMART_HMS.Presentation.Forms.Tools.Options.Accounts
 
         private void btnDeleteBtn_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (dgvUser.SelectedRows.Count > 0)
+                {
+                    var result = MessageBox.Show("Are you sure you want to add the selected user to the recycle?\nIts record including all entries tagged to such user will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgvUser.SelectedRows)
+                        {
+                            string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+                            _userController.DeleteUser(id);
+                        }
+                        InitializeUserTab(userTab);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a user to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
         }
 
         private void btnEditFloor_Click(object sender, EventArgs e)

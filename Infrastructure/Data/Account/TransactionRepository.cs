@@ -114,5 +114,53 @@ namespace ESMART_HMS.Infrastructure.Data
             }
             return new List<decimal> { 0, 0 };
         }
+
+        public List<TransactionViewModel> GetByFilter(string status, DateTime fromTime, DateTime endTime)
+        {
+            var alltransactions = from transaction in _db.Transactions
+                .Where(t => t.Status == status &&
+                               (
+                                   (t.Date <= endTime && t.Date >= fromTime && t.IsTrashed == false)
+                               )).OrderBy(t => t.Date)
+                             select new TransactionViewModel
+                             {
+                                 TransactionId = transaction.TransactionId,
+                                 Guest = transaction.Guest.FullName,
+                                 GuestPhoneNo = transaction.Guest.PhoneNumber,
+                                 ServiceId = transaction.ServiceId,
+                                 Date = transaction.Date.ToString(),
+                                 Status = transaction.Status,
+                                 Amount = transaction.Amount.ToString(),
+                                 Description = transaction.Description,
+                                 Type = transaction.Type,
+                                 BankAccount = transaction.BankAccount,
+                             };
+
+            return alltransactions.ToList(); ;
+        }
+
+        public List<TransactionViewModel> GetByFilterDate(DateTime fromTime, DateTime endTime)
+        {
+            var alltransactions = from transaction in _db.Transactions
+                .Where( t =>
+                               
+                                   (t.Date <= endTime && t.Date >= fromTime && t.IsTrashed == false)
+                               ).OrderBy(t => t.Date)
+                                  select new TransactionViewModel
+                                  {
+                                      TransactionId = transaction.TransactionId,
+                                      Guest = transaction.Guest.FullName,
+                                      GuestPhoneNo = transaction.Guest.PhoneNumber,
+                                      ServiceId = transaction.ServiceId,
+                                      Date = transaction.Date.ToString(),
+                                      Status = transaction.Status,
+                                      Amount = transaction.Amount.ToString(),
+                                      Description = transaction.Description,
+                                      Type = transaction.Type,
+                                      BankAccount = transaction.BankAccount,
+                                  };
+
+            return alltransactions.ToList(); ;
+        }
     }
 }

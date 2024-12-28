@@ -50,7 +50,7 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
 
         public int CheckEncoder()
         {
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             st = LockSDKHeaders.TP_Configuration(locktype);
             return st;
         }
@@ -68,14 +68,14 @@ namespace ESMART_HMS.Presentation.Forms.FrontDesk.Room
         private void ShowRoomForm_Load(object sender, EventArgs e)
         {
             dispatcherTimer.Start();
-            Int16 locktype = 5;
+            Int16 locktype = (short)LOCK_SETTING.LOCK_TYPE;
             int checkEncoder = LockSDKMethods.CheckEncoder(locktype);
             if (checkEncoder != 1)
             {
                 LockSDKMethods.CheckErr(checkEncoder);
             }
 
-            int openPort = OpenPort(5);
+            int openPort = OpenPort(4);
             if (openPort != 1)
             {
                 LockSDKMethods.CheckErr(openPort);
