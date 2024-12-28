@@ -1054,6 +1054,7 @@
     <Compile Include="Presentation\ViewModels\BankAccountViewModel.cs" />
     <Compile Include="Presentation\ViewModels\BarItemViewModel.cs" />
     <Compile Include="Presentation\ViewModels\BookingViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\ChartOfAccountViewModel.cs" />
     <Compile Include="Presentation\ViewModels\FloorViewModel.cs" />
     <Compile Include="Presentation\ViewModels\GuestViewModel.cs" />
     <Compile Include="Infrastructure\Services\DatabaseService.cs" />

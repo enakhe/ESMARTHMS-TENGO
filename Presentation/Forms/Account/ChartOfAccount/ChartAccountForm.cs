@@ -1,4 +1,8 @@
-﻿using ESMART_HMS.Presentation.Forms.Account.BankAccount;
+﻿using ESMART_HMS.Domain.Utils;
+using ESMART_HMS.Presentation.Controllers.Account;
+using ESMART_HMS.Presentation.Controllers.Maintenance;
+using ESMART_HMS.Presentation.Forms.Account.BankAccount;
+using ESMART_HMS.Presentation.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,17 +18,27 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
 {
     public partial class ChartAccountForm : Form
     {
-        public ChartAccountForm()
+        private readonly AccountController _accountController;
+        public ChartAccountForm(AccountController accountController)
         {
+            _accountController = accountController;
             InitializeComponent();
+            this.Activated += ChartOfAccountForm_Activated;
         }
-
 
 
         private void ChartAccountForm_Load(object sender, EventArgs e)
         {
-            
+            InitializeBankAccountTab();
+        }
 
+        private void InitializeBankAccountTab()
+        {
+            List<ChartOfAccountViewModel> allChartOfAccount = _accountController.GetAllChartOfAccount();
+            if (allChartOfAccount != null)
+            {
+                dgvAccount.DataSource = allChartOfAccount;
+            }
         }
 
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
@@ -56,6 +70,11 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
             TextRenderer.DrawText(e.Graphics, tabPage.Text, font, tabRect, tabPage.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
 
+        private void ChartOfAccountForm_Activated(object sender, EventArgs e)
+        {
+            InitializeBankAccountTab();
+        }
+
         private void btnAddBank_Click(object sender, EventArgs e)
         {
             var services = new ServiceCollection();
@@ -65,7 +84,7 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
             AddChartOfAccountForm addChartOfAccountForm = serviceProvider.GetRequiredService<AddChartOfAccountForm>();
             if (addChartOfAccountForm.ShowDialog() == DialogResult.OK)
             {
-                
+                InitializeBankAccountTab();
             }
         }
     }

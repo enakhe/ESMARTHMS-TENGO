@@ -1,4 +1,5 @@
 ﻿using ESMART_HMS.Application.UseCases.Account.Account;
+using ESMART_HMS.Presentation.ViewModels;
 using ESMART_HMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,11 @@ namespace ESMART_HMS.Presentation.Controllers.Account
         public void AddChartOfAccount(ChartOfAccount chartOfAccount)
         {
             _accountUseCases.AddChartOfAccount(chartOfAccount);
+        }
+
+        public List<ChartOfAccountViewModel> GetAllChartOfAccount()
+        {
+            return _accountUseCases.GetAllChartOfAccount();
         }
     }
 }

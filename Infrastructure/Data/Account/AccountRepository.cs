@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESMART_HMS.Domain.Interfaces.Account;
+using ESMART_HMS.Presentation.ViewModels;
 
 namespace ESMART_HMS.Infrastructure.Data.Account
 {
@@ -29,5 +30,27 @@ namespace ESMART_HMS.Infrastructure.Data.Account
                 throw new Exception($"An error occured when adding chart of account {ex.Message}");
             }
         } 
+
+        public List<ChartOfAccountViewModel> GetAllChartOfAccount()
+        {
+            try
+            {
+                var allChartOfAccount = from chartOfAccount in _db.ChartOfAccounts.Where(coa => coa.IsTrashed == false && coa.IsActive == true).OrderBy(coa => coa.AccountCode)
+                                        select new ChartOfAccountViewModel
+                                        {
+                                            AccountCode = chartOfAccount.AccountCode,
+                                            AccountName = chartOfAccount.AccountName,
+                                            AccountGroup = chartOfAccount.AccountGroup,
+                                            AccountType = chartOfAccount.AccountType,
+                                            CreatedBy = chartOfAccount.ApplicationUser.FullName,
+                                            IsActive = chartOfAccount.IsActive,
+                                        };
+                return allChartOfAccount.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occured when getting all chart of accounts {ex.Message}");
+            }
+        }
     }
 }
