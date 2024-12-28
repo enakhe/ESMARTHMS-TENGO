@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ESMART_HMS.Presentation.Forms.Home
+namespace ESMART_HMS.Presentation.Forms.RoleHome
 {
     public partial class FrontDeskHomeForm : Form
     {

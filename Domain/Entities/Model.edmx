@@ -66,6 +66,8 @@
           <Property Name="BankAccNo" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="BankName" Type="nvarchar" MaxLength="450" />
           <Property Name="BankAccName" Type="nvarchar" MaxLength="450" />
+          <Property Name="BankType" Type="nvarchar" MaxLength="450" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
@@ -1488,6 +1490,8 @@
 					<Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
 					<Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__BankAccou__Creat__6EF57B66" FromRole="BankAccount" ToRole="ApplicationUser" />
+          <Property Name="BankType" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
 				</EntityType>
 				<EntityType Name="Area">
 					<Key>
@@ -2123,7 +2127,9 @@
 					<EntitySetMapping Name="BankAccounts">
 						<EntityTypeMapping TypeName="ESMART_HMSDBModel.BankAccount">
 							<MappingFragment StoreEntitySet="BankAccount">
-								<ScalarProperty Name="DateModified" ColumnName="DateModified" />
+								<ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BankType" ColumnName="BankType" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
 								<ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
 								<ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
 								<ScalarProperty Name="IsTrashed" ColumnName="IsTrashed" />

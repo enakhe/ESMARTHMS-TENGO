@@ -1,9 +1,15 @@
-﻿using ESMART_HMS.Domain.Utils;
+﻿using ESMART_HMS.Domain.Entities;
+using ESMART_HMS.Domain.Utils;
 using ESMART_HMS.Presentation.Controllers.Maintenance;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
+using ESMART_HMS.Presentation.Sessions;
 using System.Windows.Forms;
+using ESMART_HMS.Presentation.Controllers;
+using System.Collections.Generic;
+using ESMART_HMS.Presentation.Middleware;
+using ESMART_HMS.Presentation.Forms.RoleHome;
 
 namespace ESMART_HMS.Presentation.Forms
 {
@@ -11,10 +17,12 @@ namespace ESMART_HMS.Presentation.Forms
     {
         private Timer timer;
         private readonly LicenseController _licenseController;
+        private readonly ApplicationUserController _applicationUserController;
 
-        public SplashScreenForm(LicenseController licenseController)
+        public SplashScreenForm(LicenseController licenseController, ApplicationUserController userController)
         {
             _licenseController = licenseController;
+            _applicationUserController = userController;
             InitializeComponent();
             Shown += SplashScreenForm_Shown;
         }
@@ -78,8 +86,18 @@ namespace ESMART_HMS.Presentation.Forms
                         var loginResult = loginForm.ShowDialog();
                         if (loginResult == DialogResult.OK)
                         {
-                            var homeForm = serviceProvider.GetRequiredService<Home>();
-                            homeForm.ShowDialog();
+                            ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+
+                            if (AuthorizationMiddleware.IsInRole(user, "SuperAdmin") || AuthorizationMiddleware.IsInRole(user, "Admin"))
+                            {
+                                var homeForm = serviceProvider.GetRequiredService<Home>();
+                                homeForm.ShowDialog();
+                            }
+                            else if (AuthorizationMiddleware.IsInRole(user, "FRONT DESK"))
+                            {
+                                var frontDeskHomeForm = serviceProvider.GetRequiredService<FrontDeskHomeForm>();
+                                frontDeskHomeForm.ShowDialog();
+                            }
                         }
                     }
                 }
@@ -96,8 +114,18 @@ namespace ESMART_HMS.Presentation.Forms
                     var loginResult = loginForm.ShowDialog();
                     if (loginResult == DialogResult.OK)
                     {
-                        var homeForm = serviceProvider.GetRequiredService<Home>();
-                        homeForm.ShowDialog();
+                        ApplicationUser user = _applicationUserController.GetApplicationUserById(AuthSession.CurrentUser.Id);
+
+                        if(AuthorizationMiddleware.IsInRole(user, "SuperAdmin") || AuthorizationMiddleware.IsInRole(user, "Admin"))
+                        {
+                            var homeForm = serviceProvider.GetRequiredService<Home>();
+                            homeForm.ShowDialog();
+                        } 
+                        else if (AuthorizationMiddleware.IsInRole(user, "FRONT DESK"))
+                        {
+                            var frontDeskHomeForm = serviceProvider.GetRequiredService<FrontDeskHomeForm>();
+                            frontDeskHomeForm.ShowDialog();
+                        }
                     }
                 }
             }

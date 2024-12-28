@@ -26,6 +26,7 @@ using ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.User;
 using ESMART_HMS.Presentation.Forms.Report;
 using ESMART_HMS.Presentation.Forms.Reservation;
 using ESMART_HMS.Presentation.Forms.Restaurant;
+using ESMART_HMS.Presentation.Forms.RoleHome;
 using ESMART_HMS.Presentation.Forms.Rooms;
 using ESMART_HMS.Presentation.Forms.RoomTypes;
 using ESMART_HMS.Presentation.Forms.Store.BarStore;
@@ -79,6 +80,7 @@ namespace ESMART_HMS.Presentation
         {
             services.AddScoped<LoginForm>();
             services.AddScoped<Home>();
+            services.AddScoped<FrontDeskHomeForm>();
             services.AddScoped<LicenseForm>();
             services.AddScoped<InitializeDatabaseForm>();
             services.AddScoped<SplashScreenForm>();

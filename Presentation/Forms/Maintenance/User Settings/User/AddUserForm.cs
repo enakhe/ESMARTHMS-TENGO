@@ -43,7 +43,7 @@ namespace ESMART_HMS.Presentation.Forms.Maintenance.User_Settings.User
         public void LoadPassword()
         {
             Random random = new Random();
-            txtPassword.Text = "Password" + random.Next(10000, 30000).ToString();
+            txtPassword.Text = random.Next(10000, 30000).ToString();
         }
 
         private void txtFirstName_TextChanged(object sender, EventArgs e)

@@ -22,6 +22,8 @@ namespace ESMART_HMS.Domain.Entities
         public string CreatedBy { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateModified { get; set; }
+        public string BankType { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual ApplicationUser ApplicationUser { get; set; }
     }

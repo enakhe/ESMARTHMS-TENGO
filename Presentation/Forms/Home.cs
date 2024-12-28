@@ -90,17 +90,10 @@ namespace ESMART_HMS.Presentation.Forms
             _configurationController = configurationController;
             _cardController = cardController;
             InitializeComponent();
-            ApplyAuthorization();
-            ApplyAuthorization2();
-            ApplyAuthorization3();
-            ApplyAuthorization4();
-            ApplyAuthorization5();
-            RoomStatus();
 
             this.BackgroundImage = _bgImage;
             this.BackgroundImageLayout = ImageLayout.Stretch;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            RoomStatus();
             this.DoubleBuffered = true;
             this.IsMdiContainer = true;
             this.BackColor = Color.White;
@@ -629,97 +622,6 @@ namespace ESMART_HMS.Presentation.Forms
         {
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
-            dispatcherTimer.Tick += DispatcherTimer_Tick;
-        }
-
-        private void DispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            ValidateCardEncoderConnection();
-            LoadCardDetails();
-        }
-
-        private void ValidateCardEncoderConnection()
-        {
-            const Int16 EncoderLockType = 4;
-            int encoderStatus = LockSDKMethods.CheckEncoder(EncoderLockType);
-
-            if (encoderStatus != 1)
-            {
-                txtEncoderStatus.Text = "Please connect the encoder!";
-                txtEncoderStatus.ForeColor = Color.Red;
-            }
-            else
-            {
-                txtEncoderStatus.Text = "Encoder connected";
-                txtEncoderStatus.ForeColor = Color.Green;
-            }
-        }
-
-        public void LoadCardDetails()
-        {
-            char[] card_snr = new char[100];
-
-            int st = LockSDKMethods.ReadCard(card_snr);
-            if (st != (int)ERROR_TYPE.OPR_OK)
-            {
-                txtStatus.Text = "No Found Card";
-                txtStatus.ForeColor = Color.Red;
-
-                txtCardNo.Visible = false;
-                txtCardType.Visible = false;
-                txtRoomNo.Visible = false;
-                txtSDate.Visible = false;
-                txtEdate.Visible = false;
-                txtAreas.Visible = false;
-                txtFloors.Visible = false;
-            }
-            else
-            {
-                CARD_INFO cardInfo = new CARD_INFO();
-                byte[] cbuf = new byte[10000];
-                cardInfo = new CARD_INFO();
-                int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
-
-                var roomNo = FormHelper.ByteArrayToString(cardInfo.RoomList);
-                bool isNull = FormHelper.AreAnyNullOrEmpty(roomNo);
-
-                if (isNull)
-                {
-                    txtStatus.Text = "Empty Card";
-                    txtStatus.ForeColor = Color.Red;
-
-                    txtCardNo.Visible = false;
-                    txtCardType.Visible = false;
-                    txtRoomNo.Visible = false;
-                    txtSDate.Visible = false;
-                    txtEdate.Visible = false;
-                    txtAreas.Visible = false;
-                    txtFloors.Visible = false;
-                }
-                else
-                {
-                    txtStatus.Text = "Card found";
-                    txtStatus.ForeColor = Color.Green;
-                    txtCardType.ForeColor = Color.Blue;
-
-                    if (result == (int)ERROR_TYPE.OPR_OK)
-                    {
-                        MakeCardType cardType = FormHelper.GetCardType(cardInfo.CardType);
-                        var cardInfoRoom = FormHelper.ByteArrayToString(cardInfo.RoomList);
-                        string[] parts = cardInfoRoom.Split('.');
-                        var roomno = parts[parts.Length - 1];
-
-                        txtCardNo.Text = $"Card No:\n {FormHelper.ByteArrayToString(cardInfo.CardNo)}";
-                        txtCardType.Text = $"Card Type:\n {FormHelper.FormatEnumName(cardType)}";
-                        txtRoomNo.Text = $"Room No:\n {roomno}";
-                        txtSDate.Text = $"Start Time:\n {FormHelper.ByteArrayToString(cardInfo.SDateTime)}";
-                        txtEdate.Text = $"End Time:\n {FormHelper.ByteArrayToString(cardInfo.EDateTime)}";
-                        txtAreas.Text = $"Areas:\n {FormHelper.ByteArrayToString(cardInfo.cAreaList)}";
-                        txtFloors.Text = $"Floors:\n {FormHelper.ByteArrayToString(cardInfo.FloorList)}";
-                    }
-                }
-
-            }
         }
 
         private void Home_Load(object sender, EventArgs e)
@@ -736,21 +638,6 @@ namespace ESMART_HMS.Presentation.Forms
             {
                 MessageBox.Show("Successfully recycled card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        public void RoomStatus()
-        {
-            var vacantRoom = _roomController.GetAvailbleRoom().Count();
-            txtVacant.Text = $"Vacant: {vacantRoom}";
-
-            var reservedRoom = _roomController.GetReservedRoom();
-            txtReserved.Text = $"Reserved: {reservedRoom}";
-
-            var bookingRoom = _roomController.GetCheckedIn();
-            txtChecked.Text = $"Checked In: {bookingRoom}";
-
-            var maintenanceRoom = _roomController.GetMaintenance();
-            txtMaintenance.Text = $"Maintenance: {maintenanceRoom}";
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -774,11 +661,6 @@ namespace ESMART_HMS.Presentation.Forms
                 profileForm = serviceProvider.GetRequiredService<ProfileForm>();
                 profileForm.ShowDialog();
             }
-        }
-
-        private void pictureBox3_Click_1(object sender, EventArgs e)
-        {
-            RoomStatus();
         }
 
         private void Order_FormClosed(object sender, FormClosedEventArgs e)
