@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartAccountForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bankAccountTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.BankAccountTableAdapter();
             this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eSMART_HMSDBDataSet = new ESMART_HMS.ESMART_HMSDBDataSet();
@@ -61,6 +61,7 @@
             this.bankAccount = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.chartOfAccountTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.ChartOfAccountTableAdapter();
+            this.btnPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             this.flowLayoutPanel7.SuspendLayout();
@@ -103,8 +104,11 @@
             this.btnAddBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(121)))), ((int)(((byte)(247)))));
             this.btnAddBank.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAddBank.ForeColor = System.Drawing.Color.White;
+            this.btnAddBank.Image = ((System.Drawing.Image)(resources.GetObject("btnAddBank.Image")));
+            this.btnAddBank.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddBank.Location = new System.Drawing.Point(3, 3);
             this.btnAddBank.Name = "btnAddBank";
+            this.btnAddBank.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnAddBank.Size = new System.Drawing.Size(108, 37);
             this.btnAddBank.TabIndex = 1;
             this.btnAddBank.Text = "New";
@@ -129,8 +133,11 @@
             this.btnEditAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnEditAccount.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEditAccount.ForeColor = System.Drawing.Color.White;
+            this.btnEditAccount.Image = ((System.Drawing.Image)(resources.GetObject("btnEditAccount.Image")));
+            this.btnEditAccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEditAccount.Location = new System.Drawing.Point(3, 46);
             this.btnEditAccount.Name = "btnEditAccount";
+            this.btnEditAccount.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnEditAccount.Size = new System.Drawing.Size(108, 37);
             this.btnEditAccount.TabIndex = 2;
             this.btnEditAccount.Text = "Edit";
@@ -142,8 +149,11 @@
             this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDelete.Location = new System.Drawing.Point(3, 89);
             this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnDelete.Size = new System.Drawing.Size(108, 37);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
@@ -370,6 +380,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnAddBank);
             this.flowLayoutPanel1.Controls.Add(this.btnEditAccount);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel1.Controls.Add(this.btnPrint);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -405,6 +416,22 @@
             // chartOfAccountTableAdapter
             // 
             this.chartOfAccountTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.Blue;
+            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(3, 132);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.btnPrint.Size = new System.Drawing.Size(108, 37);
+            this.btnPrint.TabIndex = 3;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // ChartAccountForm
             // 
@@ -476,5 +503,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn createdByDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateCreatedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

@@ -9,9 +9,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
@@ -39,6 +41,7 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
                 dgvAccount.DataSource = allChartOfAccount;
             }
         }
+
 
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -183,6 +186,12 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
                 MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
             }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            List<ChartOfAccountViewModel> allChartOfAccount = _accountController.GetAllChartOfAccount();
+            PrintHelper.PrintChartOfAccount(allChartOfAccount);
         }
     }
 }

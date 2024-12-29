@@ -43,6 +43,9 @@ namespace ESMART_HMS.Infrastructure.Data.Account
                                             AccountName = chartOfAccount.AccountName,
                                             AccountGroup = chartOfAccount.AccountGroup,
                                             AccountType = chartOfAccount.AccountType,
+                                            RollTo = chartOfAccount.RollTo,
+                                            RollBalance = (bool)chartOfAccount.RollBalance,
+                                            CashflowAccount = (bool)chartOfAccount.CashflowAccount,
                                             CreatedBy = chartOfAccount.ApplicationUser.FullName,
                                             IsActive = chartOfAccount.IsActive,
                                         };

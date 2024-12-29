@@ -126,13 +126,57 @@
   <metadata name="eSMART_HMSDBDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>413, 54</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnAddBank.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        AAAA60lEQVQ4T6WTTQrCMBCFW+paPYBbLfQiglp3XkGp6E4vJ4h4Dqt4ko7vJROkaQwFB75F5/2Q1piE
+        RkRSUIAVWICZSvGBcQCO0jQvIB41tB09am8PhDFMdy8U4gLvSGN2sMgg9Ak7WJJp3BQcAias5WQIa1sX
+        TrEIvTNNG0NIa5qHKygCoiVeQH3KgtJb8tg2KDJR3PPZ885ZsPaWZ9C3YPnvK+TuI747ojXECnixUvch
+        Yz9j+9hfrTJhDh54kW4d02+uzGjcDha8yn1KGB5qrD3mJCJ7mGovRJ7QKnrUHh8Yc1AC/p1zXXuTJB/E
+        iPWuboRNGwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnEditAccount.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        AAAA/ElEQVQ4T81RvQ4BQRjcmhAJhcfQiFB6AN09hFKt1NDqtDqVVqKS0PrptQoqiUb2x5rd/XI/2eNO
+        Z5LJdzvfzOzljv0KrXVJS7kEb1qpPsn5oYUYIayJdydy3sAh8Mh50xoAunmGWcc0b2AK1qZxTIc0nilc
+        xvPOakrtbYkQE8wqg/iAOLTXpCARjjinNQxOCOiYAMJF7DbkcVTqCL1Gls8FucIGtPQLpFyFQRc+IFyl
+        dQQyJApgLEATsXB4M55P+DstazRILRCiTfoL3MZv9vyeAJgASrqYFZJC5Cr4hv8suIALI2ZSqQGmxvfp
+        UNwW9MCrXWTzCU4pCjD2Blfs5s+bdjW5AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        AAABCklEQVQ4T5VTMRIBQRC8lHeQyXmAKpHcA8gJVaGEpIqcQOgFEr4g9gX52bsyenZmb285jq7quumZ
+        7rnbq9qoCBTHNUrTKyUJWXKNno7LgdAYoZXKiGvuqXwHGdOC4Za9sZw3ZJoat2+cvRh+4Uzj9hO7aBz/
+        IjIaF9D93sCg/RPh1ZgHBgdQPs+YvdYXZb7HPGjMA4adM1gt9VyZ7/GyLesAONPGGayWunhBmq5ZB8Bg
+        6QyqPy9IkgXrAGhOnUH1twUT1gFwrpEzWC118QJjhqwDoDlwBqul/rSgzzoAfkwvM8Rx3T75Dsg98D3p
+        9zTmgUEnM5SzozEPIqpicAYfOeMreXaCtyKpKHoCRWx+shpqwY8AAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="chartOfAccountBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>596, 54</value>
   </metadata>
+  <data name="btnPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
+        AAAA3UlEQVQ4T62Tuw3CMBRFLfokA1AwBDMwACV0SGEGBBOwAlTQgxiAFZCYgCnogoi5178YYz4GjnQk
+        +73nmyK28JFSjuHkjaUZvweNHJIlXDyRPZKbYw0oFronW6b0AHt6RBam1MCi7iUGYDODB3hkB3D9SsJZ
+        rqcMuLDyJRUDPoVf7cE+vLJAUgLOcAP3amdICYjyl4BaLx38VW3YDWTN/kZLzYCdXjs4tIanwBUMA7b2
+        LmSwo0p6aAjngQNoAzibqcMWFNxNhCMYBrBmA6JX+bfHRNAoYewJ+3rPWYgb19sH7IviCfgAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
   <metadata name="chartOfAccountTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 91</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAMAEBAAAAEAIABoBAAANgAAACAgAAABACAAKBEAAJ4EAAAwMAAAAQAgAGgmAADGFQAAKAAAABAA
