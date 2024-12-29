@@ -46,7 +46,7 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
                 e.Handled = true;
             }
         }
-
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
             bool isNull = FormHelper.AreAnyNullOrEmpty(txtAccCode.Text, txtAccName.Text, txtAccGroup.Text, txtAccType.Text);

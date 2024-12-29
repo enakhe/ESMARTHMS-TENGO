@@ -44,13 +44,6 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.dgvAccount = new System.Windows.Forms.DataGridView();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.bankAccount = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.chartOfAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.chartOfAccountTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.ChartOfAccountTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accountNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +54,13 @@
             this.createdByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chartOfAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.bankAccount = new System.Windows.Forms.TabPage();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.chartOfAccountTableAdapter = new ESMART_HMS.ESMART_HMSDBDataSetTableAdapters.ChartOfAccountTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eSMART_HMSDBDataSet)).BeginInit();
             this.flowLayoutPanel7.SuspendLayout();
@@ -73,6 +73,7 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartOfAccountBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -81,7 +82,6 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.bankAccount.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartOfAccountBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // bankAccountTableAdapter
@@ -135,6 +135,7 @@
             this.btnEditAccount.TabIndex = 2;
             this.btnEditAccount.Text = "Edit";
             this.btnEditAccount.UseVisualStyleBackColor = false;
+            this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
             // 
             // btnDelete
             // 
@@ -253,82 +254,6 @@
             this.dgvAccount.Size = new System.Drawing.Size(812, 419);
             this.dgvAccount.TabIndex = 4;
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.SystemColors.Control;
-            this.panel4.Controls.Add(this.splitContainer3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(10, 10);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(812, 478);
-            this.panel4.TabIndex = 0;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.panel4);
-            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(10);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer2.Size = new System.Drawing.Size(974, 498);
-            this.splitContainer2.SplitterDistance = 832;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
-            this.flowLayoutPanel1.Controls.Add(this.btnAddBank);
-            this.flowLayoutPanel1.Controls.Add(this.btnEditAccount);
-            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 10);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(118, 478);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // bankAccount
-            // 
-            this.bankAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(159)))));
-            this.bankAccount.Controls.Add(this.splitContainer2);
-            this.bankAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bankAccount.Location = new System.Drawing.Point(4, 46);
-            this.bankAccount.Name = "bankAccount";
-            this.bankAccount.Size = new System.Drawing.Size(974, 498);
-            this.bankAccount.TabIndex = 2;
-            this.bankAccount.Text = "Chart of Account";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.bankAccount);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.Padding = new System.Drawing.Point(20, 10);
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(982, 548);
-            this.tabControl1.TabIndex = 2;
-            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
-            // 
-            // chartOfAccountBindingSource
-            // 
-            this.chartOfAccountBindingSource.DataMember = "ChartOfAccount";
-            this.chartOfAccountBindingSource.DataSource = this.eSMART_HMSDBDataSet;
-            // 
-            // chartOfAccountTableAdapter
-            // 
-            this.chartOfAccountTableAdapter.ClearBeforeFill = true;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -403,6 +328,82 @@
             this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateModifiedDataGridViewTextBoxColumn.Visible = false;
             // 
+            // chartOfAccountBindingSource
+            // 
+            this.chartOfAccountBindingSource.DataMember = "ChartOfAccount";
+            this.chartOfAccountBindingSource.DataSource = this.eSMART_HMSDBDataSet;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.splitContainer3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(10, 10);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(812, 478);
+            this.panel4.TabIndex = 0;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.panel4);
+            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(10);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer2.Size = new System.Drawing.Size(974, 498);
+            this.splitContainer2.SplitterDistance = 832;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanel1.Controls.Add(this.btnAddBank);
+            this.flowLayoutPanel1.Controls.Add(this.btnEditAccount);
+            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(10, 10);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(118, 478);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // bankAccount
+            // 
+            this.bankAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(159)))));
+            this.bankAccount.Controls.Add(this.splitContainer2);
+            this.bankAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bankAccount.Location = new System.Drawing.Point(4, 46);
+            this.bankAccount.Name = "bankAccount";
+            this.bankAccount.Size = new System.Drawing.Size(974, 498);
+            this.bankAccount.TabIndex = 2;
+            this.bankAccount.Text = "Chart of Account";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.bankAccount);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(20, 10);
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(982, 548);
+            this.tabControl1.TabIndex = 2;
+            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            // 
+            // chartOfAccountTableAdapter
+            // 
+            this.chartOfAccountTableAdapter.ClearBeforeFill = true;
+            // 
             // ChartAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,6 +430,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartOfAccountBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -437,7 +439,6 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.bankAccount.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartOfAccountBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

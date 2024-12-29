@@ -87,5 +87,40 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
                 InitializeBankAccountTab();
             }
         }
+
+        private void btnEditAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvAccount.SelectedRows.Count > 0)
+                {
+                    var row = dgvAccount.SelectedRows[0];
+                    string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+
+                    if(id == null)
+                    {
+                        MessageBox.Show("Could not get account id", "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+
+                    using (EditChartOfAccountForm editChartOfAccountForm = new EditChartOfAccountForm(id, _accountController))
+                    {
+                        if (editChartOfAccountForm.ShowDialog() == DialogResult.OK)
+                        {
+                            InitializeBankAccountTab();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select an account to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
     }
 }

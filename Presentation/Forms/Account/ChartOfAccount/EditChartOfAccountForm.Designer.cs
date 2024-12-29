@@ -75,6 +75,7 @@
             this.txtRollTo.Name = "txtRollTo";
             this.txtRollTo.Size = new System.Drawing.Size(149, 31);
             this.txtRollTo.TabIndex = 44;
+            this.txtRollTo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRollTo_KeyPress);
             // 
             // label6
             // 
@@ -134,6 +135,7 @@
             this.btnSave.TabIndex = 40;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label4
             // 
@@ -185,6 +187,7 @@
             this.txtAccCode.Name = "txtAccCode";
             this.txtAccCode.Size = new System.Drawing.Size(149, 31);
             this.txtAccCode.TabIndex = 35;
+            this.txtAccCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAccCode_KeyPress);
             // 
             // label3
             // 
@@ -227,11 +230,14 @@
             this.Controls.Add(this.txtAccCode);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditChartOfAccountForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Chart Of Account";
+            this.Activated += new System.EventHandler(this.EditChartOfAccountForm_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

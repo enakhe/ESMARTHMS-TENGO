@@ -38,6 +38,7 @@ namespace ESMART_HMS.Infrastructure.Data.Account
                 var allChartOfAccount = from chartOfAccount in _db.ChartOfAccounts.Where(coa => coa.IsTrashed == false && coa.IsActive == true).OrderBy(coa => coa.AccountCode)
                                         select new ChartOfAccountViewModel
                                         {
+                                            Id = chartOfAccount.Id,
                                             AccountCode = chartOfAccount.AccountCode,
                                             AccountName = chartOfAccount.AccountName,
                                             AccountGroup = chartOfAccount.AccountGroup,
@@ -59,6 +60,18 @@ namespace ESMART_HMS.Infrastructure.Data.Account
             {
                 _db.Entry(chartOfAccount).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occured when updating chart of account. {ex.Message}");
+            }
+        }
+
+        public ChartOfAccount GetChartOfAccountById(string id)
+        {
+            try
+            {
+                return _db.ChartOfAccounts.FirstOrDefault(coa => coa.Id ==  id);
             }
             catch (Exception ex)
             {

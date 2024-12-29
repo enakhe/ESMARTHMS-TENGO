@@ -32,5 +32,10 @@ namespace ESMART_HMS.Presentation.Controllers.Account
         {
             _accountUseCases.EditChartOfAccount(chartOfAccount);
         }
+
+        public ChartOfAccount GetChartOfAccountById(string id)
+        {
+            return _accountUseCases.GetChartOfAccountById(id);
+        }
     }
 }
