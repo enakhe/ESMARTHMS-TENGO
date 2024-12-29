@@ -60,6 +60,7 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
                     AccountGroup = txtAccGroup.Text,
                     AccountType = txtAccType.Text,
                     IsActive = true,
+                    IsTrashed = false,
                     CreatedBy = AuthSession.CurrentUser.Id,
                     RollTo = txtRollTo.Text,
                     RollBalance = checckRollBalance.Checked,

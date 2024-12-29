@@ -23,7 +23,6 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
         {
             _accountController = accountController;
             InitializeComponent();
-            this.Activated += ChartOfAccountForm_Activated;
         }
 
 
@@ -70,11 +69,6 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
             TextRenderer.DrawText(e.Graphics, tabPage.Text, font, tabRect, tabPage.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
 
-        private void ChartOfAccountForm_Activated(object sender, EventArgs e)
-        {
-            InitializeBankAccountTab();
-        }
-
         private void btnAddBank_Click(object sender, EventArgs e)
         {
             var services = new ServiceCollection();
@@ -114,6 +108,49 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
                 else
                 {
                     MessageBox.Show("Please select an account to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvAccount.SelectedRows.Count > 0)
+                {
+                    var result = MessageBox.Show("Are you sure you want to add the selected accounts to the recycle?\nIts record including all entries tagged to such account will be added to the recycle bin as well.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (DataGridViewRow row in dgvAccount.SelectedRows)
+                        {
+                            string id = row.Cells["idDataGridViewTextBoxColumn"].Value.ToString();
+                            Domain.Entities.ChartOfAccount chartOfAccount =  _accountController.GetChartOfAccountById(id);
+                            if (id == null)
+                            {
+                                MessageBox.Show("Could not get account id", "Exception Error", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+
+                            if (chartOfAccount != null)
+                            {
+                                chartOfAccount.IsTrashed = true;
+                                chartOfAccount.DateModified = DateTime.Now;
+                            }
+                            _accountController.EditChartOfAccount(chartOfAccount);
+                        }
+                        InitializeBankAccountTab();
+                        MessageBox.Show("Successfully added account information to recycle", "Success", MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select an account to recycle.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
