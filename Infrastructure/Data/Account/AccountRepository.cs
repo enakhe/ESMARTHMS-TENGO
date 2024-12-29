@@ -27,7 +27,7 @@ namespace ESMART_HMS.Infrastructure.Data.Account
             }
             catch (Exception ex)
             {
-                throw new Exception($"An error occured when adding chart of account {ex.Message}");
+                throw new Exception($"An error occured when adding chart of account. {ex.Message}");
             }
         } 
 
@@ -49,7 +49,20 @@ namespace ESMART_HMS.Infrastructure.Data.Account
             }
             catch (Exception ex)
             {
-                throw new Exception($"An error occured when getting all chart of accounts {ex.Message}");
+                throw new Exception($"An error occured when getting all chart of accounts. {ex.Message}");
+            }
+        }
+
+        public void EditChartOfAccount(ChartOfAccount chartOfAccount)
+        {
+            try
+            {
+                _db.Entry(chartOfAccount).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occured when updating chart of account. {ex.Message}");
             }
         }
     }

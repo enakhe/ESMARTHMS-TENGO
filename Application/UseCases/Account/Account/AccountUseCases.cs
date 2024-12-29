@@ -12,7 +12,7 @@ namespace ESMART_HMS.Application.UseCases.Account.Account
     public class AccountUseCases
     {
         private readonly IAccountRepository _accountRepository;
-
+         
         public AccountUseCases(IAccountRepository accountRepository)
         {
             _accountRepository = accountRepository;
@@ -26,6 +26,11 @@ namespace ESMART_HMS.Application.UseCases.Account.Account
         public List<ChartOfAccountViewModel> GetAllChartOfAccount()
         {
             return _accountRepository.GetAllChartOfAccount();
+        }
+
+        public void EditChartOfAccount(ChartOfAccount chartOfAccount)
+        {
+            _accountRepository.EditChartOfAccount(chartOfAccount);
         }
     }
 }

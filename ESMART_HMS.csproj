@@ -582,6 +582,12 @@
     <Compile Include="Presentation\Forms\Account\BankAccount\EditBankAccountForm.Designer.cs">
       <DependentUpon>EditBankAccountForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\Account\ChartOfAccount\EditChartOfAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\Account\ChartOfAccount\EditChartOfAccountForm.Designer.cs">
+      <DependentUpon>EditChartOfAccountForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\Account\ChartOfAccount\AddChartOfAccountForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1095,6 +1101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Account\ChartOfAccount\ChartAccountForm.resx">
       <DependentUpon>ChartAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\Account\ChartOfAccount\EditChartOfAccountForm.resx">
+      <DependentUpon>EditChartOfAccountForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\FrontDesk\Booking\EditBookingForm.resx">
       <DependentUpon>EditBookingForm.cs</DependentUpon>

@@ -362,7 +362,10 @@ namespace ESMART_HMS.Infrastructure.Services
                 "[AccountName][nvarchar](450) NULL," +
                 "[AccountType][nvarchar](450) NULL," +
                 "[AccountGroup][nvarchar](450) NULL," +
+                "[RollTo][nvarchar](450) NULL," +
                 "[IsActive][bit] NOT NULL," +
+                "[RollBalance][bit] NULL," +
+                "[CashflowAccount][bit] NULL," +
                 "[IsTrashed][bit] NOT NULL," +
                 "[CreatedBy][nvarchar](450) NOT NULL," +
                 "[DateCreated][datetime2](7) NOT NULL," +

@@ -117,7 +117,10 @@
           <Property Name="AccountName" Type="nvarchar" MaxLength="450" />
           <Property Name="AccountType" Type="nvarchar" MaxLength="450" />
           <Property Name="AccountGroup" Type="nvarchar" MaxLength="450" />
+          <Property Name="RollTo" Type="nvarchar" MaxLength="450" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="RollBalance" Type="bit" />
+          <Property Name="CashflowAccount" Type="bit" />
           <Property Name="IsTrashed" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="450" Nullable="false" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" Nullable="false" />
@@ -491,7 +494,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChartOfAc__Creat__06CD04F7">
+        <Association Name="FK__ChartOfAc__Creat__09A971A2">
           <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1" />
           <End Role="ChartOfAccount" Type="Self.ChartOfAccount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -847,7 +850,7 @@
             <End Role="Room" EntitySet="Room" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChartOfAc__Creat__06CD04F7" Association="Self.FK__ChartOfAc__Creat__06CD04F7">
+          <AssociationSet Name="FK__ChartOfAc__Creat__09A971A2" Association="Self.FK__ChartOfAc__Creat__09A971A2">
             <End Role="ApplicationUser" EntitySet="ApplicationUser" />
             <End Role="ChartOfAccount" EntitySet="ChartOfAccount" />
           </AssociationSet>
@@ -1946,6 +1949,9 @@
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="ApplicationUser" Relationship="ESMART_HMSDBModel.FK__ChartOfAc__Creat__06CD04F7" FromRole="ChartOfAccount" ToRole="ApplicationUser" />
+          <Property Name="RollTo" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="RollBalance" Type="Boolean" />
+          <Property Name="CashflowAccount" Type="Boolean" />
         </EntityType>
         <Association Name="FK__ChartOfAc__Creat__06CD04F7">
           <End Type="ESMART_HMSDBModel.ApplicationUser" Role="ApplicationUser" Multiplicity="1" />
@@ -2381,6 +2387,9 @@
           <EntitySetMapping Name="ChartOfAccounts">
             <EntityTypeMapping TypeName="ESMART_HMSDBModel.ChartOfAccount">
               <MappingFragment StoreEntitySet="ChartOfAccount">
+                <ScalarProperty Name="CashflowAccount" ColumnName="CashflowAccount" />
+                <ScalarProperty Name="RollBalance" ColumnName="RollBalance" />
+                <ScalarProperty Name="RollTo" ColumnName="RollTo" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />

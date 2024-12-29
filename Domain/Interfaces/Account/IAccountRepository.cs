@@ -12,5 +12,6 @@ namespace ESMART_HMS.Domain.Interfaces.Account
     {
         void AddChartOfAccount(ChartOfAccount chartOfAccount);
         List<ChartOfAccountViewModel> GetAllChartOfAccount();
+        void EditChartOfAccount(ChartOfAccount chartOfAccount);
     }
 }
