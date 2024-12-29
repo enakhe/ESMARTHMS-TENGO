@@ -56,7 +56,7 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
                 {
                     Id = Guid.NewGuid().ToString(),
                     AccountCode = txtAccCode.Text,
-                    AccountName = txtAccName.Text,
+                    AccountName = txtAccName.Text.ToUpper(),
                     AccountGroup = txtAccGroup.Text,
                     AccountType = txtAccType.Text,
                     IsActive = true,

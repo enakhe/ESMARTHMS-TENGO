@@ -159,5 +159,30 @@ namespace ESMART_HMS.Presentation.Forms.Account.ChartOfAccount
                             MessageBoxIcon.Error);
             }
         }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                List<ChartOfAccountViewModel> allChartOfAccount = _accountController.GetAllChartOfAccount();
+                if (allChartOfAccount != null)
+                {
+                    var searchedList = allChartOfAccount.Where(aoc => aoc.AccountCode.Contains(txtSearch.Text) || aoc.AccountName.Contains(txtSearch.Text) || aoc.AccountGroup.Contains(txtSearch.Text) || aoc.AccountType.Contains(txtSearch.Text)).ToList();
+                    if (searchedList.Count > 0)
+                    {
+                        dgvAccount.DataSource = searchedList;
+                    }
+                    else
+                    {
+                        dgvAccount.DataSource = allChartOfAccount;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+        }
     }
 }
