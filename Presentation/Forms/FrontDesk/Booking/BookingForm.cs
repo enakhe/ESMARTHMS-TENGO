@@ -173,52 +173,52 @@ namespace ESMART_HMS.Presentation.Forms.booking
                     int st = LockSDKMethods.ReadCard(card_snr);
                     Domain.Entities.Booking booking = _bookingController.GetbookingById(id);
                     Domain.Entities.Room room = _roomController.GetRealRoom(booking.RoomId);
-                    //GuestCard guestCard = _cardController.GetGuestCard(booking.Id);
+                    GuestCard guestCard = _cardController.GetGuestCard(booking.Id);
                     room.Status = RoomStatusEnum.Vacant.ToString();
 
-                    //if (guestCard != null)
-                    //{
-                    //    _cardController.DeleteGuestCard(guestCard.Id);
-                    //}
+                    if (guestCard != null)
+                    {
+                        _cardController.DeleteGuestCard(guestCard.Id);
+                    }
                     _roomController.UpdateRoom(room);
                     _bookingController.Deletebooking(booking);
                      MessageBox.Show("Successfully checkout card", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //StringBuilder card_snr2 = new StringBuilder();
-                    //st = LockSDKHeaders.TP_CancelCard(card_snr2);
+                    StringBuilder card_snr2 = new StringBuilder();
+                    st = LockSDKHeaders.TP_CancelCard(card_snr2);
                     if (st == 1)
                     {
                     }
                     LoadbookingsData();
 
-                    //if (st != (int)ERROR_TYPE.OPR_OK)
-                    //{
-                    //    MessageBox.Show("Please place card", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
-                    //else
-                    //{
-                    //    CARD_INFO cardInfo = new CARD_INFO();
-                    //    byte[] cbuf = new byte[10000];
-                    //    cardInfo = new CARD_INFO();
-                    //    int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
-                    //    if (result == (int)ERROR_TYPE.OPR_OK)
-                    //    {
-                    //        var cardInfoRoom = FormHelper.ByteArrayToString(cardInfo.RoomList);
-                    //        string[] parts = cardInfoRoom.Split('.');
-                    //        var roomno = parts[parts.Length - 1];
-                    //        string realRoomNo = roomno.Substring(roomno.Length - 4);
+                    if (st != (int)ERROR_TYPE.OPR_OK)
+                    {
+                        MessageBox.Show("Please place card", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        CARD_INFO cardInfo = new CARD_INFO();
+                        byte[] cbuf = new byte[10000];
+                        cardInfo = new CARD_INFO();
+                        int result = LockSDKHeaders.LS_GetCardInformation(ref cardInfo, 0, 0, IntPtr.Zero);
+                        if (result == (int)ERROR_TYPE.OPR_OK)
+                        {
+                            var cardInfoRoom = FormHelper.ByteArrayToString(cardInfo.RoomList);
+                            string[] parts = cardInfoRoom.Split('.');
+                            var roomno = parts[parts.Length - 1];
+                            string realRoomNo = roomno.Substring(roomno.Length - 4);
 
-                    //        if (realRoomNo.Contains(room.RoomNo))
-                    //        {
+                            if (realRoomNo.Contains(room.RoomNo))
+                            {
 
 
-                    //        }
-                    //        else
-                    //        {
-                    //            MessageBox.Show("Invalid room card", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //            return;
-                    //        }
-                    //    }
-                    //}
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid room card", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
 
                 }
                 else

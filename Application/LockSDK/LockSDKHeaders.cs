@@ -66,10 +66,8 @@ namespace ESMART_HMS.Application.LockSDK
         public static extern int LS_MakeChiefCard(char[] cardSnr, string SDateTime, string EDateTime, CARD_FLAGS iFlags, int iReplaceNo);
 
 
-
         [DllImport("LockSDK.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "LS_MakeBuildingCard")]
         public static extern int LS_MakeBuildingCard(char[] cardSnr, string BuildingList, string SDateTime, string EDateTime, int iFlags, int iReplaceNo);
-
 
 
         [DllImport("LockSDK.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi, EntryPoint = "LS_MakeFloorCard")]
@@ -100,15 +98,12 @@ namespace ESMART_HMS.Application.LockSDK
         public static extern int LS_ReadRom(char[] card_snr);
 
 
-
         [DllImport("LockSDK.dll", EntryPoint = "LS_OpenPort")]
         public static extern int LS_OpenPort(int Port);
 
 
-
         [DllImport("LockSDK.dll", EntryPoint = "LS_ClosePort")]
         public static extern int LS_ClosePort(int Port);
-
 
 
         [DllImport("LockSDK.dll", CallingConvention = CallingConvention.StdCall, EntryPoint = "LS_GetCardInformation")]
