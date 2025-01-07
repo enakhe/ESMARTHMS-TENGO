@@ -143,6 +143,10 @@ namespace ESMART_HMS.Presentation
 
             services.AddScoped<BankAccountForm>();
             services.AddScoped<AccountantHomeForm>();
+            services.AddScoped<BarHomeForm>();
+            services.AddScoped<RestaurantHomeForm>();
+            services.AddScoped<InventoryHomeForm>();
+            services.AddScoped<StoreKeeperHomeForm>();
             services.AddScoped<ChartAccountForm>();
             services.AddScoped<AddChartOfAccountForm>();
 

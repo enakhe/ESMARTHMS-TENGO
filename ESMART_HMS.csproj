@@ -654,6 +654,12 @@
     <Compile Include="Presentation\Forms\RoleHome\AccountantHomeForm.Designer.cs">
       <DependentUpon>AccountantHomeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\BarHomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\BarHomeForm.Designer.cs">
+      <DependentUpon>BarHomeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\RoleHome\FrontDeskHomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1060,6 +1066,24 @@
     <Compile Include="Presentation\Forms\Report\TransactionReport.Designer.cs">
       <DependentUpon>TransactionReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\InventoryHomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\InventoryHomeForm.Designer.cs">
+      <DependentUpon>InventoryHomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\RestaurantHomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\RestaurantHomeForm.Designer.cs">
+      <DependentUpon>RestaurantHomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\StoreKeeperHomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\Forms\RoleHome\StoreKeeperHomeForm.Designer.cs">
+      <DependentUpon>StoreKeeperHomeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Forms\SplashScreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1149,6 +1173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\RoleHome\AccountantHomeForm.resx">
       <DependentUpon>AccountantHomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\RoleHome\BarHomeForm.resx">
+      <DependentUpon>BarHomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\RoleHome\FrontDeskHomeForm.resx">
       <DependentUpon>FrontDeskHomeForm.cs</DependentUpon>
@@ -1339,6 +1366,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\Report\TransactionReport.resx">
       <DependentUpon>TransactionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\RoleHome\InventoryHomeForm.resx">
+      <DependentUpon>InventoryHomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\RoleHome\RestaurantHomeForm.resx">
+      <DependentUpon>RestaurantHomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\Forms\RoleHome\StoreKeeperHomeForm.resx">
+      <DependentUpon>StoreKeeperHomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\Forms\SplashScreenForm.resx">
       <DependentUpon>SplashScreenForm.cs</DependentUpon>

@@ -145,21 +145,21 @@
             this.customerMainToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.customerMainToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.customerMainToolStripMenuItem.Name = "customerMainToolStripMenuItem";
-            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.customerMainToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.customerMainToolStripMenuItem.Text = "Guests";
             this.customerMainToolStripMenuItem.Click += new System.EventHandler(this.customerMainToolStripMenuItem_Click_1);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(181, 6);
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("roomsToolStripMenuItem.Image")));
             this.roomsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
@@ -168,7 +168,7 @@
             this.manageReservationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("manageReservationToolStripMenuItem.Image")));
             this.manageReservationToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.manageReservationToolStripMenuItem.Name = "manageReservationToolStripMenuItem";
-            this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.manageReservationToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.manageReservationToolStripMenuItem.Text = "Reservations";
             this.manageReservationToolStripMenuItem.Click += new System.EventHandler(this.manageReservationToolStripMenuItem_Click);
             // 
@@ -177,7 +177,7 @@
             this.managebookingsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("managebookingsToolStripMenuItem.Image")));
             this.managebookingsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.managebookingsToolStripMenuItem.Name = "managebookingsToolStripMenuItem";
-            this.managebookingsToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.managebookingsToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.managebookingsToolStripMenuItem.Text = "Bookings";
             this.managebookingsToolStripMenuItem.Click += new System.EventHandler(this.managebookingsToolStripMenuItem_Click);
             // 
@@ -197,42 +197,42 @@
             // ordersToolStripMenuItem
             // 
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ordersToolStripMenuItem.Text = "Orders";
             this.ordersToolStripMenuItem.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
             // 
             // itemsToolStripMenuItem
             // 
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
-            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.itemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.itemsToolStripMenuItem.Text = "Items";
             this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
             // barToolStripMenuItem
             // 
             this.barToolStripMenuItem.Name = "barToolStripMenuItem";
-            this.barToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.barToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.barToolStripMenuItem.Text = "Bar";
             this.barToolStripMenuItem.Click += new System.EventHandler(this.barToolStripMenuItem_Click);
             // 
             // restaurantToolStripMenuItem1
             // 
             this.restaurantToolStripMenuItem1.Name = "restaurantToolStripMenuItem1";
-            this.restaurantToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.restaurantToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.restaurantToolStripMenuItem1.Text = "Restaurant";
             this.restaurantToolStripMenuItem1.Click += new System.EventHandler(this.restaurantToolStripMenuItem1_Click);
             // 
             // laundryToolStripMenuItem
             // 
             this.laundryToolStripMenuItem.Name = "laundryToolStripMenuItem";
-            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.laundryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.laundryToolStripMenuItem.Text = "Laundry";
             this.laundryToolStripMenuItem.Visible = false;
             // 
             // storeToolStripMenuItem
             // 
             this.storeToolStripMenuItem.Name = "storeToolStripMenuItem";
-            this.storeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.storeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.storeToolStripMenuItem.Text = "Store";
             this.storeToolStripMenuItem.Click += new System.EventHandler(this.storeToolStripMenuItem_Click);
             // 
@@ -322,6 +322,7 @@
             this.barItemReportToolStripMenuItem.Size = new System.Drawing.Size(197, 26);
             this.barItemReportToolStripMenuItem.Text = "Bar Item Report";
             this.barItemReportToolStripMenuItem.Visible = false;
+            this.barItemReportToolStripMenuItem.Click += new System.EventHandler(this.barItemReportToolStripMenuItem_Click);
             // 
             // accountsToolStripMenuItem
             // 

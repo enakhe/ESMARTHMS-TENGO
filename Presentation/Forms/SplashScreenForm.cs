@@ -69,6 +69,26 @@ namespace ESMART_HMS.Presentation.Forms
                                 var accountingHomeForm = serviceProvider.GetRequiredService<AccountantHomeForm>();
                                 accountingHomeForm.ShowDialog();
                             }
+                            else if (AuthorizationMiddleware.IsInRole(user, "BAR"))
+                            {
+                                var barHomeForm = serviceProvider.GetRequiredService<BarHomeForm>();
+                                barHomeForm.ShowDialog();
+                            }
+                            else if (AuthorizationMiddleware.IsInRole(user, "RESTAURANT"))
+                            {
+                                var restaurantHomeForm = serviceProvider.GetRequiredService<RestaurantHomeForm>();
+                                restaurantHomeForm.ShowDialog();
+                            }
+                            else if (AuthorizationMiddleware.IsInRole(user, "INVENTORY"))
+                            {
+                                var inventoryHomeForm = serviceProvider.GetRequiredService<InventoryHomeForm>();
+                                inventoryHomeForm.ShowDialog();
+                            }
+                            else if (AuthorizationMiddleware.IsInRole(user, "STORE KEEPER"))
+                            {
+                                var storeKeeperHomeForm = serviceProvider.GetRequiredService<StoreKeeperHomeForm>();
+                                storeKeeperHomeForm.ShowDialog();
+                            }
                         }
                     }
                     else
@@ -99,6 +119,26 @@ namespace ESMART_HMS.Presentation.Forms
                                 {
                                     var accountingHomeForm = serviceProvider.GetRequiredService<AccountantHomeForm>();
                                     accountingHomeForm.ShowDialog();
+                                }
+                                else if (AuthorizationMiddleware.IsInRole(user, "BAR"))
+                                {
+                                    var barHomeForm = serviceProvider.GetRequiredService<BarHomeForm>();
+                                    barHomeForm.ShowDialog();
+                                }
+                                else if (AuthorizationMiddleware.IsInRole(user, "RESTAURANT"))
+                                {
+                                    var restaurantHomeForm = serviceProvider.GetRequiredService<RestaurantHomeForm>();
+                                    restaurantHomeForm.ShowDialog();
+                                }
+                                else if (AuthorizationMiddleware.IsInRole(user, "INVENTORY"))
+                                {
+                                    var inventoryHomeForm = serviceProvider.GetRequiredService<InventoryHomeForm>();
+                                    inventoryHomeForm.ShowDialog();
+                                }
+                                else if (AuthorizationMiddleware.IsInRole(user, "STORE KEEPER"))
+                                {
+                                    var storeKeeperHomeForm = serviceProvider.GetRequiredService<StoreKeeperHomeForm>();
+                                    storeKeeperHomeForm.ShowDialog();
                                 }
                             }
                         }
@@ -133,6 +173,26 @@ namespace ESMART_HMS.Presentation.Forms
                                 var accountingHomeForm = serviceProvider.GetRequiredService<AccountantHomeForm>();
                                 accountingHomeForm.ShowDialog();
                             }
+                            else if (AuthorizationMiddleware.IsInRole(user, "BAR"))
+                            {
+                                var barHomeForm = serviceProvider.GetRequiredService<BarHomeForm>();
+                                barHomeForm.ShowDialog();
+                            }
+                            else if (AuthorizationMiddleware.IsInRole(user, "RESTAURANT"))
+                            {
+                                var restaurantHomeForm = serviceProvider.GetRequiredService<RestaurantHomeForm>();
+                                restaurantHomeForm.ShowDialog();
+                            }
+                            else if (AuthorizationMiddleware.IsInRole(user, "INVENTORY"))
+                            {
+                                var inventoryHomeForm = serviceProvider.GetRequiredService<InventoryHomeForm>();
+                                inventoryHomeForm.ShowDialog();
+                            }
+                            else if (AuthorizationMiddleware.IsInRole(user, "STORE KEEPER"))
+                            {
+                                var storeKeeperHomeForm = serviceProvider.GetRequiredService<StoreKeeperHomeForm>();
+                                storeKeeperHomeForm.ShowDialog();
+                            }
                         }
                     }
                 }
@@ -165,6 +225,26 @@ namespace ESMART_HMS.Presentation.Forms
                         {
                             var accountingHomeForm = serviceProvider.GetRequiredService<AccountantHomeForm>();
                             accountingHomeForm.ShowDialog();
+                        }
+                        else if (AuthorizationMiddleware.IsInRole(user, "BAR"))
+                        {
+                            var barHomeForm = serviceProvider.GetRequiredService<BarHomeForm>();
+                            barHomeForm.ShowDialog();
+                        }
+                        else if (AuthorizationMiddleware.IsInRole(user, "RESTAURANT"))
+                        {
+                            var restaurantHomeForm = serviceProvider.GetRequiredService<RestaurantHomeForm>();
+                            restaurantHomeForm.ShowDialog();
+                        }
+                        else if (AuthorizationMiddleware.IsInRole(user, "INVENTORY"))
+                        {
+                            var inventoryHomeForm = serviceProvider.GetRequiredService<InventoryHomeForm>();
+                            inventoryHomeForm.ShowDialog();
+                        }
+                        else if (AuthorizationMiddleware.IsInRole(user, "STORE KEEPER"))
+                        {
+                            var storeKeeperHomeForm = serviceProvider.GetRequiredService<StoreKeeperHomeForm>();
+                            storeKeeperHomeForm.ShowDialog();
                         }
                     }
                 }

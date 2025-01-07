@@ -750,5 +750,10 @@ namespace ESMART_HMS.Presentation.Forms
                 storeForm.Activate();
             }
         }
+
+        private void barItemReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

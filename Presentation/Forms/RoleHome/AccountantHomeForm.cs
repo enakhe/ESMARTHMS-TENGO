@@ -118,5 +118,24 @@ namespace ESMART_HMS.Presentation.Forms.RoleHome
         {
             chartOfAccountForm = null;
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to close the application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            var services = new ServiceCollection();
+            DependencyInjection.ConfigureServices(services);
+            var serviceProvider = services.BuildServiceProvider();
+
+            LockApp lockApp = serviceProvider.GetRequiredService<LockApp>();
+            lockApp.ShowDialog();
+        }
     }
 }
